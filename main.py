@@ -701,9 +701,17 @@ def update_stories_json(fact: str, sources: list, audio_file: str = None):
 
 
 def update_rss_feed(fact: str, sources: list):
-    """Update RSS feed with new story."""
-    feed_file = BASE_DIR / "web" / "feed.xml"
+    """Update RSS feed with new story and push to gh-pages."""
+    import subprocess
+
+    gh_pages_dir = BASE_DIR / "gh-pages-dist"
+    feed_file = gh_pages_dir / "feed.xml"
     max_items = 50  # Keep last 50 stories in feed
+
+    # Check if gh-pages worktree exists
+    if not gh_pages_dir.exists():
+        log.warning("gh-pages-dist worktree not found, skipping RSS update")
+        return
 
     # Format source attribution
     source_text = ", ".join([s['source_name'] for s in sources[:2]])
@@ -752,7 +760,7 @@ def update_rss_feed(fact: str, sources: list):
     channel = ET.SubElement(rss, "channel")
 
     ET.SubElement(channel, "title").text = "JTF News - Just The Facts"
-    ET.SubElement(channel, "link").text = "https://www.youtube.com/@JTFNewsLive"
+    ET.SubElement(channel, "link").text = "https://larryseyer.github.io/jtfnews/"
     ET.SubElement(channel, "description").text = "Verified facts from multiple sources. No opinions. No adjectives. No interpretation."
     ET.SubElement(channel, "language").text = "en-us"
     ET.SubElement(channel, "lastBuildDate").text = pub_date
@@ -772,6 +780,30 @@ def update_rss_feed(fact: str, sources: list):
         tree.write(f, encoding="utf-8", xml_declaration=True)
 
     log.info(f"RSS feed updated: {len(items)} items")
+
+    # Commit and push to gh-pages
+    try:
+        subprocess.run(
+            ["git", "add", "feed.xml"],
+            cwd=gh_pages_dir,
+            check=True,
+            capture_output=True
+        )
+        subprocess.run(
+            ["git", "commit", "-m", f"Update feed: {title[:50]}"],
+            cwd=gh_pages_dir,
+            check=True,
+            capture_output=True
+        )
+        subprocess.run(
+            ["git", "push"],
+            cwd=gh_pages_dir,
+            check=True,
+            capture_output=True
+        )
+        log.info("RSS feed pushed to gh-pages")
+    except subprocess.CalledProcessError as e:
+        log.warning(f"Failed to push RSS feed: {e}")
 
 
 # =============================================================================

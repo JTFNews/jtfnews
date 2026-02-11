@@ -16,4 +16,4 @@ TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
 MESSAGE=$(echo "$1" | sed 's/ /_/g')
 ZIP_FILE="$DEST_DIR/JTFNews_${TIMESTAMP}_${MESSAGE}.zip"
 cd "$SOURCE" || exit 1
-zip -r "$ZIP_FILE" . -x "media/*" "media/"
+zip -r "$ZIP_FILE" . -x "media/*" "media/" "gh-pages-dist/*" "gh-pages-dist/" "audio/*" "audio/" "data/*" "data/" "venv/*" "venv/" "__pycache__/*" "__pycache__/" ".env"
