@@ -835,7 +835,9 @@ def send_alert(message: str):
 # =============================================================================
 
 def archive_daily_log():
-    """Archive yesterday's log to GitHub."""
+    """Archive yesterday's log to gh-pages."""
+    import subprocess
+
     yesterday = (datetime.now(timezone.utc).date() -
                  __import__('datetime').timedelta(days=1))
     yesterday_str = yesterday.strftime("%Y-%m-%d")
@@ -848,19 +850,25 @@ def archive_daily_log():
         log.info("No log to archive")
         return
 
-    # Create year folder in archive
-    year_dir = ARCHIVE_DIR / year
-    year_dir.mkdir(exist_ok=True)
+    # Archive to gh-pages-dist
+    gh_pages_dir = BASE_DIR / "gh-pages-dist"
+    if not gh_pages_dir.exists():
+        log.warning("gh-pages-dist not found, skipping archive")
+        return
+
+    # Create year folder in gh-pages archive
+    archive_dir = gh_pages_dir / "archive" / year
+    archive_dir.mkdir(parents=True, exist_ok=True)
 
     # Gzip the log
-    archive_file = year_dir / f"{yesterday_str}.txt.gz"
+    archive_file = archive_dir / f"{yesterday_str}.txt.gz"
     with open(log_file, 'rb') as f_in:
         with gzip.open(archive_file, 'wb') as f_out:
             shutil.copyfileobj(f_in, f_out)
 
     log.info(f"Archived: {archive_file}")
 
-    # Clean up old files
+    # Clean up old local files
     log_file.unlink(missing_ok=True)
     hash_file.unlink(missing_ok=True)
 
@@ -868,10 +876,29 @@ def archive_daily_log():
     processed_file = DATA_DIR / f"processed_{yesterday_str}.txt"
     processed_file.unlink(missing_ok=True)
 
-    # Git commit and push (if configured)
-    # This would use GitHub API or subprocess for git commands
-    # Simplified for now
-    log.info("Archive complete - manual git push needed")
+    # Commit and push to gh-pages
+    try:
+        subprocess.run(
+            ["git", "add", f"archive/{year}/{yesterday_str}.txt.gz"],
+            cwd=gh_pages_dir,
+            check=True,
+            capture_output=True
+        )
+        subprocess.run(
+            ["git", "commit", "-m", f"Archive {yesterday_str}"],
+            cwd=gh_pages_dir,
+            check=True,
+            capture_output=True
+        )
+        subprocess.run(
+            ["git", "push"],
+            cwd=gh_pages_dir,
+            check=True,
+            capture_output=True
+        )
+        log.info(f"Archive pushed to gh-pages: {yesterday_str}")
+    except subprocess.CalledProcessError as e:
+        log.warning(f"Failed to push archive: {e}")
 
 
 # =============================================================================
