@@ -11,7 +11,7 @@ git push origin main
 
 # Backup
 SOURCE="/Users/larryseyer/JTFNews"
-DEST_DIR="/Users/larryseyer/Dropbox/Automagic Art/JTFNews Backups"
+DEST_DIR="/Users/larryseyer/Dropbox/Automagic Art/Source Backup/JTFNews Backups"
 TIMESTAMP=$(date +"%Y_%m_%d")
 MESSAGE=$(echo "$1" | sed 's/ /_/g')
 ZIP_FILE="$DEST_DIR/JTFNews_${TIMESTAMP}_${MESSAGE}.zip"
