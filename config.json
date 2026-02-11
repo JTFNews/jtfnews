@@ -1,0 +1,370 @@
+{
+  "sources": [
+    {
+      "id": "ap",
+      "name": "Associated Press",
+      "url": "https://apnews.com/world-news",
+      "rss": null,
+      "scrape_selector": "h3",
+      "tier": 1,
+      "control_type": "cooperative",
+      "owner": "AP Cooperative",
+      "owner_display": "Cooperative (no owners)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 9.6,
+        "bias": 0.1,
+        "speed": 9.5,
+        "consensus": 9.5
+      }
+    },
+    {
+      "id": "bbc",
+      "name": "BBC News",
+      "url": "https://www.bbc.com/news/world",
+      "rss": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "scrape_selector": "h3",
+      "tier": 2,
+      "control_type": "public_broadcaster",
+      "owner": "British Broadcasting Corporation",
+      "owner_display": "UK Public (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 9.4,
+        "bias": 0.2,
+        "speed": 9.0,
+        "consensus": 9.2
+      }
+    },
+    {
+      "id": "npr",
+      "name": "NPR",
+      "url": "https://www.npr.org/sections/news/",
+      "rss": "https://feeds.npr.org/1001/rss.xml",
+      "scrape_selector": "h3",
+      "tier": 2,
+      "control_type": "nonprofit",
+      "owner": "National Public Radio (nonprofit)",
+      "owner_display": "US Nonprofit",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 9.2,
+        "bias": 0.3,
+        "speed": 8.5,
+        "consensus": 9.0
+      }
+    },
+    {
+      "id": "guardian",
+      "name": "The Guardian",
+      "url": "https://www.theguardian.com/world",
+      "rss": "https://www.theguardian.com/world/rss",
+      "scrape_selector": "h3",
+      "tier": 1,
+      "control_type": "trust",
+      "owner": "Scott Trust Limited",
+      "owner_display": "Scott Trust (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 8.8,
+        "bias": -1.5,
+        "speed": 8.5,
+        "consensus": 8.5
+      }
+    },
+    {
+      "id": "aljazeera",
+      "name": "Al Jazeera English",
+      "url": "https://www.aljazeera.com/news/",
+      "rss": "https://www.aljazeera.com/xml/rss/all.xml",
+      "scrape_selector": "h3",
+      "tier": 2,
+      "control_type": "state",
+      "owner": "Al Jazeera Media Network (Qatar)",
+      "owner_display": "Qatar (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 8.5,
+        "bias": 0.5,
+        "speed": 8.5,
+        "consensus": 8.0
+      }
+    },
+    {
+      "id": "france24",
+      "name": "France 24",
+      "url": "https://www.france24.com/en/",
+      "rss": "https://www.france24.com/en/rss",
+      "scrape_selector": "h3",
+      "tier": 2,
+      "control_type": "public_broadcaster",
+      "owner": "France Médias Monde",
+      "owner_display": "France Public (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 8.6,
+        "bias": 0.2,
+        "speed": 8.5,
+        "consensus": 8.5
+      }
+    },
+    {
+      "id": "dw",
+      "name": "Deutsche Welle",
+      "url": "https://www.dw.com/en/top-stories/s-9097",
+      "rss": "https://rss.dw.com/xml/rss-en-all",
+      "scrape_selector": "h3",
+      "tier": 2,
+      "control_type": "public_broadcaster",
+      "owner": "German Federal Government",
+      "owner_display": "Germany Public (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 8.7,
+        "bias": 0.1,
+        "speed": 8.0,
+        "consensus": 8.5
+      }
+    },
+    {
+      "id": "cbc",
+      "name": "CBC News",
+      "url": "https://www.cbc.ca/news/world",
+      "rss": "https://www.cbc.ca/webfeed/rss/rss-topstories",
+      "scrape_selector": "h3",
+      "tier": 2,
+      "control_type": "public_broadcaster",
+      "owner": "Canadian Broadcasting Corporation",
+      "owner_display": "Canada Public (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 9.0,
+        "bias": 0.2,
+        "speed": 8.5,
+        "consensus": 9.0
+      }
+    },
+    {
+      "id": "abc_au",
+      "name": "ABC News Australia",
+      "url": "https://www.abc.net.au/news/",
+      "rss": "https://www.abc.net.au/news/feed/51120/rss.xml",
+      "scrape_selector": "h3",
+      "tier": 2,
+      "control_type": "public_broadcaster",
+      "owner": "Australian Broadcasting Corporation",
+      "owner_display": "Australia Public (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 9.0,
+        "bias": 0.2,
+        "speed": 8.5,
+        "consensus": 9.0
+      }
+    },
+    {
+      "id": "independent",
+      "name": "The Independent",
+      "url": "https://www.independent.co.uk/news/world",
+      "rss": null,
+      "scrape_selector": "h3",
+      "tier": 3,
+      "control_type": "private",
+      "owner": "Lebedev family",
+      "owner_display": "Lebedev family (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 7.8,
+        "bias": -1.0,
+        "speed": 8.0,
+        "consensus": 7.5
+      }
+    },
+    {
+      "id": "sky",
+      "name": "Sky News",
+      "url": "https://news.sky.com/world",
+      "rss": "https://feeds.skynews.com/feeds/rss/world.xml",
+      "scrape_selector": "h3",
+      "tier": 3,
+      "control_type": "corporate",
+      "owner": "Comcast (Sky Group)",
+      "owner_display": "Comcast (100%)",
+      "institutional_holders": [
+        {"name": "Vanguard", "percent": 8.2},
+        {"name": "BlackRock", "percent": 7.1}
+      ],
+      "ratings": {
+        "accuracy": 8.2,
+        "bias": 0.5,
+        "speed": 9.0,
+        "consensus": 8.0
+      }
+    },
+    {
+      "id": "pbs",
+      "name": "PBS NewsHour",
+      "url": "https://www.pbs.org/newshour/world",
+      "rss": "https://www.pbs.org/newshour/feeds/rss/world",
+      "scrape_selector": "h3",
+      "tier": 2,
+      "control_type": "nonprofit",
+      "owner": "Public Broadcasting Service",
+      "owner_display": "US Nonprofit",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 9.1,
+        "bias": 0.2,
+        "speed": 7.5,
+        "consensus": 9.0
+      }
+    },
+    {
+      "id": "euronews",
+      "name": "Euronews",
+      "url": "https://www.euronews.com/news",
+      "rss": "https://www.euronews.com/rss",
+      "scrape_selector": "h3",
+      "tier": 3,
+      "control_type": "private",
+      "owner": "Alpac Capital (Portugal)",
+      "owner_display": "Alpac Capital (88%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 8.0,
+        "bias": 0.3,
+        "speed": 8.5,
+        "consensus": 8.0
+      }
+    },
+    {
+      "id": "toi",
+      "name": "Times of India",
+      "url": "https://timesofindia.indiatimes.com/world",
+      "rss": "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms",
+      "scrape_selector": "h3",
+      "tier": 3,
+      "control_type": "corporate",
+      "owner": "Bennett Coleman & Co. Ltd.",
+      "owner_display": "Jain family (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 7.5,
+        "bias": 0.5,
+        "speed": 8.0,
+        "consensus": 7.5
+      }
+    },
+    {
+      "id": "scmp",
+      "name": "South China Morning Post",
+      "url": "https://www.scmp.com/news",
+      "rss": null,
+      "scrape_selector": "h3",
+      "tier": 3,
+      "control_type": "corporate",
+      "owner": "Alibaba Group",
+      "owner_display": "Alibaba (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 7.8,
+        "bias": 1.0,
+        "speed": 8.0,
+        "consensus": 7.5
+      }
+    },
+    {
+      "id": "globe",
+      "name": "The Globe and Mail",
+      "url": "https://www.theglobeandmail.com/world/",
+      "rss": "https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/world/",
+      "scrape_selector": "h3",
+      "tier": 3,
+      "control_type": "corporate",
+      "owner": "Woodbridge Company",
+      "owner_display": "Thomson family (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 8.4,
+        "bias": 0.3,
+        "speed": 8.0,
+        "consensus": 8.5
+      }
+    },
+    {
+      "id": "irish",
+      "name": "Irish Times",
+      "url": "https://www.irishtimes.com/world/",
+      "rss": "https://www.irishtimes.com/cmlink/news-1.1319192",
+      "scrape_selector": "h3",
+      "tier": 1,
+      "control_type": "trust",
+      "owner": "Irish Times Trust",
+      "owner_display": "Irish Times Trust (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 8.5,
+        "bias": 0.2,
+        "speed": 7.5,
+        "consensus": 8.5
+      }
+    },
+    {
+      "id": "straits",
+      "name": "The Straits Times",
+      "url": "https://www.straitstimes.com/world",
+      "rss": "https://www.straitstimes.com/news/world/rss.xml",
+      "scrape_selector": "h3",
+      "tier": 3,
+      "control_type": "corporate",
+      "owner": "Singapore Press Holdings",
+      "owner_display": "SPH Media Trust (100%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 7.6,
+        "bias": 0.5,
+        "speed": 8.0,
+        "consensus": 7.5
+      }
+    },
+    {
+      "id": "hindustan",
+      "name": "Hindustan Times",
+      "url": "https://www.hindustantimes.com/world-news",
+      "rss": "https://www.hindustantimes.com/feeds/rss/world-news/rssfeed.xml",
+      "scrape_selector": "h3",
+      "tier": 3,
+      "control_type": "corporate",
+      "owner": "HT Media Ltd.",
+      "owner_display": "Birla family (69%)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 7.4,
+        "bias": 0.5,
+        "speed": 8.0,
+        "consensus": 7.5
+      }
+    }
+  ],
+  "unrelated_rules": {
+    "max_shared_institutional_percent": 5,
+    "max_shared_top_holders": 2,
+    "same_owner_forbidden": true
+  },
+  "thresholds": {
+    "min_confidence": 85,
+    "min_sources": 2,
+    "queue_timeout_hours": 3,
+    "duplicate_window_hours": 24,
+    "people_affected": 500,
+    "cost_usd": 1000000
+  },
+  "timing": {
+    "scrape_interval_minutes": 30,
+    "archive_hour_utc": 0
+  },
+  "claude": {
+    "model": "claude-sonnet-4-20250514",
+    "max_tokens": 200
+  }
+}
