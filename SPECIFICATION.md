@@ -100,7 +100,7 @@ Let OBS handle what OBS does best. We write minimal code.
 │  ┌─────────────────────────────────────────────────────────┐    │
 │  │ Scene: JTF News Live                                     │    │
 │  │  ├─ Layer 1: Image Slideshow (media/ folder)            │    │
-│  │  │   └─ Random, 45s interval, crossfade, 4K             │    │
+│  │  │   └─ Random, 50s interval, crossfade, 4K             │    │
 │  │  ├─ Layer 2: Browser Source (lower-third.html)          │    │
 │  │  │   └─ 3840x2160, transparent background               │    │
 │  │  └─ Layer 3: Media Source (audio/current.wav)           │    │
@@ -492,10 +492,10 @@ Output: {"fact": "Peace agreement signed between [nations].", "confidence": 92, 
 
 ### 6.5 Confidence Threshold
 
-- **≥90%**: Publish immediately
+- **≥85%**: Publish immediately
 - **80-89%**: Queue for human review (but for MVP, just queue for next cycle)
 - **<80%**: Discard and log
-- **Any story that publishes with <90% triggers SMS alert**
+- **Any story that publishes with <85% triggers SMS alert**
 
 ### 6.6 Error Handling
 
@@ -541,7 +541,7 @@ A story is ONLY published when:
 1. **Two or more sources** report the same core fact
 2. The sources have **different owners**
 3. Claude has processed BOTH headlines
-4. BOTH have confidence ≥90%
+4. BOTH have confidence ≥85%
 
 ### 7.2 Similarity Matching
 
@@ -995,12 +995,12 @@ and never raise our voice.
 
 ### 14.1 Philosophy
 
-> "A simple watchdog script. If the AI outputs anything with a confidence score below ninety percent, or if two consecutive sentences contradict each other, it pings your phone. One line: 'Alert: possible hallucination.' You get in the car, you log in, you hit stop. No committee. No press release. Just you."
+> "A simple watchdog script. If the AI outputs anything with a confidence score below eighty-five percent, or if two consecutive sentences contradict each other, it pings your phone. One line: 'Alert: possible hallucination.' You get in the car, you log in, you hit stop. No committee. No press release. Just you."
 
 ### 14.2 Alert Triggers
 
 **Critical (SMS immediately):**
-1. Story published with confidence < 90%
+1. Story published with confidence < 85%
 2. Contradiction detected between two published sentences
 3. Single-source story bypassed verification
 4. Stream offline > 5 minutes
@@ -1718,7 +1718,7 @@ See `SPECIFICATION.md` for complete technical documentation.
 ### 18.1 Hard Rules (Never Break)
 
 1. **Never publish without 2+ sources from different owners**
-2. **Never publish with confidence < 90%**
+2. **Never publish with confidence < 85%**
 3. **Never use emotional or loaded language**
 4. **Never engage on Twitter (no replies, likes, retweets)**
 5. **Never respond to YouTube comments/chat**
@@ -1767,7 +1767,7 @@ After implementation, verify each item:
 - [ ] `python main.py` starts without errors
 - [ ] Scrapes at least 15/20 sources successfully
 - [ ] Claude API processes headlines correctly
-- [ ] Stories with <90% confidence are rejected
+- [ ] Stories with <85% confidence are rejected
 - [ ] Single-source stories are queued, not published
 - [ ] Two-source stories are published
 - [ ] Different-owner verification works

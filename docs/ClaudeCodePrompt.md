@@ -94,7 +94,7 @@ Twenty-four hours. Midnight GMT. Each story once. Then back.
 - JavaScript reads a local JSON file that is updated every cycle
 - Lower third: one white Arial sentence, appears 5 seconds, fades
 - Thin grey bar above lower third showing: "Source – score" (example: Reuters – 9.8)
-- Background images: full-screen, slow fade every 45 seconds, cycle of serene public-domain images (clouds, waves, fields, stars), never related to story
+- Background images: full-screen, slow fade every 50 seconds, cycle of serene public-domain images (clouds, waves, fields, stars), never related to story
 - Audio: separate TTS-generated WAV/MP3 file fed into OBS via virtual audio cable or direct file source
 - Core script: Python running in terminal, local-only
 - Scrapes ~20 pre-defined English news sites (BBC, Reuters, AP, etc.) that update daily and are ≥5 years old
@@ -123,7 +123,7 @@ Twenty-four hours. Midnight GMT. Each story once. Then back.
 6. Include YouTube RTMP key placeholder & X API tweet function placeholder
 7. Write README.md for GitHub repo
 8. Write initial config.json with example sources (20 sites) and placeholder owner/rating data
-9. Add watchdog: if confidence <90% or contradiction, print alert (future text message placeholder)
+9. Add watchdog: if confidence <85% or contradiction, print alert (future text message placeholder)
 10. Ensure silence when no stories qualify
 
 Generate every file in full. Show diffs or write complete files. Ask only if something is truly ambiguous. Otherwise build it exactly as specified.

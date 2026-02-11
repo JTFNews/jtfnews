@@ -13,9 +13,9 @@ JTF News is a 24/7 automated news stream that:
 - Requires 2+ unrelated sources for verification
 - Streams via OBS to YouTube with calm 4K visuals and natural TTS voice
 
-The background images rotate every 45 seconds and never repeat within 24 hours:
-- 86,400 seconds/day ÷ 45 seconds = **1,920 images per day**
-- 4 seasons × 1,920 = **7,680 total images needed**
+The background images rotate every 50 seconds and never repeat within 24 hours:
+- 86,400 seconds/day ÷ 50 seconds = **1,728 images per day**
+- 4 seasons × 1,728 = **6,912 total images needed**
 
 ---
 

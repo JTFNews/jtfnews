@@ -334,7 +334,7 @@ A human (Larry) can kill the stream instantly if the AI starts hallucinating.
 ### Watchdog Alerts (SMS)
 
 **Triggers:**
-1. Confidence score below 90%
+1. Confidence score below 85%
 2. Two consecutive sentences contradict each other
 3. Source verification fails unexpectedly
 4. Any system error
@@ -447,7 +447,7 @@ When no stories meet thresholds:
 Layer 1: Image Slideshow
 ├── Source: media/ folder
 ├── Mode: Random, no repeats
-├── Interval: 45 seconds
+├── Interval: 50 seconds
 └── Transition: Crossfade
 
 Layer 2: Browser Source

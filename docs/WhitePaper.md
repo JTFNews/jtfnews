@@ -46,7 +46,7 @@ Non-profit. No dividends. We own nothing.
 Not liable for misuse. Corrections announced loud. Silence when nothing happens. English only. We die if we fail.
 
 ### 14. Visuals
-Images rotate every forty-five seconds. Never match the story. They breathe.
+Images rotate every fifty seconds. Never match the story. They breathe.
 
 ### 15. The Voice
 Custom. Female. Northern. Quiet. Trained on plain speech. Speaks. Stops.

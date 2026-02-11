@@ -831,6 +831,109 @@ def send_alert(message: str):
 
 
 # =============================================================================
+# CONTRADICTION DETECTION
+# =============================================================================
+
+def get_recent_facts(hours: int = 24) -> list:
+    """Get facts published in the last N hours."""
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    log_file = DATA_DIR / f"{today}.txt"
+
+    facts = []
+    if log_file.exists():
+        with open(log_file) as f:
+            for line in f:
+                if line.startswith("#") or not line.strip():
+                    continue
+                parts = line.strip().split("|")
+                if len(parts) >= 4:
+                    facts.append(parts[3].strip())
+
+    return facts[-20:]  # Last 20 facts max
+
+
+def check_contradiction(new_fact: str, recent_facts: list) -> bool:
+    """Use Claude to check if new fact contradicts recent facts."""
+    if not recent_facts:
+        return False
+
+    # Only check against last 5 facts to save tokens
+    check_facts = recent_facts[-5:]
+
+    prompt = f"""Check if this NEW FACT contradicts any of the RECENT FACTS below.
+
+NEW FACT: {new_fact}
+
+RECENT FACTS:
+{chr(10).join(f'- {f}' for f in check_facts)}
+
+A contradiction means the facts cannot both be true (e.g., "5 dead" vs "3 dead" for same event).
+Minor updates or additions are NOT contradictions.
+
+Return JSON: {{"contradiction": true/false, "reason": "brief explanation if true"}}"""
+
+    try:
+        response = claude_client.messages.create(
+            model=CONFIG["claude"]["model"],
+            max_tokens=100,
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        result = json.loads(response.content[0].text)
+
+        if result.get("contradiction"):
+            log.warning(f"Contradiction detected: {result.get('reason', 'unknown')}")
+            return True
+
+        return False
+
+    except Exception as e:
+        log.error(f"Contradiction check failed: {e}")
+        return False  # Don't block on error
+
+
+# =============================================================================
+# CLEANUP
+# =============================================================================
+
+def cleanup_old_data(days: int = 7):
+    """Delete raw data files older than N days."""
+    import glob
+    from datetime import timedelta
+
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    cutoff_str = cutoff.strftime("%Y-%m-%d")
+
+    deleted = 0
+
+    # Find dated files in data directory
+    for pattern in ["*.txt", "*.json"]:
+        for filepath in DATA_DIR.glob(pattern):
+            filename = filepath.name
+
+            # Skip non-dated files
+            if not any(c.isdigit() for c in filename):
+                continue
+
+            # Extract date from filename (e.g., 2026-02-11.txt, processed_2026-02-11.txt)
+            try:
+                # Find date pattern in filename
+                import re
+                match = re.search(r'(\d{4}-\d{2}-\d{2})', filename)
+                if match:
+                    file_date = match.group(1)
+                    if file_date < cutoff_str:
+                        filepath.unlink()
+                        deleted += 1
+                        log.info(f"Deleted old file: {filename}")
+            except Exception as e:
+                log.error(f"Error checking file {filename}: {e}")
+
+    if deleted > 0:
+        log.info(f"Cleanup complete: {deleted} old files deleted")
+
+
+# =============================================================================
 # ARCHIVE
 # =============================================================================
 
@@ -974,6 +1077,13 @@ def process_cycle():
                     # VERIFIED! Two unrelated sources
                     sources = [headline, match]
 
+                    # Check for contradictions with recent facts
+                    recent_facts = get_recent_facts()
+                    if check_contradiction(fact, recent_facts):
+                        log.warning(f"Contradiction blocked: {fact[:40]}...")
+                        send_alert(f"Contradiction: {fact[:50]}")
+                        continue
+
                     # Get audio index for caching
                     audio_index = get_next_audio_index()
 
@@ -1010,10 +1120,11 @@ def process_cycle():
 
 
 def check_midnight_archive():
-    """Check if it's time to archive (midnight GMT)."""
+    """Check if it's time to archive and cleanup (midnight GMT)."""
     now = datetime.now(timezone.utc)
     if now.hour == 0 and now.minute < 5:
         archive_daily_log()
+        cleanup_old_data(days=7)  # Delete raw data older than 7 days
 
 
 def main():

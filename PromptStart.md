@@ -46,7 +46,7 @@ Read this section carefully. These are hard rules that cannot be broken.
 
 ### Never (Content)
 - Publish without 2+ sources from different owners
-- Publish with confidence < 90%
+- Publish with confidence < 85%
 - Use emotional or loaded language ("tragic", "brutal", "horrific", "shocking")
 - Use urgency words ("BREAKING", "developing", "just in", "active")
 - Speculate on motives
@@ -106,7 +106,7 @@ Read this section carefully. These are hard rules that cannot be broken.
 │  ┌─────────────────────────────────────────────────────────┐    │
 │  │ Scene: JTF News Live                                     │    │
 │  │  ├─ Layer 1: Image Slideshow (media/ folder)            │    │
-│  │  │   └─ Random, 45s interval, crossfade, 4K             │    │
+│  │  │   └─ Random, 50s interval, crossfade, 4K             │    │
 │  │  ├─ Layer 2: Browser Source (lower-third.html)          │    │
 │  │  │   └─ 3840x2160, transparent background               │    │
 │  │  └─ Layer 3: Media Source (audio/current.wav)           │    │
@@ -128,7 +128,7 @@ Read this section carefully. These are hard rules that cannot be broken.
 │                              ▼               ▼               ▼  │
 │                      data/current.txt  audio/current.wav   Tweet │
 │                                                                  │
-│  Watchdog ──→ SMS Alert (Twilio) if confidence <90% or error   │
+│  Watchdog ──→ SMS Alert (Twilio) if confidence <85% or error   │
 │                                                                  │
 │  Midnight ──→ Archive to GitHub (year/jtf-YYYY-MM-DD.txt.zip)  │
 └─────────────────────────────────────────────────────────────────┘
@@ -234,10 +234,10 @@ Return a JSON object with:
 ```
 
 ### Confidence Thresholds
-- ≥90%: Publish immediately
-- 80-89%: Queue for next cycle
-- <80%: Discard and log
-- Any <90% that publishes: triggers SMS alert
+- ≥85%: Publish immediately
+- 75-84%: Queue for next cycle
+- <75%: Discard and log
+- Any <85% that publishes: triggers SMS alert
 
 ### Model
 Use `claude-sonnet-4-20250514` for cost/quality balance.
@@ -253,7 +253,7 @@ A story is ONLY published when:
 1. Two or more sources report the same core fact
 2. The sources have different owners
 3. Claude has processed BOTH headlines
-4. BOTH have confidence ≥90%
+4. BOTH have confidence ≥85%
 
 ### The Three-Hour Rule
 
@@ -433,11 +433,11 @@ One tweet per verified story. No engagement. Ever.
 
 ### Philosophy
 
-"A simple watchdog script. If the AI outputs anything with a confidence score below ninety percent, or if two consecutive sentences contradict each other, it pings your phone. One line: 'Alert: possible hallucination.' You get in the car, you log in, you hit stop. No committee. No press release. Just you."
+"A simple watchdog script. If the AI outputs anything with a confidence score below eighty-five percent, or if two consecutive sentences contradict each other, it pings your phone. One line: 'Alert: possible hallucination.' You get in the car, you log in, you hit stop. No committee. No press release. Just you."
 
 ### Alert Triggers (SMS immediately)
 
-1. Story published with confidence < 90%
+1. Story published with confidence < 85%
 2. Contradiction detected between two published sentences
 3. Single-source story bypassed verification
 4. Stream offline > 5 minutes
@@ -771,7 +771,7 @@ After implementation, verify EVERY item:
 - [ ] `python main.py` starts without errors
 - [ ] Scrapes at least 15/20 sources successfully
 - [ ] Claude API processes headlines correctly
-- [ ] Stories with <90% confidence are rejected
+- [ ] Stories with <85% confidence are rejected
 - [ ] Single-source stories are queued, not published
 - [ ] Two-source stories are published
 - [ ] Different-owner verification works
@@ -812,7 +812,7 @@ After implementation, verify EVERY item:
 ### Hard Rules (Never Break)
 
 1. Never publish without 2+ sources from different owners
-2. Never publish with confidence < 90%
+2. Never publish with confidence < 85%
 3. Never use emotional or loaded language
 4. Never engage on Twitter (no replies, likes, retweets)
 5. Never respond to YouTube comments/chat
