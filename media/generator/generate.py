@@ -2,7 +2,7 @@
 """
 JTF News Background Image Generator
 ====================================
-Generates photorealistic 4K background images for all four seasons
+Generates photorealistic 1080p background images for all four seasons
 using Stability AI's API with parallel processing.
 
 Usage:
@@ -44,9 +44,9 @@ STABILITY_API_URL = "https://api.stability.ai/v1/generation/stable-diffusion-xl-
 UPSCALE_API_URL = "https://api.stability.ai/v1/generation/esrgan-v1-x2plus/image-to-image/upscale"
 
 # Generation settings
-DEFAULT_WIDTH = 1536  # SDXL supports up to 1536 in one dimension
-DEFAULT_HEIGHT = 896  # 16:9 aspect ratio (close to 1536x864)
-UPSCALE_TO_4K = True  # Upscale to 3840x2160 after generation
+DEFAULT_WIDTH = 1344  # SDXL allowed dimension for ~16:9
+DEFAULT_HEIGHT = 768  # 1344x768 is closest to 16:9 (1.75:1 vs 1.78:1)
+UPSCALE_TO_1080P = False  # Output native 1344x768, let OBS handle resizing
 CFG_SCALE = 7.5
 STEPS = 40
 SAMPLER = "K_DPM_2_ANCESTRAL"
@@ -167,10 +167,9 @@ async def generate_image(session, prompt_data, season, negative_prompt, semaphor
     async with semaphore:
         index = prompt_data["index"]
         prompt = prompt_data["prompt"]
-        prompt_hash = prompt_data["hash"]
 
-        # Filename format: season_XXXXX_hash.png
-        filename = f"{season}_{index:05d}_{prompt_hash}.png"
+        # Filename format: season_NNNNNN.png
+        filename = f"{season}_{index:06d}.png"
         output_path = PROJECT_ROOT / season / filename
 
         # Skip if already exists
@@ -208,33 +207,13 @@ async def generate_image(session, prompt_data, season, negative_prompt, semaphor
                         import base64
                         image_data = base64.b64decode(data["artifacts"][0]["base64"])
 
-                        # Optionally upscale to 4K
-                        if UPSCALE_TO_4K:
+                        # Optionally upscale to 1080p
+                        if UPSCALE_TO_1080P:
                             image_data = await upscale_image(session, image_data, headers)
 
                         # Save the image
                         async with aiofiles.open(output_path, 'wb') as f:
                             await f.write(image_data)
-
-                        # Also save a metadata file with the prompt
-                        meta_path = output_path.with_suffix('.json')
-                        meta = {
-                            "prompt": prompt,
-                            "negative_prompt": negative_prompt,
-                            "season": season,
-                            "index": index,
-                            "generated_at": datetime.now().isoformat(),
-                            "settings": {
-                                "width": DEFAULT_WIDTH,
-                                "height": DEFAULT_HEIGHT,
-                                "cfg_scale": CFG_SCALE,
-                                "steps": STEPS,
-                                "sampler": SAMPLER,
-                                "upscaled": UPSCALE_TO_4K
-                            }
-                        }
-                        async with aiofiles.open(meta_path, 'w') as f:
-                            await f.write(json.dumps(meta, indent=2))
 
                         mark_completed(progress, season, index)
                         pbar.update(1)
@@ -264,10 +243,10 @@ async def generate_image(session, prompt_data, season, negative_prompt, semaphor
         return False
 
 async def upscale_image(session, image_data, headers):
-    """Upscale image to 4K using Stability AI's upscaler."""
+    """Upscale image to 1080p using Stability AI's upscaler or PIL fallback."""
     try:
         # First, we need to upscale 2x using ESRGAN
-        # Then potentially resize to exact 4K dimensions
+        # Then potentially resize to exact 1080p dimensions
 
         import base64
 
@@ -285,9 +264,9 @@ async def upscale_image(session, image_data, headers):
             if response.status == 200:
                 upscaled_data = await response.read()
 
-                # Resize to exact 4K dimensions using PIL
+                # Resize to exact 1080p dimensions using PIL
                 img = Image.open(io.BytesIO(upscaled_data))
-                img_resized = img.resize((3840, 2160), Image.Resampling.LANCZOS)
+                img_resized = img.resize((1920, 1080), Image.Resampling.LANCZOS)
 
                 # Convert back to bytes
                 output_buffer = io.BytesIO()
@@ -297,7 +276,7 @@ async def upscale_image(session, image_data, headers):
                 # If upscale fails, just resize the original
                 print(f"\nUpscale API returned {response.status}, using local resize")
                 img = Image.open(io.BytesIO(image_data))
-                img_resized = img.resize((3840, 2160), Image.Resampling.LANCZOS)
+                img_resized = img.resize((1920, 1080), Image.Resampling.LANCZOS)
                 output_buffer = io.BytesIO()
                 img_resized.save(output_buffer, format='PNG', optimize=True)
                 return output_buffer.getvalue()
@@ -306,7 +285,7 @@ async def upscale_image(session, image_data, headers):
         print(f"\nUpscale error: {e}, using local resize")
         # Fallback to simple resize
         img = Image.open(io.BytesIO(image_data))
-        img_resized = img.resize((3840, 2160), Image.Resampling.LANCZOS)
+        img_resized = img.resize((1920, 1080), Image.Resampling.LANCZOS)
         output_buffer = io.BytesIO()
         img_resized.save(output_buffer, format='PNG', optimize=True)
         return output_buffer.getvalue()
@@ -369,6 +348,8 @@ async def generate_season(season, count, start_from=0):
 # =============================================================================
 
 def main():
+    global UPSCALE_TO_1080P, MAX_CONCURRENT_REQUESTS
+
     parser = argparse.ArgumentParser(
         description="Generate JTF News background images using Stability AI",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -409,9 +390,9 @@ Examples:
     )
 
     parser.add_argument(
-        "--no-upscale",
+        "--upscale",
         action="store_true",
-        help="Skip upscaling to 4K (faster, smaller files)"
+        help="Upscale to 1080p (default: output native 1344x768)"
     )
 
     parser.add_argument(
@@ -431,8 +412,7 @@ Examples:
         sys.exit(1)
 
     # Apply settings
-    global UPSCALE_TO_4K, MAX_CONCURRENT_REQUESTS
-    UPSCALE_TO_4K = not args.no_upscale
+    UPSCALE_TO_1080P = args.upscale
     MAX_CONCURRENT_REQUESTS = args.concurrent
 
     # Determine count
@@ -451,7 +431,7 @@ Examples:
     print(f"Seasons: {', '.join(seasons)}")
     print(f"Images per season: {count}")
     print(f"Total images: {len(seasons) * count}")
-    print(f"Upscale to 4K: {UPSCALE_TO_4K}")
+    print(f"Upscale to 1080p: {UPSCALE_TO_1080P}")
     print(f"Concurrent requests: {MAX_CONCURRENT_REQUESTS}")
     print(f"Output: {PROJECT_ROOT}")
     print("="*60)
