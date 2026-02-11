@@ -699,6 +699,9 @@ def update_stories_json(fact: str, sources: list, audio_file: str = None):
     # Update RSS feed
     update_rss_feed(fact, sources)
 
+    # Update Alexa Flash Briefing feed
+    update_alexa_feed(fact, sources)
+
 
 def update_rss_feed(fact: str, sources: list):
     """Update RSS feed with new story and push to gh-pages."""
@@ -804,6 +807,80 @@ def update_rss_feed(fact: str, sources: list):
         log.info("RSS feed pushed to gh-pages")
     except subprocess.CalledProcessError as e:
         log.warning(f"Failed to push RSS feed: {e}")
+
+
+def update_alexa_feed(fact: str, sources: list):
+    """Update Alexa Flash Briefing JSON feed and push to gh-pages."""
+    import subprocess
+
+    gh_pages_dir = BASE_DIR / "gh-pages-dist"
+    alexa_file = gh_pages_dir / "alexa.json"
+    max_items = 5  # Alexa typically reads top few items
+
+    # Check if gh-pages worktree exists
+    if not gh_pages_dir.exists():
+        log.warning("gh-pages-dist worktree not found, skipping Alexa feed update")
+        return
+
+    # Format source attribution
+    source_text = ", ".join([s['source_name'] for s in sources[:2]])
+
+    # Create new item in Alexa Flash Briefing format
+    update_date = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.0Z")
+    uid = hashlib.md5(f"{fact}{update_date}".encode()).hexdigest()
+
+    new_item = {
+        "uid": uid,
+        "updateDate": update_date,
+        "titleText": f"JTF News: {source_text}",
+        "mainText": fact,
+        "redirectionUrl": "https://larryseyer.github.io/jtfnews/"
+    }
+
+    # Load existing items or create new list
+    items = []
+    if alexa_file.exists():
+        try:
+            with open(alexa_file) as f:
+                items = json.load(f)
+        except:
+            pass
+
+    # Add new item at beginning
+    items.insert(0, new_item)
+
+    # Trim to max items
+    items = items[:max_items]
+
+    # Write JSON
+    with open(alexa_file, 'w') as f:
+        json.dump(items, f, indent=2)
+
+    log.info(f"Alexa feed updated: {len(items)} items")
+
+    # Commit and push to gh-pages (batch with RSS if possible)
+    try:
+        subprocess.run(
+            ["git", "add", "alexa.json"],
+            cwd=gh_pages_dir,
+            check=True,
+            capture_output=True
+        )
+        subprocess.run(
+            ["git", "commit", "-m", f"Update Alexa feed"],
+            cwd=gh_pages_dir,
+            check=True,
+            capture_output=True
+        )
+        subprocess.run(
+            ["git", "push"],
+            cwd=gh_pages_dir,
+            check=True,
+            capture_output=True
+        )
+        log.info("Alexa feed pushed to gh-pages")
+    except subprocess.CalledProcessError as e:
+        log.warning(f"Failed to push Alexa feed: {e}")
 
 
 # =============================================================================
