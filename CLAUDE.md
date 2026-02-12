@@ -4,7 +4,7 @@
 JTF News (Just the Facts News) - Automated 24/7 news stream that reports only verified facts. No opinions, no adjectives, no interpretation.
 
 ## Current State
-**Planning/specification phase** - No implementation code yet. SPECIFICATION.md is the primary reference (~53KB, comprehensive).
+**Live and running** - Implementation complete with main.py (~1700 lines). SPECIFICATION.md is the design reference.
 
 ## Key Architecture Principles (from spec)
 - **Simplicity = Stability** - Always choose the simplest solution; code must run forever
@@ -20,8 +20,15 @@ JTF News (Just the Facts News) - Automated 24/7 news stream that reports only ve
 - `docs/mediasetup.md` - Media/OBS setup instructions
 
 ## Commands
+
+### Development Machine
 - **`./bu.sh "commit message"`** - ALWAYS use this for commits. Does git commit+push AND creates timestamped backup zip to Dropbox (excludes media/)
 - `./deploy.sh` - Rsync source files to deploy machine
+
+### Deploy Machine (run these ON the deploy machine)
+- `./start.sh` - Start the JTF News service
+- `./start.sh --fresh` - Clear old stories and start fresh (use after code changes that affect story format)
+- `./fix-after-copy.sh` - Reinstall venv dependencies (run if venv breaks after deploy)
 
 ### IMPORTANT: Always Use bu.sh for Commits
 Do NOT use raw `git commit` commands. Always use `./bu.sh "message"` which:
