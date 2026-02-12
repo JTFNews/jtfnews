@@ -584,16 +584,16 @@ def stories_match(story1, story2):
     return len(shared) >= 2
 ```
 
-### 7.3 The Six-Hour Rule
+### 7.3 The Twenty-Four Hour Rule
 
 - When first source reports, story goes to `queue.json` with timestamp
-- If no second source within **6 hours**, story is **dropped**
+- If no second source within **24 hours**, story is **dropped**
 - No ghost stories. No "developing" placeholder.
 - Either verified or deleted.
 
 ```python
 def check_queue():
-    """Remove stories older than 6 hours without verification."""
+    """Remove stories older than 24 hours without verification."""
     now = time.time()
     three_hours = 3 * 60 * 60
 
@@ -646,7 +646,7 @@ Rating = (verification_successes / (verification_successes + failures)) × 10
 ```
 
 - **Verification Success:** Story from source A was verified by unrelated source B. BOTH sources receive +1 success.
-- **Verification Failure:** Story expired from queue after 6 hours without second-source verification. Source receives +1 failure.
+- **Verification Failure:** Story expired from queue after 24 hours without second-source verification. Source receives +1 failure.
 
 #### Display Format
 
@@ -695,7 +695,7 @@ JTF News is **not first**. JTF News is **correct**.
 
 When breaking news happens:
 1. First source arrives → Queue (do not speak)
-2. Wait for second source (could be 5 minutes, could be 6 hours)
+2. Wait for second source (could be 5 minutes, could be 24 hours)
 3. Second source arrives → Verify owners are different
 4. Publish merged fact
 
@@ -858,6 +858,34 @@ function calculateDisplayTime(text) {
     return Math.min(baseTime + extraTime, 15000); // Max 15 seconds
 }
 ```
+
+### 10.4 Story Freshness Handling
+
+Stories are prioritized by how recently they were verified. This ensures viewers see the most timely news first without adding urgency indicators.
+
+**Freshness Tiers:**
+
+| Tier | Age | Weight | Behavior |
+|------|-----|--------|----------|
+| Fresh | < 6 hours | 3x | Plays most often, appears first |
+| Medium | 6-12 hours | 2x | Moderate play frequency |
+| Stale | 12-24 hours | 1x | Plays less often, appears later |
+
+**Display Order Priority:**
+- Stories are sorted by verification time (freshest first)
+- Within each tier, stories are lightly shuffled for variety
+- Ensures breaking news is heard before older stories
+
+**Frequency Weighting:**
+- Fresh stories have 3x probability of being selected
+- Medium stories have 2x probability
+- Stale stories have 1x probability
+- Combined with 30-minute minimum replay interval
+
+**Timestamp Display:**
+- Source bar shows time since verification
+- Format: `Reuters – 9.8 · 2 hours ago`
+- Provides context without drama or urgency
 
 ---
 
@@ -1285,7 +1313,7 @@ The first day will likely be quiet:
   "thresholds": {
     "min_confidence": 90,
     "min_sources": 2,
-    "queue_timeout_hours": 6,
+    "queue_timeout_hours": 24,
     "duplicate_window_hours": 24
   },
   "timing": {
@@ -1453,7 +1481,7 @@ def stories_match(story1, story2):
     pass  # Implementation
 
 def check_queue_expiry():
-    """Remove stories older than 6 hours without verification."""
+    """Remove stories older than 24 hours without verification."""
     pass  # Implementation
 
 # =============================================================================
@@ -1859,7 +1887,7 @@ After implementation, verify each item:
 - [ ] Single-source stories are queued, not published
 - [ ] Two-source stories are published
 - [ ] Different-owner verification works
-- [ ] 6-hour queue expiry works
+- [ ] 24-hour queue expiry works
 
 ### 19.2 Output Files
 
