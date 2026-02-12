@@ -20,6 +20,19 @@ JTF News (Just the Facts News) - Automated 24/7 news stream that reports only ve
 
 ## Commands
 - `./bu.sh "commit message"` - Git commit+push AND creates timestamped backup zip to Dropbox (excludes media/)
+- `./deploy.sh` - Rsync source files to deploy machine
+
+## IMPORTANT: Deploy Folder Location
+**The deploy folder is NOT `gh-pages-dist/`!**
+
+| Machine | Path | Purpose |
+|---------|------|---------|
+| Apple Silicon (dev) | `/Users/larryseyer/JTFNews` | Development |
+| Intel/Mojave (deploy) | `/Volumes/larryseyer/JTFNews` | Production streaming |
+
+- `gh-pages-dist/` is for GitHub Pages web assets only
+- When copying files to production, always use `/Volumes/larryseyer/JTFNews`
+- Check if volume is mounted first before copying
 
 ## Folder Structure
 - `media/` - Background images organized by season (fall/, spring/, summer/, winter/, generator/)
