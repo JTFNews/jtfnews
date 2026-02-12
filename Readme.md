@@ -7,6 +7,8 @@
 ## Philosophy
 If we stay boring enough, we might just change the world.
 
+JTF News is a methodology, not just a channel. Two sources. Different owners. Strip the adjectives. State the facts. Stop. This approach can serve any community—local news, sports, school boards—wherever facts matter. See [WhitePaper.md](docs/WhitePaper.md) and [SPECIFICATION.md](SPECIFICATION.md#20-future-directions) for the expansion framework.
+
 ## How it works
 - Scrapes public headlines from ~20 long-established English news sites
 - Requires minimum 2 unrelated sources (different owners/investors)
