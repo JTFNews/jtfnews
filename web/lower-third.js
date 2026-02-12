@@ -17,10 +17,13 @@ const STORIES_URL = '../data/stories.json';
 let stories = [];
 let shuffledQueue = [];       // Current cycle's shuffled story order
 let lastPlayedFact = null;    // Track last played story to avoid back-to-back
+let lastPlayedTimes = {};     // Track when each story was last played (fact -> timestamp)
 let isDisplaying = false;
 let audioElement = null;
 let cycleStartTime = 0;       // When current cycle started
 let isFirstLoad = true;       // Track if this is initial page load
+
+const MIN_REPLAY_INTERVAL = 30 * 60 * 1000; // 30 minutes minimum between replays
 
 /**
  * Shuffle an array using Fisher-Yates algorithm with a fresh seed
@@ -206,6 +209,10 @@ async function displayStory(story) {
     // Track this as last played for back-to-back prevention
     lastPlayedFact = story.fact;
 
+    // Track when this story was played (for 30-minute minimum)
+    lastPlayedTimes[story.fact] = Date.now();
+    console.log(`Played story, next eligible in 30 minutes: "${story.fact.substring(0, 40)}..."`);
+
     // Calculate dynamic gap based on current story count
     const dynamicGap = calculateDynamicGap();
 
@@ -213,6 +220,31 @@ async function displayStory(story) {
     await sleep(FADE_TIME + dynamicGap);
 
     isDisplaying = false;
+}
+
+/**
+ * Check if a story is eligible to play (30+ minutes since last play)
+ */
+function isEligibleToPlay(story) {
+    const lastPlayed = lastPlayedTimes[story.fact];
+    if (!lastPlayed) return true; // Never played before
+
+    const elapsed = Date.now() - lastPlayed;
+    return elapsed >= MIN_REPLAY_INTERVAL;
+}
+
+/**
+ * Get next eligible story from queue, skipping recently played ones
+ */
+function getNextEligibleStory() {
+    // Try to find an eligible story in the queue
+    for (let i = 0; i < shuffledQueue.length; i++) {
+        if (isEligibleToPlay(shuffledQueue[i])) {
+            // Remove and return this story
+            return shuffledQueue.splice(i, 1)[0];
+        }
+    }
+    return null; // No eligible stories
 }
 
 /**
@@ -239,8 +271,15 @@ async function runLoop() {
             }
         }
 
-        // Get next story from shuffled queue
-        const story = shuffledQueue.shift();
+        // Get next eligible story (30+ minutes since last play)
+        const story = getNextEligibleStory();
+
+        if (!story) {
+            // All stories played recently, wait before checking again
+            console.log('All stories played within last 30 minutes, waiting...');
+            await sleep(30000); // Wait 30 seconds before checking again
+            continue;
+        }
 
         // Display the story
         await displayStory(story);

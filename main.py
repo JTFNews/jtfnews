@@ -95,6 +95,9 @@ RULES:
 6. Use present tense for ongoing events
 7. Maximum ONE sentence
 8. If the headline contains NO verifiable facts, return "SKIP" for fact
+9. Use proper titles with LAST NAME ONLY: "President Trump", "Senator Cruz", "Representative Crockett"
+   - NEVER use first names unless needed to disambiguate (e.g., two people with same last name)
+   - NEVER use bare last names without title
 
 NEWSWORTHINESS THRESHOLD:
 A story is only newsworthy if it meets AT LEAST ONE of these criteria:
