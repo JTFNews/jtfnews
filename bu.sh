@@ -18,3 +18,8 @@ MESSAGE=$(echo "$1" | head -1 | cut -c1-50 | sed 's/[^a-zA-Z0-9]/_/g' | sed 's/_
 ZIP_FILE="$DEST_DIR/JTFNews_${TIMESTAMP}_${MESSAGE}.zip"
 cd "$SOURCE" || exit 1
 zip -r "$ZIP_FILE" . -x "media/*" "media/" "gh-pages-dist/*" "gh-pages-dist/" "audio/*" "audio/" "data/*" "data/" "venv/*" "venv/" "__pycache__/*" "__pycache__/" ".git/*" ".git/" ".env"
+
+# Deploy to production machine
+echo ""
+echo "=== Deploying to production ==="
+./deploy.sh

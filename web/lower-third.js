@@ -20,6 +20,7 @@ let lastPlayedFact = null;    // Track last played story to avoid back-to-back
 let isDisplaying = false;
 let audioElement = null;
 let cycleStartTime = 0;       // When current cycle started
+let isFirstLoad = true;       // Track if this is initial page load
 
 /**
  * Shuffle an array using Fisher-Yates algorithm with a fresh seed
@@ -43,6 +44,10 @@ function reshuffleForNewCycle() {
         return;
     }
 
+    // Generate a fresh seed indicator for logging
+    const seedIndicator = Math.random().toString(36).substring(2, 8);
+    console.log(`Generating new shuffle with seed indicator: ${seedIndicator}`);
+
     // Shuffle with a new random seed (Math.random uses current time)
     shuffledQueue = shuffleArray(stories);
 
@@ -55,6 +60,11 @@ function reshuffleForNewCycle() {
 
     cycleStartTime = Date.now();
     console.log(`New cycle started with ${shuffledQueue.length} stories shuffled`);
+
+    // Log the starting story for debugging
+    if (shuffledQueue.length > 0) {
+        console.log(`FIRST STORY will be: "${shuffledQueue[0].fact.substring(0, 50)}..."`);
+    }
 }
 
 /**
@@ -89,14 +99,15 @@ async function loadStories() {
             const oldCount = stories.length;
             const newCount = data.stories.length;
 
-            // Check if stories changed
-            if (newCount !== oldCount) {
-                console.log(`Stories changed: ${oldCount} -> ${newCount}`);
+            // Check if stories changed or this is first load
+            if (newCount !== oldCount || isFirstLoad) {
+                console.log(`Stories ${isFirstLoad ? 'loaded (first time)' : 'changed'}: ${oldCount} -> ${newCount}`);
                 stories = data.stories;
 
-                // If we have more stories and queue is empty or nearly done, reshuffle
-                if (shuffledQueue.length <= 1) {
+                // Always reshuffle on first load, or if queue is nearly empty
+                if (isFirstLoad || shuffledQueue.length <= 1) {
                     reshuffleForNewCycle();
+                    isFirstLoad = false;
                 }
             } else {
                 stories = data.stories;
@@ -251,7 +262,10 @@ function startPolling() {
  * Initialize
  */
 function start() {
-    console.log('JTF News Lower Third starting...');
+    // Generate unique session ID to verify page actually reloaded
+    const sessionId = Math.random().toString(36).substring(2, 10);
+    console.log(`JTF News Lower Third starting... [Session: ${sessionId}]`);
+    console.log(`Page loaded at: ${new Date().toISOString()}`);
 
     // Start polling for stories
     startPolling();
