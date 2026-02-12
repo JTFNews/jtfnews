@@ -19,8 +19,15 @@ JTF News (Just the Facts News) - Automated 24/7 news stream that reports only ve
 - `docs/mediasetup.md` - Media/OBS setup instructions
 
 ## Commands
-- `./bu.sh "commit message"` - Git commit+push AND creates timestamped backup zip to Dropbox (excludes media/)
+- **`./bu.sh "commit message"`** - ALWAYS use this for commits. Does git commit+push AND creates timestamped backup zip to Dropbox (excludes media/)
 - `./deploy.sh` - Rsync source files to deploy machine
+
+### IMPORTANT: Always Use bu.sh for Commits
+Do NOT use raw `git commit` commands. Always use `./bu.sh "message"` which:
+1. Stages all changes
+2. Commits with your message
+3. Pushes to origin
+4. Creates a timestamped backup zip in Dropbox
 
 ## IMPORTANT: Deploy Folder Location
 **The deploy folder is NOT `gh-pages-dist/`!**
