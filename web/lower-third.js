@@ -7,7 +7,7 @@
 const FADE_TIME = 1000;       // Fade in/out duration (1 second)
 const GAP_TIME = 45000;       // Gap between stories (45 seconds)
 const POLL_INTERVAL = 5000;   // Check for new stories every 5 seconds
-const MIN_REPEAT_GAP = 600000; // Minimum 10 minutes before repeating same story
+const MIN_REPEAT_GAP = 2700000; // Minimum 45 minutes before repeating same story
 const STORIES_URL = '../data/stories.json';
 
 let stories = [];

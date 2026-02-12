@@ -433,6 +433,153 @@ Reply with ONLY "YES" or "NO"."""
 
 
 # =============================================================================
+# LEARNED RATINGS SYSTEM
+# =============================================================================
+
+def load_learned_ratings() -> dict:
+    """Load learned ratings from file. Returns dict of source_id -> stats."""
+    ratings_file = DATA_DIR / "learned_ratings.json"
+    if ratings_file.exists():
+        with open(ratings_file) as f:
+            return json.load(f)
+    return {}
+
+
+def save_learned_ratings(ratings: dict):
+    """Save learned ratings to file."""
+    ratings_file = DATA_DIR / "learned_ratings.json"
+    with open(ratings_file, 'w') as f:
+        json.dump(ratings, f, indent=2)
+
+
+def append_audit_log(source_id: str, event: str, fact_hash: str, extra: dict = None):
+    """Append audit entry to ratings audit trail. One JSON line per event.
+
+    This creates a legally defensible record of all rating calculations.
+    Each line is an independent JSON object (JSONL format).
+    """
+    audit_file = DATA_DIR / "ratings_audit.jsonl"
+    entry = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "source_id": source_id,
+        "event": event,
+        "fact_hash": fact_hash,
+        **(extra or {})
+    }
+    with open(audit_file, 'a') as f:
+        f.write(json.dumps(entry) + '\n')
+
+
+def record_verification_success(source_id: str, fact_hash: str = None):
+    """Record that a source's story was successfully verified."""
+    ratings = load_learned_ratings()
+
+    if source_id not in ratings:
+        ratings[source_id] = {"successes": 0, "failures": 0}
+
+    ratings[source_id]["successes"] += 1
+    save_learned_ratings(ratings)
+
+    # Audit trail for legal defensibility
+    if fact_hash:
+        append_audit_log(source_id, "success", fact_hash)
+
+    log.info(f"Rating +1 success for {source_id}: {ratings[source_id]}")
+
+
+def record_verification_failure(source_id: str, fact_hash: str = None):
+    """Record that a source's story expired without verification."""
+    ratings = load_learned_ratings()
+
+    if source_id not in ratings:
+        ratings[source_id] = {"successes": 0, "failures": 0}
+
+    ratings[source_id]["failures"] += 1
+    save_learned_ratings(ratings)
+
+    # Audit trail for legal defensibility
+    if fact_hash:
+        append_audit_log(source_id, "failure", fact_hash)
+
+    log.info(f"Rating +1 failure for {source_id}: {ratings[source_id]}")
+
+
+def get_learned_rating(source_id: str) -> float:
+    """Get the learned accuracy rating for a source (0-10 scale).
+
+    Formula: (successes / (successes + failures)) * 10
+    Returns default config rating if no data yet.
+    """
+    ratings = load_learned_ratings()
+
+    if source_id not in ratings:
+        # Return default from config
+        for source in CONFIG["sources"]:
+            if source["id"] == source_id:
+                return source["ratings"]["accuracy"]
+        return 5.0  # Fallback
+
+    stats = ratings[source_id]
+    total = stats["successes"] + stats["failures"]
+
+    if total < 5:
+        # Not enough data yet, blend with default
+        for source in CONFIG["sources"]:
+            if source["id"] == source_id:
+                default = source["ratings"]["accuracy"]
+                learned = (stats["successes"] / total) * 10 if total > 0 else default
+                # Weight: more data = more weight on learned rating
+                weight = total / 5
+                return default * (1 - weight) + learned * weight
+        return 5.0
+
+    # Enough data, use learned rating
+    return (stats["successes"] / total) * 10
+
+
+def get_display_rating(source_id: str) -> str:
+    """Get rating with evidence indicator for display.
+
+    Display format based on data points:
+    - 0 data points: "9.6*" (asterisk = using editorial baseline)
+    - 1-9 data points: "8.5* (3/10)" (cold start, showing evidence)
+    - 10+ data points: "9.4 (47/50)" (mature, evidence-based)
+    """
+    ratings = load_learned_ratings()
+
+    # Get default rating from config
+    default_rating = 5.0
+    for source in CONFIG["sources"]:
+        if source["id"] == source_id:
+            default_rating = source["ratings"]["accuracy"]
+            break
+
+    if source_id not in ratings:
+        # No data - show default with asterisk
+        return f"{default_rating}*"
+
+    stats = ratings[source_id]
+    successes = stats["successes"]
+    failures = stats["failures"]
+    total = successes + failures
+
+    if total == 0:
+        # No data - show default with asterisk
+        return f"{default_rating}*"
+
+    if total < 10:
+        # Cold start - blend default with learned, show asterisk and evidence
+        learned = (successes / total) * 10
+        weight = total / 10  # Gradual transition to learned rating
+        blended = default_rating * (1 - weight) + learned * weight
+        return f"{blended:.1f}* ({successes}/{total})"
+
+    # Mature - use pure learned rating with evidence
+    rating = (successes / total) * 10
+    return f"{rating:.1f} ({successes}/{total})"
+
+
+# =============================================================================
 # QUEUE MANAGEMENT
 # =============================================================================
 
@@ -453,7 +600,7 @@ def save_queue(queue: list):
 
 
 def clean_expired_queue(queue: list) -> list:
-    """Remove stories older than 3 hours from queue."""
+    """Remove stories older than 3 hours from queue. Records failures for ratings."""
     timeout_hours = CONFIG["thresholds"]["queue_timeout_hours"]
     cutoff = datetime.now(timezone.utc).timestamp() - (timeout_hours * 3600)
 
@@ -464,6 +611,9 @@ def clean_expired_queue(queue: list) -> list:
             cleaned.append(item)
         else:
             log.info(f"Expired from queue: {item['fact'][:50]}...")
+            # Record failure for ratings learning - story wasn't verified
+            fact_hash = get_story_hash(item["fact"])
+            record_verification_failure(item["source_id"], fact_hash)
 
     return cleaned
 
@@ -620,9 +770,9 @@ def generate_tts(text: str, audio_index: int = None) -> str:
 
 def write_current_story(fact: str, sources: list):
     """Write the current story to output files."""
-    # Format source attribution
+    # Format source attribution with evidence-based ratings
     source_text = " | ".join([
-        f"{s['source_name']} - {s['source_rating']}"
+        f"{s['source_name']} - {get_display_rating(s['source_id'])}"
         for s in sources[:2]
     ])
 
@@ -644,7 +794,7 @@ def append_daily_log(fact: str, sources: list, audio_file: str = None):
 
     timestamp = datetime.now(timezone.utc).isoformat()
     source_names = ",".join([s["source_name"] for s in sources[:2]])
-    source_scores = ",".join([str(s["source_rating"]) for s in sources[:2]])
+    source_scores = ",".join([get_display_rating(s["source_id"]) for s in sources[:2]])
 
     line = f"{timestamp}|{source_names}|{source_scores}|{fact}\n"
 
@@ -679,9 +829,9 @@ def update_stories_json(fact: str, sources: list, audio_file: str = None):
         except:
             pass
 
-    # Format source info
+    # Format source info with evidence-based ratings
     source_text = " | ".join([
-        f"{s['source_name']} - {s['source_rating']}"
+        f"{s['source_name']} - {get_display_rating(s['source_id'])}"
         for s in sources[:2]
     ])
 
@@ -1177,6 +1327,12 @@ def process_cycle():
 
                     published_count += 1
                     log.info(f"VERIFIED: {fact[:50]}...")
+
+                    # Record verification success for BOTH sources (ratings learning)
+                    fact_hash = get_story_hash(fact)
+                    record_verification_success(headline["source_id"], fact_hash)
+                    record_verification_success(match["source_id"], fact_hash)
+
                     break
         else:
             # No match - add to queue

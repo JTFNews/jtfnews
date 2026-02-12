@@ -366,5 +366,19 @@
   "claude": {
     "model": "claude-sonnet-4-20250514",
     "max_tokens": 200
+  },
+  "ratings_methodology": {
+    "version": "1.0",
+    "description": "Verification success rate: successes/(successes+failures)*10",
+    "formula": "Rating = (verification_successes / (verification_successes + failures)) * 10",
+    "min_data_points": 10,
+    "cold_start_indicator": "*",
+    "display_formats": {
+      "no_data": "rating*",
+      "cold_start": "rating* (successes/total)",
+      "mature": "rating (successes/total)"
+    },
+    "success_definition": "Story from source A was verified by unrelated source B (both get +1)",
+    "failure_definition": "Story expired from queue after 3 hours without 2nd source verification"
   }
 }

@@ -16,6 +16,22 @@ If we stay boring enough, we might just change the world.
 - Daily text log zipped and pushed to GitHub archive repo at midnight GMT
 - Silence when no qualifying news
 
+## Source Ratings
+
+Source accuracy ratings are **evidence-based**, calculated from verification performance:
+
+```
+Rating = (verification_successes / total) × 10
+```
+
+| Display | Meaning |
+|---------|---------|
+| `9.6*` | Editorial baseline (no observed data yet) |
+| `8.5* (3/10)` | Cold start (blended baseline + observed) |
+| `9.4 (47/50)` | Mature (pure evidence-based rating) |
+
+Both sources involved in a successful verification receive +1 success. Stories that expire unverified record +1 failure. All events logged to `data/ratings_audit.jsonl` for legal defensibility.
+
 ## Constraints obeyed
 - No APIs, no paywalls, respect robots.txt
 - No ads, no tracking, no long-term raw data storage

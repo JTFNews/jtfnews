@@ -38,7 +38,7 @@
 - An automated news stream that reports only verified facts
 - Claude AI strips all editorialization, bias, and opinion from headlines
 - Requires 2+ unrelated sources before speaking
-- Streams 24/7 via OBS to YouTube with calm 4K visuals and natural TTS voice
+- Streams 24/7 via OBS to YouTube with calm HD visuals and natural TTS voice
 - Tweets each story once (no engagement)
 - Archives daily to GitHub at midnight GMT
 
@@ -100,9 +100,9 @@ Let OBS handle what OBS does best. We write minimal code.
 │  ┌─────────────────────────────────────────────────────────┐    │
 │  │ Scene: JTF News Live                                     │    │
 │  │  ├─ Layer 1: Image Slideshow (media/ folder)            │    │
-│  │  │   └─ Random, 50s interval, crossfade, 4K             │    │
+│  │  │   └─ Random, 50s interval, crossfade, HD              │    │
 │  │  ├─ Layer 2: Browser Source (lower-third.html)          │    │
-│  │  │   └─ 3840x2160, transparent background               │    │
+│  │  │   └─ 1920x1080, transparent background               │    │
 │  │  └─ Layer 3: Media Source (audio/current.wav)           │    │
 │  │      └─ Plays TTS, restarts on file change              │    │
 │  └─────────────────────────────────────────────────────────┘    │
@@ -160,8 +160,8 @@ Let OBS handle what OBS does best. We write minimal code.
 │   └── shown_hashes.txt    # Prevents repeats within 24h
 ├── audio/                  # Runtime audio (GITIGNORED)
 │   └── current.wav         # TTS audio file
-└── media/                  # 4K backgrounds (user-provided)
-    └── (4K images and videos - OBS Image Slideshow uses this)
+└── media/                  # HD backgrounds (user-provided)
+    └── (HD images and videos - OBS Image Slideshow uses this)
 ```
 
 **Files we create: 8**
@@ -612,6 +612,56 @@ def merge_stories(story1, story2):
     }
 ```
 
+### 7.5 Source Rating Methodology
+
+Source accuracy ratings are **evidence-based**, calculated from actual verification performance.
+
+#### Formula
+
+```
+Rating = (verification_successes / (verification_successes + failures)) × 10
+```
+
+- **Verification Success:** Story from source A was verified by unrelated source B. BOTH sources receive +1 success.
+- **Verification Failure:** Story expired from queue after 3 hours without second-source verification. Source receives +1 failure.
+
+#### Display Format
+
+| Data Points | Format | Example | Meaning |
+|-------------|--------|---------|---------|
+| 0 (no data) | `rating*` | `9.6*` | Editorial baseline, no observed data |
+| 1-9 (cold start) | `rating* (n/m)` | `8.5* (3/10)` | Blended baseline + observed, insufficient data |
+| 10+ (mature) | `rating (n/m)` | `9.4 (47/50)` | Pure evidence-based rating |
+
+The asterisk (*) indicates "insufficient data, using editorial baseline".
+
+#### Audit Trail
+
+All rating events are logged to `data/ratings_audit.jsonl` (one JSON object per line):
+
+```jsonl
+{"timestamp":"2026-02-11T20:17:48Z","source_id":"ap","event":"success","fact_hash":"a1b2c3"}
+{"timestamp":"2026-02-11T21:05:00Z","source_id":"guardian","event":"failure","fact_hash":"d4e5f6"}
+```
+
+This creates a legally defensible record. If challenged about a rating:
+1. Show the audit trail with all verification events
+2. Show the formula: `successes / total × 10`
+3. Show the transparency indicator (asterisk for insufficient data)
+
+#### Cold Start Behavior
+
+- Day 1: All ratings display asterisk (no observed data)
+- Week 1: High-volume sources (AP, BBC) accumulate data
+- Month 1: Most sources reach 10+ data points, removing asterisk
+
+#### Runtime Files
+
+| File | Purpose |
+|------|---------|
+| `data/learned_ratings.json` | Current success/failure counts per source |
+| `data/ratings_audit.jsonl` | Append-only audit trail of all rating events |
+
 ---
 
 ## 8. Breaking News Protocol
@@ -685,7 +735,7 @@ After update:   "Pennsylvania Avenue school, shooting reported. Police attending
 
 ### 9.3 No Filler
 
-- If no stories: silence (background visuals + music only)
+- If no stories: silence (background visuals only, no audio)
 - No "we'll be right back"
 - No "stay tuned"
 - No "still developing"
@@ -713,13 +763,13 @@ At 00:00:00 GMT:
 
 ## 10. Lower Third Design
 
-### 10.1 Visual Layout (4K: 3840x2160)
+### 10.1 Visual Layout (HD: 1920x1080)
 
 ```
 ┌────────────────────────────────────────────────────────────────────┐
 │                                                                    │
 │                                                                    │
-│                      (4K background visual)                        │
+│                      (HD background visual)                        │
 │                                                                    │
 │                                                                    │
 │                                                                    │
@@ -740,29 +790,38 @@ At 00:00:00 GMT:
 
 ### 10.2 Specifications
 
+**Overall Container (Dark Glassmorphism):**
+- Position: 8% from bottom of screen, 5% from left
+- Width: 90% max
+- Background: rgba(15, 23, 42, 0.75) - dark slate with blur
+- Backdrop filter: blur(40px) saturate(180%)
+- Border: 1px solid rgba(255, 255, 255, 0.15)
+- Border radius: 16px
+- Box shadow: layered depth effect
+
+**Brand Tab:**
+- Position: Sticks up from top-left of container
+- Background: Gold gradient (rgba(212, 175, 55, 0.95) to rgba(170, 135, 35, 0.9))
+- Font: Inter, 22px, 600 weight, dark text (#1a1a1a)
+- Letter spacing: 4px
+- Content: "JTF NEWS"
+
 **Source Bar:**
-- Position: 5% from bottom of screen
-- Width: 90% of screen (5% margins each side)
-- Height: 40px
-- Background: rgba(128, 128, 128, 0.8) - semi-transparent grey
-- Font: Arial, 24px, white
-- Text alignment: left, 20px padding
+- Background: Blue gradient (rgba(30, 64, 175, 0.7) to rgba(23, 37, 84, 0.8))
+- Font: Inter, 28px, 600 weight, white, uppercase
+- Letter spacing: 3px
+- Padding: 18px 36px
 
 **Main Text Area:**
-- Position: Directly below source bar
-- Width: 90% of screen (5% margins each side)
-- Background: rgba(0, 0, 0, 0.7) - semi-transparent black
-- Font: Arial, 64px, white
-- Line height: 1.4
-- Padding: 30px
-- Text shadow: 2px 2px 4px black (readability over any background)
-- Max lines: 3
+- Font: Inter, 58px, 400 weight, white
+- Line height: 1.45
+- Padding: 36px 44px
 
 **Animations:**
-- Fade in: 1 second ease-in-out
-- Hold: 5 seconds (adjustable based on text length)
-- Fade out: 1 second ease-in-out
-- Gap between stories: 2 seconds
+- Slide-in: 0.8 second ease-out with translateX
+- Hold: Matches audio playback duration
+- Slide-out: 0.8 second ease-out
+- Gap between stories: 45 seconds
 
 ### 10.3 Responsive Text Duration
 
@@ -983,10 +1042,10 @@ and never raise our voice.
 - Service: YouTube - RTMPS
 - Server: Primary YouTube ingest server
 - Stream Key: (from YouTube Studio)
-- Output Resolution: 3840x2160 (4K)
+- Output Resolution: 1920x1080 (HD)
 - FPS: 30
 - Encoder: x264 or NVENC
-- Bitrate: 20000-25000 Kbps (for 4K)
+- Bitrate: 6000-8000 Kbps (for HD)
 - Keyframe Interval: 2 seconds
 
 ---
@@ -1163,7 +1222,7 @@ def archive_daily():
 - [ ] Test stream completed (unlisted)
 - [ ] Alert system tested (send test SMS)
 - [ ] GitHub archive repo created
-- [ ] Background media folder populated with 4K images
+- [ ] Background media folder populated with HD images
 
 ### 16.3 Launch Sequence
 
@@ -1497,7 +1556,7 @@ if __name__ == "__main__":
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=3840, height=2160">
+    <meta name="viewport" content="width=1920, height=1080">
     <title>JTF News Lower Third</title>
     <link rel="stylesheet" href="lower-third.css">
 </head>
@@ -1521,8 +1580,8 @@ if __name__ == "__main__":
 }
 
 body {
-    width: 3840px;
-    height: 2160px;
+    width: 1920px;
+    height: 1080px;
     background: transparent;
     overflow: hidden;
     font-family: Arial, sans-serif;
@@ -1679,11 +1738,11 @@ An automated news stream that reports only verified facts:
 
 3. Configure OBS:
    - Add Image Slideshow source → `media/` folder
-   - Add Browser Source → `web/lower-third.html` (3840x2160)
+   - Add Browser Source → `web/lower-third.html` (1920x1080)
    - Add Media Source → `audio/current.wav`
    - Configure YouTube stream
 
-4. Add 4K backgrounds to `media/` folder
+4. Add HD backgrounds to `media/` folder
 
 5. Run:
    ```bash
@@ -1699,7 +1758,7 @@ An automated news stream that reports only verified facts:
 - `web/` - OBS browser overlay
 - `data/` - Runtime data (gitignored)
 - `audio/` - TTS output (gitignored)
-- `media/` - 4K backgrounds (user-provided)
+- `media/` - HD backgrounds (user-provided)
 
 ## License
 
