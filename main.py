@@ -37,6 +37,28 @@ import anthropic
 from elevenlabs import ElevenLabs
 from twilio.rest import Client as TwilioClient
 
+
+# =============================================================================
+# PYTHON 3.8 COMPATIBILITY
+# =============================================================================
+
+def indent_xml(elem, level=0, space="  "):
+    """Add pretty-print indentation to XML (Python 3.8 compatible version of ET.indent)."""
+    i = "\n" + level * space
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + space
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for child in elem:
+            indent_xml(child, level + 1, space)
+        if not child.tail or not child.tail.strip():
+            child.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+
+
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
@@ -991,9 +1013,9 @@ def update_rss_feed(fact: str, sources: list):
         ET.SubElement(item, "pubDate").text = item_data["pubDate"]
         ET.SubElement(item, "guid", isPermaLink="false").text = item_data["guid"]
 
-    # Write with XML declaration
+    # Write with XML declaration (use custom indent for Python 3.8 compatibility)
+    indent_xml(rss, space="  ")
     tree = ET.ElementTree(rss)
-    ET.indent(tree, space="  ")
     with open(feed_file, 'wb') as f:
         tree.write(f, encoding="utf-8", xml_declaration=True)
 
@@ -1128,7 +1150,7 @@ def send_alert(message: str):
 
 HEARTBEAT_FILE = DATA_DIR / "heartbeat.txt"
 STREAM_OFFLINE_THRESHOLD = 300  # 5 minutes in seconds
-_last_offline_alert = 0  # Avoid spamming alerts
+_offline_alert_sent = False  # Only ONE alert per offline event
 
 
 def write_heartbeat():
@@ -1141,8 +1163,11 @@ def write_heartbeat():
 
 
 def check_stream_health():
-    """Check if stream appears offline (no heartbeat in 5 minutes)."""
-    global _last_offline_alert
+    """Check if stream appears offline (no heartbeat in 5 minutes).
+
+    Sends ONE alert when stream goes offline. Resets only when stream comes back.
+    """
+    global _offline_alert_sent
 
     if not HEARTBEAT_FILE.exists():
         return  # First run, no heartbeat yet
@@ -1155,12 +1180,17 @@ def check_stream_health():
         offline_duration = now - last_beat
 
         if offline_duration > STREAM_OFFLINE_THRESHOLD:
-            # Only alert once per 30 minutes to avoid spam
-            if now - _last_offline_alert > 1800:
+            # Stream is offline - send ONE alert only
+            if not _offline_alert_sent:
                 minutes_offline = int(offline_duration / 60)
-                send_alert(f"Offline {minutes_offline}+ min")
-                _last_offline_alert = now
-                log.warning(f"Stream offline for {minutes_offline} minutes")
+                send_alert(f"Stream offline {minutes_offline}+ min")
+                _offline_alert_sent = True
+                log.warning(f"Stream offline for {minutes_offline} minutes - alert sent")
+        else:
+            # Stream is online - reset alert flag so we can alert if it goes offline again
+            if _offline_alert_sent:
+                log.info("Stream back online - alert flag reset")
+            _offline_alert_sent = False
     except Exception as e:
         log.debug(f"Heartbeat check failed: {e}")
 
@@ -1208,7 +1238,8 @@ Minor updates or additions are NOT contradictions.
 Return JSON: {{"contradiction": true/false, "reason": "brief explanation if true"}}"""
 
     try:
-        response = claude_client.messages.create(
+        client = anthropic.Anthropic()
+        response = client.messages.create(
             model=CONFIG["claude"]["model"],
             max_tokens=100,
             messages=[{"role": "user", "content": prompt}]
@@ -1287,7 +1318,8 @@ If there is NO new information, return exactly: NO_NEW_INFO
 Return JSON: {{"new_detail": "the new sentence" or "NO_NEW_INFO"}}"""
 
     try:
-        response = claude_client.messages.create(
+        client = anthropic.Anthropic()
+        response = client.messages.create(
             model=CONFIG["claude"]["model"],
             max_tokens=100,
             messages=[{"role": "user", "content": prompt}]
@@ -1623,6 +1655,9 @@ def check_midnight_archive():
 
 def main():
     """Main entry point."""
+    global _offline_alert_sent
+    _offline_alert_sent = False  # Reset on startup so we catch new offline events
+
     log.info("JTF News starting...")
     log.info("Facts only. No opinions.")
     log.info("-" * 40)
@@ -1652,8 +1687,9 @@ def main():
             log.info("Shutting down...")
             break
         except Exception as e:
+            # Log errors but don't send SMS alerts for code bugs
+            # Alerts are reserved for: stream offline, contradictions, major issues
             log.error(f"Cycle error: {e}")
-            send_alert(f"Error: {str(e)[:50]}")
             time.sleep(60)  # Wait 1 minute on error
 
 

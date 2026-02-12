@@ -544,7 +544,7 @@
       "id": "uk_parliament",
       "name": "UK Parliament",
       "url": "https://www.parliament.uk/business/news/",
-      "rss": "https://www.parliament.uk/g/RSS/news/",
+      "rss": "https://news.google.com/rss/search?q=site:parliament.uk&hl=en-US&gl=US&ceid=US:en",
       "scrape_selector": "h3.card-title",
       "tier": 1,
       "control_type": "government",
@@ -557,7 +557,7 @@
         "speed": 7.0,
         "consensus": 9.5
       },
-      "notes": "Primary source for UK parliamentary proceedings; authoritative"
+      "notes": "Direct site blocks requests; using Google News RSS as delivery mechanism"
     },
     {
       "id": "eu_commission",
