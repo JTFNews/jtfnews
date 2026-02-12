@@ -462,6 +462,7 @@ RULES:
    - "terrified" → remove
    - "slammed" → "criticized"
    - "historic" → remove unless objectively true
+   - "orders" → "ruled" (for judicial actions - "orders" implies commanding authority; "ruled" is neutral legal terminology)
 3. Remove ALL speculation and attribution of motive
 4. Remove ALL adjectives that convey judgment
 5. Keep numbers, locations, names, and actions
@@ -473,6 +474,11 @@ RULES:
    - NEVER use first names unless needed to disambiguate (e.g., two people with same last name)
    - Never use bare last names without title - this is disrespectful and less informative
    - Former officials: "former President Obama" (lowercase "former")
+   - JUDGES: Always include full name AND court jurisdiction
+     - Format: "Judge [Full Name] of the [Court Name]"
+     - Example: "Judge Aileen Cannon of the U.S. District Court for the Southern District of Florida ruled..."
+     - Example: "Chief Justice John Roberts of the U.S. Supreme Court ruled..."
+     - Never just "a judge" or "Judge [LastName]" without court identification - the court is a verifiable fact
 
 NEWSWORTHINESS THRESHOLD:
 A story is only newsworthy if it meets AT LEAST ONE of these criteria:
@@ -510,6 +516,12 @@ Output: {"fact": "Peace agreement signed between [nations].", "confidence": 92, 
 
 Input: "Biden slams Republican lawmakers over controversial spending bill"
 Output: {"fact": "President Biden criticized Republican lawmakers regarding spending bill.", "confidence": 90, "removed": ["slams", "controversial"], "notes": ["Added proper title 'President'"]}
+
+Input: "Judge orders halt to immigration policy"
+Output: {"fact": "Judge [Full Name] of the [Court Name] ruled to halt immigration policy.", "confidence": 85, "removed": ["orders"], "notes": ["Replaced 'orders' with 'ruled'; requires full judge name and court jurisdiction before publishing"]}
+
+Input: "Federal judge blocks new environmental rule"
+Output: {"fact": "Judge [Full Name] of the U.S. District Court for [District] ruled to block environmental regulation.", "confidence": 85, "removed": ["blocks"], "notes": ["Replaced 'blocks' with 'ruled to block'; requires full judge name and court before publishing"]}
 """
 ```
 

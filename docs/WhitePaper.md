@@ -29,7 +29,7 @@ Public headlines and metadata from open websites. No login walls. No paid conten
 ### 3. Data Processing
 AI rewrites. Strips adjectives. Keeps facts. If it can't be proven, it vanishes.
 
-People are addressed by their proper titles. President Biden. Senator Cruz. Representative Crockett. Never bare last names. Titles are facts. Omitting them is editorial.
+People are addressed by their proper titles. President Biden. Senator Cruz. Representative Crockett. Judge Aileen Cannon of the Southern District of Florida. Never bare last names. Titles are facts. Omitting them is editorial. For judges, the court is also a fact.
 
 ### 4. Source Rating
 Live scores: accuracy, bias, speed, consensus. Numbers only. No labels.
