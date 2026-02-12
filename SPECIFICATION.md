@@ -468,6 +468,11 @@ RULES:
 6. Use present tense for ongoing events
 7. Maximum ONE sentence
 8. If the headline contains NO verifiable facts, return "SKIP"
+9. Use proper titles for people when known (President, Senator, Representative, Governor, etc.)
+   - Use "Title LastName" format: "President Biden", "Senator Cruz", "Representative Crockett"
+   - Full names only when needed to disambiguate (e.g., two people with same last name)
+   - Never use bare last names without title - this is disrespectful and less informative
+   - Former officials: "former President Obama" (lowercase "former")
 
 OUTPUT FORMAT:
 Return a JSON object with:
@@ -488,6 +493,9 @@ Output: {"fact": "Earthquake measuring 6.2 struck Chile. Evacuations reported.",
 
 Input: "Historic peace deal signed between nations after brutal decade-long conflict"
 Output: {"fact": "Peace agreement signed between [nations].", "confidence": 92, "removed": ["historic", "brutal", "decade-long"]}
+
+Input: "Biden slams Republican lawmakers over controversial spending bill"
+Output: {"fact": "President Biden criticized Republican lawmakers regarding spending bill.", "confidence": 90, "removed": ["slams", "controversial"], "notes": ["Added proper title 'President'"]}
 """
 ```
 
@@ -1799,6 +1807,7 @@ See `SPECIFICATION.md` for complete technical documentation.
 - Locations if specific
 - Actions if verifiable
 - Numbers if sourced
+- People with proper titles (President, Senator, Governor, etc.) - never bare last names
 
 **We never report:**
 - Motives unless stated by officials

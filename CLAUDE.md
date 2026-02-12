@@ -14,6 +14,7 @@ JTF News (Just the Facts News) - Automated 24/7 news stream that reports only ve
 
 ## Key Files
 - `SPECIFICATION.md` - Complete technical spec (read this first for implementation)
+- `docs/WhitePaper.md` - Project philosophy and methodology whitepaper
 - `PromptStart.md` - Initial prompt/context document
 - `docs/implementation Ver 0.1.md` - Implementation notes
 - `docs/mediasetup.md` - Media/OBS setup instructions

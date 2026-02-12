@@ -15,7 +15,9 @@ We do not editorialise. We state what happened, where, when, and—when known—
 Public headlines and metadata from open websites. No login walls. No paid content. No APIs. No copyrighted imagery.
 
 ### 3. Data Processing
-AI rewrites. Strips adjectives. Keeps facts. If it can’t be proven, it vanishes.
+AI rewrites. Strips adjectives. Keeps facts. If it can't be proven, it vanishes.
+
+People are addressed by their proper titles. President Biden. Senator Cruz. Representative Crockett. Never bare last names. Titles are facts. Omitting them is editorial.
 
 ### 4. Source Rating
 Live scores: accuracy, bias, speed, consensus. Numbers only. No labels.
