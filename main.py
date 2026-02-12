@@ -83,13 +83,26 @@ ARCHIVE_DIR.mkdir(exist_ok=True)
 with open(CONFIG_FILE) as f:
     CONFIG = json.load(f)
 
-# Logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s | %(levelname)s | %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
+# Logging - with explicit flush for network mount compatibility
+class FlushingFileHandler(logging.FileHandler):
+    """FileHandler that flushes after every write for network mount sync."""
+    def emit(self, record):
+        super().emit(record)
+        self.flush()
+
 log = logging.getLogger("jtf")
+log.setLevel(logging.INFO)
+log_format = logging.Formatter('%(asctime)s | %(levelname)s | %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+
+# Console handler
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(log_format)
+log.addHandler(console_handler)
+
+# File handler with flush
+file_handler = FlushingFileHandler(BASE_DIR / "jtf.log")
+file_handler.setFormatter(log_format)
+log.addHandler(file_handler)
 
 # Kill switch file
 KILL_SWITCH = Path("/tmp/jtf-stop")
