@@ -24,6 +24,7 @@ import gzip
 import shutil
 import hashlib
 import logging
+import re
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
@@ -111,6 +112,7 @@ RULES:
    - "terrified" → remove
    - "slammed" → "criticized"
    - "historic" → remove unless objectively true
+   - "orders" → "ruled" (for judicial actions - "orders" implies commanding authority; "ruled" is neutral legal terminology)
 3. Remove ALL speculation and attribution of motive
 4. Remove ALL adjectives that convey judgment
 5. Keep numbers, locations, names, and actions
@@ -120,6 +122,14 @@ RULES:
 9. Use proper titles with LAST NAME ONLY: "President Trump", "Senator Cruz", "Representative Crockett"
    - NEVER use first names unless needed to disambiguate (e.g., two people with same last name)
    - NEVER use bare last names without title
+10. JUDGES: Always include full name AND court jurisdiction
+   - Format: "Judge [Full Name] of the [Court Name]"
+   - Example: "Judge Aileen Cannon of the U.S. District Court for the Southern District of Florida ruled..."
+   - Example: "Chief Justice John Roberts of the U.S. Supreme Court ruled..."
+   - Extract ALL judge information from the headline (name, court level, location, district)
+   - If headline says "federal judge in Texas" → "A federal judge in Texas ruled..." (use what's available)
+   - If headline has judge's name → Always include it with proper title
+   - NEVER reduce specificity - if the source has the name/court, YOU must include it
 
 NEWSWORTHINESS THRESHOLD:
 A story is only newsworthy if it meets AT LEAST ONE of these criteria:
@@ -148,8 +158,6 @@ Headline to process:
 
 def extract_fact(headline: str) -> dict:
     """Send headline to Claude for fact extraction."""
-    import re
-
     try:
         client = anthropic.Anthropic()
 
@@ -187,6 +195,156 @@ def extract_fact(headline: str) -> dict:
     except Exception as e:
         log.error(f"Claude API error: {e}")
         return {"fact": "SKIP", "confidence": 0, "removed": [], "error": str(e)}
+
+
+# =============================================================================
+# JUDGE LOOKUP - Enhance facts with full judge name and court
+# =============================================================================
+
+# Patterns that indicate incomplete judge references
+INCOMPLETE_JUDGE_PATTERNS = [
+    r'\b[Aa] federal judge\b',
+    r'\b[Aa] judge\b',
+    r'\b[Tt]he judge\b',
+    r'\bJudge [A-Z][a-z]+\b(?! of)',  # "Judge Smith" without "of [Court]"
+    r'\b[Ff]ederal court\b(?! for)',   # "federal court" without location
+]
+
+# Pattern to detect complete judge references (no lookup needed)
+COMPLETE_JUDGE_PATTERN = r'Judge [A-Z][a-z]+ [A-Z][a-z]+ of (the |)[A-Z]'
+
+
+def needs_judge_lookup(fact: str) -> bool:
+    """Check if fact mentions a judge without full name/court details."""
+    # First check if it has a complete reference already
+    if re.search(COMPLETE_JUDGE_PATTERN, fact):
+        return False
+
+    # Check for incomplete patterns
+    for pattern in INCOMPLETE_JUDGE_PATTERNS:
+        if re.search(pattern, fact):
+            return True
+
+    return False
+
+
+def search_judge_info(fact: str, original_headline: str) -> dict | None:
+    """Search for judge information using web search.
+
+    Returns dict with 'full_name' and 'court' if found, None otherwise.
+    """
+    try:
+        # Build search query from the fact
+        # Extract key terms that might help identify the judge
+        search_terms = []
+
+        # Look for case-related terms
+        if 'immigration' in fact.lower():
+            search_terms.append('immigration')
+        if 'abortion' in fact.lower():
+            search_terms.append('abortion')
+        if 'gun' in fact.lower() or 'firearm' in fact.lower():
+            search_terms.append('gun')
+        if 'trump' in fact.lower():
+            search_terms.append('trump')
+        if 'biden' in fact.lower():
+            search_terms.append('biden')
+
+        # Look for location hints
+        location_match = re.search(r'in ([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)', fact)
+        if location_match:
+            search_terms.append(location_match.group(1))
+
+        # Build query
+        query = f"federal judge {' '.join(search_terms)} ruling 2026"
+
+        # Use DuckDuckGo HTML search (no API needed)
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        }
+
+        search_url = f"https://html.duckduckgo.com/html/?q={requests.utils.quote(query)}"
+        response = requests.get(search_url, headers=headers, timeout=10)
+
+        if response.status_code != 200:
+            log.debug(f"Judge search failed: HTTP {response.status_code}")
+            return None
+
+        # Parse search results
+        soup = BeautifulSoup(response.text, 'html.parser')
+        results_text = soup.get_text()[:3000]  # First 3000 chars of results
+
+        # Use Claude to extract judge info from search results
+        client = anthropic.Anthropic()
+
+        prompt = f"""From these search results, extract the judge's information for this news story.
+
+NEWS STORY: {fact}
+ORIGINAL HEADLINE: {original_headline}
+
+SEARCH RESULTS:
+{results_text}
+
+Find the specific federal judge involved in this ruling/case.
+
+Return JSON with:
+- "full_name": The judge's full name (e.g., "Aileen Cannon", "Matthew Kacsmaryk")
+- "court": The full court name (e.g., "U.S. District Court for the Southern District of Florida")
+- "found": true if you found a specific judge, false if not found or uncertain
+
+Only return a judge if you're confident they are the one in this specific news story.
+If you cannot determine the specific judge, return {{"found": false}}"""
+
+        response = client.messages.create(
+            model=CONFIG["claude"]["model"],
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        result_text = response.content[0].text
+
+        # Parse JSON from response
+        try:
+            start = result_text.find('{')
+            end = result_text.rfind('}') + 1
+            if start >= 0 and end > start:
+                result = json.loads(result_text[start:end])
+                if result.get("found") and result.get("full_name") and result.get("court"):
+                    log.info(f"Found judge: {result['full_name']} of {result['court']}")
+                    return result
+        except json.JSONDecodeError:
+            pass
+
+        return None
+
+    except Exception as e:
+        log.debug(f"Judge search error: {e}")
+        return None
+
+
+def enhance_fact_with_judge(fact: str, judge_info: dict) -> str:
+    """Replace incomplete judge reference with full name and court."""
+    full_name = judge_info["full_name"]
+    court = judge_info["court"]
+
+    # Build the replacement text
+    replacement = f"Judge {full_name} of the {court}"
+
+    # Replace various incomplete patterns
+    replacements = [
+        (r'\b[Aa] federal judge\b', replacement),
+        (r'\b[Aa] judge\b', replacement),
+        (r'\b[Tt]he judge\b', replacement),
+        (r'\bJudge ([A-Z][a-z]+)\b(?! of)', f"Judge {full_name} of the {court}"),
+    ]
+
+    enhanced = fact
+    for pattern, repl in replacements:
+        enhanced = re.sub(pattern, repl, enhanced, count=1)
+        if enhanced != fact:
+            break  # Only replace first match
+
+    return enhanced
 
 
 # =============================================================================
@@ -1409,7 +1567,6 @@ def cleanup_old_data(days: int = 7):
             # Extract date from filename (e.g., 2026-02-11.txt, processed_2026-02-11.txt)
             try:
                 # Find date pattern in filename
-                import re
                 match = re.search(r'(\d{4}-\d{2}-\d{2})', filename)
                 if match:
                     file_date = match.group(1)
@@ -1540,6 +1697,14 @@ def process_cycle():
 
         fact = result["fact"]
         confidence = result["confidence"]
+
+        # JUDGE LOOKUP: If fact mentions a judge without full details, try to look them up
+        if needs_judge_lookup(fact):
+            log.info(f"Looking up judge info for: {fact[:50]}...")
+            judge_info = search_judge_info(fact, headline["text"])
+            if judge_info:
+                fact = enhance_fact_with_judge(fact, judge_info)
+                log.info(f"Enhanced with judge: {fact[:60]}...")
 
         # Check confidence threshold
         if confidence < CONFIG["thresholds"]["min_confidence"]:
