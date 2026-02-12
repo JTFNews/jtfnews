@@ -147,7 +147,7 @@ function getEligibleStories() {
 
 /**
  * Main loop - cycles through stories continuously
- * Stories won't repeat until MIN_REPEAT_GAP (10 min) has passed
+ * Stories won't repeat until MIN_REPEAT_GAP (45 min) has passed
  * If all stories are on cooldown, waits until one becomes eligible
  */
 async function runLoop() {

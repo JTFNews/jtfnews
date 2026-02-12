@@ -25,6 +25,8 @@ import logging
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
+from urllib.robotparser import RobotFileParser
 
 import requests
 from bs4 import BeautifulSoup
@@ -161,6 +163,56 @@ def extract_fact(headline: str) -> dict:
 # WEB SCRAPING
 # =============================================================================
 
+# Cache for robots.txt parsers (avoid re-fetching every cycle)
+_robots_cache = {}  # domain -> (RobotFileParser, timestamp)
+ROBOTS_CACHE_TTL = 3600  # 1 hour
+
+USER_AGENT = "JTFNews/1.0"
+
+
+def can_fetch_url(url: str) -> bool:
+    """Check if we're allowed to fetch this URL per robots.txt."""
+    try:
+        parsed = urlparse(url)
+        domain = f"{parsed.scheme}://{parsed.netloc}"
+        robots_url = f"{domain}/robots.txt"
+
+        now = time.time()
+
+        # Check cache
+        if domain in _robots_cache:
+            parser, cached_time = _robots_cache[domain]
+            if now - cached_time < ROBOTS_CACHE_TTL:
+                allowed = parser.can_fetch(USER_AGENT, url)
+                if not allowed:
+                    log.debug(f"robots.txt blocks: {url}")
+                return allowed
+
+        # Fetch and parse robots.txt
+        parser = RobotFileParser()
+        parser.set_url(robots_url)
+        try:
+            parser.read()
+        except Exception as e:
+            # If robots.txt doesn't exist or errors, assume allowed
+            log.debug(f"No robots.txt for {domain}: {e}")
+            # Create permissive parser
+            parser = RobotFileParser()
+            parser.allow_all = True
+
+        # Cache it
+        _robots_cache[domain] = (parser, now)
+
+        allowed = parser.can_fetch(USER_AGENT, url)
+        if not allowed:
+            log.warning(f"robots.txt blocks: {url}")
+        return allowed
+
+    except Exception as e:
+        log.debug(f"robots.txt check failed for {url}: {e}")
+        return True  # Allow on error (fail open)
+
+
 def fetch_rss_headlines(source: dict) -> list:
     """Fetch headlines from an RSS feed."""
     headlines = []
@@ -171,7 +223,7 @@ def fetch_rss_headlines(source: dict) -> list:
 
     try:
         headers = {
-            "User-Agent": "JTFNews/1.0 (Facts only, no opinions; RSS reader)"
+            "User-Agent": f"{USER_AGENT} (Facts only, no opinions; RSS reader)"
         }
 
         response = requests.get(rss_url, headers=headers, timeout=15)
@@ -211,12 +263,17 @@ def fetch_rss_headlines(source: dict) -> list:
 
 
 def fetch_html_headlines(source: dict) -> list:
-    """Fetch headlines by scraping HTML."""
+    """Fetch headlines by scraping HTML (respects robots.txt)."""
     headlines = []
+
+    # Check robots.txt before scraping
+    if not can_fetch_url(source["url"]):
+        log.info(f"Skipping {source['name']} - robots.txt disallows")
+        return []
 
     try:
         headers = {
-            "User-Agent": "JTFNews/1.0 (Facts only, no opinions; respects robots.txt)"
+            "User-Agent": f"{USER_AGENT} (Facts only, no opinions; respects robots.txt)"
         }
 
         response = requests.get(source["url"], headers=headers, timeout=15)
@@ -1058,6 +1115,49 @@ def send_alert(message: str):
 
 
 # =============================================================================
+# STREAM MONITORING
+# =============================================================================
+
+HEARTBEAT_FILE = DATA_DIR / "heartbeat.txt"
+STREAM_OFFLINE_THRESHOLD = 300  # 5 minutes in seconds
+_last_offline_alert = 0  # Avoid spamming alerts
+
+
+def write_heartbeat():
+    """Write current timestamp to heartbeat file."""
+    try:
+        with open(HEARTBEAT_FILE, 'w') as f:
+            f.write(str(time.time()))
+    except Exception as e:
+        log.error(f"Failed to write heartbeat: {e}")
+
+
+def check_stream_health():
+    """Check if stream appears offline (no heartbeat in 5 minutes)."""
+    global _last_offline_alert
+
+    if not HEARTBEAT_FILE.exists():
+        return  # First run, no heartbeat yet
+
+    try:
+        with open(HEARTBEAT_FILE) as f:
+            last_beat = float(f.read().strip())
+
+        now = time.time()
+        offline_duration = now - last_beat
+
+        if offline_duration > STREAM_OFFLINE_THRESHOLD:
+            # Only alert once per 30 minutes to avoid spam
+            if now - _last_offline_alert > 1800:
+                minutes_offline = int(offline_duration / 60)
+                send_alert(f"Offline {minutes_offline}+ min")
+                _last_offline_alert = now
+                log.warning(f"Stream offline for {minutes_offline} minutes")
+    except Exception as e:
+        log.debug(f"Heartbeat check failed: {e}")
+
+
+# =============================================================================
 # CONTRADICTION DETECTION
 # =============================================================================
 
@@ -1117,6 +1217,130 @@ Return JSON: {{"contradiction": true/false, "reason": "brief explanation if true
     except Exception as e:
         log.error(f"Contradiction check failed: {e}")
         return False  # Don't block on error
+
+
+# =============================================================================
+# BREAKING NEWS UPDATES (3rd+ source details)
+# =============================================================================
+
+def find_matching_published_story(new_fact: str) -> dict | None:
+    """Check if new fact matches any already-published story today."""
+    stories_file = DATA_DIR / "stories.json"
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    if not stories_file.exists():
+        return None
+
+    try:
+        with open(stories_file) as f:
+            data = json.load(f)
+
+        if data.get("date") != today:
+            return None
+
+        # Use same word overlap filter as queue matching
+        new_words = set(new_fact.lower().split())
+
+        for idx, story in enumerate(data.get("stories", [])):
+            existing_fact = story.get("fact", "")
+            existing_words = set(existing_fact.lower().split())
+
+            # Check for significant word overlap (same event)
+            overlap = len(new_words & existing_words)
+            min_len = min(len(new_words), len(existing_words))
+
+            if min_len > 0 and overlap / min_len > 0.3:
+                # Potential match - return story with index
+                story["_index"] = idx
+                return story
+
+        return None
+
+    except Exception as e:
+        log.debug(f"Published story match check failed: {e}")
+        return None
+
+
+def extract_new_details(new_fact: str, existing_fact: str) -> str | None:
+    """Use Claude to extract only NEW information from the new fact."""
+    prompt = f"""Compare these two news facts about the SAME event.
+
+EXISTING (already published): {existing_fact}
+
+NEW SOURCE: {new_fact}
+
+Extract ONLY genuinely new, verifiable information from NEW SOURCE that is NOT already in EXISTING.
+Do NOT include anything already stated or implied in EXISTING.
+Do NOT rephrase existing information.
+
+If there is genuinely new information, return it as a short factual sentence.
+If there is NO new information, return exactly: NO_NEW_INFO
+
+Return JSON: {{"new_detail": "the new sentence" or "NO_NEW_INFO"}}"""
+
+    try:
+        response = claude_client.messages.create(
+            model=CONFIG["claude"]["model"],
+            max_tokens=100,
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        result = json.loads(response.content[0].text)
+        new_detail = result.get("new_detail", "NO_NEW_INFO")
+
+        if new_detail == "NO_NEW_INFO" or not new_detail:
+            return None
+
+        return new_detail
+
+    except Exception as e:
+        log.error(f"Extract new details failed: {e}")
+        return None
+
+
+def update_published_story(story_index: int, additional_detail: str, new_source: dict):
+    """Append new detail to an already-published story."""
+    stories_file = DATA_DIR / "stories.json"
+
+    try:
+        with open(stories_file) as f:
+            data = json.load(f)
+
+        if story_index >= len(data.get("stories", [])):
+            return False
+
+        story = data["stories"][story_index]
+        old_fact = story["fact"]
+
+        # Append new detail as separate sentence
+        updated_fact = f"{old_fact} {additional_detail}"
+        story["fact"] = updated_fact
+
+        # Add new source to attribution
+        new_source_text = f"{new_source['source_name']} - {get_display_rating(new_source['source_id'])}"
+        if new_source_text not in story.get("source", ""):
+            story["source"] = f"{story['source']} | {new_source_text}"
+
+        # Regenerate audio for updated fact
+        audio_path = story.get("audio", "").replace("../audio/", "")
+        if audio_path:
+            audio_index = audio_path.replace("audio_", "").replace(".mp3", "")
+            try:
+                audio_index = int(audio_index)
+                generate_tts(updated_fact, audio_index)
+            except:
+                pass
+
+        # Write back
+        with open(stories_file, 'w') as f:
+            json.dump(data, f, indent=2)
+
+        log.info(f"UPDATED story: +'{additional_detail}' from {new_source['source_name']}")
+        return True
+
+    except Exception as e:
+        log.error(f"Failed to update published story: {e}")
+        return False
 
 
 # =============================================================================
@@ -1335,7 +1559,29 @@ def process_cycle():
 
                     break
         else:
-            # No match - add to queue
+            # No match in queue - check if it updates an already-published story
+            published_match = find_matching_published_story(fact)
+            if published_match:
+                # Check if this source is unrelated to existing sources
+                existing_sources = published_match.get("source", "")
+                source_name = headline["source_name"]
+
+                if source_name not in existing_sources:
+                    # 3rd+ source! Try to extract new details
+                    new_detail = extract_new_details(fact, published_match["fact"])
+                    if new_detail:
+                        # Update the published story with new detail
+                        update_published_story(
+                            published_match["_index"],
+                            new_detail,
+                            headline
+                        )
+                        # Record verification success for the updating source
+                        fact_hash = get_story_hash(published_match["fact"])
+                        record_verification_success(headline["source_id"], fact_hash)
+                        continue  # Don't add to queue
+
+            # No match anywhere - add to queue
             queue.append({
                 "fact": fact,
                 "source_id": headline["source_id"],
@@ -1371,6 +1617,12 @@ def main():
 
     while True:
         try:
+            # Write heartbeat to indicate we're alive
+            write_heartbeat()
+
+            # Check if stream appears offline
+            check_stream_health()
+
             # Check for midnight archive
             check_midnight_archive()
 

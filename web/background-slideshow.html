@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=3840, height=2160">
+  <meta name="viewport" content="width=1920, height=1080">
   <title>JTF News Background Slideshow</title>
   <style>
     * {
@@ -151,14 +151,17 @@
     /**
      * Get next image from shuffled queue
      * No repeats until all images have been shown
-     * When queue empties, reshuffle and start fresh
+     * When queue empties, create new seed and reshuffle for different starting image
      */
     function getNextImage() {
-      // If queue is empty, reshuffle all images
+      // If queue is empty, create new seed and reshuffle all images
       if (shuffledQueue.length === 0) {
         if (images.length === 0) return null;
+        // New seed = date + current timestamp for unique sequence each cycle
+        const cycleSeed = getDailySeed() + '-' + Date.now();
+        seedRng = createSeededRng(cycleSeed);
         shuffledQueue = shuffleArray(images);
-        console.log(`Reshuffled ${shuffledQueue.length} images into queue`);
+        console.log(`New cycle with seed ${cycleSeed}, reshuffled ${shuffledQueue.length} images`);
       }
 
       // Pop the next image from the queue
@@ -221,6 +224,11 @@
     async function init() {
       currentSeason = getSeason();
       console.log(`Current season: ${currentSeason}`);
+
+      // Initialize daily seed for consistent shuffle order each day
+      dailySeed = getDailySeed();
+      seedRng = createSeededRng(dailySeed);
+      console.log(`Daily seed: ${dailySeed}`);
 
       // Discover available images
       images = await discoverImages(currentSeason);
