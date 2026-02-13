@@ -19,6 +19,25 @@ let shuffledQueue = [];       // Current cycle's shuffled story order
 let lastPlayedFact = null;    // Track last played story to avoid back-to-back
 let lastPlayedTimes = {};     // Track when each story was last played (fact -> timestamp)
 let isDisplaying = false;
+let storyCountSinceSponsor = 0; // Counter for sponsor message frequency
+let currentMessageIndex = 0;    // Which sponsor message to show next (alternates)
+
+// Sponsor configuration (loaded from config.json, defaults here)
+const SPONSOR_CONFIG = {
+    enabled: true,
+    frequency: 10,
+    holdTime: 5000,  // 5 seconds display time
+    messages: [
+        {
+            message: "JTF News is supported by viewers like you.",
+            sourceText: "Support · github.com/sponsors/larryseyer"
+        },
+        {
+            message: "Run JTF News as your screen saver.",
+            sourceText: "Free · jtfnews.com/screensaver"
+        }
+    ]
+};
 let audioElement = null;
 let cycleStartTime = 0;       // When current cycle started
 let isFirstLoad = true;       // Track if this is initial page load
@@ -297,6 +316,45 @@ async function displayStory(story) {
 }
 
 /**
+ * Display sponsor message (PBS-style acknowledgment)
+ * Silent, visual-only, uses same lower-third infrastructure
+ * Alternates between sponsor and screensaver messages
+ */
+async function displaySponsorMessage() {
+    if (isDisplaying) return;
+    isDisplaying = true;
+
+    const lowerThird = document.getElementById('lower-third');
+    const sourceBar = document.getElementById('source-bar');
+    const factText = document.getElementById('fact-text');
+
+    // Get current message and advance to next for next time
+    const msg = SPONSOR_CONFIG.messages[currentMessageIndex];
+    currentMessageIndex = (currentMessageIndex + 1) % SPONSOR_CONFIG.messages.length;
+
+    // Set sponsor content
+    sourceBar.textContent = msg.sourceText;
+    factText.textContent = msg.message;
+
+    // Fade in
+    lowerThird.classList.remove('hidden');
+    lowerThird.classList.add('visible');
+
+    // Hold for sponsor display time (no audio)
+    await sleep(SPONSOR_CONFIG.holdTime);
+
+    // Fade out
+    lowerThird.classList.remove('visible');
+    lowerThird.classList.add('hidden');
+
+    // Wait for fade
+    await sleep(FADE_TIME + MIN_GAP_TIME);
+
+    console.log(`[Sponsor] Displayed: "${msg.message}"`);
+    isDisplaying = false;
+}
+
+/**
  * Check if a story is eligible to play (30+ minutes since last play)
  */
 function isEligibleToPlay(story) {
@@ -371,6 +429,13 @@ async function runLoop() {
             }
         }
 
+        // Check if it's time for sponsor message
+        if (SPONSOR_CONFIG.enabled && storyCountSinceSponsor >= SPONSOR_CONFIG.frequency) {
+            await displaySponsorMessage();
+            storyCountSinceSponsor = 0;
+            continue;
+        }
+
         // Get next eligible story (30+ minutes since last play)
         const story = getNextEligibleStory();
 
@@ -381,8 +446,9 @@ async function runLoop() {
             continue;
         }
 
-        // Display the story
+        // Display the story and increment sponsor counter
         await displayStory(story);
+        storyCountSinceSponsor++;
     }
 }
 

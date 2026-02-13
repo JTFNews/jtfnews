@@ -597,8 +597,23 @@
     "archive_hour_utc": 0
   },
   "claude": {
-    "model": "claude-3-5-haiku-latest",
+    "model": "claude-haiku-4-5-20251001",
     "max_tokens": 200
+  },
+  "sponsor": {
+    "enabled": true,
+    "frequency": 10,
+    "tts_enabled": false,
+    "messages": [
+      {
+        "message": "JTF News is supported by viewers like you.",
+        "source_text": "Support · github.com/sponsors/larryseyer"
+      },
+      {
+        "message": "Run JTF News as your screen saver.",
+        "source_text": "Free · jtfnews.com/screensaver"
+      }
+    ]
   },
   "ratings_methodology": {
     "version": "1.0",
