@@ -27,6 +27,7 @@ import logging
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from functools import wraps
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.robotparser import RobotFileParser
@@ -58,6 +59,41 @@ def indent_xml(elem, level=0, space="  "):
     else:
         if level and (not elem.tail or not elem.tail.strip()):
             elem.tail = i
+
+
+# =============================================================================
+# RETRY LOGIC WITH EXPONENTIAL BACKOFF
+# =============================================================================
+
+def retry_with_backoff(max_retries=3, base_delay=1.0, retryable_exceptions=None):
+    """Retry failed API calls with exponential backoff.
+
+    Args:
+        max_retries: Number of retry attempts (default 3)
+        base_delay: Initial delay in seconds (default 1.0)
+        retryable_exceptions: Tuple of exception types to retry on
+    """
+    if retryable_exceptions is None:
+        retryable_exceptions = (ConnectionError, TimeoutError, OSError)
+
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            last_exception = None
+            for attempt in range(max_retries + 1):
+                try:
+                    return func(*args, **kwargs)
+                except retryable_exceptions as e:
+                    last_exception = e
+                    if attempt < max_retries:
+                        delay = base_delay * (2 ** attempt)  # 1s, 2s, 4s
+                        log.warning(f"{func.__name__} failed (attempt {attempt + 1}/{max_retries + 1}): {e}. Retrying in {delay}s...")
+                        time.sleep(delay)
+                    else:
+                        log.error(f"{func.__name__} failed after {max_retries + 1} attempts: {e}")
+            raise last_exception
+        return wrapper
+    return decorator
 
 
 # =============================================================================
@@ -503,6 +539,7 @@ Headline to process:
 """
 
 
+@retry_with_backoff(max_retries=3, base_delay=1.0)
 def extract_fact(headline: str, use_cache: bool = True) -> dict:
     """Send headline to Claude for fact extraction.
 
@@ -1416,6 +1453,7 @@ def get_next_audio_index() -> int:
     return 0
 
 
+@retry_with_backoff(max_retries=2, base_delay=1.0)
 def generate_tts(text: str, audio_index: int = None) -> str:
     """Generate TTS audio using ElevenLabs. Returns audio filename."""
     try:
@@ -1738,6 +1776,7 @@ def update_alexa_feed(fact: str, sources: list):
 # ALERTS
 # =============================================================================
 
+@retry_with_backoff(max_retries=2, base_delay=0.5)
 def send_alert(message: str, alert_type: str = "general"):
     """Send SMS alert via Twilio with throttling.
 
