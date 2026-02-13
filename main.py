@@ -163,6 +163,195 @@ _cycle_stats = {
     "cycle_start": None
 }
 
+# =============================================================================
+# RESILIENCE SYSTEM
+# =============================================================================
+
+# Alert throttling - prevent SMS spam
+_alert_cooldowns = {}  # {alert_type: last_sent_timestamp}
+ALERT_COOLDOWNS = {
+    "api_failure": 3600,      # 1 hour between API failure alerts
+    "credits_low": 86400,     # 24 hours between budget alerts
+    "queue_backup": 21600,    # 6 hours between queue backup alerts
+    "offline": 0,             # No cooldown - handled by _offline_alert_sent flag
+    "contradiction": 0,       # No cooldown for contradictions
+    "general": 3600           # 1 hour for generic alerts
+}
+
+# Budget monitoring
+DAILY_BUDGET = 5.00  # $5/day budget threshold
+
+# Degraded service tracking
+_degraded_services = set()  # {"elevenlabs", "twilio"} when degraded
+
+# Consecutive failure tracking for alerting
+_consecutive_failures = {"claude": 0, "elevenlabs": 0, "twilio": 0}
+
+
+def safe_parse_claude_json(text: str, default: dict) -> dict:
+    """Parse Claude response with fallback for malformed JSON.
+
+    Tries multiple strategies:
+    1. Standard JSON parsing (with brace extraction)
+    2. Extract from markdown code blocks
+    3. Regex extraction of key fields
+    4. Return default if all fail
+    """
+    if not text:
+        return default
+
+    # Strategy 1: Extract JSON object from text
+    try:
+        start = text.find('{')
+        end = text.rfind('}') + 1
+        if start >= 0 and end > start:
+            return json.loads(text[start:end])
+    except json.JSONDecodeError:
+        pass
+
+    # Strategy 2: Extract from markdown code blocks
+    try:
+        import re
+        code_match = re.search(r'```(?:json)?\s*(\{[^`]+\})\s*```', text, re.DOTALL)
+        if code_match:
+            return json.loads(code_match.group(1))
+    except json.JSONDecodeError:
+        pass
+
+    # Strategy 3: Regex extraction of common fields
+    result = dict(default)  # Copy default
+
+    # Try to extract "contradiction" field
+    contradiction_match = re.search(r'"contradiction"\s*:\s*(true|false)', text, re.IGNORECASE)
+    if contradiction_match:
+        result["contradiction"] = contradiction_match.group(1).lower() == "true"
+
+    # Try to extract "new_detail" field
+    detail_match = re.search(r'"new_detail"\s*:\s*"([^"]*(?:\\.[^"]*)*)"', text)
+    if detail_match:
+        result["new_detail"] = detail_match.group(1).replace('\\"', '"')
+
+    # Try to extract "reason" field
+    reason_match = re.search(r'"reason"\s*:\s*"([^"]*(?:\\.[^"]*)*)"', text)
+    if reason_match:
+        result["reason"] = reason_match.group(1).replace('\\"', '"')
+
+    return result
+
+
+def should_send_alert(alert_type: str) -> bool:
+    """Check if alert should be sent based on cooldown."""
+    cooldown = ALERT_COOLDOWNS.get(alert_type, ALERT_COOLDOWNS["general"])
+
+    if cooldown == 0:
+        return True  # No throttling for this type
+
+    last_sent = _alert_cooldowns.get(alert_type, 0)
+    now = time.time()
+
+    if now - last_sent >= cooldown:
+        _alert_cooldowns[alert_type] = now
+        return True
+
+    return False
+
+
+def validate_services() -> bool:
+    """Validate all required services at startup.
+
+    Returns:
+        True if critical services (Claude) are working
+        Sets _degraded_services for non-critical services that fail
+    """
+    global _degraded_services
+    _degraded_services = set()
+
+    log.info("Validating services...")
+
+    # Check required environment variables
+    required_vars = ["ANTHROPIC_API_KEY"]
+    optional_vars = {
+        "ELEVENLABS_API_KEY": "elevenlabs",
+        "TWILIO_ACCOUNT_SID": "twilio",
+        "TWILIO_AUTH_TOKEN": "twilio"
+    }
+
+    for var in required_vars:
+        if not os.getenv(var):
+            log.critical(f"Missing required environment variable: {var}")
+            return False
+
+    for var, service in optional_vars.items():
+        if not os.getenv(var):
+            log.warning(f"Missing {var} - {service} will be unavailable")
+            _degraded_services.add(service)
+
+    # Test Claude API with minimal call
+    try:
+        client = anthropic.Anthropic()
+        response = client.messages.create(
+            model=CONFIG["claude"]["model"],
+            max_tokens=10,
+            messages=[{"role": "user", "content": "Reply with: OK"}]
+        )
+        log_api_usage("claude", {
+            "input_tokens": response.usage.input_tokens,
+            "output_tokens": response.usage.output_tokens
+        })
+        log.info("Claude API: OK")
+    except anthropic.AuthenticationError as e:
+        log.critical(f"Claude API authentication failed: {e}")
+        return False
+    except Exception as e:
+        log.critical(f"Claude API test failed: {e}")
+        return False
+
+    # Test ElevenLabs if not already degraded
+    if "elevenlabs" not in _degraded_services:
+        try:
+            eleven_client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY"))
+            # Just verify the key works - don't generate audio
+            # The client will raise if key is invalid on first use
+            log.info("ElevenLabs API: OK (key present)")
+        except Exception as e:
+            log.warning(f"ElevenLabs validation failed: {e} - continuing without TTS")
+            _degraded_services.add("elevenlabs")
+
+    # Report degraded services
+    if _degraded_services:
+        log.warning(f"Running in degraded mode - unavailable services: {_degraded_services}")
+    else:
+        log.info("All services validated successfully")
+
+    return True
+
+
+def track_api_failure(service: str, success: bool):
+    """Track consecutive API failures for alerting.
+
+    Sends alert after 3 consecutive failures.
+    """
+    global _consecutive_failures
+
+    if success:
+        _consecutive_failures[service] = 0
+        return
+
+    _consecutive_failures[service] = _consecutive_failures.get(service, 0) + 1
+
+    if _consecutive_failures[service] >= 3:
+        if should_send_alert("api_failure"):
+            send_alert(f"{service} API failed {_consecutive_failures[service]} times", "api_failure")
+        _consecutive_failures[service] = 0  # Reset after alert
+
+
+def check_budget_alert(total_cost: float):
+    """Send alert if costs exceed 80% of daily budget."""
+    if total_cost > DAILY_BUDGET * 0.8:
+        if should_send_alert("credits_low"):
+            pct = (total_cost / DAILY_BUDGET) * 100
+            send_alert(f"API costs at ${total_cost:.2f} ({pct:.0f}% of ${DAILY_BUDGET} budget)", "credits_low")
+
 
 def log_api_usage(service: str, usage: dict):
     """Log API usage and costs to daily file.
@@ -1549,8 +1738,23 @@ def update_alexa_feed(fact: str, sources: list):
 # ALERTS
 # =============================================================================
 
-def send_alert(message: str):
-    """Send SMS alert via Twilio."""
+def send_alert(message: str, alert_type: str = "general"):
+    """Send SMS alert via Twilio with throttling.
+
+    Args:
+        message: Alert message to send
+        alert_type: Type for throttling (api_failure, credits_low, queue_backup, offline, contradiction, general)
+    """
+    # Check throttling (unless this is a call from track_api_failure which already checked)
+    if alert_type != "api_failure" and not should_send_alert(alert_type):
+        log.info(f"Alert throttled ({alert_type}): {message}")
+        return
+
+    # Check if Twilio is in degraded mode
+    if "twilio" in _degraded_services:
+        log.warning(f"Alert (Twilio unavailable): {message}")
+        return
+
     try:
         client = TwilioClient(
             os.getenv("TWILIO_ACCOUNT_SID"),
@@ -1567,9 +1771,11 @@ def send_alert(message: str):
         log_api_usage("twilio", {"sms_count": 1})
 
         log.warning(f"Alert sent: {message}")
+        track_api_failure("twilio", True)
 
     except Exception as e:
         log.error(f"Failed to send alert: {e}")
+        track_api_failure("twilio", False)
 
 
 # =============================================================================
@@ -1679,16 +1885,22 @@ Return JSON: {{"contradiction": true/false, "reason": "brief explanation if true
             "output_tokens": response.usage.output_tokens
         })
 
-        result = json.loads(response.content[0].text)
+        # Safe JSON parsing with fallback
+        result = safe_parse_claude_json(
+            response.content[0].text,
+            {"contradiction": False, "reason": ""}
+        )
 
         if result.get("contradiction"):
             log.warning(f"Contradiction detected: {result.get('reason', 'unknown')}")
             return True
 
+        track_api_failure("claude", True)
         return False
 
     except Exception as e:
         log.error(f"Contradiction check failed: {e}")
+        track_api_failure("claude", False)
         return False  # Don't block on error
 
 
@@ -1765,12 +1977,18 @@ Return JSON: {{"new_detail": "the new sentence" or "NO_NEW_INFO"}}"""
             "output_tokens": response.usage.output_tokens
         })
 
-        result = json.loads(response.content[0].text)
+        # Safe JSON parsing with fallback
+        result = safe_parse_claude_json(
+            response.content[0].text,
+            {"new_detail": "NO_NEW_INFO"}
+        )
         new_detail = result.get("new_detail", "NO_NEW_INFO")
 
         if new_detail == "NO_NEW_INFO" or not new_detail:
+            track_api_failure("claude", True)
             return None
 
+        track_api_failure("claude", True)
         return new_detail
 
     except Exception as e:
@@ -1973,6 +2191,19 @@ def write_monitor_data(cycle_stats: dict):
 
     # Get API costs
     api_costs = get_api_costs_today()
+    total_cost = api_costs.get("total_cost_usd", 0)
+
+    # Check budget alert
+    check_budget_alert(total_cost)
+
+    # Check queue backup alert
+    queue_stats = get_queue_stats()
+    if queue_stats.get("size", 0) > 200 or queue_stats.get("oldest_item_age_hours", 0) > 20:
+        if should_send_alert("queue_backup"):
+            send_alert(
+                f"Queue backup: {queue_stats['size']} items, oldest {queue_stats['oldest_item_age_hours']:.1f}h",
+                "queue_backup"
+            )
 
     # Calculate monthly estimate (based on today's usage projected over 30 days)
     # Adjust for how much of today has passed
@@ -2001,16 +2232,19 @@ def write_monitor_data(cycle_stats: dict):
         "api_costs": {
             "today": api_costs.get("services", {}),
             "total_usd": round(api_costs.get("total_cost_usd", 0), 4),
-            "month_estimate_usd": round(month_estimate, 2)
+            "month_estimate_usd": round(month_estimate, 2),
+            "daily_budget": DAILY_BUDGET,
+            "budget_pct": round((total_cost / DAILY_BUDGET) * 100, 1) if DAILY_BUDGET > 0 else 0
         },
-        "queue": get_queue_stats(),
+        "queue": queue_stats,
         "stories_today": get_stories_today_count(),
         "sources": get_source_health(),
         "recent_errors": error_handler.get_recent(10),
         "status": {
             "state": "running",
             "stream_health": get_stream_health_status(),
-            "next_cycle_minutes": interval_minutes
+            "next_cycle_minutes": interval_minutes,
+            "degraded_services": list(_degraded_services)
         }
     }
 
@@ -2366,6 +2600,14 @@ def main():
     log.info("JTF News starting...")
     log.info("Facts only. No opinions.")
     log.info("-" * 40)
+
+    # Validate all services before starting
+    if not validate_services():
+        log.critical("Service validation failed - cannot start")
+        sys.exit(1)
+
+    if _degraded_services:
+        log.info(f"Starting in degraded mode: {_degraded_services}")
 
     interval_minutes = CONFIG["timing"]["scrape_interval_minutes"]
     interval_seconds = interval_minutes * 60
