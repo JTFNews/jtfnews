@@ -442,7 +442,7 @@ For each headline, Claude:
 
 ### 6.3 API Configuration
 
-**Model:** `claude-3-5-haiku-latest` (optimized for cost; fact extraction doesn't require Sonnet)
+**Model:** `claude-haiku-4-5-20251001` (optimized for cost; fact extraction doesn't require Sonnet)
 **Fallback:** If API fails, story queues for next cycle. **Never publish unprocessed text.**
 
 ### 6.4 The Prompt
@@ -545,7 +545,7 @@ Output: {"fact": "Judge [Full Name] of the U.S. District Court for [District] ru
 def process_with_claude(headline, source_id):
     try:
         response = client.messages.create(
-            model="claude-3-5-haiku-latest",  # Cost-optimized
+            model="claude-haiku-4-5-20251001",  # Cost-optimized
             max_tokens=500,
             system=CLAUDE_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": f"Process this headline: {headline}"}]
@@ -923,6 +923,59 @@ Stories are prioritized by how recently they were verified. This ensures viewers
 - Source bar shows time since verification
 - Format: `Reuters – 9.8 · 2 hours ago`
 - Provides context without drama or urgency
+
+### 10.5 Viewer Support Messaging (PBS-Style)
+
+JTF News displays periodic viewer support messages using the same lower-third infrastructure as news stories. These are silent, visual-only interstitials that alternate between two messages.
+
+**Messages (alternating):**
+
+| Message | Source Bar | Purpose |
+|---------|------------|---------|
+| "JTF News is supported by viewers like you." | Support · github.com/sponsors/larryseyer | Financial support |
+| "Run JTF News as your screen saver." | Free · jtfnews.com/screensaver | Viewer engagement |
+
+**Frequency:**
+- Appears every 10 stories (~10 minutes at typical story rate)
+- Messages alternate: sponsor → screensaver → sponsor → ...
+- Same fade animation as news stories
+- 5 second hold time (no audio)
+
+**Configuration (config.json):**
+```json
+"sponsor": {
+  "enabled": true,
+  "frequency": 10,
+  "tts_enabled": false,
+  "messages": [
+    {
+      "message": "JTF News is supported by viewers like you.",
+      "source_text": "Support · github.com/sponsors/larryseyer"
+    },
+    {
+      "message": "Run JTF News as your screen saver.",
+      "source_text": "Free · jtfnews.com/screensaver"
+    }
+  ]
+}
+```
+
+**Design Constraints (Whitepaper Compliance):**
+- No TTS (silent display only)
+- No Alexa/voice assistant messaging (too intrusive when spoken)
+- No animated graphics (violates calm aesthetic)
+- No donation amounts or goals (creates urgency)
+- No "please donate" language (begging)
+- PBS-style acknowledgment, not advertisement
+
+**Where Support Messaging Appears:**
+
+| Surface | Implementation |
+|---------|---------------|
+| Lower-third overlay | Periodic interstitial every N stories |
+| Screensaver | Same logic (inline JS) |
+| RSS feed | Static channel description |
+| Website | Support section on index.html |
 
 ---
 
