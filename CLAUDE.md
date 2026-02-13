@@ -26,9 +26,17 @@ JTF News (Just the Facts News) - Automated 24/7 news stream that reports only ve
 - `./deploy.sh` - Rsync source files to deploy machine
 
 ### Deploy Machine (run these ON the deploy machine)
-- `./start.sh` - Start the JTF News service
-- `./start.sh --fresh` - Clear old stories and start fresh (use after code changes that affect story format)
+- `./start.sh` - Start the JTF News service (normal operation)
+- `./start.sh --rebuild` - Recover stories.json from daily log (use if stories were accidentally cleared)
+- `./start.sh --fresh` - Clear stories and start fresh (requires confirmation; use only when file format changes)
 - `./fix-after-copy.sh` - Reinstall venv dependencies (run if venv breaks after deploy)
+
+**When to use each start.sh flag:**
+| Situation | Command |
+|-----------|---------|
+| Normal startup | `./start.sh` |
+| Accidentally ran --fresh | `./start.sh --rebuild` |
+| Code changes to story format | `./start.sh --fresh` (confirm with 'y') |
 
 ### IMPORTANT: Always Use bu.sh for Commits
 Do NOT use raw `git commit` commands. Always use `./bu.sh "message"` which:
