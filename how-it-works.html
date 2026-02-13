@@ -134,85 +134,166 @@
             line-height: 1.45;
         }
 
-        /* ========== Callout Annotations ========== */
-        .callout {
-            position: absolute;
-            background: rgba(34, 197, 94, 0.15);
-            border: 2px solid #22c55e;
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 12px;
-            color: #22c55e;
-            max-width: 200px;
-            z-index: 10;
+        /* ========== Hover Tooltips ========== */
+        .hover-zone {
+            position: relative;
+            cursor: help;
+            transition: all 0.2s ease;
         }
 
-        .callout::before {
+        .hover-zone:hover {
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.5);
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #22c55e;
+            border-radius: 10px;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: #e2e8f0;
+            max-width: 280px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+            z-index: 100;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+
+        .tooltip strong {
+            color: #22c55e;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .hover-zone:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Tooltip positions */
+        .tooltip-right {
+            left: calc(100% + 15px);
+            top: 50%;
+            transform: translateY(-50%) translateX(-10px);
+        }
+
+        .hover-zone:hover .tooltip-right {
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .tooltip-left {
+            right: calc(100% + 15px);
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+        }
+
+        .hover-zone:hover .tooltip-left {
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .tooltip-bottom {
+            top: calc(100% + 15px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        .hover-zone:hover .tooltip-bottom {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Arrow indicators */
+        .tooltip::before {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 2px;
-            background: #22c55e;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
         }
 
-        .callout-brand {
-            top: -10px;
-            right: -220px;
-        }
-
-        .callout-brand::before {
-            left: -42px;
+        .tooltip-right::before {
+            left: -16px;
             top: 50%;
+            transform: translateY(-50%);
+            border-right-color: #22c55e;
         }
 
-        .callout-source {
-            top: 70px;
-            right: -220px;
-        }
-
-        .callout-source::before {
-            left: -42px;
+        .tooltip-left::before {
+            right: -16px;
             top: 50%;
+            transform: translateY(-50%);
+            border-left-color: #22c55e;
         }
 
-        .callout-rating {
-            top: 120px;
-            left: -220px;
-        }
-
-        .callout-rating::before {
-            right: -42px;
-            top: 50%;
-        }
-
-        .callout-time {
-            bottom: 80px;
-            right: -220px;
-        }
-
-        .callout-time::before {
-            left: -42px;
-            top: 50%;
-        }
-
-        .callout-fact {
-            bottom: -70px;
+        .tooltip-bottom::before {
+            top: -16px;
             left: 50%;
             transform: translateX(-50%);
+            border-bottom-color: #22c55e;
         }
 
-        .callout-fact::before {
-            display: none;
+        /* Hover hint */
+        .hover-hint {
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 15px;
         }
 
-        /* Mobile: hide callouts, show inline */
-        @media (max-width: 900px) {
-            .callout {
+        .hover-hint span {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 20px;
+            color: #22c55e;
+        }
+
+        /* Mobile: show inline explanations instead */
+        @media (max-width: 768px) {
+            .tooltip {
+                display: none !important;
+            }
+            .hover-zone:hover {
+                box-shadow: none;
+            }
+            .hover-hint {
                 display: none;
             }
-            .demo-section {
-                padding: 40px 20px 40px;
+            .mobile-explanations {
+                display: block;
             }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-explanations {
+                display: none;
+            }
+        }
+
+        .mobile-explanations {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 10px;
+        }
+
+        .mobile-explanations p {
+            font-size: 13px;
+            margin-bottom: 10px;
+            padding-left: 15px;
+            border-left: 3px solid #22c55e;
+        }
+
+        .mobile-explanations p:last-child {
+            margin-bottom: 0;
+        }
+
+        .mobile-explanations strong {
+            color: #22c55e;
         }
 
         /* ========== Explanation Cards ========== */
@@ -365,30 +446,46 @@
             <span class="demo-label">Live Display Preview</span>
 
             <div class="lower-third">
-                <div class="brand-tab">JTF NEWS</div>
-                <div class="source-bar">Reuters - 9.8 | Associated Press - 9.6* &middot; 2 hours ago</div>
-                <div class="fact-text">The European Central Bank held interest rates at 2.75% at its February 2025 meeting.</div>
+                <div class="brand-tab hover-zone">
+                    JTF NEWS
+                    <div class="tooltip tooltip-right">
+                        <strong>Brand Identifier</strong>
+                        "Just The Facts News" &mdash; our commitment to reporting only verified, factual information without editorial spin.
+                    </div>
+                </div>
+                <div class="source-bar">
+                    <span class="hover-zone" style="display: inline-block;">
+                        Reuters - 9.8 | Associated Press - 9.6*
+                        <div class="tooltip tooltip-bottom">
+                            <strong>Verified Sources</strong>
+                            Every fact requires 2+ independent, unrelated sources. The rating (0-10) shows each source's verification track record. An asterisk (*) means limited data.
+                        </div>
+                    </span>
+                    <span class="hover-zone" style="display: inline-block; margin-left: 10px;">
+                        &middot; 2 hours ago
+                        <div class="tooltip tooltip-left">
+                            <strong>Time Verified</strong>
+                            When this fact was confirmed by multiple sources. Fresh news is prioritized in the display rotation.
+                        </div>
+                    </span>
+                </div>
+                <div class="fact-text hover-zone">
+                    The European Central Bank held interest rates at 2.75% at its February 2025 meeting.
+                    <div class="tooltip tooltip-bottom">
+                        <strong>The Fact</strong>
+                        Pure, verified information. No opinions, adjectives, speculation, or emotional language. Just what happened, confirmed by multiple independent sources.
+                    </div>
+                </div>
             </div>
 
-            <!-- Callout annotations (desktop only) -->
-            <div class="callout callout-brand">
-                <strong>Brand identifier</strong><br>
-                Just The Facts News
-            </div>
-            <div class="callout callout-source">
-                <strong>Verified sources</strong><br>
-                2+ independent sources required
-            </div>
-            <div class="callout callout-rating">
-                <strong>Accuracy rating</strong><br>
-                0-10 scale based on verification history
-            </div>
-            <div class="callout callout-time">
-                <strong>Time verified</strong><br>
-                When fact was confirmed
-            </div>
-            <div class="callout callout-fact">
-                <strong>The fact</strong> &mdash; No opinions, no adjectives, no interpretation. Just verifiable information.
+            <p class="hover-hint"><span>Hover over elements to learn more</span></p>
+
+            <!-- Mobile fallback explanations -->
+            <div class="mobile-explanations">
+                <p><strong>JTF NEWS</strong> &mdash; Brand identifier for "Just The Facts News"</p>
+                <p><strong>Source ratings</strong> &mdash; Shows which outlets verified the fact and their accuracy scores (0-10)</p>
+                <p><strong>Time</strong> &mdash; When this fact was confirmed by multiple sources</p>
+                <p><strong>The fact</strong> &mdash; No opinions, adjectives, or speculation. Just verified information.</p>
             </div>
         </div>
 
