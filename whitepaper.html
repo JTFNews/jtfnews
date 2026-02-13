@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whitepaper - JTF News</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #94a3b8;
+        }
+
+        h1 {
+            color: #d4af37;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .epigraph {
+            font-style: italic;
+            color: #64748b;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            border-left: 3px solid #d4af37;
+        }
+
+        h3 {
+            color: #f8fafc;
+            font-size: 18px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h3 .section-num {
+            color: #d4af37;
+            margin-right: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #94a3b8;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box p {
+            color: #e2e8f0;
+            margin-bottom: 0;
+        }
+
+        .principle {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .principle p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+
+        a {
+            color: #60a5fa;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #d4af37 0%, #aa8723 100%);
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 10px;
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+
+        .cta-button.secondary {
+            background: #1e40af;
+            color: white;
+        }
+
+        .toc {
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .toc h4 {
+            color: #94a3b8;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 8px;
+        }
+
+        .toc a {
+            font-size: 13px;
+            color: #64748b;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to JTF News</a>
+
+        <h1>Just The Facts News</h1>
+        <p class="subtitle">Algorithmic Reporting for a Narrative-Free World</p>
+        <p class="epigraph">"If we stay boring enough, we might just change the world."</p>
+
+        <div class="toc">
+            <h4>Contents</h4>
+            <div class="toc-grid">
+                <a href="#what-is-news">0. What is News?</a>
+                <a href="#core-principle">1. Core Principle</a>
+                <a href="#data-sourcing">2. Data Sourcing</a>
+                <a href="#data-processing">3. Data Processing</a>
+                <a href="#source-rating">4. Source Rating</a>
+                <a href="#verification">5. Verification</a>
+                <a href="#voice-visuals">6. Voice & Visuals</a>
+                <a href="#updates">7. Updates</a>
+                <a href="#transparency">8. Transparency</a>
+                <a href="#disclaimers">9. Disclaimers</a>
+                <a href="#ownership">10. Ownership Disclosure</a>
+                <a href="#funding">11. Funding & Community</a>
+                <a href="#governance">12. Governance</a>
+                <a href="#legal">13. Legal & Integrity</a>
+                <a href="#visuals">14. Visuals</a>
+                <a href="#voice">15. The Voice</a>
+                <a href="#sound">16. Sound Design</a>
+                <a href="#ethics">17. Ethics</a>
+                <a href="#licensing">18. Licensing</a>
+                <a href="#methodology">26. The Methodology</a>
+            </div>
+        </div>
+
+        <h3 id="what-is-news"><span class="section-num">0.</span> What is News?</h3>
+        <p>A verifiable event, within the last twenty-four hours, that meets at least one of these criteria:</p>
+        <ul>
+            <li>Affects five hundred people or more</li>
+            <li>Costs or invests at least one million US dollars</li>
+            <li>Changes a law or regulation</li>
+            <li>Redraws a border</li>
+            <li>Involves death or violent crime</li>
+            <li>Major scientific or technological achievement</li>
+            <li>Humanitarian milestone</li>
+            <li>Official statement or action by a head of state or government</li>
+            <li>Major economic indicator (GDP, unemployment, inflation)</li>
+            <li>International agreement or diplomatic action</li>
+        </ul>
+        <div class="highlight-box">
+            <p>Nothing less. Nothing more.</p>
+        </div>
+        <p>This defines news for our global stream. Other communities define relevance for themselves. A local channel might report on fifty people. A school board channel might report on a single vote. The threshold changes. The methodology does not.</p>
+
+        <h3 id="core-principle"><span class="section-num">1.</span> Core Principle</h3>
+        <p>We do not editorialise. We state what happened, where, when, and—when known—how many. Nothing more.</p>
+
+        <h3 id="data-sourcing"><span class="section-num">2.</span> Data Sourcing</h3>
+        <p>Public headlines and metadata from open websites. No login walls. No paid content. No APIs. No copyrighted imagery.</p>
+
+        <h3 id="data-processing"><span class="section-num">3.</span> Data Processing</h3>
+        <p>AI rewrites. Strips adjectives. Keeps facts. If it can't be proven, it vanishes.</p>
+        <div class="principle">
+            <p>People are addressed by their official titles and names. President Biden. Senator Cruz. Representative Crockett. Judge Aileen Cannon of the Southern District of Florida. Never bare last names. <strong>Titles are facts. Omitting them is editorial.</strong> For judges, the court is also a fact.</p>
+        </div>
+        <p>Media-invented nicknames are editorialization, not titles. "Border czar" is not an official government position—it is journalistic shorthand that carries implicit judgment. We use official titles: White House Homeland Security Advisor Tom Homan. Deputy Secretary Sarah Smith. The title a person holds is a fact. The nickname a reporter invents is opinion.</p>
+
+        <h3 id="source-rating"><span class="section-num">4.</span> Source Rating</h3>
+        <p>Live scores: accuracy, bias, speed, consensus. Numbers only. No labels.</p>
+
+        <h3 id="verification"><span class="section-num">5.</span> Verification</h3>
+        <p>Two unrelated sources minimum. Unrelated means different owners, different investors.</p>
+
+        <h3 id="voice-visuals"><span class="section-num">6.</span> Voice & Visuals</h3>
+        <p>Calm female voice, northern English. Slow, neutral background images—clouds, fields, water. Never the event. Never the news.</p>
+
+        <h3 id="updates"><span class="section-num">7.</span> Updates</h3>
+        <p>Every thirty minutes. Breaking news within five, but no urgency.</p>
+
+        <h3 id="transparency"><span class="section-num">8.</span> Transparency</h3>
+        <p>Pseudocode on GitHub. Anyone can read. No one can change.</p>
+
+        <h3 id="disclaimers"><span class="section-num">9.</span> Disclaimers</h3>
+        <p>This is not journalism. It is data.</p>
+
+        <h3 id="ownership"><span class="section-num">10.</span> Ownership Disclosure</h3>
+        <p>Top three owners listed. Percentages. No spin.</p>
+
+        <h3 id="funding"><span class="section-num">11.</span> Funding & Community</h3>
+        <p>No ads. No tracking. Donations. Five-pound subscription for early code.</p>
+
+        <h3 id="governance"><span class="section-num">12.</span> Governance</h3>
+        <p>Non-profit. No dividends. We own nothing.</p>
+
+        <h3 id="legal"><span class="section-num">13.</span> Legal & Integrity</h3>
+        <p>Not liable for misuse. Corrections announced loud. Silence when nothing happens. English only. We die if we fail.</p>
+
+        <h3 id="visuals"><span class="section-num">14.</span> Visuals</h3>
+        <p>Images rotate every fifty seconds. Never match the story. They breathe.</p>
+
+        <h3 id="voice"><span class="section-num">15.</span> The Voice</h3>
+        <p>Custom. Female. Northern. Quiet. Trained on plain speech. Speaks. Stops.</p>
+
+        <h3 id="sound"><span class="section-num">16.</span> Sound Design</h3>
+        <p>Voice only. No music. No breath. When it stops, quiet.</p>
+
+        <h3 id="ethics"><span class="section-num">17.</span> Ethics</h3>
+        <p>We do not store raw data longer than seven days. Daily summaries are archived on GitHub. Nothing hidden. Nothing sold. Just the record. No paywalls. No bots. Respect robots.txt. No logs.</p>
+
+        <h3 id="licensing"><span class="section-num">18.</span> Licensing</h3>
+        <p>CC-BY-SA. Use it. Share it. Credit us. Don't sell it.</p>
+
+        <h3 id="methodology"><span class="section-num">26.</span> The Methodology</h3>
+        <div class="highlight-box">
+            <p>JTF News is not a media company. It is a methodology.</p>
+        </div>
+        <p>Two sources. Different owners. Strip the adjectives. State the facts. Stop.</p>
+        <p>This methodology belongs to no one. It serves everyone. We apply it to global events because that is where we began. Others may apply it to their communities—their cities, their schools, their congregations. The principle travels. The mission stays the same.</p>
+        <div class="principle">
+            <p><strong>Facts without opinion. Wherever they are needed.</strong></p>
+        </div>
+
+        <h3><span class="section-num">27.</span> Community Channels</h3>
+        <p>The global stream is our first application, not our only one.</p>
+        <p>Communities deserve fact-based reporting:</p>
+        <ul>
+            <li>Local news, free from partisan spin</li>
+            <li>Sports scores, free from hot takes</li>
+            <li>School boards, free from drama</li>
+        </ul>
+        <p>Each channel serves a community. Each follows the methodology. Each stands alone. We do not franchise. We do not license. We share.</p>
+        <p>If a community needs facts, the methodology is theirs.</p>
+
+        <h3><span class="section-num">28.</span> What Stays the Same</h3>
+        <p>Across all channels, always:</p>
+        <ul>
+            <li>Two unrelated sources minimum</li>
+            <li>AI strips all editorialization</li>
+            <li>No engagement. No replies. No likes.</li>
+            <li>Calm voice. Neutral visuals.</li>
+            <li>No ads. No tracking. No profit.</li>
+            <li>Public archives. Open methodology.</li>
+            <li>We serve. We do not sell.</li>
+        </ul>
+
+        <div class="cta-section">
+            <p style="color: #94a3b8; margin-bottom: 20px;">Support fact-based reporting. No ads. No tracking. Just facts.</p>
+            <a href="how-it-works.html" class="cta-button secondary">How It Works</a>
+            <a href="https://github.com/sponsors/larryseyer" class="cta-button">Support JTF News</a>
+        </div>
+    </div>
+</body>
+</html>
