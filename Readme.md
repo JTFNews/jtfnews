@@ -50,6 +50,14 @@ Both sources involved in a successful verification receive +1 success. Stories t
 4. In OBS: add browser source → http://localhost:8000/news.html
 5. Add audio input for TTS output file
 
+## Support
+
+JTF News is self-funded and open source. If you find value in unbiased, fact-only news:
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa)](https://github.com/sponsors/larryseyer)
+
+Monthly costs ~$50 (API + TTS). Every dollar goes to keeping the stream running.
+
 ## Files
 - main.py          → main loop (30-min cycle)
 - news.html        → displayed page
