@@ -7,17 +7,18 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 600px;
+            max-width: 700px;
             margin: 50px auto;
             padding: 20px;
             background: #0f172a;
             color: #e2e8f0;
         }
         h1 { color: #d4af37; }
+        h2 { color: #94a3b8; margin-top: 30px; }
         a { color: #60a5fa; }
         .feed-link {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 10px;
             padding: 10px 20px;
             background: #1e40af;
             color: white;
@@ -25,6 +26,110 @@
             border-radius: 6px;
         }
         .feed-link:hover { background: #2563eb; }
+
+        /* Operational Costs Section */
+        .costs-section {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .costs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .costs-header h3 {
+            margin: 0;
+            color: #d4af37;
+            font-size: 16px;
+        }
+        .live-badge {
+            font-size: 11px;
+            padding: 3px 8px;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+        .costs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .cost-item {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .cost-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .cost-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-top: 4px;
+        }
+        .cost-value.highlight {
+            color: #d4af37;
+        }
+        .cost-detail {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+        .costs-breakdown {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 13px;
+        }
+        .breakdown-service {
+            color: #94a3b8;
+        }
+        .breakdown-cost {
+            color: #22c55e;
+        }
+        .transparency-note {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+        .status-dot.offline { background: #ef4444; }
+        .status-text { color: #94a3b8; }
+
+        /* Full Dashboard Link */
+        .dashboard-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
@@ -45,6 +150,139 @@
 
     <h2>Support</h2>
     <p>JTF News is supported by viewers like you.</p>
-    <iframe src="https://github.com/sponsors/larryseyer/card" title="Sponsor larryseyer" height="225" width="100%" style="border: 0; max-width: 600px;"></iframe>
+
+    <!-- Live Operational Costs -->
+    <div class="costs-section">
+        <div class="costs-header">
+            <h3>Operational Costs (Live)</h3>
+            <span class="live-badge" id="live-status">Loading...</span>
+        </div>
+        <div class="costs-grid">
+            <div class="cost-item">
+                <div class="cost-label">Today's Cost</div>
+                <div class="cost-value highlight" id="today-cost">--</div>
+                <div class="cost-detail" id="today-calls">-- API calls</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-label">Monthly Estimate</div>
+                <div class="cost-value" id="month-estimate">--</div>
+                <div class="cost-detail">projected at current rate</div>
+            </div>
+        </div>
+        <div class="costs-breakdown">
+            <div class="breakdown-row">
+                <span class="breakdown-service">Claude AI (fact extraction)</span>
+                <span class="breakdown-cost" id="claude-cost">--</span>
+            </div>
+            <div class="breakdown-row">
+                <span class="breakdown-service">ElevenLabs (voice)</span>
+                <span class="breakdown-cost" id="elevenlabs-cost">--</span>
+            </div>
+            <div class="breakdown-row">
+                <span class="breakdown-service">Twilio (alerts)</span>
+                <span class="breakdown-cost" id="twilio-cost">--</span>
+            </div>
+        </div>
+        <div class="status-row">
+            <span class="status-dot" id="status-dot"></span>
+            <span class="status-text" id="status-text">Checking status...</span>
+        </div>
+        <p class="transparency-note">
+            Full transparency: Every API call is tracked and reported in real-time.
+        </p>
+        <a class="dashboard-link" href="monitor.html">View Full Operations Dashboard &rarr;</a>
+    </div>
+
+    <iframe src="https://github.com/sponsors/larryseyer/card" title="Sponsor larryseyer" height="225" width="100%" style="border: 0; max-width: 600px; margin-top: 15px;"></iframe>
+
+    <script>
+        function formatCurrency(amount) {
+            if (typeof amount !== 'number') return '$0.00';
+            return '$' + amount.toFixed(2);
+        }
+
+        function formatUptime(seconds) {
+            if (!seconds) return '--';
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            if (hours > 0) return hours + 'h ' + minutes + 'm uptime';
+            return minutes + 'm uptime';
+        }
+
+        async function loadCosts() {
+            try {
+                const response = await fetch('./monitor.json?t=' + Date.now());
+                if (!response.ok) throw new Error('Not found');
+                const data = await response.json();
+
+                // Check if data is stale (>15 min old)
+                const dataTime = new Date(data.timestamp);
+                const now = new Date();
+                const isStale = (now - dataTime) > 15 * 60 * 1000;
+
+                // Update live badge
+                const liveBadge = document.getElementById('live-status');
+                if (isStale) {
+                    liveBadge.textContent = 'Stale';
+                    liveBadge.style.background = 'rgba(234, 179, 8, 0.2)';
+                    liveBadge.style.color = '#eab308';
+                } else {
+                    liveBadge.textContent = 'Live';
+                    liveBadge.style.background = 'rgba(34, 197, 94, 0.2)';
+                    liveBadge.style.color = '#22c55e';
+                }
+
+                // Update costs
+                const costs = data.api_costs || {};
+                const services = costs.today || {};
+
+                document.getElementById('today-cost').textContent = formatCurrency(costs.total_usd);
+                document.getElementById('month-estimate').textContent = formatCurrency(costs.month_estimate_usd);
+
+                // Count total calls
+                let totalCalls = 0;
+                for (const svc of Object.values(services)) {
+                    totalCalls += svc.calls || 0;
+                }
+                document.getElementById('today-calls').textContent = totalCalls + ' API calls';
+
+                // Service breakdown
+                const claude = services.claude || {};
+                const elevenlabs = services.elevenlabs || {};
+                const twilio = services.twilio || {};
+
+                document.getElementById('claude-cost').textContent = formatCurrency(claude.cost_usd);
+                document.getElementById('elevenlabs-cost').textContent = formatCurrency(elevenlabs.cost_usd);
+                document.getElementById('twilio-cost').textContent = formatCurrency(twilio.cost_usd);
+
+                // Status
+                const statusDot = document.getElementById('status-dot');
+                const statusText = document.getElementById('status-text');
+                const streamHealth = data.status?.stream_health || 'unknown';
+
+                if (streamHealth === 'online') {
+                    statusDot.className = 'status-dot';
+                    statusText.textContent = 'Stream online \u2022 ' + formatUptime(data.uptime_seconds);
+                } else if (streamHealth === 'offline') {
+                    statusDot.className = 'status-dot offline';
+                    statusText.textContent = 'Stream offline';
+                } else {
+                    statusDot.className = 'status-dot';
+                    statusDot.style.background = '#64748b';
+                    statusText.textContent = 'Status unknown';
+                }
+
+            } catch (e) {
+                document.getElementById('live-status').textContent = 'Offline';
+                document.getElementById('live-status').style.background = 'rgba(239, 68, 68, 0.2)';
+                document.getElementById('live-status').style.color = '#ef4444';
+                document.getElementById('status-text').textContent = 'Could not load live data';
+            }
+        }
+
+        // Load immediately and refresh every 30 seconds
+        loadCosts();
+        setInterval(loadCosts, 30000);
+    </script>
 </body>
 </html>
