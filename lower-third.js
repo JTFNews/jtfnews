@@ -7,7 +7,7 @@
 const FADE_TIME = 1000;       // Fade in/out duration (1 second)
 const GAP_TIME = 45000;       // Gap between stories (45 seconds)
 const POLL_INTERVAL = 5000;   // Check for new stories every 5 seconds
-const MIN_REPEAT_GAP = 600000; // Minimum 10 minutes before repeating same story
+const MIN_REPEAT_GAP = 2700000; // Minimum 45 minutes before repeating same story
 const STORIES_URL = '../data/stories.json';
 
 let stories = [];
@@ -120,8 +120,8 @@ async function displayStory(story) {
         // Audio failed, use text-based timing
         await sleep(calculateHoldTime(story.fact));
     } else {
-        // Audio played, add small buffer
-        await sleep(500);
+        // Audio played, keep text visible 2 more seconds after audio ends
+        await sleep(2500);
     }
 
     // Fade out
@@ -147,7 +147,7 @@ function getEligibleStories() {
 
 /**
  * Main loop - cycles through stories continuously
- * Stories won't repeat until MIN_REPEAT_GAP (10 min) has passed
+ * Stories won't repeat until MIN_REPEAT_GAP (45 min) has passed
  * If all stories are on cooldown, waits until one becomes eligible
  */
 async function runLoop() {

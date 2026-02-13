@@ -84,6 +84,21 @@
             color: #64748b;
             margin-top: 4px;
         }
+        .budget-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .budget-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s, background 0.3s;
+        }
+        .budget-fill.green { background: #22c55e; }
+        .budget-fill.yellow { background: #eab308; }
+        .budget-fill.red { background: #ef4444; }
         .costs-breakdown {
             margin-top: 15px;
             padding-top: 15px;
@@ -162,6 +177,10 @@
                 <div class="cost-label">Today's Cost</div>
                 <div class="cost-value highlight" id="today-cost">--</div>
                 <div class="cost-detail" id="today-calls">-- API calls</div>
+                <div class="budget-bar">
+                    <div class="budget-fill green" id="budget-fill" style="width: 0%"></div>
+                </div>
+                <div class="cost-detail" id="budget-text">-- of $5 budget</div>
             </div>
             <div class="cost-item">
                 <div class="cost-label">Monthly Estimate</div>
@@ -238,6 +257,16 @@
 
                 document.getElementById('today-cost').textContent = formatCurrency(costs.total_usd);
                 document.getElementById('month-estimate').textContent = formatCurrency(costs.month_estimate_usd);
+
+                // Update budget bar
+                const budgetPct = costs.budget_pct || 0;
+                const dailyBudget = costs.daily_budget || 5;
+                const budgetFill = document.getElementById('budget-fill');
+                const budgetText = document.getElementById('budget-text');
+
+                budgetFill.style.width = Math.min(budgetPct, 100) + '%';
+                budgetFill.className = 'budget-fill ' + (budgetPct < 50 ? 'green' : budgetPct < 80 ? 'yellow' : 'red');
+                budgetText.textContent = budgetPct.toFixed(0) + '% of $' + dailyBudget + ' daily budget';
 
                 // Count total calls
                 let totalCalls = 0;
