@@ -384,12 +384,12 @@ JTF News is currently **self-funded by the founder**, who is retired. This infor
 
 | Service | Purpose | Low Estimate | High Estimate |
 |---------|---------|--------------|---------------|
-| **Claude API (Anthropic)** | Fact extraction, verification, matching | $10 | $30 |
+| **Claude API (Anthropic)** | Fact extraction, verification, matching | $12 | $38 |
 | **ElevenLabs TTS** | Voice generation for audio stream | $22 | $50 |
 | **Twilio SMS** | Stream health alerts | $1 | $5 |
 | **GitHub Pages** | RSS feed & archive hosting | $0 | $0 |
 | **News Sources (RSS)** | Content sourcing | $0 | $0 |
-| **TOTAL** | | **$33** | **$85** |
+| **TOTAL** | | **$35** | **$93** |
 
 ### Cost Breakdown Details
 
@@ -399,14 +399,14 @@ We use **Claude Haiku** with aggressive optimizations:
 
 | Factor | Value |
 |--------|-------|
-| Model | claude-3-5-haiku-latest |
-| Pricing | $0.80/MTok input, $4/MTok output |
+| Model | claude-haiku-4-5-20251001 |
+| Pricing | $1.00/MTok input, $5/MTok output |
 | Scrape interval | 30 minutes (not 5) |
 | Daily API calls | ~800-1,700 (with caching) |
 | Daily tokens | ~0.8-1.7M input, ~0.2-0.4M output |
 
 **Why this works:**
-1. **Haiku** — 90% cheaper than Sonnet; fact extraction doesn't need advanced reasoning
+1. **Haiku** — 67% cheaper than Sonnet (~1/3 the cost); fact extraction doesn't need advanced reasoning
 2. **30-minute intervals** — 83% fewer API calls vs 5-minute intervals; news doesn't break that fast
 3. **Fact extraction caching** — Caches Claude responses; same headline = same result without API call
 
@@ -428,7 +428,7 @@ We use **Claude Haiku** with aggressive optimizations:
 
 ### Cost Optimization Decisions Made
 
-1. **Claude Haiku over Sonnet** — 90% cost reduction, adequate for fact extraction
+1. **Claude Haiku over Sonnet** — 67% cost reduction (~1/3 the price), adequate for fact extraction
 2. **30-minute scrape intervals** — 83% reduction in API calls vs 5 minutes
 3. **Fact extraction caching** — Cache Claude responses to avoid redundant API calls
 4. **Headline deduplication cache** — Prevents re-processing same headlines
@@ -443,7 +443,7 @@ We use **Claude Haiku** with aggressive optimizations:
 
 ### Sustainability Considerations
 
-At **$33-85/month**, JTF News is sustainable through:
+At **$35-93/month**, JTF News is sustainable through:
 
 1. **Self-funding** — Current approach, very viable for retirement budget
 2. **Small donations** — Just 5-8 supporters at $10/month covers costs
