@@ -1,95 +1,85 @@
-# Just the Facts News
+# JTF News
 
-24/7 live stream: only verifiable facts, no opinions, no adjectives, no interpretation.
+**Just The Facts.** No opinions. No adjectives. No interpretation.
 
-**[Watch Live](https://www.youtube.com/@JTFNewsLive)** · **[How It Works](https://larryseyer.github.io/jtfnews/how-it-works.html)** · **[Whitepaper](https://larryseyer.github.io/jtfnews/whitepaper.html)** · **[RSS Feed](https://larryseyer.github.io/jtfnews/feed.xml)**
+[![Live Stream](https://img.shields.io/badge/YouTube-Live%2024%2F7-red)](https://www.youtube.com/@JTFNewsLive)
+[![RSS Feed](https://img.shields.io/badge/RSS-Subscribe-orange)](https://larryseyer.github.io/jtfnews/feed.xml)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-## Philosophy
-If we stay boring enough, we might just change the world.
+---
 
-JTF News is a methodology, not just a channel. Two sources. Different owners. Strip the adjectives. State the facts. Stop. This approach can serve any community—local news, sports, school boards—wherever facts matter. See [WhitePaper.md](docs/WhitePaper.md) and [SPECIFICATION.md](docs/SPECIFICATION.md#20-future-directions) for the expansion framework.
+## What is JTF News?
 
-## How it works
-- Scrapes public headlines from 30+ long-established English news sites
-- Requires minimum 2 unrelated sources (different owners/investors)
-- AI rewrites to strip all non-factual language
-- Generates calm northern-English female TTS voice
-- Serves minimal HTML overlay for OBS browser source (serene rotating backgrounds)
-- Streams to YouTube via OBS (title: "JTF News – Live")
-- Daily text log zipped and pushed to GitHub archive repo at midnight GMT
-- Silence when no qualifying news
+A 24/7 automated news stream that reports only verified facts. Every fact is confirmed by **2+ independent sources** before broadcast.
 
-## Source Ratings
+- No opinions
+- No adjectives
+- No speculation
+- No emotional language
+- No unnamed sources
 
-Source accuracy ratings are **evidence-based**, calculated from verification performance:
+Just facts.
 
-```
-Rating = (verification_successes / total) × 10
-```
+## Watch Live
 
-| Display | Meaning |
-|---------|---------|
-| `9.6*` | Editorial baseline (no observed data yet) |
-| `8.5* (3/10)` | Cold start (blended baseline + observed) |
-| `9.4 (47/50)` | Mature (pure evidence-based rating) |
+**[YouTube - JTF News Live](https://www.youtube.com/@JTFNewsLive)**
 
-Both sources involved in a successful verification receive +1 success. Stories that expire unverified record +1 failure. All events logged to `data/ratings_audit.jsonl` for legal defensibility.
+## Subscribe
 
-## Public Pages
+- **[RSS Feed](https://larryseyer.github.io/jtfnews/feed.xml)** - Add to Feedly, NewsBlur, or any RSS reader
+- **[Alexa Flash Briefing](https://larryseyer.github.io/jtfnews/alexa.json)** - "Alexa, what's my Flash Briefing?"
 
-The [JTF News website](https://larryseyer.github.io/jtfnews/) includes:
+## Screen Saver
 
-- **[How It Works](https://larryseyer.github.io/jtfnews/how-it-works.html)** - Interactive guide with live story demo
-- **[Whitepaper](https://larryseyer.github.io/jtfnews/whitepaper.html)** - Full editorial philosophy (renders from WhitePaper.md)
-- **[Operations Dashboard](https://larryseyer.github.io/jtfnews/monitor.html)** - Live API costs and system status
-- **[Screen Saver](https://larryseyer.github.io/jtfnews/screensaver.html)** - Run JTF News as your desktop screen saver
+Turn JTF News into your desktop screen saver.
 
-## Constraints obeyed
-- No APIs, no paywalls, respect robots.txt
-- No ads, no tracking, no long-term raw data storage
-- No human contact info
-- CC-BY-SA license on output
-- Non-profit spirit
+**[Setup Guide](https://larryseyer.github.io/jtfnews/screensaver-setup.html)** | **[Preview](https://larryseyer.github.io/jtfnews/screensaver.html)**
 
-## Setup (local only)
-1. Install dependencies: `pip install -r requirements.txt`
-2. Copy `.env.example` to `.env` and add API keys (Anthropic, ElevenLabs, Twilio)
-3. Configure `config.json` (sources, ratings, thresholds)
-4. Run: `python main.py`
-5. In OBS: add browser sources for `web/lower-third.html` and `web/background-slideshow.html`
+## How It Works
+
+1. Headlines gathered from 30+ sources worldwide
+2. AI extracts only verifiable facts
+3. Facts wait until confirmed by 2+ unrelated sources
+4. Verified facts broadcast with full attribution
+
+**[Learn more](https://larryseyer.github.io/jtfnews/how-it-works.html)**
+
+## The Philosophy
+
+> "If we stay boring enough, we might just change the world."
+
+JTF News exists because modern news often tells you how to feel about events rather than simply reporting what happened.
+
+**[Read the Whitepaper](https://larryseyer.github.io/jtfnews/whitepaper.html)**
+
+## Source Verification
+
+Sources are rated 0-10 based on verification track record:
+- How often their facts are confirmed by other outlets
+- Asterisk (*) indicates limited data (cold start)
+
+Sources must be **unrelated** - different owners, different investors.
+
+## Technology
+
+- Python automation with resilience system
+- Claude AI (Haiku) for fact extraction
+- ElevenLabs TTS for voice synthesis
+- OBS for streaming
+- GitHub Pages for web assets
 
 ## Support
 
-JTF News is self-funded and open source. If you find value in unbiased, fact-only news:
+JTF News is viewer-supported. No ads. No tracking.
 
-[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa)](https://github.com/sponsors/larryseyer)
+[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-pink)](https://github.com/sponsors/larryseyer)
 
-Live operational costs are displayed transparently on the [funding page](https://larryseyer.github.io/jtfnews/).
+## License
 
-## Project Structure
+Content: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-```
-main.py                 → Main loop (30-min cycle), fact extraction, verification
-config.json             → Sources, ratings, thresholds, timing
-web/
-  lower-third.html/css/js   → OBS overlay for displaying facts
-  background-slideshow.html → Rotating seasonal background images
-  screensaver.html          → Standalone screen saver version
-  monitor.html/css/js       → Operations dashboard
-gh-pages-dist/          → Public website (GitHub Pages)
-  index.html            → Landing page with live cost transparency
-  how-it-works.html     → Interactive guide
-  whitepaper.html       → Renders WhitePaper.md dynamically
-  feed.xml              → RSS feed
-  stories.json          → Current day's verified stories
-docs/
-  WhitePaper.md         → Editorial philosophy (single source of truth)
-  SPECIFICATION.md      → Full technical specification
-  ResilienceSystem.md   → 24/7 uptime resilience design
-media/
-  fall/spring/summer/winter/  → Seasonal background images
-```
+Use it. Share it. Credit us.
 
-No server. No database. Plain text + daily archive push.
+---
 
-Run it. Stay quiet.
+*"We do not argue with the wind."*
