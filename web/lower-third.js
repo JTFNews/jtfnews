@@ -110,8 +110,8 @@ function shuffleArray(array) {
 
 /**
  * Create a new queue for the cycle
- * Option 1: Display order priority - freshest stories first
- * Stories are sorted by timestamp (newest first) with light randomization within tiers
+ * Stories are fully shuffled (random order), then selected via weighted random
+ * Freshness weighting happens at selection time, not queue ordering
  */
 function reshuffleForNewCycle() {
     if (stories.length === 0) {
@@ -123,42 +123,23 @@ function reshuffleForNewCycle() {
     const seedIndicator = Math.random().toString(36).substring(2, 8);
     console.log(`Generating new queue with seed indicator: ${seedIndicator}`);
 
-    // Sort stories by freshness (newest first) - Option 1: Display order priority
-    const sortedStories = [...stories].sort((a, b) => {
-        const ageA = getStoryAge(a);
-        const ageB = getStoryAge(b);
-        return ageA - ageB; // Freshest first
-    });
+    // True random shuffle of ALL stories (no freshness sorting)
+    // Freshness weighting is applied at selection time via getNextEligibleStory()
+    shuffledQueue = shuffleArray([...stories]);
 
-    // Light shuffle within freshness tiers to add variety
-    // Group by tier, shuffle within tier, then concatenate
-    const fresh = sortedStories.filter(s => getStoryAge(s) < FRESH_THRESHOLD);
-    const medium = sortedStories.filter(s => getStoryAge(s) >= FRESH_THRESHOLD && getStoryAge(s) < MEDIUM_THRESHOLD);
-    const stale = sortedStories.filter(s => getStoryAge(s) >= MEDIUM_THRESHOLD);
-
-    shuffledQueue = [
-        ...shuffleArray(fresh),
-        ...shuffleArray(medium),
-        ...shuffleArray(stale)
-    ];
-
-    // If the first story in new queue matches last played, move it down
+    // If the first story in new queue matches last played, move it to end
     if (lastPlayedFact && shuffledQueue.length > 1 && shuffledQueue[0].fact === lastPlayedFact) {
-        const first = shuffledQueue.shift();
-        // Insert after other fresh stories if any, otherwise at end
-        const insertAt = Math.min(fresh.length, shuffledQueue.length);
-        shuffledQueue.splice(insertAt, 0, first);
-        console.log('Moved last-played story down to avoid back-to-back');
+        shuffledQueue.push(shuffledQueue.shift());
+        console.log('Moved last-played story to end to avoid back-to-back');
     }
 
     cycleStartTime = Date.now();
-    console.log(`New cycle: ${fresh.length} fresh, ${medium.length} medium, ${stale.length} stale stories`);
 
-    // Log the starting story for debugging
-    if (shuffledQueue.length > 0) {
-        const timeAgo = getTimeAgo(shuffledQueue[0].timestamp);
-        console.log(`FIRST STORY (${timeAgo}): "${shuffledQueue[0].fact.substring(0, 50)}..."`);
-    }
+    // Count freshness tiers for logging
+    const fresh = shuffledQueue.filter(s => getStoryAge(s) < FRESH_THRESHOLD).length;
+    const medium = shuffledQueue.filter(s => getStoryAge(s) >= FRESH_THRESHOLD && getStoryAge(s) < MEDIUM_THRESHOLD).length;
+    const stale = shuffledQueue.filter(s => getStoryAge(s) >= MEDIUM_THRESHOLD).length;
+    console.log(`New cycle: ${fresh} fresh, ${medium} medium, ${stale} stale stories (randomly ordered)`);
 }
 
 /**
