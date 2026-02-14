@@ -494,7 +494,7 @@
                         Loading...
                         <div class="tooltip tooltip-bottom">
                             <strong>Verified Sources</strong>
-                            Every fact requires 2+ independent, unrelated sources. The rating (0-10) shows each source's verification track record. An asterisk (*) means limited data.
+                            Every fact requires 2+ independent sources. Format: Source Accuracy|Bias (both 0-10). Higher is better. An asterisk (*) means limited data.
                         </div>
                     </span>
                     <span class="hover-zone" style="display: inline-block; margin-left: 10px;" id="demo-time">
@@ -519,7 +519,7 @@
             <!-- Mobile fallback explanations -->
             <div class="mobile-explanations">
                 <p><strong>JTF NEWS</strong> &mdash; Brand identifier for "Just The Facts News"</p>
-                <p><strong>Source ratings</strong> &mdash; Shows which outlets verified the fact and their accuracy scores (0-10)</p>
+                <p><strong>Source scores</strong> &mdash; Format: Source Accuracy|Bias (both 0-10, higher is better)</p>
                 <p><strong>Time</strong> &mdash; When this fact was confirmed by multiple sources</p>
                 <p><strong>The fact</strong> &mdash; No opinions, adjectives, or speculation. Just verified information.</p>
             </div>
@@ -547,26 +547,46 @@
             </div>
         </div>
 
-        <h2>Understanding Source Ratings</h2>
-        <p>Each source displays a numerical accuracy rating (0-10) based on its verification track record:</p>
+        <h2>Understanding Source Scores</h2>
+        <p>Each source displays two key scores on screen: <strong>Accuracy|Bias</strong> (both 0-10 scale). JTF News tracks four metrics in priority order:</p>
 
-        <div class="card">
+        <div class="card" style="margin-bottom: 20px;">
             <div class="rating-example">
-                <span class="rating-badge">9.8</span>
-                <span class="rating-desc"><strong>Mature rating</strong> &mdash; Based on 10+ verification data points. This source's facts are frequently verified by other outlets.</span>
+                <span class="rating-badge">9.8|9.5</span>
+                <span class="rating-desc"><strong>Compact format</strong> &mdash; Accuracy (9.8) and Bias (9.5) shown on-screen. Higher is better for both.</span>
             </div>
             <div class="rating-example">
-                <span class="rating-badge">8.5* (3/10)</span>
-                <span class="rating-desc"><strong>Cold start</strong> &mdash; Asterisk (*) indicates limited data. The "(3/10)" shows 3 successful verifications out of 10 attempts so far.</span>
+                <span class="rating-badge">Reuters 9.8|9.5</span>
+                <span class="rating-desc"><strong>With source name</strong> &mdash; As displayed in the lower-third during broadcast.</span>
             </div>
             <div class="rating-example">
-                <span class="rating-badge">9.6*</span>
-                <span class="rating-desc"><strong>Editorial baseline</strong> &mdash; Asterisk with no evidence means using the source's historical reputation. Rating will adjust as verification data accumulates.</span>
+                <span class="rating-badge">8.5*|7.2*</span>
+                <span class="rating-desc"><strong>Cold start</strong> &mdash; Asterisk (*) indicates limited verification data. Scores will adjust as data accumulates.</span>
+            </div>
+        </div>
+
+        <h3 style="color: #94a3b8; font-size: 16px; margin-bottom: 15px;">The Four Source Scores (Priority Order)</h3>
+        <div class="card-grid">
+            <div class="card">
+                <h3>1. Accuracy</h3>
+                <p>How often this source's facts are verified by other independent sources. Calculated as successful verifications / total attempts × 10.</p>
+            </div>
+            <div class="card">
+                <h3>2. Bias</h3>
+                <p>Editorial neutrality score. Higher means less detected political or ideological slant in reporting.</p>
+            </div>
+            <div class="card">
+                <h3>3. Speed</h3>
+                <p>How quickly this source reports verified facts relative to others. Faster sources break news sooner.</p>
+            </div>
+            <div class="card">
+                <h3>4. Consensus</h3>
+                <p>How often this source's reporting aligns with the majority of other verified sources on the same story.</p>
             </div>
         </div>
 
         <p style="margin-top: 15px; font-size: 14px; color: #64748b;">
-            Ratings are calculated as: (successful verifications / total attempts) &times; 10. A "success" means another unrelated source independently reported the same fact.
+            On-screen display shows Accuracy|Bias only. All four scores are available in the RSS feed and on this website. Numbers only, no labels &mdash; you interpret the data.
         </p>
 
         <h2>The Background Images</h2>
@@ -621,6 +641,44 @@
                 <p>Al Jazeera, EFE, Irish Times, Straits Times, Times of India, and more</p>
             </div>
         </div>
+
+        <h2>Source Ownership Disclosure</h2>
+        <p>For each story, we disclose the top three owners of each cited source with their ownership percentages. You deserve to know who funds the information you receive.</p>
+
+        <div class="card" style="margin-bottom: 20px;">
+            <p style="margin-bottom: 15px;"><strong>Example disclosure:</strong></p>
+            <div class="rating-example">
+                <span class="rating-badge" style="background: rgba(212, 175, 55, 0.3);">Reuters</span>
+                <span class="rating-desc">Thomson Reuters (100%)</span>
+            </div>
+            <div class="rating-example">
+                <span class="rating-badge" style="background: rgba(212, 175, 55, 0.3);">Sky News</span>
+                <span class="rating-desc">Comcast (100%) &rarr; Vanguard (9.8%), BlackRock (8.0%), State Street (4.1%)</span>
+            </div>
+            <div class="rating-example">
+                <span class="rating-badge" style="background: rgba(212, 175, 55, 0.3);">The Independent</span>
+                <span class="rating-desc">Lebedev (41%), Saudi investor (30%), Shaw (26%)</span>
+            </div>
+        </div>
+
+        <div class="philosophy">
+            <p><strong>Why Ownership Matters</strong></p>
+            <p>Two sources are only truly independent if they have different owners and different investors. Cross-ownership can create echo chambers disguised as verification. We make ownership visible so you can judge for yourself.</p>
+        </div>
+
+        <h3 style="color: #94a3b8; font-size: 16px; margin-top: 25px; margin-bottom: 15px;">Quarterly Ownership Review</h3>
+        <p>Ownership structures change. Acquisitions happen. Shareholders shift. We review and verify all source ownership data every quarter. Updates are logged publicly on <a href="https://github.com/larryseyer/jtfnews">GitHub</a>.</p>
+        <p style="font-size: 14px; color: #64748b;">Stale data is dishonest data. We do not let it drift.</p>
+
+        <h2>Corrections & Retractions</h2>
+        <p>When a fact passes the two-source test but is later proven false:</p>
+        <ul class="rule-list">
+            <li><strong>Correction issued</strong> &mdash; Within the next update cycle (30 minutes or less)</li>
+            <li><strong>Original marked</strong> &mdash; Never silently deleted; marked as corrected in the archive</li>
+            <li><strong>Same prominence</strong> &mdash; Corrections receive the same airtime as the original</li>
+            <li><strong>Public log</strong> &mdash; All corrections maintained on <a href="https://github.com/larryseyer/jtfnews">GitHub</a></li>
+        </ul>
+        <p style="margin-top: 15px; font-size: 14px; color: #64748b;">We do not bury mistakes. We name them.</p>
 
         <div class="cta-section">
             <p style="color: #94a3b8; margin-bottom: 20px;">JTF News is free, ad-free, and supported by viewers like you.</p>
@@ -691,7 +749,7 @@
             } catch (error) {
                 // Fallback to static example
                 demoLabel.textContent = 'Example Display';
-                demoSources.innerHTML = 'Reuters - 9.8 | Associated Press - 9.6*';
+                demoSources.innerHTML = 'Reuters 9.8|9.5 · AP 9.6|9.4*';
                 demoSources.appendChild(sourcesTooltip);
                 demoTime.innerHTML = '&middot; 2 hours ago';
                 demoTime.appendChild(timeTooltip);
