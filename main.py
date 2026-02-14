@@ -2803,39 +2803,16 @@ def perform_ownership_audit() -> bool:
 
         log.info("")
         log.info("=" * 60)
-        log.info("CONFIRMATION REQUIRED")
+        log.info("APPLYING OWNERSHIP UPDATES AUTOMATICALLY")
         log.info("=" * 60)
 
-        # Send SMS alert
+        # Send SMS notification (informational only)
         try:
-            send_sms_alert(f"JTF Ownership Audit: {len(changes)} changes detected. Review and confirm.")
+            send_sms_alert(f"JTF Ownership Audit: {len(changes)} changes applied automatically.")
         except Exception as e:
             log.warning(f"Could not send SMS alert: {e}")
 
-        # Interactive confirmation
-        log.info("")
-        log.info("Review the changes above.")
-        try:
-            response = input("Apply these changes to config.json? (yes/no): ").strip().lower()
-            if response != "yes":
-                log.info("Changes NOT applied. Audit incomplete.")
-                log.info("Run with --audit to retry, or manually update config.json.")
-                return False
-        except EOFError:
-            # Non-interactive mode - create pending file
-            pending_file = DATA_DIR / "ownership_audit_pending.json"
-            with open(pending_file, 'w') as f:
-                json.dump({
-                    "quarter": current_quarter,
-                    "changes": changes,
-                    "verified": verified,
-                    "timestamp": datetime.now().isoformat()
-                }, f, indent=2)
-            log.info(f"Non-interactive mode detected. Changes saved to {pending_file}")
-            log.info("Review and run: python main.py --apply-audit")
-            return False
-
-        # Apply changes to config.json
+        # Apply changes to config.json automatically (no confirmation needed)
         log.info("Applying changes...")
         apply_ownership_changes(changes)
 
