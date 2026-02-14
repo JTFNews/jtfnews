@@ -2252,13 +2252,15 @@ def write_monitor_data(cycle_stats: dict):
     uptime_hours = uptime_seconds / 3600
     min_hours_for_estimate = 1.0  # Need at least 1 hour of data
 
+    today_cost = api_costs.get("total_cost_usd", 0)
+
     if uptime_hours >= min_hours_for_estimate:
         # Project based on actual runtime
-        daily_rate = api_costs.get("total_cost_usd", 0) / (uptime_hours / 24)
+        daily_rate = today_cost / (uptime_hours / 24)
         month_estimate = daily_rate * 30
     else:
-        # Not enough data yet - show 0 (displays as "--" on frontend)
-        month_estimate = 0
+        # Not enough data for projection - show today's cost as minimum floor
+        month_estimate = today_cost
 
     # Get interval for next cycle calculation
     interval_minutes = CONFIG.get("timing", {}).get("scrape_interval_minutes", 5)
