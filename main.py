@@ -2244,13 +2244,17 @@ def write_monitor_data(cycle_stats: dict):
                 "queue_backup"
             )
 
-    # Calculate monthly estimate (based on today's usage projected over 30 days)
-    # Adjust for how much of today has passed
-    hours_today = now.hour + now.minute / 60
-    if hours_today > 0:
-        daily_rate = api_costs.get("total_cost_usd", 0) / (hours_today / 24)
+    # Calculate monthly estimate based on actual runtime, not time of day
+    # Need minimum runtime for meaningful projection (avoids wild extrapolation at startup)
+    uptime_hours = uptime_seconds / 3600
+    min_hours_for_estimate = 1.0  # Need at least 1 hour of data
+
+    if uptime_hours >= min_hours_for_estimate:
+        # Project based on actual runtime
+        daily_rate = api_costs.get("total_cost_usd", 0) / (uptime_hours / 24)
         month_estimate = daily_rate * 30
     else:
+        # Not enough data yet - show 0 (displays as "--" on frontend)
         month_estimate = 0
 
     # Get interval for next cycle calculation
