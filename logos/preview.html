@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JTF News Logo Concepts</title>
+    <title>JTF NEWS - Logo System v2</title>
     <style>
         * {
             margin: 0;
@@ -12,187 +12,337 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f8fafc;
+            background: #f5f5f5;
             padding: 40px;
-            color: #1e293b;
+            color: #1a1a1a;
         }
         h1 {
             text-align: center;
             margin-bottom: 10px;
-            font-weight: 300;
-            color: #1e3a5f;
+            font-weight: 600;
+            font-size: 36px;
         }
         .subtitle {
             text-align: center;
-            color: #64748b;
-            margin-bottom: 40px;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .concept-note {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-left: 4px solid #000;
             font-size: 14px;
+            line-height: 1.6;
+        }
+        .concept-note strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .section {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
+            gap: 25px;
         }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        @media (max-width: 900px) {
+            .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+        }
+
         .card {
             background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: box-shadow 0.2s;
-        }
-        .card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .card h2 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1e3a5f;
-        }
-        .card p {
-            font-size: 13px;
-            color: #64748b;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        .logo-container {
-            background: white;
-            border: 1px solid #e2e8f0;
             border-radius: 8px;
             padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .card .use-case {
+            font-size: 12px;
+            color: #888;
             margin-bottom: 15px;
         }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 4px;
+            min-height: 120px;
+        }
+        .logo-container.light {
+            background: #ffffff;
+            border: 1px solid #eee;
+        }
+        .logo-container.dark {
+            background: #1a1a1a;
+        }
+        .logo-container.checkerboard {
+            background-image:
+                linear-gradient(45deg, #ccc 25%, transparent 25%),
+                linear-gradient(-45deg, #ccc 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #ccc 75%),
+                linear-gradient(-45deg, transparent 75%, #ccc 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
         .logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .banner-preview {
+            overflow: hidden;
+        }
+        .banner-preview img {
             width: 100%;
             height: auto;
         }
-        .dark-bg {
-            background: #1e293b;
-            border-color: #334155;
-        }
-        .toggle {
-            display: flex;
-            gap: 10px;
+        .file-name {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 11px;
+            color: #888;
             margin-top: 10px;
         }
-        .toggle button {
-            padding: 6px 12px;
-            border: 1px solid #e2e8f0;
+        .methodology {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px;
             background: white;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            color: #64748b;
-        }
-        .toggle button:hover {
-            background: #f1f5f9;
-        }
-        .toggle button.active {
-            background: #1e3a5f;
-            color: white;
-            border-color: #1e3a5f;
-        }
-        .instructions {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background: #e2e8f0;
             border-radius: 8px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 40px;
         }
-        .instructions p {
-            color: #475569;
+        .methodology img {
+            width: 100px;
+        }
+        .methodology-text {
             font-size: 14px;
+            line-height: 1.8;
+        }
+        .methodology-text .arrow {
+            color: #999;
         }
     </style>
 </head>
 <body>
-    <h1>JTF News Logo Concepts</h1>
-    <p class="subtitle">Based on the whitepaper: "If we stay boring enough, we might just change the world."</p>
+    <h1>JTF NEWS</h1>
+    <p class="subtitle">Logo System v2 - The Convergence</p>
 
-    <div class="grid">
-        <div class="card">
-            <h2>Concept 1: The Filter</h2>
-            <p>Facts being distilled down - represents stripping away adjectives and keeping only verified facts. The funnel narrows from noise to truth.</p>
-            <div class="logo-container" id="container1">
-                <img src="concept1-filter.svg" alt="The Filter concept">
-            </div>
-            <div class="toggle">
-                <button class="active" onclick="toggleBg('container1', 'light', this)">Light</button>
-                <button onclick="toggleBg('container1', 'dark', this)">Dark</button>
-            </div>
-        </div>
+    <div class="concept-note">
+        <strong>The Methodology Visualized</strong>
+        Two sources converge → One verified fact emerges.<br>
+        The icon instantly communicates our core principle.
+    </div>
 
-        <div class="card">
-            <h2>Concept 2: Two Sources</h2>
-            <p>Two lines converging to a single point of truth - represents the core methodology of requiring two unrelated sources for verification.</p>
-            <div class="logo-container" id="container2">
-                <img src="concept2-two-sources.svg" alt="Two Sources concept">
-            </div>
-            <div class="toggle">
-                <button class="active" onclick="toggleBg('container2', 'light', this)">Light</button>
-                <button onclick="toggleBg('container2', 'dark', this)">Dark</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Concept 3: The Checkpoint</h2>
-            <p>A minimal verification mark - represents fact-checking and verification. Uses monospace font for a data/technical feel.</p>
-            <div class="logo-container" id="container3">
-                <img src="concept3-checkpoint.svg" alt="The Checkpoint concept">
-            </div>
-            <div class="toggle">
-                <button class="active" onclick="toggleBg('container3', 'light', this)">Light</button>
-                <button onclick="toggleBg('container3', 'dark', this)">Dark</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Concept 4: Clean Typography</h2>
-            <p>Ultra-minimal wordmark - embodies "boring enough to change the world." No symbol, just stark typography. Maximum restraint.</p>
-            <div class="logo-container" id="container4">
-                <img src="concept4-typography.svg" alt="Clean Typography concept">
-            </div>
-            <div class="toggle">
-                <button class="active" onclick="toggleBg('container4', 'light', this)">Light</button>
-                <button onclick="toggleBg('container4', 'dark', this)">Dark</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Concept 5: The Balance</h2>
-            <p>Abstracted scales representing objectivity and fairness. Classic symbol of justice/balance, reflecting "Fair. Balanced. Factual."</p>
-            <div class="logo-container" id="container5">
-                <img src="concept5-balance.svg" alt="The Balance concept">
-            </div>
-            <div class="toggle">
-                <button class="active" onclick="toggleBg('container5', 'light', this)">Light</button>
-                <button onclick="toggleBg('container5', 'dark', this)">Dark</button>
+    <!-- THE SYMBOL EXPLAINED -->
+    <div class="section">
+        <div class="methodology">
+            <img src="icon-minimal.svg" alt="Convergence Symbol">
+            <div class="methodology-text">
+                <span class="arrow">╲</span> Source 1<br>
+                <span class="arrow">╱</span> Source 2<br>
+                <span class="arrow">●</span> Verification point<br>
+                <span class="arrow">│</span> Verified fact
             </div>
         </div>
     </div>
 
-    <div class="instructions">
-        <p><strong>Next steps:</strong> Pick a concept (or elements from multiple concepts) and I can refine it further - adjust colors, typography, proportions, or combine ideas.</p>
+    <!-- ICONS -->
+    <div class="section">
+        <h2>Icons</h2>
+        <div class="grid grid-4">
+            <div class="card">
+                <h3>Square Icon</h3>
+                <p class="use-case">YouTube, app icon, favicon</p>
+                <div class="logo-container light">
+                    <img src="icon-square.svg" alt="Square Icon" style="width:80px;">
+                </div>
+                <p class="file-name">icon-square.svg</p>
+            </div>
+            <div class="card">
+                <h3>Square (Dark)</h3>
+                <p class="use-case">Dark mode contexts</p>
+                <div class="logo-container dark">
+                    <img src="icon-square-dark.svg" alt="Square Icon Dark" style="width:80px;">
+                </div>
+                <p class="file-name">icon-square-dark.svg</p>
+            </div>
+            <div class="card">
+                <h3>Minimal Icon</h3>
+                <p class="use-case">Watermarks, tiny sizes</p>
+                <div class="logo-container light">
+                    <img src="icon-minimal.svg" alt="Minimal Icon" style="width:70px;">
+                </div>
+                <p class="file-name">icon-minimal.svg</p>
+            </div>
+            <div class="card">
+                <h3>Size Test</h3>
+                <p class="use-case">16px / 32px / 64px</p>
+                <div class="logo-container light" style="gap: 15px;">
+                    <img src="icon-square.svg" alt="" style="width:16px;">
+                    <img src="icon-square.svg" alt="" style="width:32px;">
+                    <img src="icon-square.svg" alt="" style="width:64px;">
+                </div>
+                <p class="file-name">Scalable SVG</p>
+            </div>
+        </div>
     </div>
 
-    <script>
-        function toggleBg(containerId, mode, btn) {
-            const container = document.getElementById(containerId);
-            const buttons = btn.parentElement.querySelectorAll('button');
-            buttons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    <!-- HORIZONTAL -->
+    <div class="section">
+        <h2>Horizontal Logos</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>Full Horizontal</h3>
+                <p class="use-case">Website headers, documents</p>
+                <div class="logo-container light">
+                    <img src="logo-horizontal.svg" alt="Horizontal Logo">
+                </div>
+                <p class="file-name">logo-horizontal.svg</p>
+            </div>
+            <div class="card">
+                <h3>Horizontal (Dark)</h3>
+                <p class="use-case">Dark backgrounds</p>
+                <div class="logo-container dark">
+                    <img src="logo-horizontal-dark.svg" alt="Horizontal Logo Dark">
+                </div>
+                <p class="file-name">logo-horizontal-dark.svg</p>
+            </div>
+        </div>
+        <div class="grid grid-2" style="margin-top: 25px;">
+            <div class="card">
+                <h3>Compact Horizontal</h3>
+                <p class="use-case">Smaller headers, sidebars</p>
+                <div class="logo-container light">
+                    <img src="logo-horizontal-compact.svg" alt="Compact Horizontal">
+                </div>
+                <p class="file-name">logo-horizontal-compact.svg</p>
+            </div>
+        </div>
+    </div>
 
-            if (mode === 'dark') {
-                container.classList.add('dark-bg');
-            } else {
-                container.classList.remove('dark-bg');
-            }
-        }
-    </script>
+    <!-- STACKED -->
+    <div class="section">
+        <h2>Stacked Logos</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>Stacked</h3>
+                <p class="use-case">Square spaces, mobile</p>
+                <div class="logo-container light" style="min-height: 180px;">
+                    <img src="logo-stacked.svg" alt="Stacked Logo" style="height: 160px;">
+                </div>
+                <p class="file-name">logo-stacked.svg</p>
+            </div>
+            <div class="card">
+                <h3>Stacked (Dark)</h3>
+                <p class="use-case">Dark backgrounds</p>
+                <div class="logo-container dark" style="min-height: 180px;">
+                    <img src="logo-stacked-dark.svg" alt="Stacked Logo Dark" style="height: 160px;">
+                </div>
+                <p class="file-name">logo-stacked-dark.svg</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- WORDMARKS -->
+    <div class="section">
+        <h2>Wordmarks</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>Wordmark</h3>
+                <p class="use-case">Text-only contexts</p>
+                <div class="logo-container light">
+                    <img src="wordmark.svg" alt="Wordmark">
+                </div>
+                <p class="file-name">wordmark.svg</p>
+            </div>
+            <div class="card">
+                <h3>Wordmark (Dark)</h3>
+                <p class="use-case">Dark backgrounds</p>
+                <div class="logo-container dark">
+                    <img src="wordmark-dark.svg" alt="Wordmark Dark">
+                </div>
+                <p class="file-name">wordmark-dark.svg</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANNERS -->
+    <div class="section">
+        <h2>Social Media Banners</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>YouTube Banner</h3>
+                <p class="use-case">2560 x 1440</p>
+                <div class="logo-container light banner-preview" style="min-height: auto;">
+                    <img src="banner-youtube.svg" alt="YouTube Banner">
+                </div>
+                <p class="file-name">banner-youtube.svg</p>
+            </div>
+            <div class="card">
+                <h3>Twitter/X Banner</h3>
+                <p class="use-case">1500 x 500</p>
+                <div class="logo-container light banner-preview" style="min-height: auto;">
+                    <img src="banner-twitter.svg" alt="Twitter Banner">
+                </div>
+                <p class="file-name">banner-twitter.svg</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- OBS -->
+    <div class="section">
+        <h2>OBS Stream Overlays</h2>
+        <div class="grid grid-3">
+            <div class="card">
+                <h3>Watermark</h3>
+                <p class="use-case">Light backgrounds</p>
+                <div class="logo-container light">
+                    <img src="obs-watermark.svg" alt="OBS Watermark">
+                </div>
+                <p class="file-name">obs-watermark.svg</p>
+            </div>
+            <div class="card">
+                <h3>Watermark (White)</h3>
+                <p class="use-case">Dark backgrounds</p>
+                <div class="logo-container dark">
+                    <img src="obs-watermark-white.svg" alt="OBS Watermark White">
+                </div>
+                <p class="file-name">obs-watermark-white.svg</p>
+            </div>
+            <div class="card">
+                <h3>Lower Third Logo</h3>
+                <p class="use-case">Square icon for overlays</p>
+                <div class="logo-container checkerboard">
+                    <img src="obs-lower-third-logo.svg" alt="Lower Third Logo" style="width: 70px;">
+                </div>
+                <p class="file-name">obs-lower-third-logo.svg</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

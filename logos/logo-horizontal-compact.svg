@@ -1,26 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80">
-  <!-- Compact Horizontal Logo - smaller header uses -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 70">
+  <!-- Compact Horizontal Logo -->
 
-  <!-- Icon box -->
-  <rect x="5" y="5" width="70" height="70" fill="#000000"/>
-  <text x="40" y="52"
+  <!-- Icon container -->
+  <rect x="5" y="5" width="60" height="60" fill="#000000"/>
+
+  <!-- Convergence Symbol -->
+  <g transform="translate(35, 35)">
+    <line x1="-16" y1="-14" x2="0" y2="3" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+    <line x1="16" y1="-14" x2="0" y2="3" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="3" r="3" fill="#ffffff"/>
+    <line x1="0" y1="6" x2="0" y2="18" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- JTF NEWS -->
+  <text x="80" y="48"
         font-family="Helvetica Neue, Arial, sans-serif"
         font-size="32"
-        font-weight="700"
-        text-anchor="middle"
-        fill="#ffffff">JTF</text>
-
-  <!-- Text -->
-  <text x="90" y="38"
-        font-family="Helvetica Neue, Arial, sans-serif"
-        font-size="24"
-        font-weight="300"
-        fill="#000000">JUST THE FACTS</text>
-
-  <text x="90" y="62"
-        font-family="Helvetica Neue, Arial, sans-serif"
-        font-size="18"
         font-weight="600"
-        letter-spacing="4"
-        fill="#000000">NEWS</text>
+        fill="#000000">JTF NEWS</text>
 </svg>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JTF NEWS - Brand Assets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .hero img {
+            width: 200px;
+            margin-bottom: 40px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        section h2 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: #999;
+        }
+
+        /* Logo Grid */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .logo-item {
+            text-align: center;
+        }
+        .logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            min-height: 200px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: box-shadow 0.2s;
+        }
+        .logo-box:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .logo-box.dark {
+            background: #000000;
+            border-color: #000;
+        }
+        .logo-box img {
+            max-width: 100%;
+            max-height: 140px;
+        }
+        .logo-label {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Icon Row */
+        .icon-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            padding: 60px 0;
+        }
+        .icon-item {
+            text-align: center;
+        }
+        .icon-item img {
+            margin-bottom: 15px;
+        }
+        .icon-item .size {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Symbol Explanation */
+        .symbol-section {
+            background: #f9f9f9;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        .symbol-section h2 {
+            color: #999;
+        }
+        .symbol-explain {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .symbol-explain img {
+            width: 120px;
+        }
+        .symbol-explain .meaning {
+            text-align: left;
+            font-size: 16px;
+            line-height: 2;
+        }
+        .symbol-explain .meaning span {
+            color: #999;
+            font-family: monospace;
+            margin-right: 10px;
+        }
+
+        /* Banner Section */
+        .banner-section {
+            padding: 80px 20px;
+            background: #fff;
+        }
+        .banner-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .banner-item {
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .banner-item img {
+            width: 100%;
+            display: block;
+        }
+        .banner-label {
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            color: #666;
+            background: #fafafa;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 13px;
+        }
+        footer a {
+            color: #000;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <div class="hero">
+        <img src="icon-minimal.svg" alt="JTF News Symbol">
+        <h1>JTF NEWS</h1>
+        <p>Two sources converge. One verified fact emerges.<br>The methodology is our identity.</p>
+    </div>
+
+    <!-- Symbol Meaning -->
+    <div class="symbol-section">
+        <h2>THE SYMBOL</h2>
+        <div class="symbol-explain">
+            <img src="icon-minimal.svg" alt="Convergence Symbol">
+            <div class="meaning">
+                <span>╲ ╱</span> Two independent sources<br>
+                <span>&nbsp;●&nbsp;</span> Verification point<br>
+                <span>&nbsp;│&nbsp;</span> The verified fact
+            </div>
+        </div>
+    </div>
+
+    <!-- Primary Logos -->
+    <section>
+        <h2>Primary Logos</h2>
+        <div class="logo-grid">
+            <div class="logo-item">
+                <div class="logo-box">
+                    <img src="logo-horizontal.svg" alt="Horizontal Logo">
+                </div>
+                <p class="logo-label">Horizontal — Light Background</p>
+            </div>
+            <div class="logo-item">
+                <div class="logo-box dark">
+                    <img src="logo-horizontal-dark.svg" alt="Horizontal Logo Dark">
+                </div>
+                <p class="logo-label">Horizontal — Dark Background</p>
+            </div>
+            <div class="logo-item">
+                <div class="logo-box">
+                    <img src="logo-stacked.svg" alt="Stacked Logo" style="max-height: 180px;">
+                </div>
+                <p class="logo-label">Stacked — Light Background</p>
+            </div>
+            <div class="logo-item">
+                <div class="logo-box dark">
+                    <img src="logo-stacked-dark.svg" alt="Stacked Logo Dark" style="max-height: 180px;">
+                </div>
+                <p class="logo-label">Stacked — Dark Background</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Icons -->
+    <section>
+        <h2>Icons</h2>
+        <div class="icon-row">
+            <div class="icon-item">
+                <img src="icon-square.svg" alt="Icon 128" style="width: 128px;">
+                <p class="size">128px</p>
+            </div>
+            <div class="icon-item">
+                <img src="icon-square.svg" alt="Icon 64" style="width: 64px;">
+                <p class="size">64px</p>
+            </div>
+            <div class="icon-item">
+                <img src="icon-square.svg" alt="Icon 32" style="width: 32px;">
+                <p class="size">32px</p>
+            </div>
+            <div class="icon-item">
+                <img src="icon-square.svg" alt="Icon 16" style="width: 16px;">
+                <p class="size">16px</p>
+            </div>
+        </div>
+        <div class="logo-grid" style="margin-top: 40px;">
+            <div class="logo-item">
+                <div class="logo-box">
+                    <img src="icon-square.svg" alt="Square Icon" style="width: 120px;">
+                </div>
+                <p class="logo-label">Square Icon — Light</p>
+            </div>
+            <div class="logo-item">
+                <div class="logo-box dark">
+                    <img src="icon-square-dark.svg" alt="Square Icon Dark" style="width: 120px;">
+                </div>
+                <p class="logo-label">Square Icon — Dark</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wordmarks -->
+    <section>
+        <h2>Wordmarks</h2>
+        <div class="logo-grid">
+            <div class="logo-item">
+                <div class="logo-box">
+                    <img src="wordmark.svg" alt="Wordmark">
+                </div>
+                <p class="logo-label">Wordmark — Light Background</p>
+            </div>
+            <div class="logo-item">
+                <div class="logo-box dark">
+                    <img src="wordmark-dark.svg" alt="Wordmark Dark">
+                </div>
+                <p class="logo-label">Wordmark — Dark Background</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Banners -->
+    <div class="banner-section">
+        <h2>SOCIAL MEDIA</h2>
+        <div class="banner-item">
+            <img src="banner-youtube.svg" alt="YouTube Banner">
+            <p class="banner-label">YouTube Channel Art — 2560 × 1440</p>
+        </div>
+        <div class="banner-item">
+            <img src="banner-twitter.svg" alt="Twitter Banner">
+            <p class="banner-label">Twitter/X Header — 1500 × 500</p>
+        </div>
+    </div>
+
+    <!-- Stream Overlays -->
+    <section>
+        <h2>Stream Overlays</h2>
+        <div class="logo-grid">
+            <div class="logo-item">
+                <div class="logo-box">
+                    <img src="obs-watermark.svg" alt="OBS Watermark">
+                </div>
+                <p class="logo-label">Watermark — Light Background</p>
+            </div>
+            <div class="logo-item">
+                <div class="logo-box dark">
+                    <img src="obs-watermark-white.svg" alt="OBS Watermark White">
+                </div>
+                <p class="logo-label">Watermark — Dark Background</p>
+            </div>
+            <div class="logo-item">
+                <div class="logo-box">
+                    <img src="obs-lower-third-logo.svg" alt="Lower Third Logo" style="width: 80px;">
+                </div>
+                <p class="logo-label">Lower Third Icon</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>JTF NEWS — Just the Facts</p>
+        <p style="margin-top: 10px;">All assets are SVG (vector) and scale to any size.</p>
+    </footer>
+
+</body>
+</html>
