@@ -30,3 +30,21 @@ zip -r "$ZIP_FILE" . -x "media/*" "media/" "gh-pages-dist/*" "gh-pages-dist/" "a
 echo ""
 echo "=== Deploying to production ==="
 ./deploy.sh
+
+# =============================================================================
+# DEPLOY TO GITHUB PAGES
+# =============================================================================
+echo ""
+echo "=== Deploying to GitHub Pages ==="
+GHPAGES_TEMP="/tmp/gh-pages-deploy-$$"
+rm -rf "$GHPAGES_TEMP"
+mkdir -p "$GHPAGES_TEMP"
+cp -r "$SOURCE/gh-pages-dist/"* "$GHPAGES_TEMP/"
+cd "$GHPAGES_TEMP"
+git init -q
+git add -A
+git commit -q -m "Deploy: $1"
+git push -q --force https://github.com/larryseyer/jtfnews.git HEAD:gh-pages
+rm -rf "$GHPAGES_TEMP"
+cd "$SOURCE"
+echo "GitHub Pages deployed successfully"
