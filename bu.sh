@@ -32,19 +32,18 @@ echo "=== Deploying to production ==="
 ./deploy.sh
 
 # =============================================================================
-# DEPLOY TO GITHUB PAGES
+# DEPLOY TO GITHUB PAGES (using worktree)
 # =============================================================================
 echo ""
 echo "=== Deploying to GitHub Pages ==="
-GHPAGES_TEMP="/tmp/gh-pages-deploy-$$"
-rm -rf "$GHPAGES_TEMP"
-mkdir -p "$GHPAGES_TEMP"
-cp -r "$SOURCE/gh-pages-dist/"* "$GHPAGES_TEMP/"
-cd "$GHPAGES_TEMP"
-git init -q
+cd "$SOURCE/gh-pages-dist"
 git add -A
-git commit -q -m "Deploy: $1"
-git push -q --force https://github.com/larryseyer/jtfnews.git HEAD:gh-pages
-rm -rf "$GHPAGES_TEMP"
+# Only commit and push if there are changes
+if ! git diff --cached --quiet; then
+    git commit -m "Deploy: $1"
+    git push origin gh-pages
+    echo "GitHub Pages deployed successfully"
+else
+    echo "GitHub Pages: no changes to deploy"
+fi
 cd "$SOURCE"
-echo "GitHub Pages deployed successfully"
