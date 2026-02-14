@@ -59,7 +59,7 @@ This is not journalism. It is data.
 Top three owners listed. Percentages. No spin.
 
 ### 11. Funding & Community
-No ads. No tracking. Donations. Five-pound subscription for early code.
+No ads. No tracking. Donations. Five-dollar subscription for early code.
 
 ### 12. Governance
 Non-profit. No dividends. We own nothing.
@@ -103,7 +103,7 @@ We tweet once. We never reply.
 
 ### 24. YouTube
 Title: JTF News – Live.
-Description: Facts only. No chat. No hearts.
+Description: Just The Facts News. Facts only. No chat. No hearts.
 
 ### 25. The Loop
 Twenty-four hours. Midnight GMT. Each story once. Then back.
@@ -111,7 +111,7 @@ Twenty-four hours. Midnight GMT. Each story once. Then back.
 ### 26. The Methodology
 JTF News is not a media company. It is a methodology.
 
-Two sources. Different owners. Strip the adjectives. State the facts. Stop.
+Two or more sources. Different owners. Strip the adjectives. State the facts. Stop.
 
 This methodology belongs to no one. It serves everyone. We apply it to global events because that is where we began. Others may apply it to their communities—their cities, their schools, their congregations. The principle travels. The mission stays the same.
 
@@ -131,7 +131,7 @@ If a community needs facts, the methodology is theirs.
 
 ### 28. What Stays the Same
 Across all channels, always:
-- Two unrelated sources minimum
+- Two or more unrelated sources minimum
 - AI strips all editorialization
 - No engagement. No replies. No likes.
 - Calm voice. Neutral visuals.
