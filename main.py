@@ -1269,6 +1269,29 @@ def get_display_rating(source_id: str) -> str:
     return f"{rating:.1f} ({successes}/{total})"
 
 
+def get_compact_scores(source_id: str) -> str:
+    """Get compact Accuracy|Bias display for lower-third.
+
+    Format: "9.8|9.5" or "9.8*|9.5" (asterisk if accuracy has limited data)
+    Accuracy is learned/blended, Bias is from config baseline.
+    """
+    # Get accuracy part (learned or baseline)
+    accuracy_display = get_display_rating(source_id)
+
+    # Extract just the number and asterisk (strip evidence counts)
+    # e.g., "9.4 (47/50)" -> "9.4", "8.5* (3/10)" -> "8.5*", "9.6*" -> "9.6*"
+    accuracy_part = accuracy_display.split()[0]  # Gets "9.4" or "8.5*" or "9.6*"
+
+    # Get bias from config (always baseline, not learned)
+    bias_rating = 5.0
+    for source in CONFIG["sources"]:
+        if source["id"] == source_id:
+            bias_rating = source["ratings"].get("bias", 5.0)
+            break
+
+    return f"{accuracy_part}|{bias_rating}"
+
+
 # =============================================================================
 # QUEUE MANAGEMENT
 # =============================================================================
@@ -1508,8 +1531,8 @@ def generate_tts(text: str, audio_index: int = None) -> str:
 def write_current_story(fact: str, sources: list):
     """Write the current story to output files."""
     # Format source attribution with evidence-based ratings
-    source_text = " | ".join([
-        f"{s['source_name']} - {get_display_rating(s['source_id'])}"
+    source_text = " · ".join([
+        f"{s['source_name']} {get_compact_scores(s['source_id'])}"
         for s in sources[:2]
     ])
 
@@ -1567,8 +1590,8 @@ def update_stories_json(fact: str, sources: list, audio_file: str = None):
             pass
 
     # Format source info with evidence-based ratings
-    source_text = " | ".join([
-        f"{s['source_name']} - {get_display_rating(s['source_id'])}"
+    source_text = " · ".join([
+        f"{s['source_name']} {get_compact_scores(s['source_id'])}"
         for s in sources[:2]
     ])
 
@@ -2058,9 +2081,9 @@ def update_published_story(story_index: int, additional_detail: str, new_source:
         story["fact"] = updated_fact
 
         # Add new source to attribution
-        new_source_text = f"{new_source['source_name']} - {get_display_rating(new_source['source_id'])}"
+        new_source_text = f"{new_source['source_name']} {get_compact_scores(new_source['source_id'])}"
         if new_source_text not in story.get("source", ""):
-            story["source"] = f"{story['source']} | {new_source_text}"
+            story["source"] = f"{story['source']} · {new_source_text}"
 
         # Regenerate audio for updated fact
         audio_path = story.get("audio", "").replace("../audio/", "")
@@ -2998,7 +3021,7 @@ def rebuild_stories_from_log():
             source_parts = []
             for name, score in zip(names, scores):
                 source_parts.append(f"{name.strip()} - {score.strip()}")
-            source_text = " | ".join(source_parts)
+            source_text = " · ".join(source_parts)
 
             # Check if audio file exists for this story index
             audio_index = len(stories)
