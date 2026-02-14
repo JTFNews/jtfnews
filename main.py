@@ -2337,6 +2337,75 @@ def write_monitor_data(cycle_stats: dict):
     push_monitor_to_ghpages(monitor_file)
 
 
+def write_sleeping_heartbeat(minutes_remaining: int, last_cycle_stats: dict = None):
+    """Write heartbeat during sleep to keep dashboard from showing stale.
+
+    Updates monitor.json with "sleeping" status and time until next cycle.
+    """
+    monitor_file = DATA_DIR / "monitor.json"
+
+    now = datetime.now(timezone.utc)
+    uptime_seconds = (now - STARTUP_TIME).total_seconds()
+
+    # Get current costs and stats (reuse from last cycle if available)
+    api_costs = get_api_costs_today()
+    total_cost = api_costs.get("total_cost_usd", 0)
+    queue_stats = get_queue_stats()
+
+    # Calculate monthly estimate
+    uptime_hours = uptime_seconds / 3600
+    today_cost = api_costs.get("total_cost_usd", 0)
+    if uptime_hours >= 1.0:
+        daily_rate = today_cost / (uptime_hours / 24)
+        month_estimate = daily_rate * 30
+    else:
+        month_estimate = today_cost
+
+    # Use last cycle stats or defaults
+    cycle_stats = last_cycle_stats or {}
+
+    data = {
+        "timestamp": now.isoformat(),
+        "uptime_start": STARTUP_TIME.isoformat(),
+        "uptime_seconds": round(uptime_seconds),
+        "cycle": {
+            "number": _cycle_stats.get("cycle_number", 0),
+            "duration_seconds": cycle_stats.get("duration_seconds", 0),
+            "headlines_scraped": cycle_stats.get("headlines_scraped", 0),
+            "headlines_processed": cycle_stats.get("headlines_processed", 0),
+            "stories_published": cycle_stats.get("stories_published", 0),
+            "stories_queued": cycle_stats.get("stories_queued", 0)
+        },
+        "api_costs": {
+            "today": api_costs.get("services", {}),
+            "total_usd": round(api_costs.get("total_cost_usd", 0), 4),
+            "month_estimate_usd": round(month_estimate, 2),
+            "daily_budget": DAILY_BUDGET,
+            "budget_pct": round((total_cost / DAILY_BUDGET) * 100, 1) if DAILY_BUDGET > 0 else 0
+        },
+        "queue": queue_stats,
+        "stories_today": get_stories_today_count(),
+        "sources": get_source_health(),
+        "recent_errors": error_handler.get_recent(10),
+        "status": {
+            "state": "running",
+            "stream_health": get_stream_health_status(),
+            "next_cycle_minutes": minutes_remaining,
+            "degraded_services": list(_degraded_services)
+        }
+    }
+
+    try:
+        with open(monitor_file, 'w') as f:
+            json.dump(data, f, indent=2)
+    except IOError as e:
+        log.warning(f"Could not write sleeping heartbeat: {e}")
+        return
+
+    # Push to gh-pages
+    push_monitor_to_ghpages(monitor_file)
+
+
 def push_monitor_to_ghpages(monitor_file: Path):
     """Copy monitor.json to gh-pages and push."""
     import subprocess
@@ -2966,9 +3035,19 @@ def main():
             # Run cycle
             process_cycle()
 
-            # Sleep until next cycle
+            # Sleep until next cycle with periodic heartbeats
+            # Heartbeat every 5 minutes keeps dashboard from showing "stale"
             log.info(f"Sleeping {interval_minutes} minutes...")
-            time.sleep(interval_seconds)
+            heartbeat_interval = 5 * 60  # 5 minutes in seconds
+            remaining = interval_seconds
+            while remaining > 0:
+                sleep_time = min(heartbeat_interval, remaining)
+                time.sleep(sleep_time)
+                remaining -= sleep_time
+                if remaining > 0:
+                    # Update heartbeat and monitor during sleep
+                    write_heartbeat()
+                    write_sleeping_heartbeat(remaining // 60)
 
         except KeyboardInterrupt:
             log.info("Shutting down...")
