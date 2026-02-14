@@ -2,17 +2,21 @@
 
 Ready-to-upload files for each platform. Just grab and upload!
 
+**Note:** All profile pictures use the clean convergence symbol (no black box) - optimized for circular cropping.
+
 ## YouTube
 | File | Use For | Platform Requirement |
 |------|---------|---------------------|
 | `youtube-channel-banner-2560x1440.png` | Channel Art / Banner | Min 2048x1152, max 6MB |
 | `youtube-profile-picture-512x512.png` | Profile Picture | Min 98x98, max 4MB |
 
-## Twitter/X
+## X (Twitter)
 | File | Use For | Platform Requirement |
 |------|---------|---------------------|
-| `twitter-header-1500x500.png` | Profile Header/Banner | 1500x500 (3:1 ratio) |
-| `twitter-profile-400x400-use-512.png` | Profile Picture | 400x400 ideal (will be cropped to circle) |
+| `x-header-1500x500.png` | Profile Header/Banner | 1500x500 (3:1 ratio) |
+| `x-profile-400x400-use-512.png` | Profile Picture | 400x400 ideal (cropped to circle) |
+
+*Also available as `twitter-header-*` and `twitter-profile-*` if you prefer.*
 
 ## Facebook
 | File | Use For | Platform Requirement |
@@ -30,6 +34,12 @@ Ready-to-upload files for each platform. Just grab and upload!
 |------|---------|---------------------|
 | `linkedin-banner-1584x396.png` | Background/Banner | 1584x396 |
 | `linkedin-profile-picture-512x512.png` | Profile Picture | 400x400 recommended |
+
+## Rumble
+| File | Use For | Platform Requirement |
+|------|---------|---------------------|
+| `rumble-backsplash-3600x600.png` | Channel Banner/Backsplash | 3600x600 (6:1), max 2MB |
+| `rumble-profile-150x150-use-256.png` | Profile Picture | 150x150, max 2MB |
 
 ## Browser/Favicon
 | File | Use For | Platform Requirement |
