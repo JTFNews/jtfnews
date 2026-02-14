@@ -2629,6 +2629,263 @@ def process_cycle():
     log.info(f"Cycle complete. Published: {published_count}, Queue: {len(queue)}, Skipped (cached): {skipped_count}")
 
 
+# =============================================================================
+# QUARTERLY OWNERSHIP AUDIT
+# =============================================================================
+
+def get_current_quarter() -> str:
+    """Return current quarter string like 'Q1 2026'."""
+    month = datetime.now().month
+    quarter = (month - 1) // 3 + 1
+    year = datetime.now().year
+    return f"Q{quarter} {year}"
+
+
+def check_ownership_audit_needed() -> bool:
+    """Check if ownership audit is needed for current quarter."""
+    current_quarter = get_current_quarter()
+    audit_file = DATA_DIR / "ownership_audit.json"
+
+    if audit_file.exists():
+        try:
+            with open(audit_file) as f:
+                audit_data = json.load(f)
+                if audit_data.get("last_quarter") == current_quarter:
+                    return False  # Audit is current
+        except (json.JSONDecodeError, IOError):
+            pass
+
+    return True  # Audit needed
+
+
+OWNERSHIP_RESEARCH_PROMPT = """You are researching current ownership data for a news source.
+
+Source: {source_name}
+Current data in our system:
+- Owner: {current_owner}
+- Control type: {control_type}
+- Institutional holders: {current_holders}
+
+Research and verify the CURRENT ownership structure. Return ONLY a valid JSON object with:
+{{
+  "owner": "Primary owner/parent company name",
+  "owner_display": "Brief display format (e.g., 'Thomson Reuters (69%)')",
+  "control_type": "One of: corporate, public_broadcaster, nonprofit, trust, state, cooperative, government, private",
+  "institutional_holders": [
+    {{"name": "Top shareholder name", "percent": 0.0}},
+    {{"name": "Second shareholder", "percent": 0.0}},
+    {{"name": "Third shareholder", "percent": 0.0}}
+  ],
+  "changed": true or false (whether data differs from current),
+  "notes": "Brief explanation of any changes or 'No changes'"
+}}
+
+IMPORTANT:
+- For public broadcasters (BBC, NPR, etc.), institutional_holders should be empty
+- For cooperatives (AP), institutional_holders should be empty
+- For publicly traded companies, list top 3 institutional shareholders with percentages
+- Use accurate, current data - do not guess
+- If unsure, set changed to false and note uncertainty
+
+Return ONLY valid JSON, no explanation or markdown."""
+
+
+def research_source_ownership(source: dict) -> dict:
+    """Use Claude to research current ownership for a source."""
+    try:
+        client = anthropic.Anthropic()
+
+        prompt = OWNERSHIP_RESEARCH_PROMPT.format(
+            source_name=source.get("name", source.get("id")),
+            current_owner=source.get("owner", "unknown"),
+            control_type=source.get("control_type", "unknown"),
+            current_holders=json.dumps(source.get("institutional_holders", []))
+        )
+
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",  # Use Sonnet for better research
+            max_tokens=500,
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        # Log API usage
+        log_api_usage("claude", {
+            "input_tokens": response.usage.input_tokens,
+            "output_tokens": response.usage.output_tokens
+        })
+
+        text = response.content[0].text
+
+        # Parse JSON response
+        start = text.find('{')
+        end = text.rfind('}') + 1
+        if start >= 0 and end > start:
+            return json.loads(text[start:end])
+
+        return {"changed": False, "notes": "Failed to parse response"}
+
+    except Exception as e:
+        log.warning(f"Ownership research failed for {source.get('id')}: {e}")
+        return {"changed": False, "notes": f"Research failed: {e}"}
+
+
+def perform_ownership_audit() -> bool:
+    """Perform quarterly ownership audit using Claude.
+
+    Returns True if audit completed successfully, False if blocked.
+    """
+    current_quarter = get_current_quarter()
+
+    log.info("=" * 60)
+    log.info(f"QUARTERLY OWNERSHIP AUDIT - {current_quarter}")
+    log.info("=" * 60)
+    log.info("Researching ownership data for all sources...")
+    log.info("This may take a few minutes and will use Claude API credits.")
+    log.info("")
+
+    changes = []
+    verified = []
+
+    # Skip government sources - ownership doesn't change
+    skip_types = ["government"]
+
+    for source in CONFIG["sources"]:
+        source_id = source.get("id", "unknown")
+        control_type = source.get("control_type", "")
+
+        if control_type in skip_types:
+            log.info(f"  [SKIP] {source_id} (government source)")
+            verified.append(source_id)
+            continue
+
+        log.info(f"  [RESEARCH] {source_id}...")
+        result = research_source_ownership(source)
+
+        if result.get("changed", False):
+            changes.append({
+                "source_id": source_id,
+                "source_name": source.get("name", source_id),
+                "current": {
+                    "owner": source.get("owner"),
+                    "owner_display": source.get("owner_display"),
+                    "institutional_holders": source.get("institutional_holders", [])
+                },
+                "researched": {
+                    "owner": result.get("owner"),
+                    "owner_display": result.get("owner_display"),
+                    "institutional_holders": result.get("institutional_holders", [])
+                },
+                "notes": result.get("notes", "")
+            })
+            log.info(f"    → CHANGE DETECTED: {result.get('notes', 'See details')}")
+        else:
+            verified.append(source_id)
+            log.info(f"    → Verified (no changes)")
+
+        # Small delay to avoid rate limiting
+        time.sleep(0.5)
+
+    log.info("")
+    log.info("=" * 60)
+    log.info("AUDIT RESULTS")
+    log.info("=" * 60)
+    log.info(f"Sources verified unchanged: {len(verified)}")
+    log.info(f"Sources with changes: {len(changes)}")
+
+    if changes:
+        log.info("")
+        log.info("CHANGES DETECTED:")
+        for change in changes:
+            log.info(f"  {change['source_name']}:")
+            log.info(f"    Current:    {change['current']['owner_display']}")
+            log.info(f"    Researched: {change['researched']['owner_display']}")
+            log.info(f"    Notes: {change['notes']}")
+
+        log.info("")
+        log.info("=" * 60)
+        log.info("CONFIRMATION REQUIRED")
+        log.info("=" * 60)
+
+        # Send SMS alert
+        try:
+            send_sms_alert(f"JTF Ownership Audit: {len(changes)} changes detected. Review and confirm.")
+        except Exception as e:
+            log.warning(f"Could not send SMS alert: {e}")
+
+        # Interactive confirmation
+        log.info("")
+        log.info("Review the changes above.")
+        try:
+            response = input("Apply these changes to config.json? (yes/no): ").strip().lower()
+            if response != "yes":
+                log.info("Changes NOT applied. Audit incomplete.")
+                log.info("Run with --audit to retry, or manually update config.json.")
+                return False
+        except EOFError:
+            # Non-interactive mode - create pending file
+            pending_file = DATA_DIR / "ownership_audit_pending.json"
+            with open(pending_file, 'w') as f:
+                json.dump({
+                    "quarter": current_quarter,
+                    "changes": changes,
+                    "verified": verified,
+                    "timestamp": datetime.now().isoformat()
+                }, f, indent=2)
+            log.info(f"Non-interactive mode detected. Changes saved to {pending_file}")
+            log.info("Review and run: python main.py --apply-audit")
+            return False
+
+        # Apply changes to config.json
+        log.info("Applying changes...")
+        apply_ownership_changes(changes)
+
+    # Log the completed audit
+    audit_file = DATA_DIR / "ownership_audit.json"
+    audit_data = {
+        "last_quarter": current_quarter,
+        "audit_date": datetime.now().isoformat(),
+        "changes_applied": len(changes),
+        "sources_verified": len(verified),
+        "change_details": changes
+    }
+
+    with open(audit_file, 'w') as f:
+        json.dump(audit_data, f, indent=2)
+
+    log.info(f"Audit logged to {audit_file}")
+    log.info("=" * 60)
+    log.info(f"OWNERSHIP AUDIT COMPLETE - {current_quarter}")
+    log.info("=" * 60)
+
+    return True
+
+
+def apply_ownership_changes(changes: list):
+    """Apply ownership changes to config.json."""
+    config_file = BASE_DIR / "config.json"
+
+    # Load current config
+    with open(config_file) as f:
+        config = json.load(f)
+
+    # Apply changes
+    for change in changes:
+        source_id = change["source_id"]
+        for source in config["sources"]:
+            if source.get("id") == source_id:
+                source["owner"] = change["researched"]["owner"]
+                source["owner_display"] = change["researched"]["owner_display"]
+                source["institutional_holders"] = change["researched"]["institutional_holders"]
+                log.info(f"  Updated: {source_id}")
+                break
+
+    # Save config
+    with open(config_file, 'w') as f:
+        json.dump(config, f, indent=2)
+
+    log.info(f"Config saved to {config_file}")
+
+
 def check_midnight_archive():
     """Check if it's time to archive and cleanup (midnight GMT)."""
     now = datetime.now(timezone.utc)
@@ -2652,6 +2909,31 @@ def main():
     log.info("JTF News starting...")
     log.info("Facts only. No opinions.")
     log.info("-" * 40)
+
+    # Check quarterly ownership audit
+    if check_ownership_audit_needed():
+        current_quarter = get_current_quarter()
+        log.warning("=" * 60)
+        log.warning(f"OWNERSHIP AUDIT REQUIRED - {current_quarter}")
+        log.warning("=" * 60)
+        log.warning("Quarterly ownership verification has not been completed.")
+        log.warning("This is required by the JTF whitepaper for transparency.")
+        log.warning("")
+
+        # Send SMS alert
+        try:
+            send_sms_alert(f"JTF: Ownership audit required for {current_quarter}. Starting audit...")
+        except Exception as e:
+            log.warning(f"Could not send SMS alert: {e}")
+
+        # Perform the audit
+        if not perform_ownership_audit():
+            log.critical("Ownership audit incomplete - cannot start")
+            log.critical("Run: python main.py --audit")
+            sys.exit(1)
+
+        log.info("Ownership audit complete. Continuing startup...")
+        log.info("-" * 40)
 
     # Validate all services before starting
     if not validate_services():
@@ -2774,9 +3056,60 @@ if __name__ == "__main__":
                 log.error("Rebuild failed!")
                 sys.exit(1)
             sys.exit(0)
+
+        elif sys.argv[1] == "--audit":
+            log.info("Running quarterly ownership audit...")
+            if perform_ownership_audit():
+                log.info("Audit complete!")
+            else:
+                log.error("Audit incomplete or cancelled.")
+                sys.exit(1)
+            sys.exit(0)
+
+        elif sys.argv[1] == "--apply-audit":
+            # Apply pending audit changes (for non-interactive mode)
+            pending_file = DATA_DIR / "ownership_audit_pending.json"
+            if not pending_file.exists():
+                log.error("No pending audit found. Run --audit first.")
+                sys.exit(1)
+
+            with open(pending_file) as f:
+                pending = json.load(f)
+
+            log.info(f"Applying pending audit from {pending['quarter']}...")
+            log.info(f"Changes to apply: {len(pending['changes'])}")
+
+            for change in pending["changes"]:
+                log.info(f"  {change['source_name']}: {change['notes']}")
+
+            response = input("Apply these changes? (yes/no): ").strip().lower()
+            if response != "yes":
+                log.info("Cancelled.")
+                sys.exit(1)
+
+            apply_ownership_changes(pending["changes"])
+
+            # Log the audit
+            audit_file = DATA_DIR / "ownership_audit.json"
+            audit_data = {
+                "last_quarter": pending["quarter"],
+                "audit_date": datetime.now().isoformat(),
+                "changes_applied": len(pending["changes"]),
+                "sources_verified": len(pending["verified"]),
+                "change_details": pending["changes"]
+            }
+            with open(audit_file, 'w') as f:
+                json.dump(audit_data, f, indent=2)
+
+            # Remove pending file
+            pending_file.unlink()
+
+            log.info("Audit applied successfully!")
+            sys.exit(0)
+
         else:
             print(f"Unknown argument: {sys.argv[1]}")
-            print("Usage: python main.py [--rebuild]")
+            print("Usage: python main.py [--rebuild | --audit | --apply-audit]")
             sys.exit(1)
 
     main()

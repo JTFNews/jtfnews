@@ -13,10 +13,14 @@ A verifiable event, within the last 24 hours, that meets at least one criteria:
 - Affects 500+ people
 - Costs/invests $1M+ USD
 - Changes a law or regulation
+- Redraws a border
 - Involves death or violent crime
 - Major scientific/technological achievement
+- Humanitarian milestone
 - Official statement by head of state/government
 - Major economic indicator (GDP, unemployment, inflation)
+- International agreement or diplomatic action
+- Major natural disaster, pandemic, or public health emergency
 
 ### Content Rules
 - **Two unrelated sources minimum** - Different owners, different investors
@@ -58,6 +62,18 @@ A verifiable event, within the last 24 hours, that meets at least one criteria:
 |-----------|---------|
 | Normal startup | `./start.sh` |
 | Accidentally ran --fresh | `./start.sh --rebuild` |
+| Quarterly ownership audit | `python main.py --audit` |
+| Apply pending audit (non-interactive) | `python main.py --apply-audit` |
+
+### Quarterly Ownership Audit
+On startup, main.py checks if the current quarter's ownership audit has been completed. If not:
+1. Blocks startup
+2. Uses Claude to research current ownership for all 30 sources
+3. Presents any changes found
+4. Requires confirmation before applying changes
+5. Logs the audit to `data/ownership_audit.json`
+
+The audit happens automatically on normal startup if needed, or can be run manually with `--audit`.
 | Code changes to story format | `./start.sh --fresh` (confirm with 'y') |
 
 ### IMPORTANT: Always Use bu.sh for Commits
