@@ -3013,14 +3013,24 @@ def rebuild_stories_from_log():
 
             timestamp, source_names, source_scores, fact = parts[0], parts[1], parts[2], parts[3]
 
-            # Split sources and scores
+            # Split sources and look up IDs for current format
             names = source_names.split(",")
-            scores = source_scores.split(",")
 
-            # Format source attribution: "Source1 - Score1 | Source2 - Score2"
+            # Format source attribution using current get_compact_scores()
             source_parts = []
-            for name, score in zip(names, scores):
-                source_parts.append(f"{name.strip()} - {score.strip()}")
+            for name in names:
+                name = name.strip()
+                # Look up source ID by name
+                source_id = None
+                for src in CONFIG["sources"]:
+                    if src["name"] == name:
+                        source_id = src["id"]
+                        break
+                if source_id:
+                    source_parts.append(f"{name} {get_compact_scores(source_id)}")
+                else:
+                    # Fallback if source not found
+                    source_parts.append(name)
             source_text = " · ".join(source_parts)
 
             # Check if audio file exists for this story index
