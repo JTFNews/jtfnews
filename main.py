@@ -1283,13 +1283,19 @@ def get_compact_scores(source_id: str) -> str:
     accuracy_part = accuracy_display.split()[0]  # Gets "9.4" or "8.5*" or "9.6*"
 
     # Get bias from config (always baseline, not learned)
-    bias_rating = 5.0
+    # Config stores bias on -2 to +2 scale (political leaning)
+    # Convert to 0-10 scale where 10 = neutral, 0 = heavily biased
+    raw_bias = 0.0
     for source in CONFIG["sources"]:
         if source["id"] == source_id:
-            bias_rating = source["ratings"].get("bias", 5.0)
+            raw_bias = source["ratings"].get("bias", 0.0)
             break
 
-    return f"{accuracy_part}|{bias_rating}"
+    # Convert: 0 → 10, ±2 → 0
+    # Formula: 10 - (abs(bias) * 5), clamped to 0-10
+    bias_score = max(0.0, min(10.0, 10.0 - (abs(raw_bias) * 5)))
+
+    return f"{accuracy_part}|{bias_score:.1f}"
 
 
 # =============================================================================
