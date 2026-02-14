@@ -147,4 +147,5 @@ After ANY changes to the development folder, ALWAYS run `./deploy.sh` to sync to
 - No APIs, no paywalls, respect robots.txt
 - No ads, no tracking, no long-term raw data storage
 - CC-BY-SA license on output
+- **YouTube: Creative Commons license** (not Standard YouTube) - aligns with "methodology belongs to no one" philosophy
 - Non-profit spirit
