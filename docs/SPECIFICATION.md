@@ -499,6 +499,40 @@ Reuters
 </source>
 ```
 
+#### 5.3.4 Quarterly Ownership Review
+
+Ownership data is verified quarterly to ensure accuracy.
+
+**Schedule:**
+- Q1 Review: January
+- Q2 Review: April
+- Q3 Review: July
+- Q4 Review: October
+
+**Process:**
+1. Research current ownership for all 30 sources
+2. Compare against config.json
+3. Update any changed percentages
+4. Log changes to `data/ownership_audit.json`
+5. Commit with message: "Q[N] 20XX ownership audit"
+
+**Audit Log Format:**
+```json
+{
+  "date": "2026-04-01",
+  "quarter": "Q2 2026",
+  "changes": [
+    {"source": "euronews", "field": "percent", "old": 97.6, "new": 98.2}
+  ],
+  "verified_unchanged": ["reuters", "bbc", "ap"]
+}
+```
+
+**Trigger Events (immediate review):**
+- Major acquisition announced
+- Ownership lawsuit or regulatory action
+- Source reports ownership change
+
 ### 5.4 Source Scores
 
 Each source has four live scores, all on a 0-10 scale where **higher is better**. Listed in order of importance:

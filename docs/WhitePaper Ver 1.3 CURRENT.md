@@ -125,6 +125,12 @@ For each story, the top three owners of each cited source are listed. Percentage
 
 Live source scores: accuracy, bias, speed, consensus. Numbers only. No labels.
 
+### Ownership Data Maintenance
+
+Ownership structures change. Acquisitions happen. Shareholders shift. We review and verify all source ownership data quarterly. Updates are logged publicly on GitHub.
+
+Stale data is dishonest data. We do not let it drift.
+
 ------------------------------------------------------------------------
 
 ## Voice & Visuals
