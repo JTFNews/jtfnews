@@ -539,7 +539,10 @@ Headline to process:
 """
 
 
-@retry_with_backoff(max_retries=3, base_delay=1.0)
+@retry_with_backoff(max_retries=3, base_delay=1.0, retryable_exceptions=(
+    ConnectionError, TimeoutError, OSError,
+    anthropic.APITimeoutError, anthropic.APIConnectionError, anthropic.RateLimitError
+))
 def extract_fact(headline: str, use_cache: bool = True) -> dict:
     """Send headline to Claude for fact extraction.
 
@@ -2342,11 +2345,14 @@ def push_monitor_to_ghpages(monitor_file: Path):
                 check=True,
                 capture_output=True
             )
+            log.info("Monitor data pushed to gh-pages")
 
-    except subprocess.CalledProcessError:
-        pass  # Silently ignore push failures - not critical
-    except Exception:
-        pass  # Silently ignore any errors
+    except subprocess.CalledProcessError as e:
+        log.warning(f"Failed to push monitor.json to gh-pages: {e}")
+        if e.stderr:
+            log.warning(f"Git error: {e.stderr.decode()}")
+    except Exception as e:
+        log.warning(f"Error pushing monitor.json: {e}")
 
 
 # =============================================================================
