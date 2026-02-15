@@ -1,57 +1,6 @@
 {
   "sources": [
     {
-      "id": "ap",
-      "name": "Associated Press",
-      "url": "https://apnews.com/world-news",
-      "rss": "https://news.google.com/rss/search?q=site:apnews.com&hl=en-US&gl=US&ceid=US:en",
-      "scrape_selector": "h3",
-      "tier": 1,
-      "control_type": "cooperative",
-      "owner": "AP Cooperative",
-      "owner_display": "Cooperative (no owners)",
-      "institutional_holders": [],
-      "ratings": {
-        "accuracy": 9.6,
-        "bias": 0.1,
-        "speed": 9.5,
-        "consensus": 9.5
-      },
-      "notes": "Direct site blocks requests; using Google News RSS as delivery mechanism"
-    },
-    {
-      "id": "reuters",
-      "name": "Reuters",
-      "url": "https://www.reuters.com/world/",
-      "rss": "https://news.google.com/rss/search?q=site:reuters.com&hl=en-US&gl=US&ceid=US:en",
-      "scrape_selector": "h3",
-      "tier": 1,
-      "control_type": "corporate",
-      "owner": "Thomson Reuters Corporation",
-      "owner_display": "Thomson Reuters (Woodbridge 64.2%)",
-      "institutional_holders": [
-        {
-          "name": "Woodbridge Company Limited",
-          "percent": 64.2
-        },
-        {
-          "name": "Vanguard Group",
-          "percent": 4.1
-        },
-        {
-          "name": "BlackRock",
-          "percent": 3.2
-        }
-      ],
-      "ratings": {
-        "accuracy": 9.8,
-        "bias": 0.1,
-        "speed": 9.8,
-        "consensus": 9.8
-      },
-      "notes": "Direct site blocks requests; using Google News RSS as delivery mechanism"
-    },
-    {
       "id": "bbc",
       "name": "BBC News",
       "url": "https://www.bbc.com/news/world",
@@ -106,24 +55,6 @@
       }
     },
     {
-      "id": "aljazeera",
-      "name": "Al Jazeera English",
-      "url": "https://www.aljazeera.com/news/",
-      "rss": "https://www.aljazeera.com/xml/rss/all.xml",
-      "scrape_selector": "h3",
-      "tier": 2,
-      "control_type": "state",
-      "owner": "Al Jazeera Media Network (Qatar)",
-      "owner_display": "Qatar (100%)",
-      "institutional_holders": [],
-      "ratings": {
-        "accuracy": 8.5,
-        "bias": 0.5,
-        "speed": 8.5,
-        "consensus": 8.0
-      }
-    },
-    {
       "id": "france24",
       "name": "France 24",
       "url": "https://www.france24.com/en/",
@@ -131,7 +62,7 @@
       "scrape_selector": "h3",
       "tier": 2,
       "control_type": "public_broadcaster",
-      "owner": "France M\u00e9dias Monde",
+      "owner": "France Médias Monde",
       "owner_display": "France Public (100%)",
       "institutional_holders": [],
       "ratings": {
@@ -196,68 +127,6 @@
       }
     },
     {
-      "id": "independent",
-      "name": "The Independent",
-      "url": "https://www.independent.co.uk/news/world",
-      "rss": null,
-      "scrape_selector": "h3",
-      "tier": 3,
-      "control_type": "private",
-      "owner": "Independent Digital News and Media",
-      "owner_display": "Lebedev 41%, Saudi investor 30%, Shaw 26%",
-      "institutional_holders": [
-        {
-          "name": "Evgeny Lebedev",
-          "percent": 41.0
-        },
-        {
-          "name": "Sultan Muhammad Abuljadayel (Saudi)",
-          "percent": 30.0
-        },
-        {
-          "name": "Justin Byam Shaw",
-          "percent": 26.0
-        }
-      ],
-      "ratings": {
-        "accuracy": 7.8,
-        "bias": -1.0,
-        "speed": 8.0,
-        "consensus": 7.5
-      }
-    },
-    {
-      "id": "sky",
-      "name": "Sky News",
-      "url": "https://news.sky.com/world",
-      "rss": "https://feeds.skynews.com/feeds/rss/world.xml",
-      "scrape_selector": "h3",
-      "tier": 3,
-      "control_type": "corporate",
-      "owner": "Comcast Corporation",
-      "owner_display": "Comcast Corporation (100%)",
-      "institutional_holders": [
-        {
-          "name": "Vanguard Group",
-          "percent": 8.1
-        },
-        {
-          "name": "BlackRock",
-          "percent": 6.8
-        },
-        {
-          "name": "State Street Corporation",
-          "percent": 4.2
-        }
-      ],
-      "ratings": {
-        "accuracy": 8.2,
-        "bias": 0.5,
-        "speed": 9.0,
-        "consensus": 8.0
-      }
-    },
-    {
       "id": "pbs",
       "name": "PBS NewsHour",
       "url": "https://www.pbs.org/newshour/world",
@@ -273,70 +142,6 @@
         "bias": 0.2,
         "speed": 7.5,
         "consensus": 9.0
-      }
-    },
-    {
-      "id": "euronews",
-      "name": "Euronews",
-      "url": "https://www.euronews.com/news",
-      "rss": "https://www.euronews.com/rss",
-      "scrape_selector": "h3",
-      "tier": 3,
-      "control_type": "private",
-      "owner": "Alpac Capital (Portugal)",
-      "owner_display": "Alpac Capital (97.6%)",
-      "institutional_holders": [
-        {
-          "name": "Alpac Capital",
-          "percent": 97.6
-        }
-      ],
-      "ratings": {
-        "accuracy": 8.0,
-        "bias": 0.3,
-        "speed": 8.5,
-        "consensus": 8.0
-      }
-    },
-    {
-      "id": "toi",
-      "name": "Times of India",
-      "url": "https://timesofindia.indiatimes.com/world",
-      "rss": "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms",
-      "scrape_selector": "h3",
-      "tier": 3,
-      "control_type": "corporate",
-      "owner": "Bennett Coleman & Co. Ltd.",
-      "owner_display": "Jain family (86.17%)",
-      "institutional_holders": [
-        {
-          "name": "Jain family (via subsidiaries)",
-          "percent": 86.17
-        }
-      ],
-      "ratings": {
-        "accuracy": 7.5,
-        "bias": 0.5,
-        "speed": 8.0,
-        "consensus": 7.5
-      }
-    },
-    {
-      "id": "globe",
-      "name": "The Globe and Mail",
-      "url": "https://www.theglobeandmail.com/world/",
-      "rss": "https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/world/",
-      "scrape_selector": "h3",
-      "tier": 3,
-      "control_type": "corporate",
-      "owner": "Woodbridge Company",
-      "owner_display": "Thomson family (100%)",
-      "institutional_holders": [],
-      "ratings": {
-        "accuracy": 8.4,
-        "bias": 0.3,
-        "speed": 8.0,
-        "consensus": 8.5
       }
     },
     {
@@ -356,87 +161,6 @@
         "speed": 7.5,
         "consensus": 8.5
       }
-    },
-    {
-      "id": "straits",
-      "name": "The Straits Times",
-      "url": "https://www.straitstimes.com/world",
-      "rss": "https://www.straitstimes.com/news/world/rss.xml",
-      "scrape_selector": "h3",
-      "tier": 3,
-      "control_type": "corporate",
-      "owner": "Singapore Press Holdings",
-      "owner_display": "Singapore Press Holdings",
-      "institutional_holders": [
-        {
-          "name": "Temasek Holdings",
-          "percent": 23.5
-        },
-        {
-          "name": "Oversea-Chinese Banking Corporation",
-          "percent": 4.1
-        },
-        {
-          "name": "DBS Group Holdings",
-          "percent": 3.8
-        }
-      ],
-      "ratings": {
-        "accuracy": 7.6,
-        "bias": 0.5,
-        "speed": 8.0,
-        "consensus": 7.5
-      }
-    },
-    {
-      "id": "hindustan",
-      "name": "Hindustan Times",
-      "url": "https://www.hindustantimes.com/world-news",
-      "rss": "https://www.hindustantimes.com/feeds/rss/world-news/rssfeed.xml",
-      "scrape_selector": "h3",
-      "tier": 3,
-      "control_type": "corporate",
-      "owner": "HT Media Ltd.",
-      "owner_display": "HT Media Ltd. (publicly traded)",
-      "institutional_holders": [
-        {
-          "name": "Shobhana Bhartia and family",
-          "percent": 61.4
-        },
-        {
-          "name": "LIC of India",
-          "percent": 3.2
-        },
-        {
-          "name": "Foreign Institutional Investors",
-          "percent": 8.5
-        }
-      ],
-      "ratings": {
-        "accuracy": 7.4,
-        "bias": 0.5,
-        "speed": 8.0,
-        "consensus": 7.5
-      }
-    },
-    {
-      "id": "cspan",
-      "name": "C-SPAN",
-      "url": "https://www.c-span.org/",
-      "rss": "https://www.youtube.com/feeds/videos.xml?channel_id=UCb--64Gl51jIEVE-GLDAVTg",
-      "scrape_selector": null,
-      "tier": 1,
-      "control_type": "nonprofit",
-      "owner": "National Cable Satellite Corporation",
-      "owner_display": "Cable industry nonprofit (100%)",
-      "institutional_holders": [],
-      "ratings": {
-        "accuracy": 10.0,
-        "bias": 0.0,
-        "speed": 7.0,
-        "consensus": 9.5
-      },
-      "notes": "Unfiltered government proceedings; YouTube RSS for video titles/descriptions; primary source"
     },
     {
       "id": "whitehouse",
@@ -513,44 +237,6 @@
         "consensus": 10.0
       },
       "notes": "Primary source for Supreme Court opinions; authoritative but infrequent"
-    },
-    {
-      "id": "afp",
-      "name": "Agence France-Presse",
-      "url": "https://www.afp.com/en",
-      "rss": "https://news.google.com/rss/search?q=site:afp.com&hl=en-US&gl=US&ceid=US:en",
-      "scrape_selector": "h3",
-      "tier": 1,
-      "control_type": "quasi-public",
-      "owner": "Agence France-Presse",
-      "owner_display": "Agence France-Presse (French state cooperative)",
-      "institutional_holders": [],
-      "ratings": {
-        "accuracy": 9.5,
-        "bias": 0.2,
-        "speed": 9.5,
-        "consensus": 9.4
-      },
-      "notes": "Major international wire service; direct site may block, using Google News RSS"
-    },
-    {
-      "id": "efe",
-      "name": "EFE News Agency",
-      "url": "https://efe.com/en/",
-      "rss": "https://news.google.com/rss/search?q=site:efe.com&hl=en-US&gl=US&ceid=US:en",
-      "scrape_selector": "h3",
-      "tier": 2,
-      "control_type": "state",
-      "owner": "SEPI (Spanish Government)",
-      "owner_display": "Spanish Government",
-      "institutional_holders": [],
-      "ratings": {
-        "accuracy": 8.8,
-        "bias": 0.3,
-        "speed": 8.5,
-        "consensus": 8.5
-      },
-      "notes": "Spanish wire service; strong Latin America/Spain coverage"
     },
     {
       "id": "state_dept",
@@ -657,11 +343,11 @@
     "messages": [
       {
         "message": "JTF News is supported by viewers like you.",
-        "source_text": "Support \u00b7 github.com/sponsors/larryseyer"
+        "source_text": "Support · github.com/sponsors/larryseyer"
       },
       {
         "message": "Run JTF News as your screen saver.",
-        "source_text": "Free \u00b7 jtfnews.com/screensaver"
+        "source_text": "Free · jtfnews.com/screensaver"
       }
     ]
   },
