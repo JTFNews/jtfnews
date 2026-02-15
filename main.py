@@ -3015,6 +3015,7 @@ def write_monitor_data(cycle_stats: dict):
 
     data = {
         "timestamp": now.isoformat(),
+        "web_refresh_at": now.isoformat(),  # Signal for web pages to refresh after cycle
         "uptime_start": STARTUP_TIME.isoformat(),
         "uptime_seconds": round(uptime_seconds),
         "availability_pct": uptime_stats.get("availability_pct", 0),
