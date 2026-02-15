@@ -3223,6 +3223,100 @@ def find_matching_published_story(new_fact: str) -> dict | None:
         return None
 
 
+# Common first names for gender detection (expanded list for news coverage)
+MALE_NAMES = {
+    "james", "john", "robert", "michael", "david", "william", "richard", "joseph",
+    "thomas", "charles", "christopher", "daniel", "matthew", "anthony", "mark",
+    "donald", "steven", "paul", "andrew", "joshua", "kenneth", "kevin", "brian",
+    "george", "timothy", "ronald", "edward", "jason", "jeffrey", "ryan", "jacob",
+    "gary", "nicholas", "eric", "jonathan", "stephen", "larry", "justin", "scott",
+    "brandon", "benjamin", "samuel", "raymond", "gregory", "frank", "alexander",
+    "patrick", "jack", "dennis", "jerry", "tyler", "aaron", "jose", "adam", "nathan",
+    "henry", "douglas", "zachary", "peter", "kyle", "noah", "ethan", "jeremy",
+    "walter", "christian", "keith", "roger", "terry", "austin", "sean", "gerald",
+    "carl", "harold", "dylan", "arthur", "lawrence", "jordan", "jesse", "bryan",
+    "billy", "bruce", "gabriel", "joe", "logan", "albert", "willie", "alan", "eugene",
+    "russell", "vincent", "philip", "bobby", "johnny", "bradley", "roy", "ralph",
+    "eugene", "randy", "wayne", "howard", "carlos", "russell", "louis", "harry",
+    # International/political figures
+    "vladimir", "xi", "emmanuel", "olaf", "justin", "benjamin", "narendra", "rishi",
+    "volodymyr", "recep", "jair", "andres", "pedro", "giorgia", "viktor", "mateusz",
+    "marco", "pete", "jd", "elon", "jeff", "tim", "sundar", "satya", "jensen"
+}
+
+FEMALE_NAMES = {
+    "mary", "patricia", "jennifer", "linda", "elizabeth", "barbara", "susan",
+    "jessica", "sarah", "karen", "lisa", "nancy", "betty", "margaret", "sandra",
+    "ashley", "kimberly", "emily", "donna", "michelle", "dorothy", "carol",
+    "amanda", "melissa", "deborah", "stephanie", "rebecca", "sharon", "laura",
+    "cynthia", "kathleen", "amy", "angela", "shirley", "anna", "brenda", "pamela",
+    "emma", "nicole", "helen", "samantha", "katherine", "christine", "debra",
+    "rachel", "carolyn", "janet", "catherine", "maria", "heather", "diane", "ruth",
+    "julie", "olivia", "joyce", "virginia", "victoria", "kelly", "lauren", "christina",
+    "joan", "evelyn", "judith", "megan", "andrea", "cheryl", "hannah", "jacqueline",
+    "martha", "gloria", "teresa", "ann", "sara", "madison", "frances", "kathryn",
+    "janice", "jean", "abigail", "alice", "judy", "sophia", "grace", "denise",
+    "amber", "doris", "marilyn", "danielle", "beverly", "isabella", "theresa",
+    "diana", "natalie", "brittany", "charlotte", "marie", "kayla", "alexis", "lori",
+    # International/political figures
+    "angela", "ursula", "christine", "giorgia", "sanna", "jacinda", "kamala",
+    "hillary", "nancy", "nikki", "tulsi", "karine", "janet", "gina"
+}
+
+
+def fix_repeated_subject(new_detail: str, existing_fact: str) -> str:
+    """Replace repeated subject with pronoun for natural flow.
+
+    If new_detail starts with the same subject as existing_fact,
+    replace it with He/She/They for readability when concatenated.
+    """
+    if not new_detail or not existing_fact:
+        return new_detail
+
+    # Pattern to extract title + name at start of sentence
+    # Matches: "Title Name Name" or just "Name Name"
+    title_pattern = r'^((?:President|Secretary of State|Senator|Representative|Governor|Minister|Prime Minister|Chancellor|Director|Chief|General|Admiral|Mayor|Attorney General|Press Secretary|Spokesperson|Ambassador|Commissioner|Chairman|Chairwoman|CEO|CFO|CTO|Speaker|Leader|Deputy|Vice President|White House[^,]*?)\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)'
+
+    # Extract subject from existing fact
+    existing_match = re.match(title_pattern, existing_fact)
+    if not existing_match:
+        return new_detail
+
+    existing_title = existing_match.group(1) or ""
+    existing_name = existing_match.group(2)
+    existing_subject = (existing_title + existing_name).strip()
+
+    # Check if new_detail starts with the same or similar subject
+    new_match = re.match(title_pattern, new_detail)
+    if not new_match:
+        return new_detail
+
+    new_title = new_match.group(1) or ""
+    new_name = new_match.group(2)
+    new_subject = (new_title + new_name).strip()
+
+    # Check for subject match (same name, with or without title)
+    if existing_name.lower() != new_name.lower():
+        return new_detail
+
+    # Determine pronoun based on first name
+    first_name = existing_name.split()[0].lower()
+
+    if first_name in MALE_NAMES:
+        pronoun = "He"
+    elif first_name in FEMALE_NAMES:
+        pronoun = "She"
+    else:
+        # Default to "They" for unknown/ambiguous names
+        pronoun = "They"
+
+    # Replace the subject with the pronoun
+    fixed_detail = re.sub(f'^{re.escape(new_subject)}\\s*', f'{pronoun} ', new_detail)
+
+    log.debug(f"Fixed repeated subject: '{new_subject}' -> '{pronoun}'")
+    return fixed_detail
+
+
 def extract_new_details(new_fact: str, existing_fact: str) -> str | None:
     """Use Claude to extract only NEW information from the new fact."""
     prompt = f"""Compare these two news facts about the SAME event.
@@ -3275,6 +3369,8 @@ Return JSON: {{"new_detail": "the new sentence" or "NO_NEW_INFO"}}"""
             return None
 
         track_api_failure("claude", True)
+        # Post-process to fix repeated subjects with pronouns
+        new_detail = fix_repeated_subject(new_detail, existing_fact)
         return new_detail
 
     except Exception as e:
