@@ -2733,7 +2733,16 @@ Extract ONLY genuinely new, verifiable information from NEW SOURCE that is NOT a
 Do NOT include anything already stated or implied in EXISTING.
 Do NOT rephrase existing information.
 
-If there is genuinely new information, return it as a short factual sentence.
+IMPORTANT: The new detail will be APPENDED to the existing fact. Do NOT repeat the subject
+(person/organization/entity) if it's already established in EXISTING. Use pronouns or start
+with the new action/information directly so it reads naturally when concatenated.
+
+Example:
+- EXISTING: "Secretary of State Marco Rubio announced the alliance."
+- BAD new_detail: "Secretary of State Marco Rubio will visit Europe." (repeats subject)
+- GOOD new_detail: "He will visit Europe next week." (uses pronoun)
+
+If there is genuinely new information, return it as a short factual sentence that continues naturally from EXISTING.
 If there is NO new information, return exactly: NO_NEW_INFO
 
 Return JSON: {{"new_detail": "the new sentence" or "NO_NEW_INFO"}}"""
