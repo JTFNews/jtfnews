@@ -5,7 +5,7 @@
 
 const POLL_INTERVAL = 10000; // 10 seconds
 const STALE_THRESHOLD = 600000; // 10 minutes in ms
-const MONITOR_URL = './monitor.json';
+const MONITOR_URL = '../data/monitor.json';
 
 let lastFetchTime = null;
 let pollTimer = null;
@@ -149,6 +149,12 @@ function updateDashboard(data) {
 
     document.getElementById('uptime').textContent = formatUptime(data.uptime_seconds);
 
+    // Show monthly availability % if available
+    const availabilityEl = document.getElementById('availability');
+    if (availabilityEl && data.availability_pct !== undefined) {
+        availabilityEl.textContent = `${data.availability_pct}%`;
+    }
+
     const streamHealth = data.status?.stream_health || 'unknown';
     const streamEl = document.getElementById('stream-health');
     streamEl.textContent = streamHealth.charAt(0).toUpperCase() + streamHealth.slice(1);
@@ -183,6 +189,12 @@ function updateDashboard(data) {
     // Monthly estimate
     document.getElementById('month-estimate').textContent =
         formatCurrency(costs.month_estimate_usd);
+
+    // Daily budget (dynamic based on days in month)
+    const dailyBudgetEl = document.getElementById('daily-budget');
+    if (dailyBudgetEl) {
+        dailyBudgetEl.textContent = formatCurrency(costs.daily_budget);
+    }
 
     // Current Cycle
     const cycle = data.cycle || {};
