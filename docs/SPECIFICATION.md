@@ -1388,6 +1388,19 @@ Example: "Reuters 9.8|9.5" = 9.8 accuracy, 9.5 bias
 
 Full scores (all 4) and ownership disclosure: jtfnews.com/sources
 ─────────────────────────────
+
+LINKS
+• How It Works: https://larryseyer.github.io/jtfnews/how-it-works.html
+• Whitepaper: https://larryseyer.github.io/jtfnews/whitepaper.html
+• Screensaver: https://larryseyer.github.io/jtfnews/screensaver-setup.html
+• Transparency: https://larryseyer.github.io/jtfnews/
+• RSS Feed: https://larryseyer.github.io/jtfnews/feed.xml
+• Source Code: https://github.com/larryseyer/jtfnews
+• Support: https://github.com/sponsors/larryseyer
+
+─────────────────────────────
+This methodology belongs to no one. It serves everyone.
+Licensed CC-BY-SA. Use it. Share it. Credit us.
 ```
 
 **Category:** News & Politics
