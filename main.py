@@ -3911,6 +3911,35 @@ def archive_daily_log():
     except subprocess.CalledProcessError as e:
         log.warning(f"Failed to push archive: {e}")
 
+    # Update archive index after archiving
+    update_archive_index()
+
+
+def update_archive_index():
+    """Update archive/index.json with list of available archive dates."""
+    archive_dir = BASE_DIR / "gh-pages-dist" / "archive"
+    if not archive_dir.exists():
+        log.debug("Archive directory does not exist yet")
+        return
+
+    dates = []
+    for year_dir in sorted(archive_dir.iterdir(), reverse=True):
+        if year_dir.is_dir() and year_dir.name.isdigit():
+            for archive_file in sorted(year_dir.glob("*.txt.gz"), reverse=True):
+                date_str = archive_file.stem.replace(".txt", "")
+                dates.append(date_str)
+
+    index_data = {
+        "last_updated": datetime.now(timezone.utc).isoformat(),
+        "dates": dates
+    }
+
+    index_file = archive_dir / "index.json"
+    with open(index_file, 'w') as f:
+        json.dump(index_data, f, indent=2)
+
+    log.info(f"Updated archive index: {len(dates)} dates")
+
 
 # =============================================================================
 # MAIN LOOP

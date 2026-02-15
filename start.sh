@@ -21,6 +21,7 @@ if [ "$1" = "--fresh" ]; then
     echo ""
     echo "This will delete:"
     echo "  - stories.json (all today's stories)"
+    echo "  - queue.json (pending stories)"
     echo "  - current.txt, source.txt"
     echo "  - jtf.log"
     echo ""
@@ -33,9 +34,9 @@ if [ "$1" = "--fresh" ]; then
         exit 1
     fi
     echo "Clearing old stories for fresh start..."
-    rm -f data/stories.json data/current.txt data/source.txt
+    rm -f data/stories.json data/current.txt data/source.txt data/queue.json
     > "$LOG_FILE"
-    echo "Cleared: stories.json, current.txt, source.txt, jtf.log"
+    echo "Cleared: stories.json, queue.json, current.txt, source.txt, jtf.log"
 fi
 
 echo "Starting JTF News... (logging to $LOG_FILE)"
