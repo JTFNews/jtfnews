@@ -1,6 +1,6 @@
-# Rumble Video Description & Pinned Comment
+# Rumble Video Description
 
-Rumble works like YouTube. Use the description for SEO, pin a comment for links.
+Use the description for SEO and informational links. No pinned comments (consistent with JTF "no engagement" policy).
 
 ---
 
@@ -27,37 +27,9 @@ Licensed CC-BY-SA. Use it. Share it. Credit us.
 LINKS:
 How It Works: https://larryseyer.github.io/jtfnews/how-it-works.html
 Whitepaper: https://larryseyer.github.io/jtfnews/whitepaper.html
-Live Costs: https://larryseyer.github.io/jtfnews/
+Screensaver: https://larryseyer.github.io/jtfnews/screensaver-setup.html
+Transparency: https://larryseyer.github.io/jtfnews/
+RSS Feed: https://larryseyer.github.io/jtfnews/feed.xml
 Source Code: https://github.com/larryseyer/jtfnews
 Support: https://github.com/sponsors/larryseyer
 
----
-
-## Pinned Comment
-
-WHAT IS JTF NEWS?
-Two sources. Different owners. Strip the adjectives. State the facts. Stop.
-
-This is not journalism. It is data.
-
-HOW IT WORKS
-https://larryseyer.github.io/jtfnews/how-it-works.html
-
-THE WHITEPAPER
-https://larryseyer.github.io/jtfnews/whitepaper.html
-
-SCREENSAVER
-https://larryseyer.github.io/jtfnews/screensaver-setup.html
-
-TRANSPARENCY
-https://larryseyer.github.io/jtfnews/
-
-SOURCE CODE
-https://github.com/larryseyer/jtfnews
-
-SUPPORT
-https://github.com/sponsors/larryseyer
-
----
-This methodology belongs to no one. It serves everyone.
-Licensed CC-BY-SA. Use it. Share it. Credit us.
