@@ -172,7 +172,30 @@ Let OBS handle what OBS does best. We write minimal code.
 
 ## 5. News Sources
 
-### 5.1 The 30 Sources
+### 5.0 Source Selection Criteria
+
+Sources must meet ALL criteria:
+1. **RSS Feed Provided** - Official RSS feed available (not scraped from HTML)
+2. **ToS Compliant** - Terms of service permit aggregation or low legal risk
+3. **Ownership Verifiable** - Corporate structure is documented
+4. **Low Litigation Risk** - Not known plaintiffs in aggregation lawsuits
+
+**Source Categories (in order of preference):**
+| Category | Risk Level | Examples |
+|----------|------------|----------|
+| Government/Primary | None | whitehouse, congress, scotus |
+| Public Broadcasters | Low | bbc, npr, pbs, cbc |
+| Trusts/Nonprofits | Low | guardian, irish |
+| Commercial (reviewed) | Medium | *none currently* |
+
+**Excluded Categories:**
+- Wire services (AP, Reuters, AFP) - licensing models + litigation history
+- Commercial media with unreviewed ToS
+- YouTube/third-party platform RSS
+
+For detailed compliance documentation, see `docs/ToS_Compliance.md`.
+
+### 5.1 Source List
 
 Each source has:
 - `name`: Display name
@@ -186,28 +209,6 @@ Each source has:
 
 ```json
 [
-  {
-    "id": "reuters",
-    "name": "Reuters",
-    "url": "https://www.reuters.com",
-    "rss": "https://www.reuters.com/rssFeed/worldNews",
-    "scrape_selector": "h3[data-testid='Heading']",
-    "owner": "Thomson Reuters Corporation",
-    "country": "UK/Canada",
-    "type": "private",
-    "default_rating": 9.8
-  },
-  {
-    "id": "ap",
-    "name": "Associated Press",
-    "url": "https://apnews.com",
-    "rss": "https://apnews.com/rss",
-    "scrape_selector": "h2.PagePromo-title",
-    "owner": "AP Cooperative (member newspapers)",
-    "country": "USA",
-    "type": "cooperative",
-    "default_rating": 9.6
-  },
   {
     "id": "bbc",
     "name": "BBC News",
@@ -240,17 +241,6 @@ Each source has:
     "country": "UK",
     "type": "trust",
     "default_rating": 8.8
-  },
-  {
-    "id": "aljazeera",
-    "name": "Al Jazeera English",
-    "url": "https://www.aljazeera.com/news/",
-    "rss": "https://www.aljazeera.com/xml/rss/all.xml",
-    "scrape_selector": "h3.gc__title",
-    "owner": "Al Jazeera Media Network (Qatar)",
-    "country": "Qatar",
-    "type": "state",
-    "default_rating": 8.5
   },
   {
     "id": "france24",
@@ -297,28 +287,6 @@ Each source has:
     "default_rating": 9.0
   },
   {
-    "id": "independent",
-    "name": "The Independent",
-    "url": "https://www.independent.co.uk/news/world",
-    "rss": "https://www.independent.co.uk/news/world/rss",
-    "scrape_selector": "h2.title",
-    "owner": "Lebedev family",
-    "country": "UK",
-    "type": "private",
-    "default_rating": 7.8
-  },
-  {
-    "id": "sky",
-    "name": "Sky News",
-    "url": "https://news.sky.com/world",
-    "rss": "https://feeds.skynews.com/feeds/rss/world.xml",
-    "scrape_selector": "h3.sdc-site-tile__headline",
-    "owner": "Comcast (Sky Group)",
-    "country": "UK",
-    "type": "private",
-    "default_rating": 8.2
-  },
-  {
     "id": "pbs",
     "name": "PBS NewsHour",
     "url": "https://www.pbs.org/newshour/world",
@@ -330,50 +298,6 @@ Each source has:
     "default_rating": 9.1
   },
   {
-    "id": "euronews",
-    "name": "Euronews",
-    "url": "https://www.euronews.com/news",
-    "rss": "https://www.euronews.com/rss",
-    "scrape_selector": "h3.title",
-    "owner": "Alpac Capital (Portugal)",
-    "country": "EU",
-    "type": "private",
-    "default_rating": 8.0
-  },
-  {
-    "id": "toi",
-    "name": "Times of India",
-    "url": "https://timesofindia.indiatimes.com/world",
-    "rss": "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms",
-    "scrape_selector": "span.w_tle",
-    "owner": "Bennett Coleman & Co. Ltd.",
-    "country": "India",
-    "type": "private",
-    "default_rating": 7.5
-  },
-  {
-    "id": "scmp",
-    "name": "South China Morning Post",
-    "url": "https://www.scmp.com/news/world",
-    "rss": "https://www.scmp.com/rss/91/feed",
-    "scrape_selector": "h2.headline",
-    "owner": "Alibaba Group",
-    "country": "Hong Kong",
-    "type": "private",
-    "default_rating": 7.8
-  },
-  {
-    "id": "globe",
-    "name": "The Globe and Mail",
-    "url": "https://www.theglobeandmail.com/world/",
-    "rss": "https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/world/",
-    "scrape_selector": "h3.c-card__title",
-    "owner": "Woodbridge Company (Thomson family)",
-    "country": "Canada",
-    "type": "private",
-    "default_rating": 8.4
-  },
-  {
     "id": "irish",
     "name": "Irish Times",
     "url": "https://www.irishtimes.com/world/",
@@ -383,45 +307,25 @@ Each source has:
     "country": "Ireland",
     "type": "trust",
     "default_rating": 8.5
-  },
-  {
-    "id": "straits",
-    "name": "The Straits Times",
-    "url": "https://www.straitstimes.com/world",
-    "rss": "https://www.straitstimes.com/news/world/rss.xml",
-    "scrape_selector": "h5.card-title",
-    "owner": "Singapore Press Holdings",
-    "country": "Singapore",
-    "type": "private",
-    "default_rating": 7.6
-  },
-  {
-    "id": "hindustan",
-    "name": "Hindustan Times",
-    "url": "https://www.hindustantimes.com/world-news",
-    "rss": "https://www.hindustantimes.com/feeds/rss/world-news/rssfeed.xml",
-    "scrape_selector": "h3.hdg3",
-    "owner": "HT Media Ltd. (Shobhana Bhartia)",
-    "country": "India",
-    "type": "private",
-    "default_rating": 7.4
   }
 ]
 ```
+
+*Note: This shows 9 of 17 sources. Full source list with government/primary sources is in `config.json`.*
 
 ### 5.2 Ownership Verification Rule
 
 Two sources must have **different owners** to verify a story.
 
 **Same owner = same source:**
-- Reuters and Reuters = 1 source
-- Two Alibaba-owned outlets = 1 source
-- BBC and BBC World Service = 1 source
+- BBC and BBC World Service = 1 source (same corporation)
+- Two outlets owned by same trust = 1 source
+- Guardian US and Guardian UK = 1 source (same Scott Trust)
 
 **Different owners = valid verification:**
-- Reuters (Thomson Reuters) + AP (cooperative) = 2 sources ✓
 - BBC (public UK) + CBC (public Canada) = 2 sources ✓
-- Guardian (Scott Trust) + Independent (Lebedev) = 2 sources ✓
+- Guardian (Scott Trust) + Irish Times (Irish Times Trust) = 2 sources ✓
+- NPR (US nonprofit) + DW (German government) = 2 sources ✓
 
 ### 5.3 Source Ownership Disclosure
 
@@ -433,16 +337,12 @@ Each source includes ownership fields matching config.json:
 
 ```json
 {
-  "id": "reuters",
-  "name": "Reuters",
-  "control_type": "corporate",
-  "owner": "Thomson Reuters Corporation",
-  "owner_display": "Thomson Reuters (public)",
-  "institutional_holders": [
-    {"name": "Woodbridge Company", "percent": 69.0},
-    {"name": "Vanguard", "percent": 3.1},
-    {"name": "BlackRock", "percent": 2.8}
-  ]
+  "id": "guardian",
+  "name": "The Guardian",
+  "control_type": "trust",
+  "owner": "Scott Trust Limited",
+  "owner_display": "Scott Trust (100%)",
+  "institutional_holders": []
 }
 ```
 
@@ -463,39 +363,38 @@ For public broadcasters or nonprofits (no institutional shareholders):
 
 | Type | Example | Ownership Display |
 |------|---------|-------------------|
-| `private` | Reuters | Parent company + institutional shareholders if public |
 | `public` | BBC, NPR | Government/public entity at 100% |
-| `cooperative` | AP | "Member newspapers (cooperative) 100%" |
-| `trust` | Guardian | Trust name at 100% |
-| `state` | Al Jazeera | State/government entity at 100% |
+| `trust` | Guardian, Irish Times | Trust name at 100% |
 
 #### 5.3.3 Display Formats
 
 **Lower-third source bar (compact):**
 ```
-Reuters 9.8|9.5 · AP 9.6|9.2
+BBC 9.4|9.2 · NPR 9.2|9.0
 ```
 Format: `Name Accuracy|Bias` — no ownership on stream (keeps it calm)
 
 **Website (full disclosure):**
 ```
-Reuters
-├─ Accuracy: 9.8
-├─ Bias: 9.5
-├─ Speed: 9.8
-├─ Consensus: 9.8
-└─ Ownership:
-   • Woodbridge Company (69.0%)
-   • Vanguard (3.1%)
-   • BlackRock (2.8%)
+BBC News
+├─ Accuracy: 9.4
+├─ Bias: 9.2
+├─ Speed: 9.0
+├─ Consensus: 9.3
+└─ Ownership: UK Public Broadcaster (100%)
+
+The Guardian
+├─ Accuracy: 8.8
+├─ Bias: 8.5
+├─ Speed: 8.2
+├─ Consensus: 8.7
+└─ Ownership: Scott Trust (100%)
 ```
 
 **RSS feed (machine-readable):**
 ```xml
-<source name="Reuters" accuracy="9.8" bias="9.5" speed="9.8" consensus="9.8">
-  <owner name="Woodbridge Company" percent="69.0"/>
-  <owner name="Vanguard" percent="3.1"/>
-  <owner name="BlackRock" percent="2.8"/>
+<source name="BBC News" accuracy="9.4" bias="9.2" speed="9.0" consensus="9.3">
+  <owner name="UK Public Broadcaster" percent="100"/>
 </source>
 ```
 
@@ -510,7 +409,7 @@ Ownership data is verified quarterly to ensure accuracy.
 - Q4 Review: October
 
 **Process:**
-1. Research current ownership for all 30 sources
+1. Research current ownership for all sources
 2. Compare against config.json
 3. Update any changed percentages
 4. Log changes to `data/ownership_audit.json`
@@ -522,9 +421,9 @@ Ownership data is verified quarterly to ensure accuracy.
   "date": "2026-04-01",
   "quarter": "Q2 2026",
   "changes": [
-    {"source": "euronews", "field": "percent", "old": 97.6, "new": 98.2}
+    {"source": "bbc", "field": "percent", "old": 97.6, "new": 98.2}
   ],
-  "verified_unchanged": ["reuters", "bbc", "ap"]
+  "verified_unchanged": ["bbc", "npr", "guardian"]
 }
 ```
 
@@ -606,16 +505,16 @@ A high consensus score means the source rarely reports things that other sources
 
 #### 5.4.5 Score Display
 
-**Lower-third (compact):** `Reuters 9.8|9.5` (Accuracy|Bias only — top 2 priorities)
+**Lower-third (compact):** `BBC 9.4|9.2` (Accuracy|Bias only — top 2 priorities)
 
 **Website (full):**
 ```
-Reuters
-├─ Accuracy: 9.8
-├─ Bias: 9.5
-├─ Speed: 9.8
-├─ Consensus: 9.8
-└─ Ownership: Thomson Reuters (69%), Vanguard (3.1%), BlackRock (2.8%)
+BBC News
+├─ Accuracy: 9.4
+├─ Bias: 9.2
+├─ Speed: 9.0
+├─ Consensus: 9.3
+└─ Ownership: UK Public Broadcaster (100%)
 ```
 
 **RSS feed:** All 4 scores as XML attributes
