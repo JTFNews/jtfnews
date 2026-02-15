@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-02-15T06:28:07.870729+00:00",
-  "uptime_start": "2026-02-15T06:12:08.772167+00:00",
-  "uptime_seconds": 959,
-  "availability_pct": 59.4,
+  "timestamp": "2026-02-15T06:31:28.284461+00:00",
+  "web_refresh_at": "2026-02-15T06:31:28.284461+00:00",
+  "uptime_start": "2026-02-15T06:30:28.645435+00:00",
+  "uptime_seconds": 60,
+  "availability_pct": 54.4,
   "cycle": {
     "number": 1,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "duration_seconds": 59.2,
+    "headlines_scraped": 258,
+    "headlines_processed": 9,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 494,
-        "cost_usd": 0.18211625000000026,
+        "calls": 506,
+        "cost_usd": 0.18648350000000027,
         "details": {
-          "input_tokens": 445290,
-          "output_tokens": 56635
+          "input_tokens": 455964,
+          "output_tokens": 57994
         }
       },
       "elevenlabs": {
@@ -29,26 +30,34 @@
         }
       }
     },
-    "total_usd": 0.2247,
+    "total_usd": 0.2291,
     "month_estimate_usd": 9.44,
     "daily_budget": 1.79,
-    "budget_pct": 12.6
+    "budget_pct": 12.8
   },
   "queue": {
-    "size": 44,
-    "oldest_item_age_hours": 10.0
+    "size": 45,
+    "oldest_item_age_hours": 10.1
   },
   "stories_today": 10,
   "sources": {
     "total": 30,
-    "successful": 30,
-    "failed": []
+    "successful": 29,
+    "failed": [
+      "C-SPAN"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-02-15T06:30:51.884250+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from C-SPAN: 'NoneType' object has no attribute 'replace'"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 1,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   }
 }
