@@ -62,6 +62,35 @@ def indent_xml(elem, level=0, space="  "):
             elem.tail = i
 
 
+def clean_duplicate_namespaces(file_path):
+    """Remove duplicate namespace declarations from XML file.
+
+    ElementTree sometimes adds duplicate xmlns declarations when multiple
+    namespaces are used. This post-processes the file to remove duplicates.
+    """
+    import re
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # Find the rss opening tag and clean up duplicates
+    def remove_dupe_attrs(match):
+        tag = match.group(0)
+        # Extract all attributes
+        attrs = re.findall(r'(\S+)="([^"]*)"', tag)
+        seen = set()
+        unique_attrs = []
+        for name, value in attrs:
+            if name not in seen:
+                seen.add(name)
+                unique_attrs.append(f'{name}="{value}"')
+        return f'<rss {" ".join(unique_attrs)}>'
+
+    content = re.sub(r'<rss[^>]+>', remove_dupe_attrs, content)
+
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(content)
+
+
 # =============================================================================
 # RETRY LOGIC WITH EXPONENTIAL BACKOFF
 # =============================================================================
@@ -1949,8 +1978,18 @@ def update_rss_feed(fact: str, sources: list):
     Per SPECIFICATION.md Section 5.3.3, each source element includes:
     - name, accuracy, bias, speed, consensus as attributes
     - owner elements with name and percent
+
+    Uses jtf: namespace for custom elements to comply with RSS 2.0.
     """
     import subprocess
+
+    # Namespace URIs
+    JTF_NS = "https://jtfnews.com/rss"
+    ATOM_NS = "http://www.w3.org/2005/Atom"
+
+    # Register namespaces for clean XML output
+    ET.register_namespace("jtf", JTF_NS)
+    ET.register_namespace("atom", ATOM_NS)
 
     gh_pages_dir = BASE_DIR / "gh-pages-dist"
     feed_file = gh_pages_dir / "feed.xml"
@@ -1990,35 +2029,54 @@ def update_rss_feed(fact: str, sources: list):
             root = tree.getroot()
             channel = root.find("channel")
             for item in channel.findall("item"):
-                # Parse rich source structure if present
+                # Parse rich source structure (check both namespaced and non-namespaced)
                 item_sources = []
-                for source_el in item.findall("source"):
-                    if source_el.get("name"):
-                        # Rich format with attributes
-                        source_data = {
-                            "name": source_el.get("name", ""),
-                            "accuracy": source_el.get("accuracy", "0.0"),
-                            "bias": source_el.get("bias", "0.0"),
-                            "speed": source_el.get("speed", "0.0"),
-                            "consensus": source_el.get("consensus", "0.0"),
-                            "control_type": source_el.get("control_type", "unknown"),
-                            "owners": []
-                        }
-                        for owner_el in source_el.findall("owner"):
-                            source_data["owners"].append({
-                                "name": owner_el.get("name", ""),
-                                "percent": owner_el.get("percent", "0.0")
-                            })
-                        item_sources.append(source_data)
-                    elif source_el.text:
-                        # Legacy format: plain text (will be converted on next update)
-                        for name in source_el.text.split(", "):
-                            item_sources.append({
-                                "name": name.strip(),
-                                "accuracy": "0.0", "bias": "0.0",
-                                "speed": "0.0", "consensus": "0.0",
-                                "control_type": "unknown", "owners": []
-                            })
+                # Try namespaced version first
+                for source_el in item.findall(f"{{{JTF_NS}}}source"):
+                    source_data = {
+                        "name": source_el.get("name", ""),
+                        "accuracy": source_el.get("accuracy", "0.0"),
+                        "bias": source_el.get("bias", "0.0"),
+                        "speed": source_el.get("speed", "0.0"),
+                        "consensus": source_el.get("consensus", "0.0"),
+                        "control_type": source_el.get("control_type", "unknown"),
+                        "owners": []
+                    }
+                    for owner_el in source_el.findall(f"{{{JTF_NS}}}owner"):
+                        source_data["owners"].append({
+                            "name": owner_el.get("name", ""),
+                            "percent": owner_el.get("percent", "0.0")
+                        })
+                    item_sources.append(source_data)
+
+                # Fall back to non-namespaced (legacy migration)
+                if not item_sources:
+                    for source_el in item.findall("source"):
+                        if source_el.get("name"):
+                            source_data = {
+                                "name": source_el.get("name", ""),
+                                "accuracy": source_el.get("accuracy", "0.0"),
+                                "bias": source_el.get("bias", "0.0"),
+                                "speed": source_el.get("speed", "0.0"),
+                                "consensus": source_el.get("consensus", "0.0"),
+                                "control_type": source_el.get("control_type", "unknown"),
+                                "owners": []
+                            }
+                            for owner_el in source_el.findall("owner"):
+                                source_data["owners"].append({
+                                    "name": owner_el.get("name", ""),
+                                    "percent": owner_el.get("percent", "0.0")
+                                })
+                            item_sources.append(source_data)
+                        elif source_el.text:
+                            # Very old format: plain text
+                            for name in source_el.text.split(", "):
+                                item_sources.append({
+                                    "name": name.strip(),
+                                    "accuracy": "0.0", "bias": "0.0",
+                                    "speed": "0.0", "consensus": "0.0",
+                                    "control_type": "unknown", "owners": []
+                                })
 
                 items.append({
                     "title": item.find("title").text or "",
@@ -2036,8 +2094,12 @@ def update_rss_feed(fact: str, sources: list):
     # Trim to max items
     items = items[:max_items]
 
-    # Build RSS XML
-    rss = ET.Element("rss", version="2.0")
+    # Build RSS XML (namespaces added via register_namespace above)
+    rss = ET.Element("rss", {"version": "2.0"})
+    # Manually set namespace attributes to ensure they appear on root element
+    rss.set(f"xmlns:jtf", JTF_NS)
+    rss.set(f"xmlns:atom", ATOM_NS)
+
     channel = ET.SubElement(rss, "channel")
 
     ET.SubElement(channel, "title").text = "JTF News - Just The Facts"
@@ -2046,26 +2108,33 @@ def update_rss_feed(fact: str, sources: list):
     ET.SubElement(channel, "language").text = "en-us"
     ET.SubElement(channel, "lastBuildDate").text = pub_date
 
+    # Add atom:link for RSS compliance
+    ET.SubElement(channel, f"{{{ATOM_NS}}}link", {
+        "href": "https://larryseyer.github.io/jtfnews/feed.xml",
+        "rel": "self",
+        "type": "application/rss+xml"
+    })
+
     for item_data in items:
         item = ET.SubElement(channel, "item")
         ET.SubElement(item, "title").text = item_data["title"]
         ET.SubElement(item, "description").text = item_data["description"]
 
-        # Write rich source elements per SPECIFICATION.md
+        # Write namespaced source elements per SPECIFICATION.md
         for source_data in item_data.get("sources", []):
-            source_el = ET.SubElement(item, "source",
-                name=source_data["name"],
-                accuracy=source_data["accuracy"],
-                bias=source_data["bias"],
-                speed=source_data["speed"],
-                consensus=source_data["consensus"],
-                control_type=source_data["control_type"]
-            )
+            source_el = ET.SubElement(item, f"{{{JTF_NS}}}source", {
+                "name": source_data["name"],
+                "accuracy": source_data["accuracy"],
+                "bias": source_data["bias"],
+                "speed": source_data["speed"],
+                "consensus": source_data["consensus"],
+                "control_type": source_data["control_type"]
+            })
             for owner in source_data.get("owners", []):
-                ET.SubElement(source_el, "owner",
-                    name=owner["name"],
-                    percent=owner["percent"]
-                )
+                ET.SubElement(source_el, f"{{{JTF_NS}}}owner", {
+                    "name": owner["name"],
+                    "percent": owner["percent"]
+                })
 
         ET.SubElement(item, "pubDate").text = item_data["pubDate"]
         ET.SubElement(item, "guid", isPermaLink="false").text = item_data["guid"]
@@ -2075,6 +2144,9 @@ def update_rss_feed(fact: str, sources: list):
     tree = ET.ElementTree(rss)
     with open(feed_file, 'wb') as f:
         tree.write(f, encoding="utf-8", xml_declaration=True)
+
+    # Clean up duplicate namespace declarations (ElementTree quirk)
+    clean_duplicate_namespaces(feed_file)
 
     log.info(f"RSS feed updated: {len(items)} items")
 
@@ -2109,8 +2181,17 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
 
     Uses same rich source format as update_rss_feed for consistency.
     Corrections only have source names (not IDs), so ratings are omitted.
+    Uses jtf: namespace for custom elements to comply with RSS 2.0.
     """
     import subprocess
+
+    # Namespace URIs
+    JTF_NS = "https://jtfnews.com/rss"
+    ATOM_NS = "http://www.w3.org/2005/Atom"
+
+    # Register namespaces for clean XML output
+    ET.register_namespace("jtf", JTF_NS)
+    ET.register_namespace("atom", ATOM_NS)
 
     gh_pages_dir = BASE_DIR / "gh-pages-dist"
     feed_file = gh_pages_dir / "feed.xml"
@@ -2160,31 +2241,51 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
             channel = root.find("channel")
             for item in channel.findall("item"):
                 item_sources = []
-                for source_el in item.findall("source"):
-                    if source_el.get("name"):
-                        source_data = {
-                            "name": source_el.get("name", ""),
-                            "accuracy": source_el.get("accuracy", "0.0"),
-                            "bias": source_el.get("bias", "0.0"),
-                            "speed": source_el.get("speed", "0.0"),
-                            "consensus": source_el.get("consensus", "0.0"),
-                            "control_type": source_el.get("control_type", "unknown"),
-                            "owners": []
-                        }
-                        for owner_el in source_el.findall("owner"):
-                            source_data["owners"].append({
-                                "name": owner_el.get("name", ""),
-                                "percent": owner_el.get("percent", "0.0")
-                            })
-                        item_sources.append(source_data)
-                    elif source_el.text:
-                        for name in source_el.text.split(", "):
-                            item_sources.append({
-                                "name": name.strip(),
-                                "accuracy": "0.0", "bias": "0.0",
-                                "speed": "0.0", "consensus": "0.0",
-                                "control_type": "unknown", "owners": []
-                            })
+                # Try namespaced version first
+                for source_el in item.findall(f"{{{JTF_NS}}}source"):
+                    source_data = {
+                        "name": source_el.get("name", ""),
+                        "accuracy": source_el.get("accuracy", "0.0"),
+                        "bias": source_el.get("bias", "0.0"),
+                        "speed": source_el.get("speed", "0.0"),
+                        "consensus": source_el.get("consensus", "0.0"),
+                        "control_type": source_el.get("control_type", "unknown"),
+                        "owners": []
+                    }
+                    for owner_el in source_el.findall(f"{{{JTF_NS}}}owner"):
+                        source_data["owners"].append({
+                            "name": owner_el.get("name", ""),
+                            "percent": owner_el.get("percent", "0.0")
+                        })
+                    item_sources.append(source_data)
+
+                # Fall back to non-namespaced (legacy migration)
+                if not item_sources:
+                    for source_el in item.findall("source"):
+                        if source_el.get("name"):
+                            source_data = {
+                                "name": source_el.get("name", ""),
+                                "accuracy": source_el.get("accuracy", "0.0"),
+                                "bias": source_el.get("bias", "0.0"),
+                                "speed": source_el.get("speed", "0.0"),
+                                "consensus": source_el.get("consensus", "0.0"),
+                                "control_type": source_el.get("control_type", "unknown"),
+                                "owners": []
+                            }
+                            for owner_el in source_el.findall("owner"):
+                                source_data["owners"].append({
+                                    "name": owner_el.get("name", ""),
+                                    "percent": owner_el.get("percent", "0.0")
+                                })
+                            item_sources.append(source_data)
+                        elif source_el.text:
+                            for name in source_el.text.split(", "):
+                                item_sources.append({
+                                    "name": name.strip(),
+                                    "accuracy": "0.0", "bias": "0.0",
+                                    "speed": "0.0", "consensus": "0.0",
+                                    "control_type": "unknown", "owners": []
+                                })
 
                 items.append({
                     "title": item.find("title").text or "",
@@ -2200,8 +2301,9 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
     items.insert(0, new_item)
     items = items[:max_items]
 
-    # Build RSS XML
-    rss = ET.Element("rss", version="2.0")
+    # Build RSS XML (register_namespace handles namespace declarations)
+    rss = ET.Element("rss", {"version": "2.0"})
+
     channel = ET.SubElement(rss, "channel")
 
     ET.SubElement(channel, "title").text = "JTF News - Just The Facts"
@@ -2210,26 +2312,33 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
     ET.SubElement(channel, "language").text = "en-us"
     ET.SubElement(channel, "lastBuildDate").text = pub_date
 
+    # Add atom:link for RSS compliance
+    ET.SubElement(channel, f"{{{ATOM_NS}}}link", {
+        "href": "https://larryseyer.github.io/jtfnews/feed.xml",
+        "rel": "self",
+        "type": "application/rss+xml"
+    })
+
     for item_data in items:
         item = ET.SubElement(channel, "item")
         ET.SubElement(item, "title").text = item_data["title"]
         ET.SubElement(item, "description").text = item_data["description"]
 
-        # Write rich source elements
+        # Write namespaced source elements
         for source_data in item_data.get("sources", []):
-            source_el = ET.SubElement(item, "source",
-                name=source_data["name"],
-                accuracy=source_data["accuracy"],
-                bias=source_data["bias"],
-                speed=source_data["speed"],
-                consensus=source_data["consensus"],
-                control_type=source_data["control_type"]
-            )
+            source_el = ET.SubElement(item, f"{{{JTF_NS}}}source", {
+                "name": source_data["name"],
+                "accuracy": source_data["accuracy"],
+                "bias": source_data["bias"],
+                "speed": source_data["speed"],
+                "consensus": source_data["consensus"],
+                "control_type": source_data["control_type"]
+            })
             for owner in source_data.get("owners", []):
-                ET.SubElement(source_el, "owner",
-                    name=owner["name"],
-                    percent=owner["percent"]
-                )
+                ET.SubElement(source_el, f"{{{JTF_NS}}}owner", {
+                    "name": owner["name"],
+                    "percent": owner["percent"]
+                })
 
         ET.SubElement(item, "pubDate").text = item_data["pubDate"]
         ET.SubElement(item, "guid", isPermaLink="false").text = item_data["guid"]
@@ -2239,6 +2348,9 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
     tree = ET.ElementTree(rss)
     with open(feed_file, 'wb') as f:
         tree.write(f, encoding="utf-8", xml_declaration=True)
+
+    # Clean up duplicate namespace declarations (ElementTree quirk)
+    clean_duplicate_namespaces(feed_file)
 
     log.info(f"RSS feed updated with {correction_type}: {title[:50]}")
 
@@ -2272,7 +2384,16 @@ def regenerate_rss_feed():
 
     Parses source names from stories.json, looks up full source data,
     and rebuilds the feed in the new format per SPECIFICATION.md Section 5.3.3.
+    Uses jtf: namespace for custom elements to comply with RSS 2.0.
     """
+    # Namespace URIs
+    JTF_NS = "https://jtfnews.com/rss"
+    ATOM_NS = "http://www.w3.org/2005/Atom"
+
+    # Register namespaces for clean XML output
+    ET.register_namespace("jtf", JTF_NS)
+    ET.register_namespace("atom", ATOM_NS)
+
     gh_pages_dir = BASE_DIR / "gh-pages-dist"
     feed_file = gh_pages_dir / "feed.xml"
     stories_file = gh_pages_dir / "stories.json"
@@ -2350,38 +2471,57 @@ def regenerate_rss_feed():
             for item in channel.findall("item"):
                 guid = item.find("guid").text or ""
                 if guid not in existing_guids:
-                    # Parse and preserve existing items
+                    # Parse and preserve existing items (check namespaced first)
                     item_sources = []
-                    for source_el in item.findall("source"):
-                        if source_el.get("name"):
-                            source_data = {
-                                "name": source_el.get("name", ""),
-                                "accuracy": source_el.get("accuracy", "0.0"),
-                                "bias": source_el.get("bias", "0.0"),
-                                "speed": source_el.get("speed", "0.0"),
-                                "consensus": source_el.get("consensus", "0.0"),
-                                "control_type": source_el.get("control_type", "unknown"),
-                                "owners": []
-                            }
-                            for owner_el in source_el.findall("owner"):
-                                source_data["owners"].append({
-                                    "name": owner_el.get("name", ""),
-                                    "percent": owner_el.get("percent", "0.0")
-                                })
-                            item_sources.append(source_data)
-                        elif source_el.text:
-                            # Legacy format - try to convert
-                            for name in source_el.text.split(", "):
-                                name = name.strip()
-                                source_id = get_source_id_by_name(name)
-                                if source_id:
-                                    item_sources.append(get_source_for_rss(source_id))
-                                else:
-                                    item_sources.append({
-                                        "name": name,
-                                        "accuracy": "—", "bias": "—", "speed": "—", "consensus": "—",
-                                        "control_type": "unknown", "owners": []
+                    for source_el in item.findall(f"{{{JTF_NS}}}source"):
+                        source_data = {
+                            "name": source_el.get("name", ""),
+                            "accuracy": source_el.get("accuracy", "0.0"),
+                            "bias": source_el.get("bias", "0.0"),
+                            "speed": source_el.get("speed", "0.0"),
+                            "consensus": source_el.get("consensus", "0.0"),
+                            "control_type": source_el.get("control_type", "unknown"),
+                            "owners": []
+                        }
+                        for owner_el in source_el.findall(f"{{{JTF_NS}}}owner"):
+                            source_data["owners"].append({
+                                "name": owner_el.get("name", ""),
+                                "percent": owner_el.get("percent", "0.0")
+                            })
+                        item_sources.append(source_data)
+
+                    # Fall back to non-namespaced (legacy)
+                    if not item_sources:
+                        for source_el in item.findall("source"):
+                            if source_el.get("name"):
+                                source_data = {
+                                    "name": source_el.get("name", ""),
+                                    "accuracy": source_el.get("accuracy", "0.0"),
+                                    "bias": source_el.get("bias", "0.0"),
+                                    "speed": source_el.get("speed", "0.0"),
+                                    "consensus": source_el.get("consensus", "0.0"),
+                                    "control_type": source_el.get("control_type", "unknown"),
+                                    "owners": []
+                                }
+                                for owner_el in source_el.findall("owner"):
+                                    source_data["owners"].append({
+                                        "name": owner_el.get("name", ""),
+                                        "percent": owner_el.get("percent", "0.0")
                                     })
+                                item_sources.append(source_data)
+                            elif source_el.text:
+                                # Very old format - try to convert
+                                for name in source_el.text.split(", "):
+                                    name = name.strip()
+                                    source_id = get_source_id_by_name(name)
+                                    if source_id:
+                                        item_sources.append(get_source_for_rss(source_id))
+                                    else:
+                                        item_sources.append({
+                                            "name": name,
+                                            "accuracy": "—", "bias": "—", "speed": "—", "consensus": "—",
+                                            "control_type": "unknown", "owners": []
+                                        })
 
                     items.append({
                         "title": item.find("title").text or "",
@@ -2396,9 +2536,12 @@ def regenerate_rss_feed():
     # Trim to max 100 items
     items = items[:100]
 
-    # Build RSS XML
+    # Build RSS XML (namespaces added via register_namespace above)
     pub_date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
-    rss = ET.Element("rss", version="2.0")
+    rss = ET.Element("rss", {"version": "2.0"})
+    rss.set(f"xmlns:jtf", JTF_NS)
+    rss.set(f"xmlns:atom", ATOM_NS)
+
     channel = ET.SubElement(rss, "channel")
 
     ET.SubElement(channel, "title").text = "JTF News - Just The Facts"
@@ -2407,25 +2550,33 @@ def regenerate_rss_feed():
     ET.SubElement(channel, "language").text = "en-us"
     ET.SubElement(channel, "lastBuildDate").text = pub_date
 
+    # Add atom:link for RSS compliance
+    ET.SubElement(channel, f"{{{ATOM_NS}}}link", {
+        "href": "https://larryseyer.github.io/jtfnews/feed.xml",
+        "rel": "self",
+        "type": "application/rss+xml"
+    })
+
     for item_data in items:
         item = ET.SubElement(channel, "item")
         ET.SubElement(item, "title").text = item_data["title"]
         ET.SubElement(item, "description").text = item_data["description"]
 
+        # Write namespaced source elements
         for source_data in item_data.get("sources", []):
-            source_el = ET.SubElement(item, "source",
-                name=source_data["name"],
-                accuracy=source_data["accuracy"],
-                bias=source_data["bias"],
-                speed=source_data["speed"],
-                consensus=source_data["consensus"],
-                control_type=source_data["control_type"]
-            )
+            source_el = ET.SubElement(item, f"{{{JTF_NS}}}source", {
+                "name": source_data["name"],
+                "accuracy": source_data["accuracy"],
+                "bias": source_data["bias"],
+                "speed": source_data["speed"],
+                "consensus": source_data["consensus"],
+                "control_type": source_data["control_type"]
+            })
             for owner in source_data.get("owners", []):
-                ET.SubElement(source_el, "owner",
-                    name=owner["name"],
-                    percent=owner["percent"]
-                )
+                ET.SubElement(source_el, f"{{{JTF_NS}}}owner", {
+                    "name": owner["name"],
+                    "percent": owner["percent"]
+                })
 
         ET.SubElement(item, "pubDate").text = item_data["pubDate"]
         ET.SubElement(item, "guid", isPermaLink="false").text = item_data["guid"]
@@ -2435,6 +2586,9 @@ def regenerate_rss_feed():
     tree = ET.ElementTree(rss)
     with open(feed_file, 'wb') as f:
         tree.write(f, encoding="utf-8", xml_declaration=True)
+
+    # Clean up duplicate namespace declarations (ElementTree quirk)
+    clean_duplicate_namespaces(feed_file)
 
     log.info(f"RSS feed regenerated: {len(items)} items with rich source data")
     return True
