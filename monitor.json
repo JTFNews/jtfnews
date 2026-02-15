@@ -1,23 +1,23 @@
 {
-  "timestamp": "2026-02-15T02:26:46.948190+00:00",
+  "timestamp": "2026-02-15T03:01:16.619168+00:00",
   "uptime_start": "2026-02-15T02:05:42.721881+00:00",
-  "uptime_seconds": 1264,
+  "uptime_seconds": 3334,
   "cycle": {
-    "number": 1,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 20,
+    "duration_seconds": 44.2,
+    "headlines_scraped": 268,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 397,
-        "cost_usd": 0.15019025000000008,
+        "calls": 418,
+        "cost_usd": 0.15989800000000007,
         "details": {
-          "input_tokens": 367461,
-          "output_tokens": 46660
+          "input_tokens": 390507,
+          "output_tokens": 49817
         }
       },
       "elevenlabs": {
@@ -28,14 +28,14 @@
         }
       }
     },
-    "total_usd": 0.1815,
-    "month_estimate_usd": 0.18,
+    "total_usd": 0.1912,
+    "month_estimate_usd": 0.19,
     "daily_budget": 5.0,
-    "budget_pct": 3.6
+    "budget_pct": 3.8
   },
   "queue": {
     "size": 43,
-    "oldest_item_age_hours": 24.3
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 9,
   "sources": {
@@ -43,11 +43,62 @@
     "successful": 30,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-02-15T02:44:31.828774+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    },
+    {
+      "timestamp": "2026-02-15T02:46:11.888946+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    },
+    {
+      "timestamp": "2026-02-15T02:47:49.500904+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    },
+    {
+      "timestamp": "2026-02-15T02:49:34.565000+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    },
+    {
+      "timestamp": "2026-02-15T02:51:14.895851+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    },
+    {
+      "timestamp": "2026-02-15T02:52:52.637584+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    },
+    {
+      "timestamp": "2026-02-15T02:54:32.626641+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    },
+    {
+      "timestamp": "2026-02-15T02:56:14.999669+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    },
+    {
+      "timestamp": "2026-02-15T02:57:52.520441+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    },
+    {
+      "timestamp": "2026-02-15T02:59:32.415599+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: name 'timedelta' is not defined"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   }
 }
