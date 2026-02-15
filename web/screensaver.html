@@ -716,7 +716,11 @@
     async function loadStories() {
       try {
         const response = await fetch(CONFIG.storiesUrl + '?t=' + Date.now());
-        if (!response.ok) return;
+        if (!response.ok) {
+          // File doesn't exist yet - show fallback content
+          if (stories.length === 0) updateTickerAnimation();
+          return;
+        }
         const data = await response.json();
         if (data.stories && data.stories.length > 0) {
           const oldCount = stories.length;
@@ -728,9 +732,13 @@
             // Update ticker with new stories
             updateTickerAnimation();
           }
+        } else {
+          // File exists but no stories - show fallback
+          if (stories.length === 0) updateTickerAnimation();
         }
       } catch (e) {
-        // No stories yet
+        // No stories yet - show fallback
+        if (stories.length === 0) updateTickerAnimation();
       }
     }
 

@@ -272,7 +272,11 @@ function calculateDynamicGap() {
 async function loadStories() {
     try {
         const response = await fetch(STORIES_URL + '?t=' + Date.now());
-        if (!response.ok) return;
+        if (!response.ok) {
+            // File doesn't exist yet - show fallback content
+            if (stories.length === 0) updateTickerAnimation();
+            return;
+        }
 
         const data = await response.json();
         if (data.stories && data.stories.length > 0) {
@@ -295,9 +299,14 @@ async function loadStories() {
             } else {
                 stories = data.stories;
             }
+        } else {
+            // File exists but no stories - show fallback
+            if (stories.length === 0) updateTickerAnimation();
         }
     } catch (error) {
         console.log('No stories yet or error loading:', error.message);
+        // Show fallback on error
+        if (stories.length === 0) updateTickerAnimation();
     }
 }
 

@@ -297,6 +297,22 @@ Do NOT use raw `git commit` commands. Always use `./bu.sh "message"` which:
 - Public site: https://larryseyer.github.io/jtfnews/
 - **Do NOT manually push to gh-pages** - let bu.sh handle it
 
+### CRITICAL: Syncing Overlay Files (web/ → gh-pages-dist/)
+When modifying overlay files that exist in BOTH locations, you MUST update BOTH:
+
+| web/ (OBS local) | gh-pages-dist/ (public site) |
+|------------------|------------------------------|
+| `web/screensaver.html` | `gh-pages-dist/screensaver.html` |
+| `web/monitor.html` | `gh-pages-dist/monitor.html` |
+| `web/lower-third.html` | (not on gh-pages) |
+
+**Path differences to fix when syncing:**
+- `../media` → `./images`
+- `../data/stories.json` → `./stories.json`
+- `../data/monitor.json` → `./monitor.json`
+
+**Files that exist ONLY in gh-pages-dist/:** index.html, how-it-works.html, whitepaper.html, screensaver-setup.html, feed.xml
+
 ## Testing Workflow
 
 ### CRITICAL: DEPLOY MACHINE DOES NOT EXIST
