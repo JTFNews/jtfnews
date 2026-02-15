@@ -2150,29 +2150,12 @@ def update_rss_feed(fact: str, sources: list):
 
     log.info(f"RSS feed updated: {len(items)} items")
 
-    # Commit and push to gh-pages
-    try:
-        subprocess.run(
-            ["git", "add", "feed.xml", "stories.json"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        subprocess.run(
-            ["git", "commit", "-m", f"Update feed: {title[:50]}"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        subprocess.run(
-            ["git", "push"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        log.info("RSS feed and stories.json pushed to gh-pages")
-    except subprocess.CalledProcessError as e:
-        log.warning(f"Failed to push RSS feed: {e}")
+    # Push to gh-pages via API
+    stories_file = DATA_DIR / "stories.json"
+    push_to_ghpages([
+        (feed_file, "feed.xml"),
+        (stories_file, "stories.json")
+    ], f"Update feed: {title[:50]}")
 
 
 def add_correction_to_rss(correction_type: str, original_fact: str,
@@ -2354,29 +2337,11 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
 
     log.info(f"RSS feed updated with {correction_type}: {title[:50]}")
 
-    # Commit and push to gh-pages
-    try:
-        subprocess.run(
-            ["git", "add", "feed.xml", "corrections.json"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        subprocess.run(
-            ["git", "commit", "-m", f"{correction_type.upper()}: {story_id}"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        subprocess.run(
-            ["git", "push"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        log.info(f"Correction RSS update pushed to gh-pages")
-    except subprocess.CalledProcessError as e:
-        log.warning(f"Failed to push correction RSS: {e}")
+    # Push to gh-pages via API
+    push_to_ghpages([
+        (feed_file, "feed.xml"),
+        (CORRECTIONS_FILE, "corrections.json")
+    ], f"{correction_type.upper()}: {story_id}")
 
 
 def regenerate_rss_feed():
@@ -2643,29 +2608,8 @@ def update_alexa_feed(fact: str, sources: list):
 
     log.info(f"Alexa feed updated: {len(items)} items")
 
-    # Commit and push to gh-pages (batch with RSS if possible)
-    try:
-        subprocess.run(
-            ["git", "add", "alexa.json"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        subprocess.run(
-            ["git", "commit", "-m", f"Update Alexa feed"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        subprocess.run(
-            ["git", "push"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        log.info("Alexa feed pushed to gh-pages")
-    except subprocess.CalledProcessError as e:
-        log.warning(f"Failed to push Alexa feed: {e}")
+    # Push to gh-pages via API
+    push_to_ghpages([(alexa_file, "alexa.json")], "Update Alexa feed")
 
 
 # =============================================================================
@@ -3734,54 +3678,86 @@ def write_sleeping_heartbeat(minutes_remaining: int, last_cycle_stats: dict = No
     push_monitor_to_ghpages(monitor_file)
 
 
-def push_monitor_to_ghpages(monitor_file: Path):
-    """Copy monitor.json to gh-pages and push."""
-    import subprocess
+def push_to_ghpages(files: list, commit_message: str):
+    """Push files to gh-pages branch via GitHub API.
 
+    Args:
+        files: List of tuples (local_path, gh_pages_path) where:
+               - local_path: Path to the local file (Path or str)
+               - gh_pages_path: Path in gh-pages repo (e.g., "feed.xml", "archive/2026/02-15.txt.gz")
+        commit_message: Commit message for the push
+
+    Returns:
+        True if successful, False otherwise
+    """
+    import base64
+
+    github_token = os.getenv("GITHUB_TOKEN")
+    if not github_token:
+        log.warning("GITHUB_TOKEN not set, cannot push to gh-pages")
+        return False
+
+    # Also copy to local gh-pages-dist if it exists (for dev machine)
     gh_pages_dir = BASE_DIR / "gh-pages-dist"
-    if not gh_pages_dir.exists():
-        return  # gh-pages worktree not set up
+    if gh_pages_dir.exists():
+        for local_path, gh_path in files:
+            dest = gh_pages_dir / gh_path
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy(local_path, dest)
 
-    try:
-        # Copy monitor.json to gh-pages
-        shutil.copy(monitor_file, gh_pages_dir / "monitor.json")
+    owner = "larryseyer"
+    repo = "jtfnews"
+    branch = "gh-pages"
+    headers = {
+        "Authorization": f"token {github_token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
 
-        # Git add, commit, push (silently - don't spam logs)
-        subprocess.run(
-            ["git", "add", "monitor.json"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
+    success = True
+    for local_path, gh_path in files:
+        try:
+            # Read file content (binary mode for gz files)
+            local_path = Path(local_path)
+            if local_path.suffix == '.gz':
+                with open(local_path, "rb") as f:
+                    content = base64.b64encode(f.read()).decode()
+            else:
+                with open(local_path, "r") as f:
+                    content = base64.b64encode(f.read().encode()).decode()
 
-        # Check if there are changes to commit
-        result = subprocess.run(
-            ["git", "diff", "--cached", "--quiet"],
-            cwd=gh_pages_dir,
-            capture_output=True
-        )
+            api_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{gh_path}"
 
-        if result.returncode != 0:  # There are changes
-            subprocess.run(
-                ["git", "commit", "-m", "Update monitor data"],
-                cwd=gh_pages_dir,
-                check=True,
-                capture_output=True
-            )
-            subprocess.run(
-                ["git", "push"],
-                cwd=gh_pages_dir,
-                check=True,
-                capture_output=True
-            )
-            log.info("Monitor data pushed to gh-pages")
+            # Get current file SHA (required for update)
+            response = requests.get(api_url, headers=headers, params={"ref": branch})
+            sha = response.json().get("sha") if response.status_code == 200 else None
 
-    except subprocess.CalledProcessError as e:
-        log.warning(f"Failed to push monitor.json to gh-pages: {e}")
-        if e.stderr:
-            log.warning(f"Git error: {e.stderr.decode()}")
-    except Exception as e:
-        log.warning(f"Error pushing monitor.json: {e}")
+            # Push the update
+            payload = {
+                "message": commit_message,
+                "content": content,
+                "branch": branch
+            }
+            if sha:
+                payload["sha"] = sha
+
+            response = requests.put(api_url, headers=headers, json=payload)
+
+            if response.status_code not in (200, 201):
+                log.warning(f"GitHub API error for {gh_path}: {response.status_code}")
+                success = False
+
+        except Exception as e:
+            log.warning(f"Error pushing {gh_path} to gh-pages: {e}")
+            success = False
+
+    if success:
+        log.info(f"Pushed to gh-pages: {commit_message}")
+    return success
+
+
+def push_monitor_to_ghpages(monitor_file: Path):
+    """Push monitor.json to gh-pages branch via GitHub API."""
+    push_to_ghpages([(monitor_file, "monitor.json")], "Update monitor data")
 
 
 # =============================================================================
@@ -3887,29 +3863,11 @@ def archive_daily_log():
     fact_cache_file = DATA_DIR / f"fact_cache_{yesterday_str}.json"
     fact_cache_file.unlink(missing_ok=True)
 
-    # Commit and push to gh-pages
-    try:
-        subprocess.run(
-            ["git", "add", f"archive/{year}/{yesterday_str}.txt.gz"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        subprocess.run(
-            ["git", "commit", "-m", f"Archive {yesterday_str}"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        subprocess.run(
-            ["git", "push"],
-            cwd=gh_pages_dir,
-            check=True,
-            capture_output=True
-        )
-        log.info(f"Archive pushed to gh-pages: {yesterday_str}")
-    except subprocess.CalledProcessError as e:
-        log.warning(f"Failed to push archive: {e}")
+    # Push to gh-pages via API
+    push_to_ghpages(
+        [(archive_file, f"archive/{year}/{yesterday_str}.txt.gz")],
+        f"Archive {yesterday_str}"
+    )
 
     # Update archive index after archiving
     update_archive_index()

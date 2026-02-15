@@ -107,7 +107,7 @@ rsync $RSYNC_FLAGS \
     --exclude='audio/' \
     --exclude='archive/' \
     --exclude='media/' \
-    --exclude='gh-pages-dist/' \
+    --exclude='gh-pages-dist/.git' \
     --exclude='.DS_Store' \
     --exclude='*.log' \
     --exclude='*.zip' \
