@@ -97,9 +97,21 @@ Do NOT use raw `git commit` commands. Always use `./bu.sh "message"` which:
 - **Do NOT manually push to gh-pages** - let bu.sh handle it
 
 ## Testing Workflow
-**All testing is done on the DEVELOP machine until bugs are fixed.**
-- Deploy machine receives code via `./deploy.sh` but does NOT run the service during testing
-- Only switch to deploy machine once develop is working properly
+
+### ⚠️ CRITICAL: DEPLOY MACHINE DOES NOT EXIST ⚠️
+
+**Claude: The deploy machine DOES NOT EXIST for you until the user explicitly says otherwise.**
+
+- DO NOT mention "restart on deploy machine"
+- DO NOT reference the deploy machine in any instructions
+- DO NOT suggest testing on deploy
+- The ONLY machine that exists is DEVELOP (`/Users/larryseyer/JTFNews`)
+- `bu.sh` still syncs files to deploy (for backup), but IGNORE that - it's invisible to you
+- When code changes are made, say "restart the service" - NOT "restart on deploy"
+
+**All testing is done on the DEVELOP machine until ALL bugs are fixed.**
+- Deploy machine receives code via `./deploy.sh` but the service does NOT run there during testing
+- Only switch to deploy machine once the user explicitly confirms testing is complete
 - The `.env` file with API keys stays on each machine separately (never synced)
 
 ## IMPORTANT: Two-Machine Architecture (Apple Silicon → Intel)
