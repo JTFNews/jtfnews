@@ -50,7 +50,7 @@
     /* ========== Lower Third Overlay ========== */
     #lower-third {
       position: absolute;
-      bottom: 20%;  /* Raised to make room for ticker */
+      bottom: 15%;  /* Raised to make room for ticker */
       left: 3%;
       right: 3%;
       max-width: 94%;
@@ -218,7 +218,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: clamp(100px, 16vh, 180px);
+      height: clamp(60px, 10vh, 120px);
       overflow: hidden;
       z-index: 50;
 
@@ -245,7 +245,7 @@
       white-space: nowrap;
       padding-left: 100vw;
       animation: scroll-ticker linear infinite;
-      font-size: clamp(64px, 10vw, 128px);
+      font-size: clamp(24px, 4vw, 48px);
       font-weight: 400;
       color: rgba(255, 255, 255, 0.9);
       letter-spacing: 0.3px;
@@ -268,7 +268,7 @@
 
     #ticker-content .ticker-source {
       color: rgba(147, 197, 253, 0.8);
-      font-size: clamp(56px, 8vw, 112px);
+      font-size: clamp(21px, 3.5vw, 42px);
       margin-left: clamp(6px, 1vw, 12px);
     }
 
@@ -311,23 +311,23 @@
     /* Mobile portrait - smaller ticker */
     @media (max-width: 600px) and (orientation: portrait) {
       #news-ticker {
-        height: clamp(80px, 14vh, 120px);
+        height: clamp(50px, 10vh, 80px);
       }
       #ticker-content {
-        font-size: clamp(48px, 14vw, 96px);
+        font-size: clamp(18px, 5vw, 36px);
       }
       #ticker-content .ticker-source {
-        font-size: clamp(40px, 12vw, 84px);
+        font-size: clamp(15px, 4.5vw, 32px);
       }
     }
 
     /* Mobile landscape - compact ticker */
     @media (max-height: 500px) and (orientation: landscape) {
       #news-ticker {
-        height: clamp(70px, 16vh, 100px);
+        height: clamp(40px, 10vh, 70px);
       }
       #ticker-content {
-        font-size: clamp(48px, 10vh, 80px);
+        font-size: clamp(18px, 4vh, 30px);
       }
     }
 
@@ -547,7 +547,7 @@
     const MAX_GAP_TIME = 120000;     // Maximum 2 minutes between stories
     const MIN_REPLAY_INTERVAL = 30 * 60 * 1000; // 30 minutes minimum between replays
     const MAX_SILENCE_DURATION = 15 * 60 * 1000; // 15 minutes max silence before forcing replay
-    const TICKER_SPEED = 200;        // Pixels per second for ticker scroll
+    const TICKER_SPEED = 120;        // Pixels per second for ticker scroll
 
     let stories = [];
     let newsShuffledQueue = [];      // Shuffled story queue for current cycle
@@ -841,7 +841,8 @@
       if (audioResult === 'disabled' || audioResult === 'error') {
         await sleep(calculateHoldTime(story.fact));
       } else {
-        await sleep(2500);
+        // Keep text visible 6 seconds after audio ends for readability
+        await sleep(6000);
       }
 
       lowerThird.classList.remove('visible');
