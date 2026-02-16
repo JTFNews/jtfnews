@@ -52,7 +52,7 @@ const MEDIUM_THRESHOLD = 12 * 60 * 60 * 1000; // 6-12 hours = medium (2x weight)
 // > 12 hours = stale (1x weight)
 
 // Ticker configuration
-const TICKER_SPEED = 100;  // Pixels per second
+const TICKER_SPEED = 200;  // Pixels per second
 
 /**
  * Calculate how long ago a story was verified

@@ -20,7 +20,7 @@ body {
 
 #lower-third {
     position: absolute;
-    bottom: 12%;  /* Raised to make room for ticker */
+    bottom: 20%;  /* Raised to make room for ticker */
     left: 5%;
     max-width: 90%;
 
@@ -148,7 +148,7 @@ body {
     white-space: nowrap;
     padding-left: 1920px;  /* Start off-screen right (OBS canvas width) */
     animation: scroll-ticker linear infinite;
-    font-size: 24px;
+    font-size: 128px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 0.3px;
@@ -177,7 +177,7 @@ body {
 /* Source attribution */
 #ticker-content .ticker-source {
     color: rgba(147, 197, 253, 0.8);  /* Soft blue */
-    font-size: 21px;
+    font-size: 112px;
     margin-left: 12px;
 }
 
