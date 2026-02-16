@@ -50,7 +50,7 @@
     /* ========== Lower Third Overlay ========== */
     #lower-third {
       position: absolute;
-      bottom: 12%;  /* Raised to make room for ticker */
+      bottom: 20%;  /* Raised to make room for ticker */
       left: 3%;
       right: 3%;
       max-width: 94%;
@@ -245,7 +245,7 @@
       white-space: nowrap;
       padding-left: 100vw;
       animation: scroll-ticker linear infinite;
-      font-size: clamp(12px, 1.875vw, 24px);
+      font-size: clamp(64px, 10vw, 128px);
       font-weight: 400;
       color: rgba(255, 255, 255, 0.9);
       letter-spacing: 0.3px;
@@ -268,7 +268,7 @@
 
     #ticker-content .ticker-source {
       color: rgba(147, 197, 253, 0.8);
-      font-size: clamp(11px, 1.5vw, 21px);
+      font-size: clamp(56px, 8vw, 112px);
       margin-left: clamp(6px, 1vw, 12px);
     }
 
@@ -314,10 +314,10 @@
         height: clamp(80px, 14vh, 120px);
       }
       #ticker-content {
-        font-size: clamp(9px, 2.625vw, 14px);
+        font-size: clamp(48px, 14vw, 96px);
       }
       #ticker-content .ticker-source {
-        font-size: clamp(8px, 2.25vw, 12px);
+        font-size: clamp(40px, 12vw, 84px);
       }
     }
 
@@ -327,7 +327,7 @@
         height: clamp(70px, 16vh, 100px);
       }
       #ticker-content {
-        font-size: clamp(9px, 1.875vh, 15px);
+        font-size: clamp(48px, 10vh, 80px);
       }
     }
 
@@ -547,7 +547,7 @@
     const MAX_GAP_TIME = 120000;     // Maximum 2 minutes between stories
     const MIN_REPLAY_INTERVAL = 30 * 60 * 1000; // 30 minutes minimum between replays
     const MAX_SILENCE_DURATION = 15 * 60 * 1000; // 15 minutes max silence before forcing replay
-    const TICKER_SPEED = 100;        // Pixels per second for ticker scroll
+    const TICKER_SPEED = 200;        // Pixels per second for ticker scroll
 
     let stories = [];
     let newsShuffledQueue = [];      // Shuffled story queue for current cycle
