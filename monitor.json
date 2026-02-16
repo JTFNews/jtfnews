@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-02-16T06:15:42.732259+00:00",
-  "uptime_start": "2026-02-15T23:36:11.500037+00:00",
-  "uptime_seconds": 23971,
-  "availability_pct": 83.8,
+  "timestamp": "2026-02-16T06:19:00.021066+00:00",
+  "web_refresh_at": "2026-02-16T06:19:00.021066+00:00",
+  "uptime_start": "2026-02-16T06:18:15.783640+00:00",
+  "uptime_seconds": 44,
+  "availability_pct": 80.7,
   "cycle": {
-    "number": 16,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1,
+    "duration_seconds": 43.5,
+    "headlines_scraped": 142,
+    "headlines_processed": 9,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 218,
-        "cost_usd": 0.09190750000000002,
+        "calls": 228,
+        "cost_usd": 0.09622350000000005,
         "details": {
-          "input_tokens": 221795,
-          "output_tokens": 29167
+          "input_tokens": 232089,
+          "output_tokens": 30561
         }
       },
       "elevenlabs": {
@@ -29,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.0967,
-    "month_estimate_usd": 0.1,
+    "total_usd": 0.1011,
+    "month_estimate_usd": 2.46,
     "daily_budget": 1.79,
-    "budget_pct": 5.4
+    "budget_pct": 5.7
   },
   "queue": {
     "size": 26,
-    "oldest_item_age_hours": 7.6
+    "oldest_item_age_hours": 7.7
   },
   "stories_today": 2,
   "sources": {
@@ -44,27 +45,11 @@
     "successful": 17,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-02-16T00:00:03.587501+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: PosixPath('/Users/larryseyer/JTFNews/gh-pages-dist/archive/2026/2026-02-15.txt.gz') and PosixPath('/Users/larryseyer/JTFNews/gh-pages-dist/archive/2026/2026-02-15.txt.gz') are the same file"
-    },
-    {
-      "timestamp": "2026-02-16T00:02:51.587840+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: PosixPath('/Users/larryseyer/JTFNews/gh-pages-dist/feed.xml') and PosixPath('/Users/larryseyer/JTFNews/gh-pages-dist/feed.xml') are the same file"
-    },
-    {
-      "timestamp": "2026-02-16T02:00:33.080768+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: PosixPath('/Users/larryseyer/JTFNews/gh-pages-dist/feed.xml') and PosixPath('/Users/larryseyer/JTFNews/gh-pages-dist/feed.xml') are the same file"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 14,
+    "next_cycle_minutes": 10,
     "degraded_services": []
   }
 }
