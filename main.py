@@ -1108,6 +1108,7 @@ def fetch_rss_headlines(source: dict) -> list:
                         "source_name": source["name"],
                         "source_rating": source["ratings"]["accuracy"],
                         "owner": source["owner"],
+                        "source_url": source["url"],
                         "timestamp": datetime.now(timezone.utc).isoformat()
                     })
 
@@ -1151,6 +1152,7 @@ def fetch_html_headlines(source: dict) -> list:
                     "source_name": source["name"],
                     "source_rating": source["ratings"]["accuracy"],
                     "owner": source["owner"],
+                    "source_url": source["url"],
                     "timestamp": datetime.now(timezone.utc).isoformat()
                 })
 
@@ -1576,7 +1578,7 @@ def get_source_for_rss(source_id: str) -> dict:
             break
 
     if not source_config:
-        return {"name": source_id, "accuracy": "0.0", "bias": "0.0",
+        return {"name": source_id, "url": "", "accuracy": "0.0", "bias": "0.0",
                 "speed": "0.0", "consensus": "0.0", "control_type": "unknown", "owners": []}
 
     # Get learned accuracy (or baseline with asterisk indicator)
@@ -1608,6 +1610,7 @@ def get_source_for_rss(source_id: str) -> dict:
 
     return {
         "name": source_config["name"],
+        "url": source_config.get("url", ""),
         "accuracy": accuracy_part,
         "bias": f"{bias_score:.1f}",
         "speed": f"{speed:.1f}",
@@ -1947,12 +1950,16 @@ def update_stories_json(fact: str, sources: list, audio_file: str = None):
     story_id = generate_story_id(today, story_index)
     story_hash = hashlib.md5(fact.encode()).hexdigest()[:12]
 
+    # Build source_urls map for clickable links in archive
+    source_urls = {s["source_name"]: s.get("source_url", "") for s in sources[:2]}
+
     # Add new story with expanded structure for corrections support
     stories["stories"].append({
         "id": story_id,
         "hash": story_hash,
         "fact": fact,
         "source": source_text,
+        "source_urls": source_urls,
         "audio": f"../audio/{audio_file}" if audio_file else "../audio/current.mp3",
         "published_at": now_iso,
         "status": "published"
@@ -2038,6 +2045,7 @@ def update_rss_feed(fact: str, sources: list):
                 for source_el in item.findall(f"{{{JTF_NS}}}source"):
                     source_data = {
                         "name": source_el.get("name", ""),
+                        "url": source_el.get("url", ""),
                         "accuracy": source_el.get("accuracy", "0.0"),
                         "bias": source_el.get("bias", "0.0"),
                         "speed": source_el.get("speed", "0.0"),
@@ -2058,6 +2066,7 @@ def update_rss_feed(fact: str, sources: list):
                         if source_el.get("name"):
                             source_data = {
                                 "name": source_el.get("name", ""),
+                                "url": source_el.get("url", ""),
                                 "accuracy": source_el.get("accuracy", "0.0"),
                                 "bias": source_el.get("bias", "0.0"),
                                 "speed": source_el.get("speed", "0.0"),
@@ -2076,6 +2085,7 @@ def update_rss_feed(fact: str, sources: list):
                             for name in source_el.text.split(", "):
                                 item_sources.append({
                                     "name": name.strip(),
+                                    "url": "",
                                     "accuracy": "0.0", "bias": "0.0",
                                     "speed": "0.0", "consensus": "0.0",
                                     "control_type": "unknown", "owners": []
@@ -2127,6 +2137,7 @@ def update_rss_feed(fact: str, sources: list):
         for source_data in item_data.get("sources", []):
             source_el = ET.SubElement(item, f"{{{JTF_NS}}}source", {
                 "name": source_data["name"],
+                "url": source_data.get("url", ""),
                 "accuracy": source_data["accuracy"],
                 "bias": source_data["bias"],
                 "speed": source_data["speed"],
@@ -2206,6 +2217,7 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
     for name in sources[:2]:
         rich_sources.append({
             "name": name,
+            "url": "",
             "accuracy": "—", "bias": "—", "speed": "—", "consensus": "—",
             "control_type": "correction", "owners": []
         })
@@ -2231,6 +2243,7 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
                 for source_el in item.findall(f"{{{JTF_NS}}}source"):
                     source_data = {
                         "name": source_el.get("name", ""),
+                        "url": source_el.get("url", ""),
                         "accuracy": source_el.get("accuracy", "0.0"),
                         "bias": source_el.get("bias", "0.0"),
                         "speed": source_el.get("speed", "0.0"),
@@ -2251,6 +2264,7 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
                         if source_el.get("name"):
                             source_data = {
                                 "name": source_el.get("name", ""),
+                                "url": source_el.get("url", ""),
                                 "accuracy": source_el.get("accuracy", "0.0"),
                                 "bias": source_el.get("bias", "0.0"),
                                 "speed": source_el.get("speed", "0.0"),
@@ -2268,6 +2282,7 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
                             for name in source_el.text.split(", "):
                                 item_sources.append({
                                     "name": name.strip(),
+                                    "url": "",
                                     "accuracy": "0.0", "bias": "0.0",
                                     "speed": "0.0", "consensus": "0.0",
                                     "control_type": "unknown", "owners": []
@@ -2464,6 +2479,7 @@ def regenerate_rss_feed():
                             if source_el.get("name"):
                                 source_data = {
                                     "name": source_el.get("name", ""),
+                                    "url": source_el.get("url", ""),
                                     "accuracy": source_el.get("accuracy", "0.0"),
                                     "bias": source_el.get("bias", "0.0"),
                                     "speed": source_el.get("speed", "0.0"),
@@ -2487,6 +2503,7 @@ def regenerate_rss_feed():
                                     else:
                                         item_sources.append({
                                             "name": name,
+                                            "url": "",
                                             "accuracy": "—", "bias": "—", "speed": "—", "consensus": "—",
                                             "control_type": "unknown", "owners": []
                                         })
@@ -4101,6 +4118,7 @@ def process_cycle():
                 "source_id": headline["source_id"],
                 "source_name": headline["source_name"],
                 "source_rating": headline["source_rating"],
+                "source_url": headline.get("source_url", ""),
                 "timestamp": headline["timestamp"],
                 "confidence": confidence
             })

@@ -1,20 +1,30 @@
-# JTF News - YouTube Tags
+Just The Facts News - 24/7 Automated Fact-Only News
 
-## Copy-Paste Ready (Primary Set)
+Two sources. Different owners. Strip the adjectives. State the facts. Stop.
 
-#### YouTube Description:
+No opinions. No adjectives. No interpretation. Verified facts from two independent sources.
 
-Just The Facts News - Live 
+This is not journalism. It is data.
 
-Facts only. No opinions. 
+THE RULES:
+• Two unrelated sources minimum (different owners, different investors)
+• AI strips all adjectives and editorialization
+• Official titles only
+• No engagement—we report once, never reply
 
-Think of us as a very slow, very honest librarian. We read everything, say nothing unless two other librarians agree, and never raise our voice. 24/7 automated news. 
+The methodology belongs to no one. It serves everyone.
 
-Verified facts only. 
+Licensed CC-BY-SA. Use it. Share it. Credit us.
 
-"If we stay boring enough, we might just change the world."
-
-*Under 500 characters for YouTube's tag field:*
+LINKS:
+How It Works: https://larryseyer.github.io/jtfnews/how-it-works.html
+Whitepaper: https://larryseyer.github.io/jtfnews/whitepaper.html
+Screensaver: https://larryseyer.github.io/jtfnews/screensaver-setup.html
+Transparency: https://larryseyer.github.io/jtfnews/
+RSS Feed: https://larryseyer.github.io/jtfnews/feed.xml
+Source Code: https://github.com/larryseyer/jtfnews
+Support: https://github.com/sponsors/larryseyer
+Storey Archive: https://larryseyer.github.io/jtfnews/archive.html
 
 ```
 JTF News,Just The Facts,facts only,unbiased news,verified news,no opinions,two source verification,24/7 news,live news stream,AI news,calm news,no drama,world news,global news,factual journalism,no sensationalism,neutral news,automated news,fact-checked,objective reporting,news transparency,no commentary,peaceful news,ad-free news,honest journalism
@@ -138,33 +148,3 @@ JTF News,Just The Facts,facts only,unbiased news,verified news,no opinions,two s
 - open source news project
 
 ---
-
-## Hashtags for Social Media
-
-### Twitter/X
-```
-#JTFNews #FactsOnly #VerifiedNews #NoOpinions #JustTheFacts
-```
-
-### YouTube Description
-```
-#JTFNews #FactsOnly #UnbiasedNews #LiveNews #WorldNews #NoCommentary #VerifiedFacts #24x7News
-```
-
----
-
-## Tag Strategy Notes
-
-1. **Primary differentiator**: Emphasize what JTF News *doesn't* do (no opinions, no drama, no sensationalism) - this is the unique selling point
-
-2. **Calm aesthetic**: Tags like "ambient news," "relaxing news," and "ASMR news" may attract viewers seeking news without anxiety
-
-3. **Trust signals**: Verification-related tags appeal to those skeptical of mainstream media
-
-4. **Rotate periodically**: YouTube's algorithm may respond to tag freshness - consider rotating secondary tags monthly
-
-5. **Avoid**: Don't use "breaking news" (contradicts our philosophy), political party names, or controversial terms
-
----
-
-*Last updated: February 2026*
