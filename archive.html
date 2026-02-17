@@ -563,19 +563,39 @@
                         const timestamp = parts[0];
                         const sourceNames = parts[1];
                         const sourceScores = parts[2];
-                        const fact = parts.slice(3).join('|'); // Rejoin in case fact has |
 
-                        // Build source string
+                        // Parse both old (4-field) and new (5-field) formats
+                        // Old: timestamp|names|scores|fact
+                        // New: timestamp|names|scores|urls|fact
+                        let sourceUrlsStr, fact;
+                        if (parts.length === 4) {
+                            sourceUrlsStr = '';
+                            fact = parts[3];
+                        } else {
+                            sourceUrlsStr = parts[3];
+                            fact = parts.slice(4).join('|'); // Rejoin in case fact has |
+                        }
+
+                        // Build source string and URLs map
                         const names = sourceNames.split(',');
                         const scores = sourceScores.split(',');
+                        const urls = sourceUrlsStr ? sourceUrlsStr.split(',') : [];
+
                         const sourceStr = names.map((name, i) =>
                             `${name.trim()} ${scores[i] || ''}`
                         ).join(' . ');
 
+                        const sourceUrls = {};
+                        names.forEach((name, i) => {
+                            const url = urls[i] ? urls[i].trim() : '';
+                            if (url) sourceUrls[name.trim()] = url;
+                        });
+
                         stories.push({
                             published_at: timestamp,
                             fact: fact.trim(),
-                            source: sourceStr
+                            source: sourceStr,
+                            source_urls: sourceUrls
                         });
                     }
                 }
