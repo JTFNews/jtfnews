@@ -201,6 +201,13 @@
             margin-right: 6px;
             margin-bottom: 4px;
         }
+        .story-sources a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        .story-sources a:hover {
+            text-decoration: underline;
+        }
 
         /* Empty State */
         .empty-state {
@@ -444,9 +451,15 @@
             const correctedClass = isCorrected ? 'corrected' : '';
             const correctedBadge = isCorrected ? '<span class="corrected-badge">Corrected</span>' : '';
 
-            const sourcesHtml = sources.map(s =>
-                `<span>${escapeHtml(s.name)} ${s.rating}</span>`
-            ).join('');
+            // Use source_urls for clickable links (backward compatible)
+            const sourceUrls = story.source_urls || {};
+            const sourcesHtml = sources.map(s => {
+                const url = sourceUrls[s.name];
+                const nameHtml = url
+                    ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(s.name)}</a>`
+                    : escapeHtml(s.name);
+                return `<span>${nameHtml} ${s.rating}</span>`;
+            }).join('');
 
             return `
                 <div class="story-card ${correctedClass}">
