@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-02-18T15:55:53.942023+00:00",
+  "timestamp": "2026-02-18T16:00:48.492341+00:00",
+  "web_refresh_at": "2026-02-18T16:00:48.492341+00:00",
   "uptime_start": "2026-02-17T00:46:52.223211+00:00",
-  "uptime_seconds": 140942,
-  "availability_pct": 93.1,
+  "uptime_seconds": 141236,
+  "availability_pct": 93.2,
   "cycle": {
-    "number": 79,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 80,
+    "duration_seconds": 43.6,
+    "headlines_scraped": 142,
+    "headlines_processed": 8,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 469,
-        "cost_usd": 0.18989749999999997,
+        "calls": 477,
+        "cost_usd": 0.19351799999999994,
         "details": {
-          "input_tokens": 460000,
-          "output_tokens": 59918
+          "input_tokens": 469142,
+          "output_tokens": 60986
         }
       },
       "elevenlabs": {
@@ -29,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.2047,
+    "total_usd": 0.2083,
     "month_estimate_usd": 5.0,
     "daily_budget": 1.79,
-    "budget_pct": 11.5
+    "budget_pct": 11.7
   },
   "queue": {
     "size": 45,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 7,
   "sources": {
@@ -45,16 +46,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-02-18T15:00:41.998614+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CYFjZbpRYicNWPV2LAQij'}"
-    },
-    {
-      "timestamp": "2026-02-18T15:00:47.672899+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CYFja1maR4naUzNnkdax2'}"
-    },
     {
       "timestamp": "2026-02-18T15:01:02.833633+00:00",
       "level": "ERROR",
@@ -89,7 +80,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   }
 }
