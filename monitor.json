@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-02-18T21:56:00.167827+00:00",
+  "timestamp": "2026-02-18T22:00:53.655890+00:00",
+  "web_refresh_at": "2026-02-18T22:00:53.655890+00:00",
   "uptime_start": "2026-02-17T00:46:52.223211+00:00",
-  "uptime_seconds": 162548,
+  "uptime_seconds": 162841,
   "availability_pct": 93.7,
   "cycle": {
-    "number": 91,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 92,
+    "duration_seconds": 49.2,
+    "headlines_scraped": 142,
+    "headlines_processed": 10,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 629,
-        "cost_usd": 0.2555107499999999,
+        "calls": 645,
+        "cost_usd": 0.2604554999999999,
         "details": {
-          "input_tokens": 616228,
-          "output_tokens": 81163
+          "input_tokens": 628507,
+          "output_tokens": 82663
         }
       },
       "elevenlabs": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.2896,
+    "total_usd": 0.2945,
     "month_estimate_usd": 5.0,
     "daily_budget": 1.79,
-    "budget_pct": 16.2
+    "budget_pct": 16.5
   },
   "queue": {
-    "size": 41,
-    "oldest_item_age_hours": 24.4
+    "size": 43,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 10,
   "sources": {
@@ -51,22 +52,11 @@
     "successful": 17,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-02-18T21:00:49.089948+00:00",
-      "level": "WARNING",
-      "message": "Correction needed: The new verified fact states that 8 skiers died in"
-    },
-    {
-      "timestamp": "2026-02-18T21:00:51.420421+00:00",
-      "level": "WARNING",
-      "message": "Alert sent: CORRECTION issued for [2026-02-18-004]: The new verified fact states that 8 skiers died in"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   }
 }
