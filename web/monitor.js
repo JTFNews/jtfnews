@@ -263,6 +263,73 @@ function updateDashboard(data) {
     } else {
         errorList.innerHTML = '<div class="no-errors">No recent errors</div>';
     }
+
+    // Daily Digest
+    const digest = data.daily_digest || {};
+    const digestStatus = document.getElementById('digest-status');
+    const status = digest.status || 'unknown';
+
+    // Map status to display text and class
+    const statusMap = {
+        'success': { text: 'Success', class: 'status-success' },
+        'failed': { text: 'Failed', class: 'status-failed' },
+        'in_progress': { text: 'In Progress', class: 'status-in_progress' },
+        'no_stories': { text: 'No Stories', class: 'status-no_stories' },
+        'unknown': { text: '--', class: 'status-unknown' }
+    };
+    const statusInfo = statusMap[status] || statusMap['unknown'];
+    digestStatus.textContent = statusInfo.text;
+    digestStatus.className = 'status-badge ' + statusInfo.class;
+
+    // Last digest date
+    document.getElementById('digest-date').textContent = digest.last_date || '--';
+
+    // Story count
+    const storyCount = digest.story_count;
+    document.getElementById('digest-stories').textContent =
+        storyCount !== undefined ? storyCount : '--';
+
+    // Duration
+    const duration = digest.duration_seconds;
+    if (duration) {
+        const mins = Math.floor(duration / 60);
+        const secs = duration % 60;
+        document.getElementById('digest-duration').textContent = `${mins}m ${secs}s`;
+    } else {
+        document.getElementById('digest-duration').textContent = '--';
+    }
+
+    // YouTube link
+    const youtubeEl = document.getElementById('digest-youtube');
+    if (digest.youtube_url) {
+        youtubeEl.innerHTML = `<a href="${escapeHtml(digest.youtube_url)}" target="_blank" class="digest-youtube-link">View Video</a>`;
+    } else if (digest.upload_status === 'skipped') {
+        youtubeEl.textContent = 'Skipped';
+    } else if (digest.upload_status === 'failed') {
+        youtubeEl.textContent = 'Upload Failed';
+    } else if (digest.upload_status === 'pending') {
+        youtubeEl.textContent = 'Pending...';
+    } else {
+        youtubeEl.textContent = '--';
+    }
+
+    // Next digest countdown
+    const countdownEl = document.getElementById('digest-countdown');
+    if (digest.next_digest_at) {
+        const nextDigest = new Date(digest.next_digest_at);
+        const now = new Date();
+        const diffMs = nextDigest - now;
+
+        if (diffMs > 0) {
+            const hours = Math.floor(diffMs / 3600000);
+            const mins = Math.floor((diffMs % 3600000) / 60000);
+            countdownEl.textContent = `${hours}h ${mins}m`;
+        } else {
+            countdownEl.textContent = 'Due now';
+        }
+    } else {
+        countdownEl.textContent = '--';
+    }
 }
 
 /**

@@ -136,6 +136,7 @@ load_dotenv()
 # Paths
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
+DIGEST_STATUS_FILE = DATA_DIR / "digest-status.json"
 AUDIO_DIR = BASE_DIR / "audio"
 ARCHIVE_DIR = BASE_DIR / "archive"
 CONFIG_FILE = BASE_DIR / "config.json"
@@ -2581,6 +2582,134 @@ def regenerate_rss_feed():
     return True
 
 
+def add_digest_to_feed(date: str, story_count: int, youtube_id: str):
+    """Add daily digest entry to RSS feed with YouTube and archive links.
+
+    Creates a special item with jtf:type="digest" attribute.
+    """
+    import subprocess
+
+    # Namespace URIs
+    JTF_NS = "https://jtfnews.com/rss"
+    ATOM_NS = "http://www.w3.org/2005/Atom"
+
+    # Register namespaces for clean XML output
+    ET.register_namespace("jtf", JTF_NS)
+    ET.register_namespace("atom", ATOM_NS)
+
+    gh_pages_dir = BASE_DIR / "gh-pages-dist"
+    feed_file = gh_pages_dir / "feed.xml"
+
+    if not gh_pages_dir.exists():
+        log.warning("gh-pages-dist worktree not found, skipping digest feed entry")
+        return
+
+    # Create pub date
+    pub_date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
+
+    # Create digest item
+    youtube_url = f"https://youtube.com/watch?v={youtube_id}"
+    archive_url = f"https://larryseyer.github.io/jtfnews/archive/{date}.html"
+
+    digest_item = {
+        "title": f"[DAILY DIGEST] {date} - {story_count} verified facts",
+        "description": f"Daily summary of {story_count} verified facts from {date}.",
+        "youtube_url": youtube_url,
+        "archive_url": archive_url,
+        "pubDate": pub_date,
+        "guid": f"digest-{date}"
+    }
+
+    # Load existing feed
+    if not feed_file.exists():
+        log.error("feed.xml not found")
+        return
+
+    try:
+        tree = ET.parse(feed_file)
+        root = tree.getroot()
+        channel = root.find("channel")
+
+        # Check if digest for this date already exists
+        for item in channel.findall("item"):
+            guid_el = item.find("guid")
+            if guid_el is not None and guid_el.text == f"digest-{date}":
+                log.info(f"Digest entry for {date} already exists in feed")
+                return
+
+        # Create new item element with jtf:type attribute
+        new_item = ET.Element("item")
+        new_item.set(f"{{{JTF_NS}}}type", "digest")
+
+        title_el = ET.SubElement(new_item, "title")
+        title_el.text = digest_item["title"]
+
+        desc_el = ET.SubElement(new_item, "description")
+        desc_el.text = digest_item["description"]
+
+        # Main link goes to YouTube video
+        link_el = ET.SubElement(new_item, "link")
+        link_el.text = digest_item["youtube_url"]
+
+        # Archive link as custom element
+        archive_el = ET.SubElement(new_item, f"{{{JTF_NS}}}archive")
+        archive_el.text = digest_item["archive_url"]
+
+        pubdate_el = ET.SubElement(new_item, "pubDate")
+        pubdate_el.text = digest_item["pubDate"]
+
+        guid_el = ET.SubElement(new_item, "guid")
+        guid_el.set("isPermaLink", "false")
+        guid_el.text = digest_item["guid"]
+
+        # Insert at top of items (after channel metadata)
+        # Find position after lastBuildDate
+        insert_pos = 0
+        for i, child in enumerate(channel):
+            if child.tag in ("title", "link", "description", "language", "lastBuildDate", "ttl", "atom:link"):
+                insert_pos = i + 1
+            elif child.tag.endswith("}link"):  # atom:link with namespace
+                insert_pos = i + 1
+        channel.insert(insert_pos, new_item)
+
+        # Update lastBuildDate
+        last_build = channel.find("lastBuildDate")
+        if last_build is not None:
+            last_build.text = pub_date
+
+        # Pretty print
+        indent_xml(root)
+
+        # Write file
+        with open(feed_file, 'wb') as f:
+            tree.write(f, encoding="utf-8", xml_declaration=True)
+
+        clean_duplicate_namespaces(feed_file)
+
+        log.info(f"Added digest entry for {date} to RSS feed")
+
+        # Push to gh-pages
+        try:
+            subprocess.run(
+                ["git", "-C", str(gh_pages_dir), "add", "feed.xml"],
+                capture_output=True, check=True
+            )
+            subprocess.run(
+                ["git", "-C", str(gh_pages_dir), "commit", "-m", f"Add digest entry for {date}"],
+                capture_output=True, check=True
+            )
+            subprocess.run(
+                ["git", "-C", str(gh_pages_dir), "push"],
+                capture_output=True, check=True
+            )
+            log.info("Pushed digest feed entry to gh-pages")
+        except subprocess.CalledProcessError as e:
+            log.warning(f"Could not push digest entry to gh-pages: {e}")
+
+    except Exception as e:
+        log.error(f"Failed to add digest to feed: {e}")
+
+
 def update_alexa_feed(fact: str, sources: list):
     """Update Alexa Flash Briefing JSON feed and push to gh-pages."""
     import subprocess
@@ -4285,10 +4414,14 @@ def generate_and_upload_daily_summary(date: str):
     """
     log.info(f"Starting daily digest for {date}")
 
+    # Track digest status for dashboard
+    update_digest_status(date, status="in_progress", upload_status="pending", error_message=None)
+
     # Load stories for the date
     stories = load_stories_for_date(date)
     if not stories:
         log.info(f"No stories found for {date}, skipping digest")
+        update_digest_status(date, status="no_stories", story_count=0)
         return
 
     # Find archived audio files
@@ -4325,10 +4458,18 @@ def generate_and_upload_daily_summary(date: str):
         try:
             video_path = generate_daily_video(date, stories, audio_files)
             log.info(f"Generated video via FFmpeg: {video_path}")
+            update_digest_status(
+                date,
+                status="success",
+                story_count=len(stories),
+                duration_seconds=int(estimated_duration),
+                video_path=str(video_path)
+            )
             _upload_video_to_youtube(video_path, date)
         except Exception as e:
             log.error(f"Fallback video generation failed: {e}")
             send_alert(f"Daily digest failed for {date}: {e}")
+            update_digest_status(date, status="failed", error_message=str(e))
         return
 
     # Get scene names from environment
@@ -4402,6 +4543,15 @@ def generate_and_upload_daily_summary(date: str):
 
         log.info(f"Video saved to: {video_path}")
 
+        # Update digest status with recording details
+        update_digest_status(
+            date,
+            status="success",
+            story_count=len(stories),
+            duration_seconds=int(estimated_duration),
+            video_path=str(video_path)
+        )
+
         # Delete original OBS recording from Downloads to save space
         try:
             Path(recording_path).unlink()
@@ -4415,6 +4565,7 @@ def generate_and_upload_daily_summary(date: str):
     except Exception as e:
         log.error(f"Daily digest recording failed: {e}")
         send_alert(f"Daily digest recording failed for {date}: {e}")
+        update_digest_status(date, status="failed", error_message=str(e))
 
         # Try to clean up OBS state
         try:
@@ -4433,14 +4584,72 @@ def _upload_video_to_youtube(video_path: str, date: str):
             video_id = upload_to_youtube(video_path, date)
             if video_id:
                 log.info(f"Uploaded to YouTube: https://youtube.com/watch?v={video_id}")
+                update_digest_status(date, youtube_id=video_id, upload_status="success")
+                # Add digest entry to RSS feed
+                digest_status = load_digest_status()
+                story_count = digest_status.get("story_count", 0)
+                add_digest_to_feed(date, story_count, video_id)
             else:
                 log.error(f"YouTube upload failed for {date}, video saved locally: {video_path}")
                 send_alert(f"YouTube upload failed for {date}. Video saved at: {video_path}")
+                update_digest_status(date, upload_status="failed", error_message="Upload returned no video ID")
         except Exception as e:
             log.error(f"YouTube upload failed: {e}")
             send_alert(f"YouTube upload failed for {date}: {e}. Video saved at: {video_path}")
+            update_digest_status(date, upload_status="failed", error_message=str(e))
     else:
         log.info(f"YouTube not configured. Video saved locally: {video_path}")
+        update_digest_status(date, upload_status="skipped")
+
+
+# =============================================================================
+# DAILY DIGEST STATUS
+# =============================================================================
+
+def load_digest_status() -> dict:
+    """Load digest status from persistent file."""
+    if DIGEST_STATUS_FILE.exists():
+        try:
+            with open(DIGEST_STATUS_FILE) as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+
+def save_digest_status(status: dict):
+    """Save digest status to persistent file."""
+    with open(DIGEST_STATUS_FILE, 'w') as f:
+        json.dump(status, f, indent=2)
+
+
+def update_digest_status(date: str, **kwargs):
+    """Update digest status for dashboard monitoring.
+
+    Fields: status, story_count, duration_seconds, video_path,
+    youtube_id, upload_status, error_message
+    """
+    current = load_digest_status()
+
+    # Calculate next digest (midnight GMT tomorrow)
+    now = datetime.now(timezone.utc)
+    tomorrow = now.date() + timedelta(days=1)
+    next_digest = datetime(tomorrow.year, tomorrow.month, tomorrow.day, tzinfo=timezone.utc)
+
+    current["last_date"] = date
+    current["next_digest_at"] = next_digest.isoformat()
+
+    for key, value in kwargs.items():
+        if value is not None:
+            current[key] = value
+
+    if kwargs.get("youtube_id"):
+        current["youtube_url"] = f"https://youtube.com/watch?v={kwargs['youtube_id']}"
+
+    if kwargs.get("status") in ("success", "failed", "no_stories"):
+        current["last_completed_at"] = now.isoformat()
+
+    save_digest_status(current)
 
 
 # =============================================================================
@@ -4630,7 +4839,8 @@ def write_monitor_data(cycle_stats: dict):
             "stream_health": get_stream_health_status(),
             "next_cycle_minutes": next_cycle_minutes,
             "degraded_services": list(_degraded_services)
-        }
+        },
+        "daily_digest": load_digest_status()
     }
 
     try:
@@ -4700,7 +4910,8 @@ def write_sleeping_heartbeat(minutes_remaining: int, last_cycle_stats: dict = No
             "stream_health": get_stream_health_status(),
             "next_cycle_minutes": minutes_remaining,
             "degraded_services": list(_degraded_services)
-        }
+        },
+        "daily_digest": load_digest_status()
     }
 
     try:
