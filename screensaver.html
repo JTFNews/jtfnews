@@ -16,6 +16,14 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <style>
+    /* iOS-safe viewport and safe area variables */
+    :root {
+      --viewport-width-px: 100vw;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -238,18 +246,32 @@
       /* Center content vertically */
       display: flex;
       align-items: center;
+
+      /* iOS safe area support */
+      padding-bottom: var(--safe-bottom);
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+
+      /* iOS scroll optimization */
+      -webkit-overflow-scrolling: touch;
+      -webkit-text-size-adjust: 100%;
     }
 
     #ticker-content {
       display: inline-block;
       white-space: nowrap;
-      padding-left: 100vw;
+      padding-left: var(--viewport-width-px, 100vw);
       animation: scroll-ticker linear infinite;
       font-size: clamp(24px, 4vw, 48px);
       font-weight: 400;
       color: rgba(255, 255, 255, 0.9);
       letter-spacing: 0.3px;
       --scroll-distance: 0px;
+
+      /* iOS GPU acceleration for smooth animation */
+      will-change: transform;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
 
     #ticker-content .ticker-story {
@@ -274,7 +296,7 @@
 
     #ticker-content .ticker-spacer {
       display: inline-block;
-      width: 100vw;
+      width: var(--viewport-width-px, 100vw);
     }
 
     @keyframes scroll-ticker {
@@ -308,10 +330,10 @@
         rgba(10, 15, 30, 1) 100%);
     }
 
-    /* Mobile portrait - smaller ticker */
+    /* Mobile portrait - smaller ticker with safe area */
     @media (max-width: 600px) and (orientation: portrait) {
       #news-ticker {
-        height: clamp(50px, 10vh, 80px);
+        height: calc(clamp(50px, 10vh, 80px) + var(--safe-bottom));
       }
       #ticker-content {
         font-size: clamp(18px, 5vw, 36px);
@@ -321,10 +343,10 @@
       }
     }
 
-    /* Mobile landscape - compact ticker */
+    /* Mobile landscape - compact ticker with safe area */
     @media (max-height: 500px) and (orientation: landscape) {
       #news-ticker {
-        height: clamp(40px, 10vh, 70px);
+        height: calc(clamp(40px, 10vh, 70px) + var(--safe-bottom));
       }
       #ticker-content {
         font-size: clamp(18px, 4vh, 30px);
@@ -954,11 +976,27 @@
       setInterval(checkForCycleRefresh, CYCLE_REFRESH_INTERVAL);
     }
 
+    // ========== iOS Viewport Fix ==========
+    function updateViewportWidth() {
+      const width = document.documentElement.clientWidth;
+      document.documentElement.style.setProperty('--viewport-width-px', width + 'px');
+    }
+
+    function initViewportFix() {
+      updateViewportWidth();
+      window.addEventListener('resize', updateViewportWidth);
+      window.addEventListener('orientationchange', () => {
+        // Delay to let iOS settle after orientation change
+        setTimeout(updateViewportWidth, 100);
+      });
+    }
+
     // ========== Initialize ==========
     function init() {
       console.log('[JTF Screen Saver] Starting...');
       console.log('[JTF Screen Saver] Audio:', CONFIG.audioEnabled ? 'ON' : 'OFF');
 
+      initViewportFix();
       preventSleep();
       initSlideshow();
       initNews();
