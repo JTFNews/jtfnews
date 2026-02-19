@@ -152,6 +152,35 @@
             color: #d4af37;
         }
 
+        /* Multi-day Range View */
+        .range-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .range-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #d4af37;
+        }
+        .range-count {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        .date-section {
+            margin-bottom: 30px;
+        }
+        .date-section .stories-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
         /* Story Card */
         .story-card {
             background: rgba(30, 41, 59, 0.6);
@@ -372,6 +401,7 @@
         let allSources = new Set();
         let loadedStories = [];
         let currentDate = null;
+        let currentStoriesByDate = null; // For multi-day range view
 
         // Cycle-sync auto-refresh
         let lastKnownRefreshAt = null;
@@ -624,7 +654,109 @@
 
             loadedStories = stories;
             currentDate = dateStr;
+            currentStoriesByDate = null; // Clear multi-day state
             renderStories(stories, dateStr);
+        }
+
+        // Load stories for a range of days (e.g., last 7 days)
+        async function loadStoriesForRange(daysBack) {
+            const container = document.getElementById('stories-container');
+            container.innerHTML = '<div class="loading"><span class="loading-spinner"></span>Loading stories from ' + daysBack + ' days...</div>';
+
+            const storiesByDate = {};
+            const today = getDateString(0);
+
+            // Load each day from most recent (0) to oldest (daysBack-1)
+            for (let i = 0; i < daysBack; i++) {
+                const dateStr = getDateString(i);
+                let dayStories;
+
+                if (dateStr === today) {
+                    const data = await loadTodayStories();
+                    dayStories = data.stories || [];
+                } else {
+                    dayStories = await loadArchiveStories(dateStr);
+                }
+
+                if (dayStories.length > 0) {
+                    storiesByDate[dateStr] = dayStories;
+                }
+            }
+
+            // Flatten for filtering purposes but keep date info
+            const allStories = [];
+            Object.entries(storiesByDate).forEach(([dateStr, stories]) => {
+                stories.forEach(story => {
+                    allStories.push({ ...story, _date: dateStr });
+                });
+            });
+
+            loadedStories = allStories;
+            currentDate = null; // Indicate multi-day mode
+            currentStoriesByDate = storiesByDate; // Store for filter re-renders
+            renderStoriesMultiDay(storiesByDate);
+        }
+
+        function renderStoriesMultiDay(storiesByDate) {
+            const container = document.getElementById('stories-container');
+            const sourceFilter = document.getElementById('source-filter').value;
+
+            // Sort dates from most recent to oldest
+            const sortedDates = Object.keys(storiesByDate).sort().reverse();
+
+            let totalFiltered = 0;
+            let html = '';
+
+            sortedDates.forEach(dateStr => {
+                let stories = storiesByDate[dateStr];
+
+                // Apply source filter
+                if (sourceFilter) {
+                    stories = stories.filter(s => s.source && s.source.includes(sourceFilter));
+                }
+
+                if (stories.length === 0) return;
+
+                totalFiltered += stories.length;
+
+                // Add date header for each day
+                html += `
+                    <div class="date-section">
+                        <div class="stories-header">
+                            <span class="stories-date">${formatDate(dateStr)}</span>
+                            <span class="stories-count">${stories.length} ${stories.length === 1 ? 'story' : 'stories'}</span>
+                        </div>
+                        ${stories.map(story => {
+                            const storyId = story.id || `${dateStr}-${story.hash || ''}`;
+                            return renderStory(story, isStoryCorrected(storyId));
+                        }).join('')}
+                    </div>
+                `;
+            });
+
+            if (totalFiltered === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">&#128196;</div>
+                        <div class="empty-title">No Stories Found</div>
+                        <div class="empty-text">
+                            ${sourceFilter ? 'No stories from this source in this date range.' : 'No stories available for this date range.'}
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // Add summary header
+            const summaryHeader = `
+                <div class="range-summary">
+                    <span class="range-title">Last ${sortedDates.length} Days</span>
+                    <span class="range-count">${totalFiltered} total ${totalFiltered === 1 ? 'story' : 'stories'}</span>
+                </div>
+            `;
+
+            container.innerHTML = summaryHeader + html;
+            updateSourceFilter();
         }
 
         async function loadArchiveIndex() {
@@ -658,9 +790,17 @@
                     btn.classList.add('active');
 
                     const days = parseInt(btn.dataset.days);
-                    const dateStr = getDateString(days);
-                    document.getElementById('date-select').value = dateStr;
-                    loadStoriesForDate(dateStr);
+
+                    if (days > 1) {
+                        // Range mode: load multiple days (e.g., "Last 7 Days")
+                        document.getElementById('date-select').value = '';
+                        loadStoriesForRange(days);
+                    } else {
+                        // Single day mode: "Today" (0) or "Yesterday" (1)
+                        const dateStr = getDateString(days);
+                        document.getElementById('date-select').value = dateStr;
+                        loadStoriesForDate(dateStr);
+                    }
                 });
             });
         }
@@ -676,8 +816,14 @@
             });
 
             document.getElementById('source-filter').addEventListener('change', () => {
-                if (loadedStories.length > 0 && currentDate) {
-                    renderStories(loadedStories, currentDate);
+                if (loadedStories.length > 0) {
+                    if (currentStoriesByDate) {
+                        // Multi-day mode: re-render grouped view
+                        renderStoriesMultiDay(currentStoriesByDate);
+                    } else if (currentDate) {
+                        // Single-day mode
+                        renderStories(loadedStories, currentDate);
+                    }
                 }
             });
 
