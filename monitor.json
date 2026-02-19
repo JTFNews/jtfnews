@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-02-19T21:57:51.119885+00:00",
+  "timestamp": "2026-02-19T22:00:33.192624+00:00",
+  "web_refresh_at": "2026-02-19T22:00:33.192624+00:00",
   "uptime_start": "2026-02-19T21:51:51.495405+00:00",
-  "uptime_seconds": 360,
+  "uptime_seconds": 522,
   "availability_pct": 92.6,
   "cycle": {
-    "number": 1,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 2,
+    "duration_seconds": 32.3,
+    "headlines_scraped": 132,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 613,
-        "cost_usd": 0.2586972499999999,
+        "calls": 615,
+        "cost_usd": 0.2596712499999999,
         "details": {
-          "input_tokens": 616889,
-          "output_tokens": 83580
+          "input_tokens": 619175,
+          "output_tokens": 83902
         }
       },
       "elevenlabs": {
@@ -29,7 +30,7 @@
         }
       }
     },
-    "total_usd": 0.2798,
+    "total_usd": 0.2808,
     "month_estimate_usd": 6.2,
     "daily_budget": 1.79,
     "budget_pct": 15.7
@@ -41,14 +42,22 @@
   "stories_today": 7,
   "sources": {
     "total": 17,
-    "successful": 17,
-    "failed": []
+    "successful": 16,
+    "failed": [
+      "UK Parliament"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-02-19T22:00:24.913957+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from UK Parliament: 403 Client Error: Forbidden for url: https://www.parliament.uk/business/news/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 2,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   }
 }
