@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>JTF News - Daily Digest</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icon-square-dark.svg">
+    <link rel="stylesheet" href="lower-third.css">
+    <style>
+        /* Background slideshow styles */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            z-index: 0;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Lower third sits above slides */
+        #lower-third {
+            z-index: 10;
+        }
+
+        /* Completion overlay */
+        #completion-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #completion-overlay.visible {
+            display: flex;
+        }
+
+        #completion-overlay h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            color: rgba(212, 175, 55, 0.95);
+        }
+
+        #completion-overlay p {
+            font-size: 36px;
+            opacity: 0.8;
+        }
+
+        /* Progress indicator - sits above ticker */
+        #progress-bar {
+            position: absolute;
+            bottom: 120px;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.9), rgba(30, 64, 175, 0.9));
+            z-index: 50;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background slideshow -->
+    <img id="slide1" class="slide active" alt="">
+    <img id="slide2" class="slide" alt="">
+
+    <!-- Lower third overlay (same as live stream) -->
+    <div id="lower-third" class="hidden">
+        <div id="brand-tab">JTF NEWS</div>
+        <div id="source-bar"></div>
+        <div id="fact-text"></div>
+    </div>
+
+    <!-- Scrolling news ticker -->
+    <div id="news-ticker">
+        <div id="ticker-content"></div>
+    </div>
+
+    <!-- Progress bar (above ticker) -->
+    <div id="progress-bar" style="width: 0%"></div>
+
+    <!-- Completion overlay -->
+    <div id="completion-overlay">
+        <h1>Daily Digest Complete</h1>
+        <p id="completion-stats"></p>
+    </div>
+
+    <audio id="tts-audio" preload="none"></audio>
+
+    <script>
+        /**
+         * JTF News - Daily Digest
+         * Plays through all archived stories for the previous day
+         * Used for midnight summary broadcast + YouTube upload
+         */
+
+        // Configuration
+        const FADE_TIME = 1000;
+        const GAP_BETWEEN_STORIES = 2000;  // 2 seconds between stories
+        const SLIDE_INTERVAL = 50000;      // 50 seconds per background
+        const MAX_IMAGES = 2000;
+
+        // Calculate base paths - handle both file:// and http:// URLs
+        function getBasePaths() {
+            const currentUrl = window.location.href;
+
+            if (currentUrl.startsWith('file://')) {
+                // For file:// URLs, extract the directory path
+                // e.g., file:///Users/.../JTFNews/web/daily-digest.html
+                // We need: file:///Users/.../JTFNews/
+                const webDir = currentUrl.substring(0, currentUrl.lastIndexOf('/'));  // .../web
+                const projectDir = webDir.substring(0, webDir.lastIndexOf('/'));      // .../JTFNews
+                return {
+                    media: projectDir + '/media',
+                    data: projectDir + '/data',
+                    audio: projectDir + '/audio'
+                };
+            } else {
+                // For http:// URLs, use relative paths
+                return {
+                    media: '../media',
+                    data: '../data',
+                    audio: '../audio'
+                };
+            }
+        }
+
+        const PATHS = getBasePaths();
+        console.log('Using paths:', PATHS);
+
+        // Get yesterday's date for archive lookup
+        function getYesterdayDate() {
+            const now = new Date();
+            // Use UTC to match server
+            const yesterday = new Date(Date.UTC(
+                now.getUTCFullYear(),
+                now.getUTCMonth(),
+                now.getUTCDate() - 1
+            ));
+            return yesterday.toISOString().split('T')[0];
+        }
+
+        // State
+        let stories = [];
+        let currentStoryIndex = 0;
+        let images = [];
+        let currentSlide = 1;
+        let audioElement = null;
+        let isComplete = false;
+        let digestDate = getYesterdayDate();
+
+        // ========== Background Slideshow ==========
+
+        function getSeason() {
+            const month = new Date().getMonth() + 1;
+            if (month >= 3 && month <= 5) return 'spring';
+            if (month >= 6 && month <= 8) return 'summer';
+            if (month >= 9 && month <= 11) return 'fall';
+            return 'winter';
+        }
+
+        async function discoverImages(season) {
+            const discovered = [];
+            let consecutiveFails = 0;
+
+            for (let i = 0; i < MAX_IMAGES && consecutiveFails < 10; i++) {
+                const filename = `${season}_${String(i).padStart(6, '0')}.png`;
+                const path = `${PATHS.media}/${season}/${filename}`;
+
+                try {
+                    const response = await fetch(path, { method: 'HEAD' });
+                    if (response.ok) {
+                        discovered.push(path);
+                        consecutiveFails = 0;
+                    } else {
+                        consecutiveFails++;
+                    }
+                } catch (e) {
+                    consecutiveFails++;
+                }
+            }
+
+            console.log(`Found ${discovered.length} ${season} images`);
+            return discovered;
+        }
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function showNextImage() {
+            if (images.length === 0) return;
+
+            const nextImage = images[Math.floor(Math.random() * images.length)];
+            const activeSlide = currentSlide === 1 ? 'slide1' : 'slide2';
+            const inactiveSlide = currentSlide === 1 ? 'slide2' : 'slide1';
+
+            const activeEl = document.getElementById(activeSlide);
+            const inactiveEl = document.getElementById(inactiveSlide);
+
+            inactiveEl.src = nextImage;
+            inactiveEl.onload = () => {
+                activeEl.classList.remove('active');
+                inactiveEl.classList.add('active');
+                currentSlide = currentSlide === 1 ? 2 : 1;
+            };
+        }
+
+        // ========== News Ticker ==========
+
+        const TICKER_SPEED = 120;  // Pixels per second
+
+        function buildTickerContent() {
+            if (stories.length === 0) return '';
+
+            const items = stories.map((story, index) => {
+                const position = `${index + 1}/${stories.length}`;
+                return `<span class="ticker-story">` +
+                    `<span class="ticker-time">${position}:</span>` +
+                    `<span class="ticker-fact">${story.fact}</span>` +
+                    `<span class="ticker-source">(${story.source})</span>` +
+                    `</span>`;
+            });
+
+            return items.join('<span class="ticker-spacer"></span>');
+        }
+
+        function updateTickerAnimation() {
+            const tickerContent = document.getElementById('ticker-content');
+            if (!tickerContent) return;
+
+            tickerContent.innerHTML = buildTickerContent();
+
+            requestAnimationFrame(() => {
+                const contentWidth = tickerContent.scrollWidth;
+                const totalDistance = contentWidth;
+                const duration = totalDistance / TICKER_SPEED;
+
+                tickerContent.style.setProperty('--scroll-distance', `-${totalDistance}px`);
+                tickerContent.style.animationDuration = `${duration}s`;
+
+                console.log(`[Ticker] ${stories.length} stories, duration: ${duration.toFixed(1)}s`);
+            });
+        }
+
+        // ========== Story Loading ==========
+
+        async function loadArchivedStories() {
+            // Try loading from archived audio directory
+            // Stories are stored in data/YYYY-MM-DD.txt
+            const archiveUrl = `${PATHS.data}/${digestDate}.txt`;
+
+            try {
+                const response = await fetch(archiveUrl + '?t=' + Date.now());
+                if (!response.ok) {
+                    console.error(`No archive found for ${digestDate}`);
+                    return [];
+                }
+
+                const text = await response.text();
+                const lines = text.split('\n');
+                const loadedStories = [];
+
+                for (const line of lines) {
+                    if (!line.trim() || line.startsWith('#')) continue;
+
+                    // Parse pipe-delimited format:
+                    // timestamp|sources|ratings|urls|fact
+                    const parts = line.split('|');
+                    if (parts.length >= 5) {
+                        loadedStories.push({
+                            timestamp: parts[0],
+                            source: parts[1],
+                            ratings: parts[2],
+                            urls: parts[3],
+                            fact: parts[4]
+                        });
+                    }
+                }
+
+                console.log(`Loaded ${loadedStories.length} stories from ${digestDate}`);
+                return loadedStories;
+
+            } catch (error) {
+                console.error('Error loading stories:', error);
+                return [];
+            }
+        }
+
+        // ========== Story Display ==========
+
+        function updateProgress() {
+            const progress = ((currentStoryIndex + 1) / stories.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function playAudio(storyIndex) {
+            return new Promise((resolve) => {
+                if (!audioElement) {
+                    audioElement = document.getElementById('tts-audio');
+                }
+
+                // Audio files are in archive: audio/archive/YYYY-MM-DD/audio_N.mp3
+                const audioPath = `${PATHS.audio}/archive/${digestDate}/audio_${storyIndex}.mp3`;
+
+                const onEnded = () => {
+                    audioElement.removeEventListener('ended', onEnded);
+                    audioElement.removeEventListener('error', onError);
+                    resolve('ended');
+                };
+
+                const onError = () => {
+                    audioElement.removeEventListener('ended', onEnded);
+                    audioElement.removeEventListener('error', onError);
+                    console.log(`Audio not found: ${audioPath}, using fallback timing`);
+                    resolve('error');
+                };
+
+                audioElement.addEventListener('ended', onEnded);
+                audioElement.addEventListener('error', onError);
+
+                audioElement.src = audioPath + '?t=' + Date.now();
+                audioElement.load();
+                audioElement.play().catch(() => resolve('error'));
+            });
+        }
+
+        function calculateHoldTime(text) {
+            const baseTime = 5000;
+            const extraTime = Math.floor(text.length / 20) * 500;
+            return Math.min(baseTime + extraTime, 15000);
+        }
+
+        async function displayStory(story, index) {
+            const lowerThird = document.getElementById('lower-third');
+            const sourceBar = document.getElementById('source-bar');
+            const factText = document.getElementById('fact-text');
+
+            // Set content
+            sourceBar.textContent = story.source || 'JTF News';
+            factText.textContent = story.fact;
+
+            // Update progress
+            updateProgress();
+
+            // Fade in
+            lowerThird.classList.remove('hidden');
+            lowerThird.classList.add('visible');
+
+            // Play audio
+            const audioResult = await playAudio(index);
+
+            if (audioResult === 'error') {
+                await sleep(calculateHoldTime(story.fact));
+            } else {
+                // Keep text visible briefly after audio ends
+                await sleep(3000);
+            }
+
+            // Fade out
+            lowerThird.classList.remove('visible');
+            lowerThird.classList.add('hidden');
+
+            console.log(`[${index + 1}/${stories.length}] Displayed: "${story.fact.substring(0, 50)}..."`);
+        }
+
+        // ========== Main Playback Loop ==========
+
+        async function runDigest() {
+            console.log(`Starting Daily Digest for ${digestDate}`);
+            console.log(`${stories.length} stories to play`);
+
+            // Signal start (Python script can detect this)
+            console.log('DIGEST_STARTED');
+
+            for (let i = 0; i < stories.length; i++) {
+                currentStoryIndex = i;
+                await displayStory(stories[i], i);
+
+                // Gap between stories (except after last)
+                if (i < stories.length - 1) {
+                    await sleep(GAP_BETWEEN_STORIES);
+                }
+            }
+
+            // All stories complete
+            showCompletion();
+        }
+
+        function showCompletion() {
+            isComplete = true;
+
+            const overlay = document.getElementById('completion-overlay');
+            const stats = document.getElementById('completion-stats');
+
+            stats.textContent = `${stories.length} verified facts from ${digestDate}`;
+            overlay.classList.add('visible');
+
+            // Signal completion (Python script detects this)
+            console.log('DIGEST_COMPLETE');
+            console.log(`Total stories: ${stories.length}`);
+
+            // Keep completion screen for 10 seconds
+            setTimeout(() => {
+                console.log('DIGEST_FINISHED');
+            }, 10000);
+        }
+
+        // ========== Initialization ==========
+
+        async function init() {
+            console.log('JTF News Daily Digest initializing...');
+            console.log(`Digest date: ${digestDate}`);
+
+            // Load background images
+            const season = getSeason();
+            console.log(`Current season: ${season}`);
+            images = await discoverImages(season);
+
+            if (images.length > 0) {
+                // Show first image
+                document.getElementById('slide1').src = images[0];
+                // Start slideshow
+                setInterval(showNextImage, SLIDE_INTERVAL);
+            }
+
+            // Load archived stories
+            stories = await loadArchivedStories();
+
+            // Start the ticker with all stories
+            updateTickerAnimation();
+
+            if (stories.length === 0) {
+                console.error('No stories found for digest');
+                console.log('DIGEST_ERROR: No stories');
+                // Show error on screen
+                const overlay = document.getElementById('completion-overlay');
+                const stats = document.getElementById('completion-stats');
+                document.querySelector('#completion-overlay h1').textContent = 'No Stories Available';
+                stats.textContent = `No archived stories found for ${digestDate}`;
+                overlay.classList.add('visible');
+                return;
+            }
+
+            // Start digest playback after brief delay
+            await sleep(2000);
+            runDigest();
+        }
+
+        // Allow overriding the digest date via URL parameter or config file
+        // Priority: 1) URL param, 2) config file, 3) auto-calculate yesterday
+        async function getDigestDate() {
+            // Check URL parameter first
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('date')) {
+                console.log(`Using date from URL: ${urlParams.get('date')}`);
+                return urlParams.get('date');
+            }
+
+            // Try to read from config file (set by Python script)
+            try {
+                const configUrl = `${PATHS.data}/digest-config.json?t=${Date.now()}`;
+                const response = await fetch(configUrl);
+                if (response.ok) {
+                    const config = await response.json();
+                    if (config.date) {
+                        console.log(`Using date from config: ${config.date}`);
+                        return config.date;
+                    }
+                }
+            } catch (e) {
+                console.log('No config file found, using yesterday');
+            }
+
+            // Default to yesterday
+            console.log(`Using yesterday's date: ${getYesterdayDate()}`);
+            return getYesterdayDate();
+        }
+
+        // Async init wrapper to handle date loading
+        async function startDigest() {
+            digestDate = await getDigestDate();
+            init();
+        }
+
+        // Start when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startDigest);
+        } else {
+            startDigest();
+        }
+    </script>
+</body>
+</html>

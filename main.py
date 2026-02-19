@@ -3394,7 +3394,7 @@ def update_published_story(story_index: int, additional_detail: str, new_source:
 # =============================================================================
 
 def cleanup_old_data(days: int = 7):
-    """Delete raw data files older than N days."""
+    """Delete raw data files and old videos older than N days."""
     import glob
     from datetime import timedelta
 
@@ -3408,8 +3408,10 @@ def cleanup_old_data(days: int = 7):
         for filepath in DATA_DIR.glob(pattern):
             filename = filepath.name
 
-            # Skip non-dated files
+            # Skip non-dated files and config files
             if not any(c.isdigit() for c in filename):
+                continue
+            if filename == "digest-config.json":
                 continue
 
             # Extract date from filename (e.g., 2026-02-11.txt, processed_2026-02-11.txt)
@@ -3425,8 +3427,1019 @@ def cleanup_old_data(days: int = 7):
             except Exception as e:
                 log.error(f"Error checking file {filename}: {e}")
 
+    # Clean up old daily digest videos (they're large!)
+    if VIDEO_DIR.exists():
+        for filepath in VIDEO_DIR.glob("*.mp4"):
+            filename = filepath.name
+            try:
+                match = re.search(r'(\d{4}-\d{2}-\d{2})', filename)
+                if match:
+                    file_date = match.group(1)
+                    if file_date < cutoff_str:
+                        filepath.unlink()
+                        deleted += 1
+                        log.info(f"Deleted old video: {filename}")
+            except Exception as e:
+                log.error(f"Error checking video {filename}: {e}")
+
+    # Clean up old audio archives
+    audio_archive_dir = AUDIO_DIR / "archive"
+    if audio_archive_dir.exists():
+        for date_dir in audio_archive_dir.iterdir():
+            if date_dir.is_dir() and re.match(r'\d{4}-\d{2}-\d{2}', date_dir.name):
+                if date_dir.name < cutoff_str:
+                    try:
+                        shutil.rmtree(date_dir)
+                        deleted += 1
+                        log.info(f"Deleted old audio archive: {date_dir.name}")
+                    except Exception as e:
+                        log.error(f"Error deleting audio archive {date_dir.name}: {e}")
+
     if deleted > 0:
-        log.info(f"Cleanup complete: {deleted} old files deleted")
+        log.info(f"Cleanup complete: {deleted} old files/folders deleted")
+
+
+# =============================================================================
+# DAILY VIDEO GENERATION
+# =============================================================================
+
+# Directory for daily summary videos
+VIDEO_DIR = BASE_DIR / "video"
+VIDEO_DIR.mkdir(exist_ok=True)
+
+
+def archive_audio_files(date: str) -> list:
+    """Archive audio files for the given date before they get overwritten.
+
+    Moves audio_*.mp3 files from audio/ to audio/archive/YYYY-MM-DD/
+    to preserve them for daily video generation.
+
+    Args:
+        date: Date string in YYYY-MM-DD format
+
+    Returns:
+        List of archived file paths (sorted by audio index)
+    """
+    archive_dir = AUDIO_DIR / "archive" / date
+    archive_dir.mkdir(parents=True, exist_ok=True)
+
+    archived = []
+    # Sort by audio index to maintain story order
+    for audio_file in sorted(AUDIO_DIR.glob("audio_*.mp3"),
+                             key=lambda f: int(f.stem.split('_')[1]) if f.stem.split('_')[1].isdigit() else 0):
+        dest = archive_dir / audio_file.name
+        try:
+            shutil.move(str(audio_file), str(dest))
+            archived.append(str(dest))
+            log.debug(f"Archived audio: {audio_file.name} -> {archive_dir.name}/")
+        except Exception as e:
+            log.error(f"Failed to archive {audio_file}: {e}")
+
+    if archived:
+        log.info(f"Archived {len(archived)} audio files to {archive_dir}")
+
+    return archived
+
+
+def get_audio_duration(path: str) -> float:
+    """Get audio duration in seconds using ffprobe.
+
+    Args:
+        path: Path to audio file
+
+    Returns:
+        Duration in seconds, or 0.0 on error
+    """
+    import subprocess
+
+    try:
+        result = subprocess.run([
+            "ffprobe", "-v", "error",
+            "-show_entries", "format=duration",
+            "-of", "default=noprint_wrappers=1:nokey=1",
+            path
+        ], capture_output=True, text=True, timeout=30)
+
+        if result.returncode == 0 and result.stdout.strip():
+            return float(result.stdout.strip())
+        else:
+            log.warning(f"ffprobe failed for {path}: {result.stderr}")
+            return 0.0
+    except FileNotFoundError:
+        log.error("ffprobe not found - install FFmpeg: brew install ffmpeg")
+        return 0.0
+    except subprocess.TimeoutExpired:
+        log.error(f"ffprobe timed out for {path}")
+        return 0.0
+    except Exception as e:
+        log.error(f"Error getting duration for {path}: {e}")
+        return 0.0
+
+
+def get_current_season() -> str:
+    """Determine current season based on date (Northern Hemisphere).
+
+    Returns:
+        Season name: 'winter', 'spring', 'summer', or 'fall'
+    """
+    month = datetime.now().month
+    if month in (3, 4, 5):
+        return 'spring'
+    elif month in (6, 7, 8):
+        return 'summer'
+    elif month in (9, 10, 11):
+        return 'fall'
+    else:  # 12, 1, 2
+        return 'winter'
+
+
+def get_seasonal_backgrounds(count: int = 50) -> list:
+    """Get a list of seasonal background images for video.
+
+    Args:
+        count: Number of images to return
+
+    Returns:
+        List of image paths, shuffled for variety
+    """
+    import random
+
+    season = get_current_season()
+    season_dir = BASE_DIR / "media" / season
+
+    if not season_dir.exists():
+        log.warning(f"Season directory not found: {season_dir}")
+        return []
+
+    # Find all PNG images in the season folder
+    images = list(season_dir.glob("*.png"))
+
+    if not images:
+        log.warning(f"No images found in {season_dir}")
+        return []
+
+    # Shuffle and return requested count
+    random.shuffle(images)
+    return [str(img) for img in images[:count]]
+
+
+def load_stories_for_date(date: str) -> list:
+    """Load stories from the daily log file for a specific date.
+
+    Args:
+        date: Date string in YYYY-MM-DD format
+
+    Returns:
+        List of story dicts with 'fact' and 'source' fields
+    """
+    log_file = DATA_DIR / f"{date}.txt"
+
+    if not log_file.exists():
+        log.debug(f"No daily log found for {date}")
+        return []
+
+    stories = []
+    try:
+        with open(log_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+
+        # Parse daily log format (pipe-delimited):
+        # timestamp|Source1,Source2|ratings|urls|fact text
+        # Example:
+        # 2026-02-15T00:08:14+00:00|BBC News,Reuters|9.5*,9.9*|url1,url2|The fact here.
+
+        for line in lines:
+            line = line.strip()
+
+            # Skip comments and empty lines
+            if not line or line.startswith('#'):
+                continue
+
+            # Parse pipe-delimited format
+            parts = line.split('|')
+            if len(parts) >= 5:
+                timestamp = parts[0]
+                sources = parts[1]
+                # ratings = parts[2]  # Not needed for video
+                # urls = parts[3]  # Not needed for video
+                fact = parts[4]
+
+                stories.append({
+                    'fact': fact,
+                    'source': sources,
+                    'timestamp': timestamp
+                })
+
+        log.info(f"Loaded {len(stories)} stories from {date}")
+
+    except Exception as e:
+        log.error(f"Error loading stories for {date}: {e}")
+
+    return stories
+
+
+def generate_silence(duration: float, output_path: str) -> bool:
+    """Generate a silent audio file using FFmpeg.
+
+    Args:
+        duration: Duration in seconds
+        output_path: Path for output file
+
+    Returns:
+        True on success, False on failure
+    """
+    import subprocess
+
+    try:
+        result = subprocess.run([
+            "ffmpeg", "-y",  # Overwrite output
+            "-f", "lavfi",
+            "-i", f"anullsrc=r=44100:cl=stereo",
+            "-t", str(duration),
+            "-acodec", "libmp3lame",
+            "-q:a", "2",
+            output_path
+        ], capture_output=True, text=True, timeout=60)
+
+        if result.returncode != 0:
+            log.error(f"FFmpeg silence generation failed: {result.stderr}")
+            return False
+        return True
+
+    except Exception as e:
+        log.error(f"Error generating silence: {e}")
+        return False
+
+
+def escape_text_for_drawtext(text: str) -> str:
+    """Escape special characters for FFmpeg drawtext filter.
+
+    FFmpeg drawtext requires escaping: \\ : ' %
+    """
+    # Escape backslashes first
+    text = text.replace('\\', '\\\\\\\\')
+    # Escape colons (critical for drawtext)
+    text = text.replace(':', '\\:')
+    # Escape single quotes
+    text = text.replace("'", "'\\''")
+    # Escape percent signs
+    text = text.replace('%', '\\%')
+    return text
+
+
+def wrap_text(text: str, max_chars: int = 80) -> str:
+    """Wrap text at word boundaries for video overlay.
+
+    Args:
+        text: Text to wrap
+        max_chars: Maximum characters per line
+
+    Returns:
+        Wrapped text with newlines
+    """
+    words = text.split()
+    lines = []
+    current_line = []
+    current_length = 0
+
+    for word in words:
+        if current_length + len(word) + 1 <= max_chars:
+            current_line.append(word)
+            current_length += len(word) + 1
+        else:
+            if current_line:
+                lines.append(' '.join(current_line))
+            current_line = [word]
+            current_length = len(word)
+
+    if current_line:
+        lines.append(' '.join(current_line))
+
+    return '\n'.join(lines)
+
+
+def generate_daily_video(date: str, stories: list, audio_files: list) -> str:
+    """Generate daily summary video with FFmpeg.
+
+    Creates an MP4 video with:
+    - Concatenated audio from all stories (with 2s silence gaps)
+    - Crossfading seasonal background images
+    - Text overlays for each story fact
+
+    Args:
+        date: YYYY-MM-DD date string
+        stories: List of story dicts with 'fact' and 'source' keys
+        audio_files: List of audio file paths in order
+
+    Returns:
+        Path to generated video file
+
+    Raises:
+        Exception on generation failure
+    """
+    import subprocess
+    import tempfile
+
+    output_path = VIDEO_DIR / f"{date}-daily-summary.mp4"
+
+    # Match audio files to stories by index
+    story_audio_pairs = []
+    for i, story in enumerate(stories):
+        audio_filename = story.get('audio', f'audio_{i}.mp3')
+        # Find matching audio file in archive
+        matching_audio = None
+        for af in audio_files:
+            if audio_filename in af or f'audio_{i}.mp3' in af:
+                matching_audio = af
+                break
+
+        if matching_audio:
+            story_audio_pairs.append((story, matching_audio))
+        else:
+            log.warning(f"No audio found for story {i}: {story.get('fact', '')[:50]}...")
+
+    if not story_audio_pairs:
+        raise Exception("No story-audio pairs found")
+
+    log.info(f"Generating video with {len(story_audio_pairs)} stories")
+
+    # Calculate total duration and timing for each story
+    silence_gap = 2.0  # seconds between stories
+    timings = []  # (start_time, duration, story)
+    current_time = 0.0
+
+    for story, audio_path in story_audio_pairs:
+        duration = get_audio_duration(audio_path)
+        if duration <= 0:
+            duration = 15.0  # fallback duration
+            log.warning(f"Using fallback duration for {audio_path}")
+
+        timings.append({
+            'start': current_time,
+            'duration': duration,
+            'story': story,
+            'audio': audio_path
+        })
+        current_time += duration + silence_gap
+
+    total_duration = current_time - silence_gap  # Remove trailing silence
+
+    # Get background images
+    # Calculate how many we need (one per ~50 seconds with crossfade)
+    images_needed = max(int(total_duration / 50) + 2, 5)
+    backgrounds = get_seasonal_backgrounds(images_needed)
+
+    if not backgrounds:
+        raise Exception("No background images available")
+
+    # Create temporary directory for intermediate files
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmpdir_path = Path(tmpdir)
+
+        # Generate silence file for gaps
+        silence_file = tmpdir_path / "silence.mp3"
+        if not generate_silence(silence_gap, str(silence_file)):
+            raise Exception("Failed to generate silence file")
+
+        # Create audio concat list
+        audio_list_file = tmpdir_path / "audio_list.txt"
+        with open(audio_list_file, 'w') as f:
+            for i, timing in enumerate(timings):
+                f.write(f"file '{timing['audio']}'\n")
+                if i < len(timings) - 1:  # No silence after last
+                    f.write(f"file '{silence_file}'\n")
+
+        # Concatenate audio
+        concat_audio = tmpdir_path / "concat_audio.mp3"
+        concat_result = subprocess.run([
+            "ffmpeg", "-y",
+            "-f", "concat", "-safe", "0",
+            "-i", str(audio_list_file),
+            "-c", "copy",
+            str(concat_audio)
+        ], capture_output=True, text=True, timeout=300)
+
+        if concat_result.returncode != 0:
+            log.error(f"Audio concat failed: {concat_result.stderr}")
+            raise Exception("Failed to concatenate audio")
+
+        # Build FFmpeg complex filter for video
+        # We'll create a simple approach: loop through images with crossfade
+
+        # Calculate image display timing
+        image_duration = total_duration / len(backgrounds)
+        crossfade_duration = min(2.0, image_duration / 4)
+
+        # Build input arguments for images
+        input_args = []
+        for img in backgrounds:
+            input_args.extend(["-loop", "1", "-t", str(image_duration), "-i", img])
+
+        # Add audio input
+        input_args.extend(["-i", str(concat_audio)])
+
+        # Build filter for crossfading images
+        num_images = len(backgrounds)
+        filter_parts = []
+
+        # Scale all images to 1920x1080
+        for i in range(num_images):
+            filter_parts.append(f"[{i}:v]scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,setsar=1[img{i}];")
+
+        # Build crossfade chain
+        if num_images == 1:
+            filter_parts.append("[img0]fps=30[base];")
+        else:
+            # First crossfade
+            filter_parts.append(f"[img0][img1]xfade=transition=fade:duration={crossfade_duration}:offset={image_duration - crossfade_duration}[v1];")
+
+            # Subsequent crossfades
+            for i in range(2, num_images):
+                offset = (i * image_duration) - (i * crossfade_duration)
+                prev = f"v{i-1}"
+                curr = f"v{i}" if i < num_images - 1 else "base"
+                filter_parts.append(f"[{prev}][img{i}]xfade=transition=fade:duration={crossfade_duration}:offset={offset}[{curr}];")
+
+            if num_images == 2:
+                filter_parts.append("[v1]fps=30[base];")
+
+        # Add text overlays for each story
+        # Position: lower third, with black semi-transparent background
+        filter_parts.append("[base]fps=30[video_base];")
+
+        current_input = "video_base"
+        for i, timing in enumerate(timings):
+            fact_text = wrap_text(timing['story'].get('fact', ''), max_chars=70)
+            source_text = timing['story'].get('source', '')
+
+            # Escape for drawtext
+            escaped_fact = escape_text_for_drawtext(fact_text)
+            escaped_source = escape_text_for_drawtext(source_text)
+
+            start = timing['start']
+            end = start + timing['duration']
+
+            output_label = f"text{i}" if i < len(timings) - 1 else "textfinal"
+
+            # Add fact text overlay (centered, lower portion of screen)
+            filter_parts.append(
+                f"[{current_input}]drawtext="
+                f"text='{escaped_fact}':"
+                f"fontsize=42:"
+                f"fontcolor=white:"
+                f"borderw=3:"
+                f"bordercolor=black:"
+                f"x=(w-text_w)/2:"
+                f"y=h*0.65:"
+                f"enable='between(t,{start},{end})'[{output_label}];"
+            )
+            current_input = output_label
+
+        # Final output
+        filter_complex = ''.join(filter_parts).rstrip(';')
+
+        # Build FFmpeg command
+        ffmpeg_cmd = [
+            "ffmpeg", "-y",
+            *input_args,
+            "-filter_complex", filter_complex,
+            "-map", "[textfinal]",
+            "-map", f"{num_images}:a",  # Audio is last input
+            "-c:v", "libx264",
+            "-preset", "medium",
+            "-crf", "23",
+            "-c:a", "aac",
+            "-b:a", "128k",
+            "-shortest",
+            "-movflags", "+faststart",
+            str(output_path)
+        ]
+
+        log.info(f"Generating video: {output_path}")
+        log.debug(f"FFmpeg command length: {len(ffmpeg_cmd)} args")
+
+        # Run FFmpeg with extended timeout
+        video_result = subprocess.run(
+            ffmpeg_cmd,
+            capture_output=True,
+            text=True,
+            timeout=1800  # 30 minutes for long videos
+        )
+
+        if video_result.returncode != 0:
+            log.error(f"Video generation failed: {video_result.stderr[:1000]}")
+            raise Exception(f"FFmpeg video generation failed")
+
+    log.info(f"Video generated successfully: {output_path}")
+    return str(output_path)
+
+
+def get_youtube_credentials():
+    """Load YouTube API credentials from environment.
+
+    Returns:
+        Tuple of (client_secrets_file, playlist_id) or (None, None) if not configured
+    """
+    client_secrets = os.getenv("YOUTUBE_CLIENT_SECRETS_FILE")
+    playlist_id = os.getenv("YOUTUBE_PLAYLIST_ID")
+
+    if not client_secrets or not playlist_id:
+        log.warning("YouTube credentials not configured in .env")
+        return None, None
+
+    secrets_path = BASE_DIR / client_secrets
+    if not secrets_path.exists():
+        log.warning(f"YouTube client secrets file not found: {secrets_path}")
+        return None, None
+
+    return str(secrets_path), playlist_id
+
+
+def get_authenticated_youtube_service():
+    """Get authenticated YouTube API service.
+
+    Returns:
+        YouTube API service object, or None if authentication fails
+    """
+    client_secrets_file, _ = get_youtube_credentials()
+    if not client_secrets_file:
+        return None
+
+    token_file = DATA_DIR / "youtube_tokens.json"
+
+    try:
+        from google.oauth2.credentials import Credentials
+        from google_auth_oauthlib.flow import InstalledAppFlow
+        from google.auth.transport.requests import Request
+        from googleapiclient.discovery import build
+
+        SCOPES = ['https://www.googleapis.com/auth/youtube.upload',
+                  'https://www.googleapis.com/auth/youtube']
+
+        creds = None
+
+        # Load existing credentials
+        if token_file.exists():
+            try:
+                creds = Credentials.from_authorized_user_file(str(token_file), SCOPES)
+            except Exception as e:
+                log.warning(f"Failed to load YouTube tokens: {e}")
+
+        # Refresh or get new credentials
+        if creds and creds.expired and creds.refresh_token:
+            try:
+                creds.refresh(Request())
+            except Exception as e:
+                log.warning(f"Failed to refresh YouTube credentials: {e}")
+                creds = None
+
+        if not creds or not creds.valid:
+            log.warning("YouTube credentials need re-authentication")
+            log.warning("Run: python setup_youtube.py")
+            return None
+
+        # Save refreshed credentials
+        with open(token_file, 'w') as f:
+            f.write(creds.to_json())
+
+        return build('youtube', 'v3', credentials=creds)
+
+    except ImportError:
+        log.error("Google API libraries not installed. Run: pip install google-api-python-client google-auth-oauthlib")
+        return None
+    except Exception as e:
+        log.error(f"Failed to authenticate with YouTube: {e}")
+        return None
+
+
+@retry_with_backoff(max_retries=3, base_delay=30.0)
+def upload_to_youtube(video_path: str, date: str) -> str:
+    """Upload video to YouTube and add to playlist.
+
+    Args:
+        video_path: Path to video file
+        date: YYYY-MM-DD date string for title
+
+    Returns:
+        YouTube video ID on success, None on failure
+    """
+    youtube = get_authenticated_youtube_service()
+    if not youtube:
+        log.error("Could not authenticate with YouTube")
+        return None
+
+    _, playlist_id = get_youtube_credentials()
+
+    try:
+        from googleapiclient.http import MediaFileUpload
+
+        # Video metadata
+        body = {
+            'snippet': {
+                'title': f'JTF News Daily Digest - {date}',
+                'description': f'Daily summary of verified facts from {date}.\n\n'
+                              'JTF News reports only verified facts from 2+ unrelated sources.\n'
+                              'No opinions. No adjectives. No interpretation.\n\n'
+                              'Learn more: https://larryseyer.github.io/jtfnews/',
+                'tags': ['news', 'facts', 'daily summary', 'JTF News', 'just the facts'],
+                'categoryId': '25'  # News & Politics
+            },
+            'status': {
+                'privacyStatus': 'public',
+                'license': 'creativeCommon',  # CC BY license
+                'selfDeclaredMadeForKids': False
+            }
+        }
+
+        # Upload video
+        media = MediaFileUpload(
+            video_path,
+            mimetype='video/mp4',
+            resumable=True,
+            chunksize=1024*1024  # 1MB chunks
+        )
+
+        log.info(f"Uploading video to YouTube: {video_path}")
+
+        request = youtube.videos().insert(
+            part=','.join(body.keys()),
+            body=body,
+            media_body=media
+        )
+
+        response = None
+        while response is None:
+            status, response = request.next_chunk()
+            if status:
+                log.info(f"Upload progress: {int(status.progress() * 100)}%")
+
+        video_id = response['id']
+        log.info(f"Video uploaded successfully: {video_id}")
+
+        # Add to playlist
+        if playlist_id:
+            try:
+                youtube.playlistItems().insert(
+                    part='snippet',
+                    body={
+                        'snippet': {
+                            'playlistId': playlist_id,
+                            'resourceId': {
+                                'kind': 'youtube#video',
+                                'videoId': video_id
+                            }
+                        }
+                    }
+                ).execute()
+                log.info(f"Added video to playlist: {playlist_id}")
+            except Exception as e:
+                log.warning(f"Failed to add video to playlist: {e}")
+                # Non-critical - video is still uploaded
+
+        return video_id
+
+    except Exception as e:
+        log.error(f"YouTube upload failed: {e}")
+        raise  # Let retry_with_backoff handle retries
+
+
+# =============================================================================
+# OBS WEBSOCKET CONTROL
+# =============================================================================
+
+def get_obs_connection():
+    """Get OBS WebSocket connection.
+
+    Returns:
+        obsws object or None if connection fails
+    """
+    obs_host = os.getenv("OBS_WEBSOCKET_HOST", "localhost")
+    obs_port = int(os.getenv("OBS_WEBSOCKET_PORT", "4449"))
+    obs_password = os.getenv("OBS_WEBSOCKET_PASSWORD", "")
+
+    try:
+        from obswebsocket import obsws, requests as obs_requests
+        ws = obsws(obs_host, obs_port, obs_password)
+        ws.connect()
+        log.info(f"Connected to OBS WebSocket at {obs_host}:{obs_port}")
+        return ws
+    except ImportError:
+        log.error("obs-websocket-py not installed. Run: pip install obs-websocket-py")
+        return None
+    except Exception as e:
+        log.error(f"Failed to connect to OBS: {e}")
+        return None
+
+
+def obs_switch_scene(ws, scene_name: str) -> bool:
+    """Switch OBS to a specific scene.
+
+    Args:
+        ws: OBS WebSocket connection
+        scene_name: Name of the scene to switch to
+
+    Returns:
+        True on success, False on failure
+    """
+    try:
+        from obswebsocket import requests as obs_requests
+        ws.call(obs_requests.SetCurrentProgramScene(sceneName=scene_name))
+        log.info(f"Switched to scene: {scene_name}")
+        return True
+    except Exception as e:
+        log.error(f"Failed to switch scene to {scene_name}: {e}")
+        return False
+
+
+def obs_start_recording(ws) -> bool:
+    """Start OBS recording.
+
+    Returns:
+        True on success, False on failure
+    """
+    try:
+        from obswebsocket import requests as obs_requests
+        ws.call(obs_requests.StartRecord())
+        log.info("OBS recording started")
+        return True
+    except Exception as e:
+        log.error(f"Failed to start recording: {e}")
+        return False
+
+
+def obs_stop_recording(ws) -> str:
+    """Stop OBS recording and get output path.
+
+    Returns:
+        Path to recorded file, or None on failure
+    """
+    try:
+        from obswebsocket import requests as obs_requests
+        response = ws.call(obs_requests.StopRecord())
+        output_path = response.datain.get('outputPath', '')
+        log.info(f"OBS recording stopped: {output_path}")
+        return output_path
+    except Exception as e:
+        log.error(f"Failed to stop recording: {e}")
+        return None
+
+
+def obs_get_recording_status(ws) -> dict:
+    """Get current OBS recording status.
+
+    Returns:
+        Dict with recording status info
+    """
+    try:
+        from obswebsocket import requests as obs_requests
+        response = ws.call(obs_requests.GetRecordStatus())
+        return {
+            'active': response.datain.get('outputActive', False),
+            'paused': response.datain.get('outputPaused', False),
+            'duration': response.datain.get('outputDuration', 0),
+            'bytes': response.datain.get('outputBytes', 0)
+        }
+    except Exception as e:
+        log.error(f"Failed to get recording status: {e}")
+        return {'active': False}
+
+
+def obs_refresh_browser_source(ws, source_name: str, url: str = None) -> bool:
+    """Refresh a browser source, optionally with a new URL.
+
+    Args:
+        ws: OBS WebSocket connection
+        source_name: Name of the browser source
+        url: Optional new URL to load
+
+    Returns:
+        True on success, False on failure
+    """
+    try:
+        from obswebsocket import requests as obs_requests
+
+        if url:
+            # Set new URL
+            ws.call(obs_requests.SetInputSettings(
+                inputName=source_name,
+                inputSettings={'url': url}
+            ))
+
+        # Refresh the source
+        ws.call(obs_requests.PressInputPropertiesButton(
+            inputName=source_name,
+            propertyName='refreshnocache'
+        ))
+
+        log.info(f"Refreshed browser source: {source_name}")
+        return True
+    except Exception as e:
+        log.error(f"Failed to refresh browser source {source_name}: {e}")
+        return False
+
+
+def estimate_digest_duration(stories: list, audio_files: list) -> float:
+    """Estimate total duration of daily digest in seconds.
+
+    Args:
+        stories: List of stories
+        audio_files: List of audio file paths
+
+    Returns:
+        Estimated duration in seconds
+    """
+    total_duration = 0.0
+    gap_time = 2.0  # Gap between stories
+
+    for audio_file in audio_files:
+        duration = get_audio_duration(audio_file)
+        if duration > 0:
+            total_duration += duration
+        else:
+            # Fallback estimate based on average audio length
+            total_duration += 15.0
+
+    # Add gaps between stories
+    if len(stories) > 1:
+        total_duration += gap_time * (len(stories) - 1)
+
+    # Add 2 second intro delay + 10 second completion screen
+    total_duration += 12.0
+
+    # Add 20% buffer for safety
+    total_duration *= 1.2
+
+    return total_duration
+
+
+def generate_and_upload_daily_summary(date: str):
+    """Orchestrate daily digest recording and upload via OBS.
+
+    This is the main entry point called from check_midnight_archive().
+    It switches OBS to the daily-digest scene, records the playback,
+    then uploads to YouTube.
+
+    Args:
+        date: YYYY-MM-DD date string
+    """
+    log.info(f"Starting daily digest for {date}")
+
+    # Load stories for the date
+    stories = load_stories_for_date(date)
+    if not stories:
+        log.info(f"No stories found for {date}, skipping digest")
+        return
+
+    # Find archived audio files
+    archive_dir = AUDIO_DIR / "archive" / date
+    if not archive_dir.exists():
+        log.warning(f"No audio archive found for {date}")
+        return
+
+    audio_files = sorted(archive_dir.glob("audio_*.mp3"),
+                        key=lambda f: int(f.stem.split('_')[1]) if f.stem.split('_')[1].isdigit() else 0)
+    audio_files = [str(f) for f in audio_files]
+
+    if not audio_files:
+        log.warning(f"No audio files in archive for {date}")
+        return
+
+    log.info(f"Found {len(stories)} stories and {len(audio_files)} audio files")
+
+    # Write config file for the daily-digest.html page
+    config_file = DATA_DIR / "digest-config.json"
+    with open(config_file, 'w') as f:
+        json.dump({"date": date}, f)
+    log.info(f"Wrote digest config for {date}")
+
+    # Estimate duration for recording timeout
+    estimated_duration = estimate_digest_duration(stories, audio_files)
+    log.info(f"Estimated digest duration: {estimated_duration:.0f} seconds")
+
+    # Get OBS connection
+    ws = get_obs_connection()
+    if not ws:
+        log.error("Cannot connect to OBS - falling back to FFmpeg generation")
+        # Fallback to FFmpeg method
+        try:
+            video_path = generate_daily_video(date, stories, audio_files)
+            log.info(f"Generated video via FFmpeg: {video_path}")
+            _upload_video_to_youtube(video_path, date)
+        except Exception as e:
+            log.error(f"Fallback video generation failed: {e}")
+            send_alert(f"Daily digest failed for {date}: {e}")
+        return
+
+    # Get scene names from environment
+    digest_scene = os.getenv("OBS_DIGEST_SCENE", "DailyDigest")
+    normal_scene = os.getenv("OBS_NORMAL_SCENE", "JTF News")
+    browser_source = os.getenv("OBS_DIGEST_BROWSER_SOURCE", "Daily Digest Browser")
+
+    try:
+        # Refresh browser source with correct date
+        digest_url = f"file://{BASE_DIR}/web/daily-digest.html?date={date}"
+        obs_refresh_browser_source(ws, browser_source, digest_url)
+
+        # Wait for browser to load
+        time.sleep(3)
+
+        # Switch to digest scene
+        if not obs_switch_scene(ws, digest_scene):
+            raise Exception(f"Failed to switch to scene: {digest_scene}")
+
+        # Start recording
+        if not obs_start_recording(ws):
+            raise Exception("Failed to start OBS recording")
+
+        # Wait for digest to complete (with timeout)
+        max_wait = int(estimated_duration) + 60  # Extra minute buffer
+        elapsed = 0
+        poll_interval = 10
+
+        log.info(f"Recording digest... (max wait: {max_wait}s)")
+
+        while elapsed < max_wait:
+            time.sleep(poll_interval)
+            elapsed += poll_interval
+
+            status = obs_get_recording_status(ws)
+            if not status.get('active'):
+                log.info("Recording stopped externally")
+                break
+
+            # Log progress every minute
+            if elapsed % 60 == 0:
+                log.info(f"Recording in progress... {elapsed}s elapsed")
+
+        # Stop recording
+        recording_path = obs_stop_recording(ws)
+
+        # Switch back to normal scene
+        obs_switch_scene(ws, normal_scene)
+
+        # Close OBS connection
+        ws.disconnect()
+
+        if not recording_path:
+            raise Exception("Failed to get recording output path")
+
+        log.info(f"Digest recorded: {recording_path}")
+
+        # Copy to our video folder with standard name
+        video_path = VIDEO_DIR / f"{date}-daily-digest.mp4"
+        if Path(recording_path).suffix.lower() != '.mp4':
+            # OBS might save as .mkv, convert to mp4
+            import subprocess
+            subprocess.run([
+                "ffmpeg", "-y",
+                "-i", recording_path,
+                "-c", "copy",
+                str(video_path)
+            ], capture_output=True, timeout=300)
+        else:
+            shutil.copy(recording_path, video_path)
+
+        log.info(f"Video saved to: {video_path}")
+
+        # Delete original OBS recording from Downloads to save space
+        try:
+            Path(recording_path).unlink()
+            log.info(f"Deleted original recording: {recording_path}")
+        except Exception as e:
+            log.warning(f"Could not delete original recording: {e}")
+
+        # Upload to YouTube
+        _upload_video_to_youtube(str(video_path), date)
+
+    except Exception as e:
+        log.error(f"Daily digest recording failed: {e}")
+        send_alert(f"Daily digest recording failed for {date}: {e}")
+
+        # Try to clean up OBS state
+        try:
+            obs_stop_recording(ws)
+            obs_switch_scene(ws, normal_scene)
+            ws.disconnect()
+        except:
+            pass
+
+
+def _upload_video_to_youtube(video_path: str, date: str):
+    """Helper to upload video to YouTube with error handling."""
+    client_secrets, _ = get_youtube_credentials()
+    if client_secrets:
+        try:
+            video_id = upload_to_youtube(video_path, date)
+            if video_id:
+                log.info(f"Uploaded to YouTube: https://youtube.com/watch?v={video_id}")
+            else:
+                log.error(f"YouTube upload failed for {date}, video saved locally: {video_path}")
+                send_alert(f"YouTube upload failed for {date}. Video saved at: {video_path}")
+        except Exception as e:
+            log.error(f"YouTube upload failed: {e}")
+            send_alert(f"YouTube upload failed for {date}: {e}. Video saved at: {video_path}")
+    else:
+        log.info(f"YouTube not configured. Video saved locally: {video_path}")
 
 
 # =============================================================================
@@ -4381,7 +5394,25 @@ def check_midnight_archive():
     """Check if it's time to archive and cleanup (midnight GMT)."""
     now = datetime.now(timezone.utc)
     if now.hour == 0 and now.minute < 5:
+        # Get yesterday's date for archiving
+        yesterday = (now.date() - timedelta(days=1)).strftime("%Y-%m-%d")
+
+        # 1. Archive daily log (existing)
         archive_daily_log()
+
+        # 2. Archive audio files BEFORE cleanup (NEW)
+        # This preserves audio for video generation
+        archived_audio = archive_audio_files(yesterday)
+
+        # 3. Generate and upload daily summary video (NEW)
+        if archived_audio:
+            try:
+                generate_and_upload_daily_summary(yesterday)
+            except Exception as e:
+                log.error(f"Daily video generation failed: {e}")
+                send_alert(f"Daily video generation failed for {yesterday}: {e}")
+
+        # 4. Cleanup old data
         cleanup_old_data(days=7)  # Delete raw data older than 7 days
 
         # Clear the log file for the new day
