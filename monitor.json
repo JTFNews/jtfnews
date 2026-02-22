@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-02-22T03:45:31.130445+00:00",
+  "timestamp": "2026-02-22T03:56:22.707188+00:00",
   "uptime_start": "2026-02-22T00:45:23.493426+00:00",
-  "uptime_seconds": 10808,
+  "uptime_seconds": 11459,
   "availability_pct": 91.8,
   "cycle": {
     "number": 7,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 27,
-    "oldest_item_age_hours": 23.8
+    "oldest_item_age_hours": 23.9
   },
   "stories_today": 5,
   "sources": {
@@ -44,11 +44,17 @@
     "successful": 17,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-02-22T03:51:22.705696+00:00",
+      "level": "WARNING",
+      "message": "Error pushing monitor.json to gh-pages: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 14,
+    "next_cycle_minutes": 4,
     "degraded_services": []
   },
   "daily_digest": {
