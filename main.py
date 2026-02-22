@@ -4120,8 +4120,8 @@ def estimate_digest_duration(stories: list, audio_files: list) -> float:
     if len(stories) > 1:
         total_duration += gap_time * (len(stories) - 1)
 
-    # Add intro delay (3s) + completion screen (10s)
-    total_duration += 13.0
+    # Add intro delay (5s) + completion screen (15s) for older hardware
+    total_duration += 20.0
 
     log.info(f"Total audio: {total_duration:.1f}s ({len(audio_files)} files)")
 
@@ -4223,8 +4223,8 @@ def generate_and_upload_daily_summary(date: str):
             raise Exception("Failed to start OBS recording")
 
         # Wait for digest to complete
-        # Using precise audio duration + small buffer (10s safety margin)
-        max_wait = int(estimated_duration) + 10
+        # Using precise audio duration + buffer for older hardware
+        max_wait = int(estimated_duration) + 30  # 30s safety margin for slow machines
         elapsed = 0
         poll_interval = 5  # Poll more frequently for responsiveness
 
