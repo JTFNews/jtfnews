@@ -3957,7 +3957,8 @@ def obs_switch_scene(ws, scene_name: str) -> bool:
     """
     try:
         from obswebsocket import requests as obs_requests
-        ws.call(obs_requests.SetCurrentProgramScene(sceneName=scene_name))
+        # v4 protocol: SetCurrentScene with scene-name parameter
+        ws.call(obs_requests.SetCurrentScene(**{'scene-name': scene_name}))
         log.info(f"Switched to scene: {scene_name}")
         return True
     except Exception as e:
@@ -3973,7 +3974,8 @@ def obs_start_recording(ws) -> bool:
     """
     try:
         from obswebsocket import requests as obs_requests
-        ws.call(obs_requests.StartRecord())
+        # v4 protocol: StartRecording
+        ws.call(obs_requests.StartRecording())
         log.info("OBS recording started")
         return True
     except Exception as e:
@@ -3989,10 +3991,26 @@ def obs_stop_recording(ws) -> str:
     """
     try:
         from obswebsocket import requests as obs_requests
-        response = ws.call(obs_requests.StopRecord())
-        output_path = response.datain.get('outputPath', '')
-        log.info(f"OBS recording stopped: {output_path}")
-        return output_path
+        import glob
+
+        # v4 protocol: Get recording folder first
+        folder_response = ws.call(obs_requests.GetRecordingFolder())
+        rec_folder = folder_response.datain.get('rec-folder', '/Users/larryseyer/Downloads')
+
+        # Stop recording
+        ws.call(obs_requests.StopRecording())
+        log.info("OBS recording stopped")
+
+        # v4 doesn't return output path - find newest mp4 in recording folder
+        time.sleep(2)  # Wait for file to be written
+        mp4_files = glob.glob(f"{rec_folder}/*.mp4")
+        if mp4_files:
+            output_path = max(mp4_files, key=os.path.getmtime)
+            log.info(f"Found recording: {output_path}")
+            return output_path
+
+        log.warning(f"No mp4 files found in {rec_folder}")
+        return None
     except Exception as e:
         log.error(f"Failed to stop recording: {e}")
         return None
@@ -4006,12 +4024,13 @@ def obs_get_recording_status(ws) -> dict:
     """
     try:
         from obswebsocket import requests as obs_requests
-        response = ws.call(obs_requests.GetRecordStatus())
+        # v4 protocol: GetRecordingStatus with different field names
+        response = ws.call(obs_requests.GetRecordingStatus())
         return {
-            'active': response.datain.get('outputActive', False),
-            'paused': response.datain.get('outputPaused', False),
-            'duration': response.datain.get('outputDuration', 0),
-            'bytes': response.datain.get('outputBytes', 0)
+            'active': response.datain.get('isRecording', False),
+            'paused': response.datain.get('isRecordingPaused', False),
+            'duration': response.datain.get('recordTimecode', '00:00:00'),
+            'bytes': response.datain.get('recordingBytes', 0)
         }
     except Exception as e:
         log.error(f"Failed to get recording status: {e}")
@@ -4033,17 +4052,14 @@ def obs_refresh_browser_source(ws, source_name: str, url: str = None) -> bool:
         from obswebsocket import requests as obs_requests
 
         if url:
-            # Set new URL
-            ws.call(obs_requests.SetInputSettings(
-                inputName=source_name,
-                inputSettings={'url': url}
+            # v4 protocol: SetSourceSettings with sourceName and sourceSettings
+            ws.call(obs_requests.SetSourceSettings(
+                sourceName=source_name,
+                sourceSettings={'url': url}
             ))
 
-        # Refresh the source
-        ws.call(obs_requests.PressInputPropertiesButton(
-            inputName=source_name,
-            propertyName='refreshnocache'
-        ))
+        # v4 protocol: RefreshBrowserSource
+        ws.call(obs_requests.RefreshBrowserSource(sourceName=source_name))
 
         log.info(f"Refreshed browser source: {source_name}")
         return True
