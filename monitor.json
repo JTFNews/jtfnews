@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-02-23T00:26:33.848582+00:00",
+  "timestamp": "2026-02-23T00:30:52.144522+00:00",
+  "web_refresh_at": "2026-02-23T00:30:52.144522+00:00",
   "uptime_start": "2026-02-22T17:10:52.342396+00:00",
-  "uptime_seconds": 26142,
+  "uptime_seconds": 26400,
   "availability_pct": 88.2,
   "cycle": {
-    "number": 15,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 16,
+    "duration_seconds": 48.9,
+    "headlines_scraped": 143,
+    "headlines_processed": 7,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 188,
-        "cost_usd": 0.0708885,
+        "calls": 198,
+        "cost_usd": 0.07489124999999998,
         "details": {
-          "input_tokens": 174459,
-          "output_tokens": 21819
+          "input_tokens": 183825,
+          "output_tokens": 23148
         }
       },
       "elevenlabs": {
-        "calls": 5,
-        "cost_usd": 0.01563,
+        "calls": 6,
+        "cost_usd": 0.017730000000000003,
         "details": {
-          "characters": 521
+          "characters": 591
         }
       }
     },
-    "total_usd": 0.0865,
+    "total_usd": 0.0926,
     "month_estimate_usd": 6.88,
     "daily_budget": 1.79,
-    "budget_pct": 4.8
+    "budget_pct": 5.2
   },
   "queue": {
-    "size": 36,
-    "oldest_item_age_hours": 24.4
+    "size": 32,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 4,
+  "stories_today": 5,
   "sources": {
     "total": 17,
     "successful": 16,
@@ -48,12 +49,12 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-02-22T23:30:16.922713+00:00",
+      "timestamp": "2026-02-23T00:00:18.018933+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     },
     {
-      "timestamp": "2026-02-23T00:00:18.018933+00:00",
+      "timestamp": "2026-02-23T00:30:16.734411+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     }
@@ -61,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
