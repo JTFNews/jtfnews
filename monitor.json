@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-02-23T13:25:40.917506+00:00",
+  "timestamp": "2026-02-23T13:30:57.076949+00:00",
+  "web_refresh_at": "2026-02-23T13:30:57.076949+00:00",
   "uptime_start": "2026-02-23T03:51:24.447598+00:00",
-  "uptime_seconds": 34456,
+  "uptime_seconds": 34773,
   "availability_pct": 89.0,
   "cycle": {
-    "number": 20,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 21,
+    "duration_seconds": 52.4,
+    "headlines_scraped": 143,
+    "headlines_processed": 10,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 397,
-        "cost_usd": 0.15332150000000003,
+        "calls": 411,
+        "cost_usd": 0.15844775,
         "details": {
-          "input_tokens": 371756,
-          "output_tokens": 48306
+          "input_tokens": 384621,
+          "output_tokens": 49834
         }
       },
       "elevenlabs": {
@@ -29,29 +30,22 @@
         }
       }
     },
-    "total_usd": 0.1765,
+    "total_usd": 0.1817,
     "month_estimate_usd": 6.78,
     "daily_budget": 1.79,
-    "budget_pct": 9.9
+    "budget_pct": 10.2
   },
   "queue": {
-    "size": 31,
-    "oldest_item_age_hours": 19.4
+    "size": 34,
+    "oldest_item_age_hours": 19.5
   },
   "stories_today": 7,
   "sources": {
     "total": 17,
-    "successful": 16,
-    "failed": [
-      "Congress.gov"
-    ]
+    "successful": 17,
+    "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-02-23T12:30:17.531167+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
-    },
     {
       "timestamp": "2026-02-23T13:00:17.332646+00:00",
       "level": "WARNING",
@@ -61,7 +55,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
