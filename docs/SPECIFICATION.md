@@ -1679,7 +1679,7 @@ JTF News - Just The Facts
 Automated news system that reports only verified facts.
 
 This is THE ONLY SCRIPT. It does everything:
-- Scrapes headlines from 30 sources
+- Scrapes headlines from 17 sources
 - Processes with Claude AI to strip editorialization
 - Verifies 2+ unrelated sources
 - Writes output files for OBS
@@ -2172,7 +2172,7 @@ After implementation, verify each item:
 ### 19.1 Core Functionality
 
 - [ ] `python main.py` starts without errors
-- [ ] Scrapes at least 25/30 sources successfully
+- [ ] Scrapes at least 14/17 sources successfully
 - [ ] Claude API processes headlines correctly
 - [ ] Stories with <85% confidence are rejected
 - [ ] Single-source stories are queued, not published

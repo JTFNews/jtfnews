@@ -11,7 +11,7 @@
 Add three transparency pages to the JTF News public website (GitHub Pages):
 
 1. **Story Archive Browser** (`archive.html`) - Browse all stories ever published, filter by date and source
-2. **Source Ratings Page** (`sources.html`) - View all 30 sources with ratings and expandable ownership details
+2. **Source Ratings Page** (`sources.html`) - View all 17 sources with ratings and expandable ownership details
 3. **Corrections Log** (`corrections.html`) - View all corrections/retractions with full context
 
 These pages embody the JTF philosophy: "The methodology belongs to no one. It serves everyone."
@@ -700,7 +700,7 @@ Each page should include consistent header/footer:
 3. Implement expandable ownership details
 4. Add tier filtering
 5. Add cycle-sync refresh
-6. Test: Open page, verify all 30 sources display correctly
+6. Test: Open page, verify all 17 sources display correctly
 
 ### Phase 3: Corrections Page (simple, may be empty)
 1. Create `corrections.html` with full HTML structure
@@ -762,7 +762,7 @@ After implementation, verify:
 
 ### Data Pipeline
 - [ ] `sources.json` is created in `gh-pages-dist/` after cycle runs
-- [ ] `sources.json` contains all 30 sources with correct data
+- [ ] `sources.json` contains all 17 sources with correct data
 - [ ] `archive/index.json` lists all available archive dates
 - [ ] Data updates every 30 minutes (cycle-sync)
 
@@ -775,7 +775,7 @@ After implementation, verify:
 - [ ] Page auto-refreshes on new cycle
 
 ### Source Ratings Page
-- [ ] All 30 sources display
+- [ ] All 17 sources display
 - [ ] Ratings are accurate (match config.json)
 - [ ] Ownership expands/collapses correctly
 - [ ] Tier filter works
