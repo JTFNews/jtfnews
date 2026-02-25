@@ -1,51 +1,45 @@
 {
-  "timestamp": "2026-02-24T23:56:02.758776+00:00",
+  "timestamp": "2026-02-25T00:05:40.600677+00:00",
+  "web_refresh_at": "2026-02-25T00:05:40.600677+00:00",
   "uptime_start": "2026-02-23T16:06:31.341683+00:00",
-  "uptime_seconds": 114571,
+  "uptime_seconds": 115149,
   "availability_pct": 90.4,
   "cycle": {
-    "number": 64,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 65,
+    "duration_seconds": 336.3,
+    "headlines_scraped": 144,
+    "headlines_processed": 144,
+    "stories_published": 2,
+    "stories_queued": 9
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 688,
-        "cost_usd": 0.27235350000000014,
+        "calls": 168,
+        "cost_usd": 0.06898625,
         "details": {
-          "input_tokens": 664269,
-          "output_tokens": 85029
+          "input_tokens": 171470,
+          "output_tokens": 20895
         }
       },
       "elevenlabs": {
-        "calls": 13,
-        "cost_usd": 0.03486,
+        "calls": 2,
+        "cost_usd": 0.00321,
         "details": {
-          "characters": 1162
-        }
-      },
-      "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
-        "details": {
-          "sms_count": 1
+          "characters": 107
         }
       }
     },
-    "total_usd": 0.3151,
+    "total_usd": 0.0722,
     "month_estimate_usd": 6.78,
     "daily_budget": 1.79,
-    "budget_pct": 17.6
+    "budget_pct": 4.0
   },
   "queue": {
-    "size": 46,
-    "oldest_item_age_hours": 23.9
+    "size": 53,
+    "oldest_item_age_hours": 24.1
   },
-  "stories_today": 12,
+  "stories_today": 2,
   "sources": {
     "total": 17,
     "successful": 17,
@@ -54,8 +48,8 @@
   "recent_errors": [],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "stream_health": "offline",
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
