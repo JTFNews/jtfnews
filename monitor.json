@@ -1,31 +1,32 @@
 {
-  "timestamp": "2026-02-26T05:55:56.599094+00:00",
+  "timestamp": "2026-02-26T06:03:43.743272+00:00",
+  "web_refresh_at": "2026-02-26T06:03:43.743272+00:00",
   "uptime_start": "2026-02-26T01:21:24.376287+00:00",
-  "uptime_seconds": 16472,
+  "uptime_seconds": 16939,
   "availability_pct": 89.1,
   "cycle": {
-    "number": 10,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 11,
+    "duration_seconds": 33.7,
+    "headlines_scraped": 143,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 273,
-        "cost_usd": 0.11005224999999995,
+        "calls": 281,
+        "cost_usd": 0.11252349999999994,
         "details": {
-          "input_tokens": 270079,
-          "output_tokens": 34026
+          "input_tokens": 276269,
+          "output_tokens": 34765
         }
       },
       "elevenlabs": {
-        "calls": 13,
-        "cost_usd": 0.05607000000000002,
+        "calls": 15,
+        "cost_usd": 0.06579000000000003,
         "details": {
-          "characters": 1869
+          "characters": 2193
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.174,
+    "total_usd": 0.1862,
     "month_estimate_usd": 7.84,
     "daily_budget": 1.79,
-    "budget_pct": 9.7
+    "budget_pct": 10.4
   },
   "queue": {
     "size": 55,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 3,
   "sources": {
@@ -51,24 +52,65 @@
     "successful": 17,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-02-26T06:00:04.439207+00:00",
+      "level": "WARNING",
+      "message": "Story 0: No audio file found for: Floods and landslides in Brazil resulted in at lea..."
+    },
+    {
+      "timestamp": "2026-02-26T06:00:04.439422+00:00",
+      "level": "WARNING",
+      "message": "Story 1: No audio file found for: Ukraine marks four years of war with Russia...."
+    },
+    {
+      "timestamp": "2026-02-26T06:00:04.439623+00:00",
+      "level": "WARNING",
+      "message": "Story 2: No audio file found for: President Trump is scheduled to deliver a State of..."
+    },
+    {
+      "timestamp": "2026-02-26T06:00:04.439823+00:00",
+      "level": "WARNING",
+      "message": "Story 3: No audio file found for: President Trump delivers State of the Union addres..."
+    },
+    {
+      "timestamp": "2026-02-26T06:02:53.665337+00:00",
+      "level": "WARNING",
+      "message": "Could not validate video file: [Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "timestamp": "2026-02-26T06:02:53.869504+00:00",
+      "level": "ERROR",
+      "message": "Video trimming failed: [Errno 2] No such file or directory: 'ffmpeg'"
+    },
+    {
+      "timestamp": "2026-02-26T06:02:53.870180+00:00",
+      "level": "WARNING",
+      "message": "Video silence trimming failed, using original recording"
+    },
+    {
+      "timestamp": "2026-02-26T06:03:09.175707+00:00",
+      "level": "WARNING",
+      "message": "Could not push digest entry to gh-pages: Command '['git', '-C', '/Users/larryseyer/JTFNews/gh-pages-dist', 'add', 'feed.xml']' returned non-zero exit status 128."
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 26,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-02-23",
-    "next_digest_at": "2026-02-26T06:00:00+00:00",
+    "last_date": "2026-02-25",
+    "next_digest_at": "2026-02-27T06:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "Failed to get recording output path",
-    "last_completed_at": "2026-02-26T01:21:06.914681+00:00",
-    "story_count": 13,
-    "duration_seconds": 139,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-02-23-daily-digest.mp4",
-    "youtube_id": "5Og9zJzq1o8",
-    "youtube_url": "https://youtube.com/watch?v=5Og9zJzq1o8"
+    "last_completed_at": "2026-02-26T06:02:53.870668+00:00",
+    "story_count": 7,
+    "duration_seconds": 97,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-02-25-daily-digest.mp4",
+    "youtube_id": "BTMK_qTt33Q",
+    "youtube_url": "https://youtube.com/watch?v=BTMK_qTt33Q"
   }
 }
