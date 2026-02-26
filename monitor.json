@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-02-26T13:25:45.868489+00:00",
+  "timestamp": "2026-02-26T13:30:57.465204+00:00",
+  "web_refresh_at": "2026-02-26T13:30:57.465204+00:00",
   "uptime_start": "2026-02-26T01:21:24.376287+00:00",
-  "uptime_seconds": 43461,
+  "uptime_seconds": 43773,
   "availability_pct": 89.3,
   "cycle": {
-    "number": 25,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 26,
+    "duration_seconds": 52.3,
+    "headlines_scraped": 142,
+    "headlines_processed": 12,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 462,
-        "cost_usd": 0.18313425,
+        "calls": 474,
+        "cost_usd": 0.1889105,
         "details": {
-          "input_tokens": 447737,
-          "output_tokens": 56960
+          "input_tokens": 461447,
+          "output_tokens": 58839
         }
       },
       "elevenlabs": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.2763,
+    "total_usd": 0.2821,
     "month_estimate_usd": 7.84,
     "daily_budget": 1.79,
-    "budget_pct": 15.5
+    "budget_pct": 15.8
   },
   "queue": {
-    "size": 56,
-    "oldest_item_age_hours": 24.4
+    "size": 57,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 6,
   "sources": {
@@ -51,22 +52,11 @@
     "successful": 17,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-02-26T12:30:39.020760+00:00",
-      "level": "WARNING",
-      "message": "Correction needed: Story [2026-02-26-003] states talks have 'begun' ("
-    },
-    {
-      "timestamp": "2026-02-26T12:30:41.628402+00:00",
-      "level": "WARNING",
-      "message": "Alert sent: CORRECTION issued for 2026-02-26-003: Story [2026-02-26-003] states talks have 'begun' ("
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
