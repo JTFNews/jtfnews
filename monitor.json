@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-02-26T19:26:16.637973+00:00",
+  "timestamp": "2026-02-26T19:31:04.719010+00:00",
+  "web_refresh_at": "2026-02-26T19:31:04.719010+00:00",
   "uptime_start": "2026-02-26T01:21:24.376287+00:00",
-  "uptime_seconds": 65092,
+  "uptime_seconds": 65380,
   "availability_pct": 89.6,
   "cycle": {
-    "number": 37,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 38,
+    "duration_seconds": 60.2,
+    "headlines_scraped": 142,
+    "headlines_processed": 17,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 610,
-        "cost_usd": 0.2429712499999999,
+        "calls": 629,
+        "cost_usd": 0.25113599999999986,
         "details": {
-          "input_tokens": 592270,
-          "output_tokens": 75923
+          "input_tokens": 612119,
+          "output_tokens": 78485
         }
       },
       "elevenlabs": {
@@ -36,22 +37,20 @@
         }
       }
     },
-    "total_usd": 0.3388,
+    "total_usd": 0.3469,
     "month_estimate_usd": 7.84,
     "daily_budget": 1.79,
-    "budget_pct": 19.0
+    "budget_pct": 19.4
   },
   "queue": {
-    "size": 59,
-    "oldest_item_age_hours": 24.4
+    "size": 54,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 7,
   "sources": {
     "total": 17,
-    "successful": 16,
-    "failed": [
-      "White House"
-    ]
+    "successful": 17,
+    "failed": []
   },
   "recent_errors": [
     {
@@ -63,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
