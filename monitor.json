@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-02-26T18:55:48.110323+00:00",
+  "timestamp": "2026-02-26T19:01:11.890573+00:00",
+  "web_refresh_at": "2026-02-26T19:01:11.890573+00:00",
   "uptime_start": "2026-02-26T01:21:24.376287+00:00",
-  "uptime_seconds": 63264,
+  "uptime_seconds": 63588,
   "availability_pct": 89.6,
   "cycle": {
-    "number": 36,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 37,
+    "duration_seconds": 67.3,
+    "headlines_scraped": 132,
+    "headlines_processed": 19,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 590,
-        "cost_usd": 0.23380274999999995,
+        "calls": 610,
+        "cost_usd": 0.2429712499999999,
         "details": {
-          "input_tokens": 570486,
-          "output_tokens": 72945
+          "input_tokens": 592270,
+          "output_tokens": 75923
         }
       },
       "elevenlabs": {
@@ -36,26 +37,34 @@
         }
       }
     },
-    "total_usd": 0.3296,
+    "total_usd": 0.3388,
     "month_estimate_usd": 7.84,
     "daily_budget": 1.79,
-    "budget_pct": 18.5
+    "budget_pct": 19.0
   },
   "queue": {
-    "size": 61,
-    "oldest_item_age_hours": 24.4
+    "size": 59,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 7,
   "sources": {
     "total": 17,
-    "successful": 17,
-    "failed": []
+    "successful": 16,
+    "failed": [
+      "White House"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-02-26T19:00:16.169507+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
