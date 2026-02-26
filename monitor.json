@@ -1,51 +1,45 @@
 {
-  "timestamp": "2026-02-25T23:55:57.764539+00:00",
+  "timestamp": "2026-02-26T00:06:00.895050+00:00",
+  "web_refresh_at": "2026-02-26T00:06:00.895050+00:00",
   "uptime_start": "2026-02-25T22:13:36.218155+00:00",
-  "uptime_seconds": 6142,
+  "uptime_seconds": 6745,
   "availability_pct": 89.7,
   "cycle": {
-    "number": 4,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 5,
+    "duration_seconds": 356.7,
+    "headlines_scraped": 142,
+    "headlines_processed": 142,
+    "stories_published": 3,
+    "stories_queued": 6
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 750,
-        "cost_usd": 0.2818272499999996,
+        "calls": 170,
+        "cost_usd": 0.06819025000000001,
         "details": {
-          "input_tokens": 695214,
-          "output_tokens": 86419
+          "input_tokens": 167816,
+          "output_tokens": 20989
         }
       },
       "elevenlabs": {
-        "calls": 85,
-        "cost_usd": 0.22070999999999996,
+        "calls": 3,
+        "cost_usd": 0.008190000000000001,
         "details": {
-          "characters": 7357
-        }
-      },
-      "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
-        "details": {
-          "sms_count": 1
+          "characters": 273
         }
       }
     },
-    "total_usd": 0.5104,
+    "total_usd": 0.0764,
     "month_estimate_usd": 7.04,
     "daily_budget": 1.79,
-    "budget_pct": 28.6
+    "budget_pct": 4.3
   },
   "queue": {
-    "size": 58,
-    "oldest_item_age_hours": 23.9
+    "size": 61,
+    "oldest_item_age_hours": 24.1
   },
-  "stories_today": 11,
+  "stories_today": 3,
   "sources": {
     "total": 17,
     "successful": 17,
@@ -54,8 +48,8 @@
   "recent_errors": [],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "stream_health": "offline",
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
