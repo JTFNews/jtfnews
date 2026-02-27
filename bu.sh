@@ -16,7 +16,7 @@ git push origin main
 # BACKUP TO DROPBOX
 # =============================================================================
 SOURCE="/Users/larryseyer/JTFNews"
-DEST_DIR="/Users/larryseyer/Dropbox/Automagic Art/Source Backup/JTFNews Backups"
+DEST_DIR="/Users/larryseyer/Downloads/JTFNews Backups"
 TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
 # Take first line only, limit to 50 chars, replace spaces/special chars
 MESSAGE=$(echo "$1" | head -1 | cut -c1-50 | sed 's/[^a-zA-Z0-9]/_/g' | sed 's/__*/_/g' | sed 's/_$//')
