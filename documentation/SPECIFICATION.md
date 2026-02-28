@@ -17,13 +17,14 @@
 11. [Text-to-Speech](#11-text-to-speech)
 12. [Twitter/X Behavior](#12-twitterx-behavior)
 13. [YouTube Stream Settings](#13-youtube-stream-settings)
-14. [Watchdog Alert System](#14-watchdog-alert-system)
-15. [GitHub Archive Structure](#15-github-archive-structure)
-16. [Launch Protocol](#16-launch-protocol)
-17. [File Specifications](#17-file-specifications)
-18. [Constraints and Ethics](#18-constraints-and-ethics)
-19. [Verification Checklist](#19-verification-checklist)
-20. [Future Directions](#20-future-directions)
+14. [Podcast & Archive.org](#14-podcast--archiveorg)
+15. [Watchdog Alert System](#15-watchdog-alert-system)
+16. [GitHub Archive Structure](#16-github-archive-structure)
+17. [Launch Protocol](#17-launch-protocol)
+18. [File Specifications](#18-file-specifications)
+19. [Constraints and Ethics](#19-constraints-and-ethics)
+20. [Verification Checklist](#20-verification-checklist)
+21. [Future Directions](#21-future-directions)
 
 ---
 
@@ -1336,7 +1337,75 @@ Licensed CC-BY-SA. Use it. Share it. Credit us.
 
 ---
 
-## 14. Watchdog Alert System
+## 14. Podcast & Archive.org
+
+### 14.1 Philosophy
+
+The daily digest is not only a YouTube video. It is a podcast episode with full show notes. Every fact read on air appears in the episode description. The audio is hosted permanently on Archive.org under Creative Commons. No paywalls. No platform lock-in.
+
+> "If a community needs facts, the methodology is theirs."
+
+### 14.2 Pipeline
+
+After each daily digest is recorded, trimmed, and uploaded to YouTube:
+
+1. **Convert** — ffmpeg extracts 320kbps MP3 audio from the MP4 video
+2. **Upload** — MP3 and MP4 are uploaded to Archive.org as `jtf-news-YYYY-MM-DD`
+3. **Update feed** — Episode is added to `podcast.xml` with full facts text in `<content:encoded>`
+4. **Push** — Feed is pushed to GitHub Pages via API
+5. **Clean up** — Temporary MP3 is deleted; Archive.org is the permanent store
+
+### 14.3 Podcast Feed
+
+One feed: `https://jtfnews.org/podcast.xml`
+
+- Apple Podcast-compatible RSS with `itunes:` namespace
+- Audio enclosure pointing to Archive.org
+- `<description>` — Summary line ("X verified facts for [date]")
+- `<content:encoded>` — Full text of every fact from that day's digest
+- Episode numbering is sequential
+- GUIDs are stable (`jtf-news-YYYY-MM-DD`) and never change after publishing
+
+### 14.4 Archive.org Structure
+
+```
+Item ID: jtf-news-YYYY-MM-DD
+├── YYYY-MM-DD-daily-digest.mp3 (320kbps audio)
+├── YYYY-MM-DD-daily-digest.mp4 (original video)
+└── Metadata:
+    ├── mediatype: movies
+    ├── collection: opensource_movies
+    ├── creator: JTF News
+    ├── date: YYYY-MM-DD
+    ├── licenseurl: CC BY-SA 4.0
+    ├── title: JTF News Daily Digest - YYYY-MM-DD
+    └── subject: news, daily digest, facts, journalism
+```
+
+Items are permanent. Identifiers never change.
+
+### 14.5 Error Handling
+
+- Archive.org upload retries with exponential backoff (3 attempts)
+- Upload is idempotent: skips if item already exists
+- Podcast failure does not break the YouTube digest flow
+- Alerts via SMS if podcast pipeline fails
+
+### 14.6 Environment Variables
+
+```
+ARCHIVE_ORG_ACCESS_KEY=xxx
+ARCHIVE_ORG_SECRET_KEY=xxx
+```
+
+### 14.7 Dependencies
+
+- `internetarchive` Python library
+- `ffmpeg` (already installed for video processing)
+
+---
+
+## 15. Watchdog Alert System
 
 ### 14.1 Philosophy
 
@@ -1418,9 +1487,9 @@ No escalation. No committee. One person. One button.
 
 ---
 
-## 15. GitHub Archive Structure
+## 16. GitHub Archive Structure
 
-### 15.1 Repository Structure
+### 21.1 Repository Structure
 
 ```
 jtf-news-archive/
@@ -1434,7 +1503,7 @@ jtf-news-archive/
 └── ...
 ```
 
-### 15.2 README.md Content
+### 21.2 README.md Content
 
 ```markdown
 # JTF News Archive
@@ -1461,7 +1530,7 @@ CC-BY-SA 4.0
 https://jtfnews.com (if exists)
 ```
 
-### 15.3 Daily Archive File Format
+### 21.3 Daily Archive File Format
 
 Filename: `jtf-YYYY-MM-DD.txt`
 
@@ -1472,7 +1541,7 @@ Content:
 2026-02-10T14:15:00Z | Trade agreement signed between UK and Australia. | Guardian – 8.8, ABC AU – 9.0
 ```
 
-### 15.4 Archive Implementation
+### 21.4 Archive Implementation
 
 ```python
 import zipfile
@@ -1505,7 +1574,7 @@ def archive_daily():
     log(f"ARCHIVED: {zip_name}")
 ```
 
-### 15.5 Public Website (GitHub Pages)
+### 21.5 Public Website (GitHub Pages)
 
 The `main` branch `/docs` folder serves the public-facing website at https://jtfnews.org/
 
@@ -1529,13 +1598,13 @@ The `main` branch `/docs` folder serves the public-facing website at https://jtf
 
 ---
 
-## 16. Launch Protocol
+## 17. Launch Protocol
 
-### 16.1 Philosophy
+### 21.1 Philosophy
 
 > "We begin when the code is ready. We begin when two sources report something. We begin with silence. And when the first true sentence arrives, we speak it. No fanfare. No launch party. Just on."
 
-### 16.2 Pre-Launch Checklist
+### 21.2 Pre-Launch Checklist
 
 - [ ] All API keys configured and tested
 - [ ] All 20 news sources verified reachable
@@ -1549,7 +1618,7 @@ The `main` branch `/docs` folder serves the public-facing website at https://jtf
 - [ ] GitHub archive repo created
 - [ ] Background media folder populated with HD images
 
-### 16.3 Launch Sequence
+### 21.3 Launch Sequence
 
 1. Start OBS
 2. Verify YouTube stream key
@@ -1559,7 +1628,7 @@ The `main` branch `/docs` folder serves the public-facing website at https://jtf
 
 That's it. No announcement. No countdown.
 
-### 16.4 First Day
+### 21.4 First Day
 
 The first day will likely be quiet:
 - System needs to build up queued stories
@@ -1570,9 +1639,9 @@ The first day will likely be quiet:
 
 ---
 
-## 17. File Specifications
+## 18. File Specifications
 
-### 17.1 config.json
+### 21.1 config.json
 
 ```json
 {
@@ -1603,7 +1672,7 @@ The first day will likely be quiet:
 }
 ```
 
-### 17.2 .env
+### 21.2 .env
 
 ```bash
 # Claude API (REQUIRED)
@@ -1633,7 +1702,7 @@ GITHUB_TOKEN=ghp_...
 GITHUB_ARCHIVE_REPO=username/jtf-news-archive
 ```
 
-### 17.3 .gitignore
+### 21.3 .gitignore
 
 ```
 # Environment
@@ -1657,7 +1726,7 @@ Thumbs.db
 .idea/
 ```
 
-### 17.4 requirements.txt
+### 21.4 requirements.txt
 
 ```
 anthropic>=0.18.0
@@ -1670,7 +1739,7 @@ python-dotenv>=1.0.0
 twilio>=8.0.0
 ```
 
-### 17.5 main.py Structure
+### 21.5 main.py Structure
 
 ```python
 #!/usr/bin/env python3
@@ -1879,7 +1948,7 @@ if __name__ == "__main__":
     main()
 ```
 
-### 17.6 web/lower-third.html
+### 21.6 web/lower-third.html
 
 ```html
 <!DOCTYPE html>
@@ -1900,7 +1969,7 @@ if __name__ == "__main__":
 </html>
 ```
 
-### 17.7 web/lower-third.css
+### 21.7 web/lower-third.css
 
 ```css
 * {
@@ -1951,7 +2020,7 @@ body {
 }
 ```
 
-### 17.8 web/lower-third.js
+### 21.8 web/lower-third.js
 
 ```javascript
 /**
@@ -2031,7 +2100,7 @@ setInterval(poll, POLL_INTERVAL);
 poll(); // Initial check
 ```
 
-### 17.9 README.md
+### 21.9 README.md
 
 ```markdown
 # JTF News
@@ -2102,9 +2171,9 @@ See `SPECIFICATION.md` for complete technical documentation.
 
 ---
 
-## 18. Constraints and Ethics
+## 19. Constraints and Ethics
 
-### 18.1 Hard Rules (Never Break)
+### 21.1 Hard Rules (Never Break)
 
 1. **Never publish without 2+ sources from different owners**
 2. **Never publish with confidence < 85%**
@@ -2116,7 +2185,7 @@ See `SPECIFICATION.md` for complete technical documentation.
 8. **Delete raw scraped data after 7 days**
 9. **Archive daily to public GitHub**
 
-### 18.2 Content Standards
+### 21.2 Content Standards
 
 **We report:**
 - Deaths if verified count available
@@ -2132,21 +2201,21 @@ See `SPECIFICATION.md` for complete technical documentation.
 - Unverified claims
 - Single-source stories
 
-### 18.3 Licensing
+### 21.3 Licensing
 
 - **Code:** MIT License
 - **Output (published facts):** CC-BY-SA 4.0
 
 Anyone can use, share, adapt our output with attribution.
 
-### 18.4 Transparency
+### 21.4 Transparency
 
 - All code is open source
 - All archives are public
 - All sources are disclosed
 - All ownership data is visible
 
-### 18.5 Corrections & Retractions
+### 21.5 Corrections & Retractions
 
 When a fact passes the two-source test but is later proven false:
 
@@ -2165,11 +2234,11 @@ We do not bury mistakes. We name them.
 
 ---
 
-## 19. Verification Checklist
+## 20. Verification Checklist
 
 After implementation, verify each item:
 
-### 19.1 Core Functionality
+### 21.1 Core Functionality
 
 - [ ] `python main.py` starts without errors
 - [ ] Scrapes at least 14/17 sources successfully
@@ -2180,7 +2249,7 @@ After implementation, verify each item:
 - [ ] Different-owner verification works
 - [ ] 24-hour queue expiry works
 
-### 19.2 Output Files
+### 21.2 Output Files
 
 - [ ] `data/current.txt` updates with new stories
 - [ ] `data/source.txt` shows correct attribution
@@ -2188,7 +2257,7 @@ After implementation, verify each item:
 - [ ] `data/shown_hashes.txt` prevents duplicates
 - [ ] `audio/current.wav` generates correctly
 
-### 19.3 OBS Integration
+### 21.3 OBS Integration
 
 - [ ] Browser source shows lower third
 - [ ] Fade in/out animations work
@@ -2197,14 +2266,14 @@ After implementation, verify each item:
 - [ ] Image slideshow rotates backgrounds
 - [ ] Stream to YouTube works
 
-### 19.4 External Services
+### 21.4 External Services
 
 - [ ] Twitter posts stories correctly
 - [ ] Twitter never replies/likes/retweets
 - [ ] SMS alerts arrive on failures
 - [ ] GitHub archive commits daily
 
-### 19.5 Edge Cases
+### 21.5 Edge Cases
 
 - [ ] No stories = silence (no errors)
 - [ ] API failure = alert sent, no crash
@@ -2214,9 +2283,9 @@ After implementation, verify each item:
 
 ---
 
-## 20. Future Directions
+## 21. Future Directions
 
-### 20.1 The Channel Concept
+### 21.1 The Channel Concept
 
 JTF News Global is the first implementation of the JTF methodology. The architecture supports future community-specific channels without code changes.
 
@@ -2227,7 +2296,7 @@ A **channel** is:
 - Its own YouTube stream and Twitter account
 - The same verification methodology
 
-### 20.2 What Remains Universal
+### 21.2 What Remains Universal
 
 All channels share:
 - Two-source verification from different owners
@@ -2238,7 +2307,7 @@ All channels share:
 - Public archiving
 - 501(c) non-profit operation
 
-### 20.3 What Varies by Channel
+### 21.3 What Varies by Channel
 
 | Element | Configured Per Channel |
 |---------|----------------------|
@@ -2250,7 +2319,7 @@ All channels share:
 | `social.youtube_channel` | Separate stream per channel |
 | `media/` folder | Domain-appropriate imagery |
 
-### 20.4 Architecture Readiness
+### 21.4 Architecture Readiness
 
 The current implementation already supports this through `config.json`:
 
@@ -2269,7 +2338,7 @@ The current implementation already supports this through `config.json`:
 
 Future channels would be separate `config.json` files or a multi-channel configuration structure. No core code changes required.
 
-### 20.5 Community Ownership
+### 21.5 Community Ownership
 
 Channels are public services, not products:
 - No licensing fees
@@ -2279,7 +2348,7 @@ Channels are public services, not products:
 - Attribution appreciated, not required
 - CC-BY-SA applies to methodology documentation
 
-### 20.6 Not Planned for MVP
+### 21.6 Not Planned for MVP
 
 The following are documented for future consideration only:
 - Multi-channel orchestration

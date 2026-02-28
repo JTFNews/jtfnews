@@ -4697,6 +4697,36 @@ def generate_and_upload_daily_summary(date: str):
         # Upload to YouTube
         _upload_video_to_youtube(str(video_path), date)
 
+        # Podcast pipeline: convert to MP3, upload to Archive.org, update feeds
+        try:
+            mp3_path = str(video_path).replace('.mp4', '.mp3')
+            if convert_video_to_podcast_audio(str(video_path), mp3_path):
+                archive_result = upload_to_archive_org(date, mp3_path, str(video_path))
+                facts = [s["fact"] for s in stories_data if s.get("fact")]
+                update_podcast_feeds(date, archive_result, len(stories_data), int(estimated_duration), facts=facts)
+                push_podcast_feeds()
+                update_digest_status(
+                    date,
+                    archive_org_id=archive_result['item_id'],
+                    archive_audio_url=archive_result['audio_url'],
+                    archive_video_url=archive_result['video_url'],
+                    podcast_updated=True
+                )
+                log.info(f"Podcast published: {archive_result['audio_url']}")
+                # Clean up temporary MP3 - Archive.org is the permanent store
+                try:
+                    Path(mp3_path).unlink()
+                    log.info(f"Deleted temporary MP3: {mp3_path}")
+                except Exception as e:
+                    log.warning(f"Could not delete temporary MP3: {e}")
+            else:
+                log.error("Podcast MP3 conversion failed")
+                send_alert(f"Podcast MP3 conversion failed for {date}")
+        except Exception as e:
+            log.error(f"Podcast pipeline failed: {e}")
+            send_alert(f"Podcast upload failed for {date}: {e}")
+            # Don't fail the overall digest - YouTube upload already succeeded
+
     except Exception as e:
         log.error(f"Daily digest recording failed: {e}")
         send_alert(f"Daily digest recording failed for {date}: {e}")
@@ -4858,6 +4888,175 @@ def _upload_video_to_youtube(video_path: str, date: str):
     else:
         log.info(f"YouTube not configured. Video saved locally: {video_path}")
         update_digest_status(date, upload_status="skipped")
+
+
+# =============================================================================
+# PODCAST PIPELINE (Archive.org + RSS Feeds)
+# =============================================================================
+
+def convert_video_to_podcast_audio(video_path: str, output_path: str) -> bool:
+    """Convert MP4 to 320kbps MP3 using ffmpeg."""
+    import subprocess
+    cmd = [
+        'ffmpeg', '-i', video_path,
+        '-vn',              # No video
+        '-ab', '320k',      # 320kbps bitrate
+        '-ar', '44100',     # 44.1kHz sample rate
+        '-y',               # Overwrite output
+        output_path
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+    if result.returncode != 0:
+        log.error(f"ffmpeg MP3 conversion failed: {result.stderr}")
+        return False
+    log.info(f"Converted to podcast audio: {output_path}")
+    return True
+
+
+@retry_with_backoff(max_retries=3, base_delay=2.0, retryable_exceptions=(ConnectionError, TimeoutError, OSError, Exception))
+def upload_to_archive_org(date: str, mp3_path: str, mp4_path: str) -> dict:
+    """Upload episode files to Archive.org.
+
+    Returns dict with item_id, audio_url, video_url, audio_size, video_size.
+    """
+    import internetarchive as ia
+
+    access_key = os.getenv("ARCHIVE_ORG_ACCESS_KEY")
+    secret_key = os.getenv("ARCHIVE_ORG_SECRET_KEY")
+    if not access_key or not secret_key:
+        raise RuntimeError("ARCHIVE_ORG_ACCESS_KEY and ARCHIVE_ORG_SECRET_KEY must be set in .env")
+
+    item_id = f"jtf-news-{date}"
+
+    # Check if item already exists (idempotent)
+    item = ia.get_item(item_id)
+    if item.exists:
+        log.info(f"Archive.org item {item_id} already exists, skipping upload")
+    else:
+        ia.upload(
+            item_id,
+            files=[mp3_path, mp4_path],
+            metadata={
+                'mediatype': 'movies',
+                'collection': 'opensource_movies',
+                'creator': 'JTF News',
+                'date': date,
+                'title': f'JTF News Daily Digest - {date}',
+                'description': 'Daily digest of verified news facts. No opinions, no adjectives.',
+                'licenseurl': 'https://creativecommons.org/licenses/by-sa/4.0/',
+                'subject': ['news', 'daily digest', 'facts', 'journalism']
+            },
+            access_key=access_key,
+            secret_key=secret_key
+        )
+        log.info(f"Uploaded to Archive.org: {item_id}")
+
+    audio_size = os.path.getsize(mp3_path)
+    video_size = os.path.getsize(mp4_path)
+
+    # Filenames on Archive.org match local filenames
+    mp3_name = Path(mp3_path).name
+    mp4_name = Path(mp4_path).name
+
+    return {
+        'item_id': item_id,
+        'audio_url': f'https://archive.org/download/{item_id}/{mp3_name}',
+        'video_url': f'https://archive.org/download/{item_id}/{mp4_name}',
+        'audio_size': audio_size,
+        'video_size': video_size
+    }
+
+
+def update_podcast_feeds(date: str, archive_result: dict, story_count: int, duration_seconds: int, facts: list = None) -> None:
+    """Update podcast.xml with new episode including full facts text.
+
+    Args:
+        date: YYYY-MM-DD date string
+        archive_result: dict from upload_to_archive_org()
+        story_count: number of verified facts
+        duration_seconds: episode duration
+        facts: list of fact strings to include in episode description
+    """
+    from email.utils import formatdate
+    from xml.sax.saxutils import escape
+
+    docs_dir = BASE_DIR / "docs"
+    feed_path = docs_dir / "podcast.xml"
+
+    if not feed_path.exists():
+        log.warning(f"Podcast feed not found: {feed_path}")
+        return
+
+    # Format date for display: "February 28, 2026"
+    dt = datetime.strptime(date, "%Y-%m-%d")
+    display_date = dt.strftime("%B %d, %Y").replace(" 0", " ")
+
+    # RFC 2822 pubDate (06:00 GMT = midnight CST)
+    pub_dt = datetime(dt.year, dt.month, dt.day, 6, 0, 0, tzinfo=timezone.utc)
+    pub_date = formatdate(timeval=pub_dt.timestamp(), usegmt=True)
+
+    # Duration as MM:SS
+    mins = duration_seconds // 60
+    secs = duration_seconds % 60
+    duration_str = f"{mins:02d}:{secs:02d}"
+
+    # Build description with full facts text
+    if facts:
+        facts_text = "\n".join(f"- {escape(f)}" for f in facts)
+        description = escape(f"{story_count} verified facts for {display_date}.")
+        content_encoded = f"{story_count} verified facts for {display_date}.\n\n{facts_text}\n\nJTF News: Two sources. No adjectives. Just facts."
+    else:
+        description = escape(f"{story_count} verified facts for {display_date}.")
+        content_encoded = description
+
+    # Count existing episodes to set episode number
+    episode_number = 1
+    try:
+        tree = ET.parse(feed_path)
+        existing_items = tree.getroot().find("channel").findall("item")
+        episode_number = len(existing_items) + 1
+    except Exception:
+        pass
+
+    guid = f"jtf-news-{date}"
+
+    content = feed_path.read_text(encoding="utf-8")
+
+    # Check for duplicate
+    if guid in content:
+        log.info(f"Episode {guid} already in podcast.xml, skipping")
+        return
+
+    # Build episode XML string (avoids namespace issues with ElementTree)
+    item_xml = f"""    <item>
+      <title>JTF News - {display_date}</title>
+      <description>{description}</description>
+      <content:encoded><![CDATA[{content_encoded}]]></content:encoded>
+      <enclosure url="{archive_result['audio_url']}" type="audio/mpeg" length="{archive_result['audio_size']}"/>
+      <guid isPermaLink="false">{guid}</guid>
+      <pubDate>{pub_date}</pubDate>
+      <itunes:duration>{duration_str}</itunes:duration>
+      <itunes:episode>{episode_number}</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>"""
+
+    # Insert before </channel>
+    insert_point = content.rfind("  </channel>")
+    if insert_point == -1:
+        log.error("Could not find </channel> in podcast.xml")
+        return
+
+    updated = content[:insert_point] + item_xml + "\n  </channel>" + content[insert_point + len("  </channel>"):]
+    feed_path.write_text(updated, encoding="utf-8")
+    log.info(f"Added episode {date} to podcast.xml")
+
+
+def push_podcast_feeds() -> None:
+    """Push podcast feed to GitHub Pages."""
+    docs_dir = BASE_DIR / "docs"
+    feed_path = docs_dir / "podcast.xml"
+    if feed_path.exists():
+        push_to_ghpages([(feed_path, "podcast.xml")], "Update podcast feed")
 
 
 # =============================================================================
