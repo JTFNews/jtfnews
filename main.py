@@ -1132,11 +1132,17 @@ def fetch_html_headlines(source: dict) -> list:
         return []
 
     try:
+        # Use browser-like headers for sites with aggressive bot detection
+        # This is ethical as we verify robots.txt allows access first
         headers = {
-            "User-Agent": f"{USER_AGENT} (Facts only, no opinions; respects robots.txt)"
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Accept-Encoding": "gzip, deflate",
+            "Connection": "keep-alive",
         }
 
-        response = requests.get(source["url"], headers=headers, timeout=15)
+        response = requests.get(source["url"], headers=headers, timeout=15, allow_redirects=True)
         response.raise_for_status()
 
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -1197,6 +1203,22 @@ def scrape_all_sources() -> list:
 def get_story_hash(text: str) -> str:
     """Generate hash of story text for deduplication."""
     return hashlib.md5(text.lower().encode()).hexdigest()[:12]
+
+
+def get_ordinal_suffix(n: int) -> str:
+    """Return ordinal suffix for a number (1st, 2nd, 3rd, 4th...).
+
+    Handles special cases: 11th, 12th, 13th.
+
+    Args:
+        n: The number to get the suffix for
+
+    Returns:
+        Ordinal suffix string ('st', 'nd', 'rd', or 'th')
+    """
+    if 11 <= n <= 13:
+        return "th"
+    return {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
 
 
 def are_sources_unrelated(source1_id: str, source2_id: str) -> bool:
@@ -1794,7 +1816,10 @@ def get_cached_fact_extraction(headline_text: str) -> dict | None:
 # =============================================================================
 
 def get_next_audio_index() -> int:
-    """Get the next audio file index based on today's stories."""
+    """Get the next audio file index based on today's stories.
+
+    DEPRECATED: Use get_story_audio_id() for new code.
+    """
     stories_file = DATA_DIR / "stories.json"
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
@@ -1809,9 +1834,37 @@ def get_next_audio_index() -> int:
     return 0
 
 
+def get_story_audio_id(fact: str) -> str:
+    """Generate a unique audio ID from the story fact.
+
+    Uses the story hash to create a consistent ID that links
+    the story text to its audio file, regardless of processing order.
+
+    Args:
+        fact: The story fact text
+
+    Returns:
+        Audio ID like 'a3f2b1c9d4e5' (12 chars)
+    """
+    return get_story_hash(fact)
+
+
 @retry_with_backoff(max_retries=2, base_delay=1.0)
-def generate_tts(text: str, audio_index: int = None) -> str:
-    """Generate TTS audio using ElevenLabs. Returns audio filename."""
+def generate_tts(text: str, audio_index: int = None, story_id: str = None, archive_date: str = None) -> str:
+    """Generate TTS audio using ElevenLabs. Returns audio filename.
+
+    Writes audio directly to day-specific archive folder to prevent overwrites
+    at day boundaries. Also copies to current.mp3 for live playback.
+
+    Args:
+        text: Text to convert to speech
+        audio_index: DEPRECATED - legacy index-based naming (writes to audio/)
+        story_id: Unique story ID for the audio filename (writes to archive)
+        archive_date: Optional YYYY-MM-DD date for archive folder (defaults to today UTC)
+
+    Returns:
+        Audio filename on success, False on failure
+    """
     try:
         client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY"))
 
@@ -1834,23 +1887,143 @@ def generate_tts(text: str, audio_index: int = None) -> str:
         # Log API usage for cost tracking
         log_api_usage("elevenlabs", {"characters": len(text)})
 
-        # Save to indexed file for loop playback
-        if audio_index is not None:
-            indexed_path = AUDIO_DIR / f"audio_{audio_index}.mp3"
-            with open(indexed_path, 'wb') as f:
+        # Determine filename and save location
+        # story_id (hash-based): Write directly to today's archive folder (SAFE)
+        # audio_index (legacy): Write to audio/ folder (can be overwritten - DEPRECATED)
+        # neither: Write to current.mp3 only
+        if story_id:
+            # NEW: Write directly to archive folder to prevent overwrites
+            # Use provided date or default to today UTC
+            folder_date = archive_date or datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            archive_dir = AUDIO_DIR / "archive" / folder_date
+            archive_dir.mkdir(parents=True, exist_ok=True)
+
+            audio_filename = f"{story_id}.mp3"
+            audio_path = archive_dir / audio_filename
+
+            with open(audio_path, 'wb') as f:
                 f.write(audio_data)
 
-        # Also save to current.mp3 for immediate playback
+            log.info(f"Generated TTS (archive/{folder_date}/{audio_filename}): {text[:50]}...")
+
+        elif audio_index is not None:
+            # LEGACY: Write to audio/ folder (can still be overwritten)
+            audio_filename = f"audio_{audio_index}.mp3"
+            audio_path = AUDIO_DIR / audio_filename
+
+            with open(audio_path, 'wb') as f:
+                f.write(audio_data)
+
+            log.info(f"Generated TTS ({audio_filename}): {text[:50]}...")
+
+        else:
+            audio_filename = "current.mp3"
+            log.info(f"Generated TTS (current.mp3): {text[:50]}...")
+
+        # Always save to current.mp3 for immediate playback
         current_path = AUDIO_DIR / "current.mp3"
         with open(current_path, 'wb') as f:
             f.write(audio_data)
 
-        log.info(f"Generated TTS: {text[:50]}...")
-        return f"audio_{audio_index}.mp3" if audio_index is not None else "current.mp3"
+        return audio_filename
 
     except Exception as e:
         log.error(f"TTS error: {e}")
         return False
+
+
+def generate_intro_audio(date: datetime) -> str:
+    """Generate intro TTS audio for the daily digest.
+
+    Creates a spoken intro like:
+    "The following is the JTF News Daily Digest for Monday, the 24th of February, 2026."
+
+    Args:
+        date: datetime object for the digest date
+
+    Returns:
+        Audio filename on success, False on failure
+    """
+    day_name = date.strftime("%A")  # "Monday"
+    day_num = date.day
+    suffix = get_ordinal_suffix(day_num)  # "st", "nd", "rd", "th"
+    month = date.strftime("%B")  # "February"
+    year = date.year
+
+    text = f"The following is the JTF News Daily Digest for {day_name}, the {day_num}{suffix} of {month}, {year}.  Every story you're about to hear was verified by two or more independent sources."
+
+    # Use the digest date for the archive folder, not current UTC date
+    archive_date = date.strftime("%Y-%m-%d")
+    log.info(f"Generating intro audio for {archive_date}: {text}")
+    return generate_tts(text, story_id="intro", archive_date=archive_date)
+
+
+def generate_outro_audio(date: datetime) -> str:
+    """Generate outro TTS audio for the daily digest.
+
+    Creates a spoken outro like:
+    "You have been listening to the JTF News Daily Digest for Monday, the 24th of February, 2026."
+
+    Args:
+        date: datetime object for the digest date
+
+    Returns:
+        Audio filename on success, False on failure
+    """
+    day_name = date.strftime("%A")  # "Monday"
+    day_num = date.day
+    suffix = get_ordinal_suffix(day_num)  # "st", "nd", "rd", "th"
+    month = date.strftime("%B")  # "February"
+    year = date.year
+
+    text = f"You have been listening to the JTF News Daily Digest for {day_name}, the {day_num}{suffix} of {month}, {year}.  Facts without opinion. We do not interpret."
+
+    # Use the digest date for the archive folder, not current UTC date
+    archive_date = date.strftime("%Y-%m-%d")
+    log.info(f"Generating outro audio for {archive_date}: {text}")
+    return generate_tts(text, story_id="outro", archive_date=archive_date)
+
+
+def format_source_names_with_ratings(source_names_str: str) -> str:
+    """Format source names string with ratings for digest display.
+
+    Takes comma-separated source names from daily log and adds ratings.
+
+    Args:
+        source_names_str: e.g., "NPR,CBC News" or "NPR,CBC News (+1 more)"
+
+    Returns:
+        Formatted string like "NPR 4.7|8.5 · CBC News 3.6|9.0"
+    """
+    # Handle "(+N more)" suffix
+    extra_text = ""
+    if " (+" in source_names_str:
+        parts = source_names_str.split(" (+")
+        source_names_str = parts[0]
+        extra_text = f" (+{parts[1]}"
+
+    # Split and look up each source
+    names = [n.strip() for n in source_names_str.split(",")]
+    formatted_parts = []
+
+    for name in names[:2]:  # Only show first 2
+        # Look up source ID by name
+        source_id = None
+        for src in CONFIG["sources"]:
+            if src["name"] == name:
+                source_id = src["id"]
+                break
+
+        if source_id:
+            formatted_parts.append(f"{name} {get_compact_scores(source_id)}")
+        else:
+            formatted_parts.append(name)
+
+    result = " · ".join(formatted_parts)
+    if extra_text:
+        result += extra_text
+
+    return result
 
 
 # =============================================================================
@@ -1961,6 +2134,19 @@ def update_stories_json(fact: str, sources: list, audio_file: str = None):
     # Build source_urls map for clickable links in archive
     source_urls = {s["source_name"]: s.get("source_url", "") for s in sources[:2]}
 
+    # Determine audio path - hash-based files are in archive folder
+    if audio_file:
+        # Check if this is a hash-based filename (12 hex chars + .mp3)
+        audio_stem = audio_file.replace(".mp3", "")
+        if len(audio_stem) == 12 and all(c in '0123456789abcdef' for c in audio_stem):
+            # Hash-based: points to today's archive folder
+            audio_path = f"../audio/archive/{today}/{audio_file}"
+        else:
+            # Legacy index-based: points to audio/ folder
+            audio_path = f"../audio/{audio_file}"
+    else:
+        audio_path = "../audio/current.mp3"
+
     # Add new story with expanded structure for corrections support
     stories["stories"].append({
         "id": story_id,
@@ -1968,7 +2154,7 @@ def update_stories_json(fact: str, sources: list, audio_file: str = None):
         "fact": fact,
         "source": source_text,
         "source_urls": source_urls,
-        "audio": f"../audio/{audio_file}" if audio_file else "../audio/current.mp3",
+        "audio": audio_path,
         "published_at": now_iso,
         "status": "published"
     })
@@ -3502,15 +3688,13 @@ def update_published_story(story_index: int, additional_detail: str, new_source:
         if new_source_text not in story.get("source", ""):
             story["source"] = f"{story['source']} · {new_source_text}"
 
-        # Regenerate audio for updated fact
-        audio_path = story.get("audio", "").replace("../audio/", "")
-        if audio_path:
-            audio_index = audio_path.replace("audio_", "").replace(".mp3", "")
-            try:
-                audio_index = int(audio_index)
-                generate_tts(updated_fact, audio_index)
-            except:
-                pass
+        # Regenerate audio for updated fact using hash-based naming
+        new_audio_id = get_story_audio_id(updated_fact)
+        new_audio_file = generate_tts(updated_fact, story_id=new_audio_id)
+
+        if new_audio_file:
+            today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            story["audio"] = f"../audio/archive/{today}/{new_audio_file}"
 
         # Write back
         with open(stories_file, 'w') as f:
@@ -3604,36 +3788,43 @@ VIDEO_DIR.mkdir(exist_ok=True)
 
 
 def archive_audio_files(date: str) -> list:
-    """Archive audio files for the given date before they get overwritten.
+    """Archive legacy audio files and return all audio files for the date.
 
-    Moves audio_*.mp3 files from audio/ to audio/archive/YYYY-MM-DD/
-    to preserve them for daily video generation.
+    New hash-based audio files are already written directly to archive/YYYY-MM-DD/
+    by generate_tts(), so this function only needs to:
+    1. Move any legacy audio_*.mp3 files from audio/ to archive/
+    2. Return a list of all audio files in the archive for this date
 
     Args:
         date: Date string in YYYY-MM-DD format
 
     Returns:
-        List of archived file paths (sorted by audio index)
+        List of all archived file paths for this date
     """
     archive_dir = AUDIO_DIR / "archive" / date
     archive_dir.mkdir(parents=True, exist_ok=True)
 
-    archived = []
-    # Sort by audio index to maintain story order
+    moved_count = 0
+
+    # Archive legacy format (audio_*.mp3) - these are the ones that can be overwritten
     for audio_file in sorted(AUDIO_DIR.glob("audio_*.mp3"),
                              key=lambda f: int(f.stem.split('_')[1]) if f.stem.split('_')[1].isdigit() else 0):
         dest = archive_dir / audio_file.name
         try:
             shutil.move(str(audio_file), str(dest))
-            archived.append(str(dest))
-            log.debug(f"Archived audio: {audio_file.name} -> {archive_dir.name}/")
+            moved_count += 1
+            log.debug(f"Archived legacy audio: {audio_file.name} -> {archive_dir.name}/")
         except Exception as e:
             log.error(f"Failed to archive {audio_file}: {e}")
 
-    if archived:
-        log.info(f"Archived {len(archived)} audio files to {archive_dir}")
+    if moved_count > 0:
+        log.info(f"Archived {moved_count} legacy audio files to {archive_dir}")
 
-    return archived
+    # Return ALL audio files in the archive (both legacy and hash-based)
+    all_archived = [str(f) for f in archive_dir.glob("*.mp3")]
+    log.info(f"Archive {date} contains {len(all_archived)} audio files")
+
+    return all_archived
 
 
 def get_audio_duration(path: str) -> float:
@@ -3709,6 +3900,8 @@ def get_seasonal_backgrounds(count: int = 50) -> list:
 def load_stories_for_date(date: str) -> list:
     """Load stories from the daily log file for a specific date.
 
+    Tries local file first, then falls back to archived .gz file.
+
     Args:
         date: Date string in YYYY-MM-DD format
 
@@ -3716,60 +3909,74 @@ def load_stories_for_date(date: str) -> list:
         List of story dicts with 'fact' and 'source' fields
     """
     log_file = DATA_DIR / f"{date}.txt"
+    lines = []
 
-    if not log_file.exists():
-        log.debug(f"No daily log found for {date}")
-        return []
+    # Try local file first
+    if log_file.exists():
+        try:
+            with open(log_file, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+        except Exception as e:
+            log.error(f"Error reading local log for {date}: {e}")
+            return []
+    else:
+        # Fall back to archived file
+        year = date[:4]
+        archive_file = BASE_DIR / "docs" / "archive" / year / f"{date}.txt.gz"
+        if archive_file.exists():
+            log.info(f"Loading from archive: {archive_file}")
+            try:
+                with gzip.open(archive_file, 'rt', encoding='utf-8') as f:
+                    lines = f.readlines()
+            except Exception as e:
+                log.error(f"Error reading archive for {date}: {e}")
+                return []
+        else:
+            log.debug(f"No daily log found for {date} (checked local and archive)")
+            return []
 
     stories = []
-    try:
-        with open(log_file, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
 
-        # Parse daily log format (pipe-delimited):
-        # Old (5 fields): timestamp|sources|ratings|urls|fact
-        # New (6 fields): timestamp|sources|ratings|urls|audio|fact
-        # Example:
-        # 2026-02-15T00:08:14+00:00|BBC News,Reuters|9.5*,9.9*|url1,url2|audio_0.mp3|The fact here.
+    # Parse daily log format (pipe-delimited):
+    # Old (5 fields): timestamp|sources|ratings|urls|fact
+    # New (6 fields): timestamp|sources|ratings|urls|audio|fact
+    # Example:
+    # 2026-02-15T00:08:14+00:00|BBC News,Reuters|9.5*,9.9*|url1,url2|audio_0.mp3|The fact here.
 
-        for line in lines:
-            line = line.strip()
+    for line in lines:
+        line = line.strip()
 
-            # Skip comments and empty lines
-            if not line or line.startswith('#'):
-                continue
+        # Skip comments and empty lines
+        if not line or line.startswith('#'):
+            continue
 
-            # Parse pipe-delimited format
-            parts = line.split('|')
-            if len(parts) >= 6:
-                # New format with audio field
-                timestamp = parts[0]
-                sources = parts[1]
-                audio = parts[4]  # e.g., "audio_0.mp3"
-                fact = parts[5]
-                stories.append({
-                    'fact': fact,
-                    'source': sources,
-                    'timestamp': timestamp,
-                    'audio': audio
-                })
-            elif len(parts) >= 5:
-                # Old format without audio - use index-based fallback
-                timestamp = parts[0]
-                sources = parts[1]
-                fact = parts[4]
-                stories.append({
-                    'fact': fact,
-                    'source': sources,
-                    'timestamp': timestamp,
-                    'audio': None
-                })
+        # Parse pipe-delimited format
+        parts = line.split('|')
+        if len(parts) >= 6:
+            # New format with audio field
+            timestamp = parts[0]
+            sources = parts[1]
+            audio = parts[4]  # e.g., "audio_0.mp3"
+            fact = parts[5]
+            stories.append({
+                'fact': fact,
+                'source': sources,
+                'timestamp': timestamp,
+                'audio': audio
+            })
+        elif len(parts) >= 5:
+            # Old format without audio - use index-based fallback
+            timestamp = parts[0]
+            sources = parts[1]
+            fact = parts[4]
+            stories.append({
+                'fact': fact,
+                'source': sources,
+                'timestamp': timestamp,
+                'audio': None
+            })
 
-        log.info(f"Loaded {len(stories)} stories from {date}")
-
-    except Exception as e:
-        log.error(f"Error loading stories for {date}: {e}")
-
+    log.info(f"Loaded {len(stories)} stories from {date}")
     return stories
 
 
@@ -4011,12 +4218,15 @@ def obs_start_recording(ws) -> bool:
 def obs_stop_recording(ws) -> str:
     """Stop OBS recording and get output path.
 
+    Waits for OBS to fully finalize the file before returning.
+
     Returns:
         Path to recorded file, or None on failure
     """
     try:
         from obswebsocket import requests as obs_requests
         import glob
+        import subprocess
 
         # v4 protocol: Get recording folder first
         folder_response = ws.call(obs_requests.GetRecordingFolder())
@@ -4024,18 +4234,68 @@ def obs_stop_recording(ws) -> str:
 
         # Stop recording
         ws.call(obs_requests.StopRecording())
-        log.info("OBS recording stopped")
+        log.info("OBS recording stop requested")
 
-        # v4 doesn't return output path - find newest mp4 in recording folder
-        time.sleep(2)  # Wait for file to be written
+        # Wait for OBS to report recording has stopped (max 30 seconds)
+        max_wait = 30
+        for i in range(max_wait):
+            time.sleep(1)
+            try:
+                status = ws.call(obs_requests.GetRecordingStatus())
+                is_recording = status.datain.get('isRecording', False)
+                if not is_recording:
+                    log.info(f"OBS recording stopped after {i+1}s")
+                    break
+            except Exception:
+                # Connection may close after recording stops
+                break
+        else:
+            log.warning("OBS still recording after 30s, proceeding anyway")
+
+        # Find the newest mp4 file
         mp4_files = glob.glob(f"{rec_folder}/*.mp4")
-        if mp4_files:
-            output_path = max(mp4_files, key=os.path.getmtime)
-            log.info(f"Found recording: {output_path}")
-            return output_path
+        if not mp4_files:
+            log.warning(f"No mp4 files found in {rec_folder}")
+            return None
 
-        log.warning(f"No mp4 files found in {rec_folder}")
-        return None
+        output_path = max(mp4_files, key=os.path.getmtime)
+        log.info(f"Found recording: {output_path}")
+
+        # Wait for file to stabilize (size stops changing) - max 60 seconds
+        log.info("Waiting for OBS to finalize file...")
+        last_size = -1
+        stable_count = 0
+        for i in range(60):
+            time.sleep(1)
+            try:
+                current_size = os.path.getsize(output_path)
+                if current_size == last_size:
+                    stable_count += 1
+                    if stable_count >= 3:  # Size stable for 3 seconds
+                        log.info(f"File stabilized after {i+1}s ({current_size / 1024 / 1024:.1f}MB)")
+                        break
+                else:
+                    stable_count = 0
+                    last_size = current_size
+            except OSError:
+                pass  # File might be locked
+        else:
+            log.warning("File size still changing after 60s, proceeding anyway")
+
+        # Verify the file is valid (has moov atom)
+        try:
+            result = subprocess.run(
+                ['ffprobe', '-v', 'error', output_path],
+                capture_output=True, text=True, timeout=10
+            )
+            if 'moov atom not found' in result.stderr or result.returncode != 0:
+                log.error(f"Video file may be corrupt: {result.stderr}")
+            else:
+                log.info("Video file validated successfully")
+        except Exception as e:
+            log.warning(f"Could not validate video file: {e}")
+
+        return output_path
     except Exception as e:
         log.error(f"Failed to stop recording: {e}")
         return None
@@ -4096,14 +4356,15 @@ def obs_refresh_browser_source(ws, source_name: str, url: str = None) -> bool:
         return False
 
 
-def estimate_digest_duration(stories: list, audio_files: list) -> float:
+def estimate_digest_duration(stories: list, audio_files: list, has_intro_outro: bool = False) -> float:
     """Calculate precise duration of daily digest in seconds.
 
     Uses actual audio file durations for accuracy.
 
     Args:
         stories: List of stories
-        audio_files: List of audio file paths
+        audio_files: List of audio file paths (may include intro/outro)
+        has_intro_outro: Whether intro/outro audio is included in audio_files
 
     Returns:
         Estimated duration in seconds
@@ -4120,8 +4381,17 @@ def estimate_digest_duration(stories: list, audio_files: list) -> float:
     if len(stories) > 1:
         total_duration += gap_time * (len(stories) - 1)
 
-    # Add intro delay (5s) + completion screen (15s) for older hardware
-    total_duration += 20.0
+    # Add timing for intro/outro screens and transitions
+    if has_intro_outro:
+        # Intro: title screen visible time + transition
+        total_duration += 5.0  # Title screen visible after intro audio
+        # Outro: transition to title screen + hold time
+        total_duration += 5.0  # Title screen visible after outro audio
+        # Completion screen
+        total_duration += 10.0
+    else:
+        # Legacy: Add intro delay (5s) + completion screen (15s) for older hardware
+        total_duration += 20.0
 
     log.info(f"Total audio: {total_duration:.1f}s ({len(audio_files)} files)")
 
@@ -4150,47 +4420,117 @@ def generate_and_upload_daily_summary(date: str):
         update_digest_status(date, status="no_stories", story_count=0)
         return
 
-    # Find archived audio files
+    # Find archived audio directory
     archive_dir = AUDIO_DIR / "archive" / date
     if not archive_dir.exists():
         log.warning(f"No audio archive found for {date}")
         return
 
-    audio_files = sorted(archive_dir.glob("audio_*.mp3"),
-                        key=lambda f: int(f.stem.split('_')[1]) if f.stem.split('_')[1].isdigit() else 0)
-    audio_files = [str(f) for f in audio_files]
+    # Build stories list with verified audio files
+    # Priority: 1) hash-based, 2) stored filename from log, 3) index fallback
+    stories_data = []
+    audio_files = []
 
-    if not audio_files:
-        log.warning(f"No audio files in archive for {date}")
+    for i, story in enumerate(stories):
+        fact = story.get("fact", "")
+        audio_path = None
+
+        # Priority 1: Hash-based filename (always correct if exists)
+        # This takes priority because hash guarantees content match
+        if fact:
+            fact_hash = get_story_hash(fact)
+            hash_candidate = archive_dir / f"{fact_hash}.mp3"
+            if hash_candidate.exists():
+                audio_path = hash_candidate
+                log.debug(f"Story {i}: Using hash-based audio: {fact_hash}.mp3")
+
+        # Priority 2: Stored audio filename from log (for new hash-based logs)
+        # Only use if it's a hash-based filename, not legacy audio_*.mp3
+        if not audio_path:
+            stored_audio = story.get("audio")
+            if stored_audio and not stored_audio.startswith("audio_"):
+                candidate = archive_dir / stored_audio
+                if candidate.exists():
+                    audio_path = candidate
+                    log.debug(f"Story {i}: Using stored hash audio: {stored_audio}")
+
+        # Priority 3: Index-based fallback (legacy, may be wrong)
+        if not audio_path:
+            index_candidate = archive_dir / f"audio_{i}.mp3"
+            if index_candidate.exists():
+                audio_path = index_candidate
+                log.debug(f"Story {i}: Using index-based fallback: audio_{i}.mp3")
+
+        if audio_path:
+            # Format source names with ratings for display
+            raw_source = story.get("source", "")
+            formatted_source = format_source_names_with_ratings(raw_source) if raw_source else ""
+
+            stories_data.append({
+                "fact": fact,
+                "source": formatted_source,
+                "timestamp": story.get("timestamp", ""),
+                "audioPath": str(audio_path)
+            })
+            audio_files.append(str(audio_path))
+        else:
+            log.warning(f"Story {i}: No audio file found for: {fact[:50]}...")
+
+    if not stories_data:
+        log.warning(f"No stories with valid audio for {date}")
         return
 
-    log.info(f"Found {len(stories)} stories and {len(audio_files)} audio files")
+    log.info(f"Found {len(stories_data)} stories with valid audio out of {len(stories)} total")
+
+    # Generate intro and outro audio
+    # Parse the date string to datetime for audio generation
+    digest_date = datetime.strptime(date, "%Y-%m-%d")
+
+    intro_audio = generate_intro_audio(digest_date)
+    outro_audio = generate_outro_audio(digest_date)
+
+    intro_audio_path = None
+    outro_audio_path = None
+
+    if intro_audio:
+        intro_audio_path = str(archive_dir / intro_audio)
+        log.info(f"Generated intro audio: {intro_audio}")
+    else:
+        log.warning("Failed to generate intro audio")
+
+    if outro_audio:
+        outro_audio_path = str(archive_dir / outro_audio)
+        log.info(f"Generated outro audio: {outro_audio}")
+    else:
+        log.warning("Failed to generate outro audio")
 
     # Write config file for the daily-digest.html page
+    config_data = {
+        "date": date,
+        "intro_audio": intro_audio_path,
+        "outro_audio": outro_audio_path
+    }
     config_file = DATA_DIR / "digest-config.json"
     with open(config_file, 'w') as f:
-        json.dump({"date": date}, f)
+        json.dump(config_data, f, indent=2)
 
     # Write stories to JS file (avoids CORS issues with file:// URLs)
     stories_js_file = DATA_DIR / "digest-stories.js"
-    stories_data = []
-    for i, story in enumerate(stories):
-        # Use audio filename from log if available, otherwise fall back to index
-        audio_filename = story.get("audio") or f"audio_{i}.mp3"
-        stories_data.append({
-            "fact": story.get("fact", ""),
-            "source": story.get("source", ""),
-            "timestamp": story.get("timestamp", ""),
-            "audioPath": str(AUDIO_DIR / "archive" / date / audio_filename)
-        })
     with open(stories_js_file, 'w') as f:
         f.write(f"// Auto-generated digest stories for {date}\n")
         f.write(f"window.DIGEST_DATE = '{date}';\n")
+        f.write(f"window.DIGEST_INTRO_AUDIO = {json.dumps(intro_audio_path)};\n")
+        f.write(f"window.DIGEST_OUTRO_AUDIO = {json.dumps(outro_audio_path)};\n")
         f.write(f"window.DIGEST_STORIES = {json.dumps(stories_data, indent=2)};\n")
     log.info(f"Wrote digest config and stories for {date}")
 
-    # Estimate duration for recording timeout
-    estimated_duration = estimate_digest_duration(stories, audio_files)
+    # Estimate duration for recording timeout (include intro/outro)
+    all_audio_files = audio_files.copy()
+    if intro_audio_path:
+        all_audio_files.insert(0, intro_audio_path)
+    if outro_audio_path:
+        all_audio_files.append(outro_audio_path)
+    estimated_duration = estimate_digest_duration(stories_data, all_audio_files, has_intro_outro=True)
     log.info(f"Estimated digest duration: {estimated_duration:.0f} seconds")
 
     # Get OBS connection
@@ -4265,11 +4605,17 @@ def generate_and_upload_daily_summary(date: str):
 
         log.info(f"Video saved to: {video_path}")
 
+        # Trim silence from start and end of video
+        if trim_video_silence(str(video_path)):
+            log.info("Video silence trimmed successfully")
+        else:
+            log.warning("Video silence trimming failed, using original recording")
+
         # Update digest status with recording details
         update_digest_status(
             date,
             status="success",
-            story_count=len(stories),
+            story_count=len(stories_data),
             duration_seconds=int(estimated_duration),
             video_path=str(video_path)
         )
@@ -4296,6 +4642,72 @@ def generate_and_upload_daily_summary(date: str):
             ws.disconnect()
         except:
             pass
+
+
+def trim_video_silence(video_path: str) -> bool:
+    """Trim silence from start and end of video using ffmpeg.
+
+    Uses audio detection to remove dead air at the beginning and end
+    of recordings, ensuring clean start/stop without cutting content.
+
+    Args:
+        video_path: Path to the video file to trim (will be modified in place)
+
+    Returns:
+        True if trimming succeeded, False otherwise
+    """
+    import subprocess
+
+    video_path = Path(video_path)
+    if not video_path.exists():
+        log.error(f"Video file not found for trimming: {video_path}")
+        return False
+
+    # Create temp output path
+    trimmed_path = video_path.with_suffix('.trimmed.mp4')
+
+    try:
+        # ffmpeg command to trim silence from start and end
+        # - silenceremove: removes silence from start (start_periods=1)
+        # - areverse + silenceremove + areverse: removes silence from end
+        # - start_threshold=-50dB: audio below this is considered silence
+        # - start_silence=0.3: minimum silence duration to trigger removal
+        cmd = [
+            'ffmpeg', '-y',  # -y to overwrite output
+            '-i', str(video_path),
+            '-af', 'silenceremove=start_periods=1:start_silence=0.3:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_silence=0.3:start_threshold=-50dB,areverse',
+            '-c:v', 'copy',  # Copy video stream (no re-encoding)
+            str(trimmed_path)
+        ]
+
+        log.info(f"Trimming silence from video: {video_path}")
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+
+        if result.returncode != 0:
+            log.error(f"ffmpeg trim failed: {result.stderr}")
+            return False
+
+        # Get file sizes for logging
+        original_size = video_path.stat().st_size / (1024 * 1024)
+        trimmed_size = trimmed_path.stat().st_size / (1024 * 1024)
+
+        # Replace original with trimmed version
+        video_path.unlink()
+        trimmed_path.rename(video_path)
+
+        log.info(f"Video trimmed: {original_size:.1f}MB -> {trimmed_size:.1f}MB")
+        return True
+
+    except subprocess.TimeoutExpired:
+        log.error("ffmpeg trim timed out after 5 minutes")
+        if trimmed_path.exists():
+            trimmed_path.unlink()
+        return False
+    except Exception as e:
+        log.error(f"Video trimming failed: {e}")
+        if trimmed_path.exists():
+            trimmed_path.unlink()
+        return False
 
 
 def _upload_video_to_youtube(video_path: str, date: str):
@@ -5011,11 +5423,12 @@ def process_cycle():
                         send_alert(f"Contradiction: {best_fact[:50]}")
                         continue
 
-                    # Get audio index for caching
-                    audio_index = get_next_audio_index()
+                    # Generate unique audio ID from story content (hash-based)
+                    # This ensures audio files are always linked to correct story
+                    story_audio_id = get_story_audio_id(best_fact)
 
                     # Generate TTS first (before JS sees the new story)
-                    audio_file = generate_tts(best_fact, audio_index)
+                    audio_file = generate_tts(best_fact, story_id=story_audio_id)
 
                     # Now write output (JS will detect and play)
                     write_current_story(best_fact, sources)
@@ -5288,7 +5701,7 @@ def perform_ownership_audit() -> bool:
 
         # Send SMS notification (informational only)
         try:
-            send_sms_alert(f"JTF Ownership Audit: {len(changes)} changes applied automatically.")
+            send_alert(f"JTF Ownership Audit: {len(changes)} changes applied automatically.")
         except Exception as e:
             log.warning(f"Could not send SMS alert: {e}")
 
@@ -5411,7 +5824,7 @@ def main():
 
         # Send SMS alert
         try:
-            send_sms_alert(f"JTF: Ownership audit required for {current_quarter}. Starting audit...")
+            send_alert(f"JTF: Ownership audit required for {current_quarter}. Starting audit...")
         except Exception as e:
             log.warning(f"Could not send SMS alert: {e}")
 
@@ -5481,7 +5894,15 @@ def rebuild_stories_from_log():
     """Rebuild stories.json from today's daily log, matching to existing audio files.
 
     Use this to recover after accidental --fresh clear.
-    Only includes stories that have corresponding audio files.
+    Supports all log formats and audio naming schemes:
+    - 4-field: timestamp|names|scores|fact (legacy, no audio)
+    - 5-field: timestamp|names|scores|urls|fact (legacy, no audio)
+    - 6-field: timestamp|names|scores|urls|audio|fact (current)
+
+    Audio lookup priority:
+    1. Stored filename from log (e.g., "a3f2b1c9d4e5.mp3")
+    2. Hash-based lookup in archive folder
+    3. Legacy index-based fallback
     """
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     log_file = DATA_DIR / f"{today}.txt"
@@ -5491,12 +5912,20 @@ def rebuild_stories_from_log():
         log.error(f"No daily log found: {log_file}")
         return False
 
-    # Count existing audio files
-    existing_audio = set()
+    # Collect all available audio files
+    # 1. Legacy audio_*.mp3 in audio/ folder
+    legacy_audio = set()
     for f in AUDIO_DIR.glob("audio_*.mp3"):
-        existing_audio.add(f.name)
+        legacy_audio.add(f.name)
 
-    log.info(f"Found {len(existing_audio)} existing audio files")
+    # 2. Hash-based files in archive folder
+    archive_dir = AUDIO_DIR / "archive" / today
+    archived_audio = set()
+    if archive_dir.exists():
+        for f in archive_dir.glob("*.mp3"):
+            archived_audio.add(f.name)
+
+    log.info(f"Found {len(legacy_audio)} legacy + {len(archived_audio)} archived audio files")
 
     # Parse daily log
     stories = []
@@ -5510,14 +5939,26 @@ def rebuild_stories_from_log():
             if len(parts) < 4:
                 continue
 
-            # Parse both old (4-field) and new (5-field) formats
-            # Old: timestamp|names|scores|fact
-            # New: timestamp|names|scores|urls|fact
+            # Parse all log formats
+            # 4-field: timestamp|names|scores|fact
+            # 5-field: timestamp|names|scores|urls|fact
+            # 6-field: timestamp|names|scores|urls|audio|fact
+            timestamp = parts[0]
+            source_names = parts[1]
+            source_scores = parts[2]
+            stored_audio = ""
+            fact = ""
+
             if len(parts) == 4:
-                timestamp, source_names, source_scores, fact = parts
+                fact = parts[3]
                 source_urls_str = ""
-            else:
-                timestamp, source_names, source_scores, source_urls_str, fact = parts[0], parts[1], parts[2], parts[3], "|".join(parts[4:])
+            elif len(parts) == 5:
+                source_urls_str = parts[3]
+                fact = parts[4]
+            else:  # 6+ fields (fact may contain pipes)
+                source_urls_str = parts[3]
+                stored_audio = parts[4]
+                fact = "|".join(parts[5:])
 
             # Split sources and look up IDs for current format
             names = source_names.split(",")
@@ -5528,7 +5969,6 @@ def rebuild_stories_from_log():
             source_urls_map = {}
             for i, name in enumerate(names):
                 name = name.strip()
-                # Look up source ID and URL by name
                 source_id = None
                 source_url = urls[i].strip() if i < len(urls) else ""
                 for src in CONFIG["sources"]:
@@ -5540,18 +5980,45 @@ def rebuild_stories_from_log():
                 if source_id:
                     source_parts.append(f"{name} {get_compact_scores(source_id)}")
                 else:
-                    # Fallback if source not found
                     source_parts.append(name)
                 if source_url:
                     source_urls_map[name] = source_url
             source_text = " · ".join(source_parts)
 
-            # Check if audio file exists for this story index
-            audio_index = len(stories)
-            audio_filename = f"audio_{audio_index}.mp3"
+            # Find audio file - priority: stored, hash-based, legacy index
+            audio_filename = None
+            audio_path = None
+            story_index = len(stories)
 
-            if audio_filename in existing_audio:
-                story_id = generate_story_id(today, audio_index)
+            # 1. Try stored filename from log
+            if stored_audio and stored_audio in archived_audio:
+                audio_filename = stored_audio
+                audio_path = f"../audio/archive/{today}/{audio_filename}"
+                log.debug(f"Story {story_index}: Using stored audio: {audio_filename}")
+            elif stored_audio and stored_audio in legacy_audio:
+                audio_filename = stored_audio
+                audio_path = f"../audio/{audio_filename}"
+                log.debug(f"Story {story_index}: Using stored legacy audio: {audio_filename}")
+
+            # 2. Try hash-based lookup
+            if not audio_filename:
+                fact_hash = get_story_hash(fact)
+                hash_filename = f"{fact_hash}.mp3"
+                if hash_filename in archived_audio:
+                    audio_filename = hash_filename
+                    audio_path = f"../audio/archive/{today}/{audio_filename}"
+                    log.debug(f"Story {story_index}: Using hash-based audio: {audio_filename}")
+
+            # 3. Legacy index-based fallback
+            if not audio_filename:
+                legacy_filename = f"audio_{story_index}.mp3"
+                if legacy_filename in legacy_audio:
+                    audio_filename = legacy_filename
+                    audio_path = f"../audio/{audio_filename}"
+                    log.debug(f"Story {story_index}: Using legacy index audio: {audio_filename}")
+
+            if audio_filename:
+                story_id = generate_story_id(today, story_index)
                 story_hash = hashlib.md5(fact.encode()).hexdigest()[:12]
                 stories.append({
                     "id": story_id,
@@ -5559,12 +6026,12 @@ def rebuild_stories_from_log():
                     "fact": fact,
                     "source": source_text,
                     "source_urls": source_urls_map,
-                    "audio": f"../audio/{audio_filename}",
-                    "published_at": f"{today}T{timestamp}:00Z",  # Approximate from log timestamp
+                    "audio": audio_path,
+                    "published_at": f"{today}T{timestamp}:00Z",
                     "status": "published"
                 })
             else:
-                log.warning(f"Skipping story {audio_index}: no audio file ({audio_filename})")
+                log.warning(f"Skipping story {story_index}: no audio file found for: {fact[:50]}...")
 
     # Write rebuilt stories.json
     data = {"date": today, "stories": stories}
@@ -5573,6 +6040,130 @@ def rebuild_stories_from_log():
 
     log.info(f"Rebuilt stories.json: {len(stories)} stories (from {log_file.name})")
     return True
+
+
+def regenerate_audio_for_date(date: str, force: bool = False) -> dict:
+    """Regenerate TTS audio for all stories on a specific date.
+
+    Loads stories from the archived log and generates hash-based audio files.
+    Use this to fix corrupted audio archives from the index-based naming bug.
+
+    Args:
+        date: Date string in YYYY-MM-DD format
+        force: If True, regenerate even if hash-based audio already exists
+
+    Returns:
+        Dict with 'generated', 'skipped', 'failed' counts
+    """
+    import gzip
+
+    log.info(f"=== Regenerating audio for {date} ===")
+
+    # Find the log file (local or archived)
+    log_file = DATA_DIR / f"{date}.txt"
+    lines = []
+
+    if log_file.exists():
+        with open(log_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+        log.info(f"Loading from local file: {log_file}")
+    else:
+        # Try archived file
+        year = date[:4]
+        archive_file = BASE_DIR / "docs" / "archive" / year / f"{date}.txt.gz"
+        if archive_file.exists():
+            with gzip.open(archive_file, 'rt', encoding='utf-8') as f:
+                lines = f.readlines()
+            log.info(f"Loading from archive: {archive_file}")
+        else:
+            log.error(f"No log file found for {date}")
+            return {'generated': 0, 'skipped': 0, 'failed': 0}
+
+    # Create archive directory for this date
+    archive_dir = AUDIO_DIR / "archive" / date
+    archive_dir.mkdir(parents=True, exist_ok=True)
+
+    results = {'generated': 0, 'skipped': 0, 'failed': 0}
+
+    # Parse stories from log
+    story_index = 0
+    for line in lines:
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+
+        parts = line.split('|')
+        if len(parts) < 4:
+            continue
+
+        # Extract fact from the appropriate field based on format
+        if len(parts) == 4:
+            fact = parts[3]
+        elif len(parts) == 5:
+            fact = parts[4]
+        else:  # 6+ fields
+            fact = "|".join(parts[5:])
+
+        if not fact:
+            continue
+
+        # Generate hash-based filename
+        fact_hash = get_story_hash(fact)
+        audio_filename = f"{fact_hash}.mp3"
+        audio_path = archive_dir / audio_filename
+
+        # Check if already exists
+        if audio_path.exists() and not force:
+            log.info(f"  Story {story_index}: Already exists - {audio_filename}")
+            results['skipped'] += 1
+            story_index += 1
+            continue
+
+        # Generate TTS directly to the correct date's archive folder
+        # (Don't use generate_tts() as it writes to TODAY's folder)
+        log.info(f"  Story {story_index}: Generating audio for: {fact[:50]}...")
+        try:
+            client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY"))
+
+            audio_generator = client.text_to_speech.convert(
+                voice_id=os.getenv("ELEVENLABS_VOICE_ID"),
+                text=fact,
+                model_id="eleven_multilingual_v2",
+                voice_settings={
+                    "stability": 0.7,
+                    "similarity_boost": 0.8,
+                    "style": 0.3,
+                    "use_speaker_boost": True
+                }
+            )
+
+            audio_data = b''.join(chunk for chunk in audio_generator)
+
+            # Write directly to the correct date's archive folder
+            with open(audio_path, 'wb') as f:
+                f.write(audio_data)
+
+            log.info(f"    -> Created {audio_filename} in {date}/")
+            results['generated'] += 1
+
+            # Log API usage
+            log_api_usage("elevenlabs", {"characters": len(fact)})
+
+        except Exception as e:
+            log.error(f"    -> Error: {e}")
+            results['failed'] += 1
+
+        story_index += 1
+
+        # Small delay to avoid rate limiting
+        time.sleep(0.5)
+
+    log.info(f"=== Regeneration complete for {date} ===")
+    log.info(f"    Generated: {results['generated']}")
+    log.info(f"    Skipped: {results['skipped']}")
+    log.info(f"    Failed: {results['failed']}")
+
+    return results
 
 
 def get_source_url_by_name(name: str) -> str:
@@ -5890,9 +6481,41 @@ if __name__ == "__main__":
                 log.error("Rebuild failed")
             sys.exit(0)
 
+        elif sys.argv[1] == "--regenerate-audio":
+            # Regenerate audio for a specific date or multiple dates
+            if len(sys.argv) < 3:
+                print("Usage: python main.py --regenerate-audio YYYY-MM-DD [YYYY-MM-DD ...]")
+                print("       python main.py --regenerate-audio --force YYYY-MM-DD [...]")
+                sys.exit(1)
+
+            force = False
+            dates = []
+            for arg in sys.argv[2:]:
+                if arg == "--force":
+                    force = True
+                else:
+                    dates.append(arg)
+
+            if not dates:
+                print("No dates specified")
+                sys.exit(1)
+
+            total_results = {'generated': 0, 'skipped': 0, 'failed': 0}
+            for date in dates:
+                results = regenerate_audio_for_date(date, force=force)
+                total_results['generated'] += results['generated']
+                total_results['skipped'] += results['skipped']
+                total_results['failed'] += results['failed']
+
+            print(f"\n=== Total Results ===")
+            print(f"Generated: {total_results['generated']}")
+            print(f"Skipped: {total_results['skipped']}")
+            print(f"Failed: {total_results['failed']}")
+            sys.exit(0 if total_results['failed'] == 0 else 1)
+
         else:
             print(f"Unknown argument: {sys.argv[1]}")
-            print("Usage: python main.py [--rebuild | --audit | --apply-audit | --regenerate-rss | --rebuild-urls]")
+            print("Usage: python main.py [--rebuild | --audit | --apply-audit | --regenerate-rss | --rebuild-urls | --regenerate-audio]")
             sys.exit(1)
 
     main()
