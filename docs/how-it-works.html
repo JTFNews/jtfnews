@@ -316,15 +316,31 @@
         }
 
         .bg-sample {
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+            position: relative;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
+        }
+
+        .bg-sample img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .bg-sample span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 4px 0;
+            text-align: center;
             font-size: 11px;
-            color: #64748b;
+            color: #e2e8f0;
             text-transform: uppercase;
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+            border-radius: 0 0 8px 8px;
         }
     </style>
 </head>
@@ -477,10 +493,10 @@
         <p>The rotating background images are seasonal nature photography &mdash; calm, peaceful scenes that don't compete with the news content. Images change automatically based on the current season.</p>
 
         <div class="bg-grid">
-            <div class="bg-sample">Spring</div>
-            <div class="bg-sample">Summer</div>
-            <div class="bg-sample">Fall</div>
-            <div class="bg-sample">Winter</div>
+            <div class="bg-sample"><img src="images/spring/spring_000000.png" alt="Spring background — serene lake at sunset" loading="lazy"><span>Spring</span></div>
+            <div class="bg-sample"><img src="images/summer/summer_000000.png" alt="Summer background — golden meadow at sunset" loading="lazy"><span>Summer</span></div>
+            <div class="bg-sample"><img src="images/fall/fall_000000.png" alt="Fall background — tree-lined path with autumn leaves" loading="lazy"><span>Fall</span></div>
+            <div class="bg-sample"><img src="images/winter/winter_000000.png" alt="Winter background — pristine snow under soft sunlight" loading="lazy"><span>Winter</span></div>
         </div>
 
         <p style="font-size: 14px; color: #64748b;">

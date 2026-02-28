@@ -4672,11 +4672,11 @@ def generate_and_upload_daily_summary(date: str):
 
         log.info(f"Video saved to: {video_path}")
 
-        # Trim silence from start and end of video
+        # Process video: prepend title card + trim trailing silence
         if trim_video_silence(str(video_path)):
-            log.info("Video silence trimmed successfully")
+            log.info("Video processing (title card + trim) completed successfully")
         else:
-            log.warning("Video silence trimming failed, using original recording")
+            log.warning("Video processing failed, using original recording")
 
         # Update digest status with recording details
         update_digest_status(
@@ -4742,18 +4742,21 @@ def generate_and_upload_daily_summary(date: str):
 
 
 def trim_video_silence(video_path: str) -> bool:
-    """Trim trailing silence from video by cutting both audio and video together.
+    """Trim trailing silence and prepend title card to video.
 
     Pass 1: Detects silence boundaries using ffmpeg silencedetect.
-    Pass 2: Trims both streams at those timestamps so they stay in sync.
+    Pass 2: Trims trailing silence, prepends a 2-second title card image with
+            matching silent audio, and re-encodes so audio/video stay in sync.
 
-    Only trims silence at the END of the video (dead air after last story).
+    The title card uses the YouTube thumbnail image scaled to match the video
+    resolution, ensuring Archive.org's auto-generated thumbnail picks up our
+    branding.
 
     Args:
         video_path: Path to the video file to trim (will be modified in place)
 
     Returns:
-        True if trimming succeeded, False otherwise
+        True if processing succeeded, False otherwise
     """
     import subprocess
     import re
@@ -4762,6 +4765,10 @@ def trim_video_silence(video_path: str) -> bool:
     if not video_path.exists():
         log.error(f"Video file not found for trimming: {video_path}")
         return False
+
+    # Title card image (native 1920x1080 for pixel-perfect match)
+    title_card_path = BASE_DIR / "web" / "assets" / "png" / "thumbnail-archive-1920x1080.png"
+    title_card_duration = 2  # seconds
 
     try:
         # Pass 1: Detect silence regions using silencedetect
@@ -4782,85 +4789,173 @@ def trim_video_silence(video_path: str) -> bool:
         silence_starts = re.findall(r'silence_start: ([\d.]+)', output)
         silence_ends = re.findall(r'silence_end: ([\d.]+)', output)
 
-        if not silence_starts:
-            log.info("No trailing silence detected, skipping trim")
-            return True
-
         # Get total duration
         duration_match = re.search(r'Duration: (\d+):(\d+):(\d+\.\d+)', output)
         if not duration_match:
-            log.warning("Could not determine video duration, skipping trim")
-            return True
-
-        h, m, s = duration_match.groups()
-        total_duration = int(h) * 3600 + int(m) * 60 + float(s)
-
-        # Find trailing silence: silence that extends to EOF
-        # If more silence_starts than silence_ends, the last silence extends to EOF
-        if len(silence_starts) > len(silence_ends):
-            trailing_silence_start = float(silence_starts[-1])
-            log.info(f"Trailing silence detected: {trailing_silence_start:.1f}s to EOF ({total_duration:.1f}s)")
+            log.warning("Could not determine video duration")
+            total_duration = None
+            trim_end = None
         else:
-            # All silence regions have ends — check if the last one ends near EOF
-            last_end = float(silence_ends[-1])
-            if last_end >= total_duration - 1.0:
-                # Last silence region ends at/near EOF — find its start
-                # The matching start is at the same index
-                trailing_silence_start = float(silence_starts[len(silence_ends) - 1])
-                log.info(f"Trailing silence detected: {trailing_silence_start:.1f}s to {last_end:.1f}s")
-            else:
-                log.info("No trailing silence detected (no silence extends to end of video)")
-                return True
+            h, m, s = duration_match.groups()
+            total_duration = int(h) * 3600 + int(m) * 60 + float(s)
+            trim_end = None  # Will be set if trailing silence found
 
-        # Only trim if we'd remove at least 1 second
-        trailing_duration = total_duration - trailing_silence_start
-        if trailing_duration < 1.0:
-            log.info(f"Trailing silence too short ({trailing_duration:.1f}s), skipping trim")
+        # Determine trim point (if trailing silence exists)
+        if silence_starts and total_duration:
+            if len(silence_starts) > len(silence_ends):
+                trailing_silence_start = float(silence_starts[-1])
+                trailing_duration = total_duration - trailing_silence_start
+                if trailing_duration >= 1.0:
+                    trim_end = trailing_silence_start + 2.5
+                    log.info(f"Trailing silence detected: {trailing_silence_start:.1f}s to EOF ({total_duration:.1f}s)")
+            else:
+                last_end = float(silence_ends[-1])
+                if last_end >= total_duration - 1.0:
+                    trailing_silence_start = float(silence_starts[len(silence_ends) - 1])
+                    trailing_duration = total_duration - trailing_silence_start
+                    if trailing_duration >= 1.0:
+                        trim_end = trailing_silence_start + 2.5
+                        log.info(f"Trailing silence detected: {trailing_silence_start:.1f}s to {last_end:.1f}s")
+
+        if not trim_end and not title_card_path.exists():
+            log.info("No trailing silence and no title card image — nothing to do")
             return True
 
-        # Add buffer after last audio for OBS black scene fade transition
-        trim_end = trailing_silence_start + 2.5
+        # Pass 2: Build ffmpeg command that combines title card + trimmed video
+        # in a single re-encode pass to keep audio/video in perfect sync.
+        processed_path = video_path.with_suffix('.processed.mp4')
 
-        # Pass 2: Trim both audio AND video together using -to
-        trimmed_path = video_path.with_suffix('.trimmed.mp4')
-        trim_cmd = [
-            'ffmpeg', '-y',
-            '-i', str(video_path),
-            '-to', str(trim_end),
-            '-c', 'copy',  # Copy BOTH streams — no re-encoding, no desync
-            str(trimmed_path)
+        # Probe video for resolution and audio sample rate
+        probe_cmd = [
+            'ffprobe', '-v', 'error',
+            '-select_streams', 'v:0',
+            '-show_entries', 'stream=width,height',
+            '-of', 'csv=p=0',
+            str(video_path)
         ]
+        probe_result = subprocess.run(probe_cmd, capture_output=True, text=True, timeout=30)
+        if probe_result.returncode == 0 and probe_result.stdout.strip():
+            vid_w, vid_h = probe_result.stdout.strip().split(',')
+        else:
+            vid_w, vid_h = '1920', '1080'
 
-        log.info(f"Trimming video to {trim_end:.1f}s (was {total_duration:.1f}s)")
-        result = subprocess.run(trim_cmd, capture_output=True, text=True, timeout=300)
+        probe_audio_cmd = [
+            'ffprobe', '-v', 'error',
+            '-select_streams', 'a:0',
+            '-show_entries', 'stream=sample_rate,channels',
+            '-of', 'csv=p=0',
+            str(video_path)
+        ]
+        probe_audio_result = subprocess.run(probe_audio_cmd, capture_output=True, text=True, timeout=30)
+        if probe_audio_result.returncode == 0 and probe_audio_result.stdout.strip():
+            audio_parts = probe_audio_result.stdout.strip().split(',')
+            sample_rate = audio_parts[0]
+            channels = audio_parts[1] if len(audio_parts) > 1 else '2'
+        else:
+            sample_rate, channels = '48000', '2'
+
+        if title_card_path.exists():
+            # Build a single ffmpeg command:
+            # Input 0: title card image (looped for title_card_duration seconds)
+            # Input 1: original video (trimmed if needed)
+            # Input 2: silent audio source (anullsrc) for the title card portion
+            #
+            # The title card image is scaled/padded to match the video resolution.
+            # Both segments are concatenated with the concat filter, ensuring
+            # audio and video streams stay in perfect sync.
+
+            trim_args = ['-to', str(trim_end)] if trim_end else []
+
+            ffmpeg_cmd = [
+                'ffmpeg', '-y',
+                # Input 0: title card image
+                '-loop', '1', '-framerate', '30',
+                '-t', str(title_card_duration),
+                '-i', str(title_card_path),
+                # Input 1: original video (trimmed via -t if needed)
+                '-i', str(video_path),
+                # Input 2: silent audio matching the title card duration
+                '-f', 'lavfi',
+                '-t', str(title_card_duration),
+                '-i', f'anullsrc=r={sample_rate}:cl={"stereo" if channels == "2" else "mono"}',
+                # Complex filter: scale title card to video size, concat both segments
+                '-filter_complex',
+                (
+                    # Scale/pad title card to match video resolution
+                    f'[0:v]scale={vid_w}:{vid_h}:force_original_aspect_ratio=decrease,'
+                    f'pad={vid_w}:{vid_h}:(ow-iw)/2:(oh-ih)/2:black,'
+                    f'setsar=1,format=yuv420p[title];'
+                    # Trim the main video if needed
+                    + (f'[1:v]trim=0:{trim_end},setpts=PTS-STARTPTS[mainv];'
+                       f'[1:a]atrim=0:{trim_end},asetpts=PTS-STARTPTS[maina];'
+                       if trim_end else
+                       '[1:v]setpts=PTS-STARTPTS[mainv];'
+                       '[1:a]asetpts=PTS-STARTPTS[maina];')
+                    # Concatenate: title card + silent audio, then main video + audio
+                    + '[title][2:a][mainv][maina]concat=n=2:v=1:a=1[outv][outa]'
+                ),
+                '-map', '[outv]', '-map', '[outa]',
+                '-c:v', 'libx264', '-preset', 'medium', '-crf', '20',
+                '-c:a', 'aac', '-b:a', '192k',
+                '-movflags', '+faststart',
+                str(processed_path)
+            ]
+
+            action = "Prepending title card"
+            if trim_end:
+                action += f" and trimming to {trim_end:.1f}s"
+            log.info(f"{action} (video: {vid_w}x{vid_h})")
+
+        else:
+            # No title card image — just trim
+            if not trim_end:
+                return True  # Nothing to do
+
+            ffmpeg_cmd = [
+                'ffmpeg', '-y',
+                '-i', str(video_path),
+                '-to', str(trim_end),
+                '-c', 'copy',
+                str(processed_path)
+            ]
+            log.info(f"Trimming video to {trim_end:.1f}s (was {total_duration:.1f}s)")
+
+        result = subprocess.run(ffmpeg_cmd, capture_output=True, text=True, timeout=600)
 
         if result.returncode != 0:
-            log.error(f"ffmpeg trim failed: {result.stderr}")
+            log.error(f"ffmpeg processing failed: {result.stderr[-500:]}")
+            if processed_path.exists():
+                processed_path.unlink()
             return False
 
         # Get file sizes for logging
         original_size = video_path.stat().st_size / (1024 * 1024)
-        trimmed_size = trimmed_path.stat().st_size / (1024 * 1024)
+        processed_size = processed_path.stat().st_size / (1024 * 1024)
 
-        # Replace original with trimmed version
+        # Replace original with processed version
         video_path.unlink()
-        trimmed_path.rename(video_path)
+        processed_path.rename(video_path)
 
-        trimmed_seconds = total_duration - trim_end
-        log.info(f"Video trimmed: {original_size:.1f}MB -> {trimmed_size:.1f}MB (removed {trimmed_seconds:.1f}s trailing silence)")
+        parts = []
+        if title_card_path.exists():
+            parts.append(f"{title_card_duration}s title card prepended")
+        if trim_end and total_duration:
+            trimmed_seconds = total_duration - trim_end
+            parts.append(f"{trimmed_seconds:.1f}s trailing silence removed")
+        log.info(f"Video processed: {original_size:.1f}MB -> {processed_size:.1f}MB ({', '.join(parts)})")
         return True
 
     except subprocess.TimeoutExpired:
-        log.error("ffmpeg trim timed out after 5 minutes")
-        trimmed_path = video_path.with_suffix('.trimmed.mp4')
-        if trimmed_path.exists():
-            trimmed_path.unlink()
+        log.error("ffmpeg processing timed out after 10 minutes")
+        processed_path = video_path.with_suffix('.processed.mp4')
+        if processed_path.exists():
+            processed_path.unlink()
         return False
     except Exception as e:
-        log.error(f"Video trimming failed: {e}")
-        trimmed_path = video_path.with_suffix('.trimmed.mp4')
-        if trimmed_path.exists():
-            trimmed_path.unlink()
+        log.error(f"Video processing failed: {e}")
+        processed_path = video_path.with_suffix('.processed.mp4')
+        if processed_path.exists():
+            processed_path.unlink()
         return False
 
 
@@ -4933,9 +5028,31 @@ def upload_to_archive_org(date: str, mp3_path: str, mp4_path: str) -> dict:
     if item.exists:
         log.info(f"Archive.org item {item_id} already exists, skipping upload")
     else:
+        # Build file list: MP3, MP4, and thumbnail for Archive.org item image
+        upload_files = [mp3_path, mp4_path]
+
+        # Add thumbnail as __ia_thumb.jpg so Archive.org uses it as the item image
+        thumbnail_src = BASE_DIR / "web" / "assets" / "png" / "thumbnail-youtube-1280x720.png"
+        thumb_temp = None
+        if thumbnail_src.exists():
+            import shutil
+            thumb_temp = Path(mp3_path).parent / "__ia_thumb.jpg"
+            # Convert PNG to JPEG for Archive.org compatibility
+            try:
+                import subprocess
+                subprocess.run([
+                    'sips', '-s', 'format', 'jpeg',
+                    str(thumbnail_src), '--out', str(thumb_temp)
+                ], capture_output=True, timeout=30)
+                if thumb_temp.exists():
+                    upload_files.append(str(thumb_temp))
+                    log.info("Including __ia_thumb.jpg for Archive.org thumbnail")
+            except Exception as e:
+                log.warning(f"Could not convert thumbnail to JPEG: {e}")
+
         ia.upload(
             item_id,
-            files=[mp3_path, mp4_path],
+            files=upload_files,
             metadata={
                 'mediatype': 'movies',
                 'collection': 'opensource_movies',
@@ -4950,6 +5067,13 @@ def upload_to_archive_org(date: str, mp3_path: str, mp4_path: str) -> dict:
             secret_key=secret_key
         )
         log.info(f"Uploaded to Archive.org: {item_id}")
+
+        # Clean up temporary thumbnail
+        if thumb_temp and thumb_temp.exists():
+            try:
+                thumb_temp.unlink()
+            except Exception:
+                pass
 
     audio_size = os.path.getsize(mp3_path)
     video_size = os.path.getsize(mp4_path)
