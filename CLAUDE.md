@@ -252,7 +252,7 @@ Across all channels, always:
 - `./start.sh` - Start the JTF News service (normal operation)
 - `./start.sh --rebuild` - Recover stories.json from daily log (use if stories were accidentally cleared)
 - `./start.sh --fresh` - Clear stories and start fresh (requires confirmation; use only when file format changes)
-- `./digest.sh` - Manually run the daily digest (record, upload to YouTube)
+- `./digest.sh` - Manually run the daily digest (record, upload to YouTube, publish podcast)
 
 **When to use each start.sh flag:**
 | Situation | Command |
@@ -295,7 +295,7 @@ Do NOT use raw `git commit` commands. Always use `./bu.sh "message"` which:
 - GitHub org: JTFNews/jtfnews
 
 ### Automatic GitHub Updates
-Runtime files (feed.xml, stories.json, monitor.json, etc.) are pushed automatically by main.py via GitHub API. No manual git operations needed for website updates.
+Runtime files (feed.xml, podcast.xml, stories.json, monitor.json, etc.) are pushed automatically by main.py via GitHub API. No manual git operations needed for website updates.
 
 ### Syncing Overlay Files (web/ → docs/)
 When modifying overlay files that exist in BOTH locations, you MUST update BOTH:
@@ -311,12 +311,12 @@ When modifying overlay files that exist in BOTH locations, you MUST update BOTH:
 - `../data/stories.json` → `./stories.json`
 - `../data/monitor.json` → `./monitor.json`
 
-**Files that exist ONLY in docs/:** index.html, how-it-works.html, whitepaper.html, screensaver-setup.html, feed.xml
+**Files that exist ONLY in docs/:** index.html, how-it-works.html, whitepaper.html, screensaver-setup.html, feed.xml, podcast.xml
 
 ## Folder Structure
 - `main.py` - Main application (~6500 lines with resilience system, daily digest, YouTube upload)
 - `web/` - OBS browser source overlays (lower-third.html, background-slideshow.html, screensaver.html, monitor.html)
-- `docs/` - Public website (GitHub Pages) - index.html, how-it-works, whitepaper, feed.xml, stories.json
+- `docs/` - Public website (GitHub Pages) - index.html, how-it-works, whitepaper, feed.xml, podcast.xml, stories.json
 - `documentation/` - Project documentation (SPECIFICATION.md, WhitePaper Ver 1.3 CURRENT.md, plans/)
 - `media/` - Background images organized by season (fall/, spring/, summer/, winter/)
 - `data/` - Runtime data (stories.json, queue.json, api_usage, monitor.json) - NOT committed
@@ -328,6 +328,7 @@ When modifying overlay files that exist in BOTH locations, you MUST update BOTH:
 - ElevenLabs TTS for audio generation (hash-based audio naming for sync integrity)
 - ffmpeg/ffprobe for video silence trimming and validation
 - YouTube Data API for daily digest uploads
+- Archive.org (internetarchive library) for permanent podcast/video hosting
 - Twilio for SMS alerts
 - OBS for streaming to YouTube (OBS WebSocket v4 for recording control)
 - GitHub Pages for public website (how-it-works, whitepaper, operations dashboard)
@@ -337,4 +338,5 @@ When modifying overlay files that exist in BOTH locations, you MUST update BOTH:
 - No ads, no tracking, no long-term raw data storage
 - CC-BY-SA license on output
 - **YouTube: Creative Commons license** (not Standard YouTube) - aligns with "methodology belongs to no one" philosophy
+- **Archive.org: CC BY-SA 4.0** - permanent hosting for podcast audio and video
 - Non-profit spirit
