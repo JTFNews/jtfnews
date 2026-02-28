@@ -36,175 +36,84 @@
     <meta name="twitter:description" content="24/7 automated news reporting only verified facts. No opinions, no adjectives, no interpretation.">
     <meta name="twitter:image" content="https://jtfnews.org/assets/png/banner-twitter-1500x500.png">
 
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 700px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #0f172a;
-            color: #e2e8f0;
-        }
-        h1 { color: #d4af37; }
-        .logo { height: 48px; margin-bottom: 15px; }
-        .logo img { height: 100%; width: auto; }
-        h2 { color: #94a3b8; margin-top: 30px; }
-        a { color: #60a5fa; }
-        .feed-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: #1e40af;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-        }
-        .feed-link:hover { background: #2563eb; }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Operational Costs Section */
-        .costs-section {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        .costs-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .costs-header h3 {
-            margin: 0;
-            color: #d4af37;
-            font-size: 16px;
-        }
-        .live-badge {
-            font-size: 11px;
-            padding: 3px 8px;
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
-            border-radius: 10px;
-            text-transform: uppercase;
-        }
-        .costs-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        .cost-item {
-            background: rgba(15, 23, 42, 0.6);
-            padding: 12px;
-            border-radius: 8px;
-        }
-        .cost-label {
-            font-size: 12px;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .cost-value {
-            font-size: 24px;
-            font-weight: 600;
-            color: #f8fafc;
-            margin-top: 4px;
-        }
-        .cost-value.highlight {
-            color: #d4af37;
-        }
-        .cost-detail {
-            font-size: 11px;
-            color: #64748b;
-            margin-top: 4px;
-        }
-        .budget-bar {
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-        .budget-fill {
-            height: 100%;
-            border-radius: 2px;
-            transition: width 0.3s, background 0.3s;
-        }
-        .budget-fill.green { background: #22c55e; }
-        .budget-fill.yellow { background: #eab308; }
-        .budget-fill.red { background: #ef4444; }
-        .costs-breakdown {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .breakdown-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            font-size: 13px;
-        }
-        .breakdown-service {
-            color: #94a3b8;
-        }
-        .breakdown-cost {
-            color: #22c55e;
-        }
-        .transparency-note {
-            font-size: 12px;
-            color: #64748b;
-            margin-top: 15px;
-            font-style: italic;
-        }
-        .status-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            font-size: 13px;
-        }
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #22c55e;
-        }
-        .status-dot.offline { background: #ef4444; }
-        .status-text { color: #94a3b8; }
-
-        /* Full Dashboard Link */
-        .dashboard-link {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 13px;
-        }
-    </style>
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="logo">
-        <a href="index.html"><img src="assets/logo-horizontal-dark.svg" alt="JTF News"></a>
+
+<!-- Navigation -->
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+        <a href="index.html" class="site-nav__logo">
+            <img src="assets/logo-horizontal-dark.svg" alt="JTF News">
+        </a>
+        <ul class="site-nav__links">
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="sources.html">Sources</a></li>
+            <li><a href="whitepaper.html">Whitepaper</a></li>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="corrections.html">Corrections</a></li>
+        </ul>
+        <button class="site-nav__toggle" aria-label="Open menu" onclick="document.getElementById('nav-overlay').classList.add('open')">
+            <span></span><span></span><span></span>
+        </button>
     </div>
-    <p><strong>Just The Facts.</strong> No opinions. No adjectives. No interpretation.</p>
-    <p>Verified facts from multiple independent sources.</p>
-    <p style="margin-top: 15px;"><a href="how-it-works.html">Learn how it works</a> &middot; <a href="sources.html">Our sources</a> &middot; <a href="whitepaper.html">Read the whitepaper</a></p>
-    <p style="margin-top: 5px;"><a href="archive.html">Story archive</a> &middot; <a href="corrections.html">Corrections log</a></p>
+</nav>
+<div id="nav-overlay" class="site-nav__overlay">
+    <button class="site-nav__close" aria-label="Close menu" onclick="this.parentElement.classList.remove('open')">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="sources.html">Sources</a>
+    <a href="whitepaper.html">Whitepaper</a>
+    <a href="archive.html">Archive</a>
+    <a href="corrections.html">Corrections</a>
+</div>
 
-    <h2>Subscribe</h2>
-    <a class="feed-link" href="feed.xml">RSS Feed</a>
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <h1 class="hero__title">Just The Facts.</h1>
+        <p class="hero__subtitle">No opinions. No adjectives. No interpretation.</p>
+        <p class="hero__desc">24/7 verified news from 17 independent sources.</p>
+        <div class="hero__actions">
+            <a href="https://www.youtube.com/@JTFNewsLive" class="btn btn--secondary">Watch Live</a>
+            <a href="how-it-works.html" class="btn btn--outline">How It Works</a>
+        </div>
+    </div>
+</section>
 
-    <h2>Watch Live</h2>
-    <p><a href="https://www.youtube.com/@JTFNewsLive">YouTube - JTF News Live</a></p>
+<!-- Live Story Preview -->
+<section class="container">
+    <div class="live-preview">
+        <div class="live-preview__badge" id="demo-label">Live Story</div>
+        <div class="live-preview__card">
+            <div class="live-preview__sources" id="demo-sources">Loading...</div>
+            <div class="live-preview__fact" id="demo-fact">Loading latest verified fact...</div>
+        </div>
+    </div>
+</section>
 
-    <h2>Screen Saver</h2>
-    <p>Turn JTF News into your desktop screen saver.</p>
-    <a class="feed-link" href="screensaver-setup.html">Setup Guide</a>
-    <a class="feed-link" href="screensaver.html" style="margin-left: 10px; background: #334155;">Preview</a>
+<!-- How It Works -->
+<section class="container section">
+    <h2 class="section__title">How It Works</h2>
+    <div class="card-grid">
+        <div class="card"><h3>1. Collect</h3><p>Headlines gathered from 17+ sources worldwide, including public broadcasters and government records.</p></div>
+        <div class="card"><h3>2. Extract</h3><p>AI extracts only verifiable facts. Opinions, adjectives, and speculation are removed.</p></div>
+        <div class="card"><h3>3. Verify</h3><p>Facts require 2+ independent sources with different owners before broadcast.</p></div>
+        <div class="card"><h3>4. Broadcast</h3><p>Verified facts are spoken aloud and displayed with full source attribution.</p></div>
+    </div>
+    <p class="text-center"><a href="how-it-works.html">Learn more about our process &rarr;</a></p>
+</section>
 
-    <h2>Support</h2>
-    <p>JTF News is supported by viewers like you. <a href="how-it-works.html">See how your support helps</a>.</p>
-
-    <!-- Live Operational Costs -->
+<!-- Operational Costs -->
+<section class="container section">
+    <h2 class="section__title">Operational Costs</h2>
     <div class="costs-section">
         <div class="costs-header">
             <h3>Operational Costs (Live)</h3>
@@ -249,129 +158,190 @@
         </p>
         <a class="dashboard-link" href="monitor.html">View Full Operations Dashboard &rarr;</a>
     </div>
+</section>
 
-    <iframe src="https://github.com/sponsors/larryseyer/card" title="Sponsor JTFNews" height="225" width="100%" style="border: 0; max-width: 600px; margin-top: 15px;"></iframe>
+<!-- Get Involved -->
+<section class="container section">
+    <h2 class="section__title">Get Involved</h2>
+    <div class="card-grid">
+        <div class="card text-center">
+            <h3>RSS Feed</h3>
+            <p>Subscribe to verified facts.</p>
+            <a href="feed.xml" class="btn btn--secondary" style="display:inline-block;margin-top:0.75rem;">Subscribe</a>
+        </div>
+        <div class="card text-center">
+            <h3>Watch Live</h3>
+            <p>24/7 on YouTube.</p>
+            <a href="https://www.youtube.com/@JTFNewsLive" class="btn btn--secondary" style="display:inline-block;margin-top:0.75rem;">YouTube</a>
+        </div>
+        <div class="card text-center">
+            <h3>Support</h3>
+            <p>No ads. No tracking. Viewer-supported.</p>
+            <a href="https://github.com/sponsors/larryseyer" class="btn btn--primary" style="display:inline-block;margin-top:0.75rem;">Sponsor</a>
+        </div>
+    </div>
+</section>
 
-    <script>
-        // Cycle-sync refresh state
-        let lastKnownRefreshAt = null;
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <ul class="site-footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="sources.html">Sources</a></li>
+            <li><a href="whitepaper.html">Whitepaper</a></li>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="corrections.html">Corrections</a></li>
+            <li><a href="monitor.html">Dashboard</a></li>
+            <li><a href="feed.xml">RSS</a></li>
+        </ul>
+        <p class="site-footer__tagline">The methodology belongs to no one. It serves everyone.</p>
+        <p class="site-footer__copy">
+            <a href="https://github.com/JTFNews/jtfnews">GitHub</a> &middot;
+            <a href="https://github.com/sponsors/larryseyer">Support</a>
+        </p>
+    </div>
+</footer>
 
-        function formatCurrency(amount) {
-            if (typeof amount !== 'number') return '$0.00';
-            return '$' + amount.toFixed(2);
+<script>
+    // Cycle-sync refresh state
+    let lastKnownRefreshAt = null;
+
+    function formatCurrency(amount) {
+        if (typeof amount !== 'number') return '$0.00';
+        return '$' + amount.toFixed(2);
+    }
+
+    function formatUptime(seconds) {
+        if (!seconds) return '--';
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        if (hours > 0) return hours + 'h ' + minutes + 'm uptime';
+        return minutes + 'm uptime';
+    }
+
+    function checkForCycleRefresh(data) {
+        const currentRefreshAt = data.web_refresh_at;
+        if (!currentRefreshAt) return;
+
+        if (lastKnownRefreshAt === null) {
+            lastKnownRefreshAt = currentRefreshAt;
+            console.log('[Cycle Refresh] Initial timestamp:', currentRefreshAt);
+            return;
         }
 
-        function formatUptime(seconds) {
-            if (!seconds) return '--';
-            const hours = Math.floor(seconds / 3600);
-            const minutes = Math.floor((seconds % 3600) / 60);
-            if (hours > 0) return hours + 'h ' + minutes + 'm uptime';
-            return minutes + 'm uptime';
+        if (currentRefreshAt !== lastKnownRefreshAt) {
+            console.log('[Cycle Refresh] New cycle detected, refreshing...');
+            location.reload();
         }
+    }
 
-        function checkForCycleRefresh(data) {
-            const currentRefreshAt = data.web_refresh_at;
-            if (!currentRefreshAt) return;
+    async function loadCosts() {
+        try {
+            const response = await fetch('./monitor.json?t=' + Date.now());
+            if (!response.ok) throw new Error('Not found');
+            const data = await response.json();
 
-            if (lastKnownRefreshAt === null) {
-                lastKnownRefreshAt = currentRefreshAt;
-                console.log('[Cycle Refresh] Initial timestamp:', currentRefreshAt);
-                return;
+            // Check for cycle-sync refresh
+            checkForCycleRefresh(data);
+
+            // Check if data is stale (>15 min old)
+            const dataTime = new Date(data.timestamp);
+            const now = new Date();
+            const isStale = (now - dataTime) > 15 * 60 * 1000;
+
+            // Update live badge
+            const liveBadge = document.getElementById('live-status');
+            if (isStale) {
+                liveBadge.textContent = 'Stale';
+                liveBadge.style.background = 'rgba(234, 179, 8, 0.2)';
+                liveBadge.style.color = '#eab308';
+            } else {
+                liveBadge.textContent = 'Live';
+                liveBadge.style.background = 'rgba(34, 197, 94, 0.2)';
+                liveBadge.style.color = '#22c55e';
             }
 
-            if (currentRefreshAt !== lastKnownRefreshAt) {
-                console.log('[Cycle Refresh] New cycle detected, refreshing...');
-                location.reload();
+            // Update costs
+            const costs = data.api_costs || {};
+            const services = costs.today || {};
+
+            document.getElementById('today-cost').textContent = formatCurrency(costs.total_usd);
+            document.getElementById('month-estimate').textContent = formatCurrency(costs.month_estimate_usd);
+
+            // Update budget bar
+            const budgetPct = costs.budget_pct || 0;
+            const dailyBudget = costs.daily_budget || 5;
+            const budgetFill = document.getElementById('budget-fill');
+            const budgetText = document.getElementById('budget-text');
+
+            budgetFill.style.width = Math.min(budgetPct, 100) + '%';
+            budgetFill.className = 'budget-fill ' + (budgetPct < 50 ? 'green' : budgetPct < 80 ? 'yellow' : 'red');
+            budgetText.textContent = budgetPct.toFixed(0) + '% of $' + dailyBudget + ' daily budget';
+
+            // Count total calls
+            let totalCalls = 0;
+            for (const svc of Object.values(services)) {
+                totalCalls += svc.calls || 0;
             }
-        }
+            document.getElementById('today-calls').textContent = totalCalls + ' API calls';
 
-        async function loadCosts() {
-            try {
-                const response = await fetch('./monitor.json?t=' + Date.now());
-                if (!response.ok) throw new Error('Not found');
-                const data = await response.json();
+            // Service breakdown
+            const claude = services.claude || {};
+            const elevenlabs = services.elevenlabs || {};
+            const twilio = services.twilio || {};
 
-                // Check for cycle-sync refresh
-                checkForCycleRefresh(data);
+            document.getElementById('claude-cost').textContent = formatCurrency(claude.cost_usd);
+            document.getElementById('elevenlabs-cost').textContent = formatCurrency(elevenlabs.cost_usd);
+            document.getElementById('twilio-cost').textContent = formatCurrency(twilio.cost_usd);
 
-                // Check if data is stale (>15 min old)
-                const dataTime = new Date(data.timestamp);
-                const now = new Date();
-                const isStale = (now - dataTime) > 15 * 60 * 1000;
+            // Status
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            const streamHealth = data.status?.stream_health || 'unknown';
 
-                // Update live badge
-                const liveBadge = document.getElementById('live-status');
-                if (isStale) {
-                    liveBadge.textContent = 'Stale';
-                    liveBadge.style.background = 'rgba(234, 179, 8, 0.2)';
-                    liveBadge.style.color = '#eab308';
-                } else {
-                    liveBadge.textContent = 'Live';
-                    liveBadge.style.background = 'rgba(34, 197, 94, 0.2)';
-                    liveBadge.style.color = '#22c55e';
-                }
-
-                // Update costs
-                const costs = data.api_costs || {};
-                const services = costs.today || {};
-
-                document.getElementById('today-cost').textContent = formatCurrency(costs.total_usd);
-                document.getElementById('month-estimate').textContent = formatCurrency(costs.month_estimate_usd);
-
-                // Update budget bar
-                const budgetPct = costs.budget_pct || 0;
-                const dailyBudget = costs.daily_budget || 5;
-                const budgetFill = document.getElementById('budget-fill');
-                const budgetText = document.getElementById('budget-text');
-
-                budgetFill.style.width = Math.min(budgetPct, 100) + '%';
-                budgetFill.className = 'budget-fill ' + (budgetPct < 50 ? 'green' : budgetPct < 80 ? 'yellow' : 'red');
-                budgetText.textContent = budgetPct.toFixed(0) + '% of $' + dailyBudget + ' daily budget';
-
-                // Count total calls
-                let totalCalls = 0;
-                for (const svc of Object.values(services)) {
-                    totalCalls += svc.calls || 0;
-                }
-                document.getElementById('today-calls').textContent = totalCalls + ' API calls';
-
-                // Service breakdown
-                const claude = services.claude || {};
-                const elevenlabs = services.elevenlabs || {};
-                const twilio = services.twilio || {};
-
-                document.getElementById('claude-cost').textContent = formatCurrency(claude.cost_usd);
-                document.getElementById('elevenlabs-cost').textContent = formatCurrency(elevenlabs.cost_usd);
-                document.getElementById('twilio-cost').textContent = formatCurrency(twilio.cost_usd);
-
-                // Status
-                const statusDot = document.getElementById('status-dot');
-                const statusText = document.getElementById('status-text');
-                const streamHealth = data.status?.stream_health || 'unknown';
-
-                if (streamHealth === 'online') {
-                    statusDot.className = 'status-dot';
-                    statusText.textContent = 'Stream online \u2022 ' + formatUptime(data.uptime_seconds);
-                } else if (streamHealth === 'offline') {
-                    statusDot.className = 'status-dot offline';
-                    statusText.textContent = 'Stream offline';
-                } else {
-                    statusDot.className = 'status-dot';
-                    statusDot.style.background = '#64748b';
-                    statusText.textContent = 'Status unknown';
-                }
-
-            } catch (e) {
-                document.getElementById('live-status').textContent = 'Offline';
-                document.getElementById('live-status').style.background = 'rgba(239, 68, 68, 0.2)';
-                document.getElementById('live-status').style.color = '#ef4444';
-                document.getElementById('status-text').textContent = 'Could not load live data';
+            if (streamHealth === 'online') {
+                statusDot.className = 'status-dot';
+                statusText.textContent = 'Stream online \u2022 ' + formatUptime(data.uptime_seconds);
+            } else if (streamHealth === 'offline') {
+                statusDot.className = 'status-dot offline';
+                statusText.textContent = 'Stream offline';
+            } else {
+                statusDot.className = 'status-dot';
+                statusDot.style.background = '#64748b';
+                statusText.textContent = 'Status unknown';
             }
-        }
 
-        // Load immediately and refresh every 30 seconds
-        loadCosts();
-        setInterval(loadCosts, 30000);
-    </script>
+        } catch (e) {
+            document.getElementById('live-status').textContent = 'Offline';
+            document.getElementById('live-status').style.background = 'rgba(239, 68, 68, 0.2)';
+            document.getElementById('live-status').style.color = '#ef4444';
+            document.getElementById('status-text').textContent = 'Could not load live data';
+        }
+    }
+
+    // Load immediately and refresh every 30 seconds
+    loadCosts();
+    setInterval(loadCosts, 30000);
+
+    // Live story preview
+    async function loadLivePreview() {
+        try {
+            const response = await fetch('./stories.json?t=' + Date.now());
+            if (!response.ok) throw new Error('No stories');
+            const data = await response.json();
+            if (!data.stories || data.stories.length === 0) throw new Error('Empty');
+            const story = data.stories[0];
+            document.getElementById('demo-sources').textContent = story.source || 'JTF News';
+            document.getElementById('demo-fact').textContent = story.fact;
+            document.getElementById('demo-label').innerHTML = 'Live Story <span style="background:rgba(34,197,94,0.2);color:#22c55e;padding:2px 8px;border-radius:10px;font-size:9px;margin-left:8px;">LIVE</span>';
+        } catch (e) {
+            document.getElementById('demo-sources').textContent = 'Reuters 9.8|9.5 \u00b7 AP 9.6|9.4';
+            document.getElementById('demo-fact').textContent = 'The European Central Bank held interest rates at 2.75% at its February 2025 meeting.';
+            document.getElementById('demo-label').textContent = 'Example';
+        }
+    }
+    loadLivePreview();
+</script>
 </body>
 </html>

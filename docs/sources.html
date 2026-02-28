@@ -28,26 +28,18 @@
     <meta property="og:site_name" content="JTF News">
     <meta property="og:image" content="https://jtfnews.org/assets/png/banner-twitter-1500x500.png">
 
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.6;
-        }
-        h1 { color: #d4af37; margin-bottom: 10px; }
-        .logo { height: 48px; margin-bottom: 15px; }
-        .logo img { height: 100%; width: auto; }
-        h2 { color: #d4af37; margin-top: 40px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-        h3 { color: #94a3b8; margin-top: 30px; margin-bottom: 15px; }
-        a { color: #60a5fa; }
-        p { margin: 15px 0; }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Sources-specific styles -->
+    <style>
         .subtitle {
-            color: #94a3b8;
+            color: var(--color-text-muted);
             font-size: 18px;
             margin-bottom: 30px;
         }
@@ -55,14 +47,14 @@
         /* Criteria Section */
         .criteria-box {
             background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
             padding: 25px;
             margin: 25px 0;
         }
         .criteria-box h3 {
             margin-top: 0;
-            color: #d4af37;
+            color: var(--color-gold);
         }
         .criteria-list {
             list-style: none;
@@ -78,15 +70,15 @@
             content: "\2713";
             position: absolute;
             left: 0;
-            color: #22c55e;
+            color: var(--color-green);
             font-weight: bold;
         }
 
         /* Category Cards */
         .category {
             background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
             padding: 20px;
             margin: 20px 0;
         }
@@ -99,15 +91,16 @@
         .category-title {
             font-size: 18px;
             font-weight: 600;
-            color: #f8fafc;
+            color: var(--color-text-bright);
         }
         .category-count {
             font-size: 13px;
             padding: 4px 12px;
-            border-radius: 20px;
+            border-radius: var(--radius-pill);
             background: rgba(96, 165, 250, 0.2);
-            color: #60a5fa;
+            color: var(--color-blue);
         }
+
         /* Source Grid */
         .source-grid {
             display: grid;
@@ -117,217 +110,243 @@
         .source-item {
             background: rgba(15, 23, 42, 0.6);
             padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border-dim);
         }
         .source-name {
             font-weight: 600;
-            color: #f8fafc;
+            color: var(--color-text-bright);
             margin-bottom: 5px;
         }
         .source-owner {
             font-size: 12px;
-            color: #94a3b8;
+            color: var(--color-text-muted);
         }
         .source-country {
             font-size: 11px;
-            color: #64748b;
+            color: var(--color-text-dim);
             margin-top: 5px;
         }
 
-        /* Links */
-        .nav-links {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .nav-links a {
-            display: inline-block;
-            margin-right: 20px;
-            margin-bottom: 10px;
-        }
-
-        /* Transparency Note */
+        /* Transparency Note (gold-bordered, sources-specific) */
         .transparency-note {
             background: rgba(212, 175, 55, 0.1);
             border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             padding: 15px;
             margin: 30px 0;
             font-size: 14px;
+            font-style: normal;
+            color: var(--color-text);
         }
         .transparency-note strong {
-            color: #d4af37;
+            color: var(--color-gold);
         }
     </style>
 </head>
 <body>
-    <div class="logo">
-        <a href="index.html"><img src="assets/logo-horizontal-dark.svg" alt="JTF News"></a>
-    </div>
-
-    <h1>Our Sources</h1>
-    <p class="subtitle">17 verified sources with full ownership disclosure</p>
-
-    <p>JTF News requires two independent sources to verify any fact. Here's exactly who we trust and why.</p>
-
-    <!-- Selection Criteria -->
-    <div class="criteria-box">
-        <h3>Source Selection Criteria</h3>
-        <p>Every source must meet ALL of these requirements:</p>
-        <ul class="criteria-list">
-            <li><strong>RSS Feed Provided</strong> &mdash; Official RSS feed available (not scraped from HTML)</li>
-            <li><strong>ToS Compliant</strong> &mdash; Terms of service permit aggregation</li>
-            <li><strong>Ownership Verifiable</strong> &mdash; Corporate structure is documented</li>
-        </ul>
-    </div>
-
-    <h2>Current Sources</h2>
-
-    <!-- Government / Primary Sources -->
-    <div class="category">
-        <div class="category-header">
-            <span class="category-title">Government / Primary Sources</span>
-            <span class="category-count">8 sources</span>
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__logo">
+                <img src="assets/logo-horizontal-dark.svg" alt="JTF News">
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="sources.html" aria-current="page">Sources</a></li>
+                <li><a href="whitepaper.html">Whitepaper</a></li>
+                <li><a href="archive.html">Archive</a></li>
+                <li><a href="corrections.html">Corrections</a></li>
+            </ul>
+            <button class="site-nav__toggle" aria-label="Open menu" onclick="document.getElementById('nav-overlay').classList.add('open')">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-        <div class="source-grid">
-            <div class="source-item">
-                <div class="source-name">White House</div>
-                <div class="source-owner">US Government</div>
-                <div class="source-country">United States</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">Congress.gov</div>
-                <div class="source-owner">US Government</div>
-                <div class="source-country">United States</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">Federal Register</div>
-                <div class="source-owner">US Government</div>
-                <div class="source-country">United States</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">Supreme Court</div>
-                <div class="source-owner">US Government</div>
-                <div class="source-country">United States</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">State Department</div>
-                <div class="source-owner">US Government</div>
-                <div class="source-country">United States</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">Dept of Defense</div>
-                <div class="source-owner">US Government</div>
-                <div class="source-country">United States</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">UK Parliament</div>
-                <div class="source-owner">UK Government</div>
-                <div class="source-country">United Kingdom</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">European Commission</div>
-                <div class="source-owner">European Union</div>
-                <div class="source-country">EU</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Public Broadcasters -->
-    <div class="category">
-        <div class="category-header">
-            <span class="category-title">Public Broadcasters</span>
-            <span class="category-count">7 sources</span>
-        </div>
-        <div class="source-grid">
-            <div class="source-item">
-                <div class="source-name">BBC News</div>
-                <div class="source-owner">British Broadcasting Corporation</div>
-                <div class="source-country">United Kingdom</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">NPR</div>
-                <div class="source-owner">National Public Radio (nonprofit)</div>
-                <div class="source-country">United States</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">PBS NewsHour</div>
-                <div class="source-owner">Public Broadcasting Service (nonprofit)</div>
-                <div class="source-country">United States</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">CBC News</div>
-                <div class="source-owner">Canadian Broadcasting Corporation</div>
-                <div class="source-country">Canada</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">ABC News Australia</div>
-                <div class="source-owner">Australian Broadcasting Corporation</div>
-                <div class="source-country">Australia</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">France 24</div>
-                <div class="source-owner">France Medias Monde (French government)</div>
-                <div class="source-country">France</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">Deutsche Welle</div>
-                <div class="source-owner">German Federal Government</div>
-                <div class="source-country">Germany</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Trusts / Nonprofits -->
-    <div class="category">
-        <div class="category-header">
-            <span class="category-title">Trusts / Nonprofits</span>
-            <span class="category-count">2 sources</span>
-        </div>
-        <div class="source-grid">
-            <div class="source-item">
-                <div class="source-name">The Guardian</div>
-                <div class="source-owner">Scott Trust Limited (100%)</div>
-                <div class="source-country">United Kingdom</div>
-            </div>
-            <div class="source-item">
-                <div class="source-name">Irish Times</div>
-                <div class="source-owner">Irish Times Trust (100%)</div>
-                <div class="source-country">Ireland</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Transparency Note -->
-    <div class="transparency-note">
-        <strong>Full Transparency:</strong> Our source selection criteria, compliance documentation, and any future changes
-        are tracked publicly on GitHub. See <a href="https://github.com/JTFNews/jtfnews/blob/main/docs/ToS_Compliance.md">ToS_Compliance.md</a>
-        for detailed rationale.
-    </div>
-
-    <h2>Ownership Matters</h2>
-    <p>
-        Two sources must have <strong>different owners</strong> to verify a story. Same owner = same source,
-        regardless of how many outlets they operate.
-    </p>
-    <p>
-        For example: BBC and BBC World Service count as one source (same corporation).
-        But BBC (UK public) + CBC (Canada public) = two independent sources.
-    </p>
-    <p>
-        This prevents verification theater where one company's error gets confirmed by another outlet they also own.
-    </p>
-
-    <!-- Navigation -->
-    <div class="nav-links">
-        <a href="index.html">&larr; Home</a>
-        <a href="archive.html">Story Archive</a>
-        <a href="corrections.html">Corrections</a>
+    </nav>
+    <div id="nav-overlay" class="site-nav__overlay">
+        <button class="site-nav__close" aria-label="Close menu" onclick="this.parentElement.classList.remove('open')">&times;</button>
+        <a href="index.html">Home</a>
         <a href="how-it-works.html">How It Works</a>
+        <a href="sources.html">Sources</a>
         <a href="whitepaper.html">Whitepaper</a>
-        <a href="monitor.html">Operations Dashboard</a>
+        <a href="archive.html">Archive</a>
+        <a href="corrections.html">Corrections</a>
     </div>
+
+    <div class="container">
+        <h1>Our Sources</h1>
+        <p class="subtitle">17 verified sources with full ownership disclosure</p>
+
+        <p>JTF News requires two independent sources to verify any fact. Here's exactly who we trust and why.</p>
+
+        <!-- Selection Criteria -->
+        <div class="criteria-box">
+            <h3>Source Selection Criteria</h3>
+            <p>Every source must meet ALL of these requirements:</p>
+            <ul class="criteria-list">
+                <li><strong>RSS Feed Provided</strong> &mdash; Official RSS feed available (not scraped from HTML)</li>
+                <li><strong>ToS Compliant</strong> &mdash; Terms of service permit aggregation</li>
+                <li><strong>Ownership Verifiable</strong> &mdash; Corporate structure is documented</li>
+            </ul>
+        </div>
+
+        <h2>Current Sources</h2>
+
+        <!-- Government / Primary Sources -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-title">Government / Primary Sources</span>
+                <span class="category-count">8 sources</span>
+            </div>
+            <div class="source-grid">
+                <div class="source-item">
+                    <div class="source-name">White House</div>
+                    <div class="source-owner">US Government</div>
+                    <div class="source-country">United States</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">Congress.gov</div>
+                    <div class="source-owner">US Government</div>
+                    <div class="source-country">United States</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">Federal Register</div>
+                    <div class="source-owner">US Government</div>
+                    <div class="source-country">United States</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">Supreme Court</div>
+                    <div class="source-owner">US Government</div>
+                    <div class="source-country">United States</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">State Department</div>
+                    <div class="source-owner">US Government</div>
+                    <div class="source-country">United States</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">Dept of Defense</div>
+                    <div class="source-owner">US Government</div>
+                    <div class="source-country">United States</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">UK Parliament</div>
+                    <div class="source-owner">UK Government</div>
+                    <div class="source-country">United Kingdom</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">European Commission</div>
+                    <div class="source-owner">European Union</div>
+                    <div class="source-country">EU</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Public Broadcasters -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-title">Public Broadcasters</span>
+                <span class="category-count">7 sources</span>
+            </div>
+            <div class="source-grid">
+                <div class="source-item">
+                    <div class="source-name">BBC News</div>
+                    <div class="source-owner">British Broadcasting Corporation</div>
+                    <div class="source-country">United Kingdom</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">NPR</div>
+                    <div class="source-owner">National Public Radio (nonprofit)</div>
+                    <div class="source-country">United States</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">PBS NewsHour</div>
+                    <div class="source-owner">Public Broadcasting Service (nonprofit)</div>
+                    <div class="source-country">United States</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">CBC News</div>
+                    <div class="source-owner">Canadian Broadcasting Corporation</div>
+                    <div class="source-country">Canada</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">ABC News Australia</div>
+                    <div class="source-owner">Australian Broadcasting Corporation</div>
+                    <div class="source-country">Australia</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">France 24</div>
+                    <div class="source-owner">France Medias Monde (French government)</div>
+                    <div class="source-country">France</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">Deutsche Welle</div>
+                    <div class="source-owner">German Federal Government</div>
+                    <div class="source-country">Germany</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trusts / Nonprofits -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-title">Trusts / Nonprofits</span>
+                <span class="category-count">2 sources</span>
+            </div>
+            <div class="source-grid">
+                <div class="source-item">
+                    <div class="source-name">The Guardian</div>
+                    <div class="source-owner">Scott Trust Limited (100%)</div>
+                    <div class="source-country">United Kingdom</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-name">Irish Times</div>
+                    <div class="source-owner">Irish Times Trust (100%)</div>
+                    <div class="source-country">Ireland</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transparency Note -->
+        <div class="transparency-note">
+            <strong>Full Transparency:</strong> Our source selection criteria, compliance documentation, and any future changes
+            are tracked publicly on GitHub. See <a href="https://github.com/JTFNews/jtfnews/blob/main/docs/ToS_Compliance.md">ToS_Compliance.md</a>
+            for detailed rationale.
+        </div>
+
+        <h2>Ownership Matters</h2>
+        <p>
+            Two sources must have <strong>different owners</strong> to verify a story. Same owner = same source,
+            regardless of how many outlets they operate.
+        </p>
+        <p>
+            For example: BBC and BBC World Service count as one source (same corporation).
+            But BBC (UK public) + CBC (Canada public) = two independent sources.
+        </p>
+        <p>
+            This prevents verification theater where one company's error gets confirmed by another outlet they also own.
+        </p>
+    </div>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="sources.html">Sources</a></li>
+                <li><a href="whitepaper.html">Whitepaper</a></li>
+                <li><a href="archive.html">Archive</a></li>
+                <li><a href="corrections.html">Corrections</a></li>
+                <li><a href="monitor.html">Dashboard</a></li>
+                <li><a href="feed.xml">RSS</a></li>
+            </ul>
+            <p class="site-footer__tagline">The methodology belongs to no one. It serves everyone.</p>
+            <p class="site-footer__copy">
+                <a href="https://github.com/JTFNews/jtfnews">GitHub</a> &middot;
+                <a href="https://github.com/sponsors/larryseyer">Support</a>
+            </p>
+        </div>
+    </footer>
 
 </body>
 </html>

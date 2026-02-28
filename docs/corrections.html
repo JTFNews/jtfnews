@@ -28,23 +28,15 @@
     <meta property="og:site_name" content="JTF News">
     <meta property="og:image" content="https://jtfnews.org/assets/png/banner-twitter-1500x500.png">
 
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.6;
-        }
-        h1 { color: #d4af37; margin-bottom: 10px; }
-        .logo { height: 48px; margin-bottom: 15px; }
-        .logo img { height: 100%; width: auto; }
-        h2 { color: #94a3b8; margin-top: 30px; margin-bottom: 15px; }
-        a { color: #60a5fa; }
-        p { margin: 15px 0; }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
         .subtitle {
             color: #94a3b8;
             font-size: 18px;
@@ -199,18 +191,6 @@
             margin-top: 5px;
         }
 
-        /* Navigation */
-        .nav-links {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .nav-links a {
-            display: inline-block;
-            margin-right: 20px;
-            margin-bottom: 10px;
-        }
-
         /* Back Link */
         .back-link {
             display: inline-block;
@@ -232,12 +212,37 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-link">&larr; Back to JTF News</a>
 
-    <div class="logo">
-        <a href="index.html"><img src="assets/logo-horizontal-dark.svg" alt="JTF News"></a>
+<!-- Navigation -->
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+        <a href="index.html" class="site-nav__logo">
+            <img src="assets/logo-horizontal-dark.svg" alt="JTF News">
+        </a>
+        <ul class="site-nav__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="sources.html">Sources</a></li>
+            <li><a href="whitepaper.html">Whitepaper</a></li>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="corrections.html" aria-current="page">Corrections</a></li>
+        </ul>
+        <button class="site-nav__toggle" aria-label="Open menu" onclick="document.getElementById('nav-overlay').classList.add('open')">
+            <span></span><span></span><span></span>
+        </button>
     </div>
+</nav>
+<div id="nav-overlay" class="site-nav__overlay">
+    <button class="site-nav__close" aria-label="Close menu" onclick="this.parentElement.classList.remove('open')">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="sources.html">Sources</a>
+    <a href="whitepaper.html">Whitepaper</a>
+    <a href="archive.html">Archive</a>
+    <a href="corrections.html">Corrections</a>
+</div>
 
+<div class="container">
     <h1>Corrections <span id="status-badge" class="status-badge status-loading">Loading...</span></h1>
     <p class="subtitle">We do not bury mistakes. We name them.</p>
 
@@ -261,15 +266,28 @@
     </div>
 
     <div id="last-updated" class="last-updated"></div>
+</div>
 
-    <!-- Navigation -->
-    <div class="nav-links">
-        <a href="index.html">&larr; Home</a>
-        <a href="archive.html">Story Archive</a>
-        <a href="sources.html">Our Sources</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="monitor.html">Operations Dashboard</a>
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <ul class="site-footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="sources.html">Sources</a></li>
+            <li><a href="whitepaper.html">Whitepaper</a></li>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="corrections.html">Corrections</a></li>
+            <li><a href="monitor.html">Dashboard</a></li>
+            <li><a href="feed.xml">RSS</a></li>
+        </ul>
+        <p class="site-footer__tagline">The methodology belongs to no one. It serves everyone.</p>
+        <p class="site-footer__copy">
+            <a href="https://github.com/JTFNews/jtfnews">GitHub</a> &middot;
+            <a href="https://github.com/sponsors/larryseyer">Support</a>
+        </p>
     </div>
+</footer>
 
     <script>
         // Cycle-sync auto-refresh

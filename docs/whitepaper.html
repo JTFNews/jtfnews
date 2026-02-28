@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Whitepaper - JTF News</title>
-    <!-- v3 - Updated to WhitePaper Ver 1.3 -->
+    <!-- v4 - Shared stylesheet + nav/footer -->
 
     <!-- Favicon - adapts to light/dark mode -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/png/icon-square-32.png" media="(prefers-color-scheme: light)">
@@ -37,63 +37,19 @@
     <meta name="twitter:description" content="If we stay boring enough, we might just change the world. The methodology behind fact-only news.">
     <meta name="twitter:image" content="https://jtfnews.org/assets/png/banner-twitter-1500x500.png">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
     <!-- Marked.js for markdown rendering -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Shared stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Whitepaper-specific styles -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 750px;
-            margin: 0 auto;
-            padding: 40px 20px 80px;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 30px;
-            color: #64748b;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .back-link:hover {
-            color: #94a3b8;
-        }
-
-        /* Loading state */
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-            color: #64748b;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            border: 3px solid rgba(212, 175, 55, 0.3);
-            border-top-color: #d4af37;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 15px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
         /* Markdown rendered styles */
         #content h1 {
             color: #d4af37;
@@ -165,6 +121,28 @@
             margin: 30px 0;
         }
 
+        /* Loading state */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-top-color: #d4af37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Source link */
         .source-note {
             margin-top: 40px;
@@ -176,34 +154,6 @@
 
         .source-note a {
             color: #60a5fa;
-        }
-
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #d4af37 0%, #aa8723 100%);
-            color: #1a1a1a;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            margin: 10px;
-        }
-
-        .cta-button:hover {
-            opacity: 0.9;
-        }
-
-        .cta-button.secondary {
-            background: #1e40af;
-            color: white;
         }
 
         /* Error state */
@@ -222,9 +172,35 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">&larr; Back to JTF News</a>
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__logo">
+                <img src="assets/logo-horizontal-dark.svg" alt="JTF News">
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="sources.html">Sources</a></li>
+                <li><a href="whitepaper.html" aria-current="page">Whitepaper</a></li>
+                <li><a href="archive.html">Archive</a></li>
+                <li><a href="corrections.html">Corrections</a></li>
+            </ul>
+            <button class="site-nav__toggle" aria-label="Open menu" onclick="document.getElementById('nav-overlay').classList.add('open')">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div id="nav-overlay" class="site-nav__overlay">
+        <button class="site-nav__close" aria-label="Close menu" onclick="this.parentElement.classList.remove('open')">&times;</button>
+        <a href="index.html">Home</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="sources.html">Sources</a>
+        <a href="whitepaper.html">Whitepaper</a>
+        <a href="archive.html">Archive</a>
+        <a href="corrections.html">Corrections</a>
+    </div>
 
+    <div class="container">
         <div id="content">
             <div class="loading">
                 <div class="loading-spinner"></div>
@@ -237,12 +213,32 @@
         </p>
 
         <div class="cta-section">
-            <p style="color: #94a3b8; margin-bottom: 20px;">Support fact-based reporting. No ads. No tracking. Just facts.</p>
-            <a href="how-it-works.html" class="cta-button secondary">How It Works</a>
-            <a href="sources.html" class="cta-button secondary">Our Sources</a>
-            <a href="https://github.com/sponsors/larryseyer" class="cta-button">Support JTF News</a>
+            <p class="text-muted mb-1">Support fact-based reporting. No ads. No tracking. Just facts.</p>
+            <a href="how-it-works.html" class="btn btn--secondary">How It Works</a>
+            <a href="sources.html" class="btn btn--secondary" style="margin-left:0.5rem;">Our Sources</a>
+            <a href="https://github.com/sponsors/larryseyer" class="btn btn--primary" style="margin-left:0.5rem;">Support JTF News</a>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="sources.html">Sources</a></li>
+                <li><a href="whitepaper.html">Whitepaper</a></li>
+                <li><a href="archive.html">Archive</a></li>
+                <li><a href="corrections.html">Corrections</a></li>
+                <li><a href="monitor.html">Dashboard</a></li>
+                <li><a href="feed.xml">RSS</a></li>
+            </ul>
+            <p class="site-footer__tagline">The methodology belongs to no one. It serves everyone.</p>
+            <p class="site-footer__copy">
+                <a href="https://github.com/JTFNews/jtfnews">GitHub</a> &middot;
+                <a href="https://github.com/sponsors/larryseyer">Support</a>
+            </p>
+        </div>
+    </footer>
 
     <script>
         // Fetch WhitePaper.md from GitHub raw content

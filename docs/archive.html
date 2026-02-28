@@ -31,24 +31,18 @@
     <!-- Pako for gzip decompression -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
 
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.6;
-        }
-        h1 { color: #d4af37; margin-bottom: 10px; }
-        .logo { height: 48px; margin-bottom: 15px; }
-        .logo img { height: 100%; width: auto; }
-        a { color: #60a5fa; }
-        p { margin: 15px 0; }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Archive-specific styles -->
+    <style>
         .subtitle {
-            color: #94a3b8;
+            color: var(--color-text-muted);
             font-size: 18px;
             margin-bottom: 30px;
         }
@@ -56,8 +50,8 @@
         /* Filters */
         .filters {
             background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
             padding: 20px;
             margin-bottom: 25px;
         }
@@ -74,7 +68,7 @@
         .filter-label {
             display: block;
             font-size: 12px;
-            color: #64748b;
+            color: var(--color-text-dim);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 6px;
@@ -83,23 +77,25 @@
             width: 100%;
             padding: 10px 12px;
             background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--color-border);
             border-radius: 6px;
-            color: #f8fafc;
+            color: var(--color-text-bright);
             font-size: 14px;
+            font-family: var(--font);
         }
         .filter-input:focus {
             outline: none;
-            border-color: #d4af37;
+            border-color: var(--color-gold);
         }
         .filter-button {
             padding: 10px 20px;
-            background: #1e40af;
+            background: var(--color-blue-dark);
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
+            font-family: var(--font);
         }
         .filter-button:hover {
             background: #2563eb;
@@ -119,18 +115,19 @@
         .quick-date {
             padding: 6px 12px;
             background: rgba(96, 165, 250, 0.2);
-            color: #60a5fa;
+            color: var(--color-blue);
             border: none;
             border-radius: 15px;
             cursor: pointer;
             font-size: 12px;
+            font-family: var(--font);
         }
         .quick-date:hover {
             background: rgba(96, 165, 250, 0.3);
         }
         .quick-date.active {
-            background: #60a5fa;
-            color: #0f172a;
+            background: var(--color-blue);
+            color: var(--color-bg);
         }
 
         /* Stories List */
@@ -145,11 +142,11 @@
         }
         .stories-count {
             font-size: 14px;
-            color: #94a3b8;
+            color: var(--color-text-muted);
         }
         .stories-date {
             font-size: 14px;
-            color: #d4af37;
+            color: var(--color-gold);
         }
 
         /* Multi-day Range View */
@@ -166,17 +163,17 @@
         .range-title {
             font-size: 16px;
             font-weight: 600;
-            color: #d4af37;
+            color: var(--color-gold);
         }
         .range-count {
             font-size: 14px;
-            color: #94a3b8;
+            color: var(--color-text-muted);
         }
         .date-section {
             margin-bottom: 30px;
         }
         .date-section .stories-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--color-border);
             padding-bottom: 10px;
             margin-bottom: 15px;
         }
@@ -184,7 +181,7 @@
         /* Story Card */
         .story-card {
             background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--color-border);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 15px;
@@ -201,26 +198,26 @@
         }
         .story-time {
             font-size: 12px;
-            color: #64748b;
+            color: var(--color-text-dim);
         }
         .corrected-badge {
             font-size: 10px;
             padding: 3px 8px;
             background: rgba(234, 179, 8, 0.2);
-            color: #eab308;
+            color: var(--color-yellow);
             border-radius: 10px;
             text-transform: uppercase;
             font-weight: 600;
         }
         .story-fact {
             font-size: 15px;
-            color: #f8fafc;
+            color: var(--color-text-bright);
             line-height: 1.5;
             margin-bottom: 12px;
         }
         .story-sources {
             font-size: 12px;
-            color: #94a3b8;
+            color: var(--color-text-muted);
         }
         .story-sources span {
             display: inline-block;
@@ -231,7 +228,7 @@
             margin-bottom: 4px;
         }
         .story-sources a {
-            color: #60a5fa;
+            color: var(--color-blue);
             text-decoration: none;
         }
         .story-sources a:hover {
@@ -241,8 +238,8 @@
         /* Empty State */
         .empty-state {
             background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
             padding: 60px 40px;
             text-align: center;
             margin: 30px 0;
@@ -254,11 +251,11 @@
         }
         .empty-title {
             font-size: 18px;
-            color: #f8fafc;
+            color: var(--color-text-bright);
             margin-bottom: 10px;
         }
         .empty-text {
-            color: #94a3b8;
+            color: var(--color-text-muted);
             font-size: 14px;
         }
 
@@ -266,14 +263,14 @@
         .loading {
             text-align: center;
             padding: 40px;
-            color: #94a3b8;
+            color: var(--color-text-muted);
         }
         .loading-spinner {
             display: inline-block;
             width: 24px;
             height: 24px;
             border: 2px solid rgba(212, 175, 55, 0.3);
-            border-top-color: #d4af37;
+            border-top-color: var(--color-gold);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-right: 10px;
@@ -291,38 +288,34 @@
         .load-more-button {
             padding: 12px 30px;
             background: rgba(96, 165, 250, 0.2);
-            color: #60a5fa;
+            color: var(--color-blue);
             border: 1px solid rgba(96, 165, 250, 0.3);
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
+            font-family: var(--font);
         }
         .load-more-button:hover {
             background: rgba(96, 165, 250, 0.3);
-        }
-
-        /* Navigation */
-        .nav-links {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .nav-links a {
-            display: inline-block;
-            margin-right: 20px;
-            margin-bottom: 10px;
         }
 
         /* Back Link */
         .back-link {
             display: inline-block;
             margin-bottom: 20px;
-            color: #64748b;
+            color: var(--color-text-dim);
             text-decoration: none;
             font-size: 14px;
         }
         .back-link:hover {
-            color: #94a3b8;
+            color: var(--color-text-muted);
+        }
+
+        /* Available Dates Info */
+        .available-dates {
+            font-size: 12px;
+            color: var(--color-text-dim);
+            margin-top: 10px;
         }
 
         /* Date Picker Styling */
@@ -330,22 +323,40 @@
             filter: invert(0.8);
             cursor: pointer;
         }
-
-        /* Available Dates Info */
-        .available-dates {
-            font-size: 12px;
-            color: #64748b;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-link">&larr; Back to JTF News</a>
 
-    <div class="logo">
-        <a href="index.html"><img src="assets/logo-horizontal-dark.svg" alt="JTF News"></a>
+<!-- Navigation -->
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+        <a href="index.html" class="site-nav__logo">
+            <img src="assets/logo-horizontal-dark.svg" alt="JTF News">
+        </a>
+        <ul class="site-nav__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="sources.html">Sources</a></li>
+            <li><a href="whitepaper.html">Whitepaper</a></li>
+            <li><a href="archive.html" aria-current="page">Archive</a></li>
+            <li><a href="corrections.html">Corrections</a></li>
+        </ul>
+        <button class="site-nav__toggle" aria-label="Open menu" onclick="document.getElementById('nav-overlay').classList.add('open')">
+            <span></span><span></span><span></span>
+        </button>
     </div>
+</nav>
+<div id="nav-overlay" class="site-nav__overlay">
+    <button class="site-nav__close" aria-label="Close menu" onclick="this.parentElement.classList.remove('open')">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="sources.html">Sources</a>
+    <a href="whitepaper.html">Whitepaper</a>
+    <a href="archive.html">Archive</a>
+    <a href="corrections.html">Corrections</a>
+</div>
 
+<div class="container">
     <h1>Story Archive</h1>
     <p class="subtitle">The record remains.</p>
 
@@ -384,15 +395,28 @@
     <div id="load-more" class="load-more" style="display: none;">
         <button class="load-more-button" id="load-more-btn">Load Previous Day</button>
     </div>
+</div>
 
-    <!-- Navigation -->
-    <div class="nav-links">
-        <a href="index.html">&larr; Home</a>
-        <a href="corrections.html">Corrections</a>
-        <a href="sources.html">Our Sources</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="monitor.html">Operations Dashboard</a>
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <ul class="site-footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="sources.html">Sources</a></li>
+            <li><a href="whitepaper.html">Whitepaper</a></li>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="corrections.html">Corrections</a></li>
+            <li><a href="monitor.html">Dashboard</a></li>
+            <li><a href="feed.xml">RSS</a></li>
+        </ul>
+        <p class="site-footer__tagline">The methodology belongs to no one. It serves everyone.</p>
+        <p class="site-footer__copy">
+            <a href="https://github.com/JTFNews/jtfnews">GitHub</a> &middot;
+            <a href="https://github.com/sponsors/larryseyer">Support</a>
+        </p>
     </div>
+</footer>
 
     <script>
         // State
