@@ -598,8 +598,15 @@
             await sleep(1000);                    // Brief pause before outro
             await showTitleScreen('outro');        // Waits until title card is fully visible
             await playIntroOutroAudio(outroAudioPath, 'outro-audio');
-            await sleep(TITLE_HOLD_TIME);         // Hold title screen after audio ends
-            await hideTitleScreen();              // Waits until title card is fully hidden
+
+            // Go blank immediately when audio ends — no hold, no fade
+            document.getElementById('title-card').style.transition = 'none';
+            document.getElementById('title-card').style.opacity = '0';
+            document.getElementById('title-overlay').style.transition = 'none';
+            document.getElementById('title-overlay').style.opacity = '0';
+            document.getElementById('background-container').style.transition = 'none';
+            document.getElementById('background-container').style.opacity = '0';
+            document.body.style.backgroundColor = 'black';
 
             // Done — Python switches to Black scene from here
             isComplete = true;

@@ -4443,8 +4443,8 @@ def estimate_digest_duration(stories: list, audio_files: list, has_intro_outro: 
         total_duration += 5.0
         # Intro: fade in + hold after audio + fade out
         total_duration += title_card_transition + title_hold_time + title_card_transition
-        # Outro: 1s pause + fade in + hold after audio + fade out
-        total_duration += 1.0 + title_card_transition + title_hold_time + title_card_transition
+        # Outro: 1s pause + fade in (audio plays during title card, then instant blank)
+        total_duration += 1.0 + title_card_transition
     else:
         total_duration += 20.0
 
@@ -4609,8 +4609,8 @@ def generate_and_upload_daily_summary(date: str):
         obs_switch_scene(ws, black_scene)
         obs_refresh_browser_source(ws, browser_source, digest_url)
 
-        # 2. Wait for scene to load
-        time.sleep(1)
+        # 2. Wait for Black scene to be fully shown before recording
+        time.sleep(2)
 
         # 3. Start recording
         if not obs_start_recording(ws):
@@ -4745,8 +4745,9 @@ def trim_video_silence(video_path: str) -> bool:
         # silencedetect outputs to stderr
         output = result.stderr
 
-        # Find all silence_start timestamps
+        # Find all silence_start and silence_end timestamps
         silence_starts = re.findall(r'silence_start: ([\d.]+)', output)
+        silence_ends = re.findall(r'silence_end: ([\d.]+)', output)
 
         if not silence_starts:
             log.info("No trailing silence detected, skipping trim")
@@ -4761,16 +4762,31 @@ def trim_video_silence(video_path: str) -> bool:
         h, m, s = duration_match.groups()
         total_duration = int(h) * 3600 + int(m) * 60 + float(s)
 
-        # We only care about the LAST silence region — trailing dead air
-        last_silence_start = float(silence_starts[-1])
+        # Find trailing silence: silence that extends to EOF
+        # If more silence_starts than silence_ends, the last silence extends to EOF
+        if len(silence_starts) > len(silence_ends):
+            trailing_silence_start = float(silence_starts[-1])
+            log.info(f"Trailing silence detected: {trailing_silence_start:.1f}s to EOF ({total_duration:.1f}s)")
+        else:
+            # All silence regions have ends — check if the last one ends near EOF
+            last_end = float(silence_ends[-1])
+            if last_end >= total_duration - 1.0:
+                # Last silence region ends at/near EOF — find its start
+                # The matching start is at the same index
+                trailing_silence_start = float(silence_starts[len(silence_ends) - 1])
+                log.info(f"Trailing silence detected: {trailing_silence_start:.1f}s to {last_end:.1f}s")
+            else:
+                log.info("No trailing silence detected (no silence extends to end of video)")
+                return True
 
-        # Only trim if silence is near the end (within last 10% of video)
-        if last_silence_start < total_duration * 0.9:
-            log.info("No trailing silence detected near end, skipping trim")
+        # Only trim if we'd remove at least 1 second
+        trailing_duration = total_duration - trailing_silence_start
+        if trailing_duration < 1.0:
+            log.info(f"Trailing silence too short ({trailing_duration:.1f}s), skipping trim")
             return True
 
-        # Add a small buffer (0.5s) after last audio to avoid cutting off abruptly
-        trim_end = last_silence_start + 0.5
+        # Add buffer after last audio for OBS black scene fade transition
+        trim_end = trailing_silence_start + 2.5
 
         # Pass 2: Trim both audio AND video together using -to
         trimmed_path = video_path.with_suffix('.trimmed.mp4')
