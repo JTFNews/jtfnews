@@ -2831,7 +2831,7 @@ def add_digest_to_feed(date: str, story_count: int, youtube_id: str):
                     link_el.text = youtube_url
                     tree.write(feed_file, xml_declaration=True, encoding="UTF-8")
                     log.info(f"Updated digest feed entry for {date}: {old_url} → {youtube_url}")
-                    _push_file_to_github(feed_file, f"Update digest YouTube link for {date}")
+                    push_to_ghpages([(feed_file, "feed.xml")], f"Update digest YouTube link for {date}")
                 else:
                     log.info(f"Digest entry for {date} already exists with correct link")
                 return
