@@ -43,7 +43,7 @@ def test_story_loading(date: str) -> bool:
     # Check what files exist
     local_file = DATA_DIR / f"{date}.txt"
     year = date[:4]
-    archive_file = BASE_DIR / "gh-pages-dist" / "archive" / year / f"{date}.txt.gz"
+    archive_file = BASE_DIR / "docs" / "archive" / year / f"{date}.txt.gz"
 
     print(f"Local file: {local_file}")
     print(f"  Exists: {local_file.exists()}")
@@ -200,7 +200,7 @@ def list_available_dates():
     """List dates that have archived stories available."""
     print("\n=== Available Archived Dates ===")
 
-    archive_dir = BASE_DIR / "gh-pages-dist" / "archive"
+    archive_dir = BASE_DIR / "docs" / "archive"
     if not archive_dir.exists():
         print(f"Archive directory not found: {archive_dir}")
         return
