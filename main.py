@@ -3304,6 +3304,9 @@ def issue_correction(story_id: str, original_fact: str, corrected_fact: str,
     - Logs to corrections.json
     - Generates correction audio announcement
     """
+    # Normalize story_id - Claude may return it with brackets from prompt formatting
+    story_id = story_id.strip("[]")
+
     stories_file = DATA_DIR / "stories.json"
     now_iso = datetime.now(timezone.utc).isoformat()
 
@@ -3336,6 +3339,8 @@ def issue_correction(story_id: str, original_fact: str, corrected_fact: str,
         with open(stories_file, 'w') as f:
             json.dump(stories, f, indent=2)
         log.info(f"Story {story_id} marked as corrected")
+    else:
+        log.warning(f"Correction target not found: story_id={story_id} not in stories.json")
 
     # Add to corrections log
     corrections = load_corrections()
@@ -3379,11 +3384,15 @@ def issue_correction(story_id: str, original_fact: str, corrected_fact: str,
 
 def issue_retraction(story_id: str, original_fact: str, reason: str, sources: list):
     """Issue a full retraction when a story is completely false."""
+    # Normalize story_id - Claude may return it with brackets from prompt formatting
+    story_id = story_id.strip("[]")
+
     stories_file = DATA_DIR / "stories.json"
     now_iso = datetime.now(timezone.utc).isoformat()
 
     # Load and update story
     stories = {"date": "", "stories": []}
+    story_found = False
     if stories_file.exists():
         try:
             with open(stories_file) as f:
@@ -3393,6 +3402,7 @@ def issue_retraction(story_id: str, original_fact: str, reason: str, sources: li
 
     for story in stories.get("stories", []):
         if story.get("id") == story_id:
+            story_found = True
             story["status"] = "retracted"
             story["original_fact"] = original_fact
             story["fact"] = f"[RETRACTED] {original_fact}"
@@ -3403,8 +3413,12 @@ def issue_retraction(story_id: str, original_fact: str, reason: str, sources: li
             }
             break
 
-    with open(stories_file, 'w') as f:
-        json.dump(stories, f, indent=2)
+    if story_found:
+        with open(stories_file, 'w') as f:
+            json.dump(stories, f, indent=2)
+        log.info(f"Story {story_id} marked as retracted")
+    else:
+        log.warning(f"Retraction target not found: story_id={story_id} not in stories.json")
 
     # Add to corrections log
     corrections = load_corrections()
@@ -5908,6 +5922,9 @@ def process_cycle():
                         original = correction_info.get("original_fact", "")
                         reason = correction_info.get("reason", "")
 
+                        # Normalize story_id before passing to correction functions
+                        story_id = story_id.strip("[]")
+
                         if correction_type == "retraction":
                             issue_retraction(story_id, original, reason, sources)
                         else:
@@ -5919,6 +5936,21 @@ def process_cycle():
                                 correcting_sources=sources,
                                 correction_type=correction_type
                             )
+
+                        # Verify correction was applied to stories.json
+                        try:
+                            with open(DATA_DIR / "stories.json") as f:
+                                verify = json.load(f)
+                            for s in verify.get("stories", []):
+                                if s.get("id") == story_id:
+                                    if s.get("status") not in ("corrected", "retracted"):
+                                        log.critical(
+                                            f"Correction failed to apply: {story_id} "
+                                            f"still has status={s.get('status')}"
+                                        )
+                                    break
+                        except Exception as e:
+                            log.error(f"Post-correction verification failed: {e}")
 
                     break
         else:
