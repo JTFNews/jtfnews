@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-03-01T20:19:19.749375+00:00",
-  "uptime_start": "2026-03-01T20:13:42.754858+00:00",
-  "uptime_seconds": 337,
-  "availability_pct": 78.8,
+  "timestamp": "2026-03-01T20:23:20.029807+00:00",
+  "web_refresh_at": "2026-03-01T20:23:20.029807+00:00",
+  "uptime_start": "2026-03-01T20:22:42.345478+00:00",
+  "uptime_seconds": 38,
+  "availability_pct": 77.3,
   "cycle": {
     "number": 1,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "duration_seconds": 37.1,
+    "headlines_scraped": 143,
+    "headlines_processed": 3,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 453,
-        "cost_usd": 0.18282324999999988,
+        "calls": 458,
+        "cost_usd": 0.1844462499999999,
         "details": {
-          "input_tokens": 441828,
-          "output_tokens": 57893
+          "input_tokens": 445410,
+          "output_tokens": 58475
         }
       },
       "elevenlabs": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.228,
+    "total_usd": 0.2296,
     "month_estimate_usd": 9.88,
     "daily_budget": 1.61,
-    "budget_pct": 14.1
+    "budget_pct": 14.2
   },
   "queue": {
-    "size": 26,
-    "oldest_item_age_hours": 20.3
+    "size": 27,
+    "oldest_item_age_hours": 20.4
   },
   "stories_today": 8,
   "sources": {
@@ -55,14 +56,14 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 10,
+    "next_cycle_minutes": 6,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-02-28",
+    "last_date": "2026-02-27",
     "next_digest_at": "2026-03-02T06:00:00+00:00",
-    "status": "success",
-    "upload_status": "success",
+    "status": "in_progress",
+    "upload_status": "pending",
     "error_message": "Failed to get recording output path",
     "last_completed_at": "2026-03-01T06:06:36.670949+00:00",
     "story_count": 13,
