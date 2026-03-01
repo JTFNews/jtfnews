@@ -620,16 +620,21 @@
                         const sourceNames = parts[1];
                         const sourceScores = parts[2];
 
-                        // Parse both old (4-field) and new (5-field) formats
-                        // Old: timestamp|names|scores|fact
-                        // New: timestamp|names|scores|urls|fact
+                        // Parse all formats:
+                        // Old:     timestamp|names|scores|fact (4 fields)
+                        // Medium:  timestamp|names|scores|urls|fact (5 fields)
+                        // Current: timestamp|names|scores|urls|audio|fact (6 fields)
                         let sourceUrlsStr, fact;
                         if (parts.length === 4) {
                             sourceUrlsStr = '';
                             fact = parts[3];
-                        } else {
+                        } else if (parts.length === 5) {
                             sourceUrlsStr = parts[3];
-                            fact = parts.slice(4).join('|'); // Rejoin in case fact has |
+                            fact = parts[4];
+                        } else {
+                            // 6+ fields: skip audio field (parts[4])
+                            sourceUrlsStr = parts[3];
+                            fact = parts.slice(5).join('|'); // Rejoin in case fact has |
                         }
 
                         // Build source string and URLs map

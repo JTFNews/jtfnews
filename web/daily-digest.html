@@ -388,12 +388,16 @@
 
                     const parts = line.split('|');
                     if (parts.length >= 5) {
+                        // Handle all formats:
+                        // 5 fields: timestamp|names|scores|urls|fact
+                        // 6+ fields: timestamp|names|scores|urls|audio|fact
+                        const fact = parts.length >= 6 ? parts.slice(5).join('|') : parts[4];
                         loadedStories.push({
                             timestamp: parts[0],
                             source: parts[1],
                             ratings: parts[2],
                             urls: parts[3],
-                            fact: parts[4]
+                            fact: fact
                         });
                     }
                 }
