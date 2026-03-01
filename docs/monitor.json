@@ -1,54 +1,73 @@
 {
-  "timestamp": "2026-03-01T15:25:34.549180+00:00",
+  "timestamp": "2026-03-01T15:31:06.346427+00:00",
+  "web_refresh_at": "2026-03-01T15:31:06.346427+00:00",
   "uptime_start": "2026-03-01T06:48:48.232243+00:00",
-  "uptime_seconds": 31006,
+  "uptime_seconds": 31338,
   "availability_pct": 84.3,
   "cycle": {
-    "number": 18,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 19,
+    "duration_seconds": 62.6,
+    "headlines_scraped": 143,
+    "headlines_processed": 13,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 336,
-        "cost_usd": 0.14058124999999994,
+        "calls": 357,
+        "cost_usd": 0.14719449999999998,
         "details": {
-          "input_tokens": 337360,
-          "output_tokens": 44993
+          "input_tokens": 354328,
+          "output_tokens": 46890
         }
       },
       "elevenlabs": {
-        "calls": 7,
-        "cost_usd": 0.02073,
+        "calls": 9,
+        "cost_usd": 0.031079999999999997,
         "details": {
-          "characters": 691
+          "characters": 1036
+        }
+      },
+      "twilio": {
+        "calls": 1,
+        "cost_usd": 0.0079,
+        "details": {
+          "sms_count": 1
         }
       }
     },
-    "total_usd": 0.1613,
+    "total_usd": 0.1862,
     "month_estimate_usd": 9.88,
     "daily_budget": 1.61,
-    "budget_pct": 10.0
+    "budget_pct": 11.5
   },
   "queue": {
     "size": 26,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 4,
+  "stories_today": 5,
   "sources": {
     "total": 17,
     "successful": 17,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-03-01T15:30:53.674767+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: The new verified fact reports 3 US service members"
+    },
+    {
+      "timestamp": "2026-03-01T15:30:56.724902+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for [2026-03-01-001]: The new verified fact reports 3 US service members"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
