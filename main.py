@@ -1976,7 +1976,7 @@ def generate_outro_audio(date: datetime) -> str:
     month = date.strftime("%B")  # "February"
     year = date.year
 
-    text = f"You have been listening to the JTF News Daily Digest for {day_name}, the {day_num}{suffix} of {month}, {year}.  Facts without opinion. We do not interpret."
+    text = f"You have been listening to the JTF News Daily Digest for {day_name}, the {day_num}{suffix} of {month}, {year}.  We present facts without opinion."
 
     # Use the digest date for the archive folder, not current UTC date
     archive_date = date.strftime("%Y-%m-%d")
