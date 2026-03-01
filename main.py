@@ -1962,7 +1962,7 @@ def generate_outro_audio(date: datetime) -> str:
     """Generate outro TTS audio for the daily digest.
 
     Creates a spoken outro like:
-    "You have been listening to the JTF News Daily Digest for Monday, the 24th of February, 2026."
+    "You have been listening to the JTF News Daily Digest for Monday, the 24th of February, 2026. We present facts without opinion."
 
     Args:
         date: datetime object for the digest date
