@@ -5805,6 +5805,10 @@ def process_cycle():
         fact = result["fact"]
         confidence = result["confidence"]
 
+        # Ensure first letter is capitalized (e.g., "former President..." → "Former President...")
+        if fact and fact[0].islower():
+            fact = fact[0].upper() + fact[1:]
+
         # JUDGE LOOKUP: If fact mentions a judge without full details, try to look them up
         if needs_judge_lookup(fact):
             log.info(f"Looking up judge info for: {fact[:50]}...")
