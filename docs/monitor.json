@@ -1,51 +1,45 @@
 {
-  "timestamp": "2026-02-28T23:55:45.920524+00:00",
+  "timestamp": "2026-03-01T00:05:43.360446+00:00",
+  "web_refresh_at": "2026-03-01T00:05:43.360446+00:00",
   "uptime_start": "2026-02-28T21:23:00.881120+00:00",
-  "uptime_seconds": 9165,
-  "availability_pct": 42.4,
+  "uptime_seconds": 9762,
+  "availability_pct": 0,
   "cycle": {
-    "number": 6,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 7,
+    "duration_seconds": 339.5,
+    "headlines_scraped": 143,
+    "headlines_processed": 143,
+    "stories_published": 2,
+    "stories_queued": 9
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 541,
-        "cost_usd": 0.2066244999999998,
+        "calls": 165,
+        "cost_usd": 0.07003974999999998,
         "details": {
-          "input_tokens": 501793,
-          "output_tokens": 64941
+          "input_tokens": 168634,
+          "output_tokens": 22305
         }
       },
       "elevenlabs": {
-        "calls": 174,
-        "cost_usd": 0.6050399999999999,
+        "calls": 3,
+        "cost_usd": 0.0081,
         "details": {
-          "characters": 20168
-        }
-      },
-      "twilio": {
-        "calls": 2,
-        "cost_usd": 0.0158,
-        "details": {
-          "sms_count": 2
+          "characters": 270
         }
       }
     },
-    "total_usd": 0.8275,
-    "month_estimate_usd": 7.63,
-    "daily_budget": 1.79,
-    "budget_pct": 46.3
+    "total_usd": 0.0781,
+    "month_estimate_usd": 8.44,
+    "daily_budget": 1.61,
+    "budget_pct": 4.8
   },
   "queue": {
-    "size": 17,
-    "oldest_item_age_hours": 23.9
+    "size": 24,
+    "oldest_item_age_hours": 24.1
   },
-  "stories_today": 13,
+  "stories_today": 2,
   "sources": {
     "total": 17,
     "successful": 17,
@@ -54,8 +48,8 @@
   "recent_errors": [],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "stream_health": "offline",
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
