@@ -313,6 +313,63 @@
         "consensus": 9.0
       },
       "notes": "Primary source for EU policy and regulations; authoritative for EU matters"
+    },
+    {
+      "id": "un_news",
+      "name": "UN News",
+      "url": "https://news.un.org/en/",
+      "rss": "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
+      "scrape_selector": "h3",
+      "tier": 1,
+      "control_type": "international_organization",
+      "owner": "United Nations",
+      "owner_display": "United Nations (193 member states)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 9.0,
+        "bias": 0.1,
+        "speed": 7.0,
+        "consensus": 9.0
+      },
+      "notes": "Official news service of the United Nations; international organization"
+    },
+    {
+      "id": "canada",
+      "name": "Government of Canada",
+      "url": "https://www.canada.ca/en/news.html",
+      "rss": "https://api.io.canada.ca/io-server/gc/news/en/v2?sort=publishedDate&orderBy=desc&pick=100&format=atom",
+      "scrape_selector": null,
+      "tier": 1,
+      "control_type": "government",
+      "owner": "Government of Canada",
+      "owner_display": "Canada (Federal Government)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 9.5,
+        "bias": 0.0,
+        "speed": 7.5,
+        "consensus": 8.5
+      },
+      "notes": "Official Government of Canada news; Atom feed; public records"
+    },
+    {
+      "id": "propublica",
+      "name": "ProPublica",
+      "url": "https://www.propublica.org/",
+      "rss": "https://www.propublica.org/feeds/propublica/main",
+      "scrape_selector": "h3",
+      "tier": 2,
+      "control_type": "nonprofit",
+      "owner": "Pro Publica Inc. (501(c)(3))",
+      "owner_display": "Pro Publica Inc. (nonprofit)",
+      "institutional_holders": [],
+      "ratings": {
+        "accuracy": 9.0,
+        "bias": -0.5,
+        "speed": 6.0,
+        "consensus": 8.0
+      },
+      "notes": "Nonprofit investigative journalism; 501(c)(3); RSS provided"
     }
   ],
   "unrelated_rules": {

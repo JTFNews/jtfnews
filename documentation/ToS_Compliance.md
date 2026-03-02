@@ -38,9 +38,9 @@ JTF News operates with a good-faith effort to comply with all applicable terms o
 
 ---
 
-## Retained Sources (17 Total)
+## Retained Sources (20 Total)
 
-### Government / Primary Sources (8)
+### Government / Primary Sources (10)
 
 These sources are public records. Government information is generally not copyrightable under U.S. law (17 U.S.C. § 105). Similar public-domain principles apply to other governments' official publications.
 
@@ -54,6 +54,8 @@ These sources are public records. Government information is generally not copyri
 | `pentagon` | US Dept of Defense | RSS | None | US Government public records; RSS provided |
 | `uk_parliament` | UK Parliament | Google News RSS | Low | Government body; public proceedings |
 | `eu_commission` | European Commission | RSS | None | EU public institution; RSS provided |
+| `un_news` | UN News | RSS | None | United Nations official news service; RSS provided |
+| `canada` | Government of Canada | Atom feed | None | Canadian Government public records; Atom feed provided |
 
 ### Public Broadcasters (7)
 
@@ -69,14 +71,15 @@ Public broadcasters are funded by public money and generally provide RSS feeds i
 | `abc_au` | ABC News Australia | Native RSS | Low | Australian public broadcaster; RSS provided |
 | `pbs` | PBS NewsHour | Native RSS | Low | US public nonprofit; RSS provided |
 
-### Trusts / Nonprofits (2)
+### Trusts / Nonprofits (3)
 
-These organizations are owned by charitable trusts with public-interest missions. They provide RSS feeds for aggregation.
+These organizations are owned by charitable trusts or nonprofits with public-interest missions. They provide RSS feeds for aggregation.
 
 | ID | Name | Access Method | Risk Level | Rationale |
 |----|------|---------------|------------|-----------|
 | `guardian` | The Guardian | Native RSS | Low | Scott Trust ownership; RSS provided; open journalism ethos |
 | `irish` | Irish Times | Native RSS | Low | Irish Times Trust ownership; RSS provided |
+| `propublica` | ProPublica | Native RSS | Low | 501(c)(3) nonprofit; RSS provided; investigative journalism |
 
 ---
 

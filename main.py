@@ -5819,10 +5819,6 @@ def process_cycle():
         fact = result["fact"]
         confidence = result["confidence"]
 
-        # Ensure first letter is capitalized (e.g., "former President..." → "Former President...")
-        if fact and fact[0].islower():
-            fact = fact[0].upper() + fact[1:]
-
         # JUDGE LOOKUP: If fact mentions a judge without full details, try to look them up
         if needs_judge_lookup(fact):
             log.info(f"Looking up judge info for: {fact[:50]}...")
@@ -5887,6 +5883,10 @@ def process_cycle():
                         log.warning(f"Contradiction blocked: {best_fact[:40]}...")
                         send_alert(f"Contradiction: {best_fact[:50]}")
                         continue
+
+                    # Ensure first letter is capitalized (e.g., "former President..." → "Former President...")
+                    if best_fact and best_fact[0].islower():
+                        best_fact = best_fact[0].upper() + best_fact[1:]
 
                     # Generate unique audio ID from story content (hash-based)
                     # This ensures audio files are always linked to correct story
@@ -5975,6 +5975,10 @@ def process_cycle():
                         fact_hash = get_story_hash(published_match["fact"])
                         record_verification_success(headline["source_id"], fact_hash)
                         continue  # Don't add to queue
+
+            # Ensure first letter is capitalized before queuing
+            if fact and fact[0].islower():
+                fact = fact[0].upper() + fact[1:]
 
             # No match anywhere - add to queue
             queue.append({
