@@ -151,5 +151,5 @@ Audits verify:
 
 This document represents JTF News's good-faith effort to comply with terms of service and applicable law. It is not legal advice. JTF News has not obtained legal review of this compliance approach. Users and operators should consult their own legal counsel for specific questions.
 
-**Document maintained at:** `docs/ToS_Compliance.md`
+**Document maintained at:** `documentation/ToS_Compliance.md`
 **Git tracked:** Yes
