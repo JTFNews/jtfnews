@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-03-02T10:57:06.721338+00:00",
+  "timestamp": "2026-03-02T11:02:02.605177+00:00",
+  "web_refresh_at": "2026-03-02T11:02:02.605177+00:00",
   "uptime_start": "2026-03-02T05:47:22.429342+00:00",
-  "uptime_seconds": 18584,
-  "availability_pct": 63.0,
+  "uptime_seconds": 18880,
+  "availability_pct": 63.6,
   "cycle": {
-    "number": 11,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 12,
+    "duration_seconds": 68.7,
+    "headlines_scraped": 163,
+    "headlines_processed": 16,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 4
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 368,
-        "cost_usd": 0.15353124999999998,
+        "calls": 390,
+        "cost_usd": 0.16127499999999997,
         "details": {
-          "input_tokens": 371195,
-          "output_tokens": 48586
+          "input_tokens": 390740,
+          "output_tokens": 50872
         }
       },
       "elevenlabs": {
@@ -29,32 +30,39 @@
         }
       }
     },
-    "total_usd": 0.1626,
+    "total_usd": 0.1704,
     "month_estimate_usd": 9.77,
     "daily_budget": 1.61,
-    "budget_pct": 10.1
+    "budget_pct": 10.6
   },
   "queue": {
-    "size": 38,
-    "oldest_item_age_hours": 24.4
+    "size": 40,
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 3,
   "sources": {
     "total": 20,
-    "successful": 20,
-    "failed": []
+    "successful": 19,
+    "failed": [
+      "US Department of Defense"
+    ]
   },
   "recent_errors": [
     {
       "timestamp": "2026-03-02T10:37:04.393850+00:00",
       "level": "WARNING",
       "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-03-02T11:01:12.009755+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from US Department of Defense: 403 Client Error: Forbidden for url: https://www.defense.gov/News/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 27,
     "degraded_services": []
   },
   "daily_digest": {
