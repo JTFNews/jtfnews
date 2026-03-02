@@ -38,7 +38,7 @@ JTF News operates with a good-faith effort to comply with all applicable terms o
 
 ---
 
-## Retained Sources (20 Total)
+## Sources (20 Total)
 
 ### Government / Primary Sources (10)
 
@@ -80,35 +80,6 @@ These organizations are owned by charitable trusts or nonprofits with public-int
 | `guardian` | The Guardian | Native RSS | Low | Scott Trust ownership; RSS provided; open journalism ethos |
 | `irish` | Irish Times | Native RSS | Low | Irish Times Trust ownership; RSS provided |
 | `propublica` | ProPublica | Native RSS | Low | 501(c)(3) nonprofit; RSS provided; investigative journalism |
-
----
-
-## Removed Sources (13 Total)
-
-The following sources were removed due to ToS concerns or legal risk:
-
-### Wire Services (4) - HIGH RISK
-
-| ID | Reason for Removal |
-|----|-------------------|
-| `ap` | **AP was the plaintiff in AP v. Meltwater (2013)**, the landmark case ruling news aggregation was NOT fair use. Highest litigation risk. |
-| `reuters` | Wire service with licensing model; blocks direct access; Thomson Reuters ownership |
-| `afp` | Wire service; accessed via Google News RSS workaround (violates Google ToS) |
-| `efe` | Wire service; accessed via Google News RSS workaround |
-
-### Commercial Media (9) - MEDIUM TO HIGH RISK
-
-| ID | Reason for Removal |
-|----|-------------------|
-| `aljazeera` | Commercial (Qatar state); ToS unreviewed |
-| `sky` | Commercial (Comcast); ToS unreviewed |
-| `euronews` | Commercial (Alpac Capital); ToS unreviewed |
-| `toi` | Commercial (Jain family); ToS unreviewed |
-| `globe` | Commercial (Thomson family); ToS unreviewed |
-| `straits` | Commercial (Singapore Press Holdings); ToS unreviewed |
-| `hindustan` | Commercial (HT Media); ToS unreviewed |
-| `independent` | HTML scraping only (no RSS provided); ToS unreviewed; highest technical risk |
-| `cspan` | YouTube RSS (third-party platform ToS complexity); nonprofit but reliant on YouTube API |
 
 ---
 
