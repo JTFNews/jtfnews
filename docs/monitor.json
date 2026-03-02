@@ -1,52 +1,45 @@
 {
-  "timestamp": "2026-03-01T23:59:01.502103+00:00",
-  "web_refresh_at": "2026-03-01T23:59:01.502103+00:00",
+  "timestamp": "2026-03-02T00:05:35.469882+00:00",
+  "web_refresh_at": "2026-03-02T00:05:35.469882+00:00",
   "uptime_start": "2026-03-01T23:58:27.643068+00:00",
-  "uptime_seconds": 34,
+  "uptime_seconds": 428,
   "availability_pct": 74.8,
   "cycle": {
-    "number": 1,
-    "duration_seconds": 33.3,
+    "number": 2,
+    "duration_seconds": 335.5,
     "headlines_scraped": 143,
-    "headlines_processed": 5,
-    "stories_published": 0,
-    "stories_queued": 0
+    "headlines_processed": 143,
+    "stories_published": 2,
+    "stories_queued": 8
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 501,
-        "cost_usd": 0.20224399999999979,
+        "calls": 170,
+        "cost_usd": 0.06994200000000002,
         "details": {
-          "input_tokens": 487351,
-          "output_tokens": 64325
+          "input_tokens": 170648,
+          "output_tokens": 21824
         }
       },
       "elevenlabs": {
-        "calls": 20,
-        "cost_usd": 0.061739999999999996,
+        "calls": 2,
+        "cost_usd": 0.006,
         "details": {
-          "characters": 2058
-        }
-      },
-      "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
-        "details": {
-          "sms_count": 1
+          "characters": 200
         }
       }
     },
-    "total_usd": 0.2719,
+    "total_usd": 0.0759,
     "month_estimate_usd": 9.88,
     "daily_budget": 1.61,
-    "budget_pct": 16.9
+    "budget_pct": 4.7
   },
   "queue": {
-    "size": 32,
-    "oldest_item_age_hours": 24.0
+    "size": 38,
+    "oldest_item_age_hours": 24.1
   },
-  "stories_today": 8,
+  "stories_today": 2,
   "sources": {
     "total": 17,
     "successful": 17,
@@ -55,8 +48,8 @@
   "recent_errors": [],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 0,
+    "stream_health": "offline",
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
