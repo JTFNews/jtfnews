@@ -5129,8 +5129,8 @@ def update_podcast_feeds(date: str, archive_result: dict, story_count: int, dura
     dt = datetime.strptime(date, "%Y-%m-%d")
     display_date = dt.strftime("%B %d, %Y").replace(" 0", " ")
 
-    # RFC 2822 pubDate (06:00 GMT = midnight CST)
-    pub_dt = datetime(dt.year, dt.month, dt.day, 6, 0, 0, tzinfo=timezone.utc)
+    # RFC 2822 pubDate (midnight GMT)
+    pub_dt = datetime(dt.year, dt.month, dt.day, 0, 0, 0, tzinfo=timezone.utc)
     pub_date = formatdate(timeval=pub_dt.timestamp(), usegmt=True)
 
     # Duration as MM:SS
@@ -5211,13 +5211,13 @@ def load_digest_status() -> dict:
         except Exception:
             pass
 
-    # Always calculate next_digest_at dynamically (midnight CST = 06:00 UTC)
+    # Always calculate next_digest_at dynamically (midnight GMT = 00:00 UTC)
     now = datetime.now(timezone.utc)
-    today_6am_utc = datetime(now.year, now.month, now.day, 6, tzinfo=timezone.utc)
-    if now >= today_6am_utc:
-        next_digest = today_6am_utc + timedelta(days=1)
+    today_midnight_utc = datetime(now.year, now.month, now.day, 0, tzinfo=timezone.utc)
+    if now >= today_midnight_utc:
+        next_digest = today_midnight_utc + timedelta(days=1)
     else:
-        next_digest = today_6am_utc
+        next_digest = today_midnight_utc
     status["next_digest_at"] = next_digest.isoformat()
 
     return status
@@ -5237,15 +5237,15 @@ def update_digest_status(date: str, **kwargs):
     """
     current = load_digest_status()
 
-    # Calculate next digest (midnight CST = 06:00 UTC)
+    # Calculate next digest (midnight GMT = 00:00 UTC)
     now = datetime.now(timezone.utc)
-    # Midnight CST is 06:00 UTC. Find the next 06:00 UTC.
-    today_6am_utc = datetime(now.year, now.month, now.day, 6, tzinfo=timezone.utc)
-    if now >= today_6am_utc:
-        # Already past today's midnight CST, next one is tomorrow
-        next_digest = today_6am_utc + timedelta(days=1)
+    # Midnight GMT is 00:00 UTC. Find the next 00:00 UTC.
+    today_midnight_utc = datetime(now.year, now.month, now.day, 0, tzinfo=timezone.utc)
+    if now >= today_midnight_utc:
+        # Already past today's midnight GMT, next one is tomorrow
+        next_digest = today_midnight_utc + timedelta(days=1)
     else:
-        next_digest = today_6am_utc
+        next_digest = today_midnight_utc
 
     current["last_date"] = date
     current["next_digest_at"] = next_digest.isoformat()
@@ -6240,12 +6240,12 @@ def apply_ownership_changes(changes: list):
 
 
 def check_midnight_archive():
-    """Check if it's time to archive and cleanup (midnight CST = 06:00 UTC)."""
+    """Check if it's time to archive and cleanup (midnight GMT = 00:00 UTC)."""
     global _midnight_archive_done_for
     now = datetime.now(timezone.utc)
     today = now.date().isoformat()
 
-    if now.hour == 6 and now.minute < 5:
+    if now.hour == 0 and now.minute < 5:
         # Idempotency guard: only run once per day
         if _midnight_archive_done_for == today:
             return  # Already done today
