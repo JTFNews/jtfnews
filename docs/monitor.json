@@ -1,71 +1,92 @@
 {
-  "timestamp": "2026-03-14T23:55:58.825958+00:00",
+  "timestamp": "2026-03-15T00:11:41.672064+00:00",
+  "web_refresh_at": "2026-03-15T00:11:41.672064+00:00",
   "uptime_start": "2026-03-11T21:24:57.687459+00:00",
-  "uptime_seconds": 268261,
+  "uptime_seconds": 269204,
   "availability_pct": 70.9,
   "cycle": {
-    "number": 150,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 151,
+    "duration_seconds": 441.1,
+    "headlines_scraped": 166,
+    "headlines_processed": 166,
+    "stories_published": 2,
+    "stories_queued": 10
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 8,
-        "cost_usd": 0.025319999999999995,
+        "calls": 4,
+        "cost_usd": 0.0141,
         "details": {
-          "characters": 844
+          "characters": 470
         }
       },
       "claude": {
-        "calls": 498,
-        "cost_usd": 0.20502525000000005,
+        "calls": 190,
+        "cost_usd": 0.07839299999999998,
         "details": {
-          "input_tokens": 500071,
-          "output_tokens": 64006
+          "input_tokens": 193372,
+          "output_tokens": 24040
         }
       }
     },
-    "total_usd": 0.2303,
+    "total_usd": 0.0925,
     "month_estimate_usd": 9.51,
     "daily_budget": 1.61,
-    "budget_pct": 14.3
+    "budget_pct": 5.7
   },
   "queue": {
-    "size": 38,
-    "oldest_item_age_hours": 23.8
+    "size": 46,
+    "oldest_item_age_hours": 24.1
   },
-  "stories_today": 5,
+  "stories_today": 2,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 21,
+    "failed": [
+      "BBC News"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-03-15T00:03:44.145735+00:00",
+      "level": "WARNING",
+      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp": "2026-03-15T00:05:10.643447+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from BBC News: HTTPSConnectionPool(host='www.bbc.com', port=443): Read timed out. (read timeout=15)"
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "stream_health": "offline",
+    "next_cycle_minutes": 18,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-03-13",
-    "next_digest_at": "2026-03-15T00:00:00+00:00",
+    "last_date": "2026-03-14",
+    "next_digest_at": "2026-03-16T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-03-14T00:04:40.522018+00:00",
-    "story_count": 8,
-    "duration_seconds": 97,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-03-13-daily-digest.mp4",
-    "youtube_id": "OLyRe_VDFcs",
-    "youtube_url": "https://youtube.com/watch?v=OLyRe_VDFcs",
-    "archive_org_id": "jtf-news-2026-03-13",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-13/2026-03-13-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-03-13/2026-03-13-daily-digest.mp4",
+    "last_completed_at": "2026-03-15T00:03:34.806846+00:00",
+    "story_count": 5,
+    "duration_seconds": 74,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-03-14-daily-digest.mp4",
+    "youtube_id": "geT1UKVKX1s",
+    "youtube_url": "https://youtube.com/watch?v=geT1UKVKX1s",
+    "archive_org_id": "jtf-news-2026-03-14",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-14/2026-03-14-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-03-14/2026-03-14-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
