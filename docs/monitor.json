@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-03-15T01:00:45.808528+00:00",
-  "web_refresh_at": "2026-03-15T01:00:45.808528+00:00",
+  "timestamp": "2026-03-15T01:05:46.901234+00:00",
   "uptime_start": "2026-03-11T21:24:57.687459+00:00",
-  "uptime_seconds": 272148,
+  "uptime_seconds": 272449,
   "availability_pct": 71.0,
   "cycle": {
     "number": 153,
-    "duration_seconds": 41.7,
-    "headlines_scraped": 176,
-    "headlines_processed": 6,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 40,
-    "oldest_item_age_hours": 22.5
+    "oldest_item_age_hours": 22.6
   },
   "stories_today": 2,
   "sources": {
@@ -45,22 +44,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-03-15T00:03:44.145735+00:00",
-      "level": "WARNING",
-      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
-    },
-    {
-      "timestamp": "2026-03-15T00:05:10.643447+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from BBC News: HTTPSConnectionPool(host='www.bbc.com', port=443): Read timed out. (read timeout=15)"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
@@ -79,12 +67,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-14/2026-03-14-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-14/2026-03-14-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
