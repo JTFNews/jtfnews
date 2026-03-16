@@ -6,7 +6,7 @@
   <strong>Just The Facts.</strong> No opinions. No adjectives. No interpretation.
 </p>
 
-[![Daily Digest](https://img.shields.io/badge/YouTube-Daily%20Digest-red)](https://www.youtube.com/@JTFNewsLive)
+[![Daily Digest](https://img.shields.io/badge/YouTube-Daily%20Digest-red)](https://www.youtube.com/playlist?list=PLm8mlmJgzmMfqH8YkhdRVFET200vZGRWN)
 [![RSS Feed](https://img.shields.io/badge/RSS-Subscribe-orange)](https://jtfnews.org/feed.xml)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -26,7 +26,7 @@ Just facts.
 
 ## Daily Digest
 
-**[YouTube - JTF News](https://www.youtube.com/@JTFNewsLive)**
+**[YouTube - JTF News](https://www.youtube.com/playlist?list=PLm8mlmJgzmMfqH8YkhdRVFET200vZGRWN)**
 
 ## Subscribe
 
