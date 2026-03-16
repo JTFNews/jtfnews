@@ -40,7 +40,7 @@
 - An automated news stream that reports only verified facts
 - Claude AI strips all editorialization, bias, and opinion from headlines
 - Requires 2+ unrelated sources before speaking
-- Streams 24/7 via OBS to YouTube with calm HD visuals and natural TTS voice
+- Publishes daily digest to YouTube with calm HD visuals and natural TTS voice
 - Tweets each story once (no engagement)
 - Archives daily to GitHub at midnight GMT
 
@@ -68,7 +68,7 @@ Let OBS handle what OBS does best. We write minimal code.
 - Video backgrounds → Media Source or VLC Source
 - Audio playback → Media Source for TTS files
 - Layer compositing → Scene with background + overlay layers
-- Streaming to YouTube → Built-in RTMP
+- ~~Streaming to YouTube → Built-in RTMP~~ [SUSPENDED — live streaming paused, OBS used for recording only]
 
 **We only write:**
 - One Python script (~400 lines)
@@ -110,8 +110,8 @@ Let OBS handle what OBS does best. We write minimal code.
 │  └─────────────────────────────────────────────────────────┘    │
 │                              │                                   │
 │                              ▼                                   │
-│                    YouTube RTMP Stream                           │
-│                   "JTF News – Live"                              │
+│               YouTube (Daily Digest Recording)                   │
+│                  "JTF News – Daily Digest"                       │
 └─────────────────────────────────────────────────────────────────┘
                                ▲
                                │ reads
@@ -1261,7 +1261,9 @@ Sources: {sources}
 
 ---
 
-## 13. YouTube Stream Settings
+## 13. YouTube Stream Settings [SUSPENDED]
+
+> **Note:** Live streaming has been suspended due to funding constraints. This section is preserved for potential future reactivation. OBS is currently used for Daily Digest recording only.
 
 ### 13.1 Stream Configuration
 
@@ -1613,7 +1615,7 @@ The `main` branch `/docs` folder serves the public-facing website at https://jtf
 - [ ] Twitter account created (@JTFNews or similar)
 - [ ] YouTube channel created
 - [ ] OBS configured with all sources
-- [ ] Test stream completed (unlisted)
+- [ ] ~~Test stream completed (unlisted)~~ [SUSPENDED]
 - [ ] Alert system tested (send test SMS)
 - [ ] GitHub archive repo created
 - [ ] Background media folder populated with HD images
@@ -1621,10 +1623,10 @@ The `main` branch `/docs` folder serves the public-facing website at https://jtf
 ### 21.3 Launch Sequence
 
 1. Start OBS
-2. Verify YouTube stream key
+2. ~~Verify YouTube stream key~~ [SUSPENDED]
 3. Start `main.py`
 4. Wait for first verified story
-5. Click "Start Streaming" in OBS
+5. ~~Click "Start Streaming" in OBS~~ [SUSPENDED — OBS used for recording only]
 
 That's it. No announcement. No countdown.
 
@@ -2117,11 +2119,11 @@ poll(); // Initial check
 
 ## What This Is
 
-An automated news stream that reports only verified facts:
+An automated news service that reports only verified facts:
 - Scrapes 20 news sources
 - Uses Claude AI to strip ALL editorialization
 - Requires 2+ unrelated sources for verification
-- Streams 24/7 to YouTube with calm visuals and TTS
+- Publishes daily digest to YouTube with calm visuals and TTS
 - Tweets each story once (no engagement)
 - Archives daily to GitHub
 

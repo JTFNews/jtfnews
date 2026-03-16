@@ -16,7 +16,7 @@
 
 This is not journalism. It is data.
 
-JTF News is not a media company. It is a methodology. The methodology belongs to no one. It serves everyone. What follows is our first application—a global news stream. Others may apply the same principles to their communities, their cities, their schools, their congregations. The principle travels. The mission stays the same.
+JTF News is not a media company. It is a methodology. The methodology belongs to no one. It serves everyone. What follows is our first application—a global news service. Others may apply the same principles to their communities, their cities, their schools, their congregations. The principle travels. The mission stays the same.
 
 Facts without opinion. Wherever they are needed.
 
@@ -26,7 +26,7 @@ Facts without opinion. Wherever they are needed.
 
 Just the Facts News (JTF News) is a nonprofit initiative dedicated to structured factual reporting without commentary, analysis, or narrative framing.
 
-We apply a transparent, replicable methodology to identify, corroborate, and present recent events of public significance. Our first implementation is a continuously updated global news stream. The methodology is designed to be portable and adaptable to local communities.
+We apply a transparent, replicable methodology to identify, corroborate, and present recent events of public significance. Our first implementation is a daily news digest published to YouTube, podcast platforms, and RSS. The methodology is designed to be portable and adaptable to local communities.
 
 We do not interpret events.
 We do not speculate.
@@ -205,8 +205,8 @@ We post once per platform. We do not reply. No engagement. No likes. Corrections
 
 ## YouTube
 
-Title: JTF News – Live.
-Description: Just The Facts News. Facts only. No chat. No hearts.
+Title: JTF News – Daily Digest.
+Description: Just The Facts News. Facts only. No commentary. No opinion.
 
 ------------------------------------------------------------------------
 

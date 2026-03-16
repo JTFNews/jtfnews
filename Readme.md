@@ -6,7 +6,7 @@
   <strong>Just The Facts.</strong> No opinions. No adjectives. No interpretation.
 </p>
 
-[![Live Stream](https://img.shields.io/badge/YouTube-Live%2024%2F7-red)](https://www.youtube.com/@JTFNewsLive)
+[![Daily Digest](https://img.shields.io/badge/YouTube-Daily%20Digest-red)](https://www.youtube.com/@JTFNewsLive)
 [![RSS Feed](https://img.shields.io/badge/RSS-Subscribe-orange)](https://jtfnews.org/feed.xml)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -14,7 +14,7 @@
 
 ## What is JTF News?
 
-A 24/7 automated news stream that reports only verified facts. Every fact is confirmed by **2+ independent sources** before broadcast.
+An automated news service that reports only verified facts. Every fact is confirmed by **2+ independent sources** before broadcast.
 
 - No opinions
 - No adjectives
@@ -24,9 +24,9 @@ A 24/7 automated news stream that reports only verified facts. Every fact is con
 
 Just facts.
 
-## Watch Live
+## Daily Digest
 
-**[YouTube - JTF News Live](https://www.youtube.com/@JTFNewsLive)**
+**[YouTube - JTF News](https://www.youtube.com/@JTFNewsLive)**
 
 ## Subscribe
 
@@ -69,7 +69,7 @@ Sources must be **unrelated** - different owners, different investors.
 - Python automation with resilience system
 - Claude AI (Haiku) for fact extraction
 - ElevenLabs TTS for voice synthesis
-- OBS for streaming
+- OBS for recording
 - GitHub Pages for web assets
 
 ## Support

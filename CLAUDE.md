@@ -1,7 +1,7 @@
 # CLAUDE.md - JTF News
 
 ## Project Overview
-JTF News (Just the Facts News) - Automated 24/7 news stream that reports only verified facts. No opinions, no adjectives, no interpretation.
+JTF News (Just the Facts News) - Automated daily news service that reports only verified facts. No opinions, no adjectives, no interpretation.
 
 ---
 
@@ -235,7 +235,7 @@ Across all channels, always:
 
 ## Key Architecture Principles (from spec)
 - **Simplicity = Stability** - Always choose the simplest solution; code must run forever
-- **OBS Does Heavy Lifting** - Let OBS handle media/streaming; we write minimal code (~500 lines total)
+- **OBS Does Heavy Lifting** - Let OBS handle media/recording; we write minimal code (~500 lines total)
 - **Silence is Default** - Don't speak unless facts are verified by 2+ unrelated sources
 - **No Drama** - No emotional language, no "BREAKING" labels, just calm facts
 
@@ -282,11 +282,11 @@ Do NOT use raw `git commit` commands. Always use `./bu.sh "message"` which:
 
 ## Single-Machine Architecture
 
-**Everything runs on one machine.** Development, OBS streaming, and production all happen at `/Users/larryseyer/JTFNews`. There is no separate deploy machine.
+**Everything runs on one machine.** Development, OBS recording, and production all happen at `/Users/larryseyer/JTFNews`. There is no separate deploy machine.
 
 | Path | Purpose |
 |------|---------|
-| `/Users/larryseyer/JTFNews` | Everything: development, OBS streaming, production |
+| `/Users/larryseyer/JTFNews` | Everything: development, OBS recording, production |
 
 ## Git Workflow
 - Single branch: `main`
@@ -330,7 +330,7 @@ When modifying overlay files that exist in BOTH locations, you MUST update BOTH:
 - YouTube Data API for daily digest uploads
 - Archive.org (internetarchive library) for permanent podcast/video hosting
 - Twilio for SMS alerts
-- OBS for streaming to YouTube (OBS WebSocket v4 for recording control)
+- OBS for recording Daily Digest video (OBS WebSocket v4 for recording control)
 - GitHub Pages for public website (how-it-works, whitepaper, operations dashboard)
 
 ## Journalist Submission System
