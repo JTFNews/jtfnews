@@ -1,7 +1,7 @@
 # JTF News - Terms of Service Compliance Documentation
 
-**Last Updated:** February 2026
-**Version:** 1.0
+**Last Updated:** March 2026
+**Version:** 1.1
 
 ---
 
@@ -30,17 +30,11 @@ JTF News operates with a good-faith effort to comply with all applicable terms o
 | **Amount used** | Headlines only (minimal portion) |
 | **Market effect** | Links to sources; encourages traffic; no substitute for full articles |
 
-### Key Precedents
-
-- **AP v. Meltwater (2013)** - Commercial aggregator lost fair use claim. JTF differs: non-commercial, transformative rewriting, minimal extraction
-- **Kelly v. Arriba Soft (2003)** - Thumbnails for search = transformative use. JTF extracts headlines for verification, also transformative
-- **Perfect 10 v. Amazon (2007)** - Search indexing serves different purpose than source. JTF serves verification purpose
-
 ---
 
-## Sources (20 Total)
+## Sources (22 Total)
 
-### Government / Primary Sources (10)
+### Government / Primary Sources (12)
 
 These sources are public records. Government information is generally not copyrightable under U.S. law (17 U.S.C. § 105). Similar public-domain principles apply to other governments' official publications.
 
@@ -56,6 +50,8 @@ These sources are public records. Government information is generally not copyri
 | `eu_commission` | European Commission | RSS | None | EU public institution; RSS provided |
 | `un_news` | UN News | RSS | None | United Nations official news service; RSS provided |
 | `canada` | Government of Canada | Atom feed | None | Canadian Government public records; Atom feed provided |
+| `cdc` | CDC Newsroom | RSS | None | US Government public health agency; RSS provided |
+| `who` | World Health Organization | RSS | None | UN specialized agency; RSS provided |
 
 ### Public Broadcasters (7)
 
