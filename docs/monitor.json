@@ -1,54 +1,73 @@
 {
-  "timestamp": "2026-03-18T12:26:23.070940+00:00",
+  "timestamp": "2026-03-18T12:31:13.518495+00:00",
+  "web_refresh_at": "2026-03-18T12:31:13.518495+00:00",
   "uptime_start": "2026-03-16T19:13:34.668574+00:00",
-  "uptime_seconds": 148368,
-  "availability_pct": 74.4,
+  "uptime_seconds": 148659,
+  "availability_pct": 74.5,
   "cycle": {
-    "number": 83,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 84,
+    "duration_seconds": 68.4,
+    "headlines_scraped": 177,
+    "headlines_processed": 11,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 9,
-        "cost_usd": 0.02559,
+        "calls": 11,
+        "cost_usd": 0.03399,
         "details": {
-          "characters": 853
+          "characters": 1133
         }
       },
       "claude": {
-        "calls": 432,
-        "cost_usd": 0.17581624999999998,
+        "calls": 448,
+        "cost_usd": 0.18135574999999998,
         "details": {
-          "input_tokens": 424980,
-          "output_tokens": 55657
+          "input_tokens": 438748,
+          "output_tokens": 57335
+        }
+      },
+      "twilio": {
+        "calls": 1,
+        "cost_usd": 0.0079,
+        "details": {
+          "sms_count": 1
         }
       }
     },
-    "total_usd": 0.2014,
+    "total_usd": 0.2232,
     "month_estimate_usd": 9.4,
     "daily_budget": 1.61,
-    "budget_pct": 12.5
+    "budget_pct": 13.8
   },
   "queue": {
-    "size": 52,
-    "oldest_item_age_hours": 24.4
+    "size": 51,
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 7,
+  "stories_today": 8,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-03-18T12:31:03.375977+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: The death toll from Israeli strikes on central Bei"
+    },
+    {
+      "timestamp": "2026-03-18T12:31:06.369034+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-03-18-005: The death toll from Israeli strikes on central Bei"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +86,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-17/2026-03-17-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-17/2026-03-17-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
