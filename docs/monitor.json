@@ -1,31 +1,32 @@
 {
-  "timestamp": "2026-03-18T20:56:25.903109+00:00",
+  "timestamp": "2026-03-18T21:01:21.212596+00:00",
+  "web_refresh_at": "2026-03-18T21:01:21.212596+00:00",
   "uptime_start": "2026-03-16T19:13:34.668574+00:00",
-  "uptime_seconds": 178971,
+  "uptime_seconds": 179267,
   "availability_pct": 74.8,
   "cycle": {
-    "number": 100,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 101,
+    "duration_seconds": 76.1,
+    "headlines_scraped": 177,
+    "headlines_processed": 15,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 17,
-        "cost_usd": 0.052739999999999995,
+        "calls": 19,
+        "cost_usd": 0.05918999999999999,
         "details": {
-          "characters": 1758
+          "characters": 1973
         }
       },
       "claude": {
-        "calls": 717,
-        "cost_usd": 0.28332325000000036,
+        "calls": 740,
+        "cost_usd": 0.2911180000000004,
         "details": {
-          "input_tokens": 687143,
-          "output_tokens": 89230
+          "input_tokens": 706302,
+          "output_tokens": 91634
         }
       },
       "twilio": {
@@ -36,27 +37,22 @@
         }
       }
     },
-    "total_usd": 0.3519,
+    "total_usd": 0.3661,
     "month_estimate_usd": 9.4,
     "daily_budget": 1.61,
-    "budget_pct": 21.8
+    "budget_pct": 22.7
   },
   "queue": {
     "size": 59,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 13,
+  "stories_today": 14,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-03-18T20:01:20.038427+00:00",
-      "level": "WARNING",
-      "message": "Correction needed: The new verified fact identifies the killed Irania"
-    },
     {
       "timestamp": "2026-03-18T20:01:22.425642+00:00",
       "level": "WARNING",
@@ -66,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -85,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-17/2026-03-17-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-17/2026-03-17-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
