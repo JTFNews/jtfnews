@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-03-19T13:11:22.239320+00:00",
-  "uptime_start": "2026-03-19T12:47:14.044887+00:00",
-  "uptime_seconds": 1448,
-  "availability_pct": 75.2,
+  "timestamp": "2026-03-19T13:15:05.714545+00:00",
+  "web_refresh_at": "2026-03-19T13:15:05.714545+00:00",
+  "uptime_start": "2026-03-19T13:14:20.781841+00:00",
+  "uptime_seconds": 45,
+  "availability_pct": 75.1,
   "cycle": {
-    "number": 2,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1,
+    "duration_seconds": 42.1,
+    "headlines_scraped": 177,
+    "headlines_processed": 4,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,54 +22,42 @@
         }
       },
       "claude": {
-        "calls": 464,
-        "cost_usd": 0.18878325000000012,
+        "calls": 469,
+        "cost_usd": 0.1908197500000001,
         "details": {
-          "input_tokens": 459228,
-          "output_tokens": 59181
+          "input_tokens": 463814,
+          "output_tokens": 59893
         }
       }
     },
-    "total_usd": 0.205,
+    "total_usd": 0.207,
     "month_estimate_usd": 9.52,
     "daily_budget": 1.61,
-    "budget_pct": 12.7
+    "budget_pct": 12.8
   },
   "queue": {
-    "size": 77,
-    "oldest_item_age_hours": 24.2
+    "size": 76,
+    "oldest_item_age_hours": 23.7
   },
   "stories_today": 3,
   "sources": {
     "total": 22,
-    "successful": 19,
+    "successful": 21,
     "failed": [
-      "White House",
-      "Congress.gov",
       "World Health Organization"
     ]
   },
   "recent_errors": [
     {
-      "timestamp": "2026-03-19T12:47:42.553541+00:00",
+      "timestamp": "2026-03-19T13:14:50.733926+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
-    },
-    {
-      "timestamp": "2026-03-19T13:00:28.466991+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from White House: HTTPSConnectionPool(host='www.whitehouse.gov', port=443): Read timed out. (read timeout=15)"
-    },
-    {
-      "timestamp": "2026-03-19T13:00:44.845848+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 18,
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
@@ -87,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-18/2026-03-18-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-18/2026-03-18-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
