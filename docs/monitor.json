@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-03-19T23:55:53.171162+00:00",
+  "timestamp": "2026-03-20T00:09:05.498860+00:00",
+  "web_refresh_at": "2026-03-20T00:09:05.498860+00:00",
   "uptime_start": "2026-03-19T13:14:20.781841+00:00",
-  "uptime_seconds": 38492,
+  "uptime_seconds": 39285,
   "availability_pct": 75.6,
   "cycle": {
-    "number": 22,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 23,
+    "duration_seconds": 528.3,
+    "headlines_scraped": 177,
+    "headlines_processed": 177,
+    "stories_published": 1,
+    "stories_queued": 9
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 8,
-        "cost_usd": 0.02472,
+        "calls": 3,
+        "cost_usd": 0.011789999999999998,
         "details": {
-          "characters": 824
+          "characters": 393
         }
       },
       "claude": {
-        "calls": 737,
-        "cost_usd": 0.30071125000000026,
+        "calls": 201,
+        "cost_usd": 0.08576925,
         "details": {
-          "input_tokens": 729810,
-          "output_tokens": 94607
+          "input_tokens": 207022,
+          "output_tokens": 27211
         }
       }
     },
-    "total_usd": 0.3254,
+    "total_usd": 0.0976,
     "month_estimate_usd": 9.52,
     "daily_budget": 1.61,
-    "budget_pct": 20.2
+    "budget_pct": 6.0
   },
   "queue": {
-    "size": 64,
-    "oldest_item_age_hours": 24.4
+    "size": 70,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 6,
+  "stories_today": 1,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -48,23 +49,33 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-03-19T23:00:37.177761+00:00",
+      "timestamp": "2026-03-20T00:00:12.784963+00:00",
+      "level": "ERROR",
+      "message": "Failed to connect to OBS: [Errno 61] Connection refused"
+    },
+    {
+      "timestamp": "2026-03-20T00:00:12.785113+00:00",
+      "level": "ERROR",
+      "message": "Cannot connect to OBS WebSocket - skipping daily digest"
+    },
+    {
+      "timestamp": "2026-03-20T00:00:44.737921+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
   ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "stream_health": "offline",
+    "next_cycle_minutes": 20,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-03-18",
-    "next_digest_at": "2026-03-20T00:00:00+00:00",
-    "status": "success",
-    "upload_status": "success",
-    "error_message": "",
+    "last_date": "2026-03-19",
+    "next_digest_at": "2026-03-21T00:00:00+00:00",
+    "status": "skipped",
+    "upload_status": "pending",
+    "error_message": "Cannot connect to OBS WebSocket - skipping daily digest",
     "last_completed_at": "2026-03-19T00:06:13.534824+00:00",
     "story_count": 15,
     "duration_seconds": 162,
@@ -75,5 +86,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-18/2026-03-18-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-18/2026-03-18-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
