@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-03-20T00:55:59.231275+00:00",
+  "timestamp": "2026-03-20T01:00:53.869531+00:00",
+  "web_refresh_at": "2026-03-20T01:00:53.869531+00:00",
   "uptime_start": "2026-03-19T13:14:20.781841+00:00",
-  "uptime_seconds": 42098,
+  "uptime_seconds": 42393,
   "availability_pct": 75.6,
   "cycle": {
-    "number": 24,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 25,
+    "duration_seconds": 47.3,
+    "headlines_scraped": 177,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 208,
-        "cost_usd": 0.08881775,
+        "calls": 213,
+        "cost_usd": 0.09125174999999999,
         "details": {
-          "input_tokens": 214046,
-          "output_tokens": 28245
+          "input_tokens": 219757,
+          "output_tokens": 29050
         }
       }
     },
-    "total_usd": 0.1006,
+    "total_usd": 0.103,
     "month_estimate_usd": 9.52,
     "daily_budget": 1.61,
-    "budget_pct": 6.2
+    "budget_pct": 6.4
   },
   "queue": {
     "size": 56,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 1,
   "sources": {
@@ -46,27 +47,11 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-03-20T00:00:12.784963+00:00",
-      "level": "ERROR",
-      "message": "Failed to connect to OBS: [Errno 61] Connection refused"
-    },
-    {
-      "timestamp": "2026-03-20T00:00:12.785113+00:00",
-      "level": "ERROR",
-      "message": "Cannot connect to OBS WebSocket - skipping daily digest"
-    },
-    {
-      "timestamp": "2026-03-20T00:00:44.737921+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -85,5 +70,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-18/2026-03-18-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-18/2026-03-18-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
