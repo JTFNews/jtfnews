@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-03-22T03:25:50.434306+00:00",
+  "timestamp": "2026-03-22T03:30:47.283042+00:00",
+  "web_refresh_at": "2026-03-22T03:30:47.283042+00:00",
   "uptime_start": "2026-03-21T13:07:39.101265+00:00",
-  "uptime_seconds": 51491,
+  "uptime_seconds": 51788,
   "availability_pct": 71.8,
   "cycle": {
-    "number": 29,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 30,
+    "duration_seconds": 42.0,
+    "headlines_scraped": 177,
+    "headlines_processed": 4,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,29 +22,28 @@
         }
       },
       "claude": {
-        "calls": 222,
-        "cost_usd": 0.09431625000000003,
+        "calls": 227,
+        "cost_usd": 0.09633550000000002,
         "details": {
-          "input_tokens": 229430,
-          "output_tokens": 29567
+          "input_tokens": 234132,
+          "output_tokens": 30242
         }
       }
     },
-    "total_usd": 0.1088,
+    "total_usd": 0.1109,
     "month_estimate_usd": 9.55,
     "daily_budget": 1.61,
-    "budget_pct": 6.7
+    "budget_pct": 6.9
   },
   "queue": {
     "size": 27,
-    "oldest_item_age_hours": 23.4
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 3,
   "sources": {
     "total": 22,
-    "successful": 20,
+    "successful": 21,
     "failed": [
-      "UK Parliament",
       "World Health Organization"
     ]
   },
@@ -62,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -81,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-21/2026-03-21-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-21/2026-03-21-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
