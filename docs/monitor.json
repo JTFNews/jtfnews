@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-03-22T22:00:58.697900+00:00",
-  "web_refresh_at": "2026-03-22T22:00:58.697900+00:00",
-  "uptime_start": "2026-03-21T13:07:39.101265+00:00",
-  "uptime_seconds": 118400,
-  "availability_pct": 72.6,
+  "timestamp": "2026-03-22T22:15:45.785974+00:00",
+  "web_refresh_at": "2026-03-22T22:15:45.785974+00:00",
+  "uptime_start": "2026-03-22T22:15:07.497554+00:00",
+  "uptime_seconds": 38,
+  "availability_pct": 72.4,
   "cycle": {
-    "number": 67,
-    "duration_seconds": 53.5,
+    "number": 1,
+    "duration_seconds": 37.5,
     "headlines_scraped": 177,
-    "headlines_processed": 4,
-    "stories_published": 1,
-    "stories_queued": 0
+    "headlines_processed": 3,
+    "stories_published": 0,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -22,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 490,
-        "cost_usd": 0.19944274999999986,
+        "calls": 495,
+        "cost_usd": 0.20071474999999986,
         "details": {
-          "input_tokens": 482441,
-          "output_tokens": 63066
+          "input_tokens": 486019,
+          "output_tokens": 63368
         }
       }
     },
-    "total_usd": 0.2323,
-    "month_estimate_usd": 9.55,
+    "total_usd": 0.2335,
+    "month_estimate_usd": 9.48,
     "daily_budget": 1.61,
-    "budget_pct": 14.4
+    "budget_pct": 14.5
   },
   "queue": {
-    "size": 31,
-    "oldest_item_age_hours": 24.0
+    "size": 32,
+    "oldest_item_age_hours": 23.3
   },
   "stories_today": 9,
   "sources": {
@@ -47,11 +47,17 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-03-22T22:15:37.048920+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
