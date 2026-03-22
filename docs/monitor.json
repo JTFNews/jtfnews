@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-03-22T15:26:10.127836+00:00",
+  "timestamp": "2026-03-22T15:30:55.441395+00:00",
+  "web_refresh_at": "2026-03-22T15:30:55.441395+00:00",
   "uptime_start": "2026-03-21T13:07:39.101265+00:00",
-  "uptime_seconds": 94711,
+  "uptime_seconds": 94996,
   "availability_pct": 72.3,
   "cycle": {
-    "number": 53,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 54,
+    "duration_seconds": 50.4,
+    "headlines_scraped": 177,
+    "headlines_processed": 8,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 365,
-        "cost_usd": 0.148455,
+        "calls": 376,
+        "cost_usd": 0.15236000000000002,
         "details": {
-          "input_tokens": 361615,
-          "output_tokens": 46441
+          "input_tokens": 371125,
+          "output_tokens": 47663
         }
       }
     },
-    "total_usd": 0.1774,
+    "total_usd": 0.1813,
     "month_estimate_usd": 9.55,
     "daily_budget": 1.61,
-    "budget_pct": 11.0
+    "budget_pct": 11.2
   },
   "queue": {
-    "size": 26,
-    "oldest_item_age_hours": 21.9
+    "size": 28,
+    "oldest_item_age_hours": 22.0
   },
   "stories_today": 7,
   "sources": {
@@ -46,11 +47,17 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-03-22T15:30:31.345211+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -69,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-21/2026-03-21-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-21/2026-03-21-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
