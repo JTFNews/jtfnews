@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-03-22T02:55:57.098440+00:00",
+  "timestamp": "2026-03-22T03:00:45.085589+00:00",
+  "web_refresh_at": "2026-03-22T03:00:45.085589+00:00",
   "uptime_start": "2026-03-21T13:07:39.101265+00:00",
-  "uptime_seconds": 49698,
-  "availability_pct": 71.7,
+  "uptime_seconds": 49986,
+  "availability_pct": 71.8,
   "cycle": {
-    "number": 28,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 29,
+    "duration_seconds": 39.0,
+    "headlines_scraped": 167,
+    "headlines_processed": 3,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,40 @@
         }
       },
       "claude": {
-        "calls": 217,
-        "cost_usd": 0.09301575000000002,
+        "calls": 222,
+        "cost_usd": 0.09431625000000003,
         "details": {
-          "input_tokens": 225803,
-          "output_tokens": 29252
+          "input_tokens": 229430,
+          "output_tokens": 29567
         }
       }
     },
-    "total_usd": 0.1075,
+    "total_usd": 0.1088,
     "month_estimate_usd": 9.55,
     "daily_budget": 1.61,
     "budget_pct": 6.7
   },
   "queue": {
     "size": 27,
-    "oldest_item_age_hours": 22.9
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 3,
   "sources": {
     "total": 22,
-    "successful": 21,
+    "successful": 20,
     "failed": [
+      "UK Parliament",
       "World Health Organization"
     ]
   },
   "recent_errors": [
     {
-      "timestamp": "2026-03-22T02:00:34.009083+00:00",
+      "timestamp": "2026-03-22T03:00:27.364982+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.parliament.uk/business/news/"
+    },
+    {
+      "timestamp": "2026-03-22T03:00:34.187327+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
@@ -56,7 +63,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +82,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-21/2026-03-21-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-21/2026-03-21-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
