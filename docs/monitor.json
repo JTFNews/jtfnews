@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-03-23T07:00:49.838190+00:00",
-  "web_refresh_at": "2026-03-23T07:00:49.838190+00:00",
+  "timestamp": "2026-03-23T07:05:50.762261+00:00",
   "uptime_start": "2026-03-22T22:15:07.497554+00:00",
-  "uptime_seconds": 31542,
+  "uptime_seconds": 31843,
   "availability_pct": 72.7,
   "cycle": {
     "number": 19,
-    "duration_seconds": 44.8,
-    "headlines_scraped": 177,
-    "headlines_processed": 6,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 28,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 4,
   "sources": {
@@ -49,11 +48,6 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-03-23T06:01:04.132756+00:00",
-      "level": "WARNING",
-      "message": "GitHub feedback fetch error: HTTPSConnectionPool(host='api.github.com', port=443): Read timed out. (read timeout=30)"
-    },
-    {
       "timestamp": "2026-03-23T06:30:31.100120+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
@@ -62,7 +56,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
@@ -81,12 +75,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-22/2026-03-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-22/2026-03-22-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
