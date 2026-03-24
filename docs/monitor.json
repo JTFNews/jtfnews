@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-03-24T11:56:34.657555+00:00",
+  "timestamp": "2026-03-24T12:01:05.560291+00:00",
+  "web_refresh_at": "2026-03-24T12:01:05.560291+00:00",
   "uptime_start": "2026-03-22T22:15:07.497554+00:00",
-  "uptime_seconds": 135687,
-  "availability_pct": 73.8,
+  "uptime_seconds": 135958,
+  "availability_pct": 73.9,
   "cycle": {
-    "number": 76,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 77,
+    "duration_seconds": 60.4,
+    "headlines_scraped": 176,
+    "headlines_processed": 10,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 444,
-        "cost_usd": 0.17758525000000025,
+        "calls": 459,
+        "cost_usd": 0.18250575000000024,
         "details": {
-          "input_tokens": 430066,
-          "output_tokens": 56055
+          "input_tokens": 442248,
+          "output_tokens": 57555
         }
       }
     },
-    "total_usd": 0.2082,
+    "total_usd": 0.2131,
     "month_estimate_usd": 9.48,
     "daily_budget": 1.61,
-    "budget_pct": 12.9
+    "budget_pct": 13.2
   },
   "queue": {
-    "size": 45,
-    "oldest_item_age_hours": 24.4
+    "size": 47,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 8,
   "sources": {
@@ -56,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-23/2026-03-23-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-23/2026-03-23-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
