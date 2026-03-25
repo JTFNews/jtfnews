@@ -1,51 +1,45 @@
 {
-  "timestamp": "2026-03-24T23:56:15.646907+00:00",
+  "timestamp": "2026-03-25T00:13:35.770609+00:00",
+  "web_refresh_at": "2026-03-25T00:13:35.770609+00:00",
   "uptime_start": "2026-03-22T22:15:07.497554+00:00",
-  "uptime_seconds": 178868,
+  "uptime_seconds": 179908,
   "availability_pct": 74.2,
   "cycle": {
-    "number": 100,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 101,
+    "duration_seconds": 422.7,
+    "headlines_scraped": 176,
+    "headlines_processed": 176,
+    "stories_published": 1,
+    "stories_queued": 12
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 18,
-        "cost_usd": 0.056940000000000004,
+        "calls": 3,
+        "cost_usd": 0.01056,
         "details": {
-          "characters": 1898
+          "characters": 352
         }
       },
       "claude": {
-        "calls": 821,
-        "cost_usd": 0.31558750000000035,
+        "calls": 197,
+        "cost_usd": 0.08377924999999996,
         "details": {
-          "input_tokens": 768335,
-          "output_tokens": 98803
-        }
-      },
-      "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
-        "details": {
-          "sms_count": 1
+          "input_tokens": 204442,
+          "output_tokens": 26135
         }
       }
     },
-    "total_usd": 0.3804,
+    "total_usd": 0.0943,
     "month_estimate_usd": 9.48,
     "daily_budget": 1.61,
-    "budget_pct": 23.6
+    "budget_pct": 5.8
   },
   "queue": {
-    "size": 57,
-    "oldest_item_age_hours": 24.4
+    "size": 61,
+    "oldest_item_age_hours": 23.7
   },
-  "stories_today": 14,
+  "stories_today": 1,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -55,32 +49,44 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-03-24T23:00:32.951855+00:00",
+      "timestamp": "2026-03-25T00:05:52.555575+00:00",
+      "level": "WARNING",
+      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp": "2026-03-25T00:07:02.725500+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
   ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 16,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-03-23",
-    "next_digest_at": "2026-03-25T00:00:00+00:00",
+    "last_date": "2026-03-24",
+    "next_digest_at": "2026-03-26T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-03-24T00:05:20.635722+00:00",
-    "story_count": 13,
-    "duration_seconds": 146,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-03-23-daily-digest.mp4",
-    "youtube_id": "UNkrxO4rmMg",
-    "youtube_url": "https://youtube.com/watch?v=UNkrxO4rmMg",
-    "archive_org_id": "jtf-news-2026-03-23",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-23/2026-03-23-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-03-23/2026-03-23-daily-digest.mp4",
+    "last_completed_at": "2026-03-25T00:05:41.632149+00:00",
+    "story_count": 14,
+    "duration_seconds": 156,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-03-24-daily-digest.mp4",
+    "youtube_id": "F4F-2Y9WQvs",
+    "youtube_url": "https://youtube.com/watch?v=F4F-2Y9WQvs",
+    "archive_org_id": "jtf-news-2026-03-24",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-24/2026-03-24-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-03-24/2026-03-24-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
