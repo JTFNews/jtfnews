@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-03-26T10:26:27.679229+00:00",
+  "timestamp": "2026-03-26T10:31:11.772844+00:00",
+  "web_refresh_at": "2026-03-26T10:31:11.772844+00:00",
   "uptime_start": "2026-03-26T03:41:21.279621+00:00",
-  "uptime_seconds": 24306,
+  "uptime_seconds": 24590,
   "availability_pct": 65.2,
   "cycle": {
-    "number": 14,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 15,
+    "duration_seconds": 60.9,
+    "headlines_scraped": 175,
+    "headlines_processed": 11,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 365,
-        "cost_usd": 0.15179424999999988,
+        "calls": 380,
+        "cost_usd": 0.15703649999999983,
         "details": {
-          "input_tokens": 370642,
-          "output_tokens": 47307
+          "input_tokens": 383961,
+          "output_tokens": 48837
         }
       },
       "elevenlabs": {
@@ -29,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.1687,
+    "total_usd": 0.174,
     "month_estimate_usd": 9.48,
     "daily_budget": 1.61,
-    "budget_pct": 10.5
+    "budget_pct": 10.8
   },
   "queue": {
-    "size": 45,
-    "oldest_item_age_hours": 23.9
+    "size": 48,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 3,
   "sources": {
@@ -46,11 +47,17 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-03-26T10:30:36.826988+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -69,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-25/2026-03-25-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-25/2026-03-25-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
