@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-03-26T15:06:31.569479+00:00",
-  "uptime_start": "2026-03-26T03:41:21.279621+00:00",
-  "uptime_seconds": 41110,
-  "availability_pct": 65.4,
+  "timestamp": "2026-03-27T01:08:34.285005+00:00",
+  "web_refresh_at": "2026-03-27T01:08:34.285005+00:00",
+  "uptime_start": "2026-03-27T01:00:31.881142+00:00",
+  "uptime_seconds": 482,
+  "availability_pct": 59.0,
   "cycle": {
-    "number": 24,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1,
+    "duration_seconds": 478.7,
+    "headlines_scraped": 177,
+    "headlines_processed": 177,
+    "stories_published": 3,
+    "stories_queued": 24
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 493,
-        "cost_usd": 0.20102874999999967,
+        "calls": 211,
+        "cost_usd": 0.08668774999999988,
         "details": {
-          "input_tokens": 490800,
-          "output_tokens": 62663
+          "input_tokens": 210561,
+          "output_tokens": 27238
         }
       },
       "elevenlabs": {
-        "calls": 7,
-        "cost_usd": 0.021269999999999997,
+        "calls": 3,
+        "cost_usd": 0.00816,
         "details": {
-          "characters": 709
+          "characters": 272
         }
       }
     },
-    "total_usd": 0.2223,
-    "month_estimate_usd": 9.48,
+    "total_usd": 0.0948,
+    "month_estimate_usd": 9.4,
     "daily_budget": 1.61,
-    "budget_pct": 13.8
+    "budget_pct": 5.9
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 23.1
+    "size": 57,
+    "oldest_item_age_hours": 21.5
   },
-  "stories_today": 5,
+  "stories_today": 3,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -46,16 +47,22 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-03-27T01:01:03.375085+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 23,
+    "stream_health": "offline",
+    "next_cycle_minutes": 21,
     "degraded_services": []
   },
   "daily_digest": {
     "last_date": "2026-03-25",
-    "next_digest_at": "2026-03-27T00:00:00+00:00",
+    "next_digest_at": "2026-03-28T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
@@ -69,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-25/2026-03-25-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-25/2026-03-25-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
