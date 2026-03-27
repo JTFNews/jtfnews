@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-03-27T23:11:05.694900+00:00",
-  "uptime_start": "2026-03-27T21:12:14.905894+00:00",
-  "uptime_seconds": 7131,
+  "timestamp": "2026-03-27T23:14:04.473432+00:00",
+  "web_refresh_at": "2026-03-27T23:14:04.473432+00:00",
+  "uptime_start": "2026-03-27T23:13:30.144040+00:00",
+  "uptime_seconds": 34,
   "availability_pct": 57.9,
   "cycle": {
-    "number": 5,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1,
+    "duration_seconds": 33.5,
+    "headlines_scraped": 177,
+    "headlines_processed": 1,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 714,
-        "cost_usd": 0.2926259999999995,
+        "calls": 716,
+        "cost_usd": 0.2931497499999995,
         "details": {
-          "input_tokens": 706424,
-          "output_tokens": 92816
+          "input_tokens": 707574,
+          "output_tokens": 93005
         }
       },
       "elevenlabs": {
@@ -36,10 +37,10 @@
         }
       }
     },
-    "total_usd": 0.3472,
+    "total_usd": 0.3478,
     "month_estimate_usd": 9.4,
     "daily_budget": 1.61,
-    "budget_pct": 21.5
+    "budget_pct": 21.6
   },
   "queue": {
     "size": 57,
@@ -48,33 +49,22 @@
   "stories_today": 11,
   "sources": {
     "total": 22,
-    "successful": 20,
+    "successful": 21,
     "failed": [
-      "White House",
       "World Health Organization"
     ]
   },
   "recent_errors": [
     {
-      "timestamp": "2026-03-27T22:30:31.935922+00:00",
+      "timestamp": "2026-03-27T23:13:58.225132+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
-    },
-    {
-      "timestamp": "2026-03-27T23:00:17.082290+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
-    },
-    {
-      "timestamp": "2026-03-27T23:00:52.584141+00:00",
-      "level": "ERROR",
-      "message": "TTS error: headers: {'date': 'Fri, 27 Mar 2026 23:00:51 GMT', 'server': 'uvicorn', 'content-length': '173', 'content-type': 'application/json', 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-allow-methods': 'POST, PATCH, OPTIONS, DELETE, GET, PUT', 'access-control-max-age': '600', 'strict-transport-security': 'max-age=1800;', 'x-trace-id': '56e82c5d59ed1ca880b3d14374347f4c', 'x-region': 'us-central1', 'via': '1.1 google', 'alt-svc': 'h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000'}, status_code: 401, body: {'detail': {'status': 'quota_exceeded', 'message': 'This request exceeds your quota of 130870. You have 51 credits remaining, while 166 credits are required for this request.'}}"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 18,
+    "next_cycle_minutes": 15,
     "degraded_services": []
   },
   "daily_digest": {
@@ -93,5 +83,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
