@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-03-27T23:29:07.263320+00:00",
+  "timestamp": "2026-03-27T23:30:42.182330+00:00",
+  "web_refresh_at": "2026-03-27T23:30:42.182330+00:00",
   "uptime_start": "2026-03-27T23:13:30.144040+00:00",
-  "uptime_seconds": 937,
+  "uptime_seconds": 1032,
   "availability_pct": 57.9,
   "cycle": {
-    "number": 1,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 2,
+    "duration_seconds": 39.4,
+    "headlines_scraped": 167,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 716,
-        "cost_usd": 0.2931497499999995,
+        "calls": 719,
+        "cost_usd": 0.2940094999999994,
         "details": {
-          "input_tokens": 707574,
-          "output_tokens": 93005
+          "input_tokens": 709993,
+          "output_tokens": 93209
         }
       },
       "elevenlabs": {
@@ -36,7 +37,7 @@
         }
       }
     },
-    "total_usd": 0.3478,
+    "total_usd": 0.3486,
     "month_estimate_usd": 9.4,
     "daily_budget": 1.61,
     "budget_pct": 21.6
@@ -48,8 +49,9 @@
   "stories_today": 11,
   "sources": {
     "total": 22,
-    "successful": 21,
+    "successful": 20,
     "failed": [
+      "White House",
       "World Health Organization"
     ]
   },
@@ -58,12 +60,17 @@
       "timestamp": "2026-03-27T23:13:58.225132+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    },
+    {
+      "timestamp": "2026-03-27T23:30:16.762750+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/news/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 0,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -82,5 +89,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
