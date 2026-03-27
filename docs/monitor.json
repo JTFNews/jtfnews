@@ -1,44 +1,52 @@
 {
-  "timestamp": "2026-03-27T14:21:38.986030+00:00",
+  "timestamp": "2026-03-27T14:31:43.389877+00:00",
+  "web_refresh_at": "2026-03-27T14:31:43.389877+00:00",
   "uptime_start": "2026-03-27T12:46:56.556239+00:00",
-  "uptime_seconds": 5682,
+  "uptime_seconds": 6287,
   "availability_pct": 59.2,
   "cycle": {
-    "number": 4,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 5,
+    "duration_seconds": 82.3,
+    "headlines_scraped": 177,
+    "headlines_processed": 10,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 454,
-        "cost_usd": 0.19020474999999987,
+        "calls": 473,
+        "cost_usd": 0.19582874999999983,
         "details": {
-          "input_tokens": 457909,
-          "output_tokens": 60582
+          "input_tokens": 472030,
+          "output_tokens": 62257
         }
       },
       "elevenlabs": {
-        "calls": 11,
-        "cost_usd": 0.03459,
+        "calls": 12,
+        "cost_usd": 0.036300000000000006,
         "details": {
-          "characters": 1153
+          "characters": 1210
+        }
+      },
+      "twilio": {
+        "calls": 1,
+        "cost_usd": 0.0079,
+        "details": {
+          "sms_count": 1
         }
       }
     },
-    "total_usd": 0.2248,
+    "total_usd": 0.24,
     "month_estimate_usd": 9.4,
     "daily_budget": 1.61,
-    "budget_pct": 13.9
+    "budget_pct": 14.9
   },
   "queue": {
-    "size": 45,
-    "oldest_item_age_hours": 24.4
+    "size": 43,
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 7,
+  "stories_today": 8,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -51,12 +59,32 @@
       "timestamp": "2026-03-27T14:00:42.946884+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    },
+    {
+      "timestamp": "2026-03-27T14:26:54.003942+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 403"
+    },
+    {
+      "timestamp": "2026-03-27T14:31:27.312469+00:00",
+      "level": "WARNING",
+      "message": "Contradiction detected: Israel stating attacks will 'escalate and expand' directly contradicts Trump's statement that 'ceasefire talks are progressing positively.' Escalating military operations are fundamentally inconsistent with positive ceasefire progress, as ceasefire negotiations typically require de-escalation, not expansion of hostilities."
+    },
+    {
+      "timestamp": "2026-03-27T14:31:27.312625+00:00",
+      "level": "WARNING",
+      "message": "Contradiction blocked: Israel stated attacks on Iran will escal..."
+    },
+    {
+      "timestamp": "2026-03-27T14:31:27.748737+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: Contradiction: Israel stated attacks on Iran will escalate and ex"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 8,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +103,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
