@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-03-27T09:56:31.623267+00:00",
+  "timestamp": "2026-03-27T10:01:13.414818+00:00",
+  "web_refresh_at": "2026-03-27T10:01:13.414818+00:00",
   "uptime_start": "2026-03-27T01:36:39.990417+00:00",
-  "uptime_seconds": 29992,
+  "uptime_seconds": 30273,
   "availability_pct": 59.1,
   "cycle": {
-    "number": 17,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 18,
+    "duration_seconds": 66.1,
+    "headlines_scraped": 177,
+    "headlines_processed": 8,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 343,
-        "cost_usd": 0.1438237499999999,
+        "calls": 354,
+        "cost_usd": 0.14814599999999983,
         "details": {
-          "input_tokens": 346020,
-          "output_tokens": 45855
+          "input_tokens": 356474,
+          "output_tokens": 47222
         }
       },
       "elevenlabs": {
-        "calls": 9,
-        "cost_usd": 0.03084,
+        "calls": 10,
+        "cost_usd": 0.03234,
         "details": {
-          "characters": 1028
+          "characters": 1078
         }
       }
     },
-    "total_usd": 0.1747,
+    "total_usd": 0.1805,
     "month_estimate_usd": 9.4,
     "daily_budget": 1.61,
-    "budget_pct": 10.8
+    "budget_pct": 11.2
   },
   "queue": {
-    "size": 56,
-    "oldest_item_age_hours": 24.4
+    "size": 51,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 5,
+  "stories_today": 6,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -46,11 +47,17 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-03-27T10:00:36.419228+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -69,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
