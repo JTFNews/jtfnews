@@ -1,56 +1,49 @@
 {
-  "timestamp": "2026-03-27T23:55:48.906884+00:00",
+  "timestamp": "2026-03-28T00:12:57.964091+00:00",
+  "web_refresh_at": "2026-03-28T00:12:57.964091+00:00",
   "uptime_start": "2026-03-27T23:13:30.144040+00:00",
-  "uptime_seconds": 2539,
+  "uptime_seconds": 3568,
   "availability_pct": 57.9,
   "cycle": {
-    "number": 2,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 3,
+    "duration_seconds": 439.3,
+    "headlines_scraped": 177,
+    "headlines_processed": 177,
+    "stories_published": 3,
+    "stories_queued": 11
   },
   "api_costs": {
     "today": {
-      "claude": {
-        "calls": 719,
-        "cost_usd": 0.2940094999999994,
-        "details": {
-          "input_tokens": 709993,
-          "output_tokens": 93209
-        }
-      },
       "elevenlabs": {
-        "calls": 16,
-        "cost_usd": 0.04671000000000001,
+        "calls": 5,
+        "cost_usd": 0.015420000000000001,
         "details": {
-          "characters": 1557
+          "characters": 514
         }
       },
-      "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
+      "claude": {
+        "calls": 206,
+        "cost_usd": 0.08481850000000002,
         "details": {
-          "sms_count": 1
+          "input_tokens": 208234,
+          "output_tokens": 26208
         }
       }
     },
-    "total_usd": 0.3486,
+    "total_usd": 0.1002,
     "month_estimate_usd": 9.4,
     "daily_budget": 1.61,
-    "budget_pct": 21.6
+    "budget_pct": 6.2
   },
   "queue": {
-    "size": 57,
-    "oldest_item_age_hours": 22.9
+    "size": 65,
+    "oldest_item_age_hours": 23.2
   },
-  "stories_today": 11,
+  "stories_today": 3,
   "sources": {
     "total": 22,
-    "successful": 20,
+    "successful": 21,
     "failed": [
-      "White House",
       "World Health Organization"
     ]
   },
@@ -64,29 +57,41 @@
       "timestamp": "2026-03-27T23:30:16.762750+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/news/"
+    },
+    {
+      "timestamp": "2026-03-28T00:04:59.390498+00:00",
+      "level": "WARNING",
+      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
     }
   ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "stream_health": "offline",
+    "next_cycle_minutes": 17,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-03-26",
-    "next_digest_at": "2026-03-28T00:00:00+00:00",
+    "last_date": "2026-03-27",
+    "next_digest_at": "2026-03-29T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-03-27T01:18:48.044817+00:00",
-    "story_count": 5,
-    "duration_seconds": 73,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-03-26-daily-digest.mp4",
-    "youtube_id": "-jUoYp7I9Ys",
-    "youtube_url": "https://youtube.com/watch?v=-jUoYp7I9Ys",
-    "archive_org_id": "jtf-news-2026-03-26",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-03-26/2026-03-26-daily-digest.mp4",
+    "last_completed_at": "2026-03-28T00:04:48.211225+00:00",
+    "story_count": 11,
+    "duration_seconds": 121,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-03-27-daily-digest.mp4",
+    "youtube_id": "syNdeurrFHc",
+    "youtube_url": "https://youtube.com/watch?v=syNdeurrFHc",
+    "archive_org_id": "jtf-news-2026-03-27",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-27/2026-03-27-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-03-27/2026-03-27-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
