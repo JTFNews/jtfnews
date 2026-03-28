@@ -1,45 +1,45 @@
 {
-  "timestamp": "2026-03-28T00:12:57.964091+00:00",
-  "web_refresh_at": "2026-03-28T00:12:57.964091+00:00",
-  "uptime_start": "2026-03-27T23:13:30.144040+00:00",
-  "uptime_seconds": 3568,
-  "availability_pct": 57.9,
+  "timestamp": "2026-03-28T01:15:33.508673+00:00",
+  "web_refresh_at": "2026-03-28T01:15:33.508673+00:00",
+  "uptime_start": "2026-03-28T01:14:31.383260+00:00",
+  "uptime_seconds": 62,
+  "availability_pct": 57.3,
   "cycle": {
-    "number": 3,
-    "duration_seconds": 439.3,
+    "number": 1,
+    "duration_seconds": 61.4,
     "headlines_scraped": 177,
-    "headlines_processed": 177,
-    "stories_published": 3,
-    "stories_queued": 11
+    "headlines_processed": 11,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 5,
-        "cost_usd": 0.015420000000000001,
+        "calls": 6,
+        "cost_usd": 0.01686,
         "details": {
-          "characters": 514
+          "characters": 562
         }
       },
       "claude": {
-        "calls": 206,
-        "cost_usd": 0.08481850000000002,
+        "calls": 222,
+        "cost_usd": 0.09031250000000005,
         "details": {
-          "input_tokens": 208234,
-          "output_tokens": 26208
+          "input_tokens": 222050,
+          "output_tokens": 27840
         }
       }
     },
-    "total_usd": 0.1002,
-    "month_estimate_usd": 9.4,
+    "total_usd": 0.1072,
+    "month_estimate_usd": 9.66,
     "daily_budget": 1.61,
-    "budget_pct": 6.2
+    "budget_pct": 6.6
   },
   "queue": {
-    "size": 65,
-    "oldest_item_age_hours": 23.2
+    "size": 44,
+    "oldest_item_age_hours": 22.8
   },
-  "stories_today": 3,
+  "stories_today": 4,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -49,25 +49,15 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-03-27T23:13:58.225132+00:00",
+      "timestamp": "2026-03-28T01:14:59.845581+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
-    },
-    {
-      "timestamp": "2026-03-27T23:30:16.762750+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/news/"
-    },
-    {
-      "timestamp": "2026-03-28T00:04:59.390498+00:00",
-      "level": "WARNING",
-      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
     }
   ],
   "status": {
     "state": "running",
-    "stream_health": "offline",
-    "next_cycle_minutes": 17,
+    "stream_health": "online",
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
