@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-03-29T22:26:14.832939+00:00",
+  "timestamp": "2026-03-29T22:31:37.236008+00:00",
+  "web_refresh_at": "2026-03-29T22:31:37.236008+00:00",
   "uptime_start": "2026-03-28T01:14:31.383260+00:00",
-  "uptime_seconds": 162703,
+  "uptime_seconds": 163026,
   "availability_pct": 59.3,
   "cycle": {
-    "number": 91,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 92,
+    "duration_seconds": 87.6,
+    "headlines_scraped": 174,
+    "headlines_processed": 12,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,28 +22,29 @@
         }
       },
       "claude": {
-        "calls": 449,
-        "cost_usd": 0.19272174999999997,
+        "calls": 462,
+        "cost_usd": 0.19835474999999994,
         "details": {
-          "input_tokens": 466782,
-          "output_tokens": 60821
+          "input_tokens": 480674,
+          "output_tokens": 62549
         }
       }
     },
-    "total_usd": 0.2228,
+    "total_usd": 0.2285,
     "month_estimate_usd": 9.66,
     "daily_budget": 1.61,
-    "budget_pct": 13.8
+    "budget_pct": 14.2
   },
   "queue": {
     "size": 35,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 22.4
   },
   "stories_today": 4,
   "sources": {
     "total": 22,
-    "successful": 21,
+    "successful": 20,
     "failed": [
+      "Supreme Court",
       "World Health Organization"
     ]
   },
@@ -51,12 +53,17 @@
       "timestamp": "2026-03-29T22:00:40.352591+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    },
+    {
+      "timestamp": "2026-03-29T22:30:42.054443+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Supreme Court: HTTPSConnectionPool(host='www.supremecourt.gov', port=443): Read timed out. (read timeout=15)"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +82,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-28/2026-03-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-28/2026-03-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
