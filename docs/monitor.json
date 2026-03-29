@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-03-29T00:55:53.471915+00:00",
+  "timestamp": "2026-03-29T01:00:46.479221+00:00",
+  "web_refresh_at": "2026-03-29T01:00:46.479221+00:00",
   "uptime_start": "2026-03-28T01:14:31.383260+00:00",
-  "uptime_seconds": 85282,
+  "uptime_seconds": 85575,
   "availability_pct": 58.3,
   "cycle": {
-    "number": 48,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 49,
+    "duration_seconds": 40.2,
+    "headlines_scraped": 177,
+    "headlines_processed": 4,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 203,
-        "cost_usd": 0.08648274999999997,
+        "calls": 207,
+        "cost_usd": 0.08853649999999998,
         "details": {
-          "input_tokens": 212726,
-          "output_tokens": 26641
+          "input_tokens": 217311,
+          "output_tokens": 27367
         }
       }
     },
-    "total_usd": 0.0999,
+    "total_usd": 0.1019,
     "month_estimate_usd": 9.66,
     "daily_budget": 1.61,
-    "budget_pct": 6.2
+    "budget_pct": 6.3
   },
   "queue": {
     "size": 34,
-    "oldest_item_age_hours": 23.7
+    "oldest_item_age_hours": 23.8
   },
   "stories_today": 2,
   "sources": {
@@ -51,12 +52,17 @@
       "timestamp": "2026-03-29T00:05:02.141967+00:00",
       "level": "WARNING",
       "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp": "2026-03-29T01:00:31.945770+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-28/2026-03-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-28/2026-03-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
