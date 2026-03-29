@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-03-29T11:05:47.387530+00:00",
+  "timestamp": "2026-03-29T11:17:04.789630+00:00",
   "uptime_start": "2026-03-28T01:14:31.383260+00:00",
-  "uptime_seconds": 121876,
+  "uptime_seconds": 122553,
   "availability_pct": 58.9,
   "cycle": {
     "number": 69,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 28,
-    "oldest_item_age_hours": 21.1
+    "oldest_item_age_hours": 21.3
   },
   "stories_today": 2,
   "sources": {
@@ -51,12 +51,17 @@
       "timestamp": "2026-03-29T10:30:44.937954+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    },
+    {
+      "timestamp": "2026-03-29T11:12:04.790111+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by NewConnectionError(\"HTTPSConnection(host='api.github.com', port=443): Failed to establish a new connection: [Errno 60] Operation timed out\"))"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 24,
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
