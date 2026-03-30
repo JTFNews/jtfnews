@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-03-30T12:30:54.733202+00:00",
-  "web_refresh_at": "2026-03-30T12:30:54.733202+00:00",
+  "timestamp": "2026-03-30T12:41:48.693128+00:00",
   "uptime_start": "2026-03-28T01:14:31.383260+00:00",
-  "uptime_seconds": 213383,
+  "uptime_seconds": 214037,
   "availability_pct": 59.8,
   "cycle": {
     "number": 120,
-    "duration_seconds": 47.8,
-    "headlines_scraped": 176,
-    "headlines_processed": 7,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 42,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.7
   },
   "stories_today": 4,
   "sources": {
@@ -52,12 +51,17 @@
       "timestamp": "2026-03-30T12:30:34.235100+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    },
+    {
+      "timestamp": "2026-03-30T12:36:48.691253+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 19,
     "degraded_services": []
   },
   "daily_digest": {
@@ -76,12 +80,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-29/2026-03-29-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-29/2026-03-29-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
