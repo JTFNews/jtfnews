@@ -1,44 +1,52 @@
 {
-  "timestamp": "2026-03-30T18:26:21.906342+00:00",
+  "timestamp": "2026-03-30T18:31:34.651310+00:00",
+  "web_refresh_at": "2026-03-30T18:31:34.651310+00:00",
   "uptime_start": "2026-03-28T01:14:31.383260+00:00",
-  "uptime_seconds": 234711,
+  "uptime_seconds": 235023,
   "availability_pct": 60.0,
   "cycle": {
-    "number": 131,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 132,
+    "duration_seconds": 89.5,
+    "headlines_scraped": 177,
+    "headlines_processed": 17,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 9,
-        "cost_usd": 0.02931,
+        "calls": 11,
+        "cost_usd": 0.0402,
         "details": {
-          "characters": 977
+          "characters": 1340
         }
       },
       "claude": {
-        "calls": 602,
-        "cost_usd": 0.2410292500000002,
+        "calls": 624,
+        "cost_usd": 0.25003100000000017,
         "details": {
-          "input_tokens": 584967,
-          "output_tokens": 75830
+          "input_tokens": 606074,
+          "output_tokens": 78810
+        }
+      },
+      "twilio": {
+        "calls": 1,
+        "cost_usd": 0.0079,
+        "details": {
+          "sms_count": 1
         }
       }
     },
-    "total_usd": 0.2703,
+    "total_usd": 0.2981,
     "month_estimate_usd": 9.66,
     "daily_budget": 1.61,
-    "budget_pct": 16.8
+    "budget_pct": 18.5
   },
   "queue": {
-    "size": 51,
-    "oldest_item_age_hours": 24.4
+    "size": 49,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 7,
+  "stories_today": 8,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -51,12 +59,22 @@
       "timestamp": "2026-03-30T18:00:34.617133+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    },
+    {
+      "timestamp": "2026-03-30T18:30:56.575026+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: The new verified fact states three UN peacekeepers"
+    },
+    {
+      "timestamp": "2026-03-30T18:30:59.954212+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-03-30-006: The new verified fact states three UN peacekeepers"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +93,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-29/2026-03-29-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-29/2026-03-29-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
