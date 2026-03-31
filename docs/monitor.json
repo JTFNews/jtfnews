@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-03-31T19:26:16.810441+00:00",
+  "timestamp": "2026-03-31T19:31:17.246064+00:00",
+  "web_refresh_at": "2026-03-31T19:31:17.246064+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 10123,
+  "uptime_seconds": 10424,
   "availability_pct": 60.7,
   "cycle": {
-    "number": 6,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 7,
+    "duration_seconds": 70.8,
+    "headlines_scraped": 176,
+    "headlines_processed": 17,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 4
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 607,
-        "cost_usd": 0.25879674999999996,
+        "calls": 628,
+        "cost_usd": 0.26717799999999997,
         "details": {
-          "input_tokens": 624207,
-          "output_tokens": 82196
+          "input_tokens": 645202,
+          "output_tokens": 84702
         }
       }
     },
-    "total_usd": 0.2873,
+    "total_usd": 0.2957,
     "month_estimate_usd": 9.76,
     "daily_budget": 1.61,
-    "budget_pct": 17.8
+    "budget_pct": 18.3
   },
   "queue": {
-    "size": 47,
-    "oldest_item_age_hours": 24.4
+    "size": 49,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 5,
   "sources": {
@@ -51,12 +52,17 @@
       "timestamp": "2026-03-31T18:31:34.077834+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from ProPublica: HTTPSConnectionPool(host='www.propublica.org', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.propublica.org', port=443): Failed to resolve 'www.propublica.org' ([Errno 8] nodename nor servname provided, or not known)\"))"
+    },
+    {
+      "timestamp": "2026-03-31T19:30:34.638166+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-30/2026-03-30-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-30/2026-03-30-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
