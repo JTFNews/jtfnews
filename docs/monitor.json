@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-03-31T22:56:13.999774+00:00",
+  "timestamp": "2026-03-31T23:01:02.645023+00:00",
+  "web_refresh_at": "2026-03-31T23:01:02.645023+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 22720,
+  "uptime_seconds": 23009,
   "availability_pct": 60.9,
   "cycle": {
-    "number": 13,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 14,
+    "duration_seconds": 56.0,
+    "headlines_scraped": 177,
+    "headlines_processed": 7,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 733,
-        "cost_usd": 0.30741899999999994,
+        "calls": 741,
+        "cost_usd": 0.31113074999999984,
         "details": {
-          "input_tokens": 742256,
-          "output_tokens": 97484
+          "input_tokens": 751193,
+          "output_tokens": 98666
         }
       }
     },
-    "total_usd": 0.3439,
+    "total_usd": 0.3476,
     "month_estimate_usd": 9.76,
     "daily_budget": 1.61,
-    "budget_pct": 21.3
+    "budget_pct": 21.6
   },
   "queue": {
-    "size": 45,
-    "oldest_item_age_hours": 24.4
+    "size": 44,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 8,
   "sources": {
@@ -46,17 +47,11 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-03-31T22:00:38.601206+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +70,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-30/2026-03-30-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-30/2026-03-30-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
