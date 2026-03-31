@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-03-31T18:25:55.582288+00:00",
+  "timestamp": "2026-03-31T18:42:55.325218+00:00",
+  "web_refresh_at": "2026-03-31T18:42:55.325218+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 6502,
+  "uptime_seconds": 7522,
   "availability_pct": 60.7,
   "cycle": {
-    "number": 4,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 5,
+    "duration_seconds": 770.0,
+    "headlines_scraped": 160,
+    "headlines_processed": 7,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,29 +22,30 @@
         }
       },
       "claude": {
-        "calls": 580,
-        "cost_usd": 0.24691125000000005,
+        "calls": 589,
+        "cost_usd": 0.25038900000000003,
         "details": {
-          "input_tokens": 595390,
-          "output_tokens": 78451
+          "input_tokens": 603671,
+          "output_tokens": 79577
         }
       }
     },
-    "total_usd": 0.2754,
+    "total_usd": 0.2789,
     "month_estimate_usd": 9.76,
     "daily_budget": 1.61,
-    "budget_pct": 17.1
+    "budget_pct": 17.3
   },
   "queue": {
-    "size": 49,
-    "oldest_item_age_hours": 24.4
+    "size": 47,
+    "oldest_item_age_hours": 23.7
   },
   "stories_today": 5,
   "sources": {
     "total": 22,
-    "successful": 21,
+    "successful": 20,
     "failed": [
-      "World Health Organization"
+      "World Health Organization",
+      "ProPublica"
     ]
   },
   "recent_errors": [
@@ -51,12 +53,17 @@
       "timestamp": "2026-03-31T18:00:32.542294+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    },
+    {
+      "timestamp": "2026-03-31T18:31:34.077834+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from ProPublica: HTTPSConnectionPool(host='www.propublica.org', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.propublica.org', port=443): Failed to resolve 'www.propublica.org' ([Errno 8] nodename nor servname provided, or not known)\"))"
     }
   ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "stream_health": "offline",
+    "next_cycle_minutes": 17,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +82,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-30/2026-03-30-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-30/2026-03-30-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
