@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-03-31T03:55:54.115905+00:00",
+  "timestamp": "2026-03-31T04:01:11.385219+00:00",
+  "web_refresh_at": "2026-03-31T04:01:11.385219+00:00",
   "uptime_start": "2026-03-28T01:14:31.383260+00:00",
-  "uptime_seconds": 268883,
+  "uptime_seconds": 269200,
   "availability_pct": 60.3,
   "cycle": {
-    "number": 150,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 151,
+    "duration_seconds": 65.8,
+    "headlines_scraped": 177,
+    "headlines_processed": 15,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 251,
-        "cost_usd": 0.10354024999999999,
+        "calls": 267,
+        "cost_usd": 0.11103674999999996,
         "details": {
-          "input_tokens": 252001,
-          "output_tokens": 32432
+          "input_tokens": 269322,
+          "output_tokens": 34965
         }
       }
     },
-    "total_usd": 0.1182,
+    "total_usd": 0.1256,
     "month_estimate_usd": 9.66,
     "daily_budget": 1.61,
-    "budget_pct": 7.3
+    "budget_pct": 7.8
   },
   "queue": {
-    "size": 59,
-    "oldest_item_age_hours": 22.4
+    "size": 60,
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 3,
   "sources": {
@@ -48,7 +49,7 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-03-31T03:00:30.541204+00:00",
+      "timestamp": "2026-03-31T04:00:31.734433+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
@@ -56,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-30/2026-03-30-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-30/2026-03-30-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
