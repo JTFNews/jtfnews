@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-04-01T01:01:21.333044+00:00",
-  "web_refresh_at": "2026-04-01T01:01:21.333044+00:00",
+  "timestamp": "2026-04-01T01:06:22.448179+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 30228,
+  "uptime_seconds": 30529,
   "availability_pct": 100.0,
   "cycle": {
     "number": 18,
-    "duration_seconds": 76.2,
-    "headlines_scraped": 177,
-    "headlines_processed": 10,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 45,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 3,
   "sources": {
@@ -49,11 +48,6 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-01T00:04:13.467702+00:00",
-      "level": "WARNING",
-      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
-    },
-    {
       "timestamp": "2026-04-01T01:00:35.936149+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
@@ -62,7 +56,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -81,12 +75,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-03-31/2026-03-31-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-03-31/2026-03-31-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
