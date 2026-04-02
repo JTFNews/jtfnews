@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-04-02T12:56:00.419351+00:00",
+  "timestamp": "2026-04-02T13:01:03.043839+00:00",
+  "web_refresh_at": "2026-04-02T13:01:03.043839+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 159507,
+  "uptime_seconds": 159809,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 89,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 90,
+    "duration_seconds": 56.6,
+    "headlines_scraped": 176,
+    "headlines_processed": 9,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 489,
-        "cost_usd": 0.19200400000000023,
+        "calls": 499,
+        "cost_usd": 0.19645650000000023,
         "details": {
-          "input_tokens": 468236,
-          "output_tokens": 59956
+          "input_tokens": 478651,
+          "output_tokens": 61435
         }
       }
     },
-    "total_usd": 0.2176,
+    "total_usd": 0.2221,
     "month_estimate_usd": 9.45,
     "daily_budget": 1.67,
-    "budget_pct": 13.1
+    "budget_pct": 13.3
   },
   "queue": {
     "size": 58,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 6,
   "sources": {
@@ -46,11 +47,17 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-04-02T13:00:37.813016+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -69,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-01/2026-04-01-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-01/2026-04-01-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
