@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-04-04T17:25:41.749122+00:00",
+  "timestamp": "2026-04-04T17:30:40.895547+00:00",
+  "web_refresh_at": "2026-04-04T17:30:40.895547+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 348488,
+  "uptime_seconds": 348787,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 194,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 195,
+    "duration_seconds": 35.9,
+    "headlines_scraped": 177,
+    "headlines_processed": 2,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,11 +22,11 @@
         }
       },
       "claude": {
-        "calls": 471,
-        "cost_usd": 0.17883474999999993,
+        "calls": 474,
+        "cost_usd": 0.17974424999999994,
         "details": {
-          "input_tokens": 438609,
-          "output_tokens": 55346
+          "input_tokens": 441077,
+          "output_tokens": 55580
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.2373,
+    "total_usd": 0.2382,
     "month_estimate_usd": 9.45,
     "daily_budget": 1.67,
-    "budget_pct": 14.2
+    "budget_pct": 14.3
   },
   "queue": {
-    "size": 29,
-    "oldest_item_age_hours": 22.9
+    "size": 30,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 11,
   "sources": {
@@ -63,12 +64,17 @@
       "timestamp": "2026-04-04T16:31:05.134088+00:00",
       "level": "WARNING",
       "message": "Alert sent: CORRECTION issued for 2026-04-04-001: The new verified fact states a rescue team is acti"
+    },
+    {
+      "timestamp": "2026-04-04T17:30:32.350236+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -87,5 +93,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-03/2026-04-03-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-03/2026-04-03-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
