@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-04-04T22:55:50.725461+00:00",
+  "timestamp": "2026-04-04T23:00:48.756773+00:00",
+  "web_refresh_at": "2026-04-04T23:00:48.756773+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 368297,
+  "uptime_seconds": 368595,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 205,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 206,
+    "duration_seconds": 44.2,
+    "headlines_scraped": 177,
+    "headlines_processed": 6,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,11 +22,11 @@
         }
       },
       "claude": {
-        "calls": 545,
-        "cost_usd": 0.2106377499999999,
+        "calls": 553,
+        "cost_usd": 0.2133944999999999,
         "details": {
-          "input_tokens": 516466,
-          "output_tokens": 65217
+          "input_tokens": 523643,
+          "output_tokens": 65987
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.2691,
+    "total_usd": 0.2718,
     "month_estimate_usd": 9.45,
     "daily_budget": 1.67,
-    "budget_pct": 16.1
+    "budget_pct": 16.3
   },
   "queue": {
     "size": 34,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 22.9
   },
   "stories_today": 11,
   "sources": {
@@ -63,7 +64,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -82,5 +83,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-03/2026-04-03-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-03/2026-04-03-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
