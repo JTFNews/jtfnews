@@ -1,51 +1,52 @@
 {
-  "timestamp": "2026-04-04T16:26:02.953910+00:00",
+  "timestamp": "2026-04-04T16:31:11.825404+00:00",
+  "web_refresh_at": "2026-04-04T16:31:11.825404+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 344909,
+  "uptime_seconds": 345218,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 192,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 193,
+    "duration_seconds": 66.5,
+    "headlines_scraped": 177,
+    "headlines_processed": 7,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 13,
-        "cost_usd": 0.03483,
+        "calls": 15,
+        "cost_usd": 0.04263,
         "details": {
-          "characters": 1161
+          "characters": 1421
         }
       },
       "claude": {
-        "calls": 457,
-        "cost_usd": 0.17465249999999993,
+        "calls": 469,
+        "cost_usd": 0.17841924999999995,
         "details": {
-          "input_tokens": 428120,
-          "output_tokens": 54098
+          "input_tokens": 437312,
+          "output_tokens": 55273
         }
       },
       "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
+        "calls": 2,
+        "cost_usd": 0.0158,
         "details": {
-          "sms_count": 1
+          "sms_count": 2
         }
       }
     },
-    "total_usd": 0.2174,
+    "total_usd": 0.2368,
     "month_estimate_usd": 9.45,
     "daily_budget": 1.67,
-    "budget_pct": 13.0
+    "budget_pct": 14.2
   },
   "queue": {
-    "size": 28,
-    "oldest_item_age_hours": 21.9
+    "size": 29,
+    "oldest_item_age_hours": 22.0
   },
-  "stories_today": 10,
+  "stories_today": 11,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -58,12 +59,22 @@
       "timestamp": "2026-04-04T16:00:33.375514+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    },
+    {
+      "timestamp": "2026-04-04T16:31:02.604129+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: The new verified fact states a rescue team is acti"
+    },
+    {
+      "timestamp": "2026-04-04T16:31:05.134088+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-04-04-001: The new verified fact states a rescue team is acti"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -82,5 +93,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-03/2026-04-03-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-03/2026-04-03-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
