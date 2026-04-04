@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-04-04T11:55:47.200004+00:00",
+  "timestamp": "2026-04-04T12:00:40.712098+00:00",
+  "web_refresh_at": "2026-04-04T12:00:40.712098+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 328693,
+  "uptime_seconds": 328987,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 183,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 184,
+    "duration_seconds": 35.6,
+    "headlines_scraped": 177,
+    "headlines_processed": 3,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 396,
-        "cost_usd": 0.1532745,
+        "calls": 403,
+        "cost_usd": 0.154617,
         "details": {
-          "input_tokens": 374658,
-          "output_tokens": 47688
+          "input_tokens": 378733,
+          "output_tokens": 47947
         }
       }
     },
-    "total_usd": 0.1806,
+    "total_usd": 0.1819,
     "month_estimate_usd": 9.45,
     "daily_budget": 1.67,
-    "budget_pct": 10.8
+    "budget_pct": 10.9
   },
   "queue": {
-    "size": 29,
-    "oldest_item_age_hours": 24.4
+    "size": 30,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 9,
   "sources": {
@@ -48,7 +49,7 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-04T11:00:31.145234+00:00",
+      "timestamp": "2026-04-04T12:00:31.146707+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
@@ -56,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-03/2026-04-03-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-03/2026-04-03-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
