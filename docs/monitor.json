@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-04-05T13:25:55.035153+00:00",
+  "timestamp": "2026-04-05T13:30:45.796978+00:00",
+  "web_refresh_at": "2026-04-05T13:30:45.796978+00:00",
   "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 420501,
+  "uptime_seconds": 420792,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 234,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 235,
+    "duration_seconds": 40.7,
+    "headlines_scraped": 177,
+    "headlines_processed": 4,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 359,
-        "cost_usd": 0.14092300000000008,
+        "calls": 363,
+        "cost_usd": 0.1428967500000001,
         "details": {
-          "input_tokens": 347162,
-          "output_tokens": 43306
+          "input_tokens": 351732,
+          "output_tokens": 43971
         }
       }
     },
-    "total_usd": 0.1678,
+    "total_usd": 0.1697,
     "month_estimate_usd": 9.45,
     "daily_budget": 1.67,
-    "budget_pct": 10.1
+    "budget_pct": 10.2
   },
   "queue": {
-    "size": 35,
-    "oldest_item_age_hours": 24.4
+    "size": 33,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 3,
   "sources": {
@@ -48,7 +49,7 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-05T12:30:31.659928+00:00",
+      "timestamp": "2026-04-05T13:30:32.314840+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
@@ -56,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-04/2026-04-04-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-04/2026-04-04-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
