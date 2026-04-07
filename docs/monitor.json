@@ -1,45 +1,52 @@
 {
-  "timestamp": "2026-04-07T15:01:21.240114+00:00",
-  "web_refresh_at": "2026-04-07T15:01:21.240114+00:00",
-  "uptime_start": "2026-03-31T16:37:33.735053+00:00",
-  "uptime_seconds": 599028,
-  "availability_pct": 100.0,
+  "timestamp": "2026-04-07T23:18:39.237428+00:00",
+  "web_refresh_at": "2026-04-07T23:18:39.237428+00:00",
+  "uptime_start": "2026-04-07T23:10:18.492973+00:00",
+  "uptime_seconds": 501,
+  "availability_pct": 72.0,
   "cycle": {
-    "number": 334,
-    "duration_seconds": 74.8,
+    "number": 1,
+    "duration_seconds": 455.0,
     "headlines_scraped": 177,
-    "headlines_processed": 15,
-    "stories_published": 1,
-    "stories_queued": 2
+    "headlines_processed": 93,
+    "stories_published": 2,
+    "stories_queued": 11
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 18,
-        "cost_usd": 0.04548000000000001,
+        "calls": 21,
+        "cost_usd": 0.05433000000000001,
         "details": {
-          "characters": 1516
+          "characters": 1811
         }
       },
       "claude": {
-        "calls": 537,
-        "cost_usd": 0.20528849999999998,
+        "calls": 669,
+        "cost_usd": 0.25397275,
         "details": {
-          "input_tokens": 501639,
-          "output_tokens": 63903
+          "input_tokens": 618531,
+          "output_tokens": 79472
+        }
+      },
+      "twilio": {
+        "calls": 1,
+        "cost_usd": 0.0079,
+        "details": {
+          "sms_count": 1
         }
       }
     },
-    "total_usd": 0.2508,
-    "month_estimate_usd": 9.45,
+    "total_usd": 0.3162,
+    "month_estimate_usd": 9.41,
     "daily_budget": 1.67,
-    "budget_pct": 15.0
+    "budget_pct": 19.0
   },
   "queue": {
-    "size": 44,
-    "oldest_item_age_hours": 23.5
+    "size": 43,
+    "oldest_item_age_hours": 23.8
   },
-  "stories_today": 16,
+  "stories_today": 18,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -47,11 +54,52 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-04-07T23:10:18.498004+00:00",
+      "level": "WARNING",
+      "message": "============================================================"
+    },
+    {
+      "timestamp": "2026-04-07T23:10:18.498117+00:00",
+      "level": "WARNING",
+      "message": "OWNERSHIP AUDIT REQUIRED - Q2 2026"
+    },
+    {
+      "timestamp": "2026-04-07T23:10:18.498223+00:00",
+      "level": "WARNING",
+      "message": "============================================================"
+    },
+    {
+      "timestamp": "2026-04-07T23:10:18.498327+00:00",
+      "level": "WARNING",
+      "message": "Quarterly ownership verification has not been completed."
+    },
+    {
+      "timestamp": "2026-04-07T23:10:18.498429+00:00",
+      "level": "WARNING",
+      "message": "This is required by the JTF whitepaper for transparency."
+    },
+    {
+      "timestamp": "2026-04-07T23:10:18.498530+00:00",
+      "level": "WARNING",
+      "message": ""
+    },
+    {
+      "timestamp": "2026-04-07T23:10:20.608350+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: JTF: Ownership audit required for Q2 2026. Starting audit..."
+    },
+    {
+      "timestamp": "2026-04-07T23:11:42.663228+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "stream_health": "offline",
+    "next_cycle_minutes": 11,
     "degraded_services": []
   },
   "daily_digest": {
