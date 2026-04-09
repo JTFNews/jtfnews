@@ -1,68 +1,68 @@
 {
-  "timestamp": "2026-04-09T11:25:58.484014+00:00",
+  "timestamp": "2026-04-09T11:31:19.347036+00:00",
+  "web_refresh_at": "2026-04-09T11:31:19.347036+00:00",
   "uptime_start": "2026-04-08T23:29:55.164415+00:00",
-  "uptime_seconds": 42963,
+  "uptime_seconds": 43284,
   "availability_pct": 37.9,
   "cycle": {
-    "number": 24,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 25,
+    "duration_seconds": 72.5,
+    "headlines_scraped": 177,
+    "headlines_processed": 14,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 5,
-        "cost_usd": 0.01701,
+        "calls": 6,
+        "cost_usd": 0.018930000000000002,
         "details": {
-          "characters": 567
+          "characters": 631
         }
       },
       "claude": {
-        "calls": 405,
-        "cost_usd": 0.16839650000000012,
+        "calls": 423,
+        "cost_usd": 0.17544275000000012,
         "details": {
-          "input_tokens": 408746,
-          "output_tokens": 52968
+          "input_tokens": 426216,
+          "output_tokens": 55111
         }
       }
     },
-    "total_usd": 0.1854,
+    "total_usd": 0.1944,
     "month_estimate_usd": 9.43,
     "daily_budget": 1.67,
-    "budget_pct": 11.1
+    "budget_pct": 11.7
   },
   "queue": {
-    "size": 51,
-    "oldest_item_age_hours": 13.5
+    "size": 52,
+    "oldest_item_age_hours": 13.6
   },
-  "stories_today": 3,
+  "stories_today": 4,
   "sources": {
     "total": 22,
-    "successful": 20,
+    "successful": 21,
     "failed": [
-      "White House",
       "World Health Organization"
     ]
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-09T10:30:34.433334+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
-    },
-    {
       "timestamp": "2026-04-09T11:00:19.101052+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
+    },
+    {
+      "timestamp": "2026-04-09T11:30:34.660329+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -81,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-08/2026-04-08-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-08/2026-04-08-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
