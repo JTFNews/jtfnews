@@ -6791,6 +6791,63 @@ def archive_daily_log():
     update_archive_index()
 
 
+def archive_specific_date(date: str) -> bool:
+    """Archive a specific date's daily log — recovery helper for missing archives.
+
+    Mirrors archive_daily_log() but targets an arbitrary date instead of
+    "yesterday". Does NOT delete the local raw log file (non-destructive,
+    unlike archive_daily_log). Pushes the gzipped archive to GitHub Pages
+    via the existing push_to_ghpages helper, then updates the archive index.
+
+    Used to recover missing archive files like 2026-04-07 (where an internet
+    outage prevented the original archive run). The user invokes this once
+    to heal a specific date's gap.
+
+    Args:
+        date: Date string in YYYY-MM-DD format.
+
+    Returns:
+        True on success. False if the raw log is missing, the docs folder is
+        absent, gzipping fails, or the GitHub push fails.
+    """
+    log_file = DATA_DIR / f"{date}.txt"
+    if not log_file.exists():
+        log.error(f"archive_specific_date: no raw log at {log_file}")
+        return False
+
+    docs_dir = BASE_DIR / "docs"
+    if not docs_dir.exists():
+        log.error("archive_specific_date: docs folder not found")
+        return False
+
+    year = date[:4]
+    archive_dir = docs_dir / "archive" / year
+    archive_dir.mkdir(parents=True, exist_ok=True)
+    archive_file = archive_dir / f"{date}.txt.gz"
+
+    try:
+        with open(log_file, 'rb') as f_in:
+            with gzip.open(archive_file, 'wb') as f_out:
+                shutil.copyfileobj(f_in, f_out)
+        log.info(f"archive_specific_date: gzipped {log_file} -> {archive_file}")
+    except Exception as e:
+        log.error(f"archive_specific_date: gzip failed for {date}: {e}")
+        return False
+
+    try:
+        push_to_ghpages(
+            [(archive_file, f"archive/{year}/{date}.txt.gz")],
+            f"Recover archive for {date}"
+        )
+        log.info(f"archive_specific_date: pushed {date}.txt.gz to GitHub")
+    except Exception as e:
+        log.error(f"archive_specific_date: push failed for {date}: {e}")
+        return False
+
+    update_archive_index()
+    return True
+
+
 def update_archive_index():
     """Update archive/index.json with list of available archive dates."""
     archive_dir = BASE_DIR / "docs" / "archive"
