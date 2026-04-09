@@ -1,3 +1,110 @@
+# Ralph Agent Instructions
+
+You are an autonomous professional coding agent working on JTF News — an automated daily news service that reports only verified facts from two or more unrelated sources. This section is the Ralph contract: the per-iteration loop reads it before every story. The rest of this CLAUDE.md (starting at "# CLAUDE.md - JTF News" below) is the project spec and provides context.
+
+## HARD CONSTRAINT: NO PYTHON EXECUTION
+
+**You cannot run Python. Ever. No exceptions.**
+
+This includes every form of Python invocation:
+- `python main.py`, `python3 main.py`
+- `./start.sh`, `./digest.sh` (both activate venv and run main.py)
+- `python -c "..."`, `python3 -c "..."`
+- `python -m py_compile`, `python -m anything`
+- `pip install`, `pip list`, `pip anything`
+- `pytest`, any test runner
+- Any script that activates `venv/bin/activate` and then runs Python
+
+**Why:** JTF News's Python scripts have real-world side effects that must stay supervised — Claude API calls (costs money per run), YouTube uploads (public, irreversible), archive.org uploads (public, permanent), SMS alerts via Twilio, ElevenLabs TTS generation (costs money, writes files), GitHub Pages pushes. Running these unsupervised in a Ralph loop is unacceptable. Only the user runs Python, via a supervised Jump Desktop session after the sprint completes.
+
+**Your acceptance-criteria verification is STATIC only:**
+- `grep -n 'def function_name' main.py` — function existence
+- `grep -c 'pattern' file` — occurrence counts
+- `test -f path` — file existence
+- `bash -n script.sh` — shell syntax check (safe, no execution)
+- `jq '.stories | length' prd.json` — JSON structure checks
+- `git log --oneline -1 main.py` — commit history
+- `git diff --stat HEAD~1 HEAD` — change summary
+- Reading file content and reasoning about it
+
+**Forbidden verification:**
+- `python -c "from main import ..."` — NO
+- `python main.py --any-flag` — NO
+- `./start.sh`, `./digest.sh` — NO
+- `python -m py_compile main.py` — NO
+
+If a story's acceptance criterion appears to require Python execution, rewrite the criterion as a static check and note the change in `progress.txt`. Never silently skip verification; never "just try" running Python to see if it works.
+
+## Your Task Loop
+
+1. **Read `prd.json`.** Verify you're on the correct branch (`branchName` field — expect `main` for JTF News).
+2. **Read `progress.txt`.** Start with the `## Codebase Patterns` section at the top — it contains persistent architectural facts about `main.py`, the archive format, feed.xml structure, and the existing function layout. Then scan recent per-story entries below the first `---` separator for cross-story context.
+3. **Pick the highest-priority story** where `passes: false` (lowest numeric `priority`). If all stories have `passes: true`, you're in the verification phase — emit `<promise>COMPLETE</promise>` and stop.
+4. **Implement that single story** by editing only the files listed in `filesToModify`. If you need to touch a file not in the list, STOP and add a blocking note to `progress.txt` explaining why, then move to the next story.
+5. **Verify the acceptance criteria statically.** Run the grep/file/git commands specified by the criteria. Do not proceed until every criterion passes.
+6. **Update `prd.json`**: set the story's `passes` to `true`.
+7. **Append a per-story entry to `progress.txt`** below the most recent separator:
+    ```
+    ## [YYYY-MM-DD] - STORY-ID
+    - What was done (bullets)
+    - **Learnings for future iterations:**
+      - Any non-obvious fact or gotcha
+    ```
+8. **If the story revealed a reusable gotcha, API quirk, or non-obvious pattern, update this CLAUDE.md's `## Known Bug Patterns` section** (create the section below the Ralph Agent Instructions if it doesn't exist). Include a `**Symptom:**` line and concrete WRONG/CORRECT examples. **Err strongly on the side of adding rather than skipping** — progress.txt learnings are per-iteration scratch, Bug Patterns here are cross-sprint memory that actually prevents the next sprint from repeating the same mistake.
+9. **Commit ALL tracked changes atomically in ONE commit via `./bu.sh`**:
+    ```
+    ./bu.sh "PHASEC-NN: story title"
+    ```
+    `./bu.sh` handles `git add -A`, `git commit`, `git push origin main`, and the Downloads backup zip. Do NOT use raw `git commit` — it bypasses the backup and push. The commit captures the source edits and any CLAUDE.md updates.
+
+    **About prd.json and progress.txt:** both files are listed in `.gitignore` under "Ralph runtime files" — they are working-tree state, not git-tracked content. The `git add -A` inside `./bu.sh` skips them automatically. That is by design: prd.json tracks the sprint's pass-flag state in-place, and progress.txt is a living log that gets archived to `bash/archive/DATE-branch/` by `bash/ralph.sh` at sprint end. The per-story commit message prefix (`PHASEC-NN:`) is the link between a git commit and the story — not a tracked file. You still MUST update prd.json and progress.txt in the working tree every iteration (steps 6 and 7), because the next iteration reads their current working-tree state to find the next story. Don't skip steps 6/7 just because they're not committed.
+
+**Why the commit is step 9, not earlier:** every TRACKED output of the iteration (code + CLAUDE.md Bug Patterns) must land in one atomic commit so the git log has exactly one commit per story. The untracked state transitions (prd.json pass flag, progress.txt entry) happen concurrently but live only in the working tree. If you commit the code at step 4 and then edit CLAUDE.md at step 8, the Bug Pattern is post-commit working-tree drift that the next iteration inherits but never captures in that story's commit. Step 9 is the atomic commit fence for tracked content only.
+
+## Verification Phase
+
+When the Ralph loop detects that all stories have `passes: true`, it will launch a verification iteration with a special prompt. Your response in that phase is a single line:
+
+```
+<promise>COMPLETE</promise>
+```
+
+Nothing else. JTF News has no automated test suite by design (the methodology is "run forever, verify via live operation") and you cannot run Python anyway. Manual verification is documented in `progress.txt` under "Post-sprint manual verification (user only)" and is the user's responsibility to execute via Jump Desktop after you've finished.
+
+Do NOT attempt to run `./scripts/test-all.sh`, `./start.sh`, or any Python script during verification. The test-all.sh script is a no-op placeholder that just echoes a message and exits 0.
+
+## Commit Tool: `./bu.sh` — NEVER raw `git commit`
+
+JTF News uses `./bu.sh "message"` for every commit. It:
+1. Stages all changes (`git add -A`)
+2. Commits with the message
+3. Pushes to `origin/main`
+4. Creates a timestamped backup zip in the user's Downloads folder
+
+Raw `git commit` bypasses the backup and the push, leaving the next iteration with inconsistent state. Always use `./bu.sh "message"` — for every commit, no exceptions.
+
+## JTF News Project Rules You Must Respect
+
+When implementing stories, honor the project's non-negotiable constraints (full detail in the project spec below):
+
+- **Two-source minimum** for any factual claim in generated content.
+- **No editorializing** — no adjectives, no opinions, no interpretation, no emoji in code, docs, or commit messages.
+- **Hash-based audio naming** — do not change the TTS file naming scheme.
+- **Runtime files are pushed by `main.py` via the GitHub API**, not by hand. If your story touches code that writes `feed.xml`, `stories.json`, etc., understand that `push_to_ghpages()` is the push mechanism.
+- **Do not change specs without asking.** If a story's requirements conflict with the JTF methodology or the project spec, STOP, add a blocking note to `progress.txt`, and move on. Never silently change a spec.
+
+## Rules — Memorize
+
+1. **No Python execution.** (See HARD CONSTRAINT above.)
+2. **One story per commit.** Atomic commits via `./bu.sh` only.
+3. **Static verification only.** No runtime checks.
+4. **Update progress.txt AND CLAUDE.md Bug Patterns with every story.** See step 8 above.
+5. **Only edit files in the story's filesToModify list.** Out-of-scope edits are blocking notes, not silent changes.
+6. **No emoji** in commits, code, docs, or anywhere else. JTF methodology rejects editorializing; emoji is editorializing.
+7. **No dead code** for code you're adding in this sprint. If you add a helper function, it must be called. If you change a signature, update every call site. Do NOT remove existing "legacy" code that wasn't in your story's scope — that's an unrelated cleanup.
+
+---
+
 # CLAUDE.md - JTF News
 
 ## Project Overview
