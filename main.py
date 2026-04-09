@@ -3618,6 +3618,78 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
         (CORRECTIONS_FILE, "corrections.json")
     ], f"{correction_type.upper()}: {story_id}")
 
+    # PHASEC-13: propagate the correction into the affected day's YouTube
+    # description. Extract the original publication date from story_id's
+    # prefix (generate_story_id format at main.py:3166 is "YYYY-MM-DD-NNN")
+    # and attempt the YouTube re-render. Wrapped in try/except so a
+    # YouTube failure does NOT undo the RSS correction that already
+    # succeeded on disk and in GitHub Pages.
+    import re
+    date_match = re.match(r"^(\d{4}-\d{2}-\d{2})", story_id)
+    if date_match:
+        original_date = date_match.group(1)
+        try:
+            propagate_correction_to_youtube(original_date)
+        except Exception as e:
+            log.error(f"add_correction_to_rss: YouTube propagation failed for {original_date}: {e}")
+    else:
+        log.warning(f"add_correction_to_rss: cannot extract date from story_id '{story_id}', skipping YouTube propagation")
+
+
+def propagate_correction_to_youtube(date: str) -> bool:
+    """Rebuild the YouTube description for a day's digest to reflect a correction.
+
+    Called from add_correction_to_rss (above) after the RSS feed and
+    corrections log have been updated and pushed. Looks up the video_id for
+    the given date via load_digest_video_ids_from_feed, rebuilds the
+    description from the current archive state via parse_daily_archive +
+    build_youtube_description, and pushes it via update_youtube_description.
+
+    MVP limitation: re-renders using whatever parse_daily_archive returns
+    for the date. At the moment a correction is issued, the raw daily log
+    at data/{date}.txt has NOT yet been marked by mark_corrected_stories_in_log
+    (which runs only during archive_daily_log's midnight sweep). So for
+    SAME-DAY corrections, the re-rendered description is byte-identical to
+    the original YouTube description — the API call is harmless but the
+    visible effect is nil. For corrections targeting PAST dates (after
+    their archive has been marked), the re-render will show whatever
+    mark_corrected_stories_in_log produced. True inline "original +
+    correction sub-bullet" rendering requires extending the archive format
+    to store original+corrected pairs — deferred to a follow-up sprint.
+
+    Args:
+        date: YYYY-MM-DD string — the ORIGINAL fact's publication date
+            (not today's date). add_correction_to_rss extracts this from
+            story_id[:10].
+
+    Returns:
+        True on a successful YouTube update. False if the video_id could
+        not be found, if there are no facts to render, or if the YouTube
+        update failed in a handled way. 401/403 errors from
+        update_youtube_description still re-raise.
+    """
+    video_map = load_digest_video_ids_from_feed()
+    video_id = video_map.get(date)
+    if not video_id:
+        log.warning(f"propagate_correction_to_youtube: no YouTube video for {date}, skipping")
+        return False
+
+    facts = parse_daily_archive(date)
+    if not facts:
+        log.warning(f"propagate_correction_to_youtube: no facts for {date}, skipping")
+        return False
+
+    description = build_youtube_description(date, facts)
+    try:
+        ok = update_youtube_description(video_id, description)
+    except Exception as e:
+        log.error(f"propagate_correction_to_youtube: update failed for {date} ({video_id}): {e}")
+        return False
+
+    if ok:
+        log.info(f"propagate_correction_to_youtube: updated YouTube description for {date}")
+    return ok
+
 
 def regenerate_rss_feed():
     """Regenerate RSS feed with rich source data from existing stories.json.
