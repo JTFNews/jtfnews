@@ -4085,6 +4085,63 @@ def migrate_feed_xml_digest_entries() -> dict:
     return summary
 
 
+def load_digest_video_ids_from_feed() -> dict:
+    """Parse docs/feed.xml for digest items and return {date: video_id}.
+
+    Reads the healed feed.xml (post-PHASEC-07 migration) and extracts each
+    digest entry's date (from <guid>digest-YYYY-MM-DD</guid>) and its
+    YouTube video ID (from <link>https://youtube.com/watch?v=XXX</link>).
+
+    This is the ongoing source of truth for the backfill orchestrator
+    (PHASEC-10) and the corrections propagation hook (PHASEC-13) — it
+    avoids the YouTube API entirely once feed.xml has been healed.
+
+    Returns:
+        Dict mapping YYYY-MM-DD to YouTube video ID. Empty dict if feed.xml
+        is missing, unparseable, or has no digest entries. Entries whose
+        <link> is missing or doesn't match the YouTube watch URL pattern
+        are skipped with a warning.
+    """
+    import re
+
+    feed_file = BASE_DIR / "docs" / "feed.xml"
+    if not feed_file.exists():
+        log.warning("load_digest_video_ids_from_feed: feed.xml not found")
+        return {}
+
+    try:
+        tree = ET.parse(feed_file)
+        root = tree.getroot()
+        channel = root.find("channel")
+    except Exception as e:
+        log.error(f"load_digest_video_ids_from_feed: parse error: {e}")
+        return {}
+
+    video_id_re = re.compile(r"watch\?v=([A-Za-z0-9_-]+)")
+    result = {}
+    for item in channel.findall("item"):
+        guid_el = item.find("guid")
+        if guid_el is None or guid_el.text is None:
+            continue
+        if not guid_el.text.startswith("digest-"):
+            continue
+        date = guid_el.text.replace("digest-", "", 1)
+
+        link_el = item.find("link")
+        if link_el is None or link_el.text is None:
+            log.warning(f"load_digest_video_ids_from_feed: {date} has no <link>, skipping")
+            continue
+
+        match = video_id_re.search(link_el.text)
+        if match:
+            result[date] = match.group(1)
+        else:
+            log.warning(f"load_digest_video_ids_from_feed: {date} link doesn't match YouTube URL pattern")
+
+    log.info(f"load_digest_video_ids_from_feed: resolved {len(result)} digest videos")
+    return result
+
+
 def update_alexa_feed(fact: str, sources: list):
     """Update Alexa Flash Briefing JSON feed and push to GitHub."""
     import subprocess
