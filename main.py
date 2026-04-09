@@ -6134,6 +6134,86 @@ def upload_to_archive_org(date: str, mp3_path: str, mp4_path: str) -> dict:
     }
 
 
+def build_youtube_description(date: str, facts: list) -> str:
+    """Build the YouTube description for a daily digest.
+
+    Single source of truth for YouTube description voice. Used by the live
+    upload path, the one-shot backfill, and the corrections-propagation hook.
+
+    Args:
+        date: YYYY-MM-DD string for the digest date.
+        facts: List of fact dicts, each shaped as:
+            {
+                "fact": str,
+                "sources": [
+                    {"name": "France 24", "acc": "4.3", "bias": "8.5"},
+                    {"name": "BBC News",  "acc": "5.1", "bias": "7.2"},
+                ],
+                "extra_source_count": int,  # 0 if exactly 2 sources
+                "correction": {             # optional; None or missing if uncorrected
+                    "correction_date": "2026-04-12",
+                    "corrected_fact": str,
+                    "sources": [...],
+                    "extra_source_count": int,
+                } | None,
+            }
+
+    Returns:
+        Full description string, guaranteed <= 5000 chars. Truncates at a
+        fact boundary with an archive pointer line if needed.
+    """
+    dt = datetime.strptime(date, "%Y-%m-%d")
+    display_date = dt.strftime("%B %d, %Y").replace(" 0", " ")
+    header = f"JTF News for {display_date}."
+    footer = "CC-BY-SA.\n\nJTF News: Two sources. No adjectives. Just facts."
+
+    if not facts:
+        return f"{header}\n\nNo verified facts for this date.\n\n{footer}"
+
+    def render_source_line(sources, extra_count):
+        if not sources:
+            return "(no sources recorded)"
+        primary = sources[:2]
+        parts = [f"{s['name']} {s['acc']}|{s['bias']}" for s in primary]
+        line = " \u00b7 ".join(parts)
+        if extra_count and extra_count > 0:
+            line += f" (+{extra_count} more)"
+        return line
+
+    def render_block(fact_dict):
+        lines = [
+            render_source_line(fact_dict.get("sources", []), fact_dict.get("extra_source_count", 0)),
+            fact_dict["fact"],
+        ]
+        correction = fact_dict.get("correction")
+        if correction:
+            lines.append(f"  CORRECTION {correction['correction_date']}")
+            lines.append("  " + render_source_line(
+                correction.get("sources", []),
+                correction.get("extra_source_count", 0)
+            ))
+            lines.append("  " + correction["corrected_fact"])
+        return "\n".join(lines)
+
+    blocks = [render_block(f) for f in facts]
+    full_desc = f"{header}\n\n" + "\n\n".join(blocks) + f"\n\n{footer}"
+
+    if len(full_desc) <= 4800:
+        return full_desc
+
+    truncation_line = f"Complete stories to this date can be found at https://jtfnews.org/archive/{date}.html"
+    for n in range(len(blocks) - 1, 0, -1):
+        candidate = (
+            f"{header}\n\n"
+            + "\n\n".join(blocks[:n])
+            + f"\n\n{truncation_line}\n\n{footer}"
+        )
+        if len(candidate) <= 4800:
+            return candidate
+
+    return f"{header}\n\n{truncation_line}\n\n{footer}"
+
+
 def update_podcast_feeds(date: str, archive_result: dict, story_count: int, duration_seconds: int, facts: list = None) -> None:
     """Update podcast.xml with new episode including full facts text.
 
