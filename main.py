@@ -5638,7 +5638,12 @@ def enumerate_channel_digest_videos() -> dict:
         log.error(f"enumerate_channel_digest_videos: channels.list failed: {e}")
         return {}
 
-    pattern = re.compile(r"\[DAILY DIGEST\]\s*(\d{4}-\d{2}-\d{2})")
+    # YouTube video titles use `JTF News Daily Digest - YYYY-MM-DD` per
+    # upload_to_youtube at main.py:~5775. Do NOT confuse this with the RSS
+    # feed item title `[DAILY DIGEST] YYYY-MM-DD - N verified facts` that
+    # add_digest_to_feed generates — they are different strings with
+    # different formats, and only the YouTube one is visible to this API call.
+    pattern = re.compile(r"JTF News Daily Digest\s*-\s*(\d{4}-\d{2}-\d{2})")
     result = {}
     page_token = None
 
