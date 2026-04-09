@@ -5289,6 +5289,76 @@ def get_authenticated_youtube_service():
         return None
 
 
+def enumerate_channel_digest_videos() -> dict:
+    """Enumerate digest videos on the JTF News YouTube channel.
+
+    Queries the authenticated channel's uploads playlist via the YouTube
+    Data API and returns a map of {date: video_id} for every video whose
+    title matches the "[DAILY DIGEST] YYYY-MM-DD" pattern.
+
+    Used once (by migrate_feed_xml_digest_entries in PHASEC-07) to backfill
+    the historical date->video_id mapping into feed.xml, after which the
+    feed.xml is the ongoing source of truth for the backfill orchestrator
+    and corrections propagation hook.
+
+    Quota cost: 1 unit for channels.list + 1 unit per 50 videos from
+    playlistItems.list. For the current ~10 historical videos, total is 2
+    units — trivial vs. the 10,000/day default quota.
+
+    Returns:
+        Dict mapping YYYY-MM-DD to YouTube video ID. Empty dict on auth
+        failure or when no titles match the digest pattern.
+    """
+    import re
+
+    youtube = get_authenticated_youtube_service()
+    if youtube is None:
+        log.error("enumerate_channel_digest_videos: no authenticated YouTube service")
+        return {}
+
+    try:
+        channel_resp = youtube.channels().list(mine=True, part="contentDetails").execute()
+        items = channel_resp.get("items", [])
+        if not items:
+            log.error("enumerate_channel_digest_videos: no channel found for authenticated user")
+            return {}
+        uploads_playlist_id = items[0]["contentDetails"]["relatedPlaylists"]["uploads"]
+    except Exception as e:
+        log.error(f"enumerate_channel_digest_videos: channels.list failed: {e}")
+        return {}
+
+    pattern = re.compile(r"\[DAILY DIGEST\]\s*(\d{4}-\d{2}-\d{2})")
+    result = {}
+    page_token = None
+
+    try:
+        while True:
+            resp = youtube.playlistItems().list(
+                playlistId=uploads_playlist_id,
+                part="snippet",
+                maxResults=50,
+                pageToken=page_token,
+            ).execute()
+            for item in resp.get("items", []):
+                snip = item.get("snippet", {})
+                title = snip.get("title", "")
+                video_id = snip.get("resourceId", {}).get("videoId")
+                if not video_id:
+                    continue
+                match = pattern.search(title)
+                if match:
+                    result[match.group(1)] = video_id
+            page_token = resp.get("nextPageToken")
+            if not page_token:
+                break
+    except Exception as e:
+        log.error(f"enumerate_channel_digest_videos: playlistItems.list failed: {e}")
+        return result
+
+    log.info(f"enumerate_channel_digest_videos: matched {len(result)} digest videos")
+    return result
+
+
 @retry_with_backoff(max_retries=3, base_delay=30.0)
 def upload_to_youtube(video_path: str, date: str) -> str:
     """Upload video to YouTube and add to playlist.
