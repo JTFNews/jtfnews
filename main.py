@@ -4142,6 +4142,108 @@ def load_digest_video_ids_from_feed() -> dict:
     return result
 
 
+def backfill_youtube_descriptions(dry_run: bool = False) -> dict:
+    """One-shot: update YouTube descriptions for all historical digest videos.
+
+    Walks every date returned by load_digest_video_ids_from_feed (which reads
+    the healed feed.xml populated by migrate_feed_xml_digest_entries), rebuilds
+    each description via parse_daily_archive + build_youtube_description, and
+    pushes it via update_youtube_description. Idempotent via a marker file at
+    data/youtube_description_backfill.json — a mid-run interruption resumes
+    where it left off on the next invocation without re-updating videos that
+    were already patched successfully.
+
+    Args:
+        dry_run: If True, build descriptions and write them to
+            data/backfill_dry_run/{date}.txt for human inspection instead of
+            calling the YouTube API. No marker updates in dry-run mode, so
+            the next real run treats every video as unseen.
+
+    Returns:
+        Summary dict:
+            {
+                "updated": int,   # count of API updates (or dry-run writes)
+                "skipped": int,   # already-marked, no-facts, or missing archive
+                "failed": int,    # 404 / empty-items / description-too-long
+                "dry_run": bool,
+            }
+
+    Raises:
+        Re-raises any non-404 HttpError from update_youtube_description
+        (typically 401 auth failure or 403 quota exhausted). The summary
+        is logged before the re-raise so the user can see how far the run
+        got before the failure. A re-run after fixing the underlying issue
+        will resume from the marker file.
+    """
+    marker_file = DATA_DIR / "youtube_description_backfill.json"
+    marker = {}
+    if marker_file.exists():
+        try:
+            with open(marker_file, "r", encoding="utf-8") as f:
+                marker = json.load(f)
+        except Exception as e:
+            log.warning(f"backfill_youtube_descriptions: marker load failed ({e}), starting fresh")
+
+    video_map = load_digest_video_ids_from_feed()
+    summary = {"updated": 0, "skipped": 0, "failed": 0, "dry_run": dry_run}
+
+    if dry_run:
+        dry_dir = DATA_DIR / "backfill_dry_run"
+        dry_dir.mkdir(parents=True, exist_ok=True)
+
+    for date in sorted(video_map.keys()):
+        video_id = video_map[date]
+
+        # Skip already-patched entries in live mode (marker file is the source
+        # of truth for "already done"). Dry-run intentionally ignores the marker
+        # so the user can re-inspect the output any time.
+        if not dry_run and video_id in marker:
+            log.info(f"backfill_youtube_descriptions: {date} ({video_id}) already in marker, skipping")
+            summary["skipped"] += 1
+            continue
+
+        facts = parse_daily_archive(date)
+        if not facts:
+            log.warning(f"backfill_youtube_descriptions: no facts for {date}, skipping")
+            summary["skipped"] += 1
+            continue
+
+        description = build_youtube_description(date, facts)
+
+        if dry_run:
+            dry_path = DATA_DIR / "backfill_dry_run" / f"{date}.txt"
+            with open(dry_path, "w", encoding="utf-8") as f:
+                f.write(description)
+            log.info(f"backfill_youtube_descriptions: dry-run wrote {dry_path} ({len(description)} chars)")
+            summary["updated"] += 1
+            continue
+
+        try:
+            ok = update_youtube_description(video_id, description)
+        except Exception as e:
+            log.error(f"backfill_youtube_descriptions: {date} ({video_id}) raised — stopping: {e}")
+            log.info(f"backfill_youtube_descriptions: progress so far: {summary}")
+            raise
+
+        if ok:
+            marker[video_id] = {
+                "updated_at": datetime.now(timezone.utc).isoformat(),
+                "date": date,
+            }
+            # Flush after every success so interruption is safe. The write is
+            # small (one JSON object) and fast.
+            with open(marker_file, "w", encoding="utf-8") as f:
+                json.dump(marker, f, indent=2)
+            summary["updated"] += 1
+            log.info(f"backfill_youtube_descriptions: {date} ({video_id}) updated")
+        else:
+            summary["failed"] += 1
+            log.warning(f"backfill_youtube_descriptions: {date} ({video_id}) handled failure, not marked")
+
+    log.info(f"backfill_youtube_descriptions: done — {summary}")
+    return summary
+
+
 def update_alexa_feed(fact: str, sources: list):
     """Update Alexa Flash Briefing JSON feed and push to GitHub."""
     import subprocess
@@ -9001,9 +9103,27 @@ if __name__ == "__main__":
             print(f"Failed: {total_results['failed']}")
             sys.exit(0 if total_results['failed'] == 0 else 1)
 
+        elif sys.argv[1] == "--backfill-youtube-descriptions-dry-run":
+            # Dry-run: build descriptions for all historical digest videos
+            # and write them to data/backfill_dry_run/ without touching the
+            # YouTube API. Use this before --backfill-youtube-descriptions.
+            log.info("Running YouTube description backfill in DRY-RUN mode...")
+            result = backfill_youtube_descriptions(dry_run=True)
+            print(json.dumps(result, indent=2))
+            sys.exit(0)
+
+        elif sys.argv[1] == "--backfill-youtube-descriptions":
+            # Live run: patch YouTube video descriptions via the API. Uses
+            # data/youtube_description_backfill.json as a marker file so
+            # re-runs skip already-patched videos.
+            log.info("Running YouTube description backfill (LIVE)...")
+            result = backfill_youtube_descriptions(dry_run=False)
+            print(json.dumps(result, indent=2))
+            sys.exit(0)
+
         else:
             print(f"Unknown argument: {sys.argv[1]}")
-            print("Usage: python main.py [--rebuild | --audit | --apply-audit | --regenerate-rss | --rebuild-urls | --regenerate-audio]")
+            print("Usage: python main.py [--rebuild | --audit | --apply-audit | --regenerate-rss | --rebuild-urls | --regenerate-audio | --backfill-youtube-descriptions | --backfill-youtube-descriptions-dry-run]")
             sys.exit(1)
 
     main()
