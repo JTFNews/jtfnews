@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-04-09T16:45:34.478110+00:00",
+  "timestamp": "2026-04-09T18:05:55.901007+00:00",
   "uptime_start": "2026-04-09T16:26:07.854272+00:00",
-  "uptime_seconds": 1167,
-  "availability_pct": 37.5,
+  "uptime_seconds": 5988,
+  "availability_pct": 37.6,
   "cycle": {
-    "number": 2,
+    "number": 5,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -14,31 +14,31 @@
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 7,
-        "cost_usd": 0.021300000000000003,
+        "calls": 8,
+        "cost_usd": 0.023820000000000004,
         "details": {
-          "characters": 710
+          "characters": 794
         }
       },
       "claude": {
-        "calls": 531,
-        "cost_usd": 0.2202725000000002,
+        "calls": 556,
+        "cost_usd": 0.2303550000000002,
         "details": {
-          "input_tokens": 535755,
-          "output_tokens": 69067
+          "input_tokens": 560420,
+          "output_tokens": 72200
         }
       }
     },
-    "total_usd": 0.2416,
+    "total_usd": 0.2542,
     "month_estimate_usd": 9.26,
     "daily_budget": 1.67,
-    "budget_pct": 14.5
+    "budget_pct": 15.3
   },
   "queue": {
-    "size": 65,
-    "oldest_item_age_hours": 18.9
+    "size": 66,
+    "oldest_item_age_hours": 20.2
   },
-  "stories_today": 5,
+  "stories_today": 6,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -48,15 +48,60 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-09T16:26:35.302754+00:00",
+      "timestamp": "2026-04-09T17:35:44.991947+00:00",
       "level": "WARNING",
-      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-09T17:40:45.032817+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-09T17:45:45.082631+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-09T17:50:45.120377+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-09T17:55:45.170395+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-09T18:00:30.017503+00:00",
+      "level": "WARNING",
+      "message": "GitHub feedback fetch error: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/data/feedback (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-09T18:00:46.906889+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/feed.xml to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/feed.xml?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-09T18:00:46.941998+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/stories.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/stories.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-09T18:00:46.977457+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/alexa.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/alexa.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-09T18:00:55.899454+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 14,
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
