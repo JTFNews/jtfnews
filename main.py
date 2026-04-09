@@ -2594,6 +2594,41 @@ def get_source_id_by_name(source_name: str) -> str:
     return ""
 
 
+def get_compact_scores_for_source_name(source_name: str) -> tuple:
+    """Resolve a source name to (accuracy, bias) compact score strings.
+
+    Archive files store source NAMES but get_compact_scores takes a source_id.
+    Bridge the gap by using get_source_id_by_name (above) to look up the ID,
+    then delegate to get_compact_scores which returns a pipe-delimited
+    "acc|bias" string. Split and return as a tuple.
+
+    Strips trailing " (+N more)" suffix from the input name if present.
+    Returns ("?", "?") for unknown names with a warning log.
+
+    Args:
+        source_name: Source name as it appears in a daily archive file.
+
+    Returns:
+        (accuracy_str, bias_str) — e.g., ("4.3", "8.5") or ("9.8*", "9.5").
+    """
+    clean_name = source_name.strip()
+    if " (+" in clean_name and clean_name.endswith(" more)"):
+        clean_name = clean_name.split(" (+")[0].strip()
+
+    source_id = get_source_id_by_name(clean_name)
+    if not source_id:
+        log.warning(f"get_compact_scores_for_source_name: unknown source '{clean_name}'")
+        return ("?", "?")
+
+    compact = get_compact_scores(source_id)
+    if "|" in compact:
+        acc, bias = compact.split("|", 1)
+        return (acc, bias)
+
+    log.warning(f"get_compact_scores_for_source_name: unexpected format '{compact}' for '{clean_name}'")
+    return (compact, "?")
+
+
 def get_source_for_rss(source_id: str) -> dict:
     """Build rich source data for RSS feed per SPECIFICATION.md Section 5.3.3.
 
