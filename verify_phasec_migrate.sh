@@ -33,12 +33,17 @@ fi
 
 source venv/bin/activate
 
-echo "=== feed.xml BEFORE migration ==="
-echo -n "  digest entries:           "
-grep -c 'digest-' docs/feed.xmlecho -n "  <link> tags to youtube:   "
-grep -c 'watch?v=' docs/feed.xmlecho -n "  jtf:type attributes:      "
-grep -c 'jtf:type' docs/feed.xmlecho -n "  jtf:archive elements:     "
-grep -c 'jtf:archive' docs/feed.xmlecho ""
+show_counts() {
+    local label="$1"
+    echo "=== feed.xml $label migration ==="
+    printf "  digest entries:           %s\n" "$(grep -c 'digest-' docs/feed.xml)"
+    printf "  <link> tags to youtube:   %s\n" "$(grep -c 'watch?v=' docs/feed.xml)"
+    printf "  jtf:type attributes:      %s\n" "$(grep -c 'jtf:type' docs/feed.xml)"
+    printf "  jtf:archive elements:     %s\n" "$(grep -c 'jtf:archive' docs/feed.xml)"
+    echo ""
+}
+
+show_counts "BEFORE"
 
 echo "=== Running migrate_feed_xml_digest_entries() ==="
 python3 - <<'PYEOF'
@@ -52,10 +57,6 @@ print(json.dumps(summary, indent=2))
 PYEOF
 echo ""
 
-echo "=== feed.xml AFTER migration ==="
-echo -n "  digest entries:           "
-grep -c 'digest-' docs/feed.xmlecho -n "  <link> tags to youtube:   "
-grep -c 'watch?v=' docs/feed.xmlecho -n "  jtf:type attributes:      "
-grep -c 'jtf:type' docs/feed.xmlecho -n "  jtf:archive elements:     "
-grep -c 'jtf:archive' docs/feed.xmlecho ""
+show_counts "AFTER"
+
 echo "Expected after: 9 digest entries, 9+ <link> tags with watch?v=, 9 jtf:type, 9 jtf:archive"
