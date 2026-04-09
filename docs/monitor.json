@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-04-09T18:57:54.875041+00:00",
+  "timestamp": "2026-04-09T19:01:19.922592+00:00",
+  "web_refresh_at": "2026-04-09T19:01:19.922592+00:00",
   "uptime_start": "2026-04-09T16:26:07.854272+00:00",
-  "uptime_seconds": 9107,
-  "availability_pct": 37.6,
+  "uptime_seconds": 9312,
+  "availability_pct": 37.7,
   "cycle": {
-    "number": 6,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 7,
+    "duration_seconds": 73.5,
+    "headlines_scraped": 177,
+    "headlines_processed": 19,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,21 +22,21 @@
         }
       },
       "claude": {
-        "calls": 564,
-        "cost_usd": 0.23439000000000018,
+        "calls": 584,
+        "cost_usd": 0.24330300000000024,
         "details": {
-          "input_tokens": 569570,
-          "output_tokens": 73598
+          "input_tokens": 591487,
+          "output_tokens": 76345
         }
       }
     },
-    "total_usd": 0.2582,
+    "total_usd": 0.2671,
     "month_estimate_usd": 9.26,
     "daily_budget": 1.67,
-    "budget_pct": 15.5
+    "budget_pct": 16.0
   },
   "queue": {
-    "size": 66,
+    "size": 67,
     "oldest_item_age_hours": 21.1
   },
   "stories_today": 6,
@@ -47,21 +48,6 @@
     ]
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-04-09T18:00:46.941998+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/stories.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/stories.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-09T18:00:46.977457+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/alexa.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/alexa.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-09T18:00:55.899454+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
     {
       "timestamp": "2026-04-09T18:30:33.516476+00:00",
       "level": "WARNING",
@@ -101,7 +87,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 2,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -120,5 +106,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-08/2026-04-08-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-08/2026-04-08-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
