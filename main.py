@@ -5065,6 +5065,119 @@ def load_stories_for_date(date: str) -> list:
     return stories
 
 
+def parse_daily_archive(date: str) -> list:
+    """Parse a daily log into the Phase C fact-dict shape.
+
+    Used by the YouTube backfill and corrections-propagation paths. Mirrors
+    load_stories_for_date's local-first / archive-fallback loading pattern
+    (above), but returns the richer shape build_youtube_description expects:
+    each fact carries a list of source dicts with per-source accuracy and
+    bias strings (not just a joined source_name string).
+
+    Archive line format (6 pipe-delimited fields, per append_daily_log):
+        timestamp|source_names|source_scores|source_urls|audio_name|fact
+    Legacy 5-field rows (pre-audio column) are supported defensively.
+
+    Args:
+        date: YYYY-MM-DD string.
+
+    Returns:
+        List of fact dicts shaped as:
+            {
+                "fact": str,
+                "sources": [
+                    {"name": "France 24", "acc": "4.3", "bias": "8.5"},
+                    {"name": "BBC News",  "acc": "5.1", "bias": "7.2"},
+                ],
+                "extra_source_count": int,
+            }
+        Empty list if no log exists (neither local nor archived).
+    """
+    log_file = DATA_DIR / f"{date}.txt"
+    raw_lines = []
+
+    # Local first (handles dates whose gz archive hasn't been created yet,
+    # e.g. the 2026-04-07 outage recovery case).
+    if log_file.exists():
+        try:
+            with open(log_file, 'r', encoding='utf-8') as f:
+                raw_lines = f.readlines()
+        except Exception as e:
+            log.error(f"parse_daily_archive: error reading local log for {date}: {e}")
+            return []
+    else:
+        year = date[:4]
+        archive_file = BASE_DIR / "docs" / "archive" / year / f"{date}.txt.gz"
+        if archive_file.exists():
+            try:
+                with gzip.open(archive_file, 'rt', encoding='utf-8') as f:
+                    raw_lines = f.readlines()
+            except Exception as e:
+                log.error(f"parse_daily_archive: error reading gz archive for {date}: {e}")
+                return []
+        else:
+            log.warning(f"parse_daily_archive: no log found for {date}")
+            return []
+
+    results = []
+    for line in raw_lines:
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+
+        parts = line.split("|")
+        if len(parts) >= 6:
+            names_field = parts[1]
+            scores_field = parts[2]
+            fact_text = parts[5]
+        elif len(parts) == 5:
+            names_field = parts[1]
+            scores_field = parts[2]
+            fact_text = parts[4]
+        else:
+            log.warning(f"parse_daily_archive: skipping malformed line in {date}: {line[:80]}")
+            continue
+
+        # Split source names; handle trailing "(+N more)" suffix on the last name.
+        extra_source_count = 0
+        raw_names = [n.strip() for n in names_field.split(",")]
+        if raw_names and raw_names[-1].endswith(" more)") and " (+" in raw_names[-1]:
+            last = raw_names[-1]
+            base, suffix = last.split(" (+", 1)
+            try:
+                extra_source_count = int(suffix.replace(" more)", "").strip())
+            except ValueError:
+                extra_source_count = 0
+            raw_names[-1] = base.strip()
+
+        # Parse scores: "4.3 (200/469)" -> "4.3"
+        raw_scores = [s.strip() for s in scores_field.split(",")]
+        accuracies = []
+        for score_entry in raw_scores:
+            token = score_entry.split()[0] if score_entry else "?"
+            accuracies.append(token)
+
+        # Pair each name with its accuracy; look up bias by name via the helper.
+        sources = []
+        for i, name in enumerate(raw_names):
+            acc_from_archive = accuracies[i] if i < len(accuracies) else "?"
+            fallback_acc, bias = get_compact_scores_for_source_name(name)
+            final_acc = acc_from_archive if acc_from_archive != "?" else fallback_acc
+            sources.append({
+                "name": name,
+                "acc": final_acc,
+                "bias": bias,
+            })
+
+        results.append({
+            "fact": fact_text,
+            "sources": sources,
+            "extra_source_count": extra_source_count,
+        })
+
+    return results
+
+
 def get_youtube_credentials():
     """Load YouTube API credentials from environment.
 
