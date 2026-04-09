@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-04-09T19:26:26.606451+00:00",
+  "timestamp": "2026-04-09T19:31:09.475293+00:00",
+  "web_refresh_at": "2026-04-09T19:31:09.475293+00:00",
   "uptime_start": "2026-04-09T16:26:07.854272+00:00",
-  "uptime_seconds": 10819,
-  "availability_pct": 37.7,
+  "uptime_seconds": 11102,
+  "availability_pct": 37.8,
   "cycle": {
-    "number": 7,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 8,
+    "duration_seconds": 62.8,
+    "headlines_scraped": 177,
+    "headlines_processed": 9,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 8,
-        "cost_usd": 0.023820000000000004,
+        "calls": 9,
+        "cost_usd": 0.025770000000000005,
         "details": {
-          "characters": 794
+          "characters": 859
         }
       },
       "claude": {
-        "calls": 584,
-        "cost_usd": 0.24330300000000024,
+        "calls": 598,
+        "cost_usd": 0.24825950000000027,
         "details": {
-          "input_tokens": 591487,
-          "output_tokens": 76345
+          "input_tokens": 603418,
+          "output_tokens": 77924
         }
       }
     },
-    "total_usd": 0.2671,
+    "total_usd": 0.274,
     "month_estimate_usd": 9.26,
     "daily_budget": 1.67,
-    "budget_pct": 16.0
+    "budget_pct": 16.4
   },
   "queue": {
-    "size": 67,
-    "oldest_item_age_hours": 21.5
+    "size": 68,
+    "oldest_item_age_hours": 21.6
   },
-  "stories_today": 6,
+  "stories_today": 7,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -47,11 +48,6 @@
     ]
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-04-09T18:30:33.516476+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
-    },
     {
       "timestamp": "2026-04-09T18:31:11.670706+00:00",
       "level": "ERROR",
@@ -81,12 +77,17 @@
       "timestamp": "2026-04-09T18:32:33.915717+00:00",
       "level": "ERROR",
       "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    },
+    {
+      "timestamp": "2026-04-09T19:30:34.689820+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -105,5 +106,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-08/2026-04-08-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-08/2026-04-08-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
