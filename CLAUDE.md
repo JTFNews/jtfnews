@@ -241,7 +241,7 @@ Across all channels, always:
 
 ## Key Files
 - `docs/SPECIFICATION.md` - Complete technical spec (read this first for implementation)
-- `docs/WhitePaper Ver 1.3 CURRENT.md` - Project philosophy and methodology whitepaper
+- `documentation/WhitePaper Ver 1.4 CURRENT.md` - Project philosophy and methodology whitepaper
 - `docs/ResilienceSystem.md` - 24/7 uptime resilience design (retry logic, alerts, degradation)
 - `docs/implementation Ver 0.1.md` - Implementation notes
 - `docs/mediasetup.md` - Media/OBS setup instructions
@@ -317,7 +317,7 @@ When modifying overlay files that exist in BOTH locations, you MUST update BOTH:
 - `main.py` - Main application (~6500 lines with resilience system, daily digest, YouTube upload)
 - `web/` - OBS browser source overlays (lower-third.html, background-slideshow.html, screensaver.html, monitor.html)
 - `docs/` - Public website (GitHub Pages) - index.html, how-it-works, whitepaper, feed.xml, podcast.xml, stories.json
-- `documentation/` - Project documentation (SPECIFICATION.md, WhitePaper Ver 1.3 CURRENT.md, plans/)
+- `documentation/` - Project documentation (SPECIFICATION.md, WhitePaper Ver 1.4 CURRENT.md, plans/)
 - `media/` - Background images organized by season (fall/, spring/, summer/, winter/)
 - `data/` - Runtime data (stories.json, queue.json, api_usage, monitor.json) - NOT committed
 
