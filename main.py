@@ -3884,19 +3884,52 @@ def add_digest_to_feed(date: str, story_count: int, youtube_id: str):
         root = tree.getroot()
         channel = root.find("channel")
 
-        # Check if digest for this date already exists — update YouTube link if so
+        # Check if digest for this date already exists — heal any missing elements.
+        # Pre-PHASEC-05 this branch only updated an existing <link> and silently
+        # skipped adding missing elements, leaving 9 historical entries with no
+        # <link>, no jtf:type attribute, and no jtf:archive child. The heal path
+        # below now adds any of those three that are absent before returning.
         for item in channel.findall("item"):
             guid_el = item.find("guid")
             if guid_el is not None and guid_el.text == f"digest-{date}":
+                changed = False
+
+                # Heal missing jtf:type="digest" attribute
+                type_key = f"{{{JTF_NS}}}type"
+                if item.get(type_key) != "digest":
+                    item.set(type_key, "digest")
+                    changed = True
+
+                # Heal missing or stale <link>
                 link_el = item.find("link")
-                if link_el is not None and link_el.text != youtube_url:
-                    old_url = link_el.text
+                if link_el is None:
+                    link_el = ET.SubElement(item, "link")
                     link_el.text = youtube_url
-                    tree.write(feed_file, xml_declaration=True, encoding="UTF-8")
-                    log.info(f"Updated digest feed entry for {date}: {old_url} → {youtube_url}")
-                    push_to_ghpages([(feed_file, "feed.xml")], f"Update digest YouTube link for {date}")
+                    changed = True
+                elif link_el.text != youtube_url:
+                    log.info(f"Updated digest feed link for {date}: {link_el.text} -> {youtube_url}")
+                    link_el.text = youtube_url
+                    changed = True
+
+                # Heal missing or stale jtf:archive
+                archive_el = item.find(f"{{{JTF_NS}}}archive")
+                if archive_el is None:
+                    archive_el = ET.SubElement(item, f"{{{JTF_NS}}}archive")
+                    archive_el.text = archive_url
+                    changed = True
+                elif archive_el.text != archive_url:
+                    archive_el.text = archive_url
+                    changed = True
+
+                if changed:
+                    indent_xml(root)
+                    with open(feed_file, 'wb') as f:
+                        tree.write(f, encoding="utf-8", xml_declaration=True)
+                    clean_duplicate_namespaces(feed_file)
+                    log.info(f"Healed digest feed entry for {date}")
+                    push_to_ghpages([(feed_file, "feed.xml")], f"Heal digest feed entry for {date}")
                 else:
-                    log.info(f"Digest entry for {date} already exists with correct link")
+                    log.info(f"Digest entry for {date} already complete")
                 return
 
         # Create new item element with jtf:type attribute
