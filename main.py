@@ -5665,12 +5665,18 @@ def update_youtube_description(video_id: str, description: str) -> bool:
 
 
 @retry_with_backoff(max_retries=3, base_delay=30.0)
-def upload_to_youtube(video_path: str, date: str) -> str:
+def upload_to_youtube(video_path: str, date: str, facts: list = None) -> str:
     """Upload video to YouTube and add to playlist.
 
     Args:
         video_path: Path to video file
         date: YYYY-MM-DD date string for title
+        facts: List of fact dicts (in build_youtube_description shape) used
+            as input to build_youtube_description for the per-fact video
+            description. If None, an empty list is used which produces the
+            minimal "No verified facts for this date" fallback. PHASEC-12
+            wired this so every new digest upload carries the same per-fact
+            format shown in the video's lower-third overlay.
 
     Returns:
         YouTube video ID on success, None on failure
@@ -5685,14 +5691,17 @@ def upload_to_youtube(video_path: str, date: str) -> str:
     try:
         from googleapiclient.http import MediaFileUpload
 
-        # Video metadata
+        # Video metadata. Description is built by build_youtube_description
+        # from the facts list (PHASEC-12); see build_youtube_description for
+        # the format and truncation rules. The facts argument is expected to
+        # be populated by the caller (_upload_video_to_youtube); if the
+        # caller didn't pass facts, build_youtube_description's empty-list
+        # fallback kicks in and renders a minimal "no verified facts"
+        # description rather than crashing.
         body = {
             'snippet': {
                 'title': f'JTF News Daily Digest - {date}',
-                'description': f'Daily summary of verified facts from {date}.\n\n'
-                              'JTF News reports only verified facts from 2+ unrelated sources.\n'
-                              'No opinions. No adjectives. No interpretation.\n\n'
-                              'Learn more: https://jtfnews.org/',
+                'description': build_youtube_description(date, facts or []),
                 'tags': ['news', 'facts', 'daily summary', 'JTF News', 'just the facts'],
                 'categoryId': '25'  # News & Politics
             },
@@ -6563,7 +6572,13 @@ def _upload_video_to_youtube(video_path: str, date: str):
     client_secrets, _ = get_youtube_credentials()
     if client_secrets:
         try:
-            video_id = upload_to_youtube(video_path, date)
+            # PHASEC-12: load the day's facts for the per-fact description.
+            # parse_daily_archive handles local-first / archive-gz fallback
+            # so this works both on the live path (reads data/{date}.txt
+            # before archive_daily_log sweeps it) and on retries after the
+            # archive has been gzipped.
+            facts = parse_daily_archive(date)
+            video_id = upload_to_youtube(video_path, date, facts=facts)
             if video_id:
                 log.info(f"Uploaded to YouTube: https://youtube.com/watch?v={video_id}")
                 update_digest_status(date, youtube_id=video_id, upload_status="success", error_message="")
