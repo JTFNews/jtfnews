@@ -5497,6 +5497,72 @@ def enumerate_channel_digest_videos() -> dict:
 
 
 @retry_with_backoff(max_retries=3, base_delay=30.0)
+def update_youtube_description(video_id: str, description: str) -> bool:
+    """Update the description of an existing YouTube video.
+
+    Fetches the existing snippet via videos.list, modifies only the
+    description field, and sends the full snippet back via videos.update.
+    Preserves title, tags, and categoryId — videos.update() REPLACES the
+    entire snippet, so partial updates require the full existing snippet
+    as the request body.
+
+    Args:
+        video_id: YouTube video ID (11 chars).
+        description: New description string. Must be <= 5000 chars (YouTube
+            API limit); this wrapper refuses longer strings to avoid a 400.
+
+    Returns:
+        True on success. False on handled failures (404 video deleted,
+        5000-char overflow, missing auth). Re-raises on 401 unauthorized
+        and 403 quota errors so the orchestrator can stop cleanly rather
+        than hammer a broken credential or burn quota in a retry loop.
+    """
+    from googleapiclient.errors import HttpError
+
+    if len(description) > 5000:
+        log.error(f"update_youtube_description: description too long ({len(description)} > 5000), refusing")
+        return False
+
+    youtube = get_authenticated_youtube_service()
+    if youtube is None:
+        log.error("update_youtube_description: no authenticated YouTube service")
+        return False
+
+    try:
+        list_resp = youtube.videos().list(id=video_id, part="snippet").execute()
+    except HttpError as e:
+        if e.resp.status == 404:
+            log.warning(f"update_youtube_description: video {video_id} not found (404)")
+            return False
+        if e.resp.status in (401, 403):
+            raise
+        log.error(f"update_youtube_description: videos.list({video_id}) failed: {e}")
+        raise
+
+    items = list_resp.get("items", [])
+    if not items:
+        log.warning(f"update_youtube_description: video {video_id} returned empty items")
+        return False
+
+    snippet = items[0]["snippet"]
+    snippet["description"] = description
+
+    try:
+        youtube.videos().update(part="snippet", body={"id": video_id, "snippet": snippet}).execute()
+    except HttpError as e:
+        if e.resp.status == 404:
+            log.warning(f"update_youtube_description: video {video_id} vanished between list and update")
+            return False
+        if e.resp.status in (401, 403):
+            raise
+        log.error(f"update_youtube_description: videos.update({video_id}) failed: {e}")
+        raise
+
+    log.info(f"update_youtube_description: updated {video_id} ({len(description)} chars)")
+    return True
+
+
+@retry_with_backoff(max_retries=3, base_delay=30.0)
 def upload_to_youtube(video_path: str, date: str) -> str:
     """Upload video to YouTube and add to playlist.
 
