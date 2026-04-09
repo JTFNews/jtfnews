@@ -4005,6 +4005,86 @@ def add_digest_to_feed(date: str, story_count: int, youtube_id: str):
         log.error(f"Failed to add digest to feed: {e}")
 
 
+def migrate_feed_xml_digest_entries() -> dict:
+    """One-time: heal historical digest entries in feed.xml with missing metadata.
+
+    Walks every <item> in docs/feed.xml whose <guid> is "digest-YYYY-MM-DD",
+    looks up the corresponding video_id via enumerate_channel_digest_videos
+    (PHASEC-06), and calls add_digest_to_feed (with the healed update branch
+    from PHASEC-05) once per date. The healed update branch conditionally
+    adds any missing <link>, jtf:type, or jtf:archive element without
+    touching <title> or <description>.
+
+    Idempotent — safe to re-run. A previously-healed entry with all three
+    elements already present is a no-op logged as "already complete".
+
+    Pre-sprint state: 9 historical digest entries in feed.xml lack all three
+    elements because of the pre-existing bug in add_digest_to_feed's update
+    branch (fixed in PHASEC-05). The user invokes this helper ONCE post-sprint
+    to heal those 9 entries, after which feed.xml becomes the ongoing source
+    of truth for the backfill orchestrator and corrections propagation hook.
+
+    Returns:
+        Summary dict: {"healed": int, "skipped_no_video_id": int}.
+        Healed counts entries where add_digest_to_feed was called (whether
+        or not it actually mutated anything — an "already complete" call
+        still increments healed because the function was invoked successfully).
+    """
+    feed_file = BASE_DIR / "docs" / "feed.xml"
+    if not feed_file.exists():
+        log.error("migrate_feed_xml_digest_entries: feed.xml not found")
+        return {"healed": 0, "skipped_no_video_id": 0}
+
+    video_id_map = enumerate_channel_digest_videos()
+    if not video_id_map:
+        log.error("migrate_feed_xml_digest_entries: enumeration returned empty, aborting")
+        return {"healed": 0, "skipped_no_video_id": 0}
+
+    try:
+        tree = ET.parse(feed_file)
+        root = tree.getroot()
+        channel = root.find("channel")
+    except Exception as e:
+        log.error(f"migrate_feed_xml_digest_entries: parse error: {e}")
+        return {"healed": 0, "skipped_no_video_id": 0}
+
+    summary = {"healed": 0, "skipped_no_video_id": 0}
+
+    # Collect digest dates first, before calling add_digest_to_feed which
+    # will re-parse feed.xml on each call. Avoids iterator invalidation.
+    digest_dates = []
+    for item in channel.findall("item"):
+        guid_el = item.find("guid")
+        if guid_el is None or guid_el.text is None:
+            continue
+        if guid_el.text.startswith("digest-"):
+            date = guid_el.text.replace("digest-", "", 1)
+            digest_dates.append(date)
+
+    log.info(f"migrate_feed_xml_digest_entries: found {len(digest_dates)} digest entries")
+
+    for date in digest_dates:
+        video_id = video_id_map.get(date)
+        if not video_id:
+            log.warning(f"migrate_feed_xml_digest_entries: no video_id for {date}, skipping")
+            summary["skipped_no_video_id"] += 1
+            continue
+
+        # story_count=0 is a sentinel — the healed update branch does NOT
+        # touch <title> or <description>, so this value is ignored when the
+        # item already exists. Only the new-item path (below the update
+        # branch) would use it, and that path is unreachable here because
+        # the entry already exists by definition.
+        try:
+            add_digest_to_feed(date, story_count=0, youtube_id=video_id)
+            summary["healed"] += 1
+        except Exception as e:
+            log.error(f"migrate_feed_xml_digest_entries: heal failed for {date}: {e}")
+
+    log.info(f"migrate_feed_xml_digest_entries: done — {summary}")
+    return summary
+
+
 def update_alexa_feed(fact: str, sources: list):
     """Update Alexa Flash Briefing JSON feed and push to GitHub."""
     import subprocess
