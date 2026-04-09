@@ -6816,6 +6816,15 @@ def update_archive_index():
 
     log.info(f"Updated archive index: {len(dates)} dates")
 
+    # Push the freshly-written index.json to GitHub Pages so clients can
+    # discover newly-archived days. Without this, index.json is written
+    # locally every cycle but never deployed, and clients see a frozen
+    # snapshot of whatever was current the last time someone manually pushed.
+    push_to_ghpages(
+        [(index_file, "archive/index.json")],
+        f"Update archive index ({len(dates)} dates)"
+    )
+
     # Also update search index
     update_search_index(dates)
 
