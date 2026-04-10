@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-04-10T17:56:17.118504+00:00",
+  "timestamp": "2026-04-10T18:00:55.270694+00:00",
+  "web_refresh_at": "2026-04-10T18:00:55.270694+00:00",
   "uptime_start": "2026-04-09T23:39:13.216793+00:00",
-  "uptime_seconds": 65824,
+  "uptime_seconds": 66102,
   "availability_pct": 38.2,
   "cycle": {
-    "number": 37,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 38,
+    "duration_seconds": 48.8,
+    "headlines_scraped": 177,
+    "headlines_processed": 6,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,29 +22,28 @@
         }
       },
       "claude": {
-        "calls": 542,
-        "cost_usd": 0.21980850000000005,
+        "calls": 548,
+        "cost_usd": 0.22258500000000003,
         "details": {
-          "input_tokens": 531879,
-          "output_tokens": 69471
+          "input_tokens": 538730,
+          "output_tokens": 70322
         }
       }
     },
-    "total_usd": 0.2434,
+    "total_usd": 0.2462,
     "month_estimate_usd": 9.26,
     "daily_budget": 1.67,
-    "budget_pct": 14.6
+    "budget_pct": 14.8
   },
   "queue": {
-    "size": 52,
-    "oldest_item_age_hours": 23.9
+    "size": 53,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 7,
   "sources": {
     "total": 22,
-    "successful": 20,
+    "successful": 21,
     "failed": [
-      "US State Department",
       "World Health Organization"
     ]
   },
@@ -62,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -81,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
