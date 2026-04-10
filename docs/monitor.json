@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-04-10T14:56:10.325785+00:00",
+  "timestamp": "2026-04-10T15:00:58.995108+00:00",
+  "web_refresh_at": "2026-04-10T15:00:58.995108+00:00",
   "uptime_start": "2026-04-09T23:39:13.216793+00:00",
-  "uptime_seconds": 55017,
-  "availability_pct": 37.7,
+  "uptime_seconds": 55306,
+  "availability_pct": 37.8,
   "cycle": {
-    "number": 31,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 32,
+    "duration_seconds": 52.5,
+    "headlines_scraped": 50,
+    "headlines_processed": 4,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,42 +22,103 @@
         }
       },
       "claude": {
-        "calls": 471,
-        "cost_usd": 0.19165650000000004,
+        "calls": 475,
+        "cost_usd": 0.1936985,
         "details": {
-          "input_tokens": 465111,
-          "output_tokens": 60303
+          "input_tokens": 469684,
+          "output_tokens": 61022
         }
       }
     },
-    "total_usd": 0.2128,
+    "total_usd": 0.2148,
     "month_estimate_usd": 9.26,
     "daily_budget": 1.67,
-    "budget_pct": 12.8
+    "budget_pct": 12.9
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 24.3
+    "size": 49,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 6,
   "sources": {
     "total": 22,
-    "successful": 21,
+    "successful": 5,
     "failed": [
-      "World Health Organization"
+      "Deutsche Welle",
+      "CBC News",
+      "ABC News Australia",
+      "PBS NewsHour",
+      "Irish Times",
+      "White House",
+      "Congress.gov",
+      "Federal Register",
+      "Supreme Court",
+      "US Department of Defense",
+      "UK Parliament",
+      "European Commission",
+      "UN News",
+      "Government of Canada",
+      "World Health Organization",
+      "CDC Newsroom",
+      "US State Department"
     ]
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-10T14:00:45.605007+00:00",
+      "timestamp": "2026-04-10T15:00:29.980931+00:00",
       "level": "WARNING",
-      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+      "message": "Failed to fetch from Congress.gov: HTTPSConnectionPool(host='www.congress.gov', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T15:00:31.082857+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Federal Register: HTTPSConnectionPool(host='www.federalregister.gov', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T15:00:32.162720+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Supreme Court: HTTPSConnectionPool(host='www.supremecourt.gov', port=443): Max retries exceeded with url: /opinions/slipopinion/25 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T15:00:33.249866+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from US State Department: HTTPSConnectionPool(host='www.state.gov', port=443): Max retries exceeded with url: /press-releases/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T15:00:34.357510+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from US Department of Defense: HTTPSConnectionPool(host='www.defense.gov', port=443): Max retries exceeded with url: /News/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T15:00:35.488558+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from UK Parliament: HTTPSConnectionPool(host='www.parliament.uk', port=443): Max retries exceeded with url: /business/news/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T15:00:36.596542+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from European Commission: HTTPSConnectionPool(host='ec.europa.eu', port=443): Max retries exceeded with url: /commission/presscorner/home/en (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T15:00:37.714032+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from UN News: HTTPSConnectionPool(host='news.un.org', port=443): Max retries exceeded with url: /en/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T15:00:38.827673+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Max retries exceeded with url: /en/news.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T15:00:40.873298+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from CDC Newsroom: HTTPSConnectionPool(host='www.cdc.gov', port=443): Max retries exceeded with url: /media/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +137,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
