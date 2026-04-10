@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-04-10T09:56:29.300603+00:00",
+  "timestamp": "2026-04-10T10:00:57.837475+00:00",
+  "web_refresh_at": "2026-04-10T10:00:57.837475+00:00",
   "uptime_start": "2026-04-09T23:39:13.216793+00:00",
-  "uptime_seconds": 37036,
-  "availability_pct": 37.2,
+  "uptime_seconds": 37305,
+  "availability_pct": 37.3,
   "cycle": {
-    "number": 21,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 22,
+    "duration_seconds": 52.3,
+    "headlines_scraped": 175,
+    "headlines_processed": 8,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 370,
-        "cost_usd": 0.15151975000000006,
+        "calls": 379,
+        "cost_usd": 0.15519775000000008,
         "details": {
-          "input_tokens": 367339,
-          "output_tokens": 47748
+          "input_tokens": 376606,
+          "output_tokens": 48837
         }
       }
     },
-    "total_usd": 0.1675,
+    "total_usd": 0.1712,
     "month_estimate_usd": 9.26,
     "daily_budget": 1.67,
-    "budget_pct": 10.1
+    "budget_pct": 10.3
   },
   "queue": {
     "size": 50,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 4,
   "sources": {
@@ -46,11 +47,17 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-04-10T10:00:33.524138+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -69,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
