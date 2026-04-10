@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-04-10T15:00:58.995108+00:00",
-  "web_refresh_at": "2026-04-10T15:00:58.995108+00:00",
+  "timestamp": "2026-04-10T16:25:25.963355+00:00",
   "uptime_start": "2026-04-09T23:39:13.216793+00:00",
-  "uptime_seconds": 55306,
-  "availability_pct": 37.8,
+  "uptime_seconds": 60373,
+  "availability_pct": 38.0,
   "cycle": {
-    "number": 32,
-    "duration_seconds": 52.5,
-    "headlines_scraped": 50,
-    "headlines_processed": 4,
+    "number": 34,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -36,17 +35,14 @@
     "budget_pct": 12.9
   },
   "queue": {
-    "size": 49,
-    "oldest_item_age_hours": 24.0
+    "size": 47,
+    "oldest_item_age_hours": 24.4
   },
   "stories_today": 6,
   "sources": {
     "total": 22,
-    "successful": 5,
+    "successful": 0,
     "failed": [
-      "Deutsche Welle",
-      "CBC News",
-      "ABC News Australia",
       "PBS NewsHour",
       "Irish Times",
       "White House",
@@ -60,65 +56,73 @@
       "Government of Canada",
       "World Health Organization",
       "CDC Newsroom",
+      "ProPublica",
+      "BBC News",
+      "NPR",
+      "The Guardian",
+      "France 24",
+      "Deutsche Welle",
+      "CBC News",
+      "ABC News Australia",
       "US State Department"
     ]
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-10T15:00:29.980931+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Congress.gov: HTTPSConnectionPool(host='www.congress.gov', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T15:00:31.082857+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Federal Register: HTTPSConnectionPool(host='www.federalregister.gov', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T15:00:32.162720+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Supreme Court: HTTPSConnectionPool(host='www.supremecourt.gov', port=443): Max retries exceeded with url: /opinions/slipopinion/25 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T15:00:33.249866+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from US State Department: HTTPSConnectionPool(host='www.state.gov', port=443): Max retries exceeded with url: /press-releases/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T15:00:34.357510+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from US Department of Defense: HTTPSConnectionPool(host='www.defense.gov', port=443): Max retries exceeded with url: /News/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T15:00:35.488558+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from UK Parliament: HTTPSConnectionPool(host='www.parliament.uk', port=443): Max retries exceeded with url: /business/news/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T15:00:36.596542+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from European Commission: HTTPSConnectionPool(host='ec.europa.eu', port=443): Max retries exceeded with url: /commission/presscorner/home/en (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T15:00:37.714032+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from UN News: HTTPSConnectionPool(host='news.un.org', port=443): Max retries exceeded with url: /en/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T15:00:38.827673+00:00",
+      "timestamp": "2026-04-10T16:00:21.373451+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Max retries exceeded with url: /en/news.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
     },
     {
-      "timestamp": "2026-04-10T15:00:40.873298+00:00",
+      "timestamp": "2026-04-10T16:00:22.432904+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from World Health Organization: HTTPSConnectionPool(host='www.who.int', port=443): Max retries exceeded with url: /news-room/releases (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T16:00:23.556856+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: HTTPSConnectionPool(host='www.cdc.gov', port=443): Max retries exceeded with url: /media/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T16:00:24.676074+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from ProPublica: HTTPSConnectionPool(host='www.propublica.org', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T16:00:25.724113+00:00",
+      "level": "WARNING",
+      "message": "GitHub feedback fetch error: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/data/feedback (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T16:00:25.764073+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T16:05:25.809434+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T16:10:25.866299+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T16:15:25.917053+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T16:20:25.961733+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 4,
     "degraded_services": []
   },
   "daily_digest": {
@@ -137,12 +141,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
