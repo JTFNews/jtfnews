@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-04-10T17:01:29.342156+00:00",
-  "web_refresh_at": "2026-04-10T17:01:29.342156+00:00",
+  "timestamp": "2026-04-10T17:11:30.575144+00:00",
   "uptime_start": "2026-04-09T23:39:13.216793+00:00",
-  "uptime_seconds": 62536,
+  "uptime_seconds": 63137,
   "availability_pct": 38.1,
   "cycle": {
     "number": 36,
-    "duration_seconds": 83.3,
-    "headlines_scraped": 177,
-    "headlines_processed": 20,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 3
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 51,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.7
   },
   "stories_today": 6,
   "sources": {
@@ -49,16 +48,6 @@
     ]
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-04-10T16:05:25.809434+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T16:10:25.866299+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
     {
       "timestamp": "2026-04-10T16:15:25.917053+00:00",
       "level": "WARNING",
@@ -98,12 +87,17 @@
       "timestamp": "2026-04-10T16:30:31.962345+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from ProPublica: HTTPSConnectionPool(host='www.propublica.org', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-04-10T17:06:30.573104+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by NameResolutionError(\"HTTPSConnection(host='api.github.com', port=443): Failed to resolve 'api.github.com' ([Errno 8] nodename nor servname provided, or not known)\"))"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 18,
     "degraded_services": []
   },
   "daily_digest": {
@@ -122,12 +116,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
