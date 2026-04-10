@@ -1,93 +1,69 @@
 {
-  "timestamp": "2026-04-10T17:26:34.091071+00:00",
+  "timestamp": "2026-04-10T17:31:10.489419+00:00",
+  "web_refresh_at": "2026-04-10T17:31:10.489419+00:00",
   "uptime_start": "2026-04-09T23:39:13.216793+00:00",
-  "uptime_seconds": 64041,
-  "availability_pct": 38.1,
+  "uptime_seconds": 64317,
+  "availability_pct": 38.2,
   "cycle": {
-    "number": 36,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 37,
+    "duration_seconds": 65.3,
+    "headlines_scraped": 177,
+    "headlines_processed": 8,
+    "stories_published": 1,
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 8,
-        "cost_usd": 0.02112,
+        "calls": 9,
+        "cost_usd": 0.02364,
         "details": {
-          "characters": 704
+          "characters": 788
         }
       },
       "claude": {
-        "calls": 527,
-        "cost_usd": 0.21531475000000003,
+        "calls": 542,
+        "cost_usd": 0.21980850000000005,
         "details": {
-          "input_tokens": 521299,
-          "output_tokens": 67992
+          "input_tokens": 531879,
+          "output_tokens": 69471
         }
       }
     },
-    "total_usd": 0.2364,
+    "total_usd": 0.2434,
     "month_estimate_usd": 9.26,
     "daily_budget": 1.67,
-    "budget_pct": 14.2
+    "budget_pct": 14.6
   },
   "queue": {
-    "size": 51,
-    "oldest_item_age_hours": 23.9
+    "size": 52,
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 6,
+  "stories_today": 7,
   "sources": {
     "total": 22,
     "successful": 20,
     "failed": [
-      "US State Department",
-      "World Health Organization"
+      "World Health Organization",
+      "US State Department"
     ]
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-10T16:30:01.825246+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from BBC News: HTTPSConnectionPool(host='www.bbc.com', port=443): Max retries exceeded with url: /news/world (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T16:30:03.024262+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from NPR: HTTPSConnectionPool(host='www.npr.org', port=443): Max retries exceeded with url: /sections/news/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T16:30:04.151217+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from The Guardian: HTTPSConnectionPool(host='www.theguardian.com', port=443): Max retries exceeded with url: /world (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T16:30:05.414427+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from France 24: HTTPSConnectionPool(host='www.france24.com', port=443): Max retries exceeded with url: /en/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T16:30:28.771017+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from World Health Organization: HTTPSConnectionPool(host='www.who.int', port=443): Max retries exceeded with url: /news-room/releases (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-04-10T16:30:31.962345+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from ProPublica: HTTPSConnectionPool(host='www.propublica.org', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
       "timestamp": "2026-04-10T17:06:30.573104+00:00",
       "level": "WARNING",
       "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by NameResolutionError(\"HTTPSConnection(host='api.github.com', port=443): Failed to resolve 'api.github.com' ([Errno 8] nodename nor servname provided, or not known)\"))"
+    },
+    {
+      "timestamp": "2026-04-10T17:30:32.259919+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -106,5 +82,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-09/2026-04-09-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
