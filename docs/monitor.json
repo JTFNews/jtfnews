@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-04-11T18:26:19.903634+00:00",
+  "timestamp": "2026-04-11T18:38:06.288119+00:00",
+  "web_refresh_at": "2026-04-11T18:38:06.288119+00:00",
   "uptime_start": "2026-04-11T16:25:37.715474+00:00",
-  "uptime_seconds": 7242,
+  "uptime_seconds": 7949,
   "availability_pct": 40.5,
   "cycle": {
-    "number": 5,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 6,
+    "duration_seconds": 474.5,
+    "headlines_scraped": 144,
+    "headlines_processed": 1,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,66 @@
         }
       },
       "claude": {
-        "calls": 519,
-        "cost_usd": 0.19853174999999978,
+        "calls": 520,
+        "cost_usd": 0.19906549999999978,
         "details": {
-          "input_tokens": 486902,
-          "output_tokens": 61445
+          "input_tokens": 488052,
+          "output_tokens": 61642
         }
       }
     },
-    "total_usd": 0.2355,
+    "total_usd": 0.236,
     "month_estimate_usd": 9.35,
     "daily_budget": 1.67,
-    "budget_pct": 14.1
+    "budget_pct": 14.2
   },
   "queue": {
-    "size": 37,
-    "oldest_item_age_hours": 24.4
+    "size": 36,
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 7,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 17,
+    "failed": [
+      "Federal Register",
+      "Supreme Court",
+      "US Department of Defense",
+      "UK Parliament",
+      "US State Department"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-04-11T18:31:31.121054+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Federal Register: HTTPSConnectionPool(host='www.federalregister.gov', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "timestamp": "2026-04-11T18:32:05.249625+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Supreme Court: HTTPSConnectionPool(host='www.supremecourt.gov', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "timestamp": "2026-04-11T18:32:57.908164+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from US State Department: HTTPSConnectionPool(host='www.state.gov', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "timestamp": "2026-04-11T18:33:47.380528+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from US Department of Defense: HTTPSConnectionPool(host='www.defense.gov', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "timestamp": "2026-04-11T18:34:36.570265+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from UK Parliament: HTTPSConnectionPool(host='www.parliament.uk', port=443): Read timed out. (read timeout=15)"
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 21,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +100,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-10/2026-04-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-10/2026-04-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
