@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-04-11T07:56:00.527515+00:00",
+  "timestamp": "2026-04-11T08:00:45.445179+00:00",
+  "web_refresh_at": "2026-04-11T08:00:45.445179+00:00",
   "uptime_start": "2026-04-11T04:23:50.006713+00:00",
-  "uptime_seconds": 12731,
-  "availability_pct": 39.7,
+  "uptime_seconds": 13015,
+  "availability_pct": 39.8,
   "cycle": {
-    "number": 8,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 9,
+    "duration_seconds": 40.3,
+    "headlines_scraped": 177,
+    "headlines_processed": 3,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 306,
-        "cost_usd": 0.12160950000000008,
+        "calls": 309,
+        "cost_usd": 0.12316700000000008,
         "details": {
-          "input_tokens": 298328,
-          "output_tokens": 37622
+          "input_tokens": 301763,
+          "output_tokens": 38181
         }
       }
     },
-    "total_usd": 0.1451,
+    "total_usd": 0.1466,
     "month_estimate_usd": 9.35,
     "daily_budget": 1.67,
-    "budget_pct": 8.7
+    "budget_pct": 8.8
   },
   "queue": {
-    "size": 44,
-    "oldest_item_age_hours": 24.4
+    "size": 43,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 5,
   "sources": {
@@ -46,11 +47,17 @@
       "World Health Organization"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-04-11T08:00:32.859900+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.who.int/news-room/releases"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -69,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-10/2026-04-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-10/2026-04-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
