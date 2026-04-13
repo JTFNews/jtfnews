@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-04-12T23:56:13.981091+00:00",
+  "timestamp": "2026-04-13T00:13:30.917720+00:00",
+  "web_refresh_at": "2026-04-13T00:13:30.917720+00:00",
   "uptime_start": "2026-04-11T16:25:37.715474+00:00",
-  "uptime_seconds": 113436,
+  "uptime_seconds": 114473,
   "availability_pct": 43.7,
   "cycle": {
-    "number": 64,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 65,
+    "duration_seconds": 488.8,
+    "headlines_scraped": 186,
+    "headlines_processed": 186,
+    "stories_published": 4,
+    "stories_queued": 21
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 13,
-        "cost_usd": 0.03168000000000001,
+        "calls": 6,
+        "cost_usd": 0.01914,
         "details": {
-          "characters": 1056
+          "characters": 638
         }
       },
       "claude": {
-        "calls": 574,
-        "cost_usd": 0.22625924999999997,
+        "calls": 223,
+        "cost_usd": 0.08988225000000005,
         "details": {
-          "input_tokens": 549422,
-          "output_tokens": 71123
+          "input_tokens": 219349,
+          "output_tokens": 28036
         }
       }
     },
-    "total_usd": 0.2579,
+    "total_usd": 0.109,
     "month_estimate_usd": 9.35,
     "daily_budget": 1.67,
-    "budget_pct": 15.5
+    "budget_pct": 6.5
   },
   "queue": {
-    "size": 26,
-    "oldest_item_age_hours": 23.9
+    "size": 36,
+    "oldest_item_age_hours": 23.2
   },
-  "stories_today": 11,
+  "stories_today": 4,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -48,37 +49,49 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-12T23:00:21.708178+00:00",
+      "timestamp": "2026-04-12T23:30:19.647393+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     },
     {
-      "timestamp": "2026-04-12T23:30:19.647393+00:00",
+      "timestamp": "2026-04-13T00:04:45.298789+00:00",
+      "level": "WARNING",
+      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp": "2026-04-13T00:05:35.443816+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     }
   ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 16,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-04-11",
-    "next_digest_at": "2026-04-13T00:00:00+00:00",
+    "last_date": "2026-04-12",
+    "next_digest_at": "2026-04-14T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-04-12T00:03:59.058445+00:00",
-    "story_count": 8,
-    "duration_seconds": 99,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-04-11-daily-digest.mp4",
-    "youtube_id": "CwwmPfWED04",
-    "youtube_url": "https://youtube.com/watch?v=CwwmPfWED04",
-    "archive_org_id": "jtf-news-2026-04-11",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-11/2026-04-11-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-04-11/2026-04-11-daily-digest.mp4",
+    "last_completed_at": "2026-04-13T00:04:34.531889+00:00",
+    "story_count": 11,
+    "duration_seconds": 114,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-04-12-daily-digest.mp4",
+    "youtube_id": "FbDGz4ZwgyU",
+    "youtube_url": "https://youtube.com/watch?v=FbDGz4ZwgyU",
+    "archive_org_id": "jtf-news-2026-04-12",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-12/2026-04-12-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-04-12/2026-04-12-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
