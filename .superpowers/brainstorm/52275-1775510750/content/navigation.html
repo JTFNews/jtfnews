@@ -1,0 +1,112 @@
+<h2>App Navigation Structure</h2>
+<p class="subtitle">Three-tab layout — calm, focused, no clutter</p>
+
+<div class="mockup">
+  <div class="mockup-header">Tab Bar Navigation</div>
+  <div class="mockup-body" style="background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, system-ui, sans-serif; padding: 0; border-radius: 12px; overflow: hidden;">
+
+    <!-- Status bar mock -->
+    <div style="display: flex; justify-content: space-between; padding: 8px 20px; font-size: 12px; color: #888;">
+      <span>9:41</span>
+      <span>JTF News</span>
+      <span>●●● ▐▐▐ 🔋</span>
+    </div>
+
+    <!-- Content area -->
+    <div style="padding: 16px 20px; min-height: 360px;">
+
+      <!-- Tab 1: Stories (active) -->
+      <div style="margin-bottom: 24px;">
+        <div style="font-size: 28px; font-weight: 700; margin-bottom: 4px; color: #fff;">Today</div>
+        <div style="font-size: 13px; color: #666; margin-bottom: 20px;">April 6, 2026 · 12 stories verified</div>
+
+        <!-- Story card 1 -->
+        <div style="background: #1a1a1a; border-radius: 12px; padding: 16px; margin-bottom: 12px;">
+          <div style="font-size: 15px; line-height: 1.5; color: #e0e0e0; margin-bottom: 12px;">
+            Earthquake measuring 6.2 struck central Chile. Evacuations reported across three provinces.
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 8px;">
+              <span style="background: #1a3a1a; color: #4a9; padding: 3px 8px; border-radius: 6px; font-size: 11px;">BBC 9.4</span>
+              <span style="background: #1a2a3a; color: #68b; padding: 3px 8px; border-radius: 6px; font-size: 11px;">CBC 9.0</span>
+            </div>
+            <span style="font-size: 11px; color: #555;">2h ago</span>
+          </div>
+          <div style="font-size: 10px; color: #444; margin-top: 8px;">
+            UK Public (100%) · Canadian Public (100%)
+          </div>
+        </div>
+
+        <!-- Story card 2 -->
+        <div style="background: #1a1a1a; border-radius: 12px; padding: 16px; margin-bottom: 12px;">
+          <div style="font-size: 15px; line-height: 1.5; color: #e0e0e0; margin-bottom: 12px;">
+            European Commission approved $2.1 billion infrastructure package for six member states.
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 8px;">
+              <span style="background: #1a3a1a; color: #4a9; padding: 3px 8px; border-radius: 6px; font-size: 11px;">DW 8.7</span>
+              <span style="background: #1a2a3a; color: #68b; padding: 3px 8px; border-radius: 6px; font-size: 11px;">France24 8.6</span>
+            </div>
+            <span style="font-size: 11px; color: #555;">4h ago</span>
+          </div>
+          <div style="font-size: 10px; color: #444; margin-top: 8px;">
+            German Federal Gov (100%) · French Gov (100%)
+          </div>
+        </div>
+
+        <!-- Correction badge -->
+        <div style="background: #2a1a1a; border: 1px solid #633; border-radius: 12px; padding: 16px; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <span style="background: #633; color: #faa; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600;">CORRECTION</span>
+          </div>
+          <div style="font-size: 14px; line-height: 1.5; color: #caa;">
+            <s style="color: #866;">Previous: 6.4 magnitude</s> → Corrected: 6.2 magnitude
+          </div>
+          <div style="font-size: 11px; color: #644; margin-top: 6px;">Corrected 2026-04-06 14:31 UTC</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab bar -->
+    <div style="display: flex; justify-content: space-around; padding: 12px 0 28px; border-top: 1px solid #222; background: #0a0a0a;">
+      <div style="text-align: center;">
+        <div style="font-size: 22px;">📰</div>
+        <div style="font-size: 10px; color: #fff; font-weight: 600;">Stories</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 22px;">▶️</div>
+        <div style="font-size: 10px; color: #555;">Digest</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 22px;">📚</div>
+        <div style="font-size: 10px; color: #555;">Archive</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top: 32px;">Tab Descriptions</h3>
+
+<div class="options">
+  <div class="option" data-choice="stories">
+    <div class="letter">1</div>
+    <div class="content">
+      <h3>Stories</h3>
+      <p><strong>Today's verified facts.</strong> Each card shows: the fact, source badges with accuracy ratings, ownership disclosure, and time. Corrections are inline with visual distinction. Pull to refresh.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="digest">
+    <div class="letter">2</div>
+    <div class="content">
+      <h3>Digest</h3>
+      <p><strong>Daily audio/video.</strong> Embedded YouTube player for the daily digest video. Below it, an audio-only option (Archive.org podcast). Past digests listed chronologically. Play controls persist as a mini-player when switching tabs.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="archive">
+    <div class="letter">3</div>
+    <div class="content">
+      <h3>Archive</h3>
+      <p><strong>The full record.</strong> Calendar or date-picker to browse past days. Full-text search across all archived stories. Each archived day shows its stories + link to that day's digest. Downloaded archives are cached for offline search.</p>
+    </div>
+  </div>
+</div>
