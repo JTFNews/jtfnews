@@ -62,7 +62,11 @@ if [ $PULL_STATUS -ne 0 ]; then
         echo "Non-runtime conflicts need manual resolution. Run 'git rebase --continue' after fixing."
         exit 1
     fi
-    git rebase --continue --no-edit 2>/dev/null || git rebase --continue
+    # GIT_EDITOR=true uses the no-op `true` command as editor so rebase --continue
+    # accepts the existing commit message without opening an interactive editor.
+    # (`git rebase --continue --no-edit` is NOT valid — that flag doesn't exist
+    # on `rebase --continue` and its use silently stalls the rebase.)
+    GIT_EDITOR=true git rebase --continue
 fi
 
 # =============================================================================

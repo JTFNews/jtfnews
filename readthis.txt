@@ -1,0 +1,69 @@
+=== recover-privacy.sh — Sun Apr 12 22:03:24 CDT 2026 ===
+
+Fetching origin...
+
+Current state:
+  local main:   ffeafbf5e2a845ac19467d7a49a946dd50e1fcfe
+  origin/main:  d55598074ef8ac560c31fad943122aef0182efe6
+  target pick:  ffeafbf5e2a845ac19467d7a49a946dd50e1fcfe
+
+Privacy commit summary:
+ffeafbf5 privacy: add privacy.html and link from all page footers
+
+Files in that commit:
+ docs/archive.html                   |   1 +
+ docs/archive/2026/2026-04-11.txt.gz | Bin 0 -> 984 bytes
+ docs/archive/2026/2026-04-12.txt.gz | Bin 0 -> 1217 bytes
+ docs/archive/search-index.json.gz   | Bin 20541 -> 21232 bytes
+ docs/corrections.html               |   1 +
+ docs/feedback.html                  |   1 +
+ docs/how-it-works.html              |   1 +
+ docs/index.html                     |   1 +
+ docs/journalists.html               |   1 +
+ docs/monitor.html                   |   1 +
+ docs/privacy.html                   | 152 ++++++++++++++++++++++++++++++++++++
+ docs/register.html                  |   1 +
+ docs/sources.html                   |   1 +
+ docs/submit.html                    |   1 +
+ docs/support.html                   |   1 +
+ docs/whitepaper.html                |   1 +
+ 16 files changed, 164 insertions(+)
+
+Verifying digest commits d2e9a18d (04-11) and f2d086a4 (04-12) are redundant...
+  found on origin/main: digest-2026-04-11
+  found on origin/main: digest-2026-04-12
+OK — both digest entries already on origin/main. Local digest commits are safe to drop.
+
+Running: git checkout main && git reset --hard origin/main
+Already on 'main'
+Your branch and 'origin/main' have diverged,
+and have 3 and 486 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+HEAD is now at d5559807 Update monitor data
+
+Cherry-picking ffeafbf5...
+[main b2f082d7] privacy: add privacy.html and link from all page footers
+ Date: Sun Apr 12 21:39:29 2026 -0500
+ 13 files changed, 164 insertions(+)
+ create mode 100644 docs/privacy.html
+
+Cherry-pick succeeded. New log:
+b2f082d7 privacy: add privacy.html and link from all page footers
+d5559807 Update monitor data
+6fc10e8c Update monitor data
+
+Running: git push origin main
+To https://github.com/JTFNews/jtfnews.git
+   d5559807..b2f082d7  main -> main
+
+Waiting 15s for GitHub Pages to start rebuilding...
+
+Probing https://jtfnews.org/privacy.html ...
+  attempt 1: HTTP 404
+  attempt 2: HTTP 404
+  attempt 3: HTTP 404
+  attempt 4: HTTP 200
+
+SUCCESS — privacy.html is live.
+
+=== Done. ===
