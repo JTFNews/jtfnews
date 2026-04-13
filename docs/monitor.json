@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-04-13T02:45:42.146834+00:00",
-  "uptime_start": "2026-04-13T02:40:06.247120+00:00",
-  "uptime_seconds": 336,
+  "timestamp": "2026-04-13T02:47:17.519684+00:00",
+  "web_refresh_at": "2026-04-13T02:47:17.519684+00:00",
+  "uptime_start": "2026-04-13T02:46:40.940966+00:00",
+  "uptime_seconds": 37,
   "availability_pct": 44.0,
   "cycle": {
     "number": 1,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "duration_seconds": 36.0,
+    "headlines_scraped": 186,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,18 +22,18 @@
         }
       },
       "claude": {
-        "calls": 262,
-        "cost_usd": 0.10601650000000007,
+        "calls": 265,
+        "cost_usd": 0.10695375000000007,
         "details": {
-          "input_tokens": 257211,
-          "output_tokens": 33371
+          "input_tokens": 259505,
+          "output_tokens": 33662
         }
       }
     },
-    "total_usd": 0.1283,
+    "total_usd": 0.1293,
     "month_estimate_usd": 9.38,
     "daily_budget": 1.67,
-    "budget_pct": 7.7
+    "budget_pct": 7.8
   },
   "queue": {
     "size": 35,
@@ -48,7 +49,7 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-04-13T02:40:19.959531+00:00",
+      "timestamp": "2026-04-13T02:46:54.896995+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     }
@@ -56,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 14,
+    "next_cycle_minutes": 12,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-12/2026-04-12-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-12/2026-04-12-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
