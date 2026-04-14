@@ -1,6 +1,6 @@
 # JTF News Publish Invariants
 
-**Status (2026-04-14):** Phase 1 and Phase 2 complete. APP-021 (multi-file atomic publish) and APP-022 (tests) remain as Phase 3.
+**Status (2026-04-14):** All published files are written atomically. APP-021 (multi-file atomic publish) and APP-022 (tests) remain as deferred Phase 3.
 
 Every file JTF News publishes to `jtfnews.org` passes through one of two
 pipelines:
@@ -80,30 +80,32 @@ so the caller can defer the publish and alert.
 `archive_result = upload_to_archive_org(...)` and
 `update_podcast_feeds(...)` lines.
 
-### Invariant 3: Atomic gzip writes for search-index.json.gz
+### Invariant 3: Atomic gzip writes for all published .gz files
 
-`archive/search-index.json.gz` is written via `atomic_gzip_write(path,
-data)`, which compresses into a `BytesIO` buffer with
-`gzip.GzipFile(fileobj=buf, mode='wb')` and then calls
+`atomic_gzip_write(path, data)` compresses into a `BytesIO` buffer
+with `gzip.GzipFile(fileobj=buf, mode='wb')` and then calls
 `atomic_write_bytes` — same rename(2) guarantee as
 `atomic_write_text`.
 
-**Protected call site (1):** `update_search_index` in `main.py`.
+**Protected call sites (4):**
 
-**Note — other gzip writes not yet atomic:** `archive_daily_log`,
-`archive_specific_date`, and the corrections-propagation rewrite path
-all write `{date}.txt.gz` archive files via `gzip.open('wb')`. These
-are also published files (pushed to GitHub Pages) and carry the same
-risk. Converting them is a documented follow-up under the "If you add
-a new published file" rule below.
-
-## Still open (Phase 3)
-
-| ID | Invariant | Fix |
+| Line | File | Write site |
 |---|---|---|
-| — | Daily archive `{date}.txt.gz` files written atomically | Convert 3 `gzip.open('wb')` sites (`archive_daily_log`, `archive_specific_date`, corrections propagation) to `atomic_gzip_write` |
-| APP-021 | Multi-file publishes atomic to the consumer | Rewrite `push_to_ghpages` to use the Git Data API (single commit for all changed files) |
-| APP-022 | Tests for Invariants 1, 2, 3, 4 + APP-021 | `tests/test_atomic_writes.py`, `tests/test_publish_gate.py` |
+| ~7582 | `docs/archive/YYYY/{date}.txt.gz` | `archive_daily_log` (midnight sweep) |
+| ~7646 | `docs/archive/YYYY/{date}.txt.gz` | `archive_specific_date` (recovery helper) |
+| ~7757 | `docs/archive/search-index.json.gz` | `update_search_index` |
+| ~8999 | `docs/archive/YYYY/{date}.txt.gz` | corrections-propagation rewrite |
+
+Every `gzip.open(path, 'w*')` write site in `main.py` has been
+converted. Read sites (`gzip.open(path, 'rt')`) are unchanged — they
+are not atomicity-relevant.
+
+## Deferred (Phase 3)
+
+| ID | Invariant | Fix | Why deferred |
+|---|---|---|---|
+| APP-021 | Multi-file publishes atomic to the consumer | Rewrite `push_to_ghpages` to use the Git Data API (single commit for all changed files) | The consumer-visible gap between sequential per-file PUTs is milliseconds — vastly smaller than the Fastly edge cache TTL (600s). Large rewrite for marginal benefit. |
+| APP-022 | Tests for Invariants 1–4 + APP-020 | `tests/test_atomic_writes.py`, `tests/test_publish_gate.py` | JTF methodology is "run forever, verify via live operation"; no existing test infrastructure. Adding one isolated test file without a runner is worse than not having it. |
 
 ## Internal (unpublished) writes — deliberately NOT atomic
 

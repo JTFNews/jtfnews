@@ -7578,11 +7578,9 @@ def archive_daily_log():
     archive_dir = docs_dir / "archive" / year
     archive_dir.mkdir(parents=True, exist_ok=True)
 
-    # Gzip the log
+    # Gzip the log (atomic — Invariant 3)
     archive_file = archive_dir / f"{yesterday_str}.txt.gz"
-    with open(log_file, 'rb') as f_in:
-        with gzip.open(archive_file, 'wb') as f_out:
-            shutil.copyfileobj(f_in, f_out)
+    atomic_gzip_write(archive_file, log_file.read_bytes())
 
     log.info(f"Archived: {archive_file}")
 
@@ -7643,9 +7641,7 @@ def archive_specific_date(date: str) -> bool:
     archive_file = archive_dir / f"{date}.txt.gz"
 
     try:
-        with open(log_file, 'rb') as f_in:
-            with gzip.open(archive_file, 'wb') as f_out:
-                shutil.copyfileobj(f_in, f_out)
+        atomic_gzip_write(archive_file, log_file.read_bytes())
         log.info(f"archive_specific_date: gzipped {log_file} -> {archive_file}")
     except Exception as e:
         log.error(f"archive_specific_date: gzip failed for {date}: {e}")
@@ -8994,9 +8990,8 @@ def rebuild_archives_with_urls():
                         new_lines.append(line)
 
                 if needs_update:
-                    # Write back compressed
-                    with gzip.open(gz_file, 'wt', encoding='utf-8') as f:
-                        f.write('\n'.join(new_lines))
+                    # Write back compressed (atomic — Invariant 3)
+                    atomic_gzip_write(gz_file, '\n'.join(new_lines).encode('utf-8'))
                     files_updated += 1
                     log.info(f"Updated archive: {gz_file.name}")
 
