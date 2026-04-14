@@ -1,6 +1,6 @@
 # JTF News Publish Invariants
 
-**Status (2026-04-14):** Phase 1 complete. Phase 2 in progress — Invariant 2 and APP-020 enforced. Invariant 3 pending.
+**Status (2026-04-14):** Phase 1 and Phase 2 complete. APP-021 (multi-file atomic publish) and APP-022 (tests) remain as Phase 3.
 
 Every file JTF News publishes to `jtfnews.org` passes through one of two
 pipelines:
@@ -80,21 +80,30 @@ so the caller can defer the publish and alert.
 `archive_result = upload_to_archive_org(...)` and
 `update_podcast_feeds(...)` lines.
 
-### Invariant 3 (partial): Gzip index writes
+### Invariant 3: Atomic gzip writes for search-index.json.gz
 
-`archive/search-index.json.gz` is written via `gzip.open(path, 'wb')` at
-line ~7681 — non-atomic.
+`archive/search-index.json.gz` is written via `atomic_gzip_write(path,
+data)`, which compresses into a `BytesIO` buffer with
+`gzip.GzipFile(fileobj=buf, mode='wb')` and then calls
+`atomic_write_bytes` — same rename(2) guarantee as
+`atomic_write_text`.
 
-**Fix:** Phase 2 will replace with `io.BytesIO()` + `gzip.GzipFile` into
-the buffer + `atomic_write_bytes`.
+**Protected call site (1):** `update_search_index` in `main.py`.
 
-## Still open (Phase 2)
+**Note — other gzip writes not yet atomic:** `archive_daily_log`,
+`archive_specific_date`, and the corrections-propagation rewrite path
+all write `{date}.txt.gz` archive files via `gzip.open('wb')`. These
+are also published files (pushed to GitHub Pages) and carry the same
+risk. Converting them is a documented follow-up under the "If you add
+a new published file" rule below.
+
+## Still open (Phase 3)
 
 | ID | Invariant | Fix |
 |---|---|---|
-| — | `search-index.json.gz` written atomically | BytesIO + gzip + atomic_write_bytes |
+| — | Daily archive `{date}.txt.gz` files written atomically | Convert 3 `gzip.open('wb')` sites (`archive_daily_log`, `archive_specific_date`, corrections propagation) to `atomic_gzip_write` |
 | APP-021 | Multi-file publishes atomic to the consumer | Rewrite `push_to_ghpages` to use the Git Data API (single commit for all changed files) |
-| APP-022 | Tests for Invariants 1, 2, 3 + APP-020/APP-021 | `tests/test_atomic_writes.py`, `tests/test_publish_gate.py` |
+| APP-022 | Tests for Invariants 1, 2, 3, 4 + APP-021 | `tests/test_atomic_writes.py`, `tests/test_publish_gate.py` |
 
 ## Internal (unpublished) writes — deliberately NOT atomic
 
@@ -109,8 +118,9 @@ benefit:
 - OAuth credential cache — written once, read many
 - Queue files — guarded by separate locking
 
-If you add a new published file, it MUST go through `atomic_write_text`
-or `atomic_write_bytes` and be documented here.
+If you add a new published file, it MUST go through one of
+`atomic_write_text`, `atomic_write_bytes`, `atomic_tree_write`, or
+`atomic_gzip_write` and be documented here.
 
 ## Scope rule for future contributors
 

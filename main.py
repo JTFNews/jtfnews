@@ -132,6 +132,20 @@ def atomic_tree_write(path: Path, tree: ET.ElementTree) -> None:
     atomic_write_bytes(path, buf.getvalue())
 
 
+def atomic_gzip_write(path: Path, data: bytes) -> None:
+    """Gzip-compress data into a buffer, then write atomically (Invariant 3).
+
+    gzip.open(path, 'wb') streams to a file handle and is non-atomic — a
+    reader (including push_to_ghpages reading the file to upload) can
+    observe a truncated or uninflatable gz. Compress into a BytesIO buffer
+    first, then one atomic rename writes the complete gz file.
+    """
+    buf = BytesIO()
+    with gzip.GzipFile(fileobj=buf, mode='wb') as gz:
+        gz.write(data)
+    atomic_write_bytes(path, buf.getvalue())
+
+
 # =============================================================================
 # RETRY LOGIC WITH EXPONENTIAL BACKOFF
 # =============================================================================
@@ -7753,8 +7767,7 @@ def update_search_index(dates: list = None):
     # Write gzipped JSON
     search_index_file = archive_dir / "search-index.json.gz"
     json_bytes = json.dumps(entries, separators=(',', ':')).encode('utf-8')
-    with gzip.open(search_index_file, 'wb') as f:
-        f.write(json_bytes)
+    atomic_gzip_write(search_index_file, json_bytes)
 
     log.info(f"Updated search index: {len(entries)} stories, {len(json_bytes)} bytes uncompressed")
 
