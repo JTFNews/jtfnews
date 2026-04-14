@@ -6421,6 +6421,9 @@ def generate_and_upload_daily_summary(date: str):
             mp3_path = str(video_path).replace('.mp4', '.mp3')
             if convert_video_to_podcast_audio(str(video_path), mp3_path):
                 archive_result = upload_to_archive_org(date, mp3_path, str(video_path))
+                # APP-020 publish gate: audio URL must be reachable before we
+                # advertise it in the feed, or consumers 404 until next cycle.
+                wait_for_archive_reachability(archive_result['audio_url'])
                 facts = [s["fact"] for s in stories_data if s.get("fact")]
                 update_podcast_feeds(date, archive_result, len(stories_data), int(estimated_duration), facts=facts)
                 push_podcast_feeds()
@@ -6814,6 +6817,31 @@ def upload_to_archive_org(date: str, mp3_path: str, mp4_path: str) -> dict:
         'audio_size': audio_size,
         'video_size': video_size
     }
+
+
+def wait_for_archive_reachability(url: str, timeout: int = 900, interval: int = 15) -> None:
+    """Poll url with HEAD until 200 or timeout (APP-020 publish gate).
+
+    Archive.org takes minutes to make an uploaded file reachable at its
+    download URL. Advertising that URL in a published feed before it is
+    reachable causes every podcast client to 404 until the next publish
+    cycle. This gate blocks until the URL responds 200, or raises
+    TimeoutError after `timeout` seconds so the caller can defer the
+    publish and alert.
+    """
+    deadline = time.time() + timeout
+    attempt = 0
+    while time.time() < deadline:
+        attempt += 1
+        try:
+            r = requests.head(url, timeout=10, allow_redirects=True)
+            if r.status_code == 200:
+                log.info(f"Archive URL reachable after {attempt} attempt(s): {url}")
+                return
+        except requests.RequestException:
+            pass
+        time.sleep(interval)
+    raise TimeoutError(f"Archive URL not reachable after {timeout}s: {url}")
 
 
 def build_youtube_description(date: str, facts: list) -> str:

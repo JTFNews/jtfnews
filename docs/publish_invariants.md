@@ -1,6 +1,6 @@
 # JTF News Publish Invariants
 
-**Status (2026-04-14):** Phase 1 complete. Phase 2 in progress — Invariant 2 enforced. Invariant 3 and APP-020 pending.
+**Status (2026-04-14):** Phase 1 complete. Phase 2 in progress — Invariant 2 and APP-020 enforced. Invariant 3 pending.
 
 Every file JTF News publishes to `jtfnews.org` passes through one of two
 pipelines:
@@ -62,6 +62,24 @@ The subsequent `clean_duplicate_namespaces` cleanup is also atomic
 (Invariant 1), so both stages of the publish now observe the same
 rename-or-no-rename semantics.
 
+### Invariant 4 (APP-020): Publish gate — `<item>` implies audio-downloadable
+
+An `<enclosure>` URL in `podcast.xml` is a promise to every podcast
+client that the audio file resolves to a 200 response. Archive.org
+takes minutes to propagate a fresh upload; if `update_podcast_feeds`
+runs before propagation completes, the feed advertises a URL that
+404s until the next publish cycle overwrites it.
+
+**Enforcement:** `wait_for_archive_reachability(url, timeout=900)` is
+called between `upload_to_archive_org` and `update_podcast_feeds` in
+the daily-digest path. It HEAD-polls the audio URL every 15 seconds,
+returns when it sees a 200, and raises `TimeoutError` after 15 minutes
+so the caller can defer the publish and alert.
+
+**Call site (1):** `main.py` daily digest pipeline, between the
+`archive_result = upload_to_archive_org(...)` and
+`update_podcast_feeds(...)` lines.
+
 ### Invariant 3 (partial): Gzip index writes
 
 `archive/search-index.json.gz` is written via `gzip.open(path, 'wb')` at
@@ -75,7 +93,6 @@ the buffer + `atomic_write_bytes`.
 | ID | Invariant | Fix |
 |---|---|---|
 | — | `search-index.json.gz` written atomically | BytesIO + gzip + atomic_write_bytes |
-| APP-020 | `<item>` implies audio-downloadable | `wait_for_archive_reachability` HEAD poll before insert |
 | APP-021 | Multi-file publishes atomic to the consumer | Rewrite `push_to_ghpages` to use the Git Data API (single commit for all changed files) |
 | APP-022 | Tests for Invariants 1, 2, 3 + APP-020/APP-021 | `tests/test_atomic_writes.py`, `tests/test_publish_gate.py` |
 
