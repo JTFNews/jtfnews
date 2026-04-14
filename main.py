@@ -7338,6 +7338,18 @@ def push_to_ghpages(files: list, commit_message: str):
         log.warning("GITHUB_TOKEN not set, cannot push to GitHub")
         return False
 
+    # Refuse to publish malformed XML. A 2026-04-13 incident shipped a
+    # podcast.xml with unresolved git conflict markers; every podcast client
+    # silently truncated at the first <<<<<<< and stopped showing new episodes.
+    import xml.etree.ElementTree as ET
+    for local_path, gh_path in files:
+        if Path(local_path).suffix == ".xml":
+            try:
+                ET.parse(local_path)
+            except ET.ParseError as e:
+                log.error(f"REFUSING to publish malformed XML: {gh_path} ({local_path}) — {e}")
+                return False
+
     # Also copy to local docs if it exists (for dev machine)
     docs_dir = BASE_DIR / "docs"
     if docs_dir.exists():

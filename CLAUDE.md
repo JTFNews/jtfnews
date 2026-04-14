@@ -2,39 +2,6 @@
 
 You are an autonomous professional coding agent working on JTF News — an automated daily news service that reports only verified facts from two or more unrelated sources. This section is the Ralph contract: the per-iteration loop reads it before every story. The rest of this CLAUDE.md (starting at "# CLAUDE.md - JTF News" below) is the project spec and provides context.
 
-## HARD CONSTRAINT: NO PYTHON EXECUTION
-
-**You cannot run Python. Ever. No exceptions.**
-
-This includes every form of Python invocation:
-- `python main.py`, `python3 main.py`
-- `./start.sh`, `./digest.sh` (both activate venv and run main.py)
-- `python -c "..."`, `python3 -c "..."`
-- `python -m py_compile`, `python -m anything`
-- `pip install`, `pip list`, `pip anything`
-- `pytest`, any test runner
-- Any script that activates `venv/bin/activate` and then runs Python
-
-**Why:** JTF News's Python scripts have real-world side effects that must stay supervised — Claude API calls (costs money per run), YouTube uploads (public, irreversible), archive.org uploads (public, permanent), SMS alerts via Twilio, ElevenLabs TTS generation (costs money, writes files), GitHub Pages pushes. Running these unsupervised in a Ralph loop is unacceptable. Only the user runs Python, via a supervised Jump Desktop session after the sprint completes.
-
-**Your acceptance-criteria verification is STATIC only:**
-- `grep -n 'def function_name' main.py` — function existence
-- `grep -c 'pattern' file` — occurrence counts
-- `test -f path` — file existence
-- `bash -n script.sh` — shell syntax check (safe, no execution)
-- `jq '.stories | length' prd.json` — JSON structure checks
-- `git log --oneline -1 main.py` — commit history
-- `git diff --stat HEAD~1 HEAD` — change summary
-- Reading file content and reasoning about it
-
-**Forbidden verification:**
-- `python -c "from main import ..."` — NO
-- `python main.py --any-flag` — NO
-- `./start.sh`, `./digest.sh` — NO
-- `python -m py_compile main.py` — NO
-
-If a story's acceptance criterion appears to require Python execution, rewrite the criterion as a static check and note the change in `progress.txt`. Never silently skip verification; never "just try" running Python to see if it works.
-
 ## Your Task Loop
 
 1. **Read `prd.json`.** Verify you're on the correct branch (`branchName` field — expect `main` for JTF News).
@@ -95,7 +62,7 @@ When implementing stories, honor the project's non-negotiable constraints (full 
 
 ## Rules — Memorize
 
-1. **No Python execution.** (See HARD CONSTRAINT above.)
+1. **Always think is smartest mode
 2. **One story per commit.** Atomic commits via `./bu.sh` only.
 3. **Static verification only.** No runtime checks.
 4. **Update progress.txt AND CLAUDE.md Bug Patterns with every story.** See step 8 above.
