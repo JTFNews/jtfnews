@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Refuse to run from the M4 SMB mount. bu.sh is designed to run on the
+# Intel Mac directly; the backup step hardcodes /Users/larryseyer/JTFNews
+# and fails from the mount (incident 2026-04-13).
+REAL_PWD="$(pwd -P)"
+if [[ "$REAL_PWD" == /Volumes/* ]]; then
+    echo "ERROR: bu.sh cannot run from the M4 SMB mount."
+    echo "       Current path: $REAL_PWD"
+    echo "       Run this from the Intel Mac (Jump Desktop terminal)."
+    exit 1
+fi
+
 if [ -z "$1" ]; then
     echo "Usage: bu.sh \"commit message\""
     exit 1
@@ -36,6 +47,19 @@ fi
 
 # If rebase conflicts occur on runtime files, keep local (this IS the live server)
 if [ $PULL_STATUS -ne 0 ]; then
+    # If no rebase is actually in progress, the pull failed BEFORE the rebase
+    # started (e.g., an untracked file in the working tree conflicts with an
+    # incoming commit). Do NOT fall through to staging/committing — that
+    # commits on a stale base (incident 2026-04-13, commit 24cf2b5bb).
+    if [ ! -d .git/rebase-merge ] && [ ! -d .git/rebase-apply ]; then
+        echo ""
+        echo "ERROR: git pull --rebase failed before the rebase started."
+        echo "       Usually means an untracked file in the working tree"
+        echo "       conflicts with an incoming commit. Run 'git status'"
+        echo "       and resolve manually. Aborting bu.sh."
+        exit 1
+    fi
+
     echo ""
     echo "Rebase conflict detected. Checking for runtime file conflicts..."
     CONFLICT_FILES=$(git diff --name-only --diff-filter=U)
