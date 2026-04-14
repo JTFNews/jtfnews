@@ -1,0 +1,121 @@
+# JTF News Publish Invariants
+
+**Status (2026-04-14):** Phase 1 complete. Phase 2 pending.
+
+Every file JTF News publishes to `jtfnews.org` passes through one of two
+pipelines:
+
+1. **Local write** — `main.py` writes the file to disk on the Intel Mac.
+2. **Remote push** — `push_to_ghpages()` reads the local file and PUTs it
+   to GitHub via the Contents API; GitHub Pages + Fastly serve it.
+
+A Truth-preserving pipeline must guarantee that no consumer ever observes
+an internally inconsistent state at either stage. This document records
+which invariants are enforced today and which are still open.
+
+## Enforced today (Phase 1 — APP-019)
+
+### Invariant 1: Atomic local writes for published JSON + podcast.xml
+
+Files that are written via `atomic_write_text(path, content)` cannot be
+observed mid-write by another process. `atomic_write_text` writes a `.tmp`
+sibling and calls `os.replace`, which is a single atomic `rename(2)`
+syscall on POSIX. Readers see either the old content or the new content,
+never a truncated or partial file.
+
+**Protected call sites (8):**
+
+| Line | File | Write site |
+|---|---|---|
+| ~3227 | `stories.json` | `stories_file` in `update_story_status` |
+| ~4364 | `alexa.json` | `alexa_file` in Alexa feed builder |
+| ~4567 | `corrections.json` | `CORRECTIONS_FILE` in `save_corrections` |
+| ~6946 | `docs/podcast.xml` | `feed_path` after episode insert |
+| ~7241 | `monitor.json` | `monitor_file` (active-cycle writer) |
+| ~7312 | `monitor.json` | `monitor_file` (sleeping-heartbeat writer) |
+| ~7599 | `archive/index.json` | `index_file` in `update_archive_index` |
+| ~8404 | `journalists.json` | `leaderboard_file` in leaderboard updater |
+
+Plus a bonus fix: `clean_duplicate_namespaces` now uses
+`atomic_write_text` for its post-processed XML content, so `feed.xml`'s
+namespace-cleanup step is atomic even though the upstream `tree.write()`
+is not (yet — see Invariant 2 below).
+
+**Why this matters (Truth-first rationale):** `push_to_ghpages()` reads
+each file to base64-encode it. Before APP-019, a reader (another cron
+job, or even a shell tail) could race the writer and see a half-written
+JSON. Worse, `push_to_ghpages` itself, if invoked concurrently from
+another trigger, would upload a corrupt file to GitHub and consumers on
+`jtfnews.org` would see a broken feed until the next publish cycle.
+
+### Invariant 2 (partial): XML writes through ElementTree
+
+`feed.xml` is written via `tree.write(f, encoding="utf-8",
+xml_declaration=True)` at multiple call sites (approx lines 3417, 3608,
+3902, 3999, 4052). `tree.write()` streams directly to the open file
+handle — non-atomic.
+
+**Mitigation shipped:** `clean_duplicate_namespaces` is called after
+every `tree.write()` for `feed.xml` and now uses `atomic_write_text` to
+finish. So the *last* write of `feed.xml` in each publish is atomic, but
+the intermediate `tree.write()` is not. A reader racing between the two
+steps could still see a non-cleaned file.
+
+**Fix:** Phase 2 will convert every `tree.write(f)` to write into a
+`BytesIO` first, then call a new `atomic_write_bytes` helper.
+
+### Invariant 3 (partial): Gzip index writes
+
+`archive/search-index.json.gz` is written via `gzip.open(path, 'wb')` at
+line ~7681 — non-atomic.
+
+**Fix:** Phase 2 will replace with `io.BytesIO()` + `gzip.GzipFile` into
+the buffer + `atomic_write_bytes`.
+
+## Still open (Phase 2)
+
+| ID | Invariant | Fix |
+|---|---|---|
+| — | `feed.xml` written atomically end-to-end | Wrap every `tree.write()` in BytesIO + atomic_write_bytes |
+| — | `search-index.json.gz` written atomically | BytesIO + gzip + atomic_write_bytes |
+| APP-020 | `<item>` implies audio-downloadable | `wait_for_archive_reachability` HEAD poll before insert |
+| APP-021 | Multi-file publishes atomic to the consumer | Rewrite `push_to_ghpages` to use the Git Data API (single commit for all changed files) |
+| APP-022 | Tests for Invariants 1, 2, 3 + APP-020/APP-021 | `tests/test_atomic_writes.py`, `tests/test_publish_gate.py` |
+
+## Internal (unpublished) writes — deliberately NOT atomic
+
+The following writes remain non-atomic by design. They are local state,
+never published, and atomic semantics would add cost with no Truth
+benefit:
+
+- `_fact_extraction_cache`, `_headline_hashes`, `_seen_hashes` — internal
+  dedup state
+- Daily log files in `logs/` — append-only, read only after rotation
+- TTS audio files — content-hashed filenames, never overwritten
+- OAuth credential cache — written once, read many
+- Queue files — guarded by separate locking
+
+If you add a new published file, it MUST go through `atomic_write_text`
+or `atomic_write_bytes` and be documented here.
+
+## Scope rule for future contributors
+
+> A file is "published" iff it can be served from `jtfnews.org` via
+> GitHub Pages + Fastly. Every published file, at every point in its
+> write path, must be replaceable by an atomic rename.
+
+That rule is load-bearing. The April-8-vs-April-13 Digest bug (see
+`docs/server_patches/APP-001-podcast-xml-conflict-markers.md`) showed
+what happens when it's violated: consumers of `podcast.xml` saw a file
+containing literal `<<<<<<<` conflict markers, because the file was
+committed and pushed non-atomically with no pre-commit validation.
+Atomic writes alone don't prevent that specific failure (that's APP-021
+and human review), but they close one of the three doors through which
+corrupt content can reach consumers.
+
+## Commit hygiene
+
+All edits to the files that implement these invariants MUST be committed
+via `./bu.sh "<message>"`. Never `git commit` directly. `bu.sh` enforces
+the exclude list for runtime files (`docs/podcast.xml` etc.) that are
+managed through the GitHub API path instead of git.

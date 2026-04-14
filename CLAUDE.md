@@ -58,6 +58,7 @@ When implementing stories, honor the project's non-negotiable constraints (full 
 - **No editorializing** — no adjectives, no opinions, no interpretation, no emoji in code, docs, or commit messages.
 - **Hash-based audio naming** — do not change the TTS file naming scheme.
 - **Runtime files are pushed by `main.py` via the GitHub API**, not by hand. If your story touches code that writes `feed.xml`, `stories.json`, etc., understand that `push_to_ghpages()` is the push mechanism.
+- **Published files must be written atomically.** Use `atomic_write_text(path, content)` (defined near the top of `main.py`) for every file that can be served from `jtfnews.org`. Never write a published file via raw `open(..., "w")` + `json.dump` — that's a truncation race for `push_to_ghpages()` and any concurrent reader. See `docs/publish_invariants.md` for the protected call sites and the rationale.
 - **Do not change specs without asking.** If a story's requirements conflict with the JTF methodology or the project spec, STOP, add a blocking note to `progress.txt`, and move on. Never silently change a spec.
 
 ## Rules — Memorize

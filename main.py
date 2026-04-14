@@ -87,8 +87,29 @@ def clean_duplicate_namespaces(file_path):
 
     content = re.sub(r'<rss[^>]+>', remove_dupe_attrs, content)
 
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write(content)
+    atomic_write_text(Path(file_path), content)
+
+
+# =============================================================================
+# ATOMIC FILE WRITES (APP-019)
+# =============================================================================
+
+def atomic_write_text(path: Path, text: str, *, encoding: str = "utf-8") -> None:
+    """Write text to a file atomically via rename.
+
+    Writes to a .tmp sibling first, then os.replace() — a single rename(2)
+    syscall on POSIX. A concurrent reader (another cron job, push_to_ghpages
+    reading the file to upload) never observes a partial file: they see
+    either the old content or the new content, never a mid-write truncation.
+
+    This is the Truth-preservation layer for published files. Without it, a
+    reader that races the writer can base64-encode and push a half-written
+    JSON/XML to GitHub Pages, and consumers see a broken feed until the
+    next publish cycle overwrites it.
+    """
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(text, encoding=encoding)
+    os.replace(tmp, path)
 
 
 # =============================================================================
@@ -3222,9 +3243,8 @@ def update_stories_json(fact: str, sources: list, audio_file: str = None):
         "status": "published"
     })
 
-    # Write back
-    with open(stories_file, 'w') as f:
-        json.dump(stories, f, indent=2)
+    # Write back (atomic — APP-019)
+    atomic_write_text(stories_file, json.dumps(stories, indent=2))
 
     # Also copy to docs for screensaver
     docs_dir = BASE_DIR / "docs"
@@ -4359,9 +4379,8 @@ def update_alexa_feed(fact: str, sources: list):
     # Trim to max items
     items = items[:max_items]
 
-    # Write JSON
-    with open(alexa_file, 'w') as f:
-        json.dump(items, f, indent=2)
+    # Write JSON (atomic — APP-019)
+    atomic_write_text(alexa_file, json.dumps(items, indent=2))
 
     log.info(f"Alexa feed updated: {len(items)} items")
 
@@ -4563,8 +4582,8 @@ def save_corrections(corrections: dict):
     """Save corrections log to disk and sync to GitHub."""
     corrections["last_updated"] = datetime.now(timezone.utc).isoformat()
 
-    with open(CORRECTIONS_FILE, 'w') as f:
-        json.dump(corrections, f, indent=2)
+    # Atomic — APP-019
+    atomic_write_text(CORRECTIONS_FILE, json.dumps(corrections, indent=2))
 
     # Sync to docs for public access
     docs_dir = BASE_DIR / "docs"
@@ -6942,7 +6961,8 @@ def update_podcast_feeds(date: str, archive_result: dict, story_count: int, dura
         return
 
     updated = content[:insert_point] + item_xml + "\n  </channel>" + content[insert_point + len("  </channel>"):]
-    feed_path.write_text(updated, encoding="utf-8")
+    # Atomic — APP-019
+    atomic_write_text(feed_path, updated)
     log.info(f"Added episode {date} to podcast.xml")
 
 
@@ -7238,8 +7258,8 @@ def write_monitor_data(cycle_stats: dict):
     }
 
     try:
-        with open(monitor_file, 'w') as f:
-            json.dump(data, f, indent=2)
+        # Atomic — APP-019
+        atomic_write_text(monitor_file, json.dumps(data, indent=2))
     except IOError as e:
         log.warning(f"Could not write monitor data: {e}")
         return
@@ -7309,8 +7329,8 @@ def write_sleeping_heartbeat(minutes_remaining: int, last_cycle_stats: dict = No
     }
 
     try:
-        with open(monitor_file, 'w') as f:
-            json.dump(data, f, indent=2)
+        # Atomic — APP-019
+        atomic_write_text(monitor_file, json.dumps(data, indent=2))
     except IOError as e:
         log.warning(f"Could not write sleeping heartbeat: {e}")
         return
@@ -7608,8 +7628,8 @@ def update_archive_index():
     }
 
     index_file = archive_dir / "index.json"
-    with open(index_file, 'w') as f:
-        json.dump(index_data, f, indent=2)
+    # Atomic — APP-019
+    atomic_write_text(index_file, json.dumps(index_data, indent=2))
 
     log.info(f"Updated archive index: {len(dates)} dates")
 
@@ -8413,8 +8433,8 @@ def generate_leaderboard():
     }
 
     leaderboard_file = BASE_DIR / "docs" / "journalists.json"
-    with open(leaderboard_file, 'w') as f:
-        json.dump(leaderboard_data, f, indent=2)
+    # Atomic — APP-019
+    atomic_write_text(leaderboard_file, json.dumps(leaderboard_data, indent=2))
 
     # Push to GitHub Pages
     push_to_ghpages(
