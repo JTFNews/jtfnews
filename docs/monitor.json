@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-04-14T15:25:58.533552+00:00",
+  "timestamp": "2026-04-14T15:30:53.133578+00:00",
+  "web_refresh_at": "2026-04-14T15:30:53.133578+00:00",
   "uptime_start": "2026-04-13T23:43:58.710511+00:00",
-  "uptime_seconds": 56520,
-  "availability_pct": 46.8,
+  "uptime_seconds": 56814,
+  "availability_pct": 46.9,
   "cycle": {
-    "number": 32,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 33,
+    "duration_seconds": 45.7,
+    "headlines_scraped": 186,
+    "headlines_processed": 7,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 579,
-        "cost_usd": 0.2289277499999999,
+        "calls": 588,
+        "cost_usd": 0.2320572499999999,
         "details": {
-          "input_tokens": 554731,
-          "output_tokens": 72196
+          "input_tokens": 562984,
+          "output_tokens": 73049
         }
       }
     },
-    "total_usd": 0.2742,
+    "total_usd": 0.2774,
     "month_estimate_usd": 9.38,
     "daily_budget": 1.67,
-    "budget_pct": 16.5
+    "budget_pct": 16.6
   },
   "queue": {
-    "size": 56,
-    "oldest_item_age_hours": 23.4
+    "size": 57,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 11,
   "sources": {
@@ -45,11 +46,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-04-14T14:30:46.924409+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ca3pmfoqrymvwJdn5hr1A'}"
-    },
     {
       "timestamp": "2026-04-14T14:31:00.136334+00:00",
       "level": "ERROR",
@@ -69,7 +65,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -88,5 +84,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-13/2026-04-13-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-13/2026-04-13-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
