@@ -1,6 +1,6 @@
 # JTF News Publish Invariants
 
-**Status (2026-04-14):** Phase 1 complete. Phase 2 pending.
+**Status (2026-04-14):** Phase 1 complete. Phase 2 in progress — Invariant 2 enforced. Invariant 3 and APP-020 pending.
 
 Every file JTF News publishes to `jtfnews.org` passes through one of two
 pipelines:
@@ -36,10 +36,9 @@ never a truncated or partial file.
 | ~7599 | `archive/index.json` | `index_file` in `update_archive_index` |
 | ~8404 | `journalists.json` | `leaderboard_file` in leaderboard updater |
 
-Plus a bonus fix: `clean_duplicate_namespaces` now uses
-`atomic_write_text` for its post-processed XML content, so `feed.xml`'s
-namespace-cleanup step is atomic even though the upstream `tree.write()`
-is not (yet — see Invariant 2 below).
+Plus a bonus fix: `clean_duplicate_namespaces` uses `atomic_write_text`
+for its post-processed XML content, so `feed.xml`'s namespace-cleanup
+step is atomic on top of the now-atomic upstream write.
 
 **Why this matters (Truth-first rationale):** `push_to_ghpages()` reads
 each file to base64-encode it. Before APP-019, a reader (another cron
@@ -48,21 +47,20 @@ JSON. Worse, `push_to_ghpages` itself, if invoked concurrently from
 another trigger, would upload a corrupt file to GitHub and consumers on
 `jtfnews.org` would see a broken feed until the next publish cycle.
 
-### Invariant 2 (partial): XML writes through ElementTree
+### Invariant 2: Atomic XML writes for feed.xml
 
-`feed.xml` is written via `tree.write(f, encoding="utf-8",
-xml_declaration=True)` at multiple call sites (approx lines 3417, 3608,
-3902, 3999, 4052). `tree.write()` streams directly to the open file
-handle — non-atomic.
+`feed.xml` is written via `atomic_tree_write(path, tree)`, which
+serializes the tree to a `BytesIO` buffer and then calls
+`atomic_write_bytes(path, data)` — same rename(2) guarantee as
+`atomic_write_text`.
 
-**Mitigation shipped:** `clean_duplicate_namespaces` is called after
-every `tree.write()` for `feed.xml` and now uses `atomic_write_text` to
-finish. So the *last* write of `feed.xml` in each publish is atomic, but
-the intermediate `tree.write()` is not. A reader racing between the two
-steps could still see a non-cleaned file.
+**Protected call sites (6):** every `tree.write(f, ...)` targeting
+`feed_file` has been converted. `atomic_tree_write` is the single
+chokepoint; grep for `open(feed_file` should return zero matches.
 
-**Fix:** Phase 2 will convert every `tree.write(f)` to write into a
-`BytesIO` first, then call a new `atomic_write_bytes` helper.
+The subsequent `clean_duplicate_namespaces` cleanup is also atomic
+(Invariant 1), so both stages of the publish now observe the same
+rename-or-no-rename semantics.
 
 ### Invariant 3 (partial): Gzip index writes
 
@@ -76,7 +74,6 @@ the buffer + `atomic_write_bytes`.
 
 | ID | Invariant | Fix |
 |---|---|---|
-| — | `feed.xml` written atomically end-to-end | Wrap every `tree.write()` in BytesIO + atomic_write_bytes |
 | — | `search-index.json.gz` written atomically | BytesIO + gzip + atomic_write_bytes |
 | APP-020 | `<item>` implies audio-downloadable | `wait_for_archive_reachability` HEAD poll before insert |
 | APP-021 | Multi-file publishes atomic to the consumer | Rewrite `push_to_ghpages` to use the Git Data API (single commit for all changed files) |

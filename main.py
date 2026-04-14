@@ -29,6 +29,7 @@ import xml.etree.ElementTree as ET
 import calendar
 from datetime import datetime, timezone, timedelta
 from functools import wraps
+from io import BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.robotparser import RobotFileParser
@@ -110,6 +111,25 @@ def atomic_write_text(path: Path, text: str, *, encoding: str = "utf-8") -> None
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(text, encoding=encoding)
     os.replace(tmp, path)
+
+
+def atomic_write_bytes(path: Path, data: bytes) -> None:
+    """Write bytes to a file atomically via rename. See atomic_write_text."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_bytes(data)
+    os.replace(tmp, path)
+
+
+def atomic_tree_write(path: Path, tree: ET.ElementTree) -> None:
+    """Serialize an ElementTree to XML bytes and write atomically (APP-019 / Invariant 2).
+
+    tree.write(open_handle) streams to an open file and is non-atomic — a
+    reader racing the writer can observe truncated XML. Serialize to a
+    BytesIO buffer first, then one atomic rename writes the complete file.
+    """
+    buf = BytesIO()
+    tree.write(buf, encoding="utf-8", xml_declaration=True)
+    atomic_write_bytes(path, buf.getvalue())
 
 
 # =============================================================================
@@ -3433,8 +3453,7 @@ def update_rss_feed(fact: str, sources: list):
     # Write with XML declaration (use custom indent for Python 3.8 compatibility)
     indent_xml(rss, space="  ")
     tree = ET.ElementTree(rss)
-    with open(feed_file, 'wb') as f:
-        tree.write(f, encoding="utf-8", xml_declaration=True)
+    atomic_tree_write(feed_file, tree)
 
     # Clean up duplicate namespace declarations (ElementTree quirk)
     clean_duplicate_namespaces(feed_file)
@@ -3624,8 +3643,7 @@ def add_correction_to_rss(correction_type: str, original_fact: str,
     # Write with XML declaration
     indent_xml(rss, space="  ")
     tree = ET.ElementTree(rss)
-    with open(feed_file, 'wb') as f:
-        tree.write(f, encoding="utf-8", xml_declaration=True)
+    atomic_tree_write(feed_file, tree)
 
     # Clean up duplicate namespace declarations (ElementTree quirk)
     clean_duplicate_namespaces(feed_file)
@@ -3918,8 +3936,7 @@ def regenerate_rss_feed():
     # Write with XML declaration
     indent_xml(rss, space="  ")
     tree = ET.ElementTree(rss)
-    with open(feed_file, 'wb') as f:
-        tree.write(f, encoding="utf-8", xml_declaration=True)
+    atomic_tree_write(feed_file, tree)
 
     # Clean up duplicate namespace declarations (ElementTree quirk)
     clean_duplicate_namespaces(feed_file)
@@ -4015,8 +4032,7 @@ def add_digest_to_feed(date: str, story_count: int, youtube_id: str):
 
                 if changed:
                     indent_xml(root)
-                    with open(feed_file, 'wb') as f:
-                        tree.write(f, encoding="utf-8", xml_declaration=True)
+                    atomic_tree_write(feed_file, tree)
                     clean_duplicate_namespaces(feed_file)
                     log.info(f"Healed digest feed entry for {date}")
                     push_to_ghpages([(feed_file, "feed.xml")], f"Heal digest feed entry for {date}")
@@ -4068,8 +4084,7 @@ def add_digest_to_feed(date: str, story_count: int, youtube_id: str):
         indent_xml(root)
 
         # Write file
-        with open(feed_file, 'wb') as f:
-            tree.write(f, encoding="utf-8", xml_declaration=True)
+        atomic_tree_write(feed_file, tree)
 
         clean_duplicate_namespaces(feed_file)
 
@@ -9025,8 +9040,7 @@ def rebuild_feed_with_urls():
 
         # Write back
         indent_xml(root, space="  ")
-        with open(feed_file, 'wb') as f:
-            tree.write(f, encoding="utf-8", xml_declaration=True)
+        atomic_tree_write(feed_file, tree)
         clean_duplicate_namespaces(feed_file)
 
         log.info(f"Updated feed.xml: {items_updated} source elements updated")
