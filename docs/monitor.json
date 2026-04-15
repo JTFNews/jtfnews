@@ -1,65 +1,55 @@
 {
-  "timestamp": "2026-04-15T15:56:08.437076+00:00",
+  "timestamp": "2026-04-15T16:01:20.803313+00:00",
+  "web_refresh_at": "2026-04-15T16:01:20.803313+00:00",
   "uptime_start": "2026-04-14T21:50:06.045419+00:00",
-  "uptime_seconds": 65162,
+  "uptime_seconds": 65475,
   "availability_pct": 46.4,
   "cycle": {
-    "number": 37,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 38,
+    "duration_seconds": 73.3,
+    "headlines_scraped": 186,
+    "headlines_processed": 11,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 12,
-        "cost_usd": 0.03726,
+        "calls": 13,
+        "cost_usd": 0.03936,
         "details": {
-          "characters": 1242
+          "characters": 1312
         }
       },
       "claude": {
-        "calls": 554,
-        "cost_usd": 0.21737649999999956,
+        "calls": 573,
+        "cost_usd": 0.22348474999999954,
         "details": {
-          "input_tokens": 531411,
-          "output_tokens": 67619
+          "input_tokens": 545894,
+          "output_tokens": 69609
         }
       }
     },
-    "total_usd": 0.2546,
+    "total_usd": 0.2628,
     "month_estimate_usd": 9.43,
     "daily_budget": 1.67,
-    "budget_pct": 15.3
+    "budget_pct": 15.8
   },
   "queue": {
     "size": 63,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 9,
+  "stories_today": 10,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-04-15T15:00:51.795252+00:00",
-      "level": "ERROR",
-      "message": "Contradiction check failed: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011Ca5ksNi9w9RisPsmb5DuM'}"
-    },
-    {
-      "timestamp": "2026-04-15T15:01:04.511623+00:00",
-      "level": "ERROR",
-      "message": "Correction detection failed: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011Ca5ktBGboXGnBK2neWug8'}"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -78,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-14/2026-04-14-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-14/2026-04-14-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
