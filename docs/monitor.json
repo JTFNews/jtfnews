@@ -1,65 +1,51 @@
 {
-  "timestamp": "2026-04-15T14:56:29.443722+00:00",
+  "timestamp": "2026-04-15T15:01:15.583866+00:00",
+  "web_refresh_at": "2026-04-15T15:01:15.583866+00:00",
   "uptime_start": "2026-04-14T21:50:06.045419+00:00",
-  "uptime_seconds": 61583,
+  "uptime_seconds": 61870,
   "availability_pct": 46.3,
   "cycle": {
-    "number": 35,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 36,
+    "duration_seconds": 67.5,
+    "headlines_scraped": 186,
+    "headlines_processed": 9,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 11,
-        "cost_usd": 0.03432,
+        "calls": 12,
+        "cost_usd": 0.03726,
         "details": {
-          "characters": 1144
+          "characters": 1242
         }
       },
       "claude": {
-        "calls": 525,
-        "cost_usd": 0.2089317499999996,
+        "calls": 537,
+        "cost_usd": 0.2130379999999996,
         "details": {
-          "input_tokens": 508872,
-          "output_tokens": 65371
+          "input_tokens": 519717,
+          "output_tokens": 66487
         }
       }
     },
-    "total_usd": 0.2433,
+    "total_usd": 0.2503,
     "month_estimate_usd": 9.43,
     "daily_budget": 1.67,
-    "budget_pct": 14.6
+    "budget_pct": 15.0
   },
   "queue": {
     "size": 58,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 8,
+  "stories_today": 9,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-04-15T14:00:49.622718+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ca5gHyrqskbiRvh78Tfcx'}"
-    },
-    {
-      "timestamp": "2026-04-15T14:01:01.137521+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ca5gJpv79XDp83wJ1K881'}"
-    },
-    {
-      "timestamp": "2026-04-15T14:01:14.961100+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ca5gKqd3gn2Q3DBot2F9y'}"
-    },
     {
       "timestamp": "2026-04-15T14:01:29.400282+00:00",
       "level": "ERROR",
@@ -89,12 +75,22 @@
       "timestamp": "2026-04-15T14:02:59.601164+00:00",
       "level": "ERROR",
       "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ca5gTZ5MpEHr7VWCELqtL'}"
+    },
+    {
+      "timestamp": "2026-04-15T15:00:51.795252+00:00",
+      "level": "ERROR",
+      "message": "Contradiction check failed: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011Ca5ksNi9w9RisPsmb5DuM'}"
+    },
+    {
+      "timestamp": "2026-04-15T15:01:04.511623+00:00",
+      "level": "ERROR",
+      "message": "Correction detection failed: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011Ca5ktBGboXGnBK2neWug8'}"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -113,5 +109,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-14/2026-04-14-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-14/2026-04-14-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
