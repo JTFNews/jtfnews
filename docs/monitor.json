@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-04-15T06:26:03.276141+00:00",
+  "timestamp": "2026-04-15T06:31:00.270616+00:00",
+  "web_refresh_at": "2026-04-15T06:31:00.270616+00:00",
   "uptime_start": "2026-04-14T21:50:06.045419+00:00",
-  "uptime_seconds": 30957,
-  "availability_pct": 45.7,
+  "uptime_seconds": 31254,
+  "availability_pct": 45.8,
   "cycle": {
-    "number": 18,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 19,
+    "duration_seconds": 54.0,
+    "headlines_scraped": 186,
+    "headlines_processed": 9,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 323,
-        "cost_usd": 0.13006049999999988,
+        "calls": 334,
+        "cost_usd": 0.1342539999999999,
         "details": {
-          "input_tokens": 317892,
-          "output_tokens": 40470
+          "input_tokens": 328476,
+          "output_tokens": 41708
         }
       }
     },
-    "total_usd": 0.1512,
+    "total_usd": 0.1554,
     "month_estimate_usd": 9.43,
     "daily_budget": 1.67,
-    "budget_pct": 9.1
+    "budget_pct": 9.3
   },
   "queue": {
-    "size": 57,
-    "oldest_item_age_hours": 23.9
+    "size": 59,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 5,
   "sources": {
@@ -44,17 +45,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-04-15T05:30:25.056143+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.defense.gov/News/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-14/2026-04-14-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-14/2026-04-14-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
