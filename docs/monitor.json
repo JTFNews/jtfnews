@@ -1,60 +1,55 @@
 {
-  "timestamp": "2026-04-16T04:56:02.194304+00:00",
+  "timestamp": "2026-04-16T05:01:02.118610+00:00",
+  "web_refresh_at": "2026-04-16T05:01:02.118610+00:00",
   "uptime_start": "2026-04-15T21:29:37.372461+00:00",
-  "uptime_seconds": 26785,
-  "availability_pct": 47.1,
+  "uptime_seconds": 27085,
+  "availability_pct": 47.2,
   "cycle": {
-    "number": 15,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 16,
+    "duration_seconds": 56.4,
+    "headlines_scraped": 186,
+    "headlines_processed": 8,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 6,
-        "cost_usd": 0.01914,
+        "calls": 7,
+        "cost_usd": 0.0216,
         "details": {
-          "characters": 638
+          "characters": 720
         }
       },
       "claude": {
-        "calls": 298,
-        "cost_usd": 0.11249825000000001,
+        "calls": 310,
+        "cost_usd": 0.11669075000000002,
         "details": {
-          "input_tokens": 278013,
-          "output_tokens": 34396
+          "input_tokens": 288118,
+          "output_tokens": 35729
         }
       }
     },
-    "total_usd": 0.1316,
+    "total_usd": 0.1383,
     "month_estimate_usd": 9.28,
     "daily_budget": 1.67,
-    "budget_pct": 7.9
+    "budget_pct": 8.3
   },
   "queue": {
-    "size": 69,
-    "oldest_item_age_hours": 23.4
+    "size": 68,
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 4,
+  "stories_today": 5,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-04-16T04:00:54.789378+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from BBC News: HTTPSConnectionPool(host='www.bbc.com', port=443): Read timed out. (read timeout=15)"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-15/2026-04-15-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-15/2026-04-15-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
