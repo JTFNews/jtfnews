@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-04-16T19:26:16.887191+00:00",
+  "timestamp": "2026-04-16T19:31:09.349603+00:00",
+  "web_refresh_at": "2026-04-16T19:31:09.349603+00:00",
   "uptime_start": "2026-04-15T21:29:37.372461+00:00",
-  "uptime_seconds": 79000,
+  "uptime_seconds": 79292,
   "availability_pct": 48.2,
   "cycle": {
-    "number": 44,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 45,
+    "duration_seconds": 62.3,
+    "headlines_scraped": 187,
+    "headlines_processed": 13,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,11 +22,11 @@
         }
       },
       "claude": {
-        "calls": 690,
-        "cost_usd": 0.2603242500000002,
+        "calls": 704,
+        "cost_usd": 0.2665330000000002,
         "details": {
-          "input_tokens": 636747,
-          "output_tokens": 80910
+          "input_tokens": 651712,
+          "output_tokens": 82884
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.3334,
+    "total_usd": 0.3396,
     "month_estimate_usd": 9.28,
     "daily_budget": 1.67,
-    "budget_pct": 20.0
+    "budget_pct": 20.4
   },
   "queue": {
-    "size": 66,
-    "oldest_item_age_hours": 24.4
+    "size": 64,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 13,
   "sources": {
@@ -51,42 +52,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-04-16T18:30:58.201978+00:00",
-      "level": "WARNING",
-      "message": "Correction needed: The new verified fact states Israel agreed to a ce"
-    },
-    {
-      "timestamp": "2026-04-16T18:31:00.399178+00:00",
-      "level": "WARNING",
-      "message": "Alert sent: CORRECTION issued for 2026-04-16-004: The new verified fact states Israel agreed to a ce"
-    },
-    {
-      "timestamp": "2026-04-16T18:31:03.230632+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-15 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-16T18:31:03.230760+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-14 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-16T18:31:03.230876+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-13 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-16T18:31:03.231133+00:00",
-      "level": "WARNING",
-      "message": "propagate_correction_to_youtube: no YouTube video for 2026-04-16, skipping"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -105,5 +75,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-15/2026-04-15-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-15/2026-04-15-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
