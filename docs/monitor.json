@@ -1,61 +1,93 @@
 {
-  "timestamp": "2026-04-16T18:26:09.908243+00:00",
+  "timestamp": "2026-04-16T18:31:13.562861+00:00",
+  "web_refresh_at": "2026-04-16T18:31:13.562861+00:00",
   "uptime_start": "2026-04-15T21:29:37.372461+00:00",
-  "uptime_seconds": 75393,
+  "uptime_seconds": 75696,
   "availability_pct": 48.1,
   "cycle": {
-    "number": 42,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 43,
+    "duration_seconds": 67.4,
+    "headlines_scraped": 187,
+    "headlines_processed": 7,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 16,
-        "cost_usd": 0.04839000000000001,
+        "calls": 18,
+        "cost_usd": 0.05724000000000001,
         "details": {
-          "characters": 1613
+          "characters": 1908
         }
       },
       "claude": {
-        "calls": 661,
-        "cost_usd": 0.24952150000000017,
+        "calls": 672,
+        "cost_usd": 0.2533087500000002,
         "details": {
-          "input_tokens": 609866,
-          "output_tokens": 77644
+          "input_tokens": 619060,
+          "output_tokens": 78835
         }
       },
       "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
+        "calls": 2,
+        "cost_usd": 0.0158,
         "details": {
-          "sms_count": 1
+          "sms_count": 2
         }
       }
     },
-    "total_usd": 0.3058,
+    "total_usd": 0.3263,
     "month_estimate_usd": 9.28,
     "daily_budget": 1.67,
-    "budget_pct": 18.3
+    "budget_pct": 19.6
   },
   "queue": {
-    "size": 67,
-    "oldest_item_age_hours": 23.9
+    "size": 66,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 12,
+  "stories_today": 13,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-04-16T18:30:58.201978+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: The new verified fact states Israel agreed to a ce"
+    },
+    {
+      "timestamp": "2026-04-16T18:31:00.399178+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-04-16-004: The new verified fact states Israel agreed to a ce"
+    },
+    {
+      "timestamp": "2026-04-16T18:31:03.230632+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-04-15 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-04-16T18:31:03.230760+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-04-14 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-04-16T18:31:03.230876+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-04-13 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-04-16T18:31:03.231133+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-04-16, skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +106,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-15/2026-04-15-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-15/2026-04-15-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
