@@ -1,54 +1,63 @@
 {
-  "timestamp": "2026-04-18T14:56:13.235506+00:00",
+  "timestamp": "2026-04-18T15:01:00.744242+00:00",
+  "web_refresh_at": "2026-04-18T15:01:00.744242+00:00",
   "uptime_start": "2026-04-15T21:29:37.372461+00:00",
-  "uptime_seconds": 235596,
+  "uptime_seconds": 235883,
   "availability_pct": 51.6,
   "cycle": {
-    "number": 131,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 132,
+    "duration_seconds": 55.4,
+    "headlines_scraped": 177,
+    "headlines_processed": 8,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 5,
-        "cost_usd": 0.015960000000000002,
+        "calls": 6,
+        "cost_usd": 0.018060000000000003,
         "details": {
-          "characters": 532
+          "characters": 602
         }
       },
       "claude": {
-        "calls": 410,
-        "cost_usd": 0.17160799999999993,
+        "calls": 423,
+        "cost_usd": 0.17571324999999988,
         "details": {
-          "input_tokens": 417087,
-          "output_tokens": 53869
+          "input_tokens": 427188,
+          "output_tokens": 55133
         }
       }
     },
-    "total_usd": 0.1876,
+    "total_usd": 0.1938,
     "month_estimate_usd": 9.28,
     "daily_budget": 1.67,
-    "budget_pct": 11.3
+    "budget_pct": 11.6
   },
   "queue": {
-    "size": 48,
-    "oldest_item_age_hours": 24.4
+    "size": 47,
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 3,
+  "stories_today": 4,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 21,
+    "failed": [
+      "UK Parliament"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-04-18T15:00:25.950371+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.parliament.uk/business/news/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-17/2026-04-17-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-17/2026-04-17-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
