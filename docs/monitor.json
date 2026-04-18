@@ -1,54 +1,103 @@
 {
-  "timestamp": "2026-04-18T17:25:58.954253+00:00",
+  "timestamp": "2026-04-18T17:30:59.526500+00:00",
+  "web_refresh_at": "2026-04-18T17:30:59.526500+00:00",
   "uptime_start": "2026-04-15T21:29:37.372461+00:00",
-  "uptime_seconds": 244582,
+  "uptime_seconds": 244882,
   "availability_pct": 51.8,
   "cycle": {
-    "number": 136,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 137,
+    "duration_seconds": 53.9,
+    "headlines_scraped": 187,
+    "headlines_processed": 5,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 8,
-        "cost_usd": 0.024510000000000004,
+        "calls": 10,
+        "cost_usd": 0.033900000000000007,
         "details": {
-          "characters": 817
+          "characters": 1130
         }
       },
       "claude": {
-        "calls": 465,
-        "cost_usd": 0.18919674999999989,
+        "calls": 474,
+        "cost_usd": 0.19177399999999986,
         "details": {
-          "input_tokens": 461782,
-          "output_tokens": 59001
+          "input_tokens": 468466,
+          "output_tokens": 59726
+        }
+      },
+      "twilio": {
+        "calls": 1,
+        "cost_usd": 0.0079,
+        "details": {
+          "sms_count": 1
         }
       }
     },
-    "total_usd": 0.2137,
+    "total_usd": 0.2336,
     "month_estimate_usd": 9.28,
     "daily_budget": 1.67,
-    "budget_pct": 12.8
+    "budget_pct": 14.0
   },
   "queue": {
-    "size": 40,
-    "oldest_item_age_hours": 24.4
+    "size": 38,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 5,
+  "stories_today": 6,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-04-18T17:30:49.594240+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: The new verified fact states the gunman killed at "
+    },
+    {
+      "timestamp": "2026-04-18T17:30:52.306801+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-04-18-004: The new verified fact states the gunman killed at "
+    },
+    {
+      "timestamp": "2026-04-18T17:30:54.836153+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-04-17 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-04-18T17:30:54.836288+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-04-16 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-04-18T17:30:54.836411+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-04-15 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-04-18T17:30:54.836528+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-04-14 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-04-18T17:30:54.836646+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-04-13 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-04-18T17:30:54.836939+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-04-18, skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +116,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-17/2026-04-17-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-17/2026-04-17-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
