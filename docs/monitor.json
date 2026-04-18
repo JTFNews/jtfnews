@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-04-18T21:55:11.412279+00:00",
+  "timestamp": "2026-04-18T22:00:49.979597+00:00",
+  "web_refresh_at": "2026-04-18T22:00:49.979597+00:00",
   "uptime_start": "2026-04-18T21:25:36.915127+00:00",
-  "uptime_seconds": 1774,
+  "uptime_seconds": 2113,
   "availability_pct": 52.0,
   "cycle": {
-    "number": 2,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 3,
+    "duration_seconds": 45.7,
+    "headlines_scraped": 187,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,11 +22,11 @@
         }
       },
       "claude": {
-        "calls": 526,
-        "cost_usd": 0.21434449999999985,
+        "calls": 533,
+        "cost_usd": 0.21685199999999985,
         "details": {
-          "input_tokens": 522718,
-          "output_tokens": 66932
+          "input_tokens": 528688,
+          "output_tokens": 67744
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.2561,
+    "total_usd": 0.2587,
     "month_estimate_usd": 9.24,
     "daily_budget": 1.67,
-    "budget_pct": 15.4
+    "budget_pct": 15.5
   },
   "queue": {
     "size": 31,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 6,
   "sources": {
@@ -55,7 +56,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +75,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-17/2026-04-17-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-17/2026-04-17-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
