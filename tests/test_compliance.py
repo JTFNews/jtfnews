@@ -121,3 +121,24 @@ def test_source_evidence_snapshot_optional_for_light_node(sample_fact_dict):
     del sample_fact_dict["sources"][0]["snapshot_url"]
     result = compliance.check_source_evidence(sample_fact_dict, node_type="light")
     assert result.passed is True
+
+
+def test_quote_in_content_passes_on_match():
+    content = "This is some text. The quote appears here. More text."
+    quote = "The quote appears here."
+    result = compliance.check_quote_in_content(content, quote)
+    assert result.passed is True
+
+
+def test_quote_in_content_fails_on_absence():
+    content = "Totally unrelated text."
+    quote = "The quote does not appear here."
+    result = compliance.check_quote_in_content(content, quote)
+    assert result.passed is False
+
+
+def test_quote_in_content_normalizes_whitespace():
+    content = "Text. The quote     appears here. More."
+    quote = "The quote appears here."
+    result = compliance.check_quote_in_content(content, quote)
+    assert result.passed is True

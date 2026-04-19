@@ -130,3 +130,26 @@ def check_source_evidence(fact_dict: dict, node_type: str = "full") -> CheckResu
                 reason=f"source {i} context_window missing before/after/context_hash",
             )
     return CheckResult(name="source_evidence", passed=True)
+
+
+def _normalize_whitespace(s: str) -> str:
+    """Collapse consecutive whitespace and strip edges."""
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def check_quote_in_content(content: str, quote: str) -> CheckResult:
+    """Verify the supporting quote appears in the content.
+
+    Both strings are normalized (consecutive whitespace collapsed, edges
+    stripped) before comparison. The comparison is substring-based, not
+    word-boundary, because real quotes can start and end mid-sentence.
+    """
+    norm_content = _normalize_whitespace(content)
+    norm_quote = _normalize_whitespace(quote)
+    if norm_quote in norm_content:
+        return CheckResult(name="quote_in_content", passed=True)
+    return CheckResult(
+        name="quote_in_content",
+        passed=False,
+        reason="supporting_quote not found in content (whitespace-normalized)",
+    )
