@@ -217,3 +217,36 @@ def check_claim_type_fields(fact_dict: dict) -> CheckResult:
 
     # Unknown / unlisted claim types pass; future versions may add rows.
     return CheckResult(name="claim_type_fields", passed=True)
+
+
+@dataclass(frozen=True)
+class ComplianceResult:
+    passed: bool
+    checks: tuple[CheckResult, ...]
+
+
+def check_compliance(
+    fact_dict: dict,
+    node_type: str = "full",
+    prohibited: frozenset[str] | set[str] | None = None,
+) -> ComplianceResult:
+    """Run every deterministic methodology compliance check.
+
+    A ComplianceResult is returned containing every sub-check's
+    CheckResult. `passed` is True only if every sub-check passed.
+
+    `prohibited` defaults to SEED_PROHIBITED_EN. Callers targeting a
+    specific channel or language pass their own list.
+    """
+    if prohibited is None:
+        prohibited = SEED_PROHIBITED_EN
+
+    checks = (
+        check_two_sources(fact_dict),
+        check_unrelated_sources(fact_dict),
+        check_source_evidence(fact_dict, node_type=node_type),
+        check_prohibited_adjectives(fact_dict, prohibited=prohibited),
+        check_claim_type_fields(fact_dict),
+    )
+    passed = all(c.passed for c in checks)
+    return ComplianceResult(passed=passed, checks=checks)

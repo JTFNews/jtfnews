@@ -186,3 +186,33 @@ def test_claim_type_death_requires_timeframe(sample_fact_dict):
     sample_fact_dict["structured_extraction"]["event_time"] = {"start": "", "end": ""}
     result = compliance.check_claim_type_fields(sample_fact_dict)
     assert result.passed is False
+
+
+def test_check_compliance_passes_on_valid_fact(sample_fact_dict):
+    result = compliance.check_compliance(sample_fact_dict)
+    assert result.passed is True
+    # All sub-checks should be in the results list.
+    names = {r.name for r in result.checks}
+    assert "two_sources_minimum" in names
+    assert "unrelated_sources" in names
+    assert "source_evidence" in names
+    assert "prohibited_adjectives" in names
+    assert "claim_type_fields" in names
+
+
+def test_check_compliance_fails_if_any_sub_check_fails(sample_fact_dict):
+    sample_fact_dict["sources"] = sample_fact_dict["sources"][:1]
+    result = compliance.check_compliance(sample_fact_dict)
+    assert result.passed is False
+    # The failing sub-check is included.
+    failing = [c for c in result.checks if not c.passed]
+    assert any(c.name == "two_sources_minimum" for c in failing)
+
+
+def test_check_compliance_accepts_custom_prohibited_list(sample_fact_dict):
+    sample_fact_dict["fact"] = "The excellent vote was 143 to 9."
+    result = compliance.check_compliance(
+        sample_fact_dict,
+        prohibited={"excellent"},
+    )
+    assert result.passed is False
