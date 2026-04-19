@@ -33,8 +33,8 @@ class Fact:
     published_at: str
     verification_method: dict
     structured_extraction: dict
-    sources: list
-    primary_source: dict
+    sources: list[dict]
+    primary_source: dict | None
     channel: str
     server: dict
     algorithm: str
