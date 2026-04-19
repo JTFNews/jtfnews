@@ -65,3 +65,40 @@ def check_unrelated_sources(fact_dict: dict) -> CheckResult:
                     reason=f"sources {i} and {j} share majority owner: {entity}",
                 )
     return CheckResult(name="unrelated_sources", passed=True)
+
+
+import re
+
+
+# Seed list for Phase 1. Appendix A (Phase 6) defines the authoritative,
+# per-channel, per-language list. These are words that carry evaluative
+# rather than descriptive weight.
+SEED_PROHIBITED_EN: frozenset[str] = frozenset({
+    "shocking", "horrific", "devastating", "stunning",
+    "outrageous", "appalling", "brave", "heroic",
+    "tragic", "cowardly", "radical", "extremist",
+})
+
+
+def check_prohibited_adjectives(
+    fact_dict: dict,
+    prohibited: frozenset[str] | set[str],
+) -> CheckResult:
+    """Reject fact text containing any word from the prohibited list.
+
+    Matching is case-insensitive and uses word boundaries so that
+    'bad' does not match 'badminton'.
+    """
+    text = fact_dict.get("fact", "").lower()
+    hits = []
+    for word in prohibited:
+        pattern = r"\b" + re.escape(word.lower()) + r"\b"
+        if re.search(pattern, text):
+            hits.append(word)
+    if hits:
+        return CheckResult(
+            name="prohibited_adjectives",
+            passed=False,
+            reason=f"fact text contains prohibited word(s): {sorted(hits)}",
+        )
+    return CheckResult(name="prohibited_adjectives", passed=True)
