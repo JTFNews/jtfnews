@@ -9,6 +9,7 @@ See documentation/Protocol Ver 1.0 CURRENT.md, section "The Fact".
 from __future__ import annotations
 
 import copy
+import json
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -94,3 +95,23 @@ class Fact:
         out["algorithm"] = self.algorithm
         out["signature"] = self.signature
         return out
+
+
+def canonical_json(data: dict) -> str:
+    """Return a deterministic JSON encoding of `data`.
+
+    - Keys are sorted lexicographically at every level.
+    - No whitespace between tokens.
+    - Unicode is preserved (not escaped).
+    - Trailing newlines are not added.
+
+    This is the single canonical encoding used for fact ID hashing,
+    signing, and signature verification. Any two callers that hash or
+    sign the same conceptual fact must produce identical bytes.
+    """
+    return json.dumps(
+        data,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    )
