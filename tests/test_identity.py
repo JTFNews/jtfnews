@@ -73,3 +73,19 @@ def test_verify_rejects_wrong_public_key():
     _, pub2 = identity.generate_keypair()
     sig = identity.sign(priv1, b"hello jtf")
     assert identity.verify(pub2, b"hello jtf", sig) is False
+
+
+def test_public_key_id_is_deterministic_and_well_formed():
+    _, pub = identity.generate_keypair()
+    kid1 = identity.public_key_id(pub)
+    kid2 = identity.public_key_id(pub)
+    assert kid1 == kid2
+    assert kid1.startswith("sha256:")
+    # 64 hex chars after the prefix.
+    assert len(kid1) == len("sha256:") + 64
+
+
+def test_public_key_id_differs_across_keys():
+    _, pub1 = identity.generate_keypair()
+    _, pub2 = identity.generate_keypair()
+    assert identity.public_key_id(pub1) != identity.public_key_id(pub2)

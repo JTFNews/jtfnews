@@ -6,6 +6,7 @@ network. Every published fact is signed by the private key.
 """
 from __future__ import annotations
 
+import hashlib
 import os
 from pathlib import Path
 
@@ -93,3 +94,18 @@ def verify(pub: Ed25519PublicKey, data: bytes, signature: bytes) -> bool:
         return True
     except InvalidSignature:
         return False
+
+
+def public_key_id(pub: Ed25519PublicKey) -> str:
+    """Return the canonical public key identifier.
+
+    Format: "sha256:{hex}" where hex is the SHA-256 of the raw 32-byte
+    public key. This is the stable identifier used throughout the
+    protocol (fact.server.public_key_id, peer lists, revocations).
+    """
+    raw = pub.public_bytes(
+        encoding=serialization.Encoding.Raw,
+        format=serialization.PublicFormat.Raw,
+    )
+    digest = hashlib.sha256(raw).hexdigest()
+    return f"sha256:{digest}"
