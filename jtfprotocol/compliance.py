@@ -35,7 +35,7 @@ def check_two_sources(fact_dict: dict) -> CheckResult:
 MAJORITY_THRESHOLD = 50.0
 
 
-def _majority_owners(source: dict) -> set:
+def _majority_owners(source: dict) -> set[str]:
     """Return the set of entities that hold more than 50% of a source."""
     owners = source.get("ownership", [])
     return {
