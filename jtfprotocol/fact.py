@@ -9,6 +9,7 @@ See documentation/Protocol Ver 1.0 CURRENT.md, section "The Fact".
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 from dataclasses import dataclass, field
 from typing import Any
@@ -95,6 +96,27 @@ class Fact:
         out["algorithm"] = self.algorithm
         out["signature"] = self.signature
         return out
+
+
+def compute_fact_id(fact_dict: dict) -> str:
+    """Compute the canonical fact ID.
+
+    The ID is the SHA-256 of the canonical JSON of the identity-bearing
+    subset: the fact text, the occurred_at timestamp, the source URLs,
+    and the server's public_key_id. This is deterministic, excludes the
+    signature and the id itself, and guarantees that two servers
+    independently verifying the same event produce different IDs because
+    their server.public_key_id differs.
+    """
+    identity_subset = {
+        "fact": fact_dict["fact"],
+        "occurred_at": fact_dict["occurred_at"],
+        "source_urls": [s["url"] for s in fact_dict["sources"]],
+        "server_public_key_id": fact_dict["server"]["public_key_id"],
+    }
+    canonical = canonical_json(identity_subset)
+    digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    return f"sha256:{digest}"
 
 
 def canonical_json(data: dict) -> str:

@@ -41,3 +41,24 @@ def test_canonical_json_handles_nested_dicts(sample_fact_dict):
 def copy_deep(d):
     import copy
     return copy.deepcopy(d)
+
+
+def test_compute_fact_id_is_deterministic(sample_fact_dict):
+    id1 = fact_module.compute_fact_id(sample_fact_dict)
+    id2 = fact_module.compute_fact_id(sample_fact_dict)
+    assert id1 == id2
+    assert id1.startswith("sha256:")
+    assert len(id1) == len("sha256:") + 64
+
+
+def test_compute_fact_id_changes_when_fact_text_changes(sample_fact_dict):
+    original = fact_module.compute_fact_id(sample_fact_dict)
+    sample_fact_dict["fact"] = "The vote was 141 to 9."
+    changed = fact_module.compute_fact_id(sample_fact_dict)
+    assert original != changed
+
+
+def test_compute_fact_id_ignores_signature_field(sample_fact_dict):
+    original = fact_module.compute_fact_id(sample_fact_dict)
+    sample_fact_dict["signature"] = "different-signature"
+    assert fact_module.compute_fact_id(sample_fact_dict) == original
