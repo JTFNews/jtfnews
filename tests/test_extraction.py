@@ -76,3 +76,60 @@ def test_anthropic_backend_declares_identifiers():
     assert backend.backend_id == extraction.BACKEND_ANTHROPIC
     assert backend.model == "anthropic:claude-haiku-4-5-20251001"
     assert backend.prompt_version == "jtf-extract-v3"
+
+
+def test_openai_compatible_backend_calls_api_and_parses_json():
+    mock_client = MagicMock()
+    mock_choice = MagicMock()
+    mock_choice.message.content = '{"subjects": [], "subjects_text": ["Example"], "action": "announced", "objects": ["Policy"], "quantities": [], "location": "Washington", "event_time": {"start": "2026-04-18T10:00:00Z", "end": "2026-04-18T10:00:00Z"}, "claim_type": "announcement"}'
+    mock_response = MagicMock()
+    mock_response.choices = [mock_choice]
+    mock_client.chat.completions.create.return_value = mock_response
+
+    backend = extraction.OpenAICompatibleBackend(
+        client=mock_client,
+        model="qwen2.5:72b-instruct-q5_K_M",
+        backend_id=extraction.BACKEND_OLLAMA,
+    )
+    result = backend.extract_fact(
+        "The agency announced a new policy.",
+        {"name": "Reuters", "url": "https://reuters.com/y"},
+    )
+    assert isinstance(result, extraction.StructuredFact)
+    assert result.action == "announced"
+
+
+def test_openai_compatible_backend_declares_backend_id():
+    for bid in [extraction.BACKEND_OPENAI, extraction.BACKEND_OLLAMA, extraction.BACKEND_LMSTUDIO]:
+        backend = extraction.OpenAICompatibleBackend(
+            client=MagicMock(),
+            model="m",
+            backend_id=bid,
+        )
+        assert backend.backend_id == bid
+
+
+def test_openai_compatible_backend_rejects_invalid_backend_id():
+    with pytest.raises(ValueError):
+        extraction.OpenAICompatibleBackend(
+            client=MagicMock(),
+            model="m",
+            backend_id="not_a_valid_backend",
+        )
+
+
+def test_openai_compatible_backend_raises_on_non_json():
+    mock_client = MagicMock()
+    mock_choice = MagicMock()
+    mock_choice.message.content = "not json at all"
+    mock_response = MagicMock()
+    mock_response.choices = [mock_choice]
+    mock_client.chat.completions.create.return_value = mock_response
+
+    backend = extraction.OpenAICompatibleBackend(
+        client=mock_client,
+        model="m",
+        backend_id=extraction.BACKEND_OLLAMA,
+    )
+    with pytest.raises(extraction.ExtractionError):
+        backend.extract_fact("x", {"name": "y", "url": "z"})
