@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whitepaper - JTF News</title>
-    <!-- v4 - Shared stylesheet + nav/footer -->
+    <title>Protocol - JTF News</title>
+    <!-- v1 - Protocol Ver 1.0 renderer -->
 
     <!-- Favicon - adapts to light/dark mode -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/png/icon-square-32.png" media="(prefers-color-scheme: light)">
@@ -16,16 +16,16 @@
     <link rel="icon" type="image/svg+xml" href="assets/icon-square-dark.svg" media="(prefers-color-scheme: dark)">
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Algorithmic Reporting for a Narrative-Free World. The JTF News methodology: two sources, different owners, strip the adjectives, state the facts, stop.">
-    <meta name="keywords" content="news methodology, fact-based journalism, algorithmic news, narrative-free reporting, news philosophy, journalism ethics">
+    <meta name="description" content="The JTF Protocol: an open peer-to-peer network specification for verified facts. No central authority, no hierarchy, no single point of failure.">
+    <meta name="keywords" content="JTF Protocol, peer-to-peer news, decentralized journalism, fact verification protocol, open network specification, cryptographic identity, Ed25519, gossip protocol">
     <meta name="author" content="JTF News">
-    <link rel="canonical" href="https://jtfnews.org/whitepaper.html">
+    <link rel="canonical" href="https://jtfnews.org/protocol.html">
 
     <!-- OpenGraph Tags -->
-    <meta property="og:title" content="JTF News Whitepaper - Algorithmic Reporting">
-    <meta property="og:description" content="If we stay boring enough, we might just change the world. The methodology behind fact-only news.">
+    <meta property="og:title" content="The JTF Protocol - An Open Network for Verified Facts">
+    <meta property="og:description" content="The methodology belongs to no one. Now neither does the infrastructure.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://jtfnews.org/whitepaper.html">
+    <meta property="og:url" content="https://jtfnews.org/protocol.html">
     <meta property="og:site_name" content="JTF News">
     <meta property="og:image" content="https://jtfnews.org/assets/png/banner-twitter-1500x500.png">
     <meta property="og:image:width" content="1500">
@@ -33,8 +33,8 @@
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="JTF News Whitepaper">
-    <meta name="twitter:description" content="If we stay boring enough, we might just change the world. The methodology behind fact-only news.">
+    <meta name="twitter:title" content="The JTF Protocol">
+    <meta name="twitter:description" content="The methodology belongs to no one. Now neither does the infrastructure.">
     <meta name="twitter:image" content="https://jtfnews.org/assets/png/banner-twitter-1500x500.png">
 
     <!-- Google Fonts -->
@@ -48,7 +48,7 @@
     <!-- Shared stylesheet -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Whitepaper-specific styles -->
+    <!-- Protocol-specific styles (same pattern as whitepaper) -->
     <style>
         /* Markdown rendered styles */
         #content h1 {
@@ -72,6 +72,13 @@
             margin-bottom: 15px;
             padding-bottom: 8px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #content h4 {
+            color: #cbd5e1;
+            font-size: 16px;
+            margin-top: 28px;
+            margin-bottom: 10px;
         }
 
         #content p {
@@ -119,6 +126,54 @@
             border: none;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin: 30px 0;
+        }
+
+        #content code {
+            background: rgba(148, 163, 184, 0.12);
+            color: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+            font-size: 0.9em;
+        }
+
+        #content pre {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        #content pre code {
+            background: transparent;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        #content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        #content th,
+        #content td {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 14px;
+            text-align: left;
+            vertical-align: top;
+            color: #cbd5e1;
+        }
+
+        #content th {
+            background: rgba(212, 175, 55, 0.08);
+            color: #f8fafc;
+            font-weight: 600;
         }
 
         /* Loading state */
@@ -180,8 +235,8 @@
             <ul class="site-nav__links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
-                <li><a href="whitepaper.html" aria-current="page">Whitepaper</a></li>
-                <li><a href="protocol.html">Protocol</a></li>
+                <li><a href="whitepaper.html">Whitepaper</a></li>
+                <li><a href="protocol.html" aria-current="page">Protocol</a></li>
                 <li><a href="sources.html">Sources</a></li>
                 <li><a href="archive.html">Archive</a></li>
                 <li><a href="corrections.html">Corrections</a></li>
@@ -214,18 +269,18 @@
         <div id="content">
             <div class="loading">
                 <div class="loading-spinner"></div>
-                <p>Loading whitepaper...</p>
+                <p>Loading protocol...</p>
             </div>
         </div>
 
         <p class="source-note" id="source-note" style="display: none;">
-            This content is rendered from <a href="https://github.com/JTFNews/jtfnews/blob/main/documentation/WhitePaper%20Ver%201.4%20CURRENT.md" target="_blank">WhitePaper Ver 1.4</a> &mdash; the single source of truth.
+            This content is rendered from <a href="https://github.com/JTFNews/jtfnews/blob/main/documentation/Protocol%20Ver%201.0%20CURRENT.md" target="_blank">Protocol Ver 1.0</a> &mdash; the canonical specification.
         </p>
 
         <div class="cta-section">
-            <p class="text-muted mb-1">Support fact-based reporting. No ads. No tracking. Just facts.</p>
-            <a href="how-it-works.html" class="btn btn--secondary">How It Works</a>
-            <a href="sources.html" class="btn btn--secondary" style="margin-left:0.5rem;">Our Sources</a>
+            <p class="text-muted mb-1">An open network for verified facts. No central authority. No single point of failure.</p>
+            <a href="whitepaper.html" class="btn btn--secondary">Whitepaper</a>
+            <a href="how-it-works.html" class="btn btn--secondary" style="margin-left:0.5rem;">How It Works</a>
             <a href="support.html" class="btn btn--primary" style="margin-left:0.5rem;">Support JTF News</a>
         </div>
     </div>
@@ -256,15 +311,15 @@
     </footer>
 
     <script>
-        // Fetch WhitePaper.md from GitHub raw content
-        const WHITEPAPER_URL = 'https://raw.githubusercontent.com/JTFNews/jtfnews/main/documentation/WhitePaper%20Ver%201.4%20CURRENT.md';
+        // Fetch Protocol Ver 1.0 CURRENT.md from GitHub raw content
+        const PROTOCOL_URL = 'https://raw.githubusercontent.com/JTFNews/jtfnews/main/documentation/Protocol%20Ver%201.0%20CURRENT.md';
 
-        async function loadWhitepaper() {
+        async function loadProtocol() {
             const contentDiv = document.getElementById('content');
             const sourceNote = document.getElementById('source-note');
 
             try {
-                const response = await fetch(WHITEPAPER_URL);
+                const response = await fetch(PROTOCOL_URL);
                 if (!response.ok) throw new Error('Failed to fetch');
 
                 const markdown = await response.text();
@@ -282,8 +337,8 @@
             } catch (error) {
                 contentDiv.innerHTML = `
                     <div class="error">
-                        <p>Could not load the whitepaper. Please try again or view it directly on GitHub.</p>
-                        <p style="margin-top: 10px;"><a href="https://github.com/JTFNews/jtfnews/blob/main/documentation/WhitePaper%20Ver%201.4%20CURRENT.md" target="_blank">View WhitePaper.md on GitHub &rarr;</a></p>
+                        <p>Could not load the protocol specification. Please try again or view it directly on GitHub.</p>
+                        <p style="margin-top: 10px;"><a href="https://github.com/JTFNews/jtfnews/blob/main/documentation/Protocol%20Ver%201.0%20CURRENT.md" target="_blank">View Protocol Ver 1.0 on GitHub &rarr;</a></p>
                     </div>
                 `;
             }
@@ -291,9 +346,9 @@
 
         // Load on page ready
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadWhitepaper);
+            document.addEventListener('DOMContentLoaded', loadProtocol);
         } else {
-            loadWhitepaper();
+            loadProtocol();
         }
     </script>
 </body>

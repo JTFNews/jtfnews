@@ -236,6 +236,18 @@ If a community needs facts, the methodology is theirs.
 
 ------------------------------------------------------------------------
 
+## Protocol
+
+The methodology is the what. The protocol is the how.
+
+The JTF Protocol defines how independent servers discover each other, share verified facts, and build trust without central authority. When one server goes dark, the network continues. When the original operator disappears, the facts remain.
+
+The methodology belongs to no one. The infrastructure belongs to no one. Both travel.
+
+The full specification is published separately.
+
+------------------------------------------------------------------------
+
 ## What Stays the Same
 
 Across all channels, always:
