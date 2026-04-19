@@ -49,7 +49,7 @@ Each server:
 
 The network supports two node types:
 
-- **Full nodes** perform source verification, compute trust scores, and participate in cross-corroboration. They require API access to an AI model and bear the associated costs.
+- **Full nodes** perform source verification, compute trust scores, and participate in cross-corroboration. They require access to an AI model — either a commercial API (Anthropic, OpenAI, others) or a locally-hosted model (Ollama, LM Studio, llama.cpp, or equivalent). Both paths are first-class. The protocol records which is in use and treats them symmetrically for trust. Operators choose the path that fits their budget, hardware, and data-sovereignty requirements.
 - **Light nodes** verify cryptographic signatures, relay facts and trust scores, serve clients, and perform deterministic rule-based checks (supporting quote present in content hash, adjective list, source count). They do not perform AI-assisted source verification. They contribute to network resilience and distribution without requiring large compute budgets.
 
 A Raspberry Pi can run a light node. A cloud server with API keys can run a full node. Both are valid participants. The protocol does not privilege one over the other. Peers detect claimed-full-but-not-verifying behavior as a methodology compliance penalty.
@@ -158,6 +158,7 @@ A fact is the atomic unit of the JTF Protocol. It is a single verified claim abo
   "occurred_at": "2026-04-18T14:30:00Z",
   "published_at": "2026-04-18T15:02:00Z",
   "verification_method": {
+    "backend": "anthropic",
     "model": "anthropic:claude-haiku:4-5-20251001",
     "prompt_version": "jtf-extract-v3",
     "methodology_checks": "rule-based-v1"
@@ -353,6 +354,11 @@ This file is signed by the server's private key.
     "node_type": "full",
     "asn": 24940,
     "location_country": "DE"
+  },
+  "extraction": {
+    "backend": "ollama",
+    "model": "qwen:2.5-72b-instruct-q5_K_M",
+    "prompt_version": "jtf-extract-v3"
   },
   "feeds": {
     "facts_rss": "/feed.xml",
@@ -648,6 +654,21 @@ This keeps verification honest and distributed without making the AI cost prohib
 Every fact includes a `verification_method` field declaring the AI model and version used for fact extraction and editorialization removal, the prompt version, and whether methodology compliance was checked by rule-based analysis, AI-assisted analysis, or both.
 
 The protocol does not mandate a specific AI model. It mandates transparency. Model diversity across the network is a feature, not a bug. A network where every server uses the same model corroborates the model's biases, not reality.
+
+### Extraction Backends
+
+The protocol is backend-agnostic. Two reference backend families are supported, and both are first-class:
+
+- **Commercial API backends** (e.g., Anthropic, OpenAI) are straightforward to set up and scale. They incur per-request cost.
+- **Locally-hosted backends** (e.g., Ollama, LM Studio, llama.cpp) run on commodity hardware (consumer GPU, Apple Silicon workstation). They incur one-time hardware cost and marginal electricity cost.
+
+Neither path is privileged. A fact extracted by a self-hosted Qwen 2.5 72B model with correct source evidence receives the same trust as a fact extracted by a commercial model with the same evidence. The model diversity bonus rewards diversity regardless of how the model is accessed — a network with a healthy mix of commercial and local extractions is stronger than a network dominated by either.
+
+Operators declare their extraction backend in the well-known endpoint and per-fact in `verification_method`. Clients and peers can inspect both.
+
+**Allowed backend values (v1):** `anthropic`, `openai`, `ollama`, `lmstudio`, `custom`. The `custom` value is a placeholder for operators running other inference stacks; it must be accompanied by a `model` string that follows the `vendor:model:version` format so peers can still perform model-diversity analysis.
+
+**Quality floor.** Operators running local models should run the reference extraction test suite (see Companion Documents) before publishing. A locally-hosted model that fails the deterministic methodology compliance checks is subject to the same penalties as any other server. The circuit breaker for fabrication (supporting quote not in content hash) applies equally, regardless of backend.
 
 ### Deterministic Checks
 
@@ -972,7 +993,7 @@ This specification defines the architecture, trust model, and data formats. The 
 
 ## Reference Implementation
 
-The reference implementation of the JTF Protocol is the JTF News server at `jtfnews.org`, adapted from the existing open-source codebase. It is available on GitHub under CC-BY-SA.
+The reference implementation of the JTF Protocol is the JTF News server at `jtfnews.org`, adapted from the existing open-source codebase. It is available on GitHub under CC-BY-SA. The reference implementation ships with a pluggable extraction backend layer supporting both commercial APIs (Anthropic, OpenAI) and local inference (Ollama, LM Studio). Operators select their backend at deployment; the protocol is indifferent.
 
 Any implementation that follows this specification is a valid participant. A server written in Go, Rust, JavaScript, or any other language is equally valid. The standard is this document, not any particular software.
 
