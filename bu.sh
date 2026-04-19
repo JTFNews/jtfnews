@@ -17,6 +17,14 @@ if [ -z "$1" ]; then
 fi
 
 # =============================================================================
+# DETECT CURRENT BRANCH — bu.sh pulls/pushes on the branch you're on, not
+# hardcoded main. This lets feature branches (e.g. feature/jtf-protocol)
+# use bu.sh without accidentally pushing work to main.
+# =============================================================================
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+REMOTE_EXISTS=$(git ls-remote --heads origin "$CURRENT_BRANCH" | wc -l | tr -d ' ')
+
+# =============================================================================
 # RUNTIME FILES — main.py pushes these via GitHub API, never stage them
 # =============================================================================
 RUNTIME_FILES=(
@@ -36,11 +44,16 @@ RUNTIME_FILES=(
 # PULL FIRST — remote is always ahead from main.py API pushes
 # Stash first because main.py may have modified runtime files locally
 # =============================================================================
-echo "Pulling latest from remote..."
+echo "Pulling latest from origin/$CURRENT_BRANCH..."
 git stash --quiet 2>/dev/null
 STASHED=$?
-git pull --rebase origin main
-PULL_STATUS=$?
+if [ "$REMOTE_EXISTS" -gt 0 ]; then
+    git pull --rebase origin "$CURRENT_BRANCH"
+    PULL_STATUS=$?
+else
+    echo "Remote branch origin/$CURRENT_BRANCH does not exist yet (first push, skipping pull)."
+    PULL_STATUS=0
+fi
 if [ $STASHED -eq 0 ]; then
     git stash pop --quiet 2>/dev/null
 fi
@@ -117,7 +130,7 @@ git diff --cached --stat
 # COMMIT AND PUSH
 # =============================================================================
 git commit -m "$1"
-git push origin main
+git push -u origin "$CURRENT_BRANCH"
 
 # =============================================================================
 # BACKUP TO DOWNLOADS
