@@ -30,3 +30,38 @@ def check_two_sources(fact_dict: dict) -> CheckResult:
             reason=f"found {len(sources)} source(s); minimum is 2",
         )
     return CheckResult(name="two_sources_minimum", passed=True)
+
+
+MAJORITY_THRESHOLD = 50.0
+
+
+def _majority_owners(source: dict) -> set:
+    """Return the set of entities that hold more than 50% of a source."""
+    owners = source.get("ownership", [])
+    return {
+        o["entity"]
+        for o in owners
+        if o.get("percentage", 0.0) > MAJORITY_THRESHOLD
+    }
+
+
+def check_unrelated_sources(fact_dict: dict) -> CheckResult:
+    """Verify no two sources share a common majority shareholder."""
+    sources = fact_dict.get("sources", [])
+    if len(sources) < 2:
+        return CheckResult(
+            name="unrelated_sources",
+            passed=False,
+            reason="need at least 2 sources to assess independence",
+        )
+    for i in range(len(sources)):
+        for j in range(i + 1, len(sources)):
+            overlap = _majority_owners(sources[i]) & _majority_owners(sources[j])
+            if overlap:
+                entity = next(iter(overlap))
+                return CheckResult(
+                    name="unrelated_sources",
+                    passed=False,
+                    reason=f"sources {i} and {j} share majority owner: {entity}",
+                )
+    return CheckResult(name="unrelated_sources", passed=True)

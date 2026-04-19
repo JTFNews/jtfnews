@@ -20,3 +20,31 @@ def test_two_sources_minimum_fails_with_zero(sample_fact_dict):
     sample_fact_dict["sources"] = []
     result = compliance.check_two_sources(sample_fact_dict)
     assert result.passed is False
+
+
+def test_unrelated_sources_passes_when_different_owners(sample_fact_dict):
+    result = compliance.check_unrelated_sources(sample_fact_dict)
+    assert result.passed is True
+
+
+def test_unrelated_sources_fails_when_shared_majority_owner(sample_fact_dict):
+    # Make both sources share a common majority owner.
+    for src in sample_fact_dict["sources"]:
+        src["ownership"] = [{"entity": "MegaCorp", "percentage": 80.0}]
+    result = compliance.check_unrelated_sources(sample_fact_dict)
+    assert result.passed is False
+    assert "megacorp" in result.reason.lower()
+
+
+def test_unrelated_sources_passes_when_minority_overlap(sample_fact_dict):
+    # Both cite the same entity but neither as majority.
+    sample_fact_dict["sources"][0]["ownership"] = [
+        {"entity": "Thomson Reuters Corporation", "percentage": 100.0},
+        {"entity": "Shared Minority Holder", "percentage": 10.0},
+    ]
+    sample_fact_dict["sources"][1]["ownership"] = [
+        {"entity": "Associated Press (nonprofit cooperative)", "percentage": 100.0},
+        {"entity": "Shared Minority Holder", "percentage": 15.0},
+    ]
+    result = compliance.check_unrelated_sources(sample_fact_dict)
+    assert result.passed is True
