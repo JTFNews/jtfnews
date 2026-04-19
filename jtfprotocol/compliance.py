@@ -153,3 +153,67 @@ def check_quote_in_content(content: str, quote: str) -> CheckResult:
         passed=False,
         reason="supporting_quote not found in content (whitespace-normalized)",
     )
+
+
+CURRENCY_TOKENS: frozenset[str] = frozenset({
+    "usd", "eur", "gbp", "jpy", "cny", "inr", "cad", "aud", "chf", "krw",
+    "$", "€", "£", "¥", "dollar", "euro", "pound", "yen", "yuan", "rupee",
+})
+
+
+def _extraction(fact_dict: dict) -> dict:
+    return fact_dict.get("structured_extraction", {})
+
+
+def check_claim_type_fields(fact_dict: dict) -> CheckResult:
+    """Enforce per-claim-type required fields.
+
+    vote, election    -> quantities non-empty
+    financial         -> a currency token appears in quantities' context
+    legal             -> location non-empty (jurisdiction proxy)
+    death, injury     -> event_time.start or event_time.end populated
+    """
+    ex = _extraction(fact_dict)
+    ct = ex.get("claim_type", "")
+    quantities = ex.get("quantities", [])
+
+    if ct in {"vote", "election"}:
+        if not quantities:
+            return CheckResult(
+                name="claim_type_fields",
+                passed=False,
+                reason=f"{ct} requires quantities (vote tally or voter count)",
+            )
+        return CheckResult(name="claim_type_fields", passed=True)
+
+    if ct == "financial":
+        contexts = " ".join(q.get("context", "").lower() for q in quantities)
+        if not any(tok in contexts for tok in CURRENCY_TOKENS):
+            return CheckResult(
+                name="claim_type_fields",
+                passed=False,
+                reason="financial claim missing currency token in quantities.context",
+            )
+        return CheckResult(name="claim_type_fields", passed=True)
+
+    if ct == "legal":
+        if not ex.get("location"):
+            return CheckResult(
+                name="claim_type_fields",
+                passed=False,
+                reason="legal claim missing jurisdiction (location)",
+            )
+        return CheckResult(name="claim_type_fields", passed=True)
+
+    if ct in {"death", "injury"}:
+        evt = ex.get("event_time", {}) or {}
+        if not (evt.get("start") or evt.get("end")):
+            return CheckResult(
+                name="claim_type_fields",
+                passed=False,
+                reason=f"{ct} claim missing timeframe (event_time)",
+            )
+        return CheckResult(name="claim_type_fields", passed=True)
+
+    # Unknown / unlisted claim types pass; future versions may add rows.
+    return CheckResult(name="claim_type_fields", passed=True)

@@ -142,3 +142,47 @@ def test_quote_in_content_normalizes_whitespace():
     quote = "The quote appears here."
     result = compliance.check_quote_in_content(content, quote)
     assert result.passed is True
+
+
+def test_claim_type_vote_passes_with_quantities(sample_fact_dict):
+    # sample_fact is a vote with quantities populated.
+    result = compliance.check_claim_type_fields(sample_fact_dict)
+    assert result.passed is True
+
+
+def test_claim_type_vote_fails_without_quantities(sample_fact_dict):
+    sample_fact_dict["structured_extraction"]["quantities"] = []
+    result = compliance.check_claim_type_fields(sample_fact_dict)
+    assert result.passed is False
+
+
+def test_claim_type_financial_requires_currency(sample_fact_dict):
+    sample_fact_dict["structured_extraction"]["claim_type"] = "financial"
+    sample_fact_dict["structured_extraction"]["quantities"] = [
+        {"value": 1000000, "context": "loss"}
+    ]  # no currency
+    result = compliance.check_claim_type_fields(sample_fact_dict)
+    assert result.passed is False
+
+
+def test_claim_type_financial_passes_with_currency(sample_fact_dict):
+    sample_fact_dict["structured_extraction"]["claim_type"] = "financial"
+    sample_fact_dict["structured_extraction"]["quantities"] = [
+        {"value": 1000000, "context": "USD annual loss"}
+    ]
+    result = compliance.check_claim_type_fields(sample_fact_dict)
+    assert result.passed is True
+
+
+def test_claim_type_legal_requires_jurisdiction(sample_fact_dict):
+    sample_fact_dict["structured_extraction"]["claim_type"] = "legal"
+    sample_fact_dict["structured_extraction"]["location"] = ""
+    result = compliance.check_claim_type_fields(sample_fact_dict)
+    assert result.passed is False
+
+
+def test_claim_type_death_requires_timeframe(sample_fact_dict):
+    sample_fact_dict["structured_extraction"]["claim_type"] = "death"
+    sample_fact_dict["structured_extraction"]["event_time"] = {"start": "", "end": ""}
+    result = compliance.check_claim_type_fields(sample_fact_dict)
+    assert result.passed is False
