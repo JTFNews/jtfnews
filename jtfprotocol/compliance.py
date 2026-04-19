@@ -102,3 +102,31 @@ def check_prohibited_adjectives(
             reason=f"fact text contains prohibited word(s): {sorted(hits)}",
         )
     return CheckResult(name="prohibited_adjectives", passed=True)
+
+
+def check_source_evidence(fact_dict: dict, node_type: str = "full") -> CheckResult:
+    """Verify every source carries the required evidence fields.
+
+    Required always: content_hash, supporting_quote, context_window.
+    Required for full nodes: snapshot_url.
+    """
+    sources = fact_dict.get("sources", [])
+    required = ["content_hash", "supporting_quote", "context_window"]
+    if node_type == "full":
+        required = required + ["snapshot_url"]
+    for i, src in enumerate(sources):
+        missing = [f for f in required if not src.get(f)]
+        if missing:
+            return CheckResult(
+                name="source_evidence",
+                passed=False,
+                reason=f"source {i} missing: {missing}",
+            )
+        ctx = src.get("context_window", {})
+        if not ctx.get("before") or not ctx.get("after") or not ctx.get("context_hash"):
+            return CheckResult(
+                name="source_evidence",
+                passed=False,
+                reason=f"source {i} context_window missing before/after/context_hash",
+            )
+    return CheckResult(name="source_evidence", passed=True)

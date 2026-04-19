@@ -85,3 +85,39 @@ def test_prohibited_adjectives_uses_word_boundaries(sample_fact_dict):
         prohibited={"bad"},
     )
     assert result.passed is True
+
+
+def test_source_evidence_passes_on_complete_fact(sample_fact_dict):
+    result = compliance.check_source_evidence(sample_fact_dict, node_type="full")
+    assert result.passed is True
+
+
+def test_source_evidence_fails_missing_content_hash(sample_fact_dict):
+    del sample_fact_dict["sources"][0]["content_hash"]
+    result = compliance.check_source_evidence(sample_fact_dict, node_type="full")
+    assert result.passed is False
+    assert "content_hash" in result.reason
+
+
+def test_source_evidence_fails_missing_supporting_quote(sample_fact_dict):
+    del sample_fact_dict["sources"][1]["supporting_quote"]
+    result = compliance.check_source_evidence(sample_fact_dict, node_type="full")
+    assert result.passed is False
+
+
+def test_source_evidence_fails_missing_context_window(sample_fact_dict):
+    del sample_fact_dict["sources"][0]["context_window"]
+    result = compliance.check_source_evidence(sample_fact_dict, node_type="full")
+    assert result.passed is False
+
+
+def test_source_evidence_snapshot_required_for_full_node(sample_fact_dict):
+    del sample_fact_dict["sources"][0]["snapshot_url"]
+    result = compliance.check_source_evidence(sample_fact_dict, node_type="full")
+    assert result.passed is False
+
+
+def test_source_evidence_snapshot_optional_for_light_node(sample_fact_dict):
+    del sample_fact_dict["sources"][0]["snapshot_url"]
+    result = compliance.check_source_evidence(sample_fact_dict, node_type="light")
+    assert result.passed is True
