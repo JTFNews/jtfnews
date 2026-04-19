@@ -1,0 +1,72 @@
+{
+  "jtf_version": 1,
+  "id": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "fact": "The United Nations General Assembly voted 143 to 9 to admit the Republic of Somaliland as its 194th member state.",
+  "occurred_at": "2026-04-18T14:30:00Z",
+  "published_at": "2026-04-18T15:02:00Z",
+  "verification_method": {
+    "backend": "anthropic",
+    "model": "anthropic:claude-haiku:4-5-20251001",
+    "prompt_version": "jtf-extract-v3",
+    "methodology_checks": "rule-based-v1"
+  },
+  "structured_extraction": {
+    "subjects": ["Q47010"],
+    "subjects_text": ["United Nations General Assembly"],
+    "action": "voted",
+    "objects": ["Republic of Somaliland", "194th member state"],
+    "quantities": [
+      {"value": 143, "context": "votes in favor"},
+      {"value": 9, "context": "votes against"}
+    ],
+    "location": "United Nations Headquarters, New York",
+    "event_time": {"start": "2026-04-18T14:00:00Z", "end": "2026-04-18T15:00:00Z"},
+    "claim_type": "vote",
+    "required_fields_met": true
+  },
+  "sources": [
+    {
+      "name": "Reuters",
+      "url": "https://reuters.com/world/example",
+      "content_hash": "sha256:7d793037a0760186574b0282f2f435e7",
+      "snapshot_url": "https://web.archive.org/web/20260418150000/https://reuters.com/world/example",
+      "supporting_quote": "The General Assembly approved Somaliland's membership application by a vote of 143 in favor to 9 against.",
+      "context_window": {
+        "before": "After three hours of debate on Friday afternoon,",
+        "after": "with 12 abstentions. The vote followed months of diplomatic negotiations.",
+        "context_hash": "sha256:8a3c91aaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "fetched_at": "2026-04-18T15:00:12Z",
+      "derived_from": null,
+      "ownership": [{"entity": "Thomson Reuters Corporation", "percentage": 100.0}],
+      "scores": {"accuracy": 9.6, "bias": 9.2, "speed": 9.0, "consensus": 9.1}
+    },
+    {
+      "name": "Associated Press",
+      "url": "https://apnews.com/article/example",
+      "content_hash": "sha256:9f86d081884c7d659a2feaa0c55ad015",
+      "snapshot_url": "https://web.archive.org/web/20260418150200/https://apnews.com/article/example",
+      "supporting_quote": "In a 143-9 vote, the U.N. General Assembly voted Friday to admit Somaliland.",
+      "context_window": {
+        "before": "NEW YORK (AP) --",
+        "after": "The decision caps a years-long campaign by the Horn of Africa nation.",
+        "context_hash": "sha256:2b4f7ebbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "fetched_at": "2026-04-18T15:01:05Z",
+      "derived_from": null,
+      "ownership": [{"entity": "Associated Press (nonprofit cooperative)", "percentage": 100.0}],
+      "scores": {"accuracy": 9.5, "bias": 9.3, "speed": 8.8, "consensus": 9.0}
+    }
+  ],
+  "primary_source": {
+    "url": "https://press.un.org/en/2026/ga12345.doc.htm",
+    "description": "UN General Assembly official press release"
+  },
+  "channel": "global",
+  "server": {
+    "domain": "jtfnews.org",
+    "public_key_id": "sha256:a1b2c3aaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "algorithm": "Ed25519",
+  "signature": "base64-placeholder"
+}
