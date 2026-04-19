@@ -9,7 +9,7 @@ from unittest.mock import MagicMock
 from jtfprotocol import compliance, extraction, fact, identity, well_known
 
 
-def test_phase1_composition(sample_fact_dict):
+def test_phase1_composition(sample_fact_dict, monkeypatch):
     # 1) Identity
     priv, pub = identity.generate_keypair()
     kid = identity.public_key_id(pub)
@@ -51,7 +51,7 @@ def test_phase1_composition(sample_fact_dict):
     mock_openai = MagicMock()
     import sys
 
-    sys.modules["openai"] = mock_openai
+    monkeypatch.setitem(sys.modules, "openai", mock_openai)
     backend = extraction.get_backend({
         "backend": "ollama",
         "model": "qwen2.5:72b-instruct-q5_K_M",

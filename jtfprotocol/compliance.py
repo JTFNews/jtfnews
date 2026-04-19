@@ -9,6 +9,7 @@ Constraints" and "Deterministic Checks".
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 
 
@@ -65,9 +66,6 @@ def check_unrelated_sources(fact_dict: dict) -> CheckResult:
                     reason=f"sources {i} and {j} share majority owner: {entity}",
                 )
     return CheckResult(name="unrelated_sources", passed=True)
-
-
-import re
 
 
 # Seed list for Phase 1. Appendix A (Phase 6) defines the authoritative,

@@ -89,3 +89,41 @@ def test_public_key_id_differs_across_keys():
     _, pub1 = identity.generate_keypair()
     _, pub2 = identity.generate_keypair()
     assert identity.public_key_id(pub1) != identity.public_key_id(pub2)
+
+
+def test_load_keypair_rejects_mismatched_pair(tmp_path):
+    priv1, pub1 = identity.generate_keypair()
+    priv2, pub2 = identity.generate_keypair()
+    priv_path = tmp_path / "s.key"
+    pub_path = tmp_path / "s.pub"
+    identity.save_keypair(priv1, pub1, priv_path, pub_path)
+    # Overwrite the public key with a different one (simulate tampering/corruption).
+    pub2_bytes = pub2.public_bytes(
+        encoding=__import__("cryptography").hazmat.primitives.serialization.Encoding.Raw,
+        format=__import__("cryptography").hazmat.primitives.serialization.PublicFormat.Raw,
+    )
+    pub_path.write_bytes(pub2_bytes)
+    import pytest
+    with pytest.raises(ValueError, match="inconsistent"):
+        identity.load_keypair(priv_path, pub_path)
+
+
+def test_save_keypair_refuses_overwrite_by_default(tmp_path):
+    priv, pub = identity.generate_keypair()
+    priv_path = tmp_path / "s.key"
+    pub_path = tmp_path / "s.pub"
+    identity.save_keypair(priv, pub, priv_path, pub_path)
+    import pytest
+    with pytest.raises(FileExistsError):
+        identity.save_keypair(priv, pub, priv_path, pub_path)
+
+
+def test_save_keypair_overwrite_true_allows_replacement(tmp_path):
+    priv1, pub1 = identity.generate_keypair()
+    priv2, pub2 = identity.generate_keypair()
+    priv_path = tmp_path / "s.key"
+    pub_path = tmp_path / "s.pub"
+    identity.save_keypair(priv1, pub1, priv_path, pub_path)
+    identity.save_keypair(priv2, pub2, priv_path, pub_path, overwrite=True)
+    loaded_priv, loaded_pub = identity.load_keypair(priv_path, pub_path)
+    assert loaded_priv.private_bytes_raw() == priv2.private_bytes_raw()

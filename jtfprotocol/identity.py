@@ -35,6 +35,7 @@ def save_keypair(
     pub: Ed25519PublicKey,
     priv_path: Path,
     pub_path: Path,
+    overwrite: bool = False,
 ) -> None:
     """Persist a keypair to disk.
 
@@ -42,7 +43,18 @@ def save_keypair(
     permissions (0600). The public key is written in raw 32-byte form.
     Callers are responsible for choosing a secure directory; this function
     does not create parent directories.
+
+    Raises:
+        FileExistsError: if either path already exists and `overwrite` is
+            False (the default). This protects against accidental destruction
+            of an irrecoverable private key.
     """
+    if not overwrite:
+        for p in (priv_path, pub_path):
+            if Path(p).exists():
+                raise FileExistsError(
+                    f"refusing to overwrite existing keypair file: {p}"
+                )
     priv_bytes = priv.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.PKCS8,
@@ -72,6 +84,17 @@ def load_keypair(
         raise ValueError(f"expected Ed25519 private key, got {type(priv).__name__}")
 
     pub = Ed25519PublicKey.from_public_bytes(pub_bytes)
+
+    derived = priv.public_key().public_bytes(
+        encoding=serialization.Encoding.Raw,
+        format=serialization.PublicFormat.Raw,
+    )
+    if derived != pub_bytes:
+        raise ValueError(
+            "loaded public key does not match the private key; "
+            "keypair files are inconsistent"
+        )
+
     return priv, pub
 
 

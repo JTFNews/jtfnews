@@ -25,6 +25,28 @@ pip install -r ../requirements.txt -r ../requirements-dev.txt
 pytest
 ```
 
+## Deterministic compliance checks: what Phase 1 includes
+
+Phase 1 implements 5 of the 11 deterministic checks listed in the spec
+(Protocol Ver 1.0, "Deterministic Checks"):
+
+**Implemented:**
+- Two-source minimum
+- Unrelated-sources (no common majority shareholder)
+- Source-evidence presence (content_hash, supporting_quote, context_window, snapshot_url for full nodes)
+- Supporting quote in content (scaffold -- real content fetching is Phase 3)
+- Claim-type required fields (vote/election/financial/legal/death/injury)
+
+**Deferred to later phases:**
+- Prohibited adjective list (seed list only; full list is Appendix A, Phase 6)
+- Official-titles enforcement
+- Speculative-language detection
+- Numeric specificity
+- Context window non-negation (Phase 3 -- needs NLP)
+- Stale ownership data flagging (Phase 3 -- needs clock integration)
+- Source lineage disclosure (Phase 3)
+- No-self-citation (Phase 2 -- needs peer graph)
+
 ## Not included in Phase 1
 
 - Peer discovery and gossip (Phase 2)

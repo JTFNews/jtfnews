@@ -81,7 +81,17 @@ class ExtractionError(RuntimeError):
 
 
 class AnthropicBackend(ExtractionBackend):
-    """Fact extraction via the Anthropic Messages API."""
+    """Fact extraction via the Anthropic Messages API.
+
+    Note on `model` identifier: The spec (Protocol Ver 1.0, "Verification
+    Method Identifiers") requires the canonical form `vendor:model:version`.
+    Phase 1 backends store `self.model = f"{backend_id}:{model}"` using the
+    SDK-native model string (which typically concatenates model and version
+    with dashes). Phase 5 integration should either pass a pre-formatted
+    `vendor:model:version` string through a separate kwarg or split model
+    and version at the caller. Do not rely on `self.model` for cross-server
+    model-diversity analysis until this is resolved.
+    """
 
     backend_id = BACKEND_ANTHROPIC
 
@@ -151,6 +161,15 @@ class OpenAICompatibleBackend(ExtractionBackend):
     The caller constructs an SDK client pointed at the correct base URL
     and passes it in. This class is transport-agnostic -- it only speaks
     the Chat Completions wire format.
+
+    Note on `model` identifier: The spec (Protocol Ver 1.0, "Verification
+    Method Identifiers") requires the canonical form `vendor:model:version`.
+    Phase 1 backends store `self.model = f"{backend_id}:{model}"` using the
+    SDK-native model string (which typically concatenates model and version
+    with dashes). Phase 5 integration should either pass a pre-formatted
+    `vendor:model:version` string through a separate kwarg or split model
+    and version at the caller. Do not rely on `self.model` for cross-server
+    model-diversity analysis until this is resolved.
     """
 
     def __init__(
@@ -215,7 +234,7 @@ def get_backend(config: dict) -> ExtractionBackend:
     local backend does not need the `anthropic` SDK installed (and vice
     versa).
     """
-    backend_id = config.get("backend", "").lower()
+    backend_id = (config.get("backend") or "").lower()
     model = config.get("model", "")
     if not model:
         raise ValueError("config must specify 'model'")
