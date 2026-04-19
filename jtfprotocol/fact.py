@@ -8,11 +8,14 @@ See documentation/Protocol Ver 1.0 CURRENT.md, section "The Fact".
 """
 from __future__ import annotations
 
+import base64
 import copy
 import hashlib
 import json
 from dataclasses import dataclass, field
 from typing import Any
+
+from jtfprotocol import identity as _identity
 
 
 JTF_VERSION = 1
@@ -137,3 +140,47 @@ def canonical_json(data: dict) -> str:
         separators=(",", ":"),
         ensure_ascii=False,
     )
+
+
+def _canonical_for_signing(fact_dict: dict) -> bytes:
+    """Serialize a fact for signing or verification.
+
+    Populates id, empties the signature field, then canonical-JSON-encodes
+    the result. The returned bytes are what gets signed / verified.
+    """
+    to_sign = copy.deepcopy(fact_dict)
+    to_sign["id"] = compute_fact_id(fact_dict)
+    to_sign["signature"] = ""
+    return canonical_json(to_sign).encode("utf-8")
+
+
+def sign_fact(fact_dict: dict, priv) -> dict:
+    """Return a new fact dict with `id` and `signature` populated.
+
+    Does not mutate the input. The signature is base64-encoded.
+    """
+    signed = copy.deepcopy(fact_dict)
+    signed["id"] = compute_fact_id(fact_dict)
+    signed["signature"] = ""
+    to_sign = canonical_json(signed).encode("utf-8")
+    sig_bytes = _identity.sign(priv, to_sign)
+    signed["signature"] = base64.b64encode(sig_bytes).decode("ascii")
+    return signed
+
+
+def verify_fact(fact_dict: dict, pub) -> bool:
+    """Verify a fact's Ed25519 signature.
+
+    Returns True if the signature is valid and the fact's `id` matches
+    the canonical computation. Returns False otherwise. Does not raise.
+    """
+    try:
+        claimed_id = fact_dict.get("id", "")
+        if claimed_id != compute_fact_id(fact_dict):
+            return False
+        sig_b64 = fact_dict.get("signature", "")
+        sig = base64.b64decode(sig_b64)
+        to_verify = _canonical_for_signing(fact_dict)
+        return _identity.verify(pub, to_verify, sig)
+    except Exception:
+        return False

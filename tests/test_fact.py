@@ -62,3 +62,24 @@ def test_compute_fact_id_ignores_signature_field(sample_fact_dict):
     original = fact_module.compute_fact_id(sample_fact_dict)
     sample_fact_dict["signature"] = "different-signature"
     assert fact_module.compute_fact_id(sample_fact_dict) == original
+
+
+def test_sign_and_verify_fact_roundtrip(sample_fact_dict):
+    from jtfprotocol import identity
+
+    priv, pub = identity.generate_keypair()
+    sample_fact_dict["server"]["public_key_id"] = identity.public_key_id(pub)
+    signed = fact_module.sign_fact(sample_fact_dict, priv)
+    assert signed["signature"] != ""
+    assert signed["id"].startswith("sha256:")
+    assert fact_module.verify_fact(signed, pub) is True
+
+
+def test_verify_fact_rejects_tampered_text(sample_fact_dict):
+    from jtfprotocol import identity
+
+    priv, pub = identity.generate_keypair()
+    sample_fact_dict["server"]["public_key_id"] = identity.public_key_id(pub)
+    signed = fact_module.sign_fact(sample_fact_dict, priv)
+    signed["fact"] = "The vote was 0 to 0."
+    assert fact_module.verify_fact(signed, pub) is False
