@@ -9,6 +9,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
+from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PrivateKey,
@@ -71,3 +72,24 @@ def load_keypair(
 
     pub = Ed25519PublicKey.from_public_bytes(pub_bytes)
     return priv, pub
+
+
+def sign(priv: Ed25519PrivateKey, data: bytes) -> bytes:
+    """Sign `data` with the Ed25519 private key.
+
+    Returns a 64-byte signature.
+    """
+    return priv.sign(data)
+
+
+def verify(pub: Ed25519PublicKey, data: bytes, signature: bytes) -> bool:
+    """Verify an Ed25519 signature.
+
+    Returns True if the signature is valid for the given data and public
+    key. Returns False on any verification failure. Does not raise.
+    """
+    try:
+        pub.verify(signature, data)
+        return True
+    except InvalidSignature:
+        return False

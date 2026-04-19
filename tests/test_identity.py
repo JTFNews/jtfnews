@@ -46,3 +46,30 @@ def test_save_keypair_sets_restrictive_permissions(tmp_path):
     # Private key should be 0600 (owner read/write only).
     mode = stat.S_IMODE(priv_path.stat().st_mode)
     assert mode == 0o600
+
+
+def test_sign_then_verify_succeeds():
+    priv, pub = identity.generate_keypair()
+    data = b"hello jtf"
+    sig = identity.sign(priv, data)
+    assert identity.verify(pub, data, sig) is True
+
+
+def test_verify_rejects_tampered_data():
+    priv, pub = identity.generate_keypair()
+    sig = identity.sign(priv, b"hello jtf")
+    assert identity.verify(pub, b"hello jtg", sig) is False
+
+
+def test_verify_rejects_tampered_signature():
+    priv, pub = identity.generate_keypair()
+    sig = identity.sign(priv, b"hello jtf")
+    tampered = bytes([sig[0] ^ 0x01]) + sig[1:]
+    assert identity.verify(pub, b"hello jtf", tampered) is False
+
+
+def test_verify_rejects_wrong_public_key():
+    priv1, _ = identity.generate_keypair()
+    _, pub2 = identity.generate_keypair()
+    sig = identity.sign(priv1, b"hello jtf")
+    assert identity.verify(pub2, b"hello jtf", sig) is False
