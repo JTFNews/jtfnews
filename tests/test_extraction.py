@@ -133,3 +133,41 @@ def test_openai_compatible_backend_raises_on_non_json():
     )
     with pytest.raises(extraction.ExtractionError):
         backend.extract_fact("x", {"name": "y", "url": "z"})
+
+
+def test_get_backend_returns_anthropic_when_configured():
+    cfg = {
+        "backend": "anthropic",
+        "model": "claude-haiku-4-5-20251001",
+        "api_key": "sk-ant-fake",
+    }
+    backend = extraction.get_backend(cfg)
+    assert isinstance(backend, extraction.AnthropicBackend)
+    assert backend.backend_id == "anthropic"
+
+
+def test_get_backend_returns_ollama_when_configured():
+    cfg = {
+        "backend": "ollama",
+        "model": "qwen2.5:72b-instruct-q5_K_M",
+        "base_url": "http://localhost:11434/v1",
+    }
+    backend = extraction.get_backend(cfg)
+    assert isinstance(backend, extraction.OpenAICompatibleBackend)
+    assert backend.backend_id == "ollama"
+
+
+def test_get_backend_returns_lmstudio_when_configured():
+    cfg = {
+        "backend": "lmstudio",
+        "model": "qwen2.5-72b-instruct",
+        "base_url": "http://localhost:1234/v1",
+    }
+    backend = extraction.get_backend(cfg)
+    assert isinstance(backend, extraction.OpenAICompatibleBackend)
+    assert backend.backend_id == "lmstudio"
+
+
+def test_get_backend_rejects_unknown_backend():
+    with pytest.raises(ValueError):
+        extraction.get_backend({"backend": "nonsense", "model": "x"})

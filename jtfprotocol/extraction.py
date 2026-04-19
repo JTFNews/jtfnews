@@ -200,3 +200,49 @@ class OpenAICompatibleBackend(ExtractionBackend):
             raise ExtractionError(
                 f"{self.backend_id} backend returned malformed output: {e}"
             ) from e
+
+
+def get_backend(config: dict) -> ExtractionBackend:
+    """Construct the configured ExtractionBackend.
+
+    Expected config keys:
+      - backend:  one of SUPPORTED_BACKENDS
+      - model:    the vendor-specific model id (no namespace prefix)
+      - api_key:  required for commercial backends
+      - base_url: required for openai-compatible local backends
+
+    Lazily imports the vendor SDKs so that an operator running only a
+    local backend does not need the `anthropic` SDK installed (and vice
+    versa).
+    """
+    backend_id = config.get("backend", "").lower()
+    model = config.get("model", "")
+    if not model:
+        raise ValueError("config must specify 'model'")
+
+    if backend_id == BACKEND_ANTHROPIC:
+        import anthropic
+
+        api_key = config.get("api_key")
+        client = anthropic.Anthropic(api_key=api_key) if api_key else anthropic.Anthropic()
+        return AnthropicBackend(client=client, model=model)
+
+    if backend_id in {BACKEND_OPENAI, BACKEND_OLLAMA, BACKEND_LMSTUDIO, BACKEND_CUSTOM}:
+        import openai
+
+        kwargs = {}
+        if config.get("api_key"):
+            kwargs["api_key"] = config["api_key"]
+        if config.get("base_url"):
+            kwargs["base_url"] = config["base_url"]
+        # Ollama and LM Studio accept any non-empty api_key.
+        if backend_id in {BACKEND_OLLAMA, BACKEND_LMSTUDIO} and "api_key" not in kwargs:
+            kwargs["api_key"] = "not-needed"
+        client = openai.OpenAI(**kwargs)
+        return OpenAICompatibleBackend(
+            client=client,
+            model=model,
+            backend_id=backend_id,
+        )
+
+    raise ValueError(f"unsupported backend: {backend_id!r}")
