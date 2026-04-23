@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-04-23T22:26:07.662349+00:00",
+  "timestamp": "2026-04-23T22:31:09.985300+00:00",
+  "web_refresh_at": "2026-04-23T22:31:09.985300+00:00",
   "uptime_start": "2026-04-20T01:39:33.266097+00:00",
-  "uptime_seconds": 333994,
+  "uptime_seconds": 334297,
   "availability_pct": 54.0,
   "cycle": {
-    "number": 187,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 188,
+    "duration_seconds": 63.4,
+    "headlines_scraped": 187,
+    "headlines_processed": 7,
+    "stories_published": 2,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 15,
-        "cost_usd": 0.041010000000000005,
+        "calls": 17,
+        "cost_usd": 0.04662,
         "details": {
-          "characters": 1367
+          "characters": 1554
         }
       },
       "claude": {
-        "calls": 748,
-        "cost_usd": 0.2930895000000002,
+        "calls": 763,
+        "cost_usd": 0.2973092500000003,
         "details": {
-          "input_tokens": 720543,
-          "output_tokens": 90363
+          "input_tokens": 731252,
+          "output_tokens": 91597
         }
       }
     },
-    "total_usd": 0.3341,
+    "total_usd": 0.3439,
     "month_estimate_usd": 8.82,
     "daily_budget": 1.67,
-    "budget_pct": 20.0
+    "budget_pct": 20.6
   },
   "queue": {
-    "size": 57,
-    "oldest_item_age_hours": 23.9
+    "size": 55,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 13,
+  "stories_today": 15,
   "sources": {
     "total": 22,
     "successful": 22,
@@ -48,7 +49,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-22/2026-04-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-22/2026-04-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
