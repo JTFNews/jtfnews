@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-04-26T17:00:40.301520+00:00",
-  "web_refresh_at": "2026-04-26T17:00:40.301520+00:00",
+  "timestamp": "2026-04-26T17:05:41.508831+00:00",
   "uptime_start": "2026-04-24T22:04:08.728825+00:00",
-  "uptime_seconds": 154592,
+  "uptime_seconds": 154893,
   "availability_pct": 57.0,
   "cycle": {
     "number": 87,
-    "duration_seconds": 34.8,
-    "headlines_scraped": 187,
-    "headlines_processed": 2,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -44,7 +43,7 @@
   },
   "queue": {
     "size": 49,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 11,
   "sources": {
@@ -52,62 +51,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-04-26T16:00:51.844409+00:00",
-      "level": "WARNING",
-      "message": "Alert sent: CORRECTION issued for 2026-04-26-005: The death toll in the previously published story ("
-    },
-    {
-      "timestamp": "2026-04-26T16:00:54.921707+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-25 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-26T16:00:54.921848+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-24 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-26T16:00:54.921973+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-23 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-26T16:00:54.922098+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-22 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-26T16:00:54.922218+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-21 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-26T16:00:54.922336+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-20 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-26T16:00:54.922456+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-19 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-26T16:00:54.922572+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-04-18 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-04-26T16:00:54.923004+00:00",
-      "level": "WARNING",
-      "message": "propagate_correction_to_youtube: no YouTube video for 2026-04-26, skipping"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
@@ -126,12 +74,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-25/2026-04-25-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-25/2026-04-25-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
