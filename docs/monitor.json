@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-04-29T16:01:02.770133+00:00",
-  "web_refresh_at": "2026-04-29T16:01:02.770133+00:00",
+  "timestamp": "2026-04-29T16:06:04.126688+00:00",
   "uptime_start": "2026-04-29T07:08:06.102759+00:00",
-  "uptime_seconds": 31977,
+  "uptime_seconds": 32278,
   "availability_pct": 40.5,
   "cycle": {
     "number": 19,
-    "duration_seconds": 53.0,
-    "headlines_scraped": 186,
-    "headlines_processed": 7,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 40,
-    "oldest_item_age_hours": 8.9
+    "oldest_item_age_hours": 9.0
   },
   "stories_today": 12,
   "sources": {
@@ -45,37 +44,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-04-29T15:01:21.839933+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 401"
-    },
-    {
-      "timestamp": "2026-04-29T15:01:25.420859+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/stories.json: 401"
-    },
-    {
-      "timestamp": "2026-04-29T15:02:02.598099+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 401"
-    },
-    {
-      "timestamp": "2026-04-29T15:02:04.537630+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/stories.json: 401"
-    },
-    {
-      "timestamp": "2026-04-29T15:02:27.475818+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 401"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -94,12 +67,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-04-26/2026-04-26-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-04-26/2026-04-26-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
