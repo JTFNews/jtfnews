@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-04-29T14:56:34.672921+00:00",
+  "timestamp": "2026-04-29T15:07:27.481629+00:00",
   "uptime_start": "2026-04-29T07:08:06.102759+00:00",
-  "uptime_seconds": 28109,
+  "uptime_seconds": 28761,
   "availability_pct": 40.5,
   "cycle": {
-    "number": 16,
+    "number": 17,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -14,41 +14,67 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 430,
-        "cost_usd": 0.16868725,
+        "calls": 460,
+        "cost_usd": 0.17856874999999994,
         "details": {
-          "input_tokens": 412084,
-          "output_tokens": 52533
+          "input_tokens": 436160,
+          "output_tokens": 55623
         }
       },
       "elevenlabs": {
-        "calls": 10,
-        "cost_usd": 0.020790000000000003,
+        "calls": 12,
+        "cost_usd": 0.025740000000000002,
         "details": {
-          "characters": 693
+          "characters": 858
         }
       }
     },
-    "total_usd": 0.1895,
+    "total_usd": 0.2043,
     "month_estimate_usd": 8.9,
     "daily_budget": 1.67,
-    "budget_pct": 11.4
+    "budget_pct": 12.3
   },
   "queue": {
-    "size": 37,
-    "oldest_item_age_hours": 7.8
+    "size": 38,
+    "oldest_item_age_hours": 8.0
   },
-  "stories_today": 10,
+  "stories_today": 12,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-04-29T15:01:21.839933+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 401"
+    },
+    {
+      "timestamp": "2026-04-29T15:01:25.420859+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/stories.json: 401"
+    },
+    {
+      "timestamp": "2026-04-29T15:02:02.598099+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 401"
+    },
+    {
+      "timestamp": "2026-04-29T15:02:04.537630+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/stories.json: 401"
+    },
+    {
+      "timestamp": "2026-04-29T15:02:27.475818+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 401"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 22,
     "degraded_services": []
   },
   "daily_digest": {
