@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-05-08T09:26:09.891305+00:00",
+  "timestamp": "2026-05-08T09:31:35.049542+00:00",
+  "web_refresh_at": "2026-05-08T09:31:35.049542+00:00",
   "uptime_start": "2026-05-04T16:15:14.715209+00:00",
-  "uptime_seconds": 321055,
+  "uptime_seconds": 321380,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 179,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 180,
+    "duration_seconds": 88.3,
+    "headlines_scraped": 185,
+    "headlines_processed": 14,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 385,
-        "cost_usd": 0.15372475,
+        "calls": 398,
+        "cost_usd": 0.15937075,
         "details": {
-          "input_tokens": 375514,
-          "output_tokens": 47877
+          "input_tokens": 389408,
+          "output_tokens": 49615
         }
       }
     },
-    "total_usd": 0.1851,
+    "total_usd": 0.1908,
     "month_estimate_usd": 9.12,
     "daily_budget": 1.61,
-    "budget_pct": 11.5
+    "budget_pct": 11.8
   },
   "queue": {
     "size": 64,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 6,
   "sources": {
@@ -46,15 +47,20 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-05-08T08:30:47.227904+00:00",
+      "timestamp": "2026-05-08T09:30:56.648130+00:00",
       "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CapnjPWCXEuEwWeZ3XYKr'}"
+      "message": "Claude API error: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CapsJmSSe1SN1jmoyTSQv'}"
+    },
+    {
+      "timestamp": "2026-05-08T09:31:25.517064+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CapsMfTrqwU5s1sVbmXV7'}"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +79,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-07/2026-05-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-07/2026-05-07-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
