@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-05-08T10:56:03.026743+00:00",
+  "timestamp": "2026-05-08T11:01:06.422345+00:00",
+  "web_refresh_at": "2026-05-08T11:01:06.422345+00:00",
   "uptime_start": "2026-05-04T16:15:14.715209+00:00",
-  "uptime_seconds": 326448,
+  "uptime_seconds": 326752,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 182,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 183,
+    "duration_seconds": 60.2,
+    "headlines_scraped": 185,
+    "headlines_processed": 13,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 413,
-        "cost_usd": 0.16553025000000002,
+        "calls": 427,
+        "cost_usd": 0.17169325000000002,
         "details": {
-          "input_tokens": 404551,
-          "output_tokens": 51514
+          "input_tokens": 419508,
+          "output_tokens": 53453
         }
       }
     },
-    "total_usd": 0.1969,
+    "total_usd": 0.2031,
     "month_estimate_usd": 9.12,
     "daily_budget": 1.61,
-    "budget_pct": 12.2
+    "budget_pct": 12.6
   },
   "queue": {
     "size": 59,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 6,
   "sources": {
@@ -45,16 +46,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-05-08T10:00:56.741529+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Capuc9w17MzYDsvyMbiQi'}"
-    },
-    {
-      "timestamp": "2026-05-08T10:01:05.648358+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CapucpMYgstWRxQewD4gt'}"
-    },
     {
       "timestamp": "2026-05-08T10:01:14.034533+00:00",
       "level": "ERROR",
@@ -79,7 +70,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -98,5 +89,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-07/2026-05-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-07/2026-05-07-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
