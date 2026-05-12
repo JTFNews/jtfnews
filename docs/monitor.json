@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-05-12T18:21:10.253179+00:00",
+  "timestamp": "2026-05-12T18:32:21.920394+00:00",
+  "web_refresh_at": "2026-05-12T18:32:21.920394+00:00",
   "uptime_start": "2026-05-11T05:41:14.792162+00:00",
-  "uptime_seconds": 131995,
+  "uptime_seconds": 132667,
   "availability_pct": 51.0,
   "cycle": {
-    "number": 74,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 75,
+    "duration_seconds": 61.3,
+    "headlines_scraped": 187,
+    "headlines_processed": 11,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 635,
-        "cost_usd": 0.25673100000000015,
+        "calls": 648,
+        "cost_usd": 0.2620660000000002,
         "details": {
-          "input_tokens": 627924,
-          "output_tokens": 79800
+          "input_tokens": 640819,
+          "output_tokens": 81489
         }
       }
     },
-    "total_usd": 0.2875,
+    "total_usd": 0.2928,
     "month_estimate_usd": 8.94,
     "daily_budget": 1.61,
-    "budget_pct": 17.8
+    "budget_pct": 18.2
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 24.3
+    "size": 54,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 7,
   "sources": {
@@ -44,11 +45,17 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-05-12T18:27:27.062096+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json (Caused by NewConnectionError(\"HTTPSConnection(host='api.github.com', port=443): Failed to establish a new connection: [Errno 60] Operation timed out\"))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 8,
+    "next_cycle_minutes": 27,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-11/2026-05-11-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-11/2026-05-11-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
