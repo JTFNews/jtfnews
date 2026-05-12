@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-05-12T22:26:29.703026+00:00",
+  "timestamp": "2026-05-12T22:31:19.948270+00:00",
+  "web_refresh_at": "2026-05-12T22:31:19.948270+00:00",
   "uptime_start": "2026-05-11T05:41:14.792162+00:00",
-  "uptime_seconds": 146715,
-  "availability_pct": 51.4,
+  "uptime_seconds": 147005,
+  "availability_pct": 51.5,
   "cycle": {
-    "number": 82,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 83,
+    "duration_seconds": 73.2,
+    "headlines_scraped": 187,
+    "headlines_processed": 15,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,30 +22,28 @@
         }
       },
       "claude": {
-        "calls": 745,
-        "cost_usd": 0.3029825000000002,
+        "calls": 763,
+        "cost_usd": 0.3106917500000002,
         "details": {
-          "input_tokens": 740005,
-          "output_tokens": 94385
+          "input_tokens": 757757,
+          "output_tokens": 97002
         }
       }
     },
-    "total_usd": 0.3376,
+    "total_usd": 0.3453,
     "month_estimate_usd": 8.94,
     "daily_budget": 1.61,
-    "budget_pct": 20.9
+    "budget_pct": 21.4
   },
   "queue": {
     "size": 52,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 22.4
   },
   "stories_today": 7,
   "sources": {
     "total": 22,
-    "successful": 21,
-    "failed": [
-      "Government of Canada"
-    ]
+    "successful": 22,
+    "failed": []
   },
   "recent_errors": [
     {
@@ -56,7 +55,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-11/2026-05-11-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-11/2026-05-11-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
