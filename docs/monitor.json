@@ -1,71 +1,125 @@
 {
-  "timestamp": "2026-05-12T23:56:12.796895+00:00",
+  "timestamp": "2026-05-13T00:17:32.945462+00:00",
+  "web_refresh_at": "2026-05-13T00:17:32.945462+00:00",
   "uptime_start": "2026-05-11T05:41:14.792162+00:00",
-  "uptime_seconds": 152098,
+  "uptime_seconds": 153378,
   "availability_pct": 51.5,
   "cycle": {
-    "number": 85,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 86,
+    "duration_seconds": 745.7,
+    "headlines_scraped": 187,
+    "headlines_processed": 187,
+    "stories_published": 2,
+    "stories_queued": 18
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 11,
-        "cost_usd": 0.034620000000000005,
+        "calls": 3,
+        "cost_usd": 0.012029999999999999,
         "details": {
-          "characters": 1154
+          "characters": 401
         }
       },
       "claude": {
-        "calls": 785,
-        "cost_usd": 0.3207860000000001,
+        "calls": 212,
+        "cost_usd": 0.08617825,
         "details": {
-          "input_tokens": 781884,
-          "output_tokens": 100252
+          "input_tokens": 213888,
+          "output_tokens": 26165
         }
       }
     },
-    "total_usd": 0.3554,
+    "total_usd": 0.0982,
     "month_estimate_usd": 8.94,
     "daily_budget": 1.61,
-    "budget_pct": 22.0
+    "budget_pct": 6.1
   },
   "queue": {
-    "size": 52,
-    "oldest_item_age_hours": 23.8
+    "size": 68,
+    "oldest_item_age_hours": 24.2
   },
-  "stories_today": 7,
+  "stories_today": 2,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-05-13T00:09:15.720728+00:00",
+      "level": "ERROR",
+      "message": "TTS error: [Errno 60] Operation timed out"
+    },
+    {
+      "timestamp": "2026-05-13T00:10:08.737576+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/feed.xml to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-05-13T00:11:01.701170+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/stories.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-05-13T00:11:53.619413+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/alexa.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-05-13T00:12:09.943421+00:00",
+      "level": "ERROR",
+      "message": "Correction detection failed: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    },
+    {
+      "timestamp": "2026-05-13T00:12:26.252671+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    },
+    {
+      "timestamp": "2026-05-13T00:12:42.608576+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    },
+    {
+      "timestamp": "2026-05-13T00:12:59.065780+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    },
+    {
+      "timestamp": "2026-05-13T00:13:15.419121+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 12,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-05-11",
-    "next_digest_at": "2026-05-13T00:00:00+00:00",
+    "last_date": "2026-05-12",
+    "next_digest_at": "2026-05-14T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-05-12T00:05:48.787506+00:00",
-    "story_count": 14,
-    "duration_seconds": 153,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-05-11-daily-digest.mp4",
-    "youtube_id": "mN9zguZaI7E",
-    "youtube_url": "https://youtube.com/watch?v=mN9zguZaI7E",
-    "archive_org_id": "jtf-news-2026-05-11",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-11/2026-05-11-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-05-11/2026-05-11-daily-digest.mp4",
+    "last_completed_at": "2026-05-13T00:03:44.910873+00:00",
+    "story_count": 7,
+    "duration_seconds": 90,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-05-12-daily-digest.mp4",
+    "youtube_id": "7IPnMi3ltEE",
+    "youtube_url": "https://youtube.com/watch?v=7IPnMi3ltEE",
+    "archive_org_id": "jtf-news-2026-05-12",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-12/2026-05-12-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-05-12/2026-05-12-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
