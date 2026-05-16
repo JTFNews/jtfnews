@@ -1,67 +1,60 @@
 {
-  "timestamp": "2026-05-15T01:26:23.028656+00:00",
-  "uptime_start": "2026-05-14T23:51:50.347204+00:00",
-  "uptime_seconds": 5673,
-  "availability_pct": 34.1,
+  "timestamp": "2026-05-16T04:41:01.029929+00:00",
+  "web_refresh_at": "2026-05-16T04:41:01.029929+00:00",
+  "uptime_start": "2026-05-16T04:32:46.400156+00:00",
+  "uptime_seconds": 495,
+  "availability_pct": 25.8,
   "cycle": {
-    "number": 4,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1,
+    "duration_seconds": 493.9,
+    "headlines_scraped": 186,
+    "headlines_processed": 186,
+    "stories_published": 3,
+    "stories_queued": 28
   },
   "api_costs": {
     "today": {
-      "elevenlabs": {
-        "calls": 5,
-        "cost_usd": 0.015360000000000002,
+      "claude": {
+        "calls": 211,
+        "cost_usd": 0.08705324999999998,
         "details": {
-          "characters": 512
+          "input_tokens": 214468,
+          "output_tokens": 26749
         }
       },
-      "claude": {
-        "calls": 238,
-        "cost_usd": 0.0969982500000001,
+      "elevenlabs": {
+        "calls": 3,
+        "cost_usd": 0.00795,
         "details": {
-          "input_tokens": 236383,
-          "output_tokens": 30322
+          "characters": 265
         }
       }
     },
-    "total_usd": 0.1124,
-    "month_estimate_usd": 8.92,
+    "total_usd": 0.095,
+    "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 7.0
+    "budget_pct": 5.9
   },
   "queue": {
-    "size": 35,
-    "oldest_item_age_hours": 1.6
+    "size": 25,
+    "oldest_item_age_hours": 0.1
   },
   "stories_today": 3,
   "sources": {
     "total": 22,
-    "successful": 21,
-    "failed": [
-      "Government of Canada"
-    ]
+    "successful": 22,
+    "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-05-15T01:00:51.450436+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 18,
     "degraded_services": []
   },
   "daily_digest": {
     "last_date": "2026-05-14",
-    "next_digest_at": "2026-05-16T00:00:00+00:00",
+    "next_digest_at": "2026-05-17T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
@@ -75,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-14/2026-05-14-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-14/2026-05-14-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
