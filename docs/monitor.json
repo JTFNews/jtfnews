@@ -1,54 +1,81 @@
 {
-  "timestamp": "2026-05-17T00:29:12.905933+00:00",
-  "uptime_start": "2026-05-16T18:17:17.671050+00:00",
-  "uptime_seconds": 22315,
-  "availability_pct": 24.2,
+  "timestamp": "2026-05-17T23:30:38.365879+00:00",
+  "web_refresh_at": "2026-05-17T23:30:38.365879+00:00",
+  "uptime_start": "2026-05-17T23:25:03.972819+00:00",
+  "uptime_seconds": 334,
+  "availability_pct": 20.4,
   "cycle": {
-    "number": 13,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1,
+    "duration_seconds": 333.5,
+    "headlines_scraped": 187,
+    "headlines_processed": 85,
+    "stories_published": 3,
+    "stories_queued": 11
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 7,
-        "cost_usd": 0.02025,
+        "calls": 10,
+        "cost_usd": 0.02634,
         "details": {
-          "characters": 675
+          "characters": 878
         }
       },
       "claude": {
-        "calls": 243,
-        "cost_usd": 0.08974874999999995,
+        "calls": 348,
+        "cost_usd": 0.12940524999999997,
         "details": {
-          "input_tokens": 223015,
-          "output_tokens": 27196
+          "input_tokens": 319376,
+          "output_tokens": 39649
         }
       }
     },
-    "total_usd": 0.11,
-    "month_estimate_usd": 8.77,
+    "total_usd": 0.1557,
+    "month_estimate_usd": 8.74,
     "daily_budget": 1.61,
-    "budget_pct": 6.8
+    "budget_pct": 9.7
   },
   "queue": {
-    "size": 50,
-    "oldest_item_age_hours": 19.9
+    "size": 20,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 5,
+  "stories_today": 8,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-05-17T23:26:12.965218+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    },
+    {
+      "timestamp": "2026-05-17T23:26:29.454012+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    },
+    {
+      "timestamp": "2026-05-17T23:26:45.855450+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    },
+    {
+      "timestamp": "2026-05-17T23:27:02.197660+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    },
+    {
+      "timestamp": "2026-05-17T23:27:18.666751+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 0,
+    "stream_health": "offline",
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +94,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-16/2026-05-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-16/2026-05-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
