@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-05-17T23:40:40.734794+00:00",
-  "uptime_start": "2026-05-17T23:25:03.972819+00:00",
-  "uptime_seconds": 937,
+  "timestamp": "2026-05-17T23:43:33.216510+00:00",
+  "web_refresh_at": "2026-05-17T23:43:33.216510+00:00",
+  "uptime_start": "2026-05-17T23:42:48.527539+00:00",
+  "uptime_seconds": 45,
   "availability_pct": 20.4,
   "cycle": {
     "number": 1,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "duration_seconds": 44.0,
+    "headlines_scraped": 187,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 348,
-        "cost_usd": 0.12940524999999997,
+        "calls": 356,
+        "cost_usd": 0.13184324999999994,
         "details": {
-          "input_tokens": 319376,
-          "output_tokens": 39649
+          "input_tokens": 325408,
+          "output_tokens": 40393
         }
       }
     },
-    "total_usd": 0.1557,
+    "total_usd": 0.1582,
     "month_estimate_usd": 8.74,
     "daily_budget": 1.61,
-    "budget_pct": 9.7
+    "budget_pct": 9.8
   },
   "queue": {
     "size": 20,
-    "oldest_item_age_hours": 24.2
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 8,
   "sources": {
@@ -44,37 +45,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-05-17T23:26:12.965218+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
-    },
-    {
-      "timestamp": "2026-05-17T23:26:29.454012+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
-    },
-    {
-      "timestamp": "2026-05-17T23:26:45.855450+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
-    },
-    {
-      "timestamp": "2026-05-17T23:27:02.197660+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
-    },
-    {
-      "timestamp": "2026-05-17T23:27:18.666751+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details."
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 19,
+    "next_cycle_minutes": 16,
     "degraded_services": []
   },
   "daily_digest": {
@@ -93,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-16/2026-05-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-16/2026-05-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
