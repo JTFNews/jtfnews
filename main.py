@@ -181,6 +181,18 @@ def retry_with_backoff(max_retries=3, base_delay=1.0, retryable_exceptions=None)
     return decorator
 
 
+# Anthropic SDK default request timeout is 600s (10 minutes); far too long
+# for a long-running service. A single hung TCP connection blocks the whole
+# cycle for 10 min and defeats retry_with_backoff. 60s is plenty for Haiku
+# calls and short enough that the decorator can retry meaningfully.
+ANTHROPIC_TIMEOUT_SECONDS = 60.0
+
+
+def get_anthropic_client():
+    """Return an Anthropic client with an explicit 60s request timeout."""
+    return anthropic.Anthropic(timeout=ANTHROPIC_TIMEOUT_SECONDS)
+
+
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
@@ -423,7 +435,7 @@ def validate_services() -> bool:
 
     # Test Claude API with minimal call
     try:
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
         response = client.messages.create(
             model=CONFIG["claude"]["model"],
             max_tokens=10,
@@ -854,14 +866,59 @@ Headline to process:
     anthropic.APITimeoutError, anthropic.APIConnectionError,
     anthropic.RateLimitError, anthropic.InternalServerError
 ))
+def _call_claude_extract_fact(headline: str) -> dict:
+    """Make the Claude API call for fact extraction. Retryable on transient errors.
+
+    Returns the parsed fact dict on success. Raises on retryable network/API
+    failures so retry_with_backoff can retry; the caller (extract_fact)
+    catches any final failure and degrades to SKIP.
+    """
+    client = get_anthropic_client()
+
+    response = client.messages.create(
+        model=CONFIG["claude"]["model"],
+        max_tokens=CONFIG["claude"]["max_tokens"],
+        messages=[{
+            "role": "user",
+            "content": FACT_EXTRACTION_PROMPT + headline
+        }]
+    )
+
+    log_api_usage("claude", {
+        "input_tokens": response.usage.input_tokens,
+        "output_tokens": response.usage.output_tokens
+    })
+
+    text = response.content[0].text
+
+    try:
+        start = text.find('{')
+        end = text.rfind('}') + 1
+        if start >= 0 and end > start:
+            return json.loads(text[start:end])
+    except json.JSONDecodeError:
+        pass
+
+    fact_match = re.search(r'"fact"\s*:\s*"([^"]*(?:\\.[^"]*)*)"', text)
+    conf_match = re.search(r'"confidence"\s*:\s*(\d+)', text)
+
+    if fact_match:
+        fact = fact_match.group(1).replace('\\"', '"')
+        confidence = int(conf_match.group(1)) if conf_match else 85
+        return {"fact": fact, "confidence": confidence, "removed": []}
+
+    return {"fact": "SKIP", "confidence": 0, "removed": []}
+
+
 def extract_fact(headline: str, use_cache: bool = True) -> dict:
     """Send headline to Claude for fact extraction.
 
-    Uses cached result if available to reduce API costs.
+    Uses cached result if available to reduce API costs. Retries transient
+    network/API failures via _call_claude_extract_fact; degrades to SKIP if
+    the API stays unreachable after all retries.
     """
     headline_hash = get_story_hash(headline)
 
-    # Check cache first (saves ~$0.001 per cached hit)
     if use_cache:
         cached = _fact_extraction_cache.get(headline_hash)
         if cached:
@@ -869,52 +926,14 @@ def extract_fact(headline: str, use_cache: bool = True) -> dict:
             return cached
 
     try:
-        client = anthropic.Anthropic()
-
-        response = client.messages.create(
-            model=CONFIG["claude"]["model"],
-            max_tokens=CONFIG["claude"]["max_tokens"],
-            messages=[{
-                "role": "user",
-                "content": FACT_EXTRACTION_PROMPT + headline
-            }]
-        )
-
-        # Log API usage for cost tracking
-        log_api_usage("claude", {
-            "input_tokens": response.usage.input_tokens,
-            "output_tokens": response.usage.output_tokens
-        })
-
-        text = response.content[0].text
-
-        # Try standard JSON parsing first
-        try:
-            start = text.find('{')
-            end = text.rfind('}') + 1
-            if start >= 0 and end > start:
-                result = json.loads(text[start:end])
-                save_fact_extraction(headline_hash, result)
-                return result
-        except json.JSONDecodeError:
-            pass
-
-        # Fallback: Extract fields using regex (handles malformed JSON)
-        fact_match = re.search(r'"fact"\s*:\s*"([^"]*(?:\\.[^"]*)*)"', text)
-        conf_match = re.search(r'"confidence"\s*:\s*(\d+)', text)
-
-        if fact_match:
-            fact = fact_match.group(1).replace('\\"', '"')
-            confidence = int(conf_match.group(1)) if conf_match else 85
-            result = {"fact": fact, "confidence": confidence, "removed": []}
-            save_fact_extraction(headline_hash, result)
-            return result
-
-        return {"fact": "SKIP", "confidence": 0, "removed": []}
-
+        result = _call_claude_extract_fact(headline)
     except Exception as e:
         log.error(f"Claude API error: {e}")
         return {"fact": "SKIP", "confidence": 0, "removed": [], "error": str(e)}
+
+    if result.get("fact") and result["fact"] != "SKIP":
+        save_fact_extraction(headline_hash, result)
+    return result
 
 
 # =============================================================================
@@ -995,7 +1014,7 @@ def search_judge_info(fact: str, original_headline: str) -> dict | None:
         results_text = soup.get_text()[:3000]  # First 3000 chars of results
 
         # Use Claude to extract judge info from search results
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
 
         prompt = f"""From these search results, extract the judge's information for this news story.
 
@@ -1504,7 +1523,7 @@ def find_matching_stories(fact: str, queue: list) -> list:
     log.info(f"Word overlap pre-filter: {len(candidates)}/{len(queue)} candidates")
 
     try:
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
 
         # Build numbered list of candidate facts
         queue_list = "\n".join([f"{i+1}. {item['fact']}" for i, item in enumerate(candidates)])
@@ -1567,7 +1586,7 @@ def is_duplicate_batch(fact: str, published: list) -> bool:
         return False  # No overlap = definitely not a duplicate
 
     try:
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
 
         # Build numbered list of candidate published facts
         pub_list = "\n".join([f"{i+1}. {p}" for i, p in enumerate(candidates)])
@@ -2193,7 +2212,7 @@ Evidence URL: {feedback.get('evidence_url', 'none')}
 
 Respond with JSON only: {{"classification": "<category>"}}"""
 
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
         response = client.messages.create(
             model=CONFIG["claude"]["model"],
             max_tokens=CONFIG["claude"]["max_tokens"],
@@ -2269,7 +2288,7 @@ Respond with JSON only:
   "reason": "explanation of assessment"
 }}"""
 
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
         response = client.messages.create(
             model=CONFIG["claude"]["model"],
             max_tokens=CONFIG["claude"]["max_tokens"],
@@ -4557,7 +4576,7 @@ Minor updates or additions are NOT contradictions.
 Return JSON: {{"contradiction": true/false, "reason": "brief explanation if true"}}"""
 
     try:
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
         response = client.messages.create(
             model=CONFIG["claude"]["model"],
             max_tokens=100,
@@ -4722,7 +4741,7 @@ If NO correction needed, return:
 {{"needs_correction": false}}"""
 
     try:
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
         response = client.messages.create(
             model=CONFIG["claude"]["model"],
             max_tokens=200,
@@ -5108,7 +5127,7 @@ If there is NO new information, return exactly: NO_NEW_INFO
 Return JSON: {{"new_detail": "the new sentence" or "NO_NEW_INFO"}}"""
 
     try:
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
         response = client.messages.create(
             model=CONFIG["claude"]["model"],
             max_tokens=100,
@@ -8259,7 +8278,7 @@ Return ONLY valid JSON, no explanation or markdown."""
 def research_source_ownership(source: dict) -> dict:
     """Use Claude to research current ownership for a source."""
     try:
-        client = anthropic.Anthropic()
+        client = get_anthropic_client()
 
         prompt = OWNERSHIP_RESEARCH_PROMPT.format(
             source_name=source.get("name", source.get("id")),

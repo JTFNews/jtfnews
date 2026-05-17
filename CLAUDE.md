@@ -71,6 +71,55 @@ When implementing stories, honor the project's non-negotiable constraints (full 
 6. **No emoji** in commits, code, docs, or anywhere else. JTF methodology rejects editorializing; emoji is editorializing.
 7. **No dead code** for code you're adding in this sprint. If you add a helper function, it must be called. If you change a signature, update every call site. Do NOT remove existing "legacy" code that wasn't in your story's scope — that's an unrelated cleanup.
 
+## Known Bug Patterns
+
+### Broad `except Exception` around an API call defeats `@retry_with_backoff`
+
+**Symptom:** A function decorated with `@retry_with_backoff(retryable_exceptions=(anthropic.APITimeoutError, ...))` never actually retries — every transient API error is logged once and the function returns its degraded default (SKIP, [], None). Operationally this looks like the system "keeps running but never recovers" from Claude API blips, and uptime drops because cycles silently lose work.
+
+**Root cause:** The decorator's `except retryable_exceptions` only fires for exceptions that escape the function body. An inner `try: ... except Exception as e: log.error(...); return default` swallows the exception before the decorator can see it. The retry-decorator listing of retryable exception types is dead code.
+
+WRONG:
+```python
+@retry_with_backoff(retryable_exceptions=(anthropic.APITimeoutError, ...))
+def call_claude(...):
+    try:
+        client = anthropic.Anthropic()
+        response = client.messages.create(...)
+        ...
+        return result
+    except Exception as e:               # <-- swallows APITimeoutError
+        log.error(f"Claude API error: {e}")
+        return {"fact": "SKIP", ...}
+```
+
+CORRECT (separate the retryable call from the degrade-to-default wrapper):
+```python
+@retry_with_backoff(retryable_exceptions=(anthropic.APITimeoutError, ...))
+def _call_claude(...):
+    client = get_anthropic_client()
+    response = client.messages.create(...)
+    ...
+    return result   # raises on transient failure → decorator retries
+
+def public_wrapper(...):
+    try:
+        return _call_claude(...)
+    except Exception as e:               # only reached after retries exhausted
+        log.error(f"Claude API error: {e}")
+        return {"fact": "SKIP", ...}
+```
+
+### Constructing `anthropic.Anthropic()` with no `timeout=` blocks for 10 minutes
+
+**Symptom:** Process appears hung in the terminal — no log output, heartbeat goes stale, user has to quit the terminal to recover. Often follows a network blip.
+
+**Root cause:** The Anthropic Python SDK's default request timeout is 600 seconds (10 minutes). A single hung TCP connection blocks the entire cycle for 10 min, defeating the surrounding retry decorator (which can't retry until the call returns). For a long-running service this is effectively a hang.
+
+WRONG: `client = anthropic.Anthropic()`
+
+CORRECT: `client = get_anthropic_client()`  (defined in main.py — wraps `anthropic.Anthropic(timeout=ANTHROPIC_TIMEOUT_SECONDS)`). All Claude calls in this codebase MUST go through `get_anthropic_client()` so every request inherits the same bounded timeout.
+
 ---
 
 # CLAUDE.md - JTF News
