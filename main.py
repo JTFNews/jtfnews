@@ -27,6 +27,7 @@ import logging
 import re
 import xml.etree.ElementTree as ET
 import calendar
+import signal
 from datetime import datetime, timezone, timedelta
 from functools import wraps
 from io import BytesIO
@@ -1258,12 +1259,50 @@ def fetch_headlines(source: dict) -> list:
     return headlines
 
 
+# Per-source watchdog. requests.get has its own timeout but on macOS a
+# slow-trickle TLS read or stalled IPv6 connect can bypass it, leaving the
+# entire cycle blocked for hours (incident 2026-05-18: CBC fetch hung the
+# process for 9+ hours after a successful DW fetch). SIGALRM is delivered
+# to the main thread (the only Python thread in main.py) and interrupts
+# blocked C calls like SSL_read that requests' timeout cannot reach.
+SOURCE_FETCH_WATCHDOG_SECONDS = 30
+
+
+class SourceWatchdogTimeout(Exception):
+    """Raised by the SIGALRM handler when a single source fetch exceeds its budget."""
+
+
+def _source_watchdog_handler(signum, frame):
+    raise SourceWatchdogTimeout()
+
+
+def fetch_headlines_with_watchdog(source: dict, timeout_seconds: int = SOURCE_FETCH_WATCHDOG_SECONDS) -> list:
+    """Call fetch_headlines with a hard wall-clock timeout.
+
+    Returns [] (not a raise) if the watchdog fires, so scrape_all_sources
+    can continue with the next source instead of stalling the whole cycle.
+    """
+    old_handler = signal.signal(signal.SIGALRM, _source_watchdog_handler)
+    signal.alarm(timeout_seconds)
+    try:
+        return fetch_headlines(source)
+    except SourceWatchdogTimeout:
+        log.warning(f"Watchdog: {source['name']} fetch exceeded {timeout_seconds}s; skipping")
+        return []
+    except Exception as e:
+        log.warning(f"Source {source['name']} failed: {e}")
+        return []
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, old_handler)
+
+
 def scrape_all_sources() -> list:
     """Scrape headlines from all configured sources."""
     all_headlines = []
 
     for source in CONFIG["sources"]:
-        headlines = fetch_headlines(source)
+        headlines = fetch_headlines_with_watchdog(source)
         all_headlines.extend(headlines)
         time.sleep(1)  # Be polite between requests
 

@@ -110,6 +110,14 @@ def public_wrapper(...):
         return {"fact": "SKIP", ...}
 ```
 
+### `requests.get(..., timeout=N)` does not protect against all macOS network stalls
+
+**Symptom:** A single source fetch (e.g., CBC RSS via Akamai) hangs the entire cycle for hours. `requests.get` was called with `timeout=15` but the timeout never fires. Process is alive but `heartbeat.txt` and `jtf.log` stop updating; `lsof` shows an ESTABLISHED TLS socket with no data flowing. Incident 2026-05-18: JTFNews hung 9+ hours on the source after Deutsche Welle.
+
+**Root cause:** On macOS, `requests` (via urllib3/httpx/openssl) can stall inside the SSL read loop in a way the Python-level timer never observes — slow-trickle TLS frames keep resetting the implicit per-read clock, or IPv6 connect happens to land on a black-holed address. The `timeout=` argument is implemented as repeated `select()` calls between recv chunks; if the kernel keeps returning "data available" for tiny TLS frames, the timeout window never expires.
+
+**Fix:** Wrap each source fetch in a SIGALRM watchdog (`fetch_headlines_with_watchdog` in main.py). SIGALRM is delivered to the main thread and interrupts blocked C calls like `SSL_read` that the Python-level `requests.timeout` cannot reach. main.py is single-threaded so SIGALRM is safe to use. Any new long-lived per-iteration network operation in the main loop must be wrapped in the same watchdog pattern — never trust a library's own timeout to be sufficient on this platform.
+
 ### Constructing `anthropic.Anthropic()` with no `timeout=` blocks for 10 minutes
 
 **Symptom:** Process appears hung in the terminal — no log output, heartbeat goes stale, user has to quit the terminal to recover. Often follows a network blip.
