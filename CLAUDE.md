@@ -110,6 +110,16 @@ def public_wrapper(...):
         return {"fact": "SKIP", ...}
 ```
 
+### Cycle-level operations (Claude pipeline, GitHub push, TTS) can hang outside per-source watchdog scope
+
+**Symptom:** Process hangs inside a cycle but NOT during source fetch — could be a stuck `client.messages.create`, a GitHub API push that never returns, a `requests.post` to ElevenLabs, a JSON parse on an infinite-length response, etc. Per-source watchdog does not cover these. `heartbeat.txt` goes stale; process appears alive but does nothing.
+
+**Fix:** The entire `process_cycle()` call in `main.py`'s while-loop is wrapped in `with watchdog(CYCLE_WATCHDOG_SECONDS, "cycle"):`. If anything inside the cycle exceeds 10 minutes, `WatchdogTimeout` fires and is caught at the main-loop level — cycle aborts, sleeps 60s, restarts fresh.
+
+**Gotcha — exception base class matters:** `WatchdogTimeout` inherits from `BaseException` (not `Exception`), like `KeyboardInterrupt`. This is deliberate: many functions in main.py have `except Exception as e: log.error(...); return SKIP/None/[]` which would otherwise swallow the watchdog and prevent the cycle from aborting. Catching by name (`except WatchdogTimeout`) still works at the per-source wrapper and main loop. If you add new watchdog use sites, do NOT change this base class.
+
+**Gotcha — nestable design:** The `watchdog(seconds, label)` context manager in main.py is nestable. It clamps the inner alarm to the outer's remaining time and restores the outer on exit. If the inner alarm fires before its full budget elapsed, it re-raises as `OuterWatchdogTimeout` so the inner wrapper does not accidentally swallow a cycle-level timeout. Any new per-operation watchdog (e.g., wrapping a GitHub push) MUST follow this pattern: catch `OuterWatchdogTimeout` and re-raise it; catch `WatchdogTimeout` and degrade locally.
+
 ### `requests.get(..., timeout=N)` does not protect against all macOS network stalls
 
 **Symptom:** A single source fetch (e.g., CBC RSS via Akamai) hangs the entire cycle for hours. `requests.get` was called with `timeout=15` but the timeout never fires. Process is alive but `heartbeat.txt` and `jtf.log` stop updating; `lsof` shows an ESTABLISHED TLS socket with no data flowing. Incident 2026-05-18: JTFNews hung 9+ hours on the source after Deutsche Welle.

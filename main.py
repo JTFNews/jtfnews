@@ -28,6 +28,7 @@ import re
 import xml.etree.ElementTree as ET
 import calendar
 import signal
+from contextlib import contextmanager
 from datetime import datetime, timezone, timedelta
 from functools import wraps
 from io import BytesIO
@@ -1278,42 +1279,99 @@ def fetch_headlines(source: dict) -> list:
     return headlines
 
 
-# Per-source watchdog. requests.get has its own timeout but on macOS a
+# SIGALRM-based watchdog. requests.get has its own timeout but on macOS a
 # slow-trickle TLS read or stalled IPv6 connect can bypass it, leaving the
 # entire cycle blocked for hours (incident 2026-05-18: CBC fetch hung the
 # process for 9+ hours after a successful DW fetch). SIGALRM is delivered
 # to the main thread (the only Python thread in main.py) and interrupts
 # blocked C calls like SSL_read that requests' timeout cannot reach.
+#
+# WatchdogTimeout inherits from BaseException (like KeyboardInterrupt) so
+# it propagates past every `except Exception` block in the cycle. Only
+# explicit `except WatchdogTimeout` blocks catch it. This is what lets a
+# cycle-level watchdog actually abort the cycle even when the hung call
+# is buried inside a function that catches `Exception`.
 SOURCE_FETCH_WATCHDOG_SECONDS = 30
+CYCLE_WATCHDOG_SECONDS = 600  # 10 minutes; any cycle longer than this is hung
 
 
-class SourceWatchdogTimeout(Exception):
-    """Raised by the SIGALRM handler when a single source fetch exceeds its budget."""
+class WatchdogTimeout(BaseException):
+    """Wall-clock budget exceeded by a watchdog-protected block."""
 
 
-def _source_watchdog_handler(signum, frame):
-    raise SourceWatchdogTimeout()
+class OuterWatchdogTimeout(WatchdogTimeout):
+    """A nesting outer watchdog fired while we were inside an inner one.
+
+    Per-source wrappers must re-raise this so the outer (cycle) watchdog's
+    caller gets a chance to abort. Catching only the plain WatchdogTimeout
+    in the inner wrapper preserves the outer's intent.
+    """
+
+
+def _watchdog_handler(signum, frame):
+    raise WatchdogTimeout()
+
+
+@contextmanager
+def watchdog(seconds: int, label: str):
+    """Wall-clock timeout via SIGALRM. Nestable.
+
+    If an outer watchdog has less time remaining than `seconds`, this clamps
+    our alarm to the outer's deadline. If the alarm then fires before our
+    intended budget elapsed, the timeout is re-raised as OuterWatchdogTimeout
+    so the per-source wrapper does not swallow a cycle-level timeout.
+
+    On exit (normal or exceptional) the outer alarm's remaining time is
+    restored, so cycle-level deadlines are preserved across many per-source
+    calls.
+    """
+    start = time.monotonic()
+    prev_handler = signal.signal(signal.SIGALRM, _watchdog_handler)
+    prev_remaining = signal.alarm(0)  # cancel + capture remaining
+
+    effective = seconds
+    if prev_remaining > 0 and prev_remaining < seconds:
+        effective = prev_remaining
+
+    signal.alarm(effective)
+    try:
+        yield
+    except WatchdogTimeout:
+        elapsed = time.monotonic() - start
+        if elapsed < seconds - 1:
+            # Alarm fired before our intended budget elapsed -> outer's deadline.
+            raise OuterWatchdogTimeout(
+                f"outer watchdog fired {elapsed:.1f}s into '{label}' (budget was {seconds}s)"
+            )
+        raise WatchdogTimeout(f"'{label}' exceeded {seconds}s")
+    finally:
+        elapsed = time.monotonic() - start
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, prev_handler)
+        if prev_remaining > 0:
+            outer_remaining = max(1, int(prev_remaining - elapsed))
+            signal.alarm(outer_remaining)
 
 
 def fetch_headlines_with_watchdog(source: dict, timeout_seconds: int = SOURCE_FETCH_WATCHDOG_SECONDS) -> list:
     """Call fetch_headlines with a hard wall-clock timeout.
 
-    Returns [] (not a raise) if the watchdog fires, so scrape_all_sources
-    can continue with the next source instead of stalling the whole cycle.
+    Returns [] (not a raise) when the per-source watchdog fires, so
+    scrape_all_sources can continue with the next source instead of stalling
+    the whole cycle. Re-raises OuterWatchdogTimeout so a cycle-level
+    deadline is never swallowed.
     """
-    old_handler = signal.signal(signal.SIGALRM, _source_watchdog_handler)
-    signal.alarm(timeout_seconds)
     try:
-        return fetch_headlines(source)
-    except SourceWatchdogTimeout:
+        with watchdog(timeout_seconds, source["name"]):
+            return fetch_headlines(source)
+    except OuterWatchdogTimeout:
+        raise
+    except WatchdogTimeout:
         log.warning(f"Watchdog: {source['name']} fetch exceeded {timeout_seconds}s; skipping")
         return []
     except Exception as e:
         log.warning(f"Source {source['name']} failed: {e}")
         return []
-    finally:
-        signal.alarm(0)
-        signal.signal(signal.SIGALRM, old_handler)
 
 
 def scrape_all_sources() -> list:
@@ -8699,8 +8757,14 @@ def main():
             # Check for midnight archive
             check_midnight_archive()
 
-            # Run cycle
-            process_cycle()
+            # Run cycle under a hard wall-clock ceiling. If any operation
+            # inside process_cycle hangs past CYCLE_WATCHDOG_SECONDS
+            # (Claude call, GitHub push, TTS generation, source fetch),
+            # WatchdogTimeout fires past every internal `except Exception`
+            # and is caught below — the cycle aborts, we sleep 60s, and
+            # the next cycle starts fresh.
+            with watchdog(CYCLE_WATCHDOG_SECONDS, "cycle"):
+                process_cycle()
 
             # Sleep until next :00 or :30 (clock-aligned for consistency)
             # Heartbeat every 5 minutes keeps dashboard from showing "stale"
@@ -8722,6 +8786,9 @@ def main():
         except KeyboardInterrupt:
             log.info("Shutting down...")
             break
+        except WatchdogTimeout as e:
+            log.error(f"Cycle watchdog fired ({e}); aborting and restarting in 60s")
+            time.sleep(60)
         except Exception as e:
             # Log errors but don't send SMS alerts for code bugs
             # Alerts are reserved for: stream offline, contradictions, major issues
