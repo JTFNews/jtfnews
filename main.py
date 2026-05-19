@@ -434,24 +434,43 @@ def validate_services() -> bool:
             log.warning(f"Missing {var} - {service} will be unavailable")
             _degraded_services.add(service)
 
-    # Test Claude API with minimal call
-    try:
-        client = get_anthropic_client()
-        response = client.messages.create(
-            model=CONFIG["claude"]["model"],
-            max_tokens=10,
-            messages=[{"role": "user", "content": "Reply with: OK"}]
-        )
-        log_api_usage("claude", {
-            "input_tokens": response.usage.input_tokens,
-            "output_tokens": response.usage.output_tokens
-        })
-        log.info("Claude API: OK")
-    except anthropic.AuthenticationError as e:
-        log.critical(f"Claude API authentication failed: {e}")
-        return False
-    except Exception as e:
-        log.critical(f"Claude API test failed: {e}")
+    # Test Claude API with minimal call. Auth errors are fatal; transient
+    # API errors (overloaded 529, rate limit, timeout, internal error) get
+    # retried with backoff so a brief Anthropic outage does not block
+    # startup — we cannot afford to refuse to start when the API blips.
+    claude_ok = False
+    last_error = None
+    for attempt in range(5):
+        try:
+            client = get_anthropic_client()
+            response = client.messages.create(
+                model=CONFIG["claude"]["model"],
+                max_tokens=10,
+                messages=[{"role": "user", "content": "Reply with: OK"}]
+            )
+            log_api_usage("claude", {
+                "input_tokens": response.usage.input_tokens,
+                "output_tokens": response.usage.output_tokens
+            })
+            log.info("Claude API: OK")
+            claude_ok = True
+            break
+        except anthropic.AuthenticationError as e:
+            log.critical(f"Claude API authentication failed: {e}")
+            return False
+        except (anthropic.APITimeoutError, anthropic.APIConnectionError,
+                anthropic.RateLimitError, anthropic.InternalServerError,
+                anthropic.APIStatusError) as e:
+            last_error = e
+            delay = min(60, 5 * (2 ** attempt))  # 5, 10, 20, 40, 60
+            log.warning(f"Claude API transient error (attempt {attempt + 1}/5): {e}. Retrying in {delay}s...")
+            time.sleep(delay)
+        except Exception as e:
+            log.critical(f"Claude API test failed: {e}")
+            return False
+
+    if not claude_ok:
+        log.critical(f"Claude API unavailable after 5 attempts: {last_error}")
         return False
 
     # Test ElevenLabs if not already degraded
