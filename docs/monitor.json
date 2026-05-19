@@ -1,61 +1,111 @@
 {
-  "timestamp": "2026-05-18T21:26:19.662072+00:00",
-  "uptime_start": "2026-05-18T16:07:56.385717+00:00",
-  "uptime_seconds": 19103,
-  "availability_pct": 19.5,
+  "timestamp": "2026-05-19T07:42:29.079908+00:00",
+  "web_refresh_at": "2026-05-19T07:42:29.079908+00:00",
+  "uptime_start": "2026-05-19T07:18:31.880886+00:00",
+  "uptime_seconds": 1437,
+  "availability_pct": 18.3,
   "cycle": {
-    "number": 11,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 3,
+    "duration_seconds": 144.3,
+    "headlines_scraped": 177,
+    "headlines_processed": 19,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
-      "elevenlabs": {
-        "calls": 15,
-        "cost_usd": 0.04433999999999999,
+      "claude": {
+        "calls": 181,
+        "cost_usd": 0.07297825,
         "details": {
-          "characters": 1478
+          "input_tokens": 178503,
+          "output_tokens": 22682
         }
       },
-      "claude": {
-        "calls": 565,
-        "cost_usd": 0.21396574999999976,
+      "elevenlabs": {
+        "calls": 3,
+        "cost_usd": 0.00864,
         "details": {
-          "input_tokens": 527328,
-          "output_tokens": 65707
+          "characters": 288
         }
       }
     },
-    "total_usd": 0.2583,
-    "month_estimate_usd": 8.66,
+    "total_usd": 0.0816,
+    "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 16.0
+    "budget_pct": 5.1
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 22.0
+    "size": 30,
+    "oldest_item_age_hours": 15.6
   },
-  "stories_today": 12,
+  "stories_today": 3,
   "sources": {
     "total": 22,
-    "successful": 21,
-    "failed": [
-      "US Department of Defense"
-    ]
+    "successful": 22,
+    "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-05-19T07:31:01.763711+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbBY5989vgNxmCDsyucBc'}"
+    },
+    {
+      "timestamp": "2026-05-19T07:31:10.467140+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbBY5qASPEhXnb4jH352K'}"
+    },
+    {
+      "timestamp": "2026-05-19T07:31:22.908013+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbBY6ieYpPNry2KbNmN46'}"
+    },
+    {
+      "timestamp": "2026-05-19T07:31:50.201433+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbBY8fdHcVQr7RXUmMiJf'}"
+    },
+    {
+      "timestamp": "2026-05-19T07:32:38.230396+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbBYCHGFCFJvAd3fCxvSy'}"
+    },
+    {
+      "timestamp": "2026-05-19T07:32:50.549492+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbBYDCQZopyoFvEXQbkvt'}"
+    },
+    {
+      "timestamp": "2026-05-19T07:32:59.421802+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbBYDqH6vKbWUkFV1PBmN'}"
+    },
+    {
+      "timestamp": "2026-05-19T07:35:32.203652+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbBYR6q3iaQssySMNFara'}"
+    },
+    {
+      "timestamp": "2026-05-19T07:39:04.738892+00:00",
+      "level": "ERROR",
+      "message": "Cycle watchdog fired (outer watchdog fired 585.6s into 'cycle' (budget was 600s)); aborting and restarting in 60s"
+    },
+    {
+      "timestamp": "2026-05-19T07:40:41.052121+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 17,
     "degraded_services": []
   },
   "daily_digest": {
     "last_date": "2026-05-17",
-    "next_digest_at": "2026-05-19T00:00:00+00:00",
+    "next_digest_at": "2026-05-20T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
@@ -69,5 +119,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-17/2026-05-17-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-17/2026-05-17-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
