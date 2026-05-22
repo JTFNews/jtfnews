@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-05-22T07:26:32.775441+00:00",
+  "timestamp": "2026-05-22T07:31:21.191085+00:00",
+  "web_refresh_at": "2026-05-22T07:31:21.191085+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 259681,
+  "uptime_seconds": 259969,
   "availability_pct": 21.7,
   "cycle": {
-    "number": 146,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 147,
+    "duration_seconds": 73.4,
+    "headlines_scraped": 185,
+    "headlines_processed": 4,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 317,
-        "cost_usd": 0.12086024999999997,
+        "calls": 320,
+        "cost_usd": 0.12225949999999997,
         "details": {
-          "input_tokens": 297566,
-          "output_tokens": 37175
+          "input_tokens": 300993,
+          "output_tokens": 37609
         }
       }
     },
-    "total_usd": 0.1514,
+    "total_usd": 0.1528,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 9.4
+    "budget_pct": 9.5
   },
   "queue": {
-    "size": 50,
-    "oldest_item_age_hours": 22.4
+    "size": 52,
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 7,
   "sources": {
@@ -45,26 +46,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-05-22T06:30:52.498452+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbH8utqWdm1LkXWV46EvG'}"
-    },
-    {
-      "timestamp": "2026-05-22T06:31:00.178666+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbH8vU1o9eSmhjwX8a818'}"
-    },
-    {
-      "timestamp": "2026-05-22T06:31:18.946496+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbH8wsqJ1LeGevVuikAUv'}"
-    },
-    {
-      "timestamp": "2026-05-22T06:31:26.599255+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbH8xPh9sXMXojxYaLTvo'}"
-    },
     {
       "timestamp": "2026-05-22T07:00:43.694777+00:00",
       "level": "ERROR",
@@ -94,12 +75,32 @@
       "timestamp": "2026-05-22T07:01:24.857844+00:00",
       "level": "ERROR",
       "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbHBExkB8R2XPHJhoQcPT'}"
+    },
+    {
+      "timestamp": "2026-05-22T07:30:52.393662+00:00",
+      "level": "ERROR",
+      "message": "Claude duplicate check error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbHDVFKwh3QHUThixXvzg'}"
+    },
+    {
+      "timestamp": "2026-05-22T07:31:00.379017+00:00",
+      "level": "ERROR",
+      "message": "Claude batch matching error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbHDVpgPjUCNRwrALHwsT'}"
+    },
+    {
+      "timestamp": "2026-05-22T07:31:08.675604+00:00",
+      "level": "ERROR",
+      "message": "Extract new details failed: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbHDWSVvqZ5KGaPkkdq71'}"
+    },
+    {
+      "timestamp": "2026-05-22T07:31:16.662889+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbHDX3xdbYVHbDJ14VGWN'}"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -118,5 +119,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-21/2026-05-21-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-21/2026-05-21-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
