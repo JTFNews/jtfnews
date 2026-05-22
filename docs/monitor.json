@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-05-22T15:01:07.726975+00:00",
-  "web_refresh_at": "2026-05-22T15:01:07.726975+00:00",
+  "timestamp": "2026-05-22T16:25:54.865288+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 286956,
-  "availability_pct": 22.0,
+  "uptime_seconds": 292043,
+  "availability_pct": 22.1,
   "cycle": {
-    "number": 162,
-    "duration_seconds": 61.0,
-    "headlines_scraped": 184,
-    "headlines_processed": 6,
-    "stories_published": 1,
-    "stories_queued": 3
+    "number": 164,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
+    "stories_published": 0,
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -22,22 +21,22 @@
         }
       },
       "claude": {
-        "calls": 502,
-        "cost_usd": 0.19639925,
+        "calls": 523,
+        "cost_usd": 0.20497425000000005,
         "details": {
-          "input_tokens": 481747,
-          "output_tokens": 60770
+          "input_tokens": 502042,
+          "output_tokens": 63571
         }
       }
     },
-    "total_usd": 0.2384,
+    "total_usd": 0.247,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 14.8
+    "budget_pct": 15.3
   },
   "queue": {
     "size": 51,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.4
   },
   "stories_today": 9,
   "sources": {
@@ -45,11 +44,62 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-05-22T15:40:55.374791+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-05-22T15:45:55.417506+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-05-22T15:50:55.472165+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-05-22T15:55:55.530608+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-05-22T16:00:29.401125+00:00",
+      "level": "WARNING",
+      "message": "GitHub feedback fetch error: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/data/feedback (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-05-22T16:00:54.659264+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-05-22T16:05:54.719042+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-05-22T16:10:54.778475+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-05-22T16:15:54.814095+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-05-22T16:20:54.861688+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 4,
     "degraded_services": []
   },
   "daily_digest": {
@@ -68,12 +118,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-21/2026-05-21-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-21/2026-05-21-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
