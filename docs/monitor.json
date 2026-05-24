@@ -1,77 +1,79 @@
 {
-  "timestamp": "2026-05-23T23:56:01.912443+00:00",
+  "timestamp": "2026-05-24T00:15:36.784625+00:00",
+  "web_refresh_at": "2026-05-24T00:15:36.784625+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 405450,
+  "uptime_seconds": 406625,
   "availability_pct": 23.4,
   "cycle": {
-    "number": 227,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 228,
+    "duration_seconds": 543.6,
+    "headlines_scraped": 185,
+    "headlines_processed": 185,
+    "stories_published": 4,
+    "stories_queued": 19
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 18,
-        "cost_usd": 0.05304,
+        "calls": 6,
+        "cost_usd": 0.01779,
         "details": {
-          "characters": 1768
+          "characters": 593
         }
       },
       "claude": {
-        "calls": 620,
-        "cost_usd": 0.22603650000000014,
+        "calls": 230,
+        "cost_usd": 0.08963450000000005,
         "details": {
-          "input_tokens": 563286,
-          "output_tokens": 68172
+          "input_tokens": 221108,
+          "output_tokens": 27486
         }
       }
     },
-    "total_usd": 0.2791,
+    "total_usd": 0.1074,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 17.3
+    "budget_pct": 6.7
   },
   "queue": {
-    "size": 26,
-    "oldest_item_age_hours": 24.4
+    "size": 36,
+    "oldest_item_age_hours": 23.3
   },
-  "stories_today": 14,
+  "stories_today": 4,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-05-23T23:00:58.615367+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "stream_health": "offline",
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-05-22",
-    "next_digest_at": "2026-05-24T00:00:00+00:00",
+    "last_date": "2026-05-23",
+    "next_digest_at": "2026-05-25T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-05-23T00:04:49.154389+00:00",
-    "story_count": 10,
-    "duration_seconds": 119,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-05-22-daily-digest.mp4",
-    "youtube_id": "UN9klCCpgLo",
-    "youtube_url": "https://youtube.com/watch?v=UN9klCCpgLo",
-    "archive_org_id": "jtf-news-2026-05-22",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-22/2026-05-22-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-05-22/2026-05-22-daily-digest.mp4",
+    "last_completed_at": "2026-05-24T00:05:19.104666+00:00",
+    "story_count": 14,
+    "duration_seconds": 147,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-05-23-daily-digest.mp4",
+    "youtube_id": "4kVOBaOr8oM",
+    "youtube_url": "https://youtube.com/watch?v=4kVOBaOr8oM",
+    "archive_org_id": "jtf-news-2026-05-23",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-23/2026-05-23-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-05-23/2026-05-23-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
