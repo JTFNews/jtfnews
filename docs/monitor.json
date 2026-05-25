@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-05-25T20:56:09.706639+00:00",
+  "timestamp": "2026-05-25T21:02:21.971629+00:00",
+  "web_refresh_at": "2026-05-25T21:02:21.971629+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 567458,
+  "uptime_seconds": 567830,
   "availability_pct": 25.3,
   "cycle": {
-    "number": 317,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 318,
+    "duration_seconds": 136.4,
+    "headlines_scraped": 175,
+    "headlines_processed": 12,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
@@ -21,34 +22,42 @@
         }
       },
       "claude": {
-        "calls": 645,
-        "cost_usd": 0.2408204999999996,
+        "calls": 659,
+        "cost_usd": 0.24646699999999958,
         "details": {
-          "input_tokens": 592387,
-          "output_tokens": 74179
+          "input_tokens": 606383,
+          "output_tokens": 75897
         }
       }
     },
-    "total_usd": 0.2987,
+    "total_usd": 0.3043,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 18.5
+    "budget_pct": 18.9
   },
   "queue": {
-    "size": 48,
-    "oldest_item_age_hours": 24.4
+    "size": 49,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 15,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 21,
+    "failed": [
+      "Government of Canada"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-05-25T21:00:48.913234+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 27,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-24/2026-05-24-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-24/2026-05-24-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
