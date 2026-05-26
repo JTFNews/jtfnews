@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-05-26T19:26:18.737114+00:00",
+  "timestamp": "2026-05-26T19:31:11.014654+00:00",
+  "web_refresh_at": "2026-05-26T19:31:11.014654+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 648467,
-  "availability_pct": 26.1,
+  "uptime_seconds": 648759,
+  "availability_pct": 26.2,
   "cycle": {
-    "number": 363,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 364,
+    "duration_seconds": 64.0,
+    "headlines_scraped": 185,
+    "headlines_processed": 13,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 613,
-        "cost_usd": 0.24155474999999996,
+        "calls": 627,
+        "cost_usd": 0.24781549999999997,
         "details": {
-          "input_tokens": 589899,
-          "output_tokens": 75264
+          "input_tokens": 604877,
+          "output_tokens": 77277
         }
       }
     },
-    "total_usd": 0.282,
+    "total_usd": 0.2882,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 17.5
+    "budget_pct": 17.9
   },
   "queue": {
-    "size": 38,
-    "oldest_item_age_hours": 22.9
+    "size": 39,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 14,
   "sources": {
@@ -48,7 +49,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-25/2026-05-25-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-25/2026-05-25-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
