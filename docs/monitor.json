@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-05-26T13:56:09.713607+00:00",
+  "timestamp": "2026-05-26T14:01:23.728655+00:00",
+  "web_refresh_at": "2026-05-26T14:01:23.728655+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 628658,
+  "uptime_seconds": 628972,
   "availability_pct": 26.0,
   "cycle": {
-    "number": 352,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 353,
+    "duration_seconds": 76.4,
+    "headlines_scraped": 184,
+    "headlines_processed": 17,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 493,
-        "cost_usd": 0.19018249999999987,
+        "calls": 511,
+        "cost_usd": 0.1982999999999999,
         "details": {
-          "input_tokens": 467010,
-          "output_tokens": 58744
+          "input_tokens": 486545,
+          "output_tokens": 61331
         }
       }
     },
-    "total_usd": 0.2287,
+    "total_usd": 0.2368,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 14.2
+    "budget_pct": 14.7
   },
   "queue": {
     "size": 36,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 13,
   "sources": {
@@ -44,17 +45,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-05-26T13:00:51.994128+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-25/2026-05-25-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-25/2026-05-25-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
