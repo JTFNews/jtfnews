@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-05-27T12:37:07.744750+00:00",
+  "timestamp": "2026-05-27T12:52:16.382125+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 710316,
+  "uptime_seconds": 711225,
   "availability_pct": 26.8,
   "cycle": {
     "number": 398,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 60,
-    "oldest_item_age_hours": 23.1
+    "oldest_item_age_hours": 23.4
   },
   "stories_today": 9,
   "sources": {
@@ -46,20 +46,25 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-05-27T11:46:37.369500+00:00",
+      "timestamp": "2026-05-27T12:21:29.004050+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 422"
+    },
+    {
+      "timestamp": "2026-05-27T12:42:13.069056+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 500"
     },
     {
-      "timestamp": "2026-05-27T12:21:29.004050+00:00",
+      "timestamp": "2026-05-27T12:47:16.379244+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 422"
+      "message": "GitHub API error for docs/monitor.json: 500"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 22,
+    "next_cycle_minutes": 7,
     "degraded_services": []
   },
   "daily_digest": {
