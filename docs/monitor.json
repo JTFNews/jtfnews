@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-05-27T07:21:06.875487+00:00",
+  "timestamp": "2026-05-27T07:31:54.461170+00:00",
+  "web_refresh_at": "2026-05-27T07:31:54.461170+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 691355,
+  "uptime_seconds": 692003,
   "availability_pct": 26.6,
   "cycle": {
-    "number": 387,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 388,
+    "duration_seconds": 54.6,
+    "headlines_scraped": 184,
+    "headlines_processed": 8,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 341,
-        "cost_usd": 0.13752950000000005,
+        "calls": 349,
+        "cost_usd": 0.14146975000000006,
         "details": {
-          "input_tokens": 334548,
-          "output_tokens": 43114
+          "input_tokens": 343679,
+          "output_tokens": 44440
         }
       }
     },
-    "total_usd": 0.1622,
+    "total_usd": 0.1662,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 10.1
+    "budget_pct": 10.3
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 24.3
+    "size": 53,
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 6,
   "sources": {
@@ -46,25 +47,15 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-05-27T06:30:54.479969+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbSbxZEos4pNoy3Pai7Pf'}"
-    },
-    {
-      "timestamp": "2026-05-27T06:31:09.736793+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbSbyjmbjRAHDrRyvbsCV'}"
-    },
-    {
-      "timestamp": "2026-05-27T06:31:23.765682+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CbSbznGCEeHx2UN9bJ7zf'}"
+      "timestamp": "2026-05-27T07:27:02.769995+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 8,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -83,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-26/2026-05-26-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-26/2026-05-26-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
