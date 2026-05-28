@@ -1,42 +1,43 @@
 {
-  "timestamp": "2026-05-28T16:26:12.012532+00:00",
+  "timestamp": "2026-05-28T16:31:29.685963+00:00",
+  "web_refresh_at": "2026-05-28T16:31:29.685963+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 810460,
+  "uptime_seconds": 810778,
   "availability_pct": 27.8,
   "cycle": {
-    "number": 453,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 454,
+    "duration_seconds": 80.6,
+    "headlines_scraped": 185,
+    "headlines_processed": 17,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 19,
-        "cost_usd": 0.06549,
+        "calls": 20,
+        "cost_usd": 0.06879,
         "details": {
-          "characters": 2183
+          "characters": 2293
         }
       },
       "claude": {
-        "calls": 670,
-        "cost_usd": 0.24024725000000002,
+        "calls": 695,
+        "cost_usd": 0.24864475000000005,
         "details": {
-          "input_tokens": 594099,
-          "output_tokens": 73378
+          "input_tokens": 614819,
+          "output_tokens": 75952
         }
       }
     },
-    "total_usd": 0.3057,
+    "total_usd": 0.3174,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 19.0
+    "budget_pct": 19.7
   },
   "queue": {
-    "size": 67,
-    "oldest_item_age_hours": 23.9
+    "size": 70,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 15,
   "sources": {
@@ -48,7 +49,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-27/2026-05-27-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-27/2026-05-27-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
