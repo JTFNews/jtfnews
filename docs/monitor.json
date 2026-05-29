@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-05-29T09:27:01.814939+00:00",
+  "timestamp": "2026-05-29T09:31:21.238045+00:00",
+  "web_refresh_at": "2026-05-29T09:31:21.238045+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 871710,
+  "uptime_seconds": 871969,
   "availability_pct": 28.3,
   "cycle": {
-    "number": 487,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 488,
+    "duration_seconds": 74.7,
+    "headlines_scraped": 174,
+    "headlines_processed": 11,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 421,
-        "cost_usd": 0.16097350000000019,
+        "calls": 436,
+        "cost_usd": 0.16629450000000015,
         "details": {
-          "input_tokens": 392054,
-          "output_tokens": 50368
+          "input_tokens": 405213,
+          "output_tokens": 51993
         }
       }
     },
-    "total_usd": 0.2061,
+    "total_usd": 0.2114,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 12.8
+    "budget_pct": 13.1
   },
   "queue": {
-    "size": 56,
-    "oldest_item_age_hours": 23.9
+    "size": 58,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 7,
   "sources": {
@@ -48,17 +49,12 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-05-29T08:30:42.803043+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-05-29T08:31:19.024427+00:00",
+      "timestamp": "2026-05-29T09:00:49.497647+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
     },
     {
-      "timestamp": "2026-05-29T09:00:49.497647+00:00",
+      "timestamp": "2026-05-29T09:30:46.578390+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
     }
@@ -66,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -85,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-28/2026-05-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-28/2026-05-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
