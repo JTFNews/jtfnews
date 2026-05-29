@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-05-29T07:56:23.008683+00:00",
+  "timestamp": "2026-05-29T08:01:15.916123+00:00",
+  "web_refresh_at": "2026-05-29T08:01:15.916123+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 866271,
+  "uptime_seconds": 866564,
   "availability_pct": 28.3,
   "cycle": {
-    "number": 484,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 485,
+    "duration_seconds": 69.5,
+    "headlines_scraped": 174,
+    "headlines_processed": 7,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 384,
-        "cost_usd": 0.14417000000000013,
+        "calls": 391,
+        "cost_usd": 0.14751725000000016,
         "details": {
-          "input_tokens": 351625,
-          "output_tokens": 45011
+          "input_tokens": 359614,
+          "output_tokens": 46091
         }
       }
     },
-    "total_usd": 0.1893,
+    "total_usd": 0.1927,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 11.7
+    "budget_pct": 11.9
   },
   "queue": {
-    "size": 61,
-    "oldest_item_age_hours": 24.4
+    "size": 60,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 7,
   "sources": {
@@ -48,12 +49,12 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-05-29T07:00:47.263562+00:00",
+      "timestamp": "2026-05-29T07:30:49.609405+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
     },
     {
-      "timestamp": "2026-05-29T07:30:49.609405+00:00",
+      "timestamp": "2026-05-29T08:00:48.410015+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
     }
@@ -61,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -80,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-28/2026-05-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-28/2026-05-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
