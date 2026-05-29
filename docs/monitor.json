@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-05-29T04:36:05.557314+00:00",
+  "timestamp": "2026-05-29T04:52:18.227252+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 854254,
+  "uptime_seconds": 855226,
   "availability_pct": 28.1,
   "cycle": {
     "number": 478,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 66,
-    "oldest_item_age_hours": 23.6
+    "oldest_item_age_hours": 23.9
   },
   "stories_today": 7,
   "sources": {
@@ -51,12 +51,22 @@
       "timestamp": "2026-05-29T04:30:48.285602+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "timestamp": "2026-05-29T04:41:25.255055+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-05-29T04:47:18.223579+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 23,
+    "next_cycle_minutes": 8,
     "degraded_services": []
   },
   "daily_digest": {
