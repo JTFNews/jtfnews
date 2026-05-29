@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-05-29T04:25:56.916662+00:00",
+  "timestamp": "2026-05-29T04:31:04.586068+00:00",
+  "web_refresh_at": "2026-05-29T04:31:04.586068+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 853645,
+  "uptime_seconds": 853953,
   "availability_pct": 28.1,
   "cycle": {
-    "number": 477,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 478,
+    "duration_seconds": 58.8,
+    "headlines_scraped": 175,
+    "headlines_processed": 4,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,42 @@
         }
       },
       "claude": {
-        "calls": 315,
-        "cost_usd": 0.11526025000000008,
+        "calls": 320,
+        "cost_usd": 0.11729575000000009,
         "details": {
-          "input_tokens": 283771,
-          "output_tokens": 35454
+          "input_tokens": 288508,
+          "output_tokens": 36135
         }
       }
     },
-    "total_usd": 0.1604,
+    "total_usd": 0.1624,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 9.9
+    "budget_pct": 10.1
   },
   "queue": {
     "size": 66,
-    "oldest_item_age_hours": 23.4
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 7,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 21,
+    "failed": [
+      "Government of Canada"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-05-29T04:30:48.285602+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Read timed out. (read timeout=15)"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-28/2026-05-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-28/2026-05-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
