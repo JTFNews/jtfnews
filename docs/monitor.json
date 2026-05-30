@@ -1,54 +1,108 @@
 {
-  "timestamp": "2026-05-30T10:55:54.036569+00:00",
+  "timestamp": "2026-05-30T11:01:03.849038+00:00",
+  "web_refresh_at": "2026-05-30T11:01:03.849038+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 963442,
+  "uptime_seconds": 963752,
   "availability_pct": 29.3,
   "cycle": {
-    "number": 538,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 539,
+    "duration_seconds": 58.0,
+    "headlines_scraped": 187,
+    "headlines_processed": 4,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 12,
-        "cost_usd": 0.045509999999999995,
+        "calls": 14,
+        "cost_usd": 0.053849999999999995,
         "details": {
-          "characters": 1517
+          "characters": 1795
         }
       },
       "claude": {
-        "calls": 407,
-        "cost_usd": 0.1544757500000001,
+        "calls": 416,
+        "cost_usd": 0.1567535000000001,
         "details": {
-          "input_tokens": 381338,
-          "output_tokens": 47313
+          "input_tokens": 387179,
+          "output_tokens": 47967
+        }
+      },
+      "twilio": {
+        "calls": 1,
+        "cost_usd": 0.0079,
+        "details": {
+          "sms_count": 1
         }
       }
     },
-    "total_usd": 0.2,
+    "total_usd": 0.2185,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 12.4
+    "budget_pct": 13.5
   },
   "queue": {
-    "size": 45,
-    "oldest_item_age_hours": 24.4
+    "size": 42,
+    "oldest_item_age_hours": 22.5
   },
-  "stories_today": 8,
+  "stories_today": 9,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-05-30T11:00:48.776073+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: Story [2026-05-30-005] states one of FIVE men were"
+    },
+    {
+      "timestamp": "2026-05-30T11:00:51.539869+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-05-30-005: Story [2026-05-30-005] states one of FIVE men were"
+    },
+    {
+      "timestamp": "2026-05-30T11:00:54.215629+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-29 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-05-30T11:00:54.215875+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-28 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-05-30T11:00:54.216037+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-27 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-05-30T11:00:54.216171+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-26 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-05-30T11:00:54.216298+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-25 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-05-30T11:00:54.216423+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-24 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-05-30T11:00:54.216778+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-05-30, skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +121,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-05-29/2026-05-29-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-05-29/2026-05-29-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
