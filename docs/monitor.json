@@ -1,31 +1,32 @@
 {
-  "timestamp": "2026-06-02T15:56:06.383376+00:00",
+  "timestamp": "2026-06-02T16:08:29.103842+00:00",
+  "web_refresh_at": "2026-06-02T16:08:29.103842+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 1240655,
+  "uptime_seconds": 1241397,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 691,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 692,
+    "duration_seconds": 501.2,
+    "headlines_scraped": 186,
+    "headlines_processed": 12,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 19,
-        "cost_usd": 0.06042,
+        "calls": 20,
+        "cost_usd": 0.06258,
         "details": {
-          "characters": 2014
+          "characters": 2086
         }
       },
       "claude": {
-        "calls": 641,
-        "cost_usd": 0.23151699999999978,
+        "calls": 656,
+        "cost_usd": 0.23690624999999985,
         "details": {
-          "input_tokens": 571983,
-          "output_tokens": 70817
+          "input_tokens": 585425,
+          "output_tokens": 72440
         }
       },
       "twilio": {
@@ -36,26 +37,72 @@
         }
       }
     },
-    "total_usd": 0.2998,
+    "total_usd": 0.3074,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 18.0
+    "budget_pct": 18.4
   },
   "queue": {
-    "size": 56,
-    "oldest_item_age_hours": 24.4
+    "size": 55,
+    "oldest_item_age_hours": 23.6
   },
-  "stories_today": 14,
+  "stories_today": 15,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-02T16:01:34.711951+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/feed.xml to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-06-02T16:02:27.676087+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/stories.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-06-02T16:03:18.529433+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/alexa.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-06-02T16:04:14.208108+00:00",
+      "level": "ERROR",
+      "message": "Correction detection failed: Connection error."
+    },
+    {
+      "timestamp": "2026-06-02T16:05:10.124792+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-06-02T16:06:06.959100+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 2/4): Connection error.. Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-06-02T16:07:04.767597+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 3/4): Connection error.. Retrying in 4.0s..."
+    },
+    {
+      "timestamp": "2026-06-02T16:08:04.593166+00:00",
+      "level": "ERROR",
+      "message": "_call_claude_extract_fact failed after 4 attempts: Connection error."
+    },
+    {
+      "timestamp": "2026-06-02T16:08:04.593415+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Connection error."
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "stream_health": "offline",
+    "next_cycle_minutes": 21,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +121,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-01/2026-06-01-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-01/2026-06-01-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
