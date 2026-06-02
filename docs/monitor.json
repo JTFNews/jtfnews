@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-06-02T17:01:02.024020+00:00",
-  "web_refresh_at": "2026-06-02T17:01:02.024020+00:00",
+  "timestamp": "2026-06-02T17:06:03.580024+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 1244550,
+  "uptime_seconds": 1244852,
   "availability_pct": 100.0,
   "cycle": {
     "number": 694,
-    "duration_seconds": 53.8,
-    "headlines_scraped": 186,
-    "headlines_processed": 7,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -44,7 +43,7 @@
   },
   "queue": {
     "size": 55,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 15,
   "sources": {
@@ -53,31 +52,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-06-02T16:01:34.711951+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/feed.xml to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
-    },
-    {
-      "timestamp": "2026-06-02T16:02:27.676087+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/stories.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
-    },
-    {
-      "timestamp": "2026-06-02T16:03:18.529433+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/alexa.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
-    },
-    {
-      "timestamp": "2026-06-02T16:04:14.208108+00:00",
-      "level": "ERROR",
-      "message": "Correction detection failed: Connection error."
-    },
-    {
-      "timestamp": "2026-06-02T16:05:10.124792+00:00",
-      "level": "WARNING",
-      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
-    },
     {
       "timestamp": "2026-06-02T16:06:06.959100+00:00",
       "level": "WARNING",
@@ -102,7 +76,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -121,12 +95,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-01/2026-06-01-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-01/2026-06-01-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
