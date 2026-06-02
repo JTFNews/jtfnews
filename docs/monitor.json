@@ -1,61 +1,108 @@
 {
-  "timestamp": "2026-06-02T20:26:21.294579+00:00",
+  "timestamp": "2026-06-02T20:31:30.888215+00:00",
+  "web_refresh_at": "2026-06-02T20:31:30.888215+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 1256869,
+  "uptime_seconds": 1257179,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 700,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 701,
+    "duration_seconds": 83.1,
+    "headlines_scraped": 186,
+    "headlines_processed": 11,
+    "stories_published": 2,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 21,
-        "cost_usd": 0.06543,
+        "calls": 24,
+        "cost_usd": 0.07941000000000001,
         "details": {
-          "characters": 2181
+          "characters": 2647
         }
       },
       "claude": {
-        "calls": 758,
-        "cost_usd": 0.27589949999999985,
+        "calls": 778,
+        "cost_usd": 0.2818992499999999,
         "details": {
-          "input_tokens": 681133,
-          "output_tokens": 84493
+          "input_tokens": 696377,
+          "output_tokens": 86244
         }
       },
       "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
+        "calls": 2,
+        "cost_usd": 0.0158,
         "details": {
-          "sms_count": 1
+          "sms_count": 2
         }
       }
     },
-    "total_usd": 0.3492,
+    "total_usd": 0.3771,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 21.0
+    "budget_pct": 22.6
   },
   "queue": {
-    "size": 53,
-    "oldest_item_age_hours": 24.4
+    "size": 50,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 16,
+  "stories_today": 18,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-02T20:30:54.934612+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: The new verified fact states 18 people were killed"
+    },
+    {
+      "timestamp": "2026-06-02T20:30:57.776237+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-06-02-008: The new verified fact states 18 people were killed"
+    },
+    {
+      "timestamp": "2026-06-02T20:31:00.818386+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-06-01 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-02T20:31:00.818528+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-31 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-02T20:31:00.818651+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-30 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-02T20:31:00.818771+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-29 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-02T20:31:00.818886+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-28 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-02T20:31:00.819003+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-05-27 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-02T20:31:00.819327+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-06-02, skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +121,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-01/2026-06-01-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-01/2026-06-01-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
