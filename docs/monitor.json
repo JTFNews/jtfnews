@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-06-08T04:26:02.486417+00:00",
+  "timestamp": "2026-06-08T04:31:26.007037+00:00",
+  "web_refresh_at": "2026-06-08T04:31:26.007037+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 1717651,
+  "uptime_seconds": 1717974,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 956,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 957,
+    "duration_seconds": 80.6,
+    "headlines_scraped": 177,
+    "headlines_processed": 7,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 299,
-        "cost_usd": 0.10901174999999995,
+        "calls": 308,
+        "cost_usd": 0.11242599999999994,
         "details": {
-          "input_tokens": 273172,
-          "output_tokens": 32575
+          "input_tokens": 281354,
+          "output_tokens": 33670
         }
       }
     },
-    "total_usd": 0.1382,
+    "total_usd": 0.1416,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 8.3
+    "budget_pct": 8.5
   },
   "queue": {
     "size": 29,
-    "oldest_item_age_hours": 21.9
+    "oldest_item_age_hours": 22.0
   },
   "stories_today": 9,
   "sources": {
@@ -44,11 +45,17 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-08T04:30:41.615938+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-07/2026-06-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-07/2026-06-07-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
