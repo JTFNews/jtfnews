@@ -1,62 +1,55 @@
 {
-  "timestamp": "2026-06-08T11:25:43.382929+00:00",
+  "timestamp": "2026-06-08T11:31:13.086410+00:00",
+  "web_refresh_at": "2026-06-08T11:31:13.086410+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 1742832,
+  "uptime_seconds": 1743161,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 970,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 971,
+    "duration_seconds": 66.8,
+    "headlines_scraped": 186,
+    "headlines_processed": 12,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 12,
-        "cost_usd": 0.03147,
+        "calls": 13,
+        "cost_usd": 0.03309,
         "details": {
-          "characters": 1049
+          "characters": 1103
         }
       },
       "claude": {
-        "calls": 438,
-        "cost_usd": 0.16280349999999974,
+        "calls": 457,
+        "cost_usd": 0.16867574999999974,
         "details": {
-          "input_tokens": 405484,
-          "output_tokens": 49146
+          "input_tokens": 420703,
+          "output_tokens": 50800
         }
       }
     },
-    "total_usd": 0.1943,
+    "total_usd": 0.2018,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 11.7
+    "budget_pct": 12.1
   },
   "queue": {
-    "size": 35,
-    "oldest_item_age_hours": 22.9
+    "size": 36,
+    "oldest_item_age_hours": 23.0
   },
-  "stories_today": 10,
+  "stories_today": 11,
   "sources": {
     "total": 22,
-    "successful": 21,
-    "failed": [
-      "US Department of Defense"
-    ]
+    "successful": 22,
+    "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-06-08T10:30:25.029044+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.defense.gov/News/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-07/2026-06-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-07/2026-06-07-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
