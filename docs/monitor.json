@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-06-09T03:56:00.280466+00:00",
+  "timestamp": "2026-06-09T04:01:18.984647+00:00",
+  "web_refresh_at": "2026-06-09T04:01:18.984647+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 1802248,
+  "uptime_seconds": 1802567,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1002,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1003,
+    "duration_seconds": 73.7,
+    "headlines_scraped": 177,
+    "headlines_processed": 4,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -28,22 +29,22 @@
         }
       },
       "claude": {
-        "calls": 272,
-        "cost_usd": 0.10784849999999997,
+        "calls": 278,
+        "cost_usd": 0.10990624999999997,
         "details": {
-          "input_tokens": 264434,
-          "output_tokens": 33392
+          "input_tokens": 269425,
+          "output_tokens": 34040
         }
       }
     },
-    "total_usd": 0.1364,
+    "total_usd": 0.1385,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 8.2
+    "budget_pct": 8.3
   },
   "queue": {
-    "size": 60,
-    "oldest_item_age_hours": 22.4
+    "size": 62,
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 4,
   "sources": {
@@ -53,7 +54,7 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-06-09T03:00:41.989364+00:00",
+      "timestamp": "2026-06-09T04:00:41.969726+00:00",
       "level": "WARNING",
       "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
     }
@@ -61,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -80,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-07/2026-06-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-07/2026-06-07-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
