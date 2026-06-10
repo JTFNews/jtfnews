@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-06-10T15:02:33.451810+00:00",
-  "web_refresh_at": "2026-06-10T15:02:33.451810+00:00",
+  "timestamp": "2026-06-10T15:12:37.276599+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 1928642,
+  "uptime_seconds": 1929245,
   "availability_pct": 100.0,
   "cycle": {
     "number": 1073,
-    "duration_seconds": 145.9,
-    "headlines_scraped": 186,
-    "headlines_processed": 12,
-    "stories_published": 1,
-    "stories_queued": 2
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
+    "stories_published": 0,
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 45,
-    "oldest_item_age_hours": 22.5
+    "oldest_item_age_hours": 22.7
   },
   "stories_today": 11,
   "sources": {
@@ -50,12 +49,17 @@
       "timestamp": "2026-06-10T14:30:43.782142+00:00",
       "level": "WARNING",
       "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-06-10T15:07:37.271290+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 401"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 27,
+    "next_cycle_minutes": 17,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,12 +78,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-09/2026-06-09-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-09/2026-06-09-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
