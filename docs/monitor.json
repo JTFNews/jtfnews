@@ -1,51 +1,52 @@
 {
-  "timestamp": "2026-06-11T18:26:47.434195+00:00",
+  "timestamp": "2026-06-11T18:31:57.847152+00:00",
+  "web_refresh_at": "2026-06-11T18:31:57.847152+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 2027296,
+  "uptime_seconds": 2027606,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1127,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1128,
+    "duration_seconds": 110.6,
+    "headlines_scraped": 186,
+    "headlines_processed": 14,
+    "stories_published": 1,
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 14,
-        "cost_usd": 0.04746000000000001,
+        "calls": 16,
+        "cost_usd": 0.05727000000000001,
         "details": {
-          "characters": 1582
+          "characters": 1909
         }
       },
       "claude": {
-        "calls": 657,
-        "cost_usd": 0.25491174999999994,
+        "calls": 680,
+        "cost_usd": 0.2622860000000001,
         "details": {
-          "input_tokens": 621507,
-          "output_tokens": 79628
+          "input_tokens": 639534,
+          "output_tokens": 81922
         }
       },
       "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
+        "calls": 2,
+        "cost_usd": 0.0158,
         "details": {
-          "sms_count": 1
+          "sms_count": 2
         }
       }
     },
-    "total_usd": 0.3103,
+    "total_usd": 0.3354,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 18.6
+    "budget_pct": 20.1
   },
   "queue": {
-    "size": 69,
-    "oldest_item_age_hours": 23.9
+    "size": 71,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 10,
+  "stories_today": 11,
   "sources": {
     "total": 22,
     "successful": 22,
@@ -53,20 +54,60 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-06-11T17:30:42.667558+00:00",
+      "timestamp": "2026-06-11T18:00:43.345928+00:00",
       "level": "WARNING",
       "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-06-11T18:00:43.345928+00:00",
+      "timestamp": "2026-06-11T18:31:48.013674+00:00",
       "level": "WARNING",
-      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+      "message": "Correction needed: Story [2026-06-11-009] reports Trump stated the U."
+    },
+    {
+      "timestamp": "2026-06-11T18:31:51.088452+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-06-11-009: Story [2026-06-11-009] reports Trump stated the U."
+    },
+    {
+      "timestamp": "2026-06-11T18:31:53.898416+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-06-10 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-11T18:31:53.898633+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-06-09 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-11T18:31:53.898834+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-06-08 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-11T18:31:53.899029+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-06-07 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-11T18:31:53.899167+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-06-06 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-11T18:31:53.899394+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-06-05 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-06-11T18:31:53.899984+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-06-11, skipping"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -85,5 +126,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-10/2026-06-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-10/2026-06-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
