@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-06-12T16:01:00.651958+00:00",
-  "web_refresh_at": "2026-06-12T16:01:00.651958+00:00",
+  "timestamp": "2026-06-12T16:06:01.983589+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 2104949,
+  "uptime_seconds": 2105250,
   "availability_pct": 100.0,
   "cycle": {
     "number": 1171,
-    "duration_seconds": 54.0,
-    "headlines_scraped": 186,
-    "headlines_processed": 7,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 3
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 38,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 8,
   "sources": {
@@ -47,11 +46,6 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-06-12T15:02:48.490059+00:00",
-      "level": "WARNING",
-      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
-    },
-    {
       "timestamp": "2026-06-12T15:30:42.882807+00:00",
       "level": "WARNING",
       "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
@@ -60,7 +54,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -79,12 +73,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-11/2026-06-11-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-11/2026-06-11-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
