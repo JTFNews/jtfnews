@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-06-12T15:28:53.334334+00:00",
+  "timestamp": "2026-06-12T15:31:47.753332+00:00",
+  "web_refresh_at": "2026-06-12T15:31:47.753332+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 2103021,
+  "uptime_seconds": 2103196,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1169,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1170,
+    "duration_seconds": 100.9,
+    "headlines_scraped": 175,
+    "headlines_processed": 8,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,18 +22,18 @@
         }
       },
       "claude": {
-        "calls": 558,
-        "cost_usd": 0.22523550000000003,
+        "calls": 567,
+        "cost_usd": 0.22913675,
         "details": {
-          "input_tokens": 551152,
-          "output_tokens": 69958
+          "input_tokens": 560457,
+          "output_tokens": 71218
         }
       }
     },
-    "total_usd": 0.2605,
+    "total_usd": 0.2644,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 15.6
+    "budget_pct": 15.9
   },
   "queue": {
     "size": 37,
@@ -54,12 +55,17 @@
       "timestamp": "2026-06-12T15:02:48.490059+00:00",
       "level": "WARNING",
       "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-06-12T15:30:42.882807+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 1,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -78,5 +84,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-11/2026-06-11-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-11/2026-06-11-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
