@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-06-12T02:56:35.424780+00:00",
+  "timestamp": "2026-06-12T03:01:26.488223+00:00",
+  "web_refresh_at": "2026-06-12T03:01:26.488223+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 2057884,
+  "uptime_seconds": 2058175,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1144,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 1145,
+    "duration_seconds": 80.8,
+    "headlines_scraped": 176,
+    "headlines_processed": 4,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 7,
-        "cost_usd": 0.022860000000000002,
+        "calls": 8,
+        "cost_usd": 0.02475,
         "details": {
-          "characters": 762
+          "characters": 825
         }
       },
       "claude": {
-        "calls": 257,
-        "cost_usd": 0.10190424999999997,
+        "calls": 264,
+        "cost_usd": 0.10433399999999997,
         "details": {
-          "input_tokens": 249922,
-          "output_tokens": 31539
+          "input_tokens": 255281,
+          "output_tokens": 32411
         }
       }
     },
-    "total_usd": 0.1248,
+    "total_usd": 0.1291,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 7.5
+    "budget_pct": 7.7
   },
   "queue": {
-    "size": 51,
-    "oldest_item_age_hours": 24.4
+    "size": 48,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 4,
+  "stories_today": 5,
   "sources": {
     "total": 22,
     "successful": 22,
@@ -46,12 +47,12 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-06-12T02:00:42.132634+00:00",
+      "timestamp": "2026-06-12T02:30:41.970205+00:00",
       "level": "WARNING",
       "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-06-12T02:30:41.970205+00:00",
+      "timestamp": "2026-06-12T03:00:41.781449+00:00",
       "level": "WARNING",
       "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
     }
@@ -59,7 +60,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -78,5 +79,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-11/2026-06-11-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-11/2026-06-11-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
