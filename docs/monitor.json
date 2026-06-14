@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-06-14T21:26:26.673866+00:00",
+  "timestamp": "2026-06-14T21:37:19.851503+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 2297275,
+  "uptime_seconds": 2297928,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1277,
+    "number": 1278,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -21,22 +21,22 @@
         }
       },
       "claude": {
-        "calls": 533,
-        "cost_usd": 0.20619100000000004,
+        "calls": 549,
+        "cost_usd": 0.21142825,
         "details": {
-          "input_tokens": 506714,
-          "output_tokens": 63610
+          "input_tokens": 520198,
+          "output_tokens": 65103
         }
       }
     },
-    "total_usd": 0.245,
+    "total_usd": 0.2502,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 14.7
+    "budget_pct": 15.0
   },
   "queue": {
-    "size": 36,
-    "oldest_item_age_hours": 23.9
+    "size": 38,
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 13,
   "sources": {
@@ -44,11 +44,17 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-14T21:32:19.856747+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by NewConnectionError(\"HTTPSConnection(host='api.github.com', port=443): Failed to establish a new connection: [Errno 60] Operation timed out\"))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 22,
     "degraded_services": []
   },
   "daily_digest": {
