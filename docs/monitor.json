@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-06-16T12:55:58.830751+00:00",
+  "timestamp": "2026-06-16T13:01:26.473893+00:00",
+  "web_refresh_at": "2026-06-16T13:01:26.473893+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 2439447,
+  "uptime_seconds": 2439775,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1356,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1357,
+    "duration_seconds": 79.9,
+    "headlines_scraped": 175,
+    "headlines_processed": 11,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 5
   },
   "api_costs": {
     "today": {
@@ -21,34 +22,48 @@
         }
       },
       "claude": {
-        "calls": 490,
-        "cost_usd": 0.19441949999999986,
+        "calls": 506,
+        "cost_usd": 0.19960774999999986,
         "details": {
-          "input_tokens": 476013,
-          "output_tokens": 60333
+          "input_tokens": 489366,
+          "output_tokens": 61813
         }
       }
     },
-    "total_usd": 0.226,
+    "total_usd": 0.2312,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 13.6
+    "budget_pct": 13.9
   },
   "queue": {
-    "size": 62,
-    "oldest_item_age_hours": 23.4
+    "size": 67,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 9,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 20,
+    "failed": [
+      "Congress.gov",
+      "UN News"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-16T13:00:34.146004+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
+    },
+    {
+      "timestamp": "2026-06-16T13:00:46.506226+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://news.un.org/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +82,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-15/2026-06-15-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-15/2026-06-15-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
