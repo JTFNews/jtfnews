@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-06-17T16:26:10.954734+00:00",
+  "timestamp": "2026-06-17T16:31:14.310536+00:00",
+  "web_refresh_at": "2026-06-17T16:31:14.310536+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 2538459,
+  "uptime_seconds": 2538762,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1411,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1412,
+    "duration_seconds": 67.6,
+    "headlines_scraped": 187,
+    "headlines_processed": 8,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 7,
-        "cost_usd": 0.02127,
+        "calls": 8,
+        "cost_usd": 0.023880000000000002,
         "details": {
-          "characters": 709
+          "characters": 796
         }
       },
       "claude": {
-        "calls": 593,
-        "cost_usd": 0.23787625000000012,
+        "calls": 605,
+        "cost_usd": 0.24191775000000013,
         "details": {
-          "input_tokens": 581510,
-          "output_tokens": 73999
+          "input_tokens": 591681,
+          "output_tokens": 75198
         }
       }
     },
-    "total_usd": 0.2591,
+    "total_usd": 0.2658,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 15.5
+    "budget_pct": 15.9
   },
   "queue": {
-    "size": 50,
-    "oldest_item_age_hours": 22.9
+    "size": 51,
+    "oldest_item_age_hours": 23.0
   },
-  "stories_today": 5,
+  "stories_today": 6,
   "sources": {
     "total": 22,
     "successful": 22,
@@ -48,7 +49,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-16/2026-06-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-16/2026-06-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
