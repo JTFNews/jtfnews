@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-06-19T09:25:49.236438+00:00",
+  "timestamp": "2026-06-19T09:33:27.551763+00:00",
+  "web_refresh_at": "2026-06-19T09:33:27.551763+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 2686037,
+  "uptime_seconds": 2686496,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1493,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1494,
+    "duration_seconds": 201.5,
+    "headlines_scraped": 146,
+    "headlines_processed": 22,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 377,
-        "cost_usd": 0.14682800000000004,
+        "calls": 401,
+        "cost_usd": 0.15712000000000007,
         "details": {
-          "input_tokens": 358392,
-          "output_tokens": 45784
+          "input_tokens": 383960,
+          "output_tokens": 48904
         }
       }
     },
-    "total_usd": 0.1752,
+    "total_usd": 0.1855,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 10.5
+    "budget_pct": 11.1
   },
   "queue": {
     "size": 55,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 3,
   "sources": {
@@ -44,11 +45,32 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-19T09:30:56.193894+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: UK Parliament fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-06-19T09:31:27.208360+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: European Commission fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-06-19T09:31:58.210548+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: UN News fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-06-19T09:32:29.224288+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Government of Canada fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 26,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +89,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-18/2026-06-18-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-18/2026-06-18-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
