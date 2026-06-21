@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-06-21T11:55:45.788051+00:00",
+  "timestamp": "2026-06-21T12:01:13.892597+00:00",
+  "web_refresh_at": "2026-06-21T12:01:13.892597+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 2867834,
+  "uptime_seconds": 2868162,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1594,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1595,
+    "duration_seconds": 68.4,
+    "headlines_scraped": 177,
+    "headlines_processed": 2,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 368,
-        "cost_usd": 0.14914599999999995,
+        "calls": 372,
+        "cost_usd": 0.15023824999999993,
         "details": {
-          "input_tokens": 364414,
-          "output_tokens": 46434
+          "input_tokens": 367178,
+          "output_tokens": 46755
         }
       }
     },
-    "total_usd": 0.1753,
+    "total_usd": 0.1764,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 10.5
+    "budget_pct": 10.6
   },
   "queue": {
-    "size": 37,
-    "oldest_item_age_hours": 22.9
+    "size": 38,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 7,
   "sources": {
@@ -44,11 +45,17 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-21T12:00:41.899865+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-20/2026-06-20-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-20/2026-06-20-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
