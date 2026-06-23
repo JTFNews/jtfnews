@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-06-23T14:26:25.632755+00:00",
+  "timestamp": "2026-06-23T14:31:52.634754+00:00",
+  "web_refresh_at": "2026-06-23T14:31:52.634754+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3049674,
+  "uptime_seconds": 3050001,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1695,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1696,
+    "duration_seconds": 104.9,
+    "headlines_scraped": 186,
+    "headlines_processed": 16,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,11 +22,11 @@
         }
       },
       "claude": {
-        "calls": 529,
-        "cost_usd": 0.20844075000000012,
+        "calls": 540,
+        "cost_usd": 0.21280800000000016,
         "details": {
-          "input_tokens": 513953,
-          "output_tokens": 63962
+          "input_tokens": 525507,
+          "output_tokens": 65145
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.2501,
+    "total_usd": 0.2544,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 15.0
+    "budget_pct": 15.3
   },
   "queue": {
-    "size": 56,
-    "oldest_item_age_hours": 24.4
+    "size": 57,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 8,
   "sources": {
@@ -51,11 +52,62 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-23T14:31:20.368346+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMSMMAkceBmZE5QpLWs'}. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-06-23T14:31:21.679537+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 2/4): Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMSSzkPG9ycjDFbK7N5'}. Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-06-23T14:31:24.361494+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 3/4): Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMSctocoC4QWeRvDNht'}. Retrying in 4.0s..."
+    },
+    {
+      "timestamp": "2026-06-23T14:31:28.762315+00:00",
+      "level": "ERROR",
+      "message": "_call_claude_extract_fact failed after 4 attempts: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMSxxoayX5Y4dJZwsnV'}"
+    },
+    {
+      "timestamp": "2026-06-23T14:31:28.762515+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMSxxoayX5Y4dJZwsnV'}"
+    },
+    {
+      "timestamp": "2026-06-23T14:31:33.887106+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMTKtPn1fQVy5YKxnni'}. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-06-23T14:31:35.422933+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 2/4): Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMTSq6zqpRdvvD5pvsa'}. Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-06-23T14:31:38.494392+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 3/4): Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMTeJR8gZvcHQy2pEMA'}. Retrying in 4.0s..."
+    },
+    {
+      "timestamp": "2026-06-23T14:31:42.816267+00:00",
+      "level": "ERROR",
+      "message": "_call_claude_extract_fact failed after 4 attempts: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMU1MhMbvToaesaZgKP'}"
+    },
+    {
+      "timestamp": "2026-06-23T14:31:42.816393+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CcLMU1MhMbvToaesaZgKP'}"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +126,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-22/2026-06-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-22/2026-06-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
