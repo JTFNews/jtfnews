@@ -56,7 +56,7 @@
     {
       "id": "2026-06-23-004",
       "hash": "7683ec607f8a",
-      "fact": "A shooting occurred at a Montreal hotel resulting in one police officer death and the gunman's death.",
+      "fact": "A shooting in Montreal resulted in three deaths: an officer, a civilian, and a suspect.",
       "source": "NPR 5.1|8.5 \u00b7 CBC News 3.1|9.0",
       "source_urls": {
         "NPR": "https://www.npr.org/sections/news/",
@@ -64,7 +64,17 @@
       },
       "audio": "../audio/archive/2026-06-23/5e04c568af3f.mp3",
       "published_at": "2026-06-23T06:00:47.247067+00:00",
-      "status": "published"
+      "status": "corrected",
+      "original_fact": "A shooting occurred at a Montreal hotel resulting in one police officer death and the gunman's death.",
+      "correction": {
+        "corrected_at": "2026-06-23T09:00:57.750075+00:00",
+        "type": "correction",
+        "reason": "The published story reports two deaths (officer and gunman), but the verified fact confirms three deaths (officer, civilian, and suspect). The original story omitted the civilian casualty.",
+        "correcting_sources": [
+          "BBC News",
+          "France 24"
+        ]
+      }
     },
     {
       "id": "2026-06-23-005",
@@ -77,6 +87,19 @@
       },
       "audio": "../audio/archive/2026-06-23/1a31f703b77d.mp3",
       "published_at": "2026-06-23T09:00:47.236300+00:00",
+      "status": "published"
+    },
+    {
+      "id": "2026-06-23-006",
+      "hash": "22bdf36640a3",
+      "fact": "The United Kingdom has had six prime ministers in ten years.",
+      "source": "France 24 4.6|9.0 \u00b7 PBS NewsHour 5.4|9.0",
+      "source_urls": {
+        "France 24": "https://www.france24.com/en/",
+        "PBS NewsHour": "https://www.pbs.org/newshour/world"
+      },
+      "audio": "../audio/archive/2026-06-23/6e236b7e7d3e.mp3",
+      "published_at": "2026-06-23T10:01:05.761648+00:00",
       "status": "published"
     }
   ]
