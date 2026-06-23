@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-06-23T23:26:15.552303+00:00",
+  "timestamp": "2026-06-23T23:31:20.364837+00:00",
+  "web_refresh_at": "2026-06-23T23:31:20.364837+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3082064,
+  "uptime_seconds": 3082368,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1713,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1714,
+    "duration_seconds": 74.9,
+    "headlines_scraped": 187,
+    "headlines_processed": 14,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,11 +22,11 @@
         }
       },
       "claude": {
-        "calls": 832,
-        "cost_usd": 0.3230592500000003,
+        "calls": 849,
+        "cost_usd": 0.33024675000000037,
         "details": {
-          "input_tokens": 795362,
-          "output_tokens": 99375
+          "input_tokens": 812167,
+          "output_tokens": 101764
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.3865,
+    "total_usd": 0.3937,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 23.2
+    "budget_pct": 23.6
   },
   "queue": {
     "size": 57,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 23.4
   },
   "stories_today": 17,
   "sources": {
@@ -55,7 +56,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +75,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-22/2026-06-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-22/2026-06-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
