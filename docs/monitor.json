@@ -1,31 +1,32 @@
 {
-  "timestamp": "2026-06-23T09:56:35.053122+00:00",
+  "timestamp": "2026-06-23T10:01:50.965368+00:00",
+  "web_refresh_at": "2026-06-23T10:01:50.965368+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3033483,
+  "uptime_seconds": 3033799,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1686,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1687,
+    "duration_seconds": 104.1,
+    "headlines_scraped": 186,
+    "headlines_processed": 16,
+    "stories_published": 1,
+    "stories_queued": 4
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 9,
-        "cost_usd": 0.030420000000000003,
+        "calls": 10,
+        "cost_usd": 0.032220000000000006,
         "details": {
-          "characters": 1014
+          "characters": 1074
         }
       },
       "claude": {
-        "calls": 416,
-        "cost_usd": 0.16374550000000018,
+        "calls": 439,
+        "cost_usd": 0.1718442500000002,
         "details": {
-          "input_tokens": 404872,
-          "output_tokens": 50022
+          "input_tokens": 425197,
+          "output_tokens": 52436
         }
       },
       "twilio": {
@@ -36,77 +37,26 @@
         }
       }
     },
-    "total_usd": 0.2021,
+    "total_usd": 0.212,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 12.1
+    "budget_pct": 12.7
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 24.4
+    "size": 57,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 6,
+  "stories_today": 7,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-06-23T09:01:04.513032+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-22 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-06-23T09:01:04.513160+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-21 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-06-23T09:01:04.513357+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-20 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-06-23T09:01:04.513549+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-19 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-06-23T09:01:04.513673+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-18 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-06-23T09:01:04.513789+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-17 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-06-23T09:01:04.513901+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-16 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-06-23T09:01:04.514015+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-15 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-06-23T09:01:04.514131+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-14 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-06-23T09:01:04.514457+00:00",
-      "level": "WARNING",
-      "message": "propagate_correction_to_youtube: no YouTube video for 2026-06-23, skipping"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -125,5 +75,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-22/2026-06-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-22/2026-06-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
