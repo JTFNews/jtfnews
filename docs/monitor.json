@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-06-24T16:26:22.722041+00:00",
+  "timestamp": "2026-06-24T16:30:52.575969+00:00",
+  "web_refresh_at": "2026-06-24T16:30:52.575969+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3143271,
+  "uptime_seconds": 3143541,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1747,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1748,
+    "duration_seconds": 45.8,
+    "headlines_scraped": 187,
+    "headlines_processed": 6,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 615,
-        "cost_usd": 0.23834524999999976,
+        "calls": 625,
+        "cost_usd": 0.24138174999999976,
         "details": {
-          "input_tokens": 587481,
-          "output_tokens": 73180
+          "input_tokens": 595312,
+          "output_tokens": 74043
         }
       }
     },
-    "total_usd": 0.2819,
+    "total_usd": 0.285,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 16.9
+    "budget_pct": 17.1
   },
   "queue": {
-    "size": 66,
-    "oldest_item_age_hours": 24.4
+    "size": 67,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 10,
   "sources": {
@@ -48,7 +49,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-23/2026-06-23-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-23/2026-06-23-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
