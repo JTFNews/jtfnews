@@ -1,78 +1,85 @@
 {
-  "timestamp": "2026-06-25T23:55:58.719726+00:00",
+  "timestamp": "2026-06-26T00:18:39.458693+00:00",
+  "web_refresh_at": "2026-06-26T00:18:39.458693+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3256647,
+  "uptime_seconds": 3258008,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1810,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1812,
+    "duration_seconds": 57.2,
+    "headlines_scraped": 185,
+    "headlines_processed": 12,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 18,
-        "cost_usd": 0.06486,
+        "calls": 7,
+        "cost_usd": 0.02238,
         "details": {
-          "characters": 2162
+          "characters": 746
         }
       },
       "claude": {
-        "calls": 871,
-        "cost_usd": 0.3356677499999999,
+        "calls": 254,
+        "cost_usd": 0.09255725000000004,
         "details": {
-          "input_tokens": 823531,
-          "output_tokens": 103828
-        }
-      },
-      "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
-        "details": {
-          "sms_count": 1
+          "input_tokens": 230349,
+          "output_tokens": 27976
         }
       }
     },
-    "total_usd": 0.4084,
+    "total_usd": 0.1149,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 24.5
+    "budget_pct": 6.9
   },
   "queue": {
-    "size": 58,
-    "oldest_item_age_hours": 24.4
+    "size": 45,
+    "oldest_item_age_hours": 23.8
   },
-  "stories_today": 13,
+  "stories_today": 5,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-26T00:16:42.248818+00:00",
+      "level": "ERROR",
+      "message": "Cycle watchdog fired (outer watchdog fired 585.7s into 'cycle' (budget was 600s)); aborting and restarting in 60s"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 11,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-06-24",
-    "next_digest_at": "2026-06-26T00:00:00+00:00",
+    "last_date": "2026-06-25",
+    "next_digest_at": "2026-06-27T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-06-25T00:05:27.516280+00:00",
-    "story_count": 12,
-    "duration_seconds": 146,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-06-24-daily-digest.mp4",
-    "youtube_id": "LduUITgnQrU",
-    "youtube_url": "https://youtube.com/watch?v=LduUITgnQrU",
-    "archive_org_id": "jtf-news-2026-06-24",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-24/2026-06-24-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-06-24/2026-06-24-daily-digest.mp4",
+    "last_completed_at": "2026-06-26T00:05:31.185850+00:00",
+    "story_count": 13,
+    "duration_seconds": 150,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-06-25-daily-digest.mp4",
+    "youtube_id": "_ig4YozpPUs",
+    "youtube_url": "https://youtube.com/watch?v=_ig4YozpPUs",
+    "archive_org_id": "jtf-news-2026-06-25",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-25/2026-06-25-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-06-25/2026-06-25-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
