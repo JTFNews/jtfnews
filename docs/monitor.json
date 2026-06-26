@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-06-26T22:56:09.839862+00:00",
+  "timestamp": "2026-06-26T23:00:53.529558+00:00",
+  "web_refresh_at": "2026-06-26T23:00:53.529558+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3339458,
+  "uptime_seconds": 3339742,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1857,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1858,
+    "duration_seconds": 47.8,
+    "headlines_scraped": 185,
+    "headlines_processed": 6,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,11 +22,11 @@
         }
       },
       "claude": {
-        "calls": 840,
-        "cost_usd": 0.320428,
+        "calls": 847,
+        "cost_usd": 0.32355724999999996,
         "details": {
-          "input_tokens": 786492,
-          "output_tokens": 99044
+          "input_tokens": 793504,
+          "output_tokens": 100145
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.3955,
+    "total_usd": 0.3986,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 23.7
+    "budget_pct": 23.9
   },
   "queue": {
     "size": 42,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 14,
   "sources": {
@@ -55,7 +56,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +75,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-25/2026-06-25-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-25/2026-06-25-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
