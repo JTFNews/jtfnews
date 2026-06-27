@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-06-27T23:00:50.313666+00:00",
-  "web_refresh_at": "2026-06-27T23:00:50.313666+00:00",
+  "timestamp": "2026-06-27T23:05:51.547320+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3426138,
+  "uptime_seconds": 3426440,
   "availability_pct": 100.0,
   "cycle": {
     "number": 1906,
-    "duration_seconds": 44.7,
-    "headlines_scraped": 185,
-    "headlines_processed": 5,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 36,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 7,
   "sources": {
@@ -45,42 +44,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-06-27T22:01:34.625921+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: BBC News fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-06-27T22:02:05.632280+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: NPR fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-06-27T22:02:36.637510+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: The Guardian fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-06-27T22:03:07.647911+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: France 24 fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-06-27T22:03:38.662123+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: Deutsche Welle fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-06-27T22:04:09.673622+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
@@ -99,12 +67,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-26/2026-06-26-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-26/2026-06-26-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
