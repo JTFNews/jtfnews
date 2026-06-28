@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-06-28T01:26:04.773379+00:00",
+  "timestamp": "2026-06-28T01:30:42.804409+00:00",
+  "web_refresh_at": "2026-06-28T01:30:42.804409+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3434853,
+  "uptime_seconds": 3435131,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1910,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1911,
+    "duration_seconds": 37.2,
+    "headlines_scraped": 175,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,42 @@
         }
       },
       "claude": {
-        "calls": 237,
-        "cost_usd": 0.09322699999999999,
+        "calls": 239,
+        "cost_usd": 0.09424474999999999,
         "details": {
-          "input_tokens": 231803,
-          "output_tokens": 28221
+          "input_tokens": 234089,
+          "output_tokens": 28578
         }
       }
     },
-    "total_usd": 0.1085,
+    "total_usd": 0.1095,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 6.5
+    "budget_pct": 6.6
   },
   "queue": {
     "size": 35,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 3,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 21,
+    "failed": [
+      "UK Parliament"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-06-28T01:30:25.444460+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.parliament.uk/business/news/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-27/2026-06-27-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-27/2026-06-27-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
