@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-06-29T21:26:12.974909+00:00",
+  "timestamp": "2026-06-29T21:31:12.459795+00:00",
+  "web_refresh_at": "2026-06-29T21:31:12.459795+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3593261,
+  "uptime_seconds": 3593561,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1998,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1999,
+    "duration_seconds": 66.8,
+    "headlines_scraped": 186,
+    "headlines_processed": 13,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,11 +22,11 @@
         }
       },
       "claude": {
-        "calls": 794,
-        "cost_usd": 0.29190675000000005,
+        "calls": 812,
+        "cost_usd": 0.29813375000000003,
         "details": {
-          "input_tokens": 722377,
-          "output_tokens": 89050
+          "input_tokens": 738125,
+          "output_tokens": 90882
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.3711,
+    "total_usd": 0.3773,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 22.3
+    "budget_pct": 22.6
   },
   "queue": {
-    "size": 56,
-    "oldest_item_age_hours": 21.9
+    "size": 57,
+    "oldest_item_age_hours": 22.0
   },
   "stories_today": 17,
   "sources": {
@@ -55,7 +56,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +75,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-28/2026-06-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-28/2026-06-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
