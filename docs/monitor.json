@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-06-30T06:56:46.228947+00:00",
+  "timestamp": "2026-06-30T07:00:50.215712+00:00",
+  "web_refresh_at": "2026-06-30T07:00:50.215712+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3627494,
+  "uptime_seconds": 3627738,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 2017,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 2018,
+    "duration_seconds": 44.9,
+    "headlines_scraped": 176,
+    "headlines_processed": 5,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,40 +22,47 @@
         }
       },
       "claude": {
-        "calls": 341,
-        "cost_usd": 0.13223325000000002,
+        "calls": 346,
+        "cost_usd": 0.13460225000000003,
         "details": {
-          "input_tokens": 328063,
-          "output_tokens": 40174
+          "input_tokens": 333779,
+          "output_tokens": 40926
         }
       }
     },
-    "total_usd": 0.1541,
+    "total_usd": 0.1564,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
-    "budget_pct": 9.2
+    "budget_pct": 9.4
   },
   "queue": {
     "size": 67,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 5,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 21,
+    "failed": [
+      "US Department of Defense"
+    ]
   },
   "recent_errors": [
     {
       "timestamp": "2026-06-30T06:30:42.228905+00:00",
       "level": "WARNING",
       "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-06-30T07:00:24.256068+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.defense.gov/News/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-29/2026-06-29-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-29/2026-06-29-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
