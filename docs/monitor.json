@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-06-30T07:56:21.173303+00:00",
+  "timestamp": "2026-06-30T08:00:46.220207+00:00",
+  "web_refresh_at": "2026-06-30T08:00:46.220207+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3631069,
+  "uptime_seconds": 3631334,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 2019,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 2020,
+    "duration_seconds": 40.4,
+    "headlines_scraped": 186,
+    "headlines_processed": 2,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 363,
-        "cost_usd": 0.1424,
+        "calls": 368,
+        "cost_usd": 0.143518,
         "details": {
-          "input_tokens": 353165,
-          "output_tokens": 43287
+          "input_tokens": 356032,
+          "output_tokens": 43608
         }
       }
     },
-    "total_usd": 0.1642,
+    "total_usd": 0.1654,
     "month_estimate_usd": 8.34,
     "daily_budget": 1.67,
     "budget_pct": 9.9
   },
   "queue": {
-    "size": 66,
-    "oldest_item_age_hours": 24.4
+    "size": 65,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 5,
   "sources": {
@@ -44,17 +45,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-06-30T07:00:24.256068+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.defense.gov/News/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-06-29/2026-06-29-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-06-29/2026-06-29-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
