@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-07-02T19:06:25.886513+00:00",
+  "timestamp": "2026-07-02T19:16:34.047941+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3844074,
+  "uptime_seconds": 3844682,
   "availability_pct": 100.0,
   "cycle": {
     "number": 2138,
@@ -43,7 +43,7 @@
   },
   "queue": {
     "size": 56,
-    "oldest_item_age_hours": 23.1
+    "oldest_item_age_hours": 23.3
   },
   "stories_today": 15,
   "sources": {
@@ -51,11 +51,17 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-02T19:11:34.047414+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 422"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 23,
+    "next_cycle_minutes": 13,
     "degraded_services": []
   },
   "daily_digest": {
