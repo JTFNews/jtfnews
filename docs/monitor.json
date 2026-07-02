@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-07-02T11:01:56.816186+00:00",
-  "web_refresh_at": "2026-07-02T11:01:56.816186+00:00",
+  "timestamp": "2026-07-02T11:06:58.184348+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3815005,
+  "uptime_seconds": 3815306,
   "availability_pct": 100.0,
   "cycle": {
     "number": 2122,
-    "duration_seconds": 110.9,
-    "headlines_scraped": 171,
-    "headlines_processed": 13,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 3
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -44,7 +43,7 @@
   },
   "queue": {
     "size": 48,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 9,
   "sources": {
@@ -53,31 +52,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-07-02T10:03:21.772655+00:00",
-      "level": "WARNING",
-      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
-    },
-    {
-      "timestamp": "2026-07-02T10:04:22.104975+00:00",
-      "level": "WARNING",
-      "message": "_call_claude_extract_fact failed (attempt 2/4): Connection error.. Retrying in 2.0s..."
-    },
-    {
-      "timestamp": "2026-07-02T10:05:19.900010+00:00",
-      "level": "WARNING",
-      "message": "_call_claude_extract_fact failed (attempt 3/4): Connection error.. Retrying in 4.0s..."
-    },
-    {
-      "timestamp": "2026-07-02T10:06:21.768787+00:00",
-      "level": "ERROR",
-      "message": "_call_claude_extract_fact failed after 4 attempts: Connection error."
-    },
-    {
-      "timestamp": "2026-07-02T10:06:21.768986+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Connection error."
-    },
     {
       "timestamp": "2026-07-02T10:07:16.287807+00:00",
       "level": "WARNING",
@@ -92,7 +66,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -111,12 +85,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-01/2026-07-01-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-01/2026-07-01-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
