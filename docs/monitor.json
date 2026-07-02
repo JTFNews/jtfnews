@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-07-02T09:56:18.862578+00:00",
+  "timestamp": "2026-07-02T10:12:16.295892+00:00",
   "uptime_start": "2026-05-19T07:18:31.880886+00:00",
-  "uptime_seconds": 3811067,
+  "uptime_seconds": 3812024,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 2119,
+    "number": 2120,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -21,11 +21,11 @@
         }
       },
       "claude": {
-        "calls": 427,
-        "cost_usd": 0.1568302500000001,
+        "calls": 442,
+        "cost_usd": 0.16287800000000008,
         "details": {
-          "input_tokens": 391591,
-          "output_tokens": 47146
+          "input_tokens": 406687,
+          "output_tokens": 48965
         }
       },
       "twilio": {
@@ -36,14 +36,14 @@
         }
       }
     },
-    "total_usd": 0.2033,
+    "total_usd": 0.2094,
     "month_estimate_usd": 8.62,
     "daily_budget": 1.61,
-    "budget_pct": 12.6
+    "budget_pct": 13.0
   },
   "queue": {
     "size": 47,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.2
   },
   "stories_today": 9,
   "sources": {
@@ -51,11 +51,42 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-02T10:03:21.772655+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-07-02T10:04:22.104975+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 2/4): Connection error.. Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-07-02T10:05:19.900010+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 3/4): Connection error.. Retrying in 4.0s..."
+    },
+    {
+      "timestamp": "2026-07-02T10:06:21.768787+00:00",
+      "level": "ERROR",
+      "message": "_call_claude_extract_fact failed after 4 attempts: Connection error."
+    },
+    {
+      "timestamp": "2026-07-02T10:06:21.768986+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Connection error."
+    },
+    {
+      "timestamp": "2026-07-02T10:07:16.287807+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 17,
     "degraded_services": []
   },
   "daily_digest": {
