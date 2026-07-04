@@ -6288,10 +6288,10 @@ def estimate_digest_duration(stories: list, audio_files: list, has_intro_outro: 
         Estimated duration in seconds
     """
     total_duration = 0.0
-    gap_time = 2.0  # Gap between stories (matches HTML GAP_BETWEEN_STORIES)
-    lower_third_transition = 0.8  # CSS transition for lower third show/hide
-    title_card_transition = 1.0   # CSS transition for title card show/hide
-    title_hold_time = 3.0         # Hold title screen after audio ends
+    gap_time = 0.8  # Gap between stories (matches HTML GAP_BETWEEN_STORIES)
+    lower_third_transition = 0.5  # CSS transition for lower third show/hide
+    title_card_transition = 0.6   # CSS transition for title card show/hide
+    title_hold_time = 1.5         # Hold title screen after audio ends
 
     for audio_file in audio_files:
         duration = get_audio_duration(audio_file)
@@ -6306,12 +6306,12 @@ def estimate_digest_duration(stories: list, audio_files: list, has_intro_outro: 
         total_duration += gap_time * (len(stories) - 1)
 
     if has_intro_outro:
-        # Page startup delay
-        total_duration += 5.0
+        # Page startup delay (500ms sleep + slideshow init)
+        total_duration += 3.0
         # Intro: fade in + hold after audio + fade out
         total_duration += title_card_transition + title_hold_time + title_card_transition
-        # Outro: 1s pause + fade in (audio plays during title card, then instant blank)
-        total_duration += 1.0 + title_card_transition
+        # Outro: 0.4s pause + fade in (audio plays during title card, then instant blank)
+        total_duration += 0.4 + title_card_transition
     else:
         total_duration += 20.0
 
@@ -6320,7 +6320,7 @@ def estimate_digest_duration(stories: list, audio_files: list, has_intro_outro: 
     return total_duration
 
 
-def generate_and_upload_daily_summary(date: str):
+def generate_and_upload_daily_summary(date: str, test_local: bool = False):
     """Orchestrate daily digest recording and upload via OBS.
 
     This is the main entry point called from check_midnight_archive().
@@ -6329,8 +6329,11 @@ def generate_and_upload_daily_summary(date: str):
 
     Args:
         date: YYYY-MM-DD date string
+        test_local: If True, save the processed video to ~/Downloads
+            instead of uploading to YouTube and running the podcast
+            pipeline. Used for pacing/preview verification.
     """
-    log.info(f"Starting daily digest for {date}")
+    log.info(f"Starting daily digest for {date}" + (" (test_local: save to ~/Downloads, no upload)" if test_local else ""))
 
     # Track digest status for dashboard
     update_digest_status(date, status="in_progress", upload_status="pending", error_message="")
@@ -6561,6 +6564,13 @@ def generate_and_upload_daily_summary(date: str):
             log.info(f"Deleted original recording: {recording_path}")
         except Exception as e:
             log.warning(f"Could not delete original recording: {e}")
+
+        if test_local:
+            downloads_dir = Path.home() / "Downloads"
+            test_video_path = downloads_dir / f"JTFNews-Digest-{date}-TEST.mp4"
+            shutil.copy(str(video_path), str(test_video_path))
+            log.info(f"Test video saved: {test_video_path}")
+            return
 
         # Upload to YouTube
         _upload_video_to_youtube(str(video_path), date)

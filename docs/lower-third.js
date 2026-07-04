@@ -7,8 +7,8 @@
  * to provide varied viewing experience.
  */
 
-const FADE_TIME = 1000;       // Fade in/out duration (1 second)
-const MIN_GAP_TIME = 10000;   // Minimum gap between stories (10 seconds)
+const FADE_TIME = 600;        // Fade in/out duration (0.6 second)
+const MIN_GAP_TIME = 4000;    // Minimum gap between stories (4 seconds)
 const MAX_GAP_TIME = 120000;  // Maximum gap between stories (2 minutes)
 const POLL_INTERVAL = 5000;   // Check for new stories every 5 seconds
 const SCRAPE_CYCLE_MS = 300000; // 5 minute scrape cycle (matches config)
@@ -370,8 +370,8 @@ async function displayStory(story) {
         // Audio failed, use text-based timing
         await sleep(calculateHoldTime(story.fact));
     } else {
-        // Audio played, keep text visible 6 seconds after audio ends for readability
-        await sleep(6000);
+        // Audio played, keep text visible 2.5 seconds after audio ends for readability
+        await sleep(2500);
     }
 
     // Fade out
