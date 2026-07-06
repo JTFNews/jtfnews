@@ -1,71 +1,117 @@
 {
-  "timestamp": "2026-07-05T23:56:41.002176+00:00",
+  "timestamp": "2026-07-06T00:14:37.575323+00:00",
+  "web_refresh_at": "2026-07-06T00:14:37.575323+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 101215,
+  "uptime_seconds": 102291,
   "availability_pct": 99.0,
   "cycle": {
-    "number": 57,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 58,
+    "duration_seconds": 564.5,
+    "headlines_scraped": 187,
+    "headlines_processed": 187,
+    "stories_published": 1,
+    "stories_queued": 21
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 10,
-        "cost_usd": 0.02655,
+        "calls": 3,
+        "cost_usd": 0.01077,
         "details": {
-          "characters": 885
+          "characters": 359
+        }
+      },
+      "twilio": {
+        "calls": 1,
+        "cost_usd": 0.0079,
+        "details": {
+          "sms_count": 1
         }
       },
       "claude": {
-        "calls": 579,
-        "cost_usd": 0.22448774999999999,
+        "calls": 218,
+        "cost_usd": 0.08871499999999996,
         "details": {
-          "input_tokens": 556051,
-          "output_tokens": 68380
+          "input_tokens": 219880,
+          "output_tokens": 26996
         }
       }
     },
-    "total_usd": 0.251,
+    "total_usd": 0.1074,
     "month_estimate_usd": 8.86,
     "daily_budget": 1.61,
-    "budget_pct": 15.6
+    "budget_pct": 6.7
   },
   "queue": {
-    "size": 44,
-    "oldest_item_age_hours": 23.9
+    "size": 49,
+    "oldest_item_age_hours": 21.7
   },
-  "stories_today": 8,
+  "stories_today": 1,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-06T00:04:24.820325+00:00",
+      "level": "WARNING",
+      "message": "upload_to_archive_org failed (attempt 1/4):  error uploading 2026-07-05-daily-digest.mp3 to jtf-news-2026-07-05, Please reduce your request rate. - total_tasks_queued exceeds global_limit. Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-07-06T00:04:34.943632+00:00",
+      "level": "WARNING",
+      "message": "upload_to_archive_org failed (attempt 2/4):  error uploading 2026-07-05-daily-digest.mp3 to jtf-news-2026-07-05, Please reduce your request rate. - total_tasks_queued exceeds global_limit. Retrying in 4.0s..."
+    },
+    {
+      "timestamp": "2026-07-06T00:04:48.459993+00:00",
+      "level": "WARNING",
+      "message": "upload_to_archive_org failed (attempt 3/4):  error uploading 2026-07-05-daily-digest.mp3 to jtf-news-2026-07-05, Please reduce your request rate. - total_tasks_queued exceeds global_limit. Retrying in 8.0s..."
+    },
+    {
+      "timestamp": "2026-07-06T00:05:07.298333+00:00",
+      "level": "ERROR",
+      "message": "upload_to_archive_org failed after 4 attempts:  error uploading 2026-07-05-daily-digest.mp3 to jtf-news-2026-07-05, Please reduce your request rate. - total_tasks_queued exceeds global_limit"
+    },
+    {
+      "timestamp": "2026-07-06T00:05:07.298469+00:00",
+      "level": "ERROR",
+      "message": "Podcast pipeline failed:  error uploading 2026-07-05-daily-digest.mp3 to jtf-news-2026-07-05, Please reduce your request rate. - total_tasks_queued exceeds global_limit"
+    },
+    {
+      "timestamp": "2026-07-06T00:05:07.763108+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: Podcast upload failed for 2026-07-05:  error uploading 2026-07-05-daily-digest.mp3 to jtf-news-2026-07-05, Please reduce your request rate. - total_tasks_queued exceeds global_limit"
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 15,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-07-04",
-    "next_digest_at": "2026-07-06T00:00:00+00:00",
+    "last_date": "2026-07-05",
+    "next_digest_at": "2026-07-07T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-07-05T00:02:50.356916+00:00",
-    "story_count": 4,
-    "duration_seconds": 55,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-07-04-daily-digest.mp4",
-    "youtube_id": "MN2T-juXZUQ",
-    "youtube_url": "https://youtube.com/watch?v=MN2T-juXZUQ",
+    "last_completed_at": "2026-07-06T00:03:38.969981+00:00",
+    "story_count": 8,
+    "duration_seconds": 78,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-07-05-daily-digest.mp4",
+    "youtube_id": "1tUeZntHgxE",
+    "youtube_url": "https://youtube.com/watch?v=1tUeZntHgxE",
     "archive_org_id": "jtf-news-2026-07-04",
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-04/2026-07-04-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-04/2026-07-04-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
