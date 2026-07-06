@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-07-06T03:56:00.145152+00:00",
+  "timestamp": "2026-07-06T04:03:55.828870+00:00",
+  "web_refresh_at": "2026-07-06T04:03:55.828870+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 115574,
+  "uptime_seconds": 116050,
   "availability_pct": 99.0,
   "cycle": {
-    "number": 65,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 66,
+    "duration_seconds": 230.1,
+    "headlines_scraped": 136,
+    "headlines_processed": 1,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -28,22 +29,22 @@
         }
       },
       "claude": {
-        "calls": 270,
-        "cost_usd": 0.10984399999999994,
+        "calls": 271,
+        "cost_usd": 0.11032049999999995,
         "details": {
-          "input_tokens": 270841,
-          "output_tokens": 33707
+          "input_tokens": 271982,
+          "output_tokens": 33860
         }
       }
     },
-    "total_usd": 0.1302,
+    "total_usd": 0.1307,
     "month_estimate_usd": 8.86,
     "daily_budget": 1.61,
     "budget_pct": 8.1
   },
   "queue": {
     "size": 53,
-    "oldest_item_age_hours": 22.4
+    "oldest_item_age_hours": 22.6
   },
   "stories_today": 2,
   "sources": {
@@ -51,11 +52,42 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-06T04:00:43.418191+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: ABC News Australia fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-06T04:01:14.422972+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: PBS NewsHour fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-06T04:01:45.427628+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Irish Times fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-06T04:02:16.431144+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: White House fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-06T04:02:47.436522+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Congress.gov fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-06T04:03:18.457883+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Federal Register fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 26,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +106,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-04/2026-07-04-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-04/2026-07-04-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
