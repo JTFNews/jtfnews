@@ -1,54 +1,113 @@
 {
-  "timestamp": "2026-07-07T18:56:31.628550+00:00",
+  "timestamp": "2026-07-07T19:02:03.548128+00:00",
+  "web_refresh_at": "2026-07-07T19:02:03.548128+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 256005,
+  "uptime_seconds": 256337,
   "availability_pct": 99.3,
   "cycle": {
-    "number": 143,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 144,
+    "duration_seconds": 116.9,
+    "headlines_scraped": 187,
+    "headlines_processed": 22,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 17,
-        "cost_usd": 0.04596,
+        "calls": 19,
+        "cost_usd": 0.05967,
         "details": {
-          "characters": 1532
+          "characters": 1989
         }
       },
       "claude": {
-        "calls": 669,
-        "cost_usd": 0.2564522499999999,
+        "calls": 696,
+        "cost_usd": 0.2678879999999999,
         "details": {
-          "input_tokens": 628679,
-          "output_tokens": 79426
+          "input_tokens": 655282,
+          "output_tokens": 83254
+        }
+      },
+      "twilio": {
+        "calls": 1,
+        "cost_usd": 0.0079,
+        "details": {
+          "sms_count": 1
         }
       }
     },
-    "total_usd": 0.3024,
+    "total_usd": 0.3355,
     "month_estimate_usd": 8.86,
     "daily_budget": 1.61,
-    "budget_pct": 18.7
+    "budget_pct": 20.8
   },
   "queue": {
-    "size": 71,
-    "oldest_item_age_hours": 24.4
+    "size": 69,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 14,
+  "stories_today": 15,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-07T19:01:39.275147+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: Story [2026-07-07-010] states Le Pen received a ba"
+    },
+    {
+      "timestamp": "2026-07-07T19:01:43.699070+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-07-07-010: Story [2026-07-07-010] states Le Pen received a ba"
+    },
+    {
+      "timestamp": "2026-07-07T19:01:46.960144+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-06 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-07T19:01:46.960294+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-05 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-07T19:01:46.960527+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-04 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-07T19:01:46.960681+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-03 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-07T19:01:46.960832+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-02 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-07T19:01:46.961004+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-01 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-07T19:01:46.961129+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-06-30 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-07T19:01:46.961501+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-07-07, skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 27,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +126,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-06/2026-07-06-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-06/2026-07-06-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
