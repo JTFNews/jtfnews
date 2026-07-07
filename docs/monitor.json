@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-07-07T20:01:11.734028+00:00",
-  "web_refresh_at": "2026-07-07T20:01:11.734028+00:00",
+  "timestamp": "2026-07-07T20:06:12.956556+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 259886,
+  "uptime_seconds": 260187,
   "availability_pct": 99.3,
   "cycle": {
     "number": 146,
-    "duration_seconds": 64.9,
-    "headlines_scraped": 187,
-    "headlines_processed": 13,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -44,7 +43,7 @@
   },
   "queue": {
     "size": 72,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 15,
   "sources": {
@@ -52,62 +51,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-07-07T19:01:39.275147+00:00",
-      "level": "WARNING",
-      "message": "Correction needed: Story [2026-07-07-010] states Le Pen received a ba"
-    },
-    {
-      "timestamp": "2026-07-07T19:01:43.699070+00:00",
-      "level": "WARNING",
-      "message": "Alert sent: CORRECTION issued for 2026-07-07-010: Story [2026-07-07-010] states Le Pen received a ba"
-    },
-    {
-      "timestamp": "2026-07-07T19:01:46.960144+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-06 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-07T19:01:46.960294+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-05 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-07T19:01:46.960527+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-04 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-07T19:01:46.960681+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-03 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-07T19:01:46.960832+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-02 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-07T19:01:46.961004+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-01 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-07T19:01:46.961129+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-06-30 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-07T19:01:46.961501+00:00",
-      "level": "WARNING",
-      "message": "propagate_correction_to_youtube: no YouTube video for 2026-07-07, skipping"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -126,12 +74,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-06/2026-07-06-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-06/2026-07-06-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
