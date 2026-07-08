@@ -542,3 +542,50 @@ def test_drop_dead_peers_removes_records_older_than_seven_days(tmp_path):
     ids = {p.public_key_id for p in store.all()}
     assert "sha256:alive" in ids
     assert "sha256:dead" not in ids
+
+
+def test_exchange_peer_lists_merges_remote_peers_into_local_store(tmp_path):
+    _priv, _pub, doc = _make_signed_wellknown(
+        domain="remote.example",
+        peers=[
+            {"domain": "peerA.example", "public_key_id": "sha256:peerA",
+             "channel": "global", "last_seen": "2026-07-01T00:00:00Z",
+             "trust_score": 0.7, "confirmed_by": 1},
+            {"domain": "peerB.example", "public_key_id": "sha256:peerB",
+             "channel": "global", "last_seen": "2026-07-01T00:00:00Z",
+             "trust_score": 0.6, "confirmed_by": 1},
+        ],
+    )
+    body = _json.dumps(doc).encode("utf-8")
+    fetcher = FakeFetcher(get_map={
+        "https://remote.example/.well-known/jtf.json": FakeResponse(200, body, {}),
+    })
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+
+    result = gossip.exchange_peer_lists(
+        peer_domain="remote.example",
+        store=store,
+        fetcher=fetcher,
+        clock=clock,
+    )
+    assert result is True
+    ids = {p.public_key_id for p in store.all()}
+    assert {"sha256:peerA", "sha256:peerB"}.issubset(ids)
+    # Remote server is also merged (it's a peer we've now heard from directly).
+    remote_key_id = doc["server"]["public_key_id"]
+    assert remote_key_id in ids
+
+
+def test_exchange_peer_lists_returns_false_when_remote_unreachable(tmp_path):
+    fetcher = FakeFetcher()  # no route -> 404
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    result = gossip.exchange_peer_lists(
+        peer_domain="unreachable.example",
+        store=store,
+        fetcher=fetcher,
+        clock=clock,
+    )
+    assert result is False
+    assert store.all() == []

@@ -409,3 +409,47 @@ class CycleBatch:
             return True
         same_asn = sum(1 for p in current if p.asn == candidate_asn) + 1
         return (same_asn / total_after) <= MAX_ASN_SHARE
+
+
+def exchange_peer_lists(
+    peer_domain: str,
+    store: PeerStore,
+    fetcher: Fetcher | None = None,
+    clock: Clock | None = None,
+    timeout: float = 10.0,
+) -> bool:
+    """Fetch ``peer_domain``'s well-known document and merge its peer
+    list into ``store`` using a single ``CycleBatch``.
+
+    Returns True if the well-known was successfully fetched and at
+    least one peer was merged or updated. Returns False on any fetch
+    or verification failure. Never raises.
+
+    The remote's ``server.public_key_id`` is used as the ``source_key_id``
+    for confirmation counting.
+    """
+    doc = fetch_and_verify_well_known(peer_domain, fetcher=fetcher, timeout=timeout)
+    if doc is None:
+        return False
+    source_key_id = doc.get("server", {}).get("public_key_id", "")
+    if not source_key_id:
+        return False
+    remote_asn_hint = int(doc.get("server", {}).get("asn", 0) or 0)
+    # The remote itself is a peer we've now heard from directly; enter it too.
+    self_entry = {
+        "domain": doc["server"]["domain"],
+        "public_key_id": source_key_id,
+        "channel": doc["server"].get("channel", "global"),
+        "last_seen": (clock or _default_clock)().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "trust_score": 0.0,
+        "confirmed_by": 0,
+    }
+    batch = CycleBatch(store, source_key_id=source_key_id, clock=clock)
+    changed = batch.add_or_update(self_entry, asn=remote_asn_hint)
+    for entry in doc.get("peers", []):
+        try:
+            if batch.add_or_update(entry):
+                changed = True
+        except Exception:
+            continue
+    return changed
