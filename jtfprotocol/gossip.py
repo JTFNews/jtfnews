@@ -288,3 +288,47 @@ class PeerStore:
             if p.public_key_id == public_key_id:
                 return p
         return None
+
+
+MAX_NEW_PEERS_PER_CYCLE = 10
+"""Spec: 'A server accepts at most ten new peers per gossip cycle.'"""
+
+
+class CycleBatch:
+    """Enforces per-cycle new-peer rate limit while delegating merge
+    semantics to ``PeerStore``. One ``CycleBatch`` per gossip cycle.
+
+    Rejecting a new peer because the rate limit is full is not an
+    error; it is protocol design. The rejected peer will be reconsidered
+    next cycle.
+    """
+
+    def __init__(
+        self,
+        store: PeerStore,
+        source_key_id: str,
+        clock: Clock | None = None,
+        max_new: int = MAX_NEW_PEERS_PER_CYCLE,
+    ):
+        self._store = store
+        self._source_key_id = source_key_id
+        self._clock = clock or _default_clock
+        self._max_new = max_new
+        self._new_admissions = 0
+
+    def add_or_update(self, entry: dict, asn: int = 0) -> bool:
+        """Delegate to PeerStore, but decline to admit a *new* peer once
+        the per-cycle new-peer quota is exhausted. Updates of already-
+        tracked peers are unlimited."""
+        pkid = entry["public_key_id"]
+        is_new = self._store.find(pkid) is None
+        if is_new and self._new_admissions >= self._max_new:
+            return False
+        changed = self._store.add_or_update(
+            entry,
+            source_key_id=self._source_key_id,
+            asn=asn,
+        )
+        if changed and is_new and self._store.find(pkid) is not None:
+            self._new_admissions += 1
+        return changed

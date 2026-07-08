@@ -380,3 +380,42 @@ def test_add_or_update_rejects_new_peer_when_it_would_not_win_eviction(tmp_path,
     assert added is False
     assert store.find("sha256:weaker") is None
     assert len(store.all()) == 3
+
+
+def test_gossip_cycle_batch_admits_at_most_ten_new_peers(tmp_path):
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    batch = gossip.CycleBatch(store, source_key_id="sha256:src", clock=clock)
+
+    admitted = 0
+    for i in range(15):
+        if batch.add_or_update(
+            _entry(f"peer{i}.example", f"sha256:peer{i}", trust=0.5),
+            asn=64500,
+        ):
+            admitted += 1
+    assert admitted == 10
+    assert len(store.all()) == 10
+
+
+def test_gossip_cycle_batch_updates_existing_peers_dont_count_against_limit(tmp_path):
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    # Pre-seed 5 peers with source A so their confirmation sets exist.
+    for i in range(5):
+        store.add_or_update(
+            _entry(f"existing{i}.example", f"sha256:existing{i}", trust=0.5),
+            source_key_id="sha256:srcA",
+        )
+    batch = gossip.CycleBatch(store, source_key_id="sha256:srcB", clock=clock)
+    # Re-confirming the 5 existing peers is not "new peer" admissions.
+    for i in range(5):
+        batch.add_or_update(
+            _entry(f"existing{i}.example", f"sha256:existing{i}", trust=0.5),
+        )
+    # Now admit 10 new -- should all fit.
+    for i in range(10):
+        batch.add_or_update(
+            _entry(f"new{i}.example", f"sha256:new{i}", trust=0.5),
+        )
+    assert len(store.all()) == 15
