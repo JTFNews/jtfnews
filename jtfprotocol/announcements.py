@@ -15,11 +15,13 @@ from __future__ import annotations
 
 import base64
 import copy
+import json
 
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey, Ed25519PublicKey
 
 from jtfprotocol import identity as _identity
 from jtfprotocol.fact import canonical_json
+from jtfprotocol.gossip import Fetcher, RequestsFetcher
 
 
 ANNOUNCEMENT_TYPE = "fact_announcement"
@@ -67,5 +69,32 @@ def verify_announcement(ann: dict, pub: Ed25519PublicKey) -> bool:
         sig = base64.b64decode(sig_b64)
         payload = canonical_json(to_verify).encode("utf-8")
         return _identity.verify(pub, payload, sig)
+    except Exception:
+        return False
+
+
+DEFAULT_ANNOUNCEMENTS_PATH = "/announcements"
+
+
+def send_announcement(
+    peer_domain: str,
+    announcement: dict,
+    fetcher: Fetcher | None = None,
+    endpoint_path: str = DEFAULT_ANNOUNCEMENTS_PATH,
+    timeout: float = 10.0,
+) -> bool:
+    """POST a signed announcement to ``https://{peer_domain}{endpoint_path}``.
+
+    Returns True on any 2xx response. Returns False on any HTTP or
+    transport error. Never raises. Callers may look up the actual path
+    from the peer's own ``/.well-known/jtf.json`` ``feeds.announcements``
+    and pass it as ``endpoint_path``.
+    """
+    fetcher = fetcher or RequestsFetcher()
+    url = f"https://{peer_domain}{endpoint_path}"
+    try:
+        body = json.dumps(announcement).encode("utf-8")
+        resp = fetcher.post(url, body=body, timeout=timeout)
+        return 200 <= resp.status_code < 300
     except Exception:
         return False

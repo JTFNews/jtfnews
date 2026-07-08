@@ -97,3 +97,82 @@ def test_verify_announcement_rejects_missing_type_field():
     )
     del ann["type"]
     assert announcements.verify_announcement(ann, pub) is False
+
+
+from jtfprotocol import gossip
+
+
+def test_send_announcement_posts_to_peer_announcements_endpoint():
+    priv, pub = identity.generate_keypair()
+    ann = announcements.build_announcement(
+        fact_id="sha256:x",
+        occurred_at="2026-04-18T14:30:00Z",
+        channel="global",
+        server_domain="jtfnews.org",
+        server_key_id=identity.public_key_id(pub),
+        priv=priv,
+    )
+
+    # Use the FakeFetcher pattern from test_gossip.
+    from tests.test_gossip import FakeFetcher, FakeResponse
+
+    fetcher = FakeFetcher(post_map={
+        "https://peer.example/announcements": FakeResponse(202, b"", {}),
+    })
+    ok = announcements.send_announcement(
+        peer_domain="peer.example",
+        announcement=ann,
+        fetcher=fetcher,
+    )
+    assert ok is True
+    assert fetcher.post_calls
+    posted_url, posted_body = fetcher.post_calls[0]
+    assert posted_url == "https://peer.example/announcements"
+    assert json.loads(posted_body.decode("utf-8"))["fact_id"] == "sha256:x"
+
+
+def test_send_announcement_uses_custom_endpoint_path():
+    priv, pub = identity.generate_keypair()
+    ann = announcements.build_announcement(
+        fact_id="sha256:x",
+        occurred_at="2026-04-18T14:30:00Z",
+        channel="global",
+        server_domain="jtfnews.org",
+        server_key_id=identity.public_key_id(pub),
+        priv=priv,
+    )
+    from tests.test_gossip import FakeFetcher, FakeResponse
+
+    fetcher = FakeFetcher(post_map={
+        "https://peer.example/custom-announcements": FakeResponse(200, b"", {}),
+    })
+    ok = announcements.send_announcement(
+        peer_domain="peer.example",
+        announcement=ann,
+        fetcher=fetcher,
+        endpoint_path="/custom-announcements",
+    )
+    assert ok is True
+
+
+def test_send_announcement_returns_false_on_http_error():
+    priv, pub = identity.generate_keypair()
+    ann = announcements.build_announcement(
+        fact_id="sha256:x",
+        occurred_at="2026-04-18T14:30:00Z",
+        channel="global",
+        server_domain="jtfnews.org",
+        server_key_id=identity.public_key_id(pub),
+        priv=priv,
+    )
+    from tests.test_gossip import FakeFetcher, FakeResponse
+
+    fetcher = FakeFetcher(post_map={
+        "https://peer.example/announcements": FakeResponse(500, b"boom", {}),
+    })
+    ok = announcements.send_announcement(
+        peer_domain="peer.example",
+        announcement=ann,
+        fetcher=fetcher,
+    )
+    assert ok is False
