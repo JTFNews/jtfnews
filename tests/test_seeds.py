@@ -57,3 +57,41 @@ def test_lookup_txt_seed_takes_first_url_when_multiple_records():
     })
     result = seeds.lookup_txt_seed("example.com", resolver=resolver)
     assert result == "https://a.example.com/.well-known/jtf.json"
+
+
+def test_lookup_srv_seed_returns_url_from_target_and_port():
+    resolver = FakeResolver({
+        ("_jtf._tcp.example.com", "SRV"): [
+            ("srv.example.com", 443, 10, 100),
+        ],
+    })
+    result = seeds.lookup_srv_seed("example.com", resolver=resolver)
+    assert result == "https://srv.example.com/.well-known/jtf.json"
+
+
+def test_lookup_srv_seed_uses_http_scheme_for_port_80():
+    resolver = FakeResolver({
+        ("_jtf._tcp.example.com", "SRV"): [
+            ("srv.example.com", 80, 10, 100),
+        ],
+    })
+    assert seeds.lookup_srv_seed("example.com", resolver=resolver) == (
+        "http://srv.example.com/.well-known/jtf.json"
+    )
+
+
+def test_lookup_srv_seed_uses_lowest_priority_first():
+    resolver = FakeResolver({
+        ("_jtf._tcp.example.com", "SRV"): [
+            ("high.example.com", 443, 20, 100),
+            ("low.example.com", 443, 10, 100),
+        ],
+    })
+    assert seeds.lookup_srv_seed("example.com", resolver=resolver) == (
+        "https://low.example.com/.well-known/jtf.json"
+    )
+
+
+def test_lookup_srv_seed_returns_none_when_no_record():
+    resolver = FakeResolver()
+    assert seeds.lookup_srv_seed("example.com", resolver=resolver) is None

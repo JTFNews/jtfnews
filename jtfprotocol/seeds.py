@@ -66,6 +66,24 @@ def _default_resolver() -> Resolver:
     return DnspythonResolver()
 
 
+def lookup_srv_seed(domain: str, resolver: Resolver | None = None) -> str | None:
+    """Look up ``_jtf._tcp.{domain}`` SRV record. Return a well-known
+    URL derived from the lowest-priority target, or None.
+
+    Scheme selection: port 80 -> http, anything else -> https. The
+    protocol expects TLS for anything other than the well-known port.
+    """
+    resolver = resolver or _default_resolver()
+    records = resolver.resolve_srv(f"_jtf._tcp.{domain}")
+    if not records:
+        return None
+    records = sorted(records, key=lambda r: (r[2], -r[3]))
+    target, port, _priority, _weight = records[0]
+    scheme = "http" if port == 80 else "https"
+    host = target if port in (80, 443) else f"{target}:{port}"
+    return f"{scheme}://{host}/.well-known/jtf.json"
+
+
 def lookup_txt_seed(domain: str, resolver: Resolver | None = None) -> str | None:
     """Look up ``_jtf.{domain}`` TXT record. Return the first URL-looking
     value or None. Does not fetch the URL."""
