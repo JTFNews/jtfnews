@@ -659,3 +659,66 @@ def test_fetch_fact_by_id_returns_none_on_http_error():
         feed_path="/stories.json",
         fetcher=fetcher,
     ) is None
+
+
+def test_run_gossip_cycle_drops_dead_and_refreshes_and_returns_stats(tmp_path):
+    _priv, _pub, doc = _make_signed_wellknown(
+        domain="remote.example",
+        peers=[
+            {"domain": "peerA.example", "public_key_id": "sha256:peerA",
+             "channel": "global", "last_seen": "2026-07-08T00:00:00Z",
+             "trust_score": 0.7, "confirmed_by": 1},
+        ],
+    )
+    body = _json.dumps(doc).encode("utf-8")
+    fetcher = FakeFetcher(get_map={
+        "https://remote.example/.well-known/jtf.json": FakeResponse(200, body, {}),
+    })
+    clock = FakeClock(datetime(2026, 7, 8, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    # Pre-seed one dead peer (last_seen 8 days ago).
+    store._peers.append(gossip.PeerRecord(
+        domain="dead.example",
+        public_key_id="sha256:dead",
+        channel="global",
+        last_seen="2026-06-30T00:00:00Z",
+        first_seen="2026-04-01T00:00:00Z",
+        trust_score=0.5,
+        confirmed_by=1,
+        asn=64500,
+    ))
+
+    stats = gossip.run_gossip_cycle(
+        seed_domains=("remote.example",),
+        store=store,
+        fetcher=fetcher,
+        clock=clock,
+    )
+    assert stats["dropped"] == 1
+    assert stats["contacted"] == 1
+    assert stats["merged_peers"] >= 1
+    assert store.find("sha256:dead") is None
+    assert store.find("sha256:peerA") is not None
+
+
+def test_run_gossip_cycle_persists_the_store(tmp_path):
+    _priv, _pub, doc = _make_signed_wellknown(
+        domain="remote.example",
+        peers=[],
+    )
+    body = _json.dumps(doc).encode("utf-8")
+    fetcher = FakeFetcher(get_map={
+        "https://remote.example/.well-known/jtf.json": FakeResponse(200, body, {}),
+    })
+    clock = FakeClock(datetime(2026, 7, 8, tzinfo=timezone.utc))
+    path = tmp_path / "peers.json"
+    store = gossip.PeerStore(path=path, clock=clock)
+    gossip.run_gossip_cycle(
+        seed_domains=("remote.example",),
+        store=store,
+        fetcher=fetcher,
+        clock=clock,
+    )
+    assert path.exists()
+    reloaded = gossip.PeerStore(path=path, clock=clock)
+    assert reloaded.find(doc["server"]["public_key_id"]) is not None

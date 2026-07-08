@@ -485,3 +485,71 @@ def exchange_peer_lists(
         except Exception:
             continue
     return changed
+
+
+GOSSIP_CYCLE_SECONDS = 30 * 60
+"""Spec: 'Every thirty minutes, aligned with the JTF update cadence,
+it refreshes known peers.' Phase 2 exposes the value; Phase 5 wires it
+into the main loop."""
+
+
+def run_gossip_cycle(
+    seed_domains: tuple[str, ...],
+    store: PeerStore,
+    fetcher: Fetcher | None = None,
+    clock: Clock | None = None,
+    timeout: float = 10.0,
+) -> dict:
+    """Run one 30-minute gossip cycle:
+
+      1. Drop dead peers (>= 7 days without response).
+      2. Contact each seed domain and each surviving peer's domain,
+         fetching their well-known and merging peer lists.
+      3. Persist the store.
+
+    Returns a stats dict::
+
+        {"dropped": N, "contacted": N, "reachable": N, "merged_peers": N}
+
+    Callers schedule this every ``GOSSIP_CYCLE_SECONDS``. Phase 5 wires
+    the scheduling into ``main.py``'s existing 30-minute loop.
+    """
+    fetcher = fetcher or RequestsFetcher()
+    clock = clock or _default_clock
+
+    dropped = store.drop_dead_peers()
+
+    to_contact: list[str] = []
+    seen: set[str] = set()
+    for d in seed_domains:
+        if d not in seen:
+            to_contact.append(d)
+            seen.add(d)
+    for p in store.all():
+        if p.domain not in seen:
+            to_contact.append(p.domain)
+            seen.add(p.domain)
+
+    contacted = 0
+    reachable = 0
+    peers_before = {p.public_key_id for p in store.all()}
+    for domain in to_contact:
+        contacted += 1
+        if exchange_peer_lists(
+            peer_domain=domain,
+            store=store,
+            fetcher=fetcher,
+            clock=clock,
+            timeout=timeout,
+        ):
+            reachable += 1
+    peers_after = {p.public_key_id for p in store.all()}
+    merged_peers = len(peers_after - peers_before)
+
+    store.save()
+    return {
+        "dropped": len(dropped),
+        "contacted": contacted,
+        "reachable": reachable,
+        "merged_peers": merged_peers,
+    }
