@@ -171,6 +171,10 @@ MAX_PEERS = 100
 """Spec: 'Each server maintains at most one hundred active peers.'"""
 
 
+DEAD_PEER_SECONDS = 7 * 24 * 3600
+"""Spec: 'Servers that have not responded in seven days are dropped from peer lists.'"""
+
+
 MIN_UPTIME_FOR_PROPAGATION_SECONDS = 48 * 3600
 """Spec: 'A peer must have been observed responding for at least
 forty-eight hours before a server includes it in peer lists shared with
@@ -319,6 +323,29 @@ class PeerStore:
             if age >= MIN_UPTIME_FOR_PROPAGATION_SECONDS:
                 eligible.append(p.to_wellknown_entry())
         return eligible
+
+    def drop_dead_peers(self) -> list[str]:
+        """Remove peers whose ``last_seen`` is older than
+        ``DEAD_PEER_SECONDS``. Returns the list of dropped
+        ``public_key_id``s. Also clears their confirmation records so
+        their eviction doesn't leak state."""
+        now = self._clock()
+        keep: list[PeerRecord] = []
+        dropped: list[str] = []
+        for p in self._peers:
+            try:
+                seen = _parse_iso8601_utc(p.last_seen)
+            except Exception:
+                keep.append(p)
+                continue
+            age = (now - seen).total_seconds()
+            if age >= DEAD_PEER_SECONDS:
+                dropped.append(p.public_key_id)
+                self._confirmations.pop(p.public_key_id, None)
+            else:
+                keep.append(p)
+        self._peers = keep
+        return dropped
 
 
 MAX_ASN_SHARE = 0.30

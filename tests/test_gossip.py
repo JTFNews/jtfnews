@@ -512,3 +512,33 @@ def test_peers_for_publication_excludes_peers_seen_less_than_forty_eight_hours(t
     ids = {p["public_key_id"] for p in published}
     assert "sha256:mature" in ids
     assert "sha256:young" not in ids
+
+
+def test_drop_dead_peers_removes_records_older_than_seven_days(tmp_path):
+    clock = FakeClock(datetime(2026, 7, 8, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    store._peers.append(gossip.PeerRecord(
+        domain="dead.example",
+        public_key_id="sha256:dead",
+        channel="global",
+        last_seen="2026-06-30T00:00:00Z",  # 8 days ago
+        first_seen="2026-04-01T00:00:00Z",
+        trust_score=0.5,
+        confirmed_by=1,
+        asn=64500,
+    ))
+    store._peers.append(gossip.PeerRecord(
+        domain="alive.example",
+        public_key_id="sha256:alive",
+        channel="global",
+        last_seen="2026-07-06T00:00:00Z",  # 2 days ago
+        first_seen="2026-04-01T00:00:00Z",
+        trust_score=0.5,
+        confirmed_by=1,
+        asn=64500,
+    ))
+    dropped = store.drop_dead_peers()
+    assert dropped == ["sha256:dead"]
+    ids = {p.public_key_id for p in store.all()}
+    assert "sha256:alive" in ids
+    assert "sha256:dead" not in ids
