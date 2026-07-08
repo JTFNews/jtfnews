@@ -329,3 +329,54 @@ def test_add_or_update_same_source_twice_does_not_double_count(tmp_path):
     store.add_or_update(entry, source_key_id="sha256:src1", asn=64500)
     p = store.find("sha256:aaa")
     assert p.confirmed_by == 1
+
+
+def _entry(domain: str, pkid: str, trust: float = 0.5) -> dict:
+    return {
+        "domain": domain,
+        "public_key_id": pkid,
+        "channel": "global",
+        "last_seen": "2026-07-01T00:00:00Z",
+        "trust_score": trust,
+        "confirmed_by": 0,
+    }
+
+
+def test_add_or_update_respects_max_peers_cap(tmp_path, monkeypatch):
+    monkeypatch.setattr(gossip, "MAX_PEERS", 3)
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    for i, trust in enumerate([0.9, 0.8, 0.7]):
+        store.add_or_update(
+            _entry(f"peer{i}.example", f"sha256:peer{i}", trust=trust),
+            source_key_id="sha256:src",
+        )
+    assert len(store.all()) == 3
+
+    store.add_or_update(
+        _entry("newer.example", "sha256:newer", trust=0.95),
+        source_key_id="sha256:src",
+    )
+    assert len(store.all()) == 3
+    remaining_ids = {p.public_key_id for p in store.all()}
+    assert "sha256:newer" in remaining_ids
+    assert "sha256:peer2" not in remaining_ids  # lowest trust was evicted
+
+
+def test_add_or_update_rejects_new_peer_when_it_would_not_win_eviction(tmp_path, monkeypatch):
+    monkeypatch.setattr(gossip, "MAX_PEERS", 3)
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    for i, trust in enumerate([0.9, 0.8, 0.7]):
+        store.add_or_update(
+            _entry(f"peer{i}.example", f"sha256:peer{i}", trust=trust),
+            source_key_id="sha256:src",
+        )
+
+    added = store.add_or_update(
+        _entry("weaker.example", "sha256:weaker", trust=0.1),
+        source_key_id="sha256:src",
+    )
+    assert added is False
+    assert store.find("sha256:weaker") is None
+    assert len(store.all()) == 3

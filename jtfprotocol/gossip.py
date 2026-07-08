@@ -245,9 +245,27 @@ class PeerStore:
             now = self._clock().strftime("%Y-%m-%dT%H:%M:%SZ")
             new = PeerRecord.from_wellknown_entry(entry, first_seen=now, asn=asn)
             new.confirmed_by = 1
-            self._peers.append(new)
-            source_set.add(source_key_id)
-            return True
+            if len(self._peers) < MAX_PEERS:
+                self._peers.append(new)
+                source_set.add(source_key_id)
+                return True
+            # Cap reached: evict the lowest-trust existing peer if the
+            # candidate outranks it. Ties resolve against the newer peer
+            # so we do not thrash.
+            weakest_index, weakest = min(
+                enumerate(self._peers), key=lambda kv: kv[1].trust_score
+            )
+            if new.trust_score > weakest.trust_score:
+                # Drop the evicted peer's confirmation record too.
+                self._confirmations.pop(weakest.public_key_id, None)
+                self._peers[weakest_index] = new
+                source_set.add(source_key_id)
+                return True
+            # Not strong enough. Roll back the empty confirmation set we
+            # created above so we don't leak state.
+            if not source_set:
+                self._confirmations.pop(pkid, None)
+            return False
 
         if source_key_id in source_set:
             return False
