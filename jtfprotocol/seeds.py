@@ -93,3 +93,41 @@ def lookup_txt_seed(domain: str, resolver: Resolver | None = None) -> str | None
         if value.startswith("http://") or value.startswith("https://"):
             return value
     return None
+
+
+def discover_seeds(
+    candidate_domains: tuple[str, ...] = (),
+    resolver: Resolver | None = None,
+) -> list[str]:
+    """Return an ordered, de-duplicated list of well-known URLs to try.
+
+    Ordering:
+      1. Hard-coded ``SEED_DOMAINS`` (always first -- the lifeboat).
+      2. For each ``candidate_domain``: TXT record hint, then SRV record
+         hint. TXT wins over SRV when both are present for the same domain.
+
+    ``candidate_domains`` is typically a list of domains a server has
+    heard about via out-of-band means (last-known-good peer cache,
+    operator configuration). Empty by default.
+    """
+    resolver = resolver or _default_resolver()
+    urls: list[str] = []
+    seen: set[str] = set()
+
+    def _add(url: str | None) -> None:
+        if url and url not in seen:
+            urls.append(url)
+            seen.add(url)
+
+    for d in SEED_DOMAINS:
+        _add(f"https://{d}/.well-known/jtf.json")
+
+    for d in candidate_domains:
+        txt = lookup_txt_seed(d, resolver=resolver)
+        if txt:
+            _add(txt)
+            continue
+        srv = lookup_srv_seed(d, resolver=resolver)
+        _add(srv)
+
+    return urls

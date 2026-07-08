@@ -95,3 +95,37 @@ def test_lookup_srv_seed_uses_lowest_priority_first():
 def test_lookup_srv_seed_returns_none_when_no_record():
     resolver = FakeResolver()
     assert seeds.lookup_srv_seed("example.com", resolver=resolver) is None
+
+
+def test_discover_seeds_returns_hardcoded_urls_when_no_dns_hints():
+    resolver = FakeResolver()
+    urls = seeds.discover_seeds(candidate_domains=("example.com",), resolver=resolver)
+    assert "https://jtfnews.org/.well-known/jtf.json" in urls
+    assert len(urls) == 1
+
+
+def test_discover_seeds_includes_dns_txt_hint():
+    resolver = FakeResolver({
+        ("_jtf.example.com", "TXT"): ["https://example.com/.well-known/jtf.json"],
+    })
+    urls = seeds.discover_seeds(candidate_domains=("example.com",), resolver=resolver)
+    assert "https://example.com/.well-known/jtf.json" in urls
+    assert "https://jtfnews.org/.well-known/jtf.json" in urls
+
+
+def test_discover_seeds_prefers_txt_over_srv_when_both_present():
+    resolver = FakeResolver({
+        ("_jtf.example.com", "TXT"): ["https://txt.example.com/.well-known/jtf.json"],
+        ("_jtf._tcp.example.com", "SRV"): [("srv.example.com", 443, 10, 100)],
+    })
+    urls = seeds.discover_seeds(candidate_domains=("example.com",), resolver=resolver)
+    assert "https://txt.example.com/.well-known/jtf.json" in urls
+    assert "https://srv.example.com/.well-known/jtf.json" not in urls
+
+
+def test_discover_seeds_deduplicates():
+    resolver = FakeResolver({
+        ("_jtf.jtfnews.org", "TXT"): ["https://jtfnews.org/.well-known/jtf.json"],
+    })
+    urls = seeds.discover_seeds(candidate_domains=("jtfnews.org",), resolver=resolver)
+    assert urls.count("https://jtfnews.org/.well-known/jtf.json") == 1
