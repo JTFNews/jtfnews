@@ -387,11 +387,13 @@ def test_gossip_cycle_batch_admits_at_most_ten_new_peers(tmp_path):
     store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
     batch = gossip.CycleBatch(store, source_key_id="sha256:src", clock=clock)
 
+    # Each peer gets a unique ASN so the ASN diversity gate is never the
+    # binding constraint; the rate limit of 10 is what we are testing here.
     admitted = 0
     for i in range(15):
         if batch.add_or_update(
             _entry(f"peer{i}.example", f"sha256:peer{i}", trust=0.5),
-            asn=64500,
+            asn=64500 + i,
         ):
             admitted += 1
     assert admitted == 10
@@ -419,3 +421,63 @@ def test_gossip_cycle_batch_updates_existing_peers_dont_count_against_limit(tmp_
             _entry(f"new{i}.example", f"sha256:new{i}", trust=0.5),
         )
     assert len(store.all()) == 15
+
+
+def test_cycle_batch_rejects_new_peer_when_asn_share_would_exceed_thirty_percent(tmp_path):
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    # Pre-seed 9 peers, 3 in ASN 64500, 3 in 64501, 3 in 64502.
+    for asn in (64500, 64501, 64502):
+        for i in range(3):
+            store.add_or_update(
+                _entry(f"asn{asn}-{i}.example", f"sha256:asn{asn}-{i}", trust=0.5),
+                source_key_id="sha256:srcA",
+                asn=asn,
+            )
+    batch = gossip.CycleBatch(store, source_key_id="sha256:srcB", clock=clock)
+    # Adding a 10th peer in ASN 64500 would make it 4/10 = 40%. Reject.
+    admitted = batch.add_or_update(
+        _entry("dense.example", "sha256:dense", trust=0.5),
+        asn=64500,
+    )
+    assert admitted is False
+    assert store.find("sha256:dense") is None
+
+
+def test_cycle_batch_allows_new_peer_when_asn_share_stays_under_thirty_percent(tmp_path):
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    for asn in (64500, 64501, 64502):
+        for i in range(3):
+            store.add_or_update(
+                _entry(f"asn{asn}-{i}.example", f"sha256:asn{asn}-{i}", trust=0.5),
+                source_key_id="sha256:srcA",
+                asn=asn,
+            )
+    batch = gossip.CycleBatch(store, source_key_id="sha256:srcB", clock=clock)
+    admitted = batch.add_or_update(
+        _entry("fresh.example", "sha256:fresh", trust=0.5),
+        asn=64503,
+    )
+    assert admitted is True
+
+
+def test_asn_diversity_gate_only_applies_to_new_admissions(tmp_path):
+    """Refreshing an existing peer never trips the ASN cap."""
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    # 9 peers, 4 in ASN 64500 (would already be 44%). Insert directly.
+    for i in range(9):
+        asn = 64500 if i < 4 else 64500 + i
+        store.add_or_update(
+            _entry(f"peer{i}.example", f"sha256:peer{i}", trust=0.5),
+            source_key_id="sha256:srcA",
+            asn=asn,
+        )
+    batch = gossip.CycleBatch(store, source_key_id="sha256:srcB", clock=clock)
+    # Confirming an existing peer2 (already ASN 64500) does NOT trip.
+    ok = batch.add_or_update(
+        _entry("peer2.example", "sha256:peer2", trust=0.5),
+        asn=64500,
+    )
+    assert ok is True

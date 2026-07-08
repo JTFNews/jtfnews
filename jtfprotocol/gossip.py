@@ -290,6 +290,15 @@ class PeerStore:
         return None
 
 
+MAX_ASN_SHARE = 0.30
+"""Spec: 'No more than thirty percent of a server's peers should share the same ASN.'"""
+
+
+ASN_SHARE_FLOOR_PEERS = 3
+"""Below this population the ASN cap is not enforced (three peers can
+be from the same ASN early on)."""
+
+
 MAX_NEW_PEERS_PER_CYCLE = 10
 """Spec: 'A server accepts at most ten new peers per gossip cycle.'"""
 
@@ -318,11 +327,13 @@ class CycleBatch:
 
     def add_or_update(self, entry: dict, asn: int = 0) -> bool:
         """Delegate to PeerStore, but decline to admit a *new* peer once
-        the per-cycle new-peer quota is exhausted. Updates of already-
-        tracked peers are unlimited."""
+        the per-cycle new-peer quota is exhausted or the ASN diversity cap
+        would be breached. Updates of already-tracked peers are unlimited."""
         pkid = entry["public_key_id"]
         is_new = self._store.find(pkid) is None
         if is_new and self._new_admissions >= self._max_new:
+            return False
+        if is_new and asn and not self._asn_would_stay_under_cap(asn):
             return False
         changed = self._store.add_or_update(
             entry,
@@ -332,3 +343,11 @@ class CycleBatch:
         if changed and is_new and self._store.find(pkid) is not None:
             self._new_admissions += 1
         return changed
+
+    def _asn_would_stay_under_cap(self, candidate_asn: int) -> bool:
+        current = self._store.all()
+        total_after = len(current) + 1
+        if total_after <= ASN_SHARE_FLOOR_PEERS:
+            return True
+        same_asn = sum(1 for p in current if p.asn == candidate_asn) + 1
+        return (same_asn / total_after) <= MAX_ASN_SHARE
