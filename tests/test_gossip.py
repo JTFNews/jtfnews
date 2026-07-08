@@ -184,3 +184,44 @@ def test_fetch_and_verify_well_known_returns_none_on_missing_public_key():
         "https://example.com/.well-known/jtf.json": FakeResponse(200, body, {}),
     })
     assert gossip.fetch_and_verify_well_known("example.com", fetcher=fetcher) is None
+
+
+def test_peer_record_from_wellknown_peer_entry():
+    entry = {
+        "domain": "example.com",
+        "public_key_id": "sha256:abc",
+        "channel": "global",
+        "last_seen": "2026-07-01T00:00:00Z",
+        "trust_score": 0.94,
+        "confirmed_by": 3,
+    }
+    p = gossip.PeerRecord.from_wellknown_entry(entry, first_seen="2026-04-01T00:00:00Z", asn=64500)
+    assert p.domain == "example.com"
+    assert p.public_key_id == "sha256:abc"
+    assert p.channel == "global"
+    assert p.trust_score == 0.94
+    assert p.confirmed_by == 3
+    assert p.asn == 64500
+    assert p.first_seen == "2026-04-01T00:00:00Z"
+
+
+def test_peer_record_to_wellknown_entry_round_trip():
+    p = gossip.PeerRecord(
+        domain="example.com",
+        public_key_id="sha256:abc",
+        channel="global",
+        last_seen="2026-07-01T00:00:00Z",
+        trust_score=0.5,
+        confirmed_by=1,
+        first_seen="2026-04-01T00:00:00Z",
+        asn=64500,
+    )
+    entry = p.to_wellknown_entry()
+    assert entry == {
+        "domain": "example.com",
+        "public_key_id": "sha256:abc",
+        "channel": "global",
+        "last_seen": "2026-07-01T00:00:00Z",
+        "trust_score": 0.5,
+        "confirmed_by": 1,
+    }

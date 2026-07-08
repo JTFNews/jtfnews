@@ -62,10 +62,23 @@ class RequestsFetcher:
 
 import base64
 import json
+from dataclasses import dataclass, field, asdict
+from datetime import datetime, timezone
+from typing import Callable
 
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
 from jtfprotocol import well_known as _well_known
+
+
+Clock = Callable[[], datetime]
+"""Zero-arg callable returning the current UTC datetime. Tests inject a
+fake so gossip logic can be time-tested without ``time.sleep`` or
+freezegun."""
+
+
+def _default_clock() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 WELL_KNOWN_PATH = "/.well-known/jtf.json"
@@ -100,3 +113,53 @@ def fetch_and_verify_well_known(
         return doc
     except Exception:
         return None
+
+
+@dataclass
+class PeerRecord:
+    """Local record of a peer server.
+
+    Fields with a ``last_seen`` / ``first_seen`` timestamp use ISO-8601
+    UTC strings (``2026-07-01T00:00:00Z``) so JSON persistence stays
+    lossless. All numeric fields default to zero, indicating "not yet
+    observed"."""
+
+    domain: str
+    public_key_id: str
+    channel: str
+    last_seen: str
+    first_seen: str
+    trust_score: float = 0.0
+    confirmed_by: int = 0
+    asn: int = 0
+
+    @classmethod
+    def from_wellknown_entry(
+        cls,
+        entry: dict,
+        first_seen: str,
+        asn: int = 0,
+    ) -> PeerRecord:
+        return cls(
+            domain=entry["domain"],
+            public_key_id=entry["public_key_id"],
+            channel=entry.get("channel", "global"),
+            last_seen=entry.get("last_seen", first_seen),
+            first_seen=first_seen,
+            trust_score=float(entry.get("trust_score", 0.0)),
+            confirmed_by=int(entry.get("confirmed_by", 0)),
+            asn=int(asn),
+        )
+
+    def to_wellknown_entry(self) -> dict:
+        """Return the six-field subset published in
+        ``/.well-known/jtf.json`` under ``peers``. ``first_seen`` and
+        ``asn`` are local bookkeeping and are NOT published."""
+        return {
+            "domain": self.domain,
+            "public_key_id": self.public_key_id,
+            "channel": self.channel,
+            "last_seen": self.last_seen,
+            "trust_score": self.trust_score,
+            "confirmed_by": self.confirmed_by,
+        }
