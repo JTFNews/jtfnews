@@ -49,3 +49,23 @@ def build_announcement(
     sig = _identity.sign(priv, to_sign)
     envelope["signature"] = base64.b64encode(sig).decode("ascii")
     return envelope
+
+
+def verify_announcement(ann: dict, pub: Ed25519PublicKey) -> bool:
+    """Verify a fact-announcement envelope's Ed25519 signature.
+
+    Returns True if the envelope's ``type`` is ``fact_announcement`` and
+    the signature is valid over the canonical JSON of the envelope with
+    the signature field emptied. Returns False otherwise. Does not raise.
+    """
+    try:
+        if ann.get("type") != ANNOUNCEMENT_TYPE:
+            return False
+        to_verify = copy.deepcopy(ann)
+        sig_b64 = to_verify.get("signature", "")
+        to_verify["signature"] = ""
+        sig = base64.b64decode(sig_b64)
+        payload = canonical_json(to_verify).encode("utf-8")
+        return _identity.verify(pub, payload, sig)
+    except Exception:
+        return False
