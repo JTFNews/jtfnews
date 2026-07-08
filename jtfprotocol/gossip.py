@@ -411,6 +411,38 @@ class CycleBatch:
         return (same_asn / total_after) <= MAX_ASN_SHARE
 
 
+def fetch_fact_by_id(
+    peer_domain: str,
+    fact_id: str,
+    feed_path: str,
+    fetcher: Fetcher | None = None,
+    timeout: float = 10.0,
+) -> dict | None:
+    """Fetch ``peer_domain``'s facts feed and return the fact with the
+    given ``fact_id``. Returns None if the fetch fails, the feed is
+    malformed, or the fact is not present. Never raises.
+
+    Signature verification is intentionally NOT performed here; callers
+    are responsible for verifying with the sender's public key looked up
+    from the sender's ``/.well-known/jtf.json``. Keeping this function
+    signature-agnostic lets it be re-used for archive lookups and other
+    feeds that may carry the same fact under a different signing key.
+    """
+    fetcher = fetcher or RequestsFetcher()
+    url = f"https://{peer_domain}{feed_path}"
+    try:
+        resp = fetcher.get(url, timeout=timeout)
+        if resp.status_code != 200:
+            return None
+        feed = resp.json()
+    except Exception:
+        return None
+    for entry in feed.get("facts", []):
+        if entry.get("id") == fact_id:
+            return entry
+    return None
+
+
 def exchange_peer_lists(
     peer_domain: str,
     store: PeerStore,

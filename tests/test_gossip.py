@@ -589,3 +589,73 @@ def test_exchange_peer_lists_returns_false_when_remote_unreachable(tmp_path):
     )
     assert result is False
     assert store.all() == []
+
+
+from jtfprotocol import fact as _fact
+
+
+def test_fetch_fact_by_id_returns_matching_fact_from_feed():
+    # Build a valid signed fact.
+    priv, pub = identity.generate_keypair()
+    fact_dict = {
+        "jtf_version": 1,
+        "id": "",
+        "fact": "President Smith signed the trade agreement.",
+        "occurred_at": "2026-07-01T14:30:00Z",
+        "published_at": "2026-07-01T15:00:00Z",
+        "verification_method": {"backend": "ollama"},
+        "structured_extraction": {"actor": "President Smith", "action": "signed"},
+        "sources": [
+            {"url": "https://a.example/1", "publisher": "A"},
+            {"url": "https://b.example/1", "publisher": "B"},
+        ],
+        "channel": "global",
+        "server": {
+            "domain": "remote.example",
+            "public_key_id": identity.public_key_id(pub),
+        },
+        "algorithm": "Ed25519",
+        "signature": "",
+    }
+    signed = _fact.sign_fact(fact_dict, priv)
+    feed = {"facts": [signed]}
+    fetcher = FakeFetcher(get_map={
+        "https://remote.example/stories.json": FakeResponse(
+            200, _json.dumps(feed).encode("utf-8"), {},
+        ),
+    })
+
+    result = gossip.fetch_fact_by_id(
+        peer_domain="remote.example",
+        fact_id=signed["id"],
+        feed_path="/stories.json",
+        fetcher=fetcher,
+    )
+    assert result is not None
+    assert result["fact"] == signed["fact"]
+
+
+def test_fetch_fact_by_id_returns_none_when_id_not_in_feed():
+    feed = {"facts": []}
+    fetcher = FakeFetcher(get_map={
+        "https://remote.example/stories.json": FakeResponse(
+            200, _json.dumps(feed).encode("utf-8"), {},
+        ),
+    })
+    result = gossip.fetch_fact_by_id(
+        peer_domain="remote.example",
+        fact_id="sha256:notpresent",
+        feed_path="/stories.json",
+        fetcher=fetcher,
+    )
+    assert result is None
+
+
+def test_fetch_fact_by_id_returns_none_on_http_error():
+    fetcher = FakeFetcher()  # 404 by default
+    assert gossip.fetch_fact_by_id(
+        peer_domain="remote.example",
+        fact_id="sha256:x",
+        feed_path="/stories.json",
+        fetcher=fetcher,
+    ) is None
