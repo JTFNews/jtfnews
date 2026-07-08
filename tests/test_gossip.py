@@ -225,3 +225,39 @@ def test_peer_record_to_wellknown_entry_round_trip():
         "trust_score": 0.5,
         "confirmed_by": 1,
     }
+
+
+def test_peer_store_empty_load_when_file_missing(tmp_path):
+    store = gossip.PeerStore(path=tmp_path / "peers.json")
+    assert store.all() == []
+
+
+def test_peer_store_save_and_reload_round_trip(tmp_path):
+    path = tmp_path / "peers.json"
+    store = gossip.PeerStore(path=path)
+    store._peers.append(gossip.PeerRecord(
+        domain="a.example",
+        public_key_id="sha256:aaa",
+        channel="global",
+        last_seen="2026-07-01T00:00:00Z",
+        first_seen="2026-04-01T00:00:00Z",
+        trust_score=0.5,
+        confirmed_by=2,
+        asn=64500,
+    ))
+    store.save()
+
+    reloaded = gossip.PeerStore(path=path)
+    assert len(reloaded.all()) == 1
+    p = reloaded.all()[0]
+    assert p.domain == "a.example"
+    assert p.confirmed_by == 2
+    assert p.asn == 64500
+    assert p.first_seen == "2026-04-01T00:00:00Z"
+
+
+def test_peer_store_corrupt_file_returns_empty(tmp_path):
+    path = tmp_path / "peers.json"
+    path.write_text("not valid json {")
+    store = gossip.PeerStore(path=path)
+    assert store.all() == []

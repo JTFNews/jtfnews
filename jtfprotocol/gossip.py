@@ -62,8 +62,10 @@ class RequestsFetcher:
 
 import base64
 import json
+import os
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Callable
 
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
@@ -163,3 +165,61 @@ class PeerRecord:
             "trust_score": self.trust_score,
             "confirmed_by": self.confirmed_by,
         }
+
+
+MAX_PEERS = 100
+"""Spec: 'Each server maintains at most one hundred active peers.'"""
+
+
+class PeerStore:
+    """Local peer state, persisted to a single JSON file.
+
+    This is the reference implementation. Phase 5 wires this into
+    ``main.py``'s data directory. Until then, callers pass an explicit
+    ``path``.
+
+    Not thread-safe. main.py is single-threaded (see CLAUDE.md).
+    """
+
+    def __init__(self, path: Path, clock: Clock | None = None):
+        self._path = Path(path)
+        self._clock = clock or _default_clock
+        self._peers: list[PeerRecord] = []
+        self._load()
+
+    def _load(self) -> None:
+        if not self._path.exists():
+            return
+        try:
+            raw = self._path.read_text(encoding="utf-8")
+            data = json.loads(raw)
+        except Exception:
+            return
+        peers: list[PeerRecord] = []
+        for entry in data.get("peers", []):
+            try:
+                peers.append(PeerRecord(**entry))
+            except TypeError:
+                continue
+        self._peers = peers
+
+    def save(self) -> None:
+        payload = {
+            "version": 1,
+            "peers": [asdict(p) for p in self._peers],
+        }
+        # Atomic write (see main.py atomic_write_text pattern).
+        tmp = self._path.with_suffix(self._path.suffix + ".tmp")
+        tmp.parent.mkdir(parents=True, exist_ok=True)
+        tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        os.replace(tmp, self._path)
+
+    def all(self) -> list[PeerRecord]:
+        """Return a snapshot of all peer records."""
+        return list(self._peers)
+
+    def find(self, public_key_id: str) -> PeerRecord | None:
+        for p in self._peers:
+            if p.public_key_id == public_key_id:
+                return p
+        return None
