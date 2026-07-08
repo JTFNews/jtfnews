@@ -188,6 +188,7 @@ class PeerStore:
         self._load()
 
     def _load(self) -> None:
+        self._confirmations = {}
         if not self._path.exists():
             return
         try:
@@ -202,17 +203,63 @@ class PeerStore:
             except TypeError:
                 continue
         self._peers = peers
+        self._confirmations = {
+            k: set(v) for k, v in data.get("confirmations", {}).items()
+        }
 
     def save(self) -> None:
         payload = {
             "version": 1,
             "peers": [asdict(p) for p in self._peers],
+            "confirmations": {k: sorted(v) for k, v in self._confirmations.items()},
         }
         # Atomic write (see main.py atomic_write_text pattern).
         tmp = self._path.with_suffix(self._path.suffix + ".tmp")
         tmp.parent.mkdir(parents=True, exist_ok=True)
         tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         os.replace(tmp, self._path)
+
+    def add_or_update(
+        self,
+        entry: dict,
+        source_key_id: str,
+        asn: int = 0,
+    ) -> bool:
+        """Merge a peer-list entry received from ``source_key_id``.
+
+        - New peer: appended with ``confirmed_by = 1``, marked confirmed
+          by this source.
+        - Existing peer, new source: ``confirmed_by`` increments; the
+          record's ``last_seen``, ``trust_score``, ``channel`` fields
+          adopt the newer entry's values.
+        - Existing peer, same source that already confirmed: no change.
+
+        Returns True if the peer set changed, False otherwise. Callers
+        are responsible for calling ``save()`` when their batch is done.
+        """
+        pkid = entry["public_key_id"]
+        existing = self.find(pkid)
+        source_set = self._confirmations.setdefault(pkid, set())
+
+        if existing is None:
+            now = self._clock().strftime("%Y-%m-%dT%H:%M:%SZ")
+            new = PeerRecord.from_wellknown_entry(entry, first_seen=now, asn=asn)
+            new.confirmed_by = 1
+            self._peers.append(new)
+            source_set.add(source_key_id)
+            return True
+
+        if source_key_id in source_set:
+            return False
+
+        source_set.add(source_key_id)
+        existing.confirmed_by = len(source_set)
+        existing.last_seen = entry.get("last_seen", existing.last_seen)
+        existing.trust_score = float(entry.get("trust_score", existing.trust_score))
+        existing.channel = entry.get("channel", existing.channel)
+        if asn:
+            existing.asn = int(asn)
+        return True
 
     def all(self) -> list[PeerRecord]:
         """Return a snapshot of all peer records."""

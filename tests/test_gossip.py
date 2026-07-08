@@ -261,3 +261,71 @@ def test_peer_store_corrupt_file_returns_empty(tmp_path):
     path.write_text("not valid json {")
     store = gossip.PeerStore(path=path)
     assert store.all() == []
+
+
+class FakeClock:
+    def __init__(self, now: datetime):
+        self._now = now
+
+    def __call__(self) -> datetime:
+        return self._now
+
+    def advance(self, seconds: float) -> None:
+        from datetime import timedelta
+        self._now = self._now + timedelta(seconds=seconds)
+
+
+from datetime import datetime, timezone
+
+
+def test_add_or_update_inserts_new_peer(tmp_path):
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    entry = {
+        "domain": "a.example",
+        "public_key_id": "sha256:aaa",
+        "channel": "global",
+        "last_seen": "2026-07-01T00:00:00Z",
+        "trust_score": 0.5,
+        "confirmed_by": 0,
+    }
+    added = store.add_or_update(entry, source_key_id="sha256:src1", asn=64500)
+    assert added is True
+    assert len(store.all()) == 1
+    p = store.find("sha256:aaa")
+    assert p.confirmed_by == 1
+    assert p.asn == 64500
+
+
+def test_add_or_update_second_source_increments_confirmed_by(tmp_path):
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    entry = {
+        "domain": "a.example",
+        "public_key_id": "sha256:aaa",
+        "channel": "global",
+        "last_seen": "2026-07-01T00:00:00Z",
+        "trust_score": 0.5,
+        "confirmed_by": 0,
+    }
+    store.add_or_update(entry, source_key_id="sha256:src1", asn=64500)
+    store.add_or_update(entry, source_key_id="sha256:src2", asn=64500)
+    p = store.find("sha256:aaa")
+    assert p.confirmed_by == 2
+
+
+def test_add_or_update_same_source_twice_does_not_double_count(tmp_path):
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    entry = {
+        "domain": "a.example",
+        "public_key_id": "sha256:aaa",
+        "channel": "global",
+        "last_seen": "2026-07-01T00:00:00Z",
+        "trust_score": 0.5,
+        "confirmed_by": 0,
+    }
+    store.add_or_update(entry, source_key_id="sha256:src1", asn=64500)
+    store.add_or_update(entry, source_key_id="sha256:src1", asn=64500)
+    p = store.find("sha256:aaa")
+    assert p.confirmed_by == 1
