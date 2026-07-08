@@ -105,3 +105,82 @@ def test_default_fetcher_post_uses_requests(monkeypatch):
     assert captured["timeout"] == 3.0
     assert captured["headers"] == {"Content-Type": "application/json"}
     assert resp.status_code == 202
+
+
+import base64
+import json as _json
+
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
+
+from jtfprotocol import identity, well_known
+
+
+def _make_signed_wellknown(domain: str = "example.com", peers=None):
+    priv, pub = identity.generate_keypair()
+    doc = well_known.generate_well_known(
+        priv=priv,
+        pub=pub,
+        server_info={
+            "domain": domain,
+            "channel": "global",
+            "name": f"{domain} server",
+            "started_at": "2026-04-19T00:00:00Z",
+            "node_type": "full",
+            "asn": 24940,
+            "location_country": "US",
+        },
+        extraction_info={
+            "backend": "ollama",
+            "model": "ollama:qwen2.5:72b-instruct-q5_K_M",
+            "prompt_version": "jtf-extract-v3",
+        },
+        feeds={
+            "facts_rss": "/feed.xml",
+            "facts_json": "/stories.json",
+            "corrections": "/corrections.json",
+            "archive": "/archive/index.json",
+            "announcements": "/announcements",
+        },
+        peers=peers or [],
+    )
+    return priv, pub, doc
+
+
+def test_fetch_and_verify_well_known_returns_doc_on_success():
+    _priv, _pub, doc = _make_signed_wellknown()
+    body = _json.dumps(doc).encode("utf-8")
+    fetcher = FakeFetcher(get_map={
+        "https://example.com/.well-known/jtf.json": FakeResponse(200, body, {}),
+    })
+
+    result = gossip.fetch_and_verify_well_known("example.com", fetcher=fetcher)
+    assert result is not None
+    assert result["server"]["domain"] == "example.com"
+
+
+def test_fetch_and_verify_well_known_returns_none_on_http_error():
+    fetcher = FakeFetcher(get_map={
+        "https://example.com/.well-known/jtf.json": FakeResponse(500, b"", {}),
+    })
+    assert gossip.fetch_and_verify_well_known("example.com", fetcher=fetcher) is None
+
+
+def test_fetch_and_verify_well_known_returns_none_on_bad_signature():
+    _priv, _pub, doc = _make_signed_wellknown()
+    doc["signature"] = base64.b64encode(b"\x00" * 64).decode("ascii")
+    body = _json.dumps(doc).encode("utf-8")
+    fetcher = FakeFetcher(get_map={
+        "https://example.com/.well-known/jtf.json": FakeResponse(200, body, {}),
+    })
+    assert gossip.fetch_and_verify_well_known("example.com", fetcher=fetcher) is None
+
+
+def test_fetch_and_verify_well_known_returns_none_on_missing_public_key():
+    _priv, _pub, doc = _make_signed_wellknown()
+    del doc["server"]["public_key"]
+    body = _json.dumps(doc).encode("utf-8")
+    fetcher = FakeFetcher(get_map={
+        "https://example.com/.well-known/jtf.json": FakeResponse(200, body, {}),
+    })
+    assert gossip.fetch_and_verify_well_known("example.com", fetcher=fetcher) is None

@@ -58,3 +58,45 @@ class RequestsFetcher:
             timeout=timeout,
             headers={"Content-Type": "application/json"},
         )
+
+
+import base64
+import json
+
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
+
+from jtfprotocol import well_known as _well_known
+
+
+WELL_KNOWN_PATH = "/.well-known/jtf.json"
+
+
+def fetch_and_verify_well_known(
+    domain: str,
+    fetcher: Fetcher | None = None,
+    timeout: float = 10.0,
+) -> dict | None:
+    """Fetch ``https://{domain}/.well-known/jtf.json`` and verify its
+    signature against the public key it advertises.
+
+    Returns the parsed doc on success. Returns None on any failure
+    (HTTP error, malformed JSON, missing public key, bad signature).
+    Never raises.
+    """
+    fetcher = fetcher or RequestsFetcher()
+    url = f"https://{domain}{WELL_KNOWN_PATH}"
+    try:
+        resp = fetcher.get(url, timeout=timeout)
+        if resp.status_code != 200:
+            return None
+        doc = resp.json()
+        pub_b64 = doc.get("server", {}).get("public_key")
+        if not pub_b64:
+            return None
+        pub_bytes = base64.b64decode(pub_b64)
+        pub = Ed25519PublicKey.from_public_bytes(pub_bytes)
+        if not _well_known.verify_well_known(doc, pub):
+            return None
+        return doc
+    except Exception:
+        return None
