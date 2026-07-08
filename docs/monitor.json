@@ -1,60 +1,55 @@
 {
-  "timestamp": "2026-07-08T14:56:41.537270+00:00",
+  "timestamp": "2026-07-08T15:01:08.357382+00:00",
+  "web_refresh_at": "2026-07-08T15:01:08.357382+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 328015,
-  "availability_pct": 99.3,
+  "uptime_seconds": 328282,
+  "availability_pct": 99.4,
   "cycle": {
-    "number": 183,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 184,
+    "duration_seconds": 61.1,
+    "headlines_scraped": 186,
+    "headlines_processed": 6,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 12,
-        "cost_usd": 0.03636,
+        "calls": 13,
+        "cost_usd": 0.038430000000000006,
         "details": {
-          "characters": 1212
+          "characters": 1281
         }
       },
       "claude": {
-        "calls": 541,
-        "cost_usd": 0.2058292500000001,
+        "calls": 555,
+        "cost_usd": 0.20923625000000012,
         "details": {
-          "input_tokens": 503047,
-          "output_tokens": 64054
+          "input_tokens": 512075,
+          "output_tokens": 64974
         }
       }
     },
-    "total_usd": 0.2422,
+    "total_usd": 0.2477,
     "month_estimate_usd": 8.86,
     "daily_budget": 1.61,
-    "budget_pct": 15.0
+    "budget_pct": 15.4
   },
   "queue": {
-    "size": 59,
-    "oldest_item_age_hours": 24.4
+    "size": 58,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 10,
+  "stories_today": 11,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-07-08T14:00:28.003588+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.parliament.uk/business/news/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-07/2026-07-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-07/2026-07-07-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
