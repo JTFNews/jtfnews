@@ -47,10 +47,22 @@ Phase 1 implements 5 of the 11 deterministic checks listed in the spec
 - Source lineage disclosure (Phase 3)
 - No-self-citation (Phase 2 -- needs peer graph)
 
-## Not included in Phase 1
+## Included as of Phase 2
 
-- Peer discovery and gossip (Phase 2)
-- Trust scoring and verification credit sharing (Phase 3)
-- Corrections and resilience primitives (Phase 4)
+- Seed domain list and DNS TXT/SRV fallback discovery (`seeds.py`)
+- HTTP `Fetcher` protocol and `RequestsFetcher` default (`gossip.py`)
+- `fetch_and_verify_well_known` (`gossip.py`)
+- `PeerRecord`, `PeerStore` with JSON persistence, trust-weighted
+  eviction, new-peer rate limit, ASN diversity gate, 48-hour uptime
+  gate for publication, seven-day dead-peer drop (`gossip.py`)
+- `exchange_peer_lists`, `fetch_fact_by_id`, `run_gossip_cycle`
+  (`gossip.py`)
+- `build_announcement`, `verify_announcement`, `send_announcement`
+  (`announcements.py`)
+
+## Not included as of Phase 2
+
+- Trust score computation and cluster detection (Phase 3)
+- Corrections, key rotation, revocation, key loss recovery (Phase 4)
 - Integration with `main.py` (Phase 5)
-- Appendices, wire-protocol spec, trust algorithm reference (Phase 6)
+- Wire-protocol appendix, trust algorithm reference (Phase 6)
