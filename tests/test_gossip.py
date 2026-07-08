@@ -481,3 +481,34 @@ def test_asn_diversity_gate_only_applies_to_new_admissions(tmp_path):
         asn=64500,
     )
     assert ok is True
+
+
+def test_peers_for_publication_excludes_peers_seen_less_than_forty_eight_hours(tmp_path):
+    clock = FakeClock(datetime(2026, 7, 1, tzinfo=timezone.utc))
+    store = gossip.PeerStore(path=tmp_path / "peers.json", clock=clock)
+    # Peer A first seen 40h ago -> not eligible.
+    store._peers.append(gossip.PeerRecord(
+        domain="young.example",
+        public_key_id="sha256:young",
+        channel="global",
+        last_seen="2026-06-29T08:00:00Z",
+        first_seen="2026-06-29T08:00:00Z",
+        trust_score=0.5,
+        confirmed_by=1,
+        asn=64500,
+    ))
+    # Peer B first seen 60h ago -> eligible.
+    store._peers.append(gossip.PeerRecord(
+        domain="mature.example",
+        public_key_id="sha256:mature",
+        channel="global",
+        last_seen="2026-06-28T12:00:00Z",
+        first_seen="2026-06-28T12:00:00Z",
+        trust_score=0.5,
+        confirmed_by=1,
+        asn=64500,
+    ))
+    published = store.peers_for_publication()
+    ids = {p["public_key_id"] for p in published}
+    assert "sha256:mature" in ids
+    assert "sha256:young" not in ids

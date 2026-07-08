@@ -171,6 +171,20 @@ MAX_PEERS = 100
 """Spec: 'Each server maintains at most one hundred active peers.'"""
 
 
+MIN_UPTIME_FOR_PROPAGATION_SECONDS = 48 * 3600
+"""Spec: 'A peer must have been observed responding for at least
+forty-eight hours before a server includes it in peer lists shared with
+others.'"""
+
+
+def _parse_iso8601_utc(s: str) -> datetime:
+    """Parse a subset of ISO-8601 covering the Z-suffixed UTC form we
+    emit. Kept intentionally narrow — anything else is a caller bug."""
+    if s.endswith("Z"):
+        s = s[:-1] + "+00:00"
+    return datetime.fromisoformat(s)
+
+
 class PeerStore:
     """Local peer state, persisted to a single JSON file.
 
@@ -288,6 +302,23 @@ class PeerStore:
             if p.public_key_id == public_key_id:
                 return p
         return None
+
+    def peers_for_publication(self) -> list[dict]:
+        """Return peer entries eligible to be published in this
+        server's own ``/.well-known/jtf.json``. Filters out peers whose
+        first-seen timestamp is less than ``MIN_UPTIME_FOR_PROPAGATION_SECONDS``
+        old, per the spec's uptime gate."""
+        now = self._clock()
+        eligible: list[dict] = []
+        for p in self._peers:
+            try:
+                first = _parse_iso8601_utc(p.first_seen)
+            except Exception:
+                continue
+            age = (now - first).total_seconds()
+            if age >= MIN_UPTIME_FOR_PROPAGATION_SECONDS:
+                eligible.append(p.to_wellknown_entry())
+        return eligible
 
 
 MAX_ASN_SHARE = 0.30
