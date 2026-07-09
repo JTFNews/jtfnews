@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-07-09T08:56:15.912591+00:00",
+  "timestamp": "2026-07-09T09:01:05.126561+00:00",
+  "web_refresh_at": "2026-07-09T09:01:05.126561+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 392790,
+  "uptime_seconds": 393079,
   "availability_pct": 99.4,
   "cycle": {
-    "number": 219,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 220,
+    "duration_seconds": 58.4,
+    "headlines_scraped": 184,
+    "headlines_processed": 9,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 393,
-        "cost_usd": 0.15023500000000006,
+        "calls": 403,
+        "cost_usd": 0.15486025000000006,
         "details": {
-          "input_tokens": 373495,
-          "output_tokens": 45489
+          "input_tokens": 383931,
+          "output_tokens": 47102
         }
       }
     },
-    "total_usd": 0.1731,
+    "total_usd": 0.1778,
     "month_estimate_usd": 8.86,
     "daily_budget": 1.61,
-    "budget_pct": 10.7
+    "budget_pct": 11.0
   },
   "queue": {
-    "size": 73,
-    "oldest_item_age_hours": 24.4
+    "size": 71,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 5,
   "sources": {
@@ -48,12 +49,12 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-07-09T08:00:36.765649+00:00",
+      "timestamp": "2026-07-09T08:30:34.964930+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
     },
     {
-      "timestamp": "2026-07-09T08:30:34.964930+00:00",
+      "timestamp": "2026-07-09T09:00:35.533651+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
     }
@@ -61,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -80,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-08/2026-07-08-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-08/2026-07-08-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
