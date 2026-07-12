@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-07-12T07:57:43.566889+00:00",
+  "timestamp": "2026-07-12T08:01:12.714261+00:00",
+  "web_refresh_at": "2026-07-12T08:01:12.714261+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 648477,
+  "uptime_seconds": 648687,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 361,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 362,
+    "duration_seconds": 64.7,
+    "headlines_scraped": 184,
+    "headlines_processed": 10,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 10,
-        "cost_usd": 0.024990000000000002,
+        "calls": 11,
+        "cost_usd": 0.027090000000000003,
         "details": {
-          "characters": 833
+          "characters": 903
         }
       },
       "claude": {
-        "calls": 355,
-        "cost_usd": 0.12817,
+        "calls": 373,
+        "cost_usd": 0.13339374999999998,
         "details": {
-          "input_tokens": 315620,
-          "output_tokens": 39412
+          "input_tokens": 328670,
+          "output_tokens": 40981
         }
       }
     },
-    "total_usd": 0.1532,
+    "total_usd": 0.1605,
     "month_estimate_usd": 8.86,
     "daily_budget": 1.61,
-    "budget_pct": 9.5
+    "budget_pct": 9.9
   },
   "queue": {
-    "size": 43,
+    "size": 44,
     "oldest_item_age_hours": 23.5
   },
-  "stories_today": 8,
+  "stories_today": 9,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -61,12 +62,17 @@
       "timestamp": "2026-07-12T07:31:51.177485+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
+    },
+    {
+      "timestamp": "2026-07-12T08:00:36.033826+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 2,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -85,5 +91,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-11/2026-07-11-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-11/2026-07-11-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
