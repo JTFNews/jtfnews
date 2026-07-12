@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-07-12T05:26:01.279872+00:00",
+  "timestamp": "2026-07-12T05:31:07.691825+00:00",
+  "web_refresh_at": "2026-07-12T05:31:07.691825+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 639375,
+  "uptime_seconds": 639682,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 356,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 357,
+    "duration_seconds": 52.5,
+    "headlines_scraped": 184,
+    "headlines_processed": 8,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 323,
-        "cost_usd": 0.11559849999999995,
+        "calls": 331,
+        "cost_usd": 0.11956599999999994,
         "details": {
-          "input_tokens": 285679,
-          "output_tokens": 35343
+          "input_tokens": 294829,
+          "output_tokens": 36687
         }
       }
     },
-    "total_usd": 0.1389,
+    "total_usd": 0.1428,
     "month_estimate_usd": 8.86,
     "daily_budget": 1.61,
-    "budget_pct": 8.6
+    "budget_pct": 8.9
   },
   "queue": {
-    "size": 48,
-    "oldest_item_age_hours": 24.4
+    "size": 45,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 7,
   "sources": {
@@ -48,11 +49,6 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-07-12T04:30:38.283631+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
-    },
-    {
       "timestamp": "2026-07-12T05:00:41.045873+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
@@ -61,12 +57,17 @@
       "timestamp": "2026-07-12T05:05:56.839638+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 422"
+    },
+    {
+      "timestamp": "2026-07-12T05:30:44.175874+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -85,5 +86,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-11/2026-07-11-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-11/2026-07-11-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
