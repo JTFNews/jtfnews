@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-07-13T00:29:26.180629+00:00",
-  "web_refresh_at": "2026-07-13T00:29:26.180629+00:00",
+  "timestamp": "2026-07-13T00:30:37.147226+00:00",
+  "web_refresh_at": "2026-07-13T00:30:37.147226+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 707980,
+  "uptime_seconds": 708051,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 394,
-    "duration_seconds": 534.0,
+    "number": 395,
+    "duration_seconds": 37.1,
     "headlines_scraped": 184,
-    "headlines_processed": 184,
-    "stories_published": 4,
-    "stories_queued": 27
+    "headlines_processed": 2,
+    "stories_published": 0,
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -29,18 +29,18 @@
         }
       },
       "claude": {
-        "calls": 235,
-        "cost_usd": 0.08841425000000006,
+        "calls": 237,
+        "cost_usd": 0.08944000000000005,
         "details": {
-          "input_tokens": 219997,
-          "output_tokens": 26732
+          "input_tokens": 222280,
+          "output_tokens": 27096
         }
       }
     },
-    "total_usd": 0.1133,
+    "total_usd": 0.1144,
     "month_estimate_usd": 8.86,
     "daily_budget": 1.61,
-    "budget_pct": 7.0
+    "budget_pct": 7.1
   },
   "queue": {
     "size": 47,
@@ -79,12 +79,17 @@
       "timestamp": "2026-07-13T00:21:01.986143+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
+    },
+    {
+      "timestamp": "2026-07-13T00:30:29.299593+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
     }
   ],
   "status": {
     "state": "running",
-    "stream_health": "offline",
-    "next_cycle_minutes": 0,
+    "stream_health": "online",
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
