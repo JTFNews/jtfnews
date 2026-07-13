@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-07-13T09:46:42.627886+00:00",
+  "timestamp": "2026-07-13T09:56:46.898517+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 741416,
+  "uptime_seconds": 742021,
   "availability_pct": 99.6,
   "cycle": {
     "number": 413,
@@ -43,7 +43,7 @@
   },
   "queue": {
     "size": 50,
-    "oldest_item_age_hours": 23.3
+    "oldest_item_age_hours": 23.4
   },
   "stories_today": 5,
   "sources": {
@@ -63,12 +63,17 @@
       "timestamp": "2026-07-13T09:30:52.113428+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
+    },
+    {
+      "timestamp": "2026-07-13T09:51:46.891820+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 422"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 13,
+    "next_cycle_minutes": 3,
     "degraded_services": []
   },
   "daily_digest": {
