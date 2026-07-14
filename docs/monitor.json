@@ -1,51 +1,45 @@
 {
-  "timestamp": "2026-07-13T23:56:01.714610+00:00",
+  "timestamp": "2026-07-14T00:21:24.442177+00:00",
+  "web_refresh_at": "2026-07-14T00:21:24.442177+00:00",
   "uptime_start": "2026-07-04T19:49:46.180523+00:00",
-  "uptime_seconds": 792376,
+  "uptime_seconds": 793898,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 441,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 443,
+    "duration_seconds": 280.1,
+    "headlines_scraped": 183,
+    "headlines_processed": 107,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 13,
-        "cost_usd": 0.03366,
+        "calls": 5,
+        "cost_usd": 0.01692,
         "details": {
-          "characters": 1122
-        }
-      },
-      "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
-        "details": {
-          "sms_count": 1
+          "characters": 564
         }
       },
       "claude": {
-        "calls": 764,
-        "cost_usd": 0.2756644999999997,
+        "calls": 235,
+        "cost_usd": 0.08842724999999999,
         "details": {
-          "input_tokens": 687963,
-          "output_tokens": 82939
+          "input_tokens": 223289,
+          "output_tokens": 26084
         }
       }
     },
-    "total_usd": 0.3172,
+    "total_usd": 0.1053,
     "month_estimate_usd": 8.86,
     "daily_budget": 1.61,
-    "budget_pct": 19.7
+    "budget_pct": 6.5
   },
   "queue": {
-    "size": 73,
-    "oldest_item_age_hours": 23.6
+    "size": 76,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 11,
+  "stories_today": 3,
   "sources": {
     "total": 22,
     "successful": 21,
@@ -55,12 +49,47 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-07-13T23:00:34.459772+00:00",
+      "timestamp": "2026-07-13T23:30:35.244204+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
     },
     {
-      "timestamp": "2026-07-13T23:30:35.244204+00:00",
+      "timestamp": "2026-07-14T00:06:28.125753+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
+    },
+    {
+      "timestamp": "2026-07-14T00:11:50.830878+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-07-14T00:13:03.294662+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 2/4): Connection error.. Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-07-14T00:14:01.276523+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 3/4): Connection error.. Retrying in 4.0s..."
+    },
+    {
+      "timestamp": "2026-07-14T00:15:02.956591+00:00",
+      "level": "ERROR",
+      "message": "_call_claude_extract_fact failed after 4 attempts: Connection error."
+    },
+    {
+      "timestamp": "2026-07-14T00:15:02.956867+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Connection error."
+    },
+    {
+      "timestamp": "2026-07-14T00:15:44.310387+00:00",
+      "level": "ERROR",
+      "message": "Cycle watchdog fired (outer watchdog fired 584.1s into 'cycle' (budget was 600s)); aborting and restarting in 60s"
+    },
+    {
+      "timestamp": "2026-07-14T00:17:12.531933+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: 403 Client Error: Forbidden for url: https://www.cdc.gov/media/"
     }
@@ -68,24 +97,31 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 8,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-07-12",
-    "next_digest_at": "2026-07-14T00:00:00+00:00",
+    "last_date": "2026-07-13",
+    "next_digest_at": "2026-07-15T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-07-13T00:04:26.593170+00:00",
-    "story_count": 13,
-    "duration_seconds": 108,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-07-12-daily-digest.mp4",
-    "youtube_id": "ouSXNkZU7fc",
-    "youtube_url": "https://youtube.com/watch?v=ouSXNkZU7fc",
-    "archive_org_id": "jtf-news-2026-07-11",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-11/2026-07-11-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-07-11/2026-07-11-daily-digest.mp4",
+    "last_completed_at": "2026-07-14T00:04:13.702024+00:00",
+    "story_count": 11,
+    "duration_seconds": 98,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-07-13-daily-digest.mp4",
+    "youtube_id": "49pXw8chN4U",
+    "youtube_url": "https://youtube.com/watch?v=49pXw8chN4U",
+    "archive_org_id": "jtf-news-2026-07-13",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-13/2026-07-13-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-07-13/2026-07-13-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
