@@ -1227,10 +1227,12 @@ def fetch_html_headlines(source: dict) -> list:
         return []
 
     try:
-        # Use browser-like headers for sites with aggressive bot detection
-        # This is ethical as we verify robots.txt allows access first
+        # Identify honestly. CDC's WAF (Akamai) returns 403 for Mozilla-branded
+        # UAs but accepts an honest bot identifier; SCOTUS and whitehouse.gov
+        # behave identically with either UA. Honest identification also matches
+        # the JTF methodology — no pretending to be a browser we are not.
         headers = {
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "User-Agent": f"{USER_AGENT}-bot (+https://jtfnews.org)",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
             "Accept-Language": "en-US,en;q=0.5",
             "Accept-Encoding": "gzip, deflate",
