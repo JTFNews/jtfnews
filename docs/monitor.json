@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-07-16T05:56:27.617539+00:00",
+  "timestamp": "2026-07-16T06:01:09.867812+00:00",
+  "web_refresh_at": "2026-07-16T06:01:09.867812+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 140462,
+  "uptime_seconds": 140744,
   "availability_pct": 99.5,
   "cycle": {
-    "number": 78,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 79,
+    "duration_seconds": 63.6,
+    "headlines_scraped": 186,
+    "headlines_processed": 7,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -28,22 +29,22 @@
         }
       },
       "claude": {
-        "calls": 302,
-        "cost_usd": 0.12360425,
+        "calls": 308,
+        "cost_usd": 0.1263785,
         "details": {
-          "input_tokens": 300282,
-          "output_tokens": 38827
+          "input_tokens": 307129,
+          "output_tokens": 39677
         }
       }
     },
-    "total_usd": 0.1532,
+    "total_usd": 0.156,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 9.5
+    "budget_pct": 9.7
   },
   "queue": {
     "size": 72,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 2,
   "sources": {
@@ -66,12 +67,22 @@
       "timestamp": "2026-07-16T05:30:47.847309+00:00",
       "level": "WARNING",
       "message": "Alert sent: Contradiction: Argentina advanced to the World Cup final followin"
+    },
+    {
+      "timestamp": "2026-07-16T06:00:43.545821+00:00",
+      "level": "ERROR",
+      "message": "Claude batch matching error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Cd5E6zPAbK4DdQDKp3QPq'}"
+    },
+    {
+      "timestamp": "2026-07-16T06:00:58.392320+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Cd5E7zgZ7NMJPEJqQ7LSg'}"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -90,5 +101,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-14/2026-07-14-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-14/2026-07-14-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
