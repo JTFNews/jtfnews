@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-07-16T05:26:23.421676+00:00",
+  "timestamp": "2026-07-16T05:31:21.646269+00:00",
+  "web_refresh_at": "2026-07-16T05:31:21.646269+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 138658,
+  "uptime_seconds": 138956,
   "availability_pct": 99.5,
   "cycle": {
-    "number": 77,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 78,
+    "duration_seconds": 75.5,
+    "headlines_scraped": 186,
+    "headlines_processed": 14,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,29 +22,29 @@
         }
       },
       "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
+        "calls": 2,
+        "cost_usd": 0.0158,
         "details": {
-          "sms_count": 1
+          "sms_count": 2
         }
       },
       "claude": {
-        "calls": 286,
-        "cost_usd": 0.11652025000000002,
+        "calls": 302,
+        "cost_usd": 0.12360425,
         "details": {
-          "input_tokens": 283706,
-          "output_tokens": 36475
+          "input_tokens": 300282,
+          "output_tokens": 38827
         }
       }
     },
-    "total_usd": 0.1382,
+    "total_usd": 0.1532,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 8.6
+    "budget_pct": 9.5
   },
   "queue": {
-    "size": 73,
-    "oldest_item_age_hours": 24.4
+    "size": 72,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 2,
   "sources": {
@@ -51,11 +52,27 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-16T05:30:47.232603+00:00",
+      "level": "WARNING",
+      "message": "Contradiction detected: Argentina's World Cup final opponent was France, not England. Argentina defeated the Netherlands in the semifinals to reach the 2022 World Cup final."
+    },
+    {
+      "timestamp": "2026-07-16T05:30:47.232737+00:00",
+      "level": "WARNING",
+      "message": "Contradiction blocked: Argentina advanced to the World Cup fina..."
+    },
+    {
+      "timestamp": "2026-07-16T05:30:47.847309+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: Contradiction: Argentina advanced to the World Cup final followin"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +91,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-14/2026-07-14-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-14/2026-07-14-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
