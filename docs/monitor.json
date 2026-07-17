@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-07-17T20:01:12.766071+00:00",
-  "web_refresh_at": "2026-07-17T20:01:12.766071+00:00",
+  "timestamp": "2026-07-17T20:06:13.996450+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 277547,
+  "uptime_seconds": 277848,
   "availability_pct": 99.5,
   "cycle": {
     "number": 155,
-    "duration_seconds": 66.6,
-    "headlines_scraped": 187,
-    "headlines_processed": 14,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 62,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 13,
   "sources": {
@@ -45,52 +44,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-07-17T19:01:16.767885+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: Irish Times fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-07-17T19:01:32.850992+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from White House: HTTPSConnectionPool(host='www.whitehouse.gov', port=443): Read timed out. (read timeout=15)"
-    },
-    {
-      "timestamp": "2026-07-17T19:02:03.860012+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: Congress.gov fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-07-17T19:02:34.864146+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: Federal Register fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-07-17T19:02:51.021916+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Supreme Court: HTTPSConnectionPool(host='www.supremecourt.gov', port=443): Read timed out. (read timeout=15)"
-    },
-    {
-      "timestamp": "2026-07-17T19:03:22.037106+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: US State Department fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-07-17T19:03:53.042663+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: US Department of Defense fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-07-17T19:04:24.061831+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: UK Parliament fetch exceeded 30s; skipping"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -109,12 +67,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-16/2026-07-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-16/2026-07-16-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
