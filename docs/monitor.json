@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-07-20T00:17:41.521557+00:00",
-  "web_refresh_at": "2026-07-20T00:17:41.521557+00:00",
+  "timestamp": "2026-07-20T00:27:49.947063+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 465736,
+  "uptime_seconds": 466344,
   "availability_pct": 99.6,
   "cycle": {
     "number": 260,
-    "duration_seconds": 62.6,
-    "headlines_scraped": 187,
-    "headlines_processed": 11,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 24,
-    "oldest_item_age_hours": 22.3
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 5,
   "sources": {
@@ -75,12 +74,17 @@
       "timestamp": "2026-07-20T00:15:38.875248+00:00",
       "level": "ERROR",
       "message": "Cycle watchdog fired (outer watchdog fired 586.5s into 'cycle' (budget was 600s)); aborting and restarting in 60s"
+    },
+    {
+      "timestamp": "2026-07-20T00:22:49.947126+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 503"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 12,
+    "next_cycle_minutes": 2,
     "degraded_services": []
   },
   "daily_digest": {
@@ -99,12 +103,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-19/2026-07-19-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-19/2026-07-19-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
