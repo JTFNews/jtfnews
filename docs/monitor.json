@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-07-20T00:56:08.261277+00:00",
+  "timestamp": "2026-07-20T01:21:45.705041+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 468042,
+  "uptime_seconds": 469580,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 261,
+    "number": 262,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -14,67 +14,37 @@
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 8,
-        "cost_usd": 0.02556,
+        "calls": 9,
+        "cost_usd": 0.02835,
         "details": {
-          "characters": 852
+          "characters": 945
         }
       },
       "claude": {
-        "calls": 263,
-        "cost_usd": 0.09134575000000003,
+        "calls": 275,
+        "cost_usd": 0.09564425000000003,
         "details": {
-          "input_tokens": 230743,
-          "output_tokens": 26928
+          "input_tokens": 240887,
+          "output_tokens": 28338
         }
       }
     },
-    "total_usd": 0.1169,
+    "total_usd": 0.124,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 7.2
+    "budget_pct": 7.7
   },
   "queue": {
-    "size": 25,
-    "oldest_item_age_hours": 22.9
+    "size": 24,
+    "oldest_item_age_hours": 23.4
   },
-  "stories_today": 5,
+  "stories_today": 6,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-07-20T00:07:42.371207+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/alexa.json: 503"
-    },
-    {
-      "timestamp": "2026-07-20T00:08:16.471077+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/alexa.json: 503"
-    },
-    {
-      "timestamp": "2026-07-20T00:09:04.702412+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/stories.json: 503"
-    },
-    {
-      "timestamp": "2026-07-20T00:10:44.543041+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 503"
-    },
-    {
-      "timestamp": "2026-07-20T00:11:26.321574+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/stories.json: 503"
-    },
-    {
-      "timestamp": "2026-07-20T00:15:38.875248+00:00",
-      "level": "ERROR",
-      "message": "Cycle watchdog fired (outer watchdog fired 586.5s into 'cycle' (budget was 600s)); aborting and restarting in 60s"
-    },
     {
       "timestamp": "2026-07-20T00:22:49.947126+00:00",
       "level": "WARNING",
@@ -94,12 +64,42 @@
       "timestamp": "2026-07-20T00:51:08.259515+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 503"
+    },
+    {
+      "timestamp": "2026-07-20T01:01:21.434893+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 503"
+    },
+    {
+      "timestamp": "2026-07-20T01:01:28.501464+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/alexa.json: 503"
+    },
+    {
+      "timestamp": "2026-07-20T01:01:38.024752+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 503"
+    },
+    {
+      "timestamp": "2026-07-20T01:06:40.619241+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 503"
+    },
+    {
+      "timestamp": "2026-07-20T01:11:43.090162+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 503"
+    },
+    {
+      "timestamp": "2026-07-20T01:16:45.703752+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 503"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 8,
     "degraded_services": []
   },
   "daily_digest": {
