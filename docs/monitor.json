@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-07-20T00:27:49.947063+00:00",
+  "timestamp": "2026-07-20T00:40:50.039022+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 466344,
+  "uptime_seconds": 467124,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 260,
+    "number": 261,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -21,22 +21,22 @@
         }
       },
       "claude": {
-        "calls": 258,
-        "cost_usd": 0.09047600000000003,
+        "calls": 263,
+        "cost_usd": 0.09134575000000003,
         "details": {
-          "input_tokens": 228004,
-          "output_tokens": 26780
+          "input_tokens": 230743,
+          "output_tokens": 26928
         }
       }
     },
-    "total_usd": 0.116,
+    "total_usd": 0.1169,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
     "budget_pct": 7.2
   },
   "queue": {
-    "size": 24,
-    "oldest_item_age_hours": 22.5
+    "size": 25,
+    "oldest_item_age_hours": 22.7
   },
   "stories_today": 5,
   "sources": {
@@ -79,12 +79,22 @@
       "timestamp": "2026-07-20T00:22:49.947126+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 503"
+    },
+    {
+      "timestamp": "2026-07-20T00:30:47.339700+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 503"
+    },
+    {
+      "timestamp": "2026-07-20T00:35:50.036359+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 503"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 2,
+    "next_cycle_minutes": 19,
     "degraded_services": []
   },
   "daily_digest": {
