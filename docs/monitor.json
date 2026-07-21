@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-07-21T19:56:44.670544+00:00",
+  "timestamp": "2026-07-21T20:05:50.599708+00:00",
+  "web_refresh_at": "2026-07-21T20:05:50.599708+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 622879,
+  "uptime_seconds": 623425,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 347,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 348,
+    "duration_seconds": 340.7,
+    "headlines_scraped": 103,
+    "headlines_processed": 3,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 745,
-        "cost_usd": 0.26269999999999993,
+        "calls": 749,
+        "cost_usd": 0.26427575000000003,
         "details": {
-          "input_tokens": 645500,
-          "output_tokens": 81060
+          "input_tokens": 649048,
+          "output_tokens": 81611
         }
       }
     },
-    "total_usd": 0.3169,
+    "total_usd": 0.3185,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 19.6
+    "budget_pct": 19.7
   },
   "queue": {
     "size": 75,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 13,
   "sources": {
@@ -44,11 +45,62 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-21T20:01:15.976787+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-21T20:01:46.990678+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: ABC News Australia fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-21T20:02:18.004384+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: PBS NewsHour fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-21T20:02:49.011066+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Irish Times fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-21T20:03:05.147855+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from White House: HTTPSConnectionPool(host='www.whitehouse.gov', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "timestamp": "2026-07-21T20:03:36.151883+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Congress.gov fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-21T20:04:07.167516+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Federal Register fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-21T20:04:23.292350+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Supreme Court: HTTPSConnectionPool(host='www.supremecourt.gov', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "timestamp": "2026-07-21T20:04:54.297097+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: US State Department fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-21T20:05:25.302115+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: US Department of Defense fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +119,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-20/2026-07-20-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-20/2026-07-20-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
