@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-07-25T11:55:52.536130+00:00",
+  "timestamp": "2026-07-25T12:00:47.584533+00:00",
+  "web_refresh_at": "2026-07-25T12:00:47.584533+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 939627,
+  "uptime_seconds": 939922,
   "availability_pct": 99.7,
   "cycle": {
-    "number": 523,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 524,
+    "duration_seconds": 41.2,
+    "headlines_scraped": 187,
+    "headlines_processed": 3,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,29 +22,29 @@
         }
       },
       "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
+        "calls": 2,
+        "cost_usd": 0.0158,
         "details": {
-          "sms_count": 1
+          "sms_count": 2
         }
       },
       "claude": {
-        "calls": 394,
-        "cost_usd": 0.14746075000000022,
+        "calls": 399,
+        "cost_usd": 0.1489772500000002,
         "details": {
-          "input_tokens": 367523,
-          "output_tokens": 44464
+          "input_tokens": 371444,
+          "output_tokens": 44893
         }
       }
     },
-    "total_usd": 0.1823,
+    "total_usd": 0.1917,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 11.3
+    "budget_pct": 11.9
   },
   "queue": {
-    "size": 48,
-    "oldest_item_age_hours": 24.4
+    "size": 47,
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 5,
   "sources": {
@@ -51,11 +52,27 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-25T12:00:44.202086+00:00",
+      "level": "WARNING",
+      "message": "Contradiction detected: SpaceX has not had an initial public offering (IPO). The company remains privately held as of the latest available information. Starship's first integrated flight test occurred in April 2023, but this was independent of any IPO, which has not happened."
+    },
+    {
+      "timestamp": "2026-07-25T12:00:44.202339+00:00",
+      "level": "WARNING",
+      "message": "Contradiction blocked: SpaceX's Starship completed its first te..."
+    },
+    {
+      "timestamp": "2026-07-25T12:00:44.550227+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: Contradiction: SpaceX's Starship completed its first test flight "
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +91,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-22/2026-07-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-22/2026-07-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
