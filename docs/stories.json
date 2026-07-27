@@ -30,7 +30,7 @@
     {
       "id": "2026-07-27-002",
       "hash": "6695a453a02c",
-      "fact": "Two people killed in shooting in Seattle.",
+      "fact": "At least three people were killed in a shooting in Seattle.",
       "source": "Deutsche Welle 5.5|9.5 \u00b7 CBC News 3.0|9.0",
       "source_urls": {
         "Deutsche Welle": "https://www.dw.com/en/top-stories/s-9097",
@@ -38,7 +38,17 @@
       },
       "audio": "../audio/archive/2026-07-27/baf73d746395.mp3",
       "published_at": "2026-07-27T06:00:56.056882+00:00",
-      "status": "published"
+      "status": "corrected",
+      "original_fact": "Two people killed in shooting in Seattle",
+      "correction": {
+        "corrected_at": "2026-07-27T09:01:34.937293+00:00",
+        "type": "correction",
+        "reason": "The new verified fact states at least three people were killed in a shooting in Seattle, directly contradicting the previous report of two people killed. This is a factual discrepancy in the death toll.",
+        "correcting_sources": [
+          "CBC News",
+          "Deutsche Welle"
+        ]
+      }
     },
     {
       "id": "2026-07-27-003",
@@ -77,6 +87,19 @@
       },
       "audio": "../audio/archive/2026-07-27/660d88f7ecdf.mp3",
       "published_at": "2026-07-27T09:01:29.425103+00:00",
+      "status": "published"
+    },
+    {
+      "id": "2026-07-27-006",
+      "hash": "54962e95a6b0",
+      "fact": "A wildfire in France forced 220,000 people to evacuate and has stopped growing.",
+      "source": "PBS NewsHour 5.3|9.0 \u00b7 France 24 4.6|9.0",
+      "source_urls": {
+        "PBS NewsHour": "https://www.pbs.org/newshour/world",
+        "France 24": "https://www.france24.com/en/"
+      },
+      "audio": "../audio/archive/2026-07-27/8963780ea317.mp3",
+      "published_at": "2026-07-27T15:30:51.410916+00:00",
       "status": "published"
     }
   ]
