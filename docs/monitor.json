@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-07-28T17:56:17.170197+00:00",
+  "timestamp": "2026-07-28T18:01:07.006292+00:00",
+  "web_refresh_at": "2026-07-28T18:01:07.006292+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 1220451,
+  "uptime_seconds": 1220741,
   "availability_pct": 99.7,
   "cycle": {
-    "number": 679,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 680,
+    "duration_seconds": 59.9,
+    "headlines_scraped": 186,
+    "headlines_processed": 10,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
@@ -21,11 +22,11 @@
         }
       },
       "claude": {
-        "calls": 664,
-        "cost_usd": 0.24129299999999998,
+        "calls": 682,
+        "cost_usd": 0.2463135,
         "details": {
-          "input_tokens": 594607,
-          "output_tokens": 74113
+          "input_tokens": 607919,
+          "output_tokens": 75467
         }
       },
       "twilio": {
@@ -36,14 +37,14 @@
         }
       }
     },
-    "total_usd": 0.3067,
+    "total_usd": 0.3118,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 19.0
+    "budget_pct": 19.3
   },
   "queue": {
-    "size": 65,
-    "oldest_item_age_hours": 24.4
+    "size": 67,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 13,
   "sources": {
@@ -51,62 +52,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-07-28T17:01:02.061857+00:00",
-      "level": "WARNING",
-      "message": "Alert sent: CORRECTION issued for 2026-07-28-008: The new verified fact states 'a tsunami advisory w"
-    },
-    {
-      "timestamp": "2026-07-28T17:01:06.495197+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-27 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-28T17:01:06.495390+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-26 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-28T17:01:06.495521+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-25 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-28T17:01:06.495642+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-24 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-28T17:01:06.495759+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-23 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-28T17:01:06.495874+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-22 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-28T17:01:06.495987+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-21 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-28T17:01:06.496102+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-07-20 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-07-28T17:01:06.496589+00:00",
-      "level": "WARNING",
-      "message": "propagate_correction_to_youtube: no YouTube video for 2026-07-28, skipping"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -125,5 +75,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
