@@ -1,61 +1,113 @@
 {
-  "timestamp": "2026-07-29T11:56:16.767957+00:00",
+  "timestamp": "2026-07-29T12:01:36.698127+00:00",
+  "web_refresh_at": "2026-07-29T12:01:36.698127+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 1285251,
+  "uptime_seconds": 1285571,
   "availability_pct": 99.7,
   "cycle": {
-    "number": 715,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 716,
+    "duration_seconds": 87.6,
+    "headlines_scraped": 186,
+    "headlines_processed": 7,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 11,
-        "cost_usd": 0.030449999999999994,
+        "calls": 13,
+        "cost_usd": 0.040679999999999994,
         "details": {
-          "characters": 1015
+          "characters": 1356
         }
       },
       "twilio": {
-        "calls": 1,
-        "cost_usd": 0.0079,
+        "calls": 2,
+        "cost_usd": 0.0158,
         "details": {
-          "sms_count": 1
+          "sms_count": 2
         }
       },
       "claude": {
-        "calls": 476,
-        "cost_usd": 0.18520224999999993,
+        "calls": 489,
+        "cost_usd": 0.18931724999999988,
         "details": {
-          "input_tokens": 453929,
-          "output_tokens": 57376
+          "input_tokens": 463494,
+          "output_tokens": 58755
         }
       }
     },
-    "total_usd": 0.2236,
+    "total_usd": 0.2458,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 13.9
+    "budget_pct": 15.2
   },
   "queue": {
-    "size": 71,
-    "oldest_item_age_hours": 22.9
+    "size": 72,
+    "oldest_item_age_hours": 23.0
   },
-  "stories_today": 9,
+  "stories_today": 10,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-29T12:01:03.297668+00:00",
+      "level": "WARNING",
+      "message": "Alert sent: CORRECTION issued for 2026-07-29-002: The new verified fact confirms 13 deaths from the "
+    },
+    {
+      "timestamp": "2026-07-29T12:01:07.513727+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-28 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-29T12:01:07.513896+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-27 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-29T12:01:07.514056+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-26 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-29T12:01:07.514199+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-25 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-29T12:01:07.514342+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-24 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-29T12:01:07.514486+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-23 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-29T12:01:07.514629+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-22 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-29T12:01:07.514772+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-07-21 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-07-29T12:01:07.515180+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-07-29, skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +126,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
