@@ -1,23 +1,24 @@
 {
-  "timestamp": "2026-07-29T22:56:31.756527+00:00",
+  "timestamp": "2026-07-29T23:01:55.470184+00:00",
+  "web_refresh_at": "2026-07-29T23:01:55.470184+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 1324866,
+  "uptime_seconds": 1325190,
   "availability_pct": 99.7,
   "cycle": {
-    "number": 737,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 738,
+    "duration_seconds": 104.7,
+    "headlines_scraped": 187,
+    "headlines_processed": 13,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 19,
-        "cost_usd": 0.057569999999999996,
+        "calls": 21,
+        "cost_usd": 0.06765,
         "details": {
-          "characters": 1919
+          "characters": 2255
         }
       },
       "twilio": {
@@ -28,40 +29,34 @@
         }
       },
       "claude": {
-        "calls": 762,
-        "cost_usd": 0.29536299999999993,
+        "calls": 784,
+        "cost_usd": 0.30228849999999985,
         "details": {
-          "input_tokens": 719462,
-          "output_tokens": 92398
+          "input_tokens": 736454,
+          "output_tokens": 94540
         }
       }
     },
-    "total_usd": 0.3687,
+    "total_usd": 0.3857,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 22.9
+    "budget_pct": 23.9
   },
   "queue": {
-    "size": 69,
-    "oldest_item_age_hours": 23.9
+    "size": 70,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 15,
+  "stories_today": 16,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-07-29T21:58:10.357519+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -80,5 +75,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
