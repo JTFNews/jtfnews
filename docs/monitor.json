@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-07-30T18:51:32.309793+00:00",
+  "timestamp": "2026-07-30T18:56:34.705073+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 1396567,
+  "uptime_seconds": 1396869,
   "availability_pct": 99.7,
   "cycle": {
     "number": 776,
@@ -53,11 +53,6 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-07-30T17:55:45.352007+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
       "timestamp": "2026-07-30T18:00:34.697324+00:00",
       "level": "WARNING",
       "message": "GitHub feedback fetch error: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/data/feedback (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
@@ -76,7 +71,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 8,
+    "next_cycle_minutes": 3,
     "degraded_services": []
   },
   "daily_digest": {
