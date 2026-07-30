@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-07-30T18:26:22.214024+00:00",
+  "timestamp": "2026-07-30T18:31:23.198779+00:00",
+  "web_refresh_at": "2026-07-30T18:31:23.198779+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 1395056,
+  "uptime_seconds": 1395357,
   "availability_pct": 99.7,
   "cycle": {
-    "number": 775,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 776,
+    "duration_seconds": 72.5,
+    "headlines_scraped": 187,
+    "headlines_processed": 10,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
@@ -28,22 +29,22 @@
         }
       },
       "claude": {
-        "calls": 646,
-        "cost_usd": 0.2454712500000001,
+        "calls": 660,
+        "cost_usd": 0.25042900000000007,
         "details": {
-          "input_tokens": 604325,
-          "output_tokens": 75512
+          "input_tokens": 616506,
+          "output_tokens": 77042
         }
       }
     },
-    "total_usd": 0.3073,
+    "total_usd": 0.3122,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 19.1
+    "budget_pct": 19.4
   },
   "queue": {
-    "size": 69,
-    "oldest_item_age_hours": 23.9
+    "size": 72,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 11,
   "sources": {
@@ -52,16 +53,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-07-30T17:30:31.498252+00:00",
-      "level": "WARNING",
-      "message": "GitHub feedback fetch error: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/data/feedback (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
-    {
-      "timestamp": "2026-07-30T17:30:45.115684+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
     {
       "timestamp": "2026-07-30T17:35:45.156957+00:00",
       "level": "WARNING",
@@ -106,7 +97,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -125,5 +116,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
