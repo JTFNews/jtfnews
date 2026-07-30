@@ -1,23 +1,24 @@
 {
-  "timestamp": "2026-07-30T16:26:49.672498+00:00",
+  "timestamp": "2026-07-30T16:32:04.892509+00:00",
+  "web_refresh_at": "2026-07-30T16:32:04.892509+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 1387884,
+  "uptime_seconds": 1388199,
   "availability_pct": 99.7,
   "cycle": {
-    "number": 771,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 772,
+    "duration_seconds": 114.0,
+    "headlines_scraped": 137,
+    "headlines_processed": 3,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 14,
-        "cost_usd": 0.044340000000000004,
+        "calls": 15,
+        "cost_usd": 0.046020000000000005,
         "details": {
-          "characters": 1478
+          "characters": 1534
         }
       },
       "twilio": {
@@ -28,34 +29,60 @@
         }
       },
       "claude": {
-        "calls": 614,
-        "cost_usd": 0.23357300000000009,
+        "calls": 620,
+        "cost_usd": 0.2353242500000001,
         "details": {
-          "input_tokens": 573957,
-          "output_tokens": 72067
+          "input_tokens": 578327,
+          "output_tokens": 72594
         }
       }
     },
-    "total_usd": 0.2937,
+    "total_usd": 0.2971,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 18.2
+    "budget_pct": 18.4
   },
   "queue": {
-    "size": 71,
-    "oldest_item_age_hours": 24.4
+    "size": 69,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 10,
+  "stories_today": 11,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-07-30T16:31:02.031193+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: UK Parliament fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-07-30T16:31:03.147279+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from European Commission: HTTPSConnectionPool(host='ec.europa.eu', port=443): Max retries exceeded with url: /commission/presscorner/home/en (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-07-30T16:31:04.275348+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from UN News: HTTPSConnectionPool(host='news.un.org', port=443): Max retries exceeded with url: /en/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-07-30T16:31:05.402295+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Max retries exceeded with url: /en/news.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
+    },
+    {
+      "timestamp": "2026-07-30T16:31:36.414671+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: World Health Organization fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 27,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,5 +101,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-27/2026-07-27-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
