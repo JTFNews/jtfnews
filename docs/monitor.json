@@ -1,105 +1,55 @@
 {
-  "timestamp": "2026-08-01T22:25:55.504409+00:00",
+  "timestamp": "2026-08-01T22:31:12.490597+00:00",
+  "web_refresh_at": "2026-08-01T22:31:12.490597+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 1582230,
+  "uptime_seconds": 1582547,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 879,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 880,
+    "duration_seconds": 67.1,
+    "headlines_scraped": 187,
+    "headlines_processed": 10,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 12,
-        "cost_usd": 0.03321,
+        "calls": 14,
+        "cost_usd": 0.037860000000000005,
         "details": {
-          "characters": 1107
+          "characters": 1262
         }
       },
       "claude": {
-        "calls": 595,
-        "cost_usd": 0.22835950000000002,
+        "calls": 613,
+        "cost_usd": 0.23339350000000003,
         "details": {
-          "input_tokens": 566953,
-          "output_tokens": 69297
+          "input_tokens": 580224,
+          "output_tokens": 70670
         }
       }
     },
-    "total_usd": 0.2616,
+    "total_usd": 0.2713,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 16.2
+    "budget_pct": 16.8
   },
   "queue": {
-    "size": 43,
-    "oldest_item_age_hours": 24.4
+    "size": 42,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 10,
+  "stories_today": 11,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-08-01T21:30:29.136575+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Federal Register: HTTPSConnectionPool(host='www.federalregister.gov', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.federalregister.gov', port=443): Failed to resolve 'www.federalregister.gov' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    },
-    {
-      "timestamp": "2026-08-01T21:30:30.164671+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Supreme Court: HTTPSConnectionPool(host='www.supremecourt.gov', port=443): Max retries exceeded with url: /opinions/slipopinion/25 (Caused by NameResolutionError(\"HTTPSConnection(host='www.supremecourt.gov', port=443): Failed to resolve 'www.supremecourt.gov' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    },
-    {
-      "timestamp": "2026-08-01T21:30:31.187398+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from US State Department: HTTPSConnectionPool(host='www.state.gov', port=443): Max retries exceeded with url: /press-releases/ (Caused by NameResolutionError(\"HTTPSConnection(host='www.state.gov', port=443): Failed to resolve 'www.state.gov' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    },
-    {
-      "timestamp": "2026-08-01T21:30:32.218535+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from US Department of Defense: HTTPSConnectionPool(host='www.defense.gov', port=443): Max retries exceeded with url: /News/ (Caused by NameResolutionError(\"HTTPSConnection(host='www.defense.gov', port=443): Failed to resolve 'www.defense.gov' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    },
-    {
-      "timestamp": "2026-08-01T21:30:33.240979+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from UK Parliament: HTTPSConnectionPool(host='www.parliament.uk', port=443): Max retries exceeded with url: /business/news/ (Caused by NameResolutionError(\"HTTPSConnection(host='www.parliament.uk', port=443): Failed to resolve 'www.parliament.uk' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    },
-    {
-      "timestamp": "2026-08-01T21:30:34.264364+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from European Commission: HTTPSConnectionPool(host='ec.europa.eu', port=443): Max retries exceeded with url: /commission/presscorner/home/en (Caused by NameResolutionError(\"HTTPSConnection(host='ec.europa.eu', port=443): Failed to resolve 'ec.europa.eu' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    },
-    {
-      "timestamp": "2026-08-01T21:30:35.286258+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from UN News: HTTPSConnectionPool(host='news.un.org', port=443): Max retries exceeded with url: /en/ (Caused by NameResolutionError(\"HTTPSConnection(host='news.un.org', port=443): Failed to resolve 'news.un.org' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    },
-    {
-      "timestamp": "2026-08-01T21:30:36.312978+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Government of Canada: HTTPSConnectionPool(host='www.canada.ca', port=443): Max retries exceeded with url: /en/news.html (Caused by NameResolutionError(\"HTTPSConnection(host='www.canada.ca', port=443): Failed to resolve 'www.canada.ca' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    },
-    {
-      "timestamp": "2026-08-01T21:30:37.337830+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from World Health Organization: HTTPSConnectionPool(host='www.who.int', port=443): Max retries exceeded with url: /news-room/releases (Caused by NameResolutionError(\"HTTPSConnection(host='www.who.int', port=443): Failed to resolve 'www.who.int' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    },
-    {
-      "timestamp": "2026-08-01T21:30:38.360084+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from CDC Newsroom: HTTPSConnectionPool(host='www.cdc.gov', port=443): Max retries exceeded with url: /media/ (Caused by NameResolutionError(\"HTTPSConnection(host='www.cdc.gov', port=443): Failed to resolve 'www.cdc.gov' ([Errno 8] nodename nor servname provided, or not known)\"))"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -118,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-07-31/2026-07-31-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-07-31/2026-07-31-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
