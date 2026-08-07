@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-08-07T06:56:30.328135+00:00",
+  "timestamp": "2026-08-07T07:01:00.253683+00:00",
+  "web_refresh_at": "2026-08-07T07:01:00.253683+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 2044865,
+  "uptime_seconds": 2045134,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1136,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1137,
+    "duration_seconds": 54.6,
+    "headlines_scraped": 176,
+    "headlines_processed": 3,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 325,
-        "cost_usd": 0.1347097499999999,
+        "calls": 328,
+        "cost_usd": 0.13614949999999992,
         "details": {
-          "input_tokens": 325804,
-          "output_tokens": 42607
+          "input_tokens": 329223,
+          "output_tokens": 43075
         }
       }
     },
-    "total_usd": 0.155,
+    "total_usd": 0.1565,
     "month_estimate_usd": 8.77,
     "daily_budget": 1.61,
-    "budget_pct": 9.6
+    "budget_pct": 9.7
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 24.4
+    "size": 53,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 3,
   "sources": {
@@ -46,20 +47,20 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-08-07T06:00:42.196038+00:00",
+      "timestamp": "2026-08-07T06:30:42.196681+00:00",
       "level": "WARNING",
       "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-08-07T06:30:42.196681+00:00",
+      "timestamp": "2026-08-07T07:00:27.623185+00:00",
       "level": "WARNING",
-      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+      "message": "Failed to fetch from CBC News: HTTPSConnectionPool(host='www.cbc.ca', port=443): Read timed out. (read timeout=15)"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -78,5 +79,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-06/2026-08-06-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-06/2026-08-06-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
