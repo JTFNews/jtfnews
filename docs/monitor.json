@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-08-13T09:05:54.489157+00:00",
+  "timestamp": "2026-08-13T09:17:11.380834+00:00",
   "uptime_start": "2026-07-14T14:55:25.806257+00:00",
-  "uptime_seconds": 2571029,
+  "uptime_seconds": 2571706,
   "availability_pct": 100.0,
   "cycle": {
     "number": 1429,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 62,
-    "oldest_item_age_hours": 23.6
+    "oldest_item_age_hours": 23.8
   },
   "stories_today": 3,
   "sources": {
@@ -44,11 +44,17 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-08-13T09:12:11.379305+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by NewConnectionError(\"HTTPSConnection(host='api.github.com', port=443): Failed to establish a new connection: [Errno 60] Operation timed out\"))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 24,
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
