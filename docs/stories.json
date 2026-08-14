@@ -56,7 +56,7 @@
     {
       "id": "2026-08-14-004",
       "hash": "e1aa1a24f55c",
-      "fact": "Heavy rains in Japan resulted in four deaths.",
+      "fact": "Rains in Japan resulted in six deaths.",
       "source": "BBC News 5.7|9.0 \u00b7 Deutsche Welle 5.5|9.5",
       "source_urls": {
         "BBC News": "https://www.bbc.com/news/world",
@@ -64,7 +64,17 @@
       },
       "audio": "../audio/archive/2026-08-14/2db7608a165c.mp3",
       "published_at": "2026-08-14T06:00:50.525889+00:00",
-      "status": "published"
+      "status": "corrected",
+      "original_fact": "Heavy rains in Japan resulted in four deaths.",
+      "correction": {
+        "corrected_at": "2026-08-14T12:01:01.281128+00:00",
+        "type": "correction",
+        "reason": "The previously published story reported four deaths from rains in Japan, but the new verified fact (confirmed by France 24 and BBC News) establishes that the death toll was six. This is a direct numerical contradiction of a key factual claim.",
+        "correcting_sources": [
+          "France 24",
+          "BBC News"
+        ]
+      }
     },
     {
       "id": "2026-08-14-005",
@@ -129,6 +139,19 @@
       },
       "audio": "../audio/archive/2026-08-14/5b77b7937ded.mp3",
       "published_at": "2026-08-14T12:00:52.557247+00:00",
+      "status": "published"
+    },
+    {
+      "id": "2026-08-14-010",
+      "hash": "d2d3a0ee0470",
+      "fact": "NATO jets shot down a drone over Latvia.",
+      "source": "Deutsche Welle 5.5|9.5 \u00b7 France 24 4.7|9.0",
+      "source_urls": {
+        "Deutsche Welle": "https://www.dw.com/en/top-stories/s-9097",
+        "France 24": "https://www.france24.com/en/"
+      },
+      "audio": "../audio/archive/2026-08-14/5d2529925b76.mp3",
+      "published_at": "2026-08-14T12:30:49.968793+00:00",
       "status": "published"
     }
   ]
