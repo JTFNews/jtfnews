@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-08-16T17:20:45.544210+00:00",
+  "timestamp": "2026-08-16T17:31:33.246645+00:00",
+  "web_refresh_at": "2026-08-16T17:31:33.246645+00:00",
   "uptime_start": "2026-08-13T17:13:30.800788+00:00",
-  "uptime_seconds": 259635,
+  "uptime_seconds": 260282,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 145,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 146,
+    "duration_seconds": 36.5,
+    "headlines_scraped": 187,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 458,
-        "cost_usd": 0.17222650000000003,
+        "calls": 462,
+        "cost_usd": 0.17321125000000004,
         "details": {
-          "input_tokens": 429696,
-          "output_tokens": 51842
+          "input_tokens": 432250,
+          "output_tokens": 52119
         }
       }
     },
-    "total_usd": 0.2216,
+    "total_usd": 0.2226,
     "month_estimate_usd": 8.79,
     "daily_budget": 1.61,
-    "budget_pct": 13.7
+    "budget_pct": 13.8
   },
   "queue": {
     "size": 45,
-    "oldest_item_age_hours": 22.8
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 11,
   "sources": {
@@ -44,11 +45,17 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-08-16T17:26:38.737397+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 9,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-15/2026-08-15-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-15/2026-08-15-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
