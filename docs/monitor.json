@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-08-16T01:00:43.158985+00:00",
-  "web_refresh_at": "2026-08-16T01:00:43.158985+00:00",
+  "timestamp": "2026-08-16T01:05:44.479020+00:00",
   "uptime_start": "2026-08-13T17:13:30.800788+00:00",
-  "uptime_seconds": 200832,
+  "uptime_seconds": 201134,
   "availability_pct": 99.9,
   "cycle": {
     "number": 113,
-    "duration_seconds": 36.9,
-    "headlines_scraped": 187,
-    "headlines_processed": 1,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 38,
-    "oldest_item_age_hours": 21.0
+    "oldest_item_age_hours": 21.1
   },
   "stories_today": 5,
   "sources": {
@@ -47,16 +46,6 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-08-16T00:05:25.407646+00:00",
-      "level": "WARNING",
-      "message": "upload_to_archive_org failed (attempt 1/4):  error uploading 2026-08-15-daily-digest.mp3 to jtf-news-2026-08-15, Please reduce your request rate. - total_tasks_queued exceeds global_limit. Retrying in 2.0s..."
-    },
-    {
-      "timestamp": "2026-08-16T00:05:36.096002+00:00",
-      "level": "WARNING",
-      "message": "upload_to_archive_org failed (attempt 2/4):  error uploading 2026-08-15-daily-digest.mp3 to jtf-news-2026-08-15, Please reduce your request rate. - total_tasks_queued exceeds global_limit. Retrying in 4.0s..."
-    },
-    {
       "timestamp": "2026-08-16T00:06:33.973967+00:00",
       "level": "WARNING",
       "message": "upload_to_archive_org failed (attempt 3/4):  error uploading 2026-08-15-daily-digest.mp4 to jtf-news-2026-08-15, Please reduce your request rate. - total_tasks_queued exceeds global_limit. Retrying in 8.0s..."
@@ -65,7 +54,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
@@ -84,12 +73,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-15/2026-08-15-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-15/2026-08-15-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
