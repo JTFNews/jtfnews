@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-08-18T17:56:00.460517+00:00",
+  "timestamp": "2026-08-18T18:00:52.987599+00:00",
+  "web_refresh_at": "2026-08-18T18:00:52.987599+00:00",
   "uptime_start": "2026-08-13T17:13:30.800788+00:00",
-  "uptime_seconds": 434550,
+  "uptime_seconds": 434842,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 242,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 243,
+    "duration_seconds": 46.9,
+    "headlines_scraped": 176,
+    "headlines_processed": 5,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,45 +22,42 @@
         }
       },
       "claude": {
-        "calls": 565,
-        "cost_usd": 0.22182999999999964,
+        "calls": 570,
+        "cost_usd": 0.22448499999999966,
         "details": {
-          "input_tokens": 546800,
-          "output_tokens": 68104
+          "input_tokens": 552515,
+          "output_tokens": 69085
         }
       }
     },
-    "total_usd": 0.254,
+    "total_usd": 0.2567,
     "month_estimate_usd": 8.79,
     "daily_budget": 1.61,
-    "budget_pct": 15.8
+    "budget_pct": 15.9
   },
   "queue": {
-    "size": 58,
-    "oldest_item_age_hours": 24.4
+    "size": 57,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 8,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 21,
+    "failed": [
+      "Federal Register"
+    ]
   },
   "recent_errors": [
     {
-      "timestamp": "2026-08-18T17:00:13.265758+00:00",
+      "timestamp": "2026-08-18T18:00:20.451066+00:00",
       "level": "WARNING",
-      "message": "robots.txt blocks: https://www.france24.com/en/"
-    },
-    {
-      "timestamp": "2026-08-18T17:00:33.217834+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.parliament.uk/business/news/"
+      "message": "Failed to fetch from Federal Register: 'NoneType' object has no attribute 'replace'"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -78,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-17/2026-08-17-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-17/2026-08-17-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
