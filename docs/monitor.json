@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-08-18T17:26:19.387700+00:00",
+  "timestamp": "2026-08-18T17:30:54.486239+00:00",
+  "web_refresh_at": "2026-08-18T17:30:54.486239+00:00",
   "uptime_start": "2026-08-13T17:13:30.800788+00:00",
-  "uptime_seconds": 432769,
+  "uptime_seconds": 433044,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 241,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 242,
+    "duration_seconds": 47.6,
+    "headlines_scraped": 186,
+    "headlines_processed": 6,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,31 +22,28 @@
         }
       },
       "claude": {
-        "calls": 557,
-        "cost_usd": 0.21896949999999965,
+        "calls": 565,
+        "cost_usd": 0.22182999999999964,
         "details": {
-          "input_tokens": 539423,
-          "output_tokens": 67291
+          "input_tokens": 546800,
+          "output_tokens": 68104
         }
       }
     },
-    "total_usd": 0.2512,
+    "total_usd": 0.254,
     "month_estimate_usd": 8.79,
     "daily_budget": 1.61,
-    "budget_pct": 15.6
+    "budget_pct": 15.8
   },
   "queue": {
-    "size": 57,
-    "oldest_item_age_hours": 24.4
+    "size": 58,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 8,
   "sources": {
     "total": 22,
-    "successful": 20,
-    "failed": [
-      "France 24",
-      "UK Parliament"
-    ]
+    "successful": 22,
+    "failed": []
   },
   "recent_errors": [
     {
@@ -62,7 +60,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -81,5 +79,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-17/2026-08-17-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-17/2026-08-17-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
