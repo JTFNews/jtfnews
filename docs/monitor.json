@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-08-19T01:01:58.531315+00:00",
-  "web_refresh_at": "2026-08-19T01:01:58.531315+00:00",
+  "timestamp": "2026-08-19T01:06:59.964258+00:00",
   "uptime_start": "2026-08-13T17:13:30.800788+00:00",
-  "uptime_seconds": 460108,
+  "uptime_seconds": 460409,
   "availability_pct": 99.9,
   "cycle": {
     "number": 257,
-    "duration_seconds": 110.6,
-    "headlines_scraped": 187,
-    "headlines_processed": 7,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 2
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 55,
-    "oldest_item_age_hours": 23.0
+    "oldest_item_age_hours": 23.1
   },
   "stories_today": 2,
   "sources": {
@@ -45,17 +44,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-08-19T00:05:55.621848+00:00",
-      "level": "WARNING",
-      "message": "upload_to_archive_org failed (attempt 1/4):  error uploading 2026-08-18-daily-digest.mp4 to jtf-news-2026-08-18, Please reduce your request rate. - total_tasks_queued exceeds global_limit. Retrying in 2.0s..."
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,12 +67,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-18/2026-08-18-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-18/2026-08-18-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
