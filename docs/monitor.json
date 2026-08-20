@@ -1,60 +1,55 @@
 {
-  "timestamp": "2026-08-20T06:56:09.213061+00:00",
+  "timestamp": "2026-08-20T07:01:05.819887+00:00",
+  "web_refresh_at": "2026-08-20T07:01:05.819887+00:00",
   "uptime_start": "2026-08-13T17:13:30.800788+00:00",
-  "uptime_seconds": 567758,
+  "uptime_seconds": 568055,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 316,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 317,
+    "duration_seconds": 59.6,
+    "headlines_scraped": 187,
+    "headlines_processed": 6,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 10,
-        "cost_usd": 0.027749999999999997,
+        "calls": 11,
+        "cost_usd": 0.029039999999999996,
         "details": {
-          "characters": 925
+          "characters": 968
         }
       },
       "claude": {
-        "calls": 374,
-        "cost_usd": 0.13908499999999996,
+        "calls": 384,
+        "cost_usd": 0.14249724999999994,
         "details": {
-          "input_tokens": 345180,
-          "output_tokens": 42232
+          "input_tokens": 353129,
+          "output_tokens": 43372
         }
       }
     },
-    "total_usd": 0.1668,
+    "total_usd": 0.1715,
     "month_estimate_usd": 8.79,
     "daily_budget": 1.61,
-    "budget_pct": 10.3
+    "budget_pct": 10.6
   },
   "queue": {
-    "size": 65,
-    "oldest_item_age_hours": 24.4
+    "size": 62,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 8,
+  "stories_today": 9,
   "sources": {
     "total": 22,
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-08-20T05:57:07.259381+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-19/2026-08-19-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-19/2026-08-19-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
