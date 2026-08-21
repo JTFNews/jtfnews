@@ -160,7 +160,7 @@
     {
       "id": "2026-08-21-012",
       "hash": "e9942b66e322",
-      "fact": "Several people were wounded in a sword attack at a school in Sweden.",
+      "fact": "One person was killed in a sword attack at a school in Sweden.",
       "source": "BBC News 5.7|9.0 \u00b7 Deutsche Welle 5.6|9.5",
       "source_urls": {
         "BBC News": "https://www.bbc.com/news/world",
@@ -168,7 +168,17 @@
       },
       "audio": "../audio/archive/2026-08-21/ce9acd7404ea.mp3",
       "published_at": "2026-08-21T15:00:41.365967+00:00",
-      "status": "published"
+      "status": "corrected",
+      "original_fact": "Several people were wounded in a sword attack at a school in Sweden.",
+      "correction": {
+        "corrected_at": "2026-08-21T19:30:53.784634+00:00",
+        "type": "correction",
+        "reason": "The verified fact states one person was killed in the attack, while story 012 reports several people were wounded. These directly contradict each other regarding both the number of victims and the severity (wounded vs. killed). Story 012 appears to be incomplete or inaccurate.",
+        "correcting_sources": [
+          "Deutsche Welle",
+          "BBC News"
+        ]
+      }
     },
     {
       "id": "2026-08-21-013",
@@ -186,13 +196,13 @@
     {
       "id": "2026-08-21-014",
       "hash": "03fd11425947",
-      "fact": "Russian drone strikes killed 14 people in a shopping centre in Ukraine.",
-      "source": "France 24 4.6|9.0 \u00b7 ABC News Australia 1.9|9.0",
+      "fact": "Russian drone strikes killed 14 people in a shopping centre in Ukraine. President Zelenskyy responded to the attack.",
+      "source": "France 24 4.6|9.0 \u00b7 ABC News Australia 1.9|9.0 \u00b7 CBC News 3.0|9.0",
       "source_urls": {
         "France 24": "https://www.france24.com/en/",
         "ABC News Australia": "https://www.abc.net.au/news/"
       },
-      "audio": "../audio/archive/2026-08-21/34d2cce6d561.mp3",
+      "audio": "../audio/archive/2026-08-21/4d10624cc0ee.mp3",
       "published_at": "2026-08-21T18:30:49.254942+00:00",
       "status": "published"
     },
@@ -220,6 +230,19 @@
       },
       "audio": "../audio/archive/2026-08-21/47cb1c201bc9.mp3",
       "published_at": "2026-08-21T19:30:47.660031+00:00",
+      "status": "published"
+    },
+    {
+      "id": "2026-08-21-017",
+      "hash": "75a1dc38228e",
+      "fact": "Jurors heard testimony that a nephew of the defendant fired fatal shots at Tupac Shakur in a 1996 drive-by shooting.",
+      "source": "CBC News 3.0|9.0 \u00b7 NPR 5.0|8.5",
+      "source_urls": {
+        "CBC News": "https://www.cbc.ca/news/world",
+        "NPR": "https://www.npr.org/sections/news/"
+      },
+      "audio": "../audio/archive/2026-08-21/d66f99b0f093.mp3",
+      "published_at": "2026-08-21T21:30:46.496585+00:00",
       "status": "published"
     }
   ]
