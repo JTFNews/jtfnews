@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-08-22T17:55:54.900795+00:00",
+  "timestamp": "2026-08-22T18:00:40.475492+00:00",
+  "web_refresh_at": "2026-08-22T18:00:40.475492+00:00",
   "uptime_start": "2026-08-13T17:13:30.800788+00:00",
-  "uptime_seconds": 780144,
+  "uptime_seconds": 780430,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 434,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 435,
+    "duration_seconds": 34.0,
+    "headlines_scraped": 177,
+    "headlines_processed": 1,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,42 @@
         }
       },
       "claude": {
-        "calls": 485,
-        "cost_usd": 0.18119449999999993,
+        "calls": 486,
+        "cost_usd": 0.18160599999999993,
         "details": {
-          "input_tokens": 448323,
-          "output_tokens": 55291
+          "input_tokens": 449464,
+          "output_tokens": 55392
         }
       }
     },
-    "total_usd": 0.2131,
+    "total_usd": 0.2135,
     "month_estimate_usd": 8.79,
     "daily_budget": 1.61,
     "budget_pct": 13.2
   },
   "queue": {
     "size": 32,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 9,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 21,
+    "failed": [
+      "Federal Register"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-08-22T18:00:21.106998+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Federal Register: 'NoneType' object has no attribute 'replace'"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-21/2026-08-21-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-21/2026-08-21-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
