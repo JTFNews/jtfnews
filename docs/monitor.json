@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-08-27T03:35:39.166976+00:00",
+  "timestamp": "2026-08-27T03:46:35.241113+00:00",
   "uptime_start": "2026-08-13T17:13:30.800788+00:00",
-  "uptime_seconds": 1160528,
+  "uptime_seconds": 1161184,
   "availability_pct": 99.9,
   "cycle": {
     "number": 647,
@@ -29,11 +29,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-08-27T03:00:41.281295+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSWMDsq3Rj9Nk8EhEsZP'}"
-    },
     {
       "timestamp": "2026-08-27T03:00:41.440176+00:00",
       "level": "ERROR",
@@ -78,12 +73,17 @@
       "timestamp": "2026-08-27T03:30:37.183656+00:00",
       "level": "ERROR",
       "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSYdcX37uNscDWznqtoa'}"
+    },
+    {
+      "timestamp": "2026-08-27T03:41:35.243950+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 24,
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
