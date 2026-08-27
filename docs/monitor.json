@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-08-27T03:56:38.019581+00:00",
+  "timestamp": "2026-08-27T04:01:32.996715+00:00",
+  "web_refresh_at": "2026-08-27T04:01:32.996715+00:00",
   "uptime_start": "2026-08-13T17:13:30.800788+00:00",
-  "uptime_seconds": 1161787,
+  "uptime_seconds": 1162082,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 647,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 648,
+    "duration_seconds": 32.7,
+    "headlines_scraped": 185,
+    "headlines_processed": 5,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -29,31 +30,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-08-27T03:00:41.440176+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSWMEuqbk9JG3rXEvZxS'}"
-    },
-    {
-      "timestamp": "2026-08-27T03:00:41.627356+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSWMFfyqT1vSaaSBuA3F'}"
-    },
-    {
-      "timestamp": "2026-08-27T03:00:41.861806+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSWMGTMwyBZrKGEJTtoH'}"
-    },
-    {
-      "timestamp": "2026-08-27T03:00:42.036709+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSWMHRecXxM1ACxFM21g'}"
-    },
-    {
-      "timestamp": "2026-08-27T03:00:42.210123+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSWMJAYzg8QabokU1oif'}"
-    },
     {
       "timestamp": "2026-08-27T03:30:36.706611+00:00",
       "level": "ERROR",
@@ -78,12 +54,37 @@
       "timestamp": "2026-08-27T03:41:35.243950+00:00",
       "level": "WARNING",
       "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-08-27T04:01:32.130893+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSazM1Ccp4ksXW2t4syd'}"
+    },
+    {
+      "timestamp": "2026-08-27T04:01:32.512924+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSazNB9HgBXsyWLvtg8i'}"
+    },
+    {
+      "timestamp": "2026-08-27T04:01:32.681987+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSazPYzahhJ6kEpV1ree'}"
+    },
+    {
+      "timestamp": "2026-08-27T04:01:32.838746+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSazQEvAq3QZTEJ2DsPu'}"
+    },
+    {
+      "timestamp": "2026-08-27T04:01:32.993985+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-09-01 at 00:00 UTC.'}, 'request_id': 'req_011CeSazQtMuVL85Cq3GnvwT'}"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -102,5 +103,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-25/2026-08-25-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-25/2026-08-25-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
