@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-08-30T22:56:48.954762+00:00",
+  "timestamp": "2026-08-30T23:01:46.002604+00:00",
+  "web_refresh_at": "2026-08-30T23:01:46.002604+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 73116,
+  "uptime_seconds": 73413,
   "availability_pct": 99.7,
   "cycle": {
-    "number": 41,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 42,
+    "duration_seconds": 43.8,
+    "headlines_scraped": 181,
+    "headlines_processed": 5,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 550,
-        "cost_usd": 0.20646700000000018,
+        "calls": 555,
+        "cost_usd": 0.20895275000000016,
         "details": {
-          "input_tokens": 509933,
-          "output_tokens": 63187
+          "input_tokens": 515656,
+          "output_tokens": 64031
         }
       }
     },
-    "total_usd": 0.2427,
+    "total_usd": 0.2452,
     "month_estimate_usd": 8.45,
     "daily_budget": 1.61,
-    "budget_pct": 15.0
+    "budget_pct": 15.2
   },
   "queue": {
     "size": 28,
-    "oldest_item_age_hours": 22.6
+    "oldest_item_age_hours": 22.7
   },
   "stories_today": 11,
   "sources": {
@@ -48,11 +49,6 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-08-30T22:00:18.385904+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
-    },
-    {
       "timestamp": "2026-08-30T22:30:18.980675+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
@@ -61,12 +57,17 @@
       "timestamp": "2026-08-30T22:41:45.893264+00:00",
       "level": "WARNING",
       "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-08-30T23:01:15.047853+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -85,5 +86,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-28/2026-08-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-28/2026-08-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
