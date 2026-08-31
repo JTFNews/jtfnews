@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-08-31T02:55:56.281325+00:00",
+  "timestamp": "2026-08-31T03:00:42.116141+00:00",
+  "web_refresh_at": "2026-08-31T03:00:42.116141+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 87464,
+  "uptime_seconds": 87750,
   "availability_pct": 99.7,
   "cycle": {
-    "number": 49,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 50,
+    "duration_seconds": 35.9,
+    "headlines_scraped": 182,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 248,
-        "cost_usd": 0.09778325000000004,
+        "calls": 250,
+        "cost_usd": 0.09878975000000005,
         "details": {
-          "input_tokens": 238573,
-          "output_tokens": 30512
+          "input_tokens": 240859,
+          "output_tokens": 30860
         }
       }
     },
-    "total_usd": 0.1191,
+    "total_usd": 0.1201,
     "month_estimate_usd": 8.45,
     "daily_budget": 1.61,
     "budget_pct": 7.4
   },
   "queue": {
     "size": 17,
-    "oldest_item_age_hours": 22.9
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 6,
   "sources": {
@@ -48,12 +49,12 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-08-31T02:00:19.812622+00:00",
+      "timestamp": "2026-08-31T02:30:19.535222+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     },
     {
-      "timestamp": "2026-08-31T02:30:19.535222+00:00",
+      "timestamp": "2026-08-31T03:00:18.894042+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     }
@@ -61,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -80,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-30/2026-08-30-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-30/2026-08-30-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
