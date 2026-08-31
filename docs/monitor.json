@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-08-31T16:56:04.728261+00:00",
+  "timestamp": "2026-08-31T17:00:49.214634+00:00",
+  "web_refresh_at": "2026-08-31T17:00:49.214634+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 137872,
+  "uptime_seconds": 138157,
   "availability_pct": 99.7,
   "cycle": {
-    "number": 77,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 78,
+    "duration_seconds": 42.6,
+    "headlines_scraped": 176,
+    "headlines_processed": 5,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,42 @@
         }
       },
       "claude": {
-        "calls": 511,
-        "cost_usd": 0.20716675000000012,
+        "calls": 516,
+        "cost_usd": 0.2095875000000001,
         "details": {
-          "input_tokens": 503897,
-          "output_tokens": 64954
+          "input_tokens": 509595,
+          "output_tokens": 65751
         }
       }
     },
-    "total_usd": 0.2389,
+    "total_usd": 0.2414,
     "month_estimate_usd": 8.45,
     "daily_budget": 1.61,
-    "budget_pct": 14.8
+    "budget_pct": 15.0
   },
   "queue": {
     "size": 31,
-    "oldest_item_age_hours": 18.9
+    "oldest_item_age_hours": 19.0
   },
   "stories_today": 8,
   "sources": {
     "total": 22,
-    "successful": 22,
-    "failed": []
+    "successful": 21,
+    "failed": [
+      "France 24"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-08-31T17:00:10.695463+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-08-30/2026-08-30-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-08-30/2026-08-30-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
