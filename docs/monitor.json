@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-09-02T13:31:13.613756+00:00",
-  "web_refresh_at": "2026-09-02T13:31:13.613756+00:00",
+  "timestamp": "2026-09-02T13:36:15.042124+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 298381,
+  "uptime_seconds": 298682,
   "availability_pct": 100.0,
   "cycle": {
     "number": 167,
-    "duration_seconds": 66.0,
-    "headlines_scraped": 186,
-    "headlines_processed": 14,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 4
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 57,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 7,
   "sources": {
@@ -45,27 +44,11 @@
     "successful": 22,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-09-02T12:31:19.104650+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceechz5h5Ku2DwN2mBM7o'}"
-    },
-    {
-      "timestamp": "2026-09-02T12:31:22.217917+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceeciji2Xx4NyrC7TU3QC'}"
-    },
-    {
-      "timestamp": "2026-09-02T12:31:28.750692+00:00",
-      "level": "ERROR",
-      "message": "Claude API error: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceecj3fH5yzzACqr3fk8o'}"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -84,12 +67,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-01/2026-09-01-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-01/2026-09-01-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
