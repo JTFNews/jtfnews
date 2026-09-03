@@ -1,62 +1,55 @@
 {
-  "timestamp": "2026-09-03T19:36:19.329476+00:00",
-  "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 406687,
-  "availability_pct": 100.0,
+  "timestamp": "2026-09-03T22:38:49.101464+00:00",
+  "web_refresh_at": "2026-09-03T22:38:49.101464+00:00",
+  "uptime_start": "2026-09-03T22:36:09.584903+00:00",
+  "uptime_seconds": 160,
+  "availability_pct": 70.0,
   "cycle": {
-    "number": 227,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1,
+    "duration_seconds": 158.7,
+    "headlines_scraped": 186,
+    "headlines_processed": 44,
+    "stories_published": 2,
+    "stories_queued": 4
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 10,
-        "cost_usd": 0.02811,
+        "calls": 12,
+        "cost_usd": 0.03237,
         "details": {
-          "characters": 937
+          "characters": 1079
         }
       },
       "claude": {
-        "calls": 656,
-        "cost_usd": 0.27044999999999986,
+        "calls": 711,
+        "cost_usd": 0.2920502499999999,
         "details": {
-          "input_tokens": 654450,
-          "output_tokens": 85470
+          "input_tokens": 707151,
+          "output_tokens": 92210
         }
       }
     },
-    "total_usd": 0.2986,
-    "month_estimate_usd": 8.18,
+    "total_usd": 0.3244,
+    "month_estimate_usd": 8.15,
     "daily_budget": 1.67,
-    "budget_pct": 17.9
+    "budget_pct": 19.5
   },
   "queue": {
-    "size": 61,
-    "oldest_item_age_hours": 24.1
+    "size": 57,
+    "oldest_item_age_hours": 23.6
   },
-  "stories_today": 8,
+  "stories_today": 10,
   "sources": {
-    "total": 22,
+    "total": 21,
     "successful": 21,
-    "failed": [
-      "US State Department"
-    ]
+    "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-09-03T19:00:24.727783+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.state.gov/press-releases/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 23,
+    "next_cycle_minutes": 21,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
