@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-09-03T07:56:18.377549+00:00",
+  "timestamp": "2026-09-03T08:01:14.656543+00:00",
+  "web_refresh_at": "2026-09-03T08:01:14.656543+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 364686,
+  "uptime_seconds": 364982,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 203,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 204,
+    "duration_seconds": 67.8,
+    "headlines_scraped": 186,
+    "headlines_processed": 13,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 343,
-        "cost_usd": 0.14442624999999992,
+        "calls": 357,
+        "cost_usd": 0.15070399999999995,
         "details": {
-          "input_tokens": 348190,
-          "output_tokens": 45903
+          "input_tokens": 363181,
+          "output_tokens": 47927
         }
       }
     },
-    "total_usd": 0.1614,
+    "total_usd": 0.1677,
     "month_estimate_usd": 8.18,
     "daily_budget": 1.67,
-    "budget_pct": 9.7
+    "budget_pct": 10.1
   },
   "queue": {
-    "size": 50,
-    "oldest_item_age_hours": 23.4
+    "size": 51,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 4,
   "sources": {
@@ -48,11 +49,6 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-03T07:00:11.119294+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.france24.com/en/"
-    },
-    {
       "timestamp": "2026-09-03T07:30:25.854723+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.state.gov/press-releases/"
@@ -61,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -80,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
