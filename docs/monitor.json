@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-09-03T03:26:01.782939+00:00",
+  "timestamp": "2026-09-03T03:30:51.919697+00:00",
+  "web_refresh_at": "2026-09-03T03:30:51.919697+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 348469,
+  "uptime_seconds": 348759,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 194,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 195,
+    "duration_seconds": 45.0,
+    "headlines_scraped": 187,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 258,
-        "cost_usd": 0.10774675,
+        "calls": 264,
+        "cost_usd": 0.1101335,
         "details": {
-          "input_tokens": 260592,
-          "output_tokens": 34079
+          "input_tokens": 266429,
+          "output_tokens": 34821
         }
       }
     },
-    "total_usd": 0.1237,
+    "total_usd": 0.1261,
     "month_estimate_usd": 8.18,
     "daily_budget": 1.67,
-    "budget_pct": 7.4
+    "budget_pct": 7.6
   },
   "queue": {
     "size": 53,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 3,
   "sources": {
@@ -46,17 +47,11 @@
       "US State Department"
     ]
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-09-03T02:30:26.037150+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.state.gov/press-releases/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +70,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
