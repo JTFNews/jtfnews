@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-09-03T13:26:07.424313+00:00",
+  "timestamp": "2026-09-03T13:31:18.832986+00:00",
+  "web_refresh_at": "2026-09-03T13:31:18.832986+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 384475,
+  "uptime_seconds": 384786,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 214,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 215,
+    "duration_seconds": 70.2,
+    "headlines_scraped": 176,
+    "headlines_processed": 12,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 7,
-        "cost_usd": 0.01857,
+        "calls": 8,
+        "cost_usd": 0.02178,
         "details": {
-          "characters": 619
+          "characters": 726
         }
       },
       "claude": {
-        "calls": 492,
-        "cost_usd": 0.20569700000000002,
+        "calls": 509,
+        "cost_usd": 0.21198625000000001,
         "details": {
-          "input_tokens": 496858,
-          "output_tokens": 65186
+          "input_tokens": 511830,
+          "output_tokens": 67223
         }
       }
     },
-    "total_usd": 0.2243,
+    "total_usd": 0.2338,
     "month_estimate_usd": 8.18,
     "daily_budget": 1.67,
-    "budget_pct": 13.5
+    "budget_pct": 14.0
   },
   "queue": {
-    "size": 64,
-    "oldest_item_age_hours": 24.4
+    "size": 63,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 5,
+  "stories_today": 6,
   "sources": {
     "total": 22,
     "successful": 20,
@@ -49,20 +50,15 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-03T12:30:26.254838+00:00",
+      "timestamp": "2026-09-03T13:30:26.330841+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.state.gov/press-releases/"
-    },
-    {
-      "timestamp": "2026-09-03T12:30:29.034656+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.parliament.uk/business/news/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -81,5 +77,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
