@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-09-03T02:26:09.210490+00:00",
+  "timestamp": "2026-09-03T02:30:45.704792+00:00",
+  "web_refresh_at": "2026-09-03T02:30:45.704792+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 344877,
+  "uptime_seconds": 345153,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 192,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 193,
+    "duration_seconds": 37.8,
+    "headlines_scraped": 187,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 251,
-        "cost_usd": 0.10430475,
+        "calls": 253,
+        "cost_usd": 0.105285,
         "details": {
-          "input_tokens": 252594,
-          "output_tokens": 32925
+          "input_tokens": 254875,
+          "output_tokens": 33253
         }
       }
     },
-    "total_usd": 0.1202,
+    "total_usd": 0.1212,
     "month_estimate_usd": 8.18,
     "daily_budget": 1.67,
-    "budget_pct": 7.2
+    "budget_pct": 7.3
   },
   "queue": {
     "size": 52,
-    "oldest_item_age_hours": 23.4
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 3,
   "sources": {
@@ -46,11 +47,17 @@
       "US State Department"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-03T02:30:26.037150+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.state.gov/press-releases/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -69,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
