@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-09-03T14:26:11.761155+00:00",
+  "timestamp": "2026-09-03T14:31:08.466285+00:00",
+  "web_refresh_at": "2026-09-03T14:31:08.466285+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 388079,
+  "uptime_seconds": 388376,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 216,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 217,
+    "duration_seconds": 61.3,
+    "headlines_scraped": 186,
+    "headlines_processed": 11,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,38 +22,32 @@
         }
       },
       "claude": {
-        "calls": 520,
-        "cost_usd": 0.216383,
+        "calls": 533,
+        "cost_usd": 0.2218465,
         "details": {
-          "input_tokens": 522427,
-          "output_tokens": 68621
+          "input_tokens": 535356,
+          "output_tokens": 70406
         }
       }
     },
-    "total_usd": 0.2382,
+    "total_usd": 0.2436,
     "month_estimate_usd": 8.18,
     "daily_budget": 1.67,
-    "budget_pct": 14.3
+    "budget_pct": 14.6
   },
   "queue": {
-    "size": 60,
-    "oldest_item_age_hours": 24.4
+    "size": 59,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 6,
   "sources": {
     "total": 22,
-    "successful": 20,
+    "successful": 21,
     "failed": [
-      "US State Department",
-      "UK Parliament"
+      "US State Department"
     ]
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-09-03T13:30:26.330841+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.state.gov/press-releases/"
-    },
     {
       "timestamp": "2026-09-03T14:00:27.699529+00:00",
       "level": "WARNING",
@@ -62,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -81,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
