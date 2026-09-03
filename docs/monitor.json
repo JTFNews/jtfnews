@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-09-03T06:56:02.303304+00:00",
+  "timestamp": "2026-09-03T07:00:58.607698+00:00",
+  "web_refresh_at": "2026-09-03T07:00:58.607698+00:00",
   "uptime_start": "2026-08-30T02:38:12.608678+00:00",
-  "uptime_seconds": 361070,
+  "uptime_seconds": 361366,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 201,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 202,
+    "duration_seconds": 51.2,
+    "headlines_scraped": 177,
+    "headlines_processed": 8,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,29 +22,30 @@
         }
       },
       "claude": {
-        "calls": 322,
-        "cost_usd": 0.13600699999999996,
+        "calls": 331,
+        "cost_usd": 0.13994174999999995,
         "details": {
-          "input_tokens": 328858,
-          "output_tokens": 43034
+          "input_tokens": 338152,
+          "output_tokens": 44323
         }
       }
     },
-    "total_usd": 0.1519,
+    "total_usd": 0.1559,
     "month_estimate_usd": 8.18,
     "daily_budget": 1.67,
-    "budget_pct": 9.1
+    "budget_pct": 9.4
   },
   "queue": {
-    "size": 53,
-    "oldest_item_age_hours": 24.4
+    "size": 52,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 3,
   "sources": {
     "total": 22,
-    "successful": 21,
+    "successful": 20,
     "failed": [
-      "US State Department"
+      "US State Department",
+      "France 24"
     ]
   },
   "recent_errors": [
@@ -51,12 +53,17 @@
       "timestamp": "2026-09-03T06:30:23.893248+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.state.gov/press-releases/"
+    },
+    {
+      "timestamp": "2026-09-03T07:00:11.119294+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +82,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
