@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-09-04T14:56:11.130164+00:00",
+  "timestamp": "2026-09-04T15:01:05.544173+00:00",
+  "web_refresh_at": "2026-09-04T15:01:05.544173+00:00",
   "uptime_start": "2026-09-03T22:36:09.584903+00:00",
-  "uptime_seconds": 58802,
-  "availability_pct": 73.7,
+  "uptime_seconds": 59096,
+  "availability_pct": 73.8,
   "cycle": {
-    "number": 33,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 34,
+    "duration_seconds": 58.8,
+    "headlines_scraped": 185,
+    "headlines_processed": 9,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 528,
-        "cost_usd": 0.2110655,
+        "calls": 537,
+        "cost_usd": 0.215664,
         "details": {
-          "input_tokens": 513782,
-          "output_tokens": 66096
+          "input_tokens": 524076,
+          "output_tokens": 67716
         }
       }
     },
-    "total_usd": 0.2518,
+    "total_usd": 0.2564,
     "month_estimate_usd": 8.15,
     "daily_budget": 1.67,
-    "budget_pct": 15.1
+    "budget_pct": 15.4
   },
   "queue": {
-    "size": 54,
-    "oldest_item_age_hours": 24.4
+    "size": 53,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 10,
   "sources": {
@@ -44,17 +45,11 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-09-04T14:00:18.205850+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
