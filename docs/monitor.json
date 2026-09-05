@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-04T23:56:00.995368+00:00",
+  "timestamp": "2026-09-05T01:15:52.760772+00:00",
   "uptime_start": "2026-09-03T22:36:09.584903+00:00",
-  "uptime_seconds": 91191,
+  "uptime_seconds": 95983,
   "availability_pct": 75.7,
   "cycle": {
-    "number": 51,
+    "number": 54,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -14,55 +14,106 @@
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 16,
-        "cost_usd": 0.049049999999999996,
+        "calls": 6,
+        "cost_usd": 0.02289,
         "details": {
-          "characters": 1635
+          "characters": 763
         }
       },
       "claude": {
-        "calls": 737,
-        "cost_usd": 0.2923282499999999,
+        "calls": 228,
+        "cost_usd": 0.09341949999999999,
         "details": {
-          "input_tokens": 712358,
-          "output_tokens": 91391
+          "input_tokens": 226923,
+          "output_tokens": 29351
         }
       }
     },
-    "total_usd": 0.3414,
+    "total_usd": 0.1163,
     "month_estimate_usd": 8.15,
     "daily_budget": 1.67,
-    "budget_pct": 20.5
+    "budget_pct": 7.0
   },
   "queue": {
-    "size": 50,
-    "oldest_item_age_hours": 23.6
+    "size": 47,
+    "oldest_item_age_hours": 24.3
   },
-  "stories_today": 12,
+  "stories_today": 4,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-05T00:29:49.484210+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-05T00:30:29.853054+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-05T00:35:30.759152+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-05T00:40:31.663025+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-05T00:45:32.678223+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-05T00:50:33.491262+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-05T00:55:34.387861+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-05T01:00:50.348562+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-05T01:05:51.697349+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-05T01:10:52.756286+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-09-03",
-    "next_digest_at": "2026-09-05T00:00:00+00:00",
+    "last_date": "2026-09-04",
+    "next_digest_at": "2026-09-06T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-09-04T00:04:03.682538+00:00",
-    "story_count": 10,
-    "duration_seconds": 93,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-09-03-daily-digest.mp4",
-    "youtube_id": "DiEPqVQafeM",
-    "youtube_url": "https://youtube.com/watch?v=DiEPqVQafeM",
+    "last_completed_at": "2026-09-05T00:04:31.581203+00:00",
+    "story_count": 12,
+    "duration_seconds": 110,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-09-04-daily-digest.mp4",
+    "youtube_id": "zS0NzeGDpRY",
+    "youtube_url": "https://youtube.com/watch?v=zS0NzeGDpRY",
     "archive_org_id": "jtf-news-2026-09-02",
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-02/2026-09-02-daily-digest.mp4",
