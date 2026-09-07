@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-09-07T16:26:28.236278+00:00",
+  "timestamp": "2026-09-07T16:31:37.869439+00:00",
+  "web_refresh_at": "2026-09-07T16:31:37.869439+00:00",
   "uptime_start": "2026-09-03T22:36:09.584903+00:00",
-  "uptime_seconds": 323419,
+  "uptime_seconds": 323728,
   "availability_pct": 84.0,
   "cycle": {
-    "number": 180,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 181,
+    "duration_seconds": 91.8,
+    "headlines_scraped": 175,
+    "headlines_processed": 6,
+    "stories_published": 2,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 10,
-        "cost_usd": 0.02655,
+        "calls": 12,
+        "cost_usd": 0.031740000000000004,
         "details": {
-          "characters": 885
+          "characters": 1058
         }
       },
       "claude": {
-        "calls": 552,
-        "cost_usd": 0.21289400000000008,
+        "calls": 565,
+        "cost_usd": 0.21663150000000003,
         "details": {
-          "input_tokens": 524266,
-          "output_tokens": 65462
+          "input_tokens": 533466,
+          "output_tokens": 66612
         }
       }
     },
-    "total_usd": 0.2394,
+    "total_usd": 0.2484,
     "month_estimate_usd": 8.15,
     "daily_budget": 1.67,
-    "budget_pct": 14.4
+    "budget_pct": 14.9
   },
   "queue": {
-    "size": 54,
-    "oldest_item_age_hours": 24.4
+    "size": 51,
+    "oldest_item_age_hours": 20.5
   },
-  "stories_today": 7,
+  "stories_today": 9,
   "sources": {
     "total": 21,
     "successful": 21,
@@ -46,12 +47,12 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-07T15:30:54.892378+00:00",
+      "timestamp": "2026-09-07T16:00:55.444088+00:00",
       "level": "WARNING",
       "message": "Watchdog: UK Parliament fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-09-07T16:00:55.444088+00:00",
+      "timestamp": "2026-09-07T16:30:53.828913+00:00",
       "level": "WARNING",
       "message": "Watchdog: UK Parliament fetch exceeded 30s; skipping"
     }
@@ -59,7 +60,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -78,5 +79,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-06/2026-09-06-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-06/2026-09-06-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
