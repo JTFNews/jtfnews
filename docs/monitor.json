@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-09-08T16:26:09.068553+00:00",
+  "timestamp": "2026-09-08T16:31:06.887458+00:00",
+  "web_refresh_at": "2026-09-08T16:31:06.887458+00:00",
   "uptime_start": "2026-09-03T22:36:09.584903+00:00",
-  "uptime_seconds": 409799,
-  "availability_pct": 85.7,
+  "uptime_seconds": 410097,
+  "availability_pct": 85.8,
   "cycle": {
-    "number": 228,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 229,
+    "duration_seconds": 59.2,
+    "headlines_scraped": 176,
+    "headlines_processed": 10,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,42 @@
         }
       },
       "claude": {
-        "calls": 595,
-        "cost_usd": 0.22860649999999988,
+        "calls": 606,
+        "cost_usd": 0.2335702499999999,
         "details": {
-          "input_tokens": 559091,
-          "output_tokens": 71067
+          "input_tokens": 570746,
+          "output_tokens": 72707
         }
       }
     },
-    "total_usd": 0.2753,
+    "total_usd": 0.2803,
     "month_estimate_usd": 8.15,
     "daily_budget": 1.67,
-    "budget_pct": 16.5
+    "budget_pct": 16.8
   },
   "queue": {
     "size": 35,
-    "oldest_item_age_hours": 22.4
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 14,
   "sources": {
     "total": 21,
-    "successful": 21,
-    "failed": []
+    "successful": 20,
+    "failed": [
+      "UK Parliament"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-08T16:30:30.143487+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.parliament.uk/business/news/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-07/2026-09-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-07/2026-09-07-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
