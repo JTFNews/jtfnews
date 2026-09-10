@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-09-10T06:03:24.591738+00:00",
-  "web_refresh_at": "2026-09-10T06:03:24.591738+00:00",
-  "uptime_start": "2026-09-10T05:17:04.216348+00:00",
-  "uptime_seconds": 2780,
+  "timestamp": "2026-09-10T06:03:31.778140+00:00",
+  "web_refresh_at": "2026-09-10T06:03:31.778140+00:00",
+  "uptime_start": "2026-09-10T05:17:19.118389+00:00",
+  "uptime_seconds": 2773,
   "availability_pct": 42.6,
   "cycle": {
     "number": 3,
-    "duration_seconds": 195.3,
-    "headlines_scraped": 136,
-    "headlines_processed": 5,
+    "duration_seconds": 203.6,
+    "headlines_scraped": 133,
+    "headlines_processed": 8,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 6,
-        "cost_usd": 0.00184675,
+        "calls": 9,
+        "cost_usd": 0.0032997499999999997,
         "details": {
-          "input_tokens": 4872,
-          "output_tokens": 503
+          "input_tokens": 8299,
+          "output_tokens": 980
         }
       }
     },
-    "total_usd": 0.0018,
+    "total_usd": 0.0033,
     "month_estimate_usd": 8.27,
     "daily_budget": 1.67,
-    "budget_pct": 0.1
+    "budget_pct": 0.2
   },
   "queue": {
-    "size": 25,
+    "size": 26,
     "oldest_item_age_hours": 15.0
   },
   "stories_today": 1,
@@ -43,34 +43,39 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-10T06:00:46.872718+00:00",
+      "timestamp": "2026-09-10T06:00:12.099412+00:00",
       "level": "WARNING",
-      "message": "Watchdog: ABC News Australia fetch exceeded 30s; skipping"
+      "message": "robots.txt blocks: https://www.france24.com/en/"
     },
     {
-      "timestamp": "2026-09-10T06:01:18.167964+00:00",
+      "timestamp": "2026-09-10T06:00:47.610753+00:00",
       "level": "WARNING",
       "message": "Watchdog: PBS NewsHour fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-09-10T06:01:49.463052+00:00",
+      "timestamp": "2026-09-10T06:01:18.629664+00:00",
       "level": "WARNING",
       "message": "Watchdog: Irish Times fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-09-10T06:02:05.796060+00:00",
+      "timestamp": "2026-09-10T06:01:34.725414+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from White House: HTTPSConnectionPool(host='www.whitehouse.gov', port=443): Read timed out. (read timeout=15)"
     },
     {
-      "timestamp": "2026-09-10T06:02:37.086522+00:00",
+      "timestamp": "2026-09-10T06:02:05.742538+00:00",
       "level": "WARNING",
       "message": "Watchdog: Congress.gov fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-09-10T06:02:53.900055+00:00",
+      "timestamp": "2026-09-10T06:02:36.757971+00:00",
       "level": "WARNING",
-      "message": "Failed to fetch from Federal Register: 'NoneType' object has no attribute 'replace'"
+      "message": "Watchdog: Federal Register fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-09-10T06:02:52.866905+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Supreme Court: HTTPSConnectionPool(host='www.supremecourt.gov', port=443): Read timed out. (read timeout=15)"
     }
   ],
   "status": {
