@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-09-10T17:56:15.284286+00:00",
-  "uptime_start": "2026-09-10T05:17:19.118389+00:00",
-  "uptime_seconds": 45536,
+  "timestamp": "2026-09-10T18:00:45.997792+00:00",
+  "web_refresh_at": "2026-09-10T18:00:45.997792+00:00",
+  "uptime_start": "2026-09-10T05:17:04.216348+00:00",
+  "uptime_seconds": 45822,
   "availability_pct": 49.5,
   "cycle": {
     "number": 27,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "duration_seconds": 39.4,
+    "headlines_scraped": 186,
+    "headlines_processed": 4,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 80,
-        "cost_usd": 0.029010750000000002,
+        "calls": 88,
+        "cost_usd": 0.03286000000000001,
         "details": {
-          "input_tokens": 70023,
-          "output_tokens": 9204
+          "input_tokens": 79160,
+          "output_tokens": 10456
         }
       },
       "elevenlabs": {
@@ -29,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.0405,
+    "total_usd": 0.0443,
     "month_estimate_usd": 8.27,
     "daily_budget": 1.67,
-    "budget_pct": 2.4
+    "budget_pct": 2.7
   },
   "queue": {
     "size": 28,
-    "oldest_item_age_hours": 12.7
+    "oldest_item_age_hours": 12.8
   },
   "stories_today": 12,
   "sources": {
@@ -44,11 +45,57 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-10T17:30:56.625261+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 409"
+    },
+    {
+      "timestamp": "2026-09-10T17:30:57.984903+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/stories.json: 409"
+    },
+    {
+      "timestamp": "2026-09-10T17:30:59.612574+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/alexa.json: 409"
+    },
+    {
+      "timestamp": "2026-09-10T17:31:10.356800+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-10T17:36:11.807011+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-10T17:41:12.988858+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-10T17:46:14.162148+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-10T17:51:15.415726+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-10T17:56:16.790206+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +114,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-08/2026-09-08-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-08/2026-09-08-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
