@@ -1,34 +1,35 @@
 {
-  "timestamp": "2026-09-10T13:56:48.863756+00:00",
-  "uptime_start": "2026-09-10T05:17:19.118389+00:00",
-  "uptime_seconds": 31170,
-  "availability_pct": 47.2,
+  "timestamp": "2026-09-10T14:01:06.342036+00:00",
+  "web_refresh_at": "2026-09-10T14:01:06.342036+00:00",
+  "uptime_start": "2026-09-10T05:17:04.216348+00:00",
+  "uptime_seconds": 31442,
+  "availability_pct": 47.3,
   "cycle": {
     "number": 19,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "duration_seconds": 54.1,
+    "headlines_scraped": 186,
+    "headlines_processed": 7,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 31,
-        "cost_usd": 0.011734,
+        "calls": 3,
+        "cost_usd": 0.0011144999999999998,
         "details": {
-          "input_tokens": 29536,
-          "output_tokens": 3480
+          "input_tokens": 2433,
+          "output_tokens": 405
         }
       }
     },
-    "total_usd": 0.0117,
+    "total_usd": 0.0011,
     "month_estimate_usd": 8.27,
     "daily_budget": 1.67,
-    "budget_pct": 0.7
+    "budget_pct": 0.1
   },
   "queue": {
-    "size": 37,
+    "size": 39,
     "oldest_item_age_hours": 22.9
   },
   "stories_today": 8,
@@ -39,17 +40,17 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-10T13:31:39.199204+00:00",
+      "timestamp": "2026-09-10T13:46:46.571135+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-10T13:36:42.612422+00:00",
+      "timestamp": "2026-09-10T13:51:48.857985+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-10T13:41:43.937291+00:00",
+      "timestamp": "2026-09-10T13:56:51.349837+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     }
@@ -57,7 +58,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -76,5 +77,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-08/2026-09-08-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-08/2026-09-08-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
