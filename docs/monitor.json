@@ -1,36 +1,35 @@
 {
-  "timestamp": "2026-09-10T07:01:01.224345+00:00",
-  "web_refresh_at": "2026-09-10T07:01:01.224345+00:00",
-  "uptime_start": "2026-09-10T05:17:04.216348+00:00",
-  "uptime_seconds": 6237,
+  "timestamp": "2026-09-10T07:06:01.235560+00:00",
+  "uptime_start": "2026-09-10T05:17:19.118389+00:00",
+  "uptime_seconds": 6522,
   "availability_pct": 43.3,
   "cycle": {
     "number": 5,
-    "duration_seconds": 50.4,
-    "headlines_scraped": 186,
-    "headlines_processed": 7,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 4,
-        "cost_usd": 0.00205975,
+        "calls": 5,
+        "cost_usd": 0.0025877499999999998,
         "details": {
-          "input_tokens": 4569,
-          "output_tokens": 734
+          "input_tokens": 5711,
+          "output_tokens": 928
         }
       }
     },
-    "total_usd": 0.0021,
+    "total_usd": 0.0026,
     "month_estimate_usd": 8.27,
     "daily_budget": 1.67,
-    "budget_pct": 0.1
+    "budget_pct": 0.2
   },
   "queue": {
     "size": 27,
-    "oldest_item_age_hours": 15.9
+    "oldest_item_age_hours": 16.0
   },
   "stories_today": 1,
   "sources": {
@@ -40,55 +39,25 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-10T06:01:18.167964+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: PBS NewsHour fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-09-10T06:01:49.463052+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: Irish Times fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-09-10T06:02:05.796060+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from White House: HTTPSConnectionPool(host='www.whitehouse.gov', port=443): Read timed out. (read timeout=15)"
-    },
-    {
-      "timestamp": "2026-09-10T06:02:37.086522+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: Congress.gov fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-09-10T06:02:53.900055+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Federal Register: 'NoneType' object has no attribute 'replace'"
-    },
-    {
-      "timestamp": "2026-09-10T06:41:18.385137+00:00",
+      "timestamp": "2026-09-10T06:31:12.686000+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-10T06:46:19.603282+00:00",
+      "timestamp": "2026-09-10T06:36:15.011115+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-10T06:51:20.911837+00:00",
+      "timestamp": "2026-09-10T07:01:01.237056+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-10T06:56:23.404641+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
+      "message": "Could not write monitor data: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/monitor.json.tmp'"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -107,12 +76,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-08/2026-09-08-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-08/2026-09-08-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
