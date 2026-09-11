@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-09-11T06:01:24.223501+00:00",
-  "web_refresh_at": "2026-09-11T06:01:24.223501+00:00",
-  "uptime_start": "2026-09-10T05:17:04.216348+00:00",
-  "uptime_seconds": 89060,
+  "timestamp": "2026-09-11T06:02:05.154102+00:00",
+  "web_refresh_at": "2026-09-11T06:02:05.154102+00:00",
+  "uptime_start": "2026-09-11T03:09:54.694633+00:00",
+  "uptime_seconds": 10330,
   "availability_pct": 56.2,
   "cycle": {
-    "number": 51,
-    "duration_seconds": 77.1,
+    "number": 26,
+    "duration_seconds": 28.0,
     "headlines_scraped": 186,
-    "headlines_processed": 19,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 3
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -36,8 +36,8 @@
     "budget_pct": 9.4
   },
   "queue": {
-    "size": 50,
-    "oldest_item_age_hours": 24.0
+    "size": 48,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 3,
   "sources": {
@@ -45,11 +45,22 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-11T05:30:33.490304+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
+    },
+    {
+      "timestamp": "2026-09-11T06:00:37.159371+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 27,
     "degraded_services": []
   },
   "daily_digest": {
