@@ -8703,6 +8703,20 @@ def main():
     # Archive yesterday's cost to rolling history
     archive_yesterday_cost()
 
+    # Startup catch-up: if the process was down during UTC midnight, the nightly archive
+    # window (hour==0, minute<5) was missed. Detect this and archive now before entering
+    # the main loop. Only triggers if the raw log exists but the .gz does not.
+    _yesterday_dt = datetime.now(timezone.utc).date() - timedelta(days=1)
+    _yesterday_str = _yesterday_dt.strftime("%Y-%m-%d")
+    _missed_log = DATA_DIR / f"{_yesterday_str}.txt"
+    _missed_archive = BASE_DIR / "docs" / "archive" / _yesterday_dt.strftime("%Y") / f"{_yesterday_str}.txt.gz"
+    if _missed_log.exists() and not _missed_archive.exists():
+        log.info(f"Startup catch-up: archiving missed daily log for {_yesterday_str}")
+        try:
+            archive_daily_log()
+        except Exception as e:
+            log.error(f"Startup catch-up archive failed for {_yesterday_str}: {e}")
+
     # Check quarterly ownership audit
     if check_ownership_audit_needed():
         current_quarter = get_current_quarter()

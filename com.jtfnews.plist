@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.jtfnews</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/larryseyer/JTFNews/venv/bin/python3</string>
+        <string>/Users/larryseyer/JTFNews/main.py</string>
+    </array>
+    <key>KeepAlive</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/Users/larryseyer/JTFNews</string>
+    <key>StandardOutPath</key>
+    <string>/Users/larryseyer/JTFNews/logs/launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/larryseyer/JTFNews/logs/launchd-error.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+    </dict>
+</dict>
+</plist>
