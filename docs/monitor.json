@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-09-11T18:25:51.520584+00:00",
+  "timestamp": "2026-09-11T18:30:50.259236+00:00",
+  "web_refresh_at": "2026-09-11T18:30:50.259236+00:00",
   "uptime_start": "2026-09-11T16:02:53.633642+00:00",
-  "uptime_seconds": 8578,
-  "availability_pct": 61.4,
+  "uptime_seconds": 8877,
+  "availability_pct": 61.5,
   "cycle": {
-    "number": 8,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 9,
+    "duration_seconds": 43.9,
+    "headlines_scraped": 187,
+    "headlines_processed": 6,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 732,
-        "cost_usd": 0.28925025000000015,
+        "calls": 747,
+        "cost_usd": 0.29483975000000023,
         "details": {
-          "input_tokens": 708491,
-          "output_tokens": 89702
+          "input_tokens": 721989,
+          "output_tokens": 91474
         }
       }
     },
-    "total_usd": 0.3349,
+    "total_usd": 0.3405,
     "month_estimate_usd": 8.08,
     "daily_budget": 1.67,
-    "budget_pct": 20.1
+    "budget_pct": 20.4
   },
   "queue": {
-    "size": 51,
-    "oldest_item_age_hours": 24.4
+    "size": 52,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 7,
   "sources": {
@@ -45,31 +46,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-09-11T17:30:38.915648+00:00",
-      "level": "WARNING",
-      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
-    },
-    {
-      "timestamp": "2026-09-11T17:30:41.842846+00:00",
-      "level": "WARNING",
-      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
-    },
-    {
-      "timestamp": "2026-09-11T17:30:42.969548+00:00",
-      "level": "WARNING",
-      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
-    },
-    {
-      "timestamp": "2026-09-11T17:30:46.525688+00:00",
-      "level": "ERROR",
-      "message": "TTS error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/d61dd9197113.mp3'"
-    },
-    {
-      "timestamp": "2026-09-11T17:30:46.527086+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/2026-09-11.txt'"
-    },
     {
       "timestamp": "2026-09-11T18:00:40.311331+00:00",
       "level": "WARNING",
@@ -84,12 +60,37 @@
       "timestamp": "2026-09-11T18:00:45.237900+00:00",
       "level": "WARNING",
       "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
+    },
+    {
+      "timestamp": "2026-09-11T18:30:38.219758+00:00",
+      "level": "WARNING",
+      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
+    },
+    {
+      "timestamp": "2026-09-11T18:30:39.182655+00:00",
+      "level": "WARNING",
+      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
+    },
+    {
+      "timestamp": "2026-09-11T18:30:43.254550+00:00",
+      "level": "WARNING",
+      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
+    },
+    {
+      "timestamp": "2026-09-11T18:30:45.721857+00:00",
+      "level": "WARNING",
+      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
+    },
+    {
+      "timestamp": "2026-09-11T18:30:48.623310+00:00",
+      "level": "WARNING",
+      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -108,5 +109,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-10/2026-09-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-10/2026-09-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
