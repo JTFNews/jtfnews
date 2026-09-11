@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-11T17:36:05.424145+00:00",
-  "uptime_start": "2026-09-10T05:17:04.216348+00:00",
-  "uptime_seconds": 130741,
+  "timestamp": "2026-09-11T17:37:15.338529+00:00",
+  "uptime_start": "2026-09-11T16:02:53.633642+00:00",
+  "uptime_seconds": 5662,
   "availability_pct": 61.2,
   "cycle": {
-    "number": 74,
+    "number": 7,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -46,15 +46,60 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-11T16:55:48.121811+00:00",
+      "timestamp": "2026-09-11T16:45:45.578341+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-11T16:50:46.793692+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-11T17:00:36.056265+00:00",
+      "level": "WARNING",
+      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
+    },
+    {
+      "timestamp": "2026-09-11T17:00:39.729772+00:00",
+      "level": "ERROR",
+      "message": "TTS error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/707ab32d62e3.mp3'"
+    },
+    {
+      "timestamp": "2026-09-11T17:00:39.731532+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/2026-09-11.txt'"
+    },
+    {
+      "timestamp": "2026-09-11T17:30:38.915648+00:00",
+      "level": "WARNING",
+      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
+    },
+    {
+      "timestamp": "2026-09-11T17:30:41.842846+00:00",
+      "level": "WARNING",
+      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
+    },
+    {
+      "timestamp": "2026-09-11T17:30:42.969548+00:00",
+      "level": "WARNING",
+      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
+    },
+    {
+      "timestamp": "2026-09-11T17:30:46.525688+00:00",
+      "level": "ERROR",
+      "message": "TTS error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/d61dd9197113.mp3'"
+    },
+    {
+      "timestamp": "2026-09-11T17:30:46.527086+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/2026-09-11.txt'"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 23,
+    "next_cycle_minutes": 22,
     "degraded_services": []
   },
   "daily_digest": {
