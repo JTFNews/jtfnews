@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-09-11T17:27:18.791428+00:00",
-  "uptime_start": "2026-09-11T16:02:53.633642+00:00",
-  "uptime_seconds": 5065,
+  "timestamp": "2026-09-11T17:31:04.007315+00:00",
+  "web_refresh_at": "2026-09-11T17:31:04.007315+00:00",
+  "uptime_start": "2026-09-10T05:17:04.216348+00:00",
+  "uptime_seconds": 130440,
   "availability_pct": 61.1,
   "cycle": {
-    "number": 5,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 74,
+    "duration_seconds": 56.1,
+    "headlines_scraped": 187,
+    "headlines_processed": 8,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 13,
-        "cost_usd": 0.04104000000000001,
+        "calls": 15,
+        "cost_usd": 0.045630000000000004,
         "details": {
-          "characters": 1368
+          "characters": 1521
         }
       },
       "claude": {
-        "calls": 704,
-        "cost_usd": 0.2791435000000001,
+        "calls": 722,
+        "cost_usd": 0.2851672500000001,
         "details": {
-          "input_tokens": 683579,
-          "output_tokens": 86599
+          "input_tokens": 698044,
+          "output_tokens": 88525
         }
       }
     },
-    "total_usd": 0.3202,
+    "total_usd": 0.3308,
     "month_estimate_usd": 8.08,
     "daily_budget": 1.67,
-    "budget_pct": 19.2
+    "budget_pct": 19.8
   },
   "queue": {
-    "size": 51,
-    "oldest_item_age_hours": 23.4
+    "size": 50,
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 6,
+  "stories_today": 7,
   "sources": {
     "total": 21,
     "successful": 21,
@@ -46,55 +47,20 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-11T16:30:37.624309+00:00",
-      "level": "WARNING",
-      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
-    },
-    {
-      "timestamp": "2026-09-11T16:30:40.256583+00:00",
-      "level": "WARNING",
-      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
-    },
-    {
-      "timestamp": "2026-09-11T16:30:40.946039+00:00",
+      "timestamp": "2026-09-11T16:35:42.489947+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-11T16:40:44.261668+00:00",
+      "timestamp": "2026-09-11T16:55:48.121811+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-11T16:45:45.578341+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-11T16:50:46.793692+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-11T17:00:36.056265+00:00",
-      "level": "WARNING",
-      "message": "Could not save fact cache: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/fact_cache_2026-09-11.json'"
-    },
-    {
-      "timestamp": "2026-09-11T17:00:39.729772+00:00",
-      "level": "ERROR",
-      "message": "TTS error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/707ab32d62e3.mp3'"
-    },
-    {
-      "timestamp": "2026-09-11T17:00:39.731532+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/2026-09-11.txt'"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 2,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -113,5 +79,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-10/2026-09-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-10/2026-09-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
