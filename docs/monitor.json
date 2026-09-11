@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-09-11T15:56:56.717291+00:00",
-  "uptime_start": "2026-09-11T14:44:48.983944+00:00",
-  "uptime_seconds": 4328,
+  "timestamp": "2026-09-11T16:00:45.501250+00:00",
+  "web_refresh_at": "2026-09-11T16:00:45.501250+00:00",
+  "uptime_start": "2026-09-10T05:17:04.216348+00:00",
+  "uptime_seconds": 125021,
   "availability_pct": 60.6,
   "cycle": {
-    "number": 33,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 71,
+    "duration_seconds": 37.8,
+    "headlines_scraped": 187,
+    "headlines_processed": 4,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 553,
-        "cost_usd": 0.2277605000000001,
+        "calls": 558,
+        "cost_usd": 0.22964450000000006,
         "details": {
-          "input_tokens": 553567,
-          "output_tokens": 71495
+          "input_tokens": 558283,
+          "output_tokens": 72059
         }
       }
     },
-    "total_usd": 0.2643,
+    "total_usd": 0.2662,
     "month_estimate_usd": 8.08,
     "daily_budget": 1.67,
-    "budget_pct": 15.9
+    "budget_pct": 16.0
   },
   "queue": {
-    "size": 53,
-    "oldest_item_age_hours": 23.9
+    "size": 54,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 6,
   "sources": {
@@ -44,62 +45,11 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-09-11T15:17:19.936497+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    },
-    {
-      "timestamp": "2026-09-11T15:18:46.536743+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    },
-    {
-      "timestamp": "2026-09-11T15:20:13.275962+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    },
-    {
-      "timestamp": "2026-09-11T15:21:40.395081+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    },
-    {
-      "timestamp": "2026-09-11T15:23:07.946994+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    },
-    {
-      "timestamp": "2026-09-11T15:24:34.891910+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    },
-    {
-      "timestamp": "2026-09-11T15:26:01.981550+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    },
-    {
-      "timestamp": "2026-09-11T15:27:27.678252+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    },
-    {
-      "timestamp": "2026-09-11T15:28:56.903633+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    },
-    {
-      "timestamp": "2026-09-11T15:30:23.105353+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/data/processed_2026-09-11.txt'"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -118,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-10/2026-09-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-10/2026-09-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
