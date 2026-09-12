@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-09-12T04:30:37.214314+00:00",
-  "web_refresh_at": "2026-09-12T04:30:37.214314+00:00",
-  "uptime_start": "2026-09-11T20:02:05.562828+00:00",
-  "uptime_seconds": 30512,
+  "timestamp": "2026-09-12T04:30:38.981532+00:00",
+  "web_refresh_at": "2026-09-12T04:30:38.981532+00:00",
+  "uptime_start": "2026-09-11T20:02:11.303787+00:00",
+  "uptime_seconds": 30508,
   "availability_pct": 63.9,
   "cycle": {
-    "number": 18,
-    "duration_seconds": 30.0,
+    "number": 19,
+    "duration_seconds": 34.0,
     "headlines_scraped": 186,
-    "headlines_processed": 1,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -22,15 +22,15 @@
         }
       },
       "claude": {
-        "calls": 296,
-        "cost_usd": 0.12547125,
+        "calls": 297,
+        "cost_usd": 0.1260065,
         "details": {
-          "input_tokens": 305200,
-          "output_tokens": 39337
+          "input_tokens": 306341,
+          "output_tokens": 39537
         }
       }
     },
-    "total_usd": 0.1569,
+    "total_usd": 0.1574,
     "month_estimate_usd": 8.08,
     "daily_budget": 1.67,
     "budget_pct": 9.4
@@ -45,7 +45,23 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-12T04:15:43.398441+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-12T04:20:44.433469+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-12T04:25:45.597478+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
