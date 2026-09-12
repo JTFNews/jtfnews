@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-12T01:05:44.928192+00:00",
-  "uptime_start": "2026-09-11T20:02:05.562828+00:00",
-  "uptime_seconds": 18219,
+  "timestamp": "2026-09-12T01:10:46.362723+00:00",
+  "uptime_start": "2026-09-11T20:02:11.303787+00:00",
+  "uptime_seconds": 18515,
   "availability_pct": 62.5,
   "cycle": {
-    "number": 11,
+    "number": 12,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 40,
-    "oldest_item_age_hours": 22.6
+    "oldest_item_age_hours": 22.7
   },
   "stories_today": 2,
   "sources": {
@@ -46,52 +46,42 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-12T00:19:21.603456+00:00",
+      "timestamp": "2026-09-12T00:11:48.844419+00:00",
       "level": "ERROR",
-      "message": "Daily digest recording failed: Failed to get recording output path"
+      "message": "_call_claude_extract_fact failed after 4 attempts: Connection error."
     },
     {
-      "timestamp": "2026-09-12T00:19:22.227982+00:00",
+      "timestamp": "2026-09-12T00:11:48.844541+00:00",
       "level": "ERROR",
-      "message": "Failed to send alert: HTTP 401 error: Unable to create record: Authenticate"
+      "message": "Claude API error: Connection error."
     },
     {
-      "timestamp": "2026-09-12T00:19:22.240185+00:00",
+      "timestamp": "2026-09-12T00:12:50.580954+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-09-12T00:15:01.584504+00:00",
       "level": "ERROR",
-      "message": "Failed to stop recording: socket is already closed."
+      "message": "Cycle watchdog fired (outer watchdog fired 585.2s into 'cycle' (budget was 600s)); aborting and restarting in 60s"
     },
     {
-      "timestamp": "2026-09-12T00:19:22.240405+00:00",
-      "level": "ERROR",
-      "message": "Failed to switch scene to JTF News: socket is already closed."
-    },
-    {
-      "timestamp": "2026-09-12T00:30:38.360182+00:00",
+      "timestamp": "2026-09-12T00:20:34.935002+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-12T00:35:39.582717+00:00",
+      "timestamp": "2026-09-12T00:25:36.189602+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-12T00:40:40.754491+00:00",
+      "timestamp": "2026-09-12T01:00:45.255030+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-12T00:45:41.915174+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-12T00:50:43.303204+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-12T00:55:44.593418+00:00",
+      "timestamp": "2026-09-12T01:05:46.358760+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     }
@@ -99,7 +89,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 24,
+    "next_cycle_minutes": 19,
     "degraded_services": []
   },
   "daily_digest": {
