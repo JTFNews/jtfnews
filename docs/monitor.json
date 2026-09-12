@@ -1,42 +1,43 @@
 {
-  "timestamp": "2026-09-12T14:25:45.029537+00:00",
+  "timestamp": "2026-09-12T14:30:52.047647+00:00",
+  "web_refresh_at": "2026-09-12T14:30:52.047647+00:00",
   "uptime_start": "2026-09-12T04:40:46.683526+00:00",
-  "uptime_seconds": 35098,
+  "uptime_seconds": 35405,
   "availability_pct": 64.4,
   "cycle": {
-    "number": 20,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 21,
+    "duration_seconds": 46.4,
+    "headlines_scraped": 186,
+    "headlines_processed": 6,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 12,
-        "cost_usd": 0.03885,
+        "calls": 13,
+        "cost_usd": 0.04755,
         "details": {
-          "characters": 1295
+          "characters": 1585
         }
       },
       "claude": {
-        "calls": 468,
-        "cost_usd": 0.18892124999999982,
+        "calls": 483,
+        "cost_usd": 0.19175149999999985,
         "details": {
-          "input_tokens": 460450,
-          "output_tokens": 59047
+          "input_tokens": 468926,
+          "output_tokens": 59616
         }
       }
     },
-    "total_usd": 0.2278,
+    "total_usd": 0.2393,
     "month_estimate_usd": 7.74,
     "daily_budget": 1.67,
-    "budget_pct": 13.7
+    "budget_pct": 14.4
   },
   "queue": {
-    "size": 30,
-    "oldest_item_age_hours": 23.9
+    "size": 33,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 7,
   "sources": {
@@ -48,7 +49,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-11/2026-09-11-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-11/2026-09-11-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
