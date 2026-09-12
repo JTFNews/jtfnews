@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-09-12T00:25:34.981068+00:00",
-  "uptime_start": "2026-09-11T20:02:05.562828+00:00",
-  "uptime_seconds": 15809,
+  "timestamp": "2026-09-12T00:30:37.117738+00:00",
+  "web_refresh_at": "2026-09-12T00:30:37.117738+00:00",
+  "uptime_start": "2026-09-11T20:02:11.303787+00:00",
+  "uptime_seconds": 16106,
   "availability_pct": 62.5,
   "cycle": {
-    "number": 9,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 11,
+    "duration_seconds": 35.9,
+    "headlines_scraped": 186,
+    "headlines_processed": 3,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 236,
-        "cost_usd": 0.09843900000000004,
+        "calls": 242,
+        "cost_usd": 0.10142375000000006,
         "details": {
-          "input_tokens": 240866,
-          "output_tokens": 30578
+          "input_tokens": 247710,
+          "output_tokens": 31597
         }
       }
     },
-    "total_usd": 0.1274,
+    "total_usd": 0.1304,
     "month_estimate_usd": 8.08,
     "daily_budget": 1.67,
-    "budget_pct": 7.6
+    "budget_pct": 7.8
   },
   "queue": {
     "size": 41,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 2,
   "sources": {
@@ -46,60 +47,60 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-12T00:00:06.359974+00:00",
-      "level": "WARNING",
-      "message": "Story 7: No audio file found for: A passenger train derailed in France, leaving at l..."
-    },
-    {
-      "timestamp": "2026-09-12T00:00:08.234748+00:00",
-      "level": "ERROR",
-      "message": "TTS error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/intro.mp3'"
-    },
-    {
-      "timestamp": "2026-09-12T00:00:09.893128+00:00",
-      "level": "ERROR",
-      "message": "TTS error: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/outro.mp3'"
-    },
-    {
-      "timestamp": "2026-09-12T00:00:09.893305+00:00",
-      "level": "WARNING",
-      "message": "Failed to generate intro audio"
-    },
-    {
-      "timestamp": "2026-09-12T00:00:09.893427+00:00",
+      "timestamp": "2026-09-12T00:00:09.625780+00:00",
       "level": "WARNING",
       "message": "Failed to generate outro audio"
     },
     {
-      "timestamp": "2026-09-12T00:19:21.601658+00:00",
+      "timestamp": "2026-09-12T00:08:40.994125+00:00",
       "level": "WARNING",
-      "message": "No mp4 files found in /Users/larryseyer/Downloads"
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
     },
     {
-      "timestamp": "2026-09-12T00:19:21.603456+00:00",
-      "level": "ERROR",
-      "message": "Daily digest recording failed: Failed to get recording output path"
+      "timestamp": "2026-09-12T00:09:42.008298+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 2/4): Connection error.. Retrying in 2.0s..."
     },
     {
-      "timestamp": "2026-09-12T00:19:22.227982+00:00",
-      "level": "ERROR",
-      "message": "Failed to send alert: HTTP 401 error: Unable to create record: Authenticate"
+      "timestamp": "2026-09-12T00:10:44.420141+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 3/4): Connection error.. Retrying in 4.0s..."
     },
     {
-      "timestamp": "2026-09-12T00:19:22.240185+00:00",
+      "timestamp": "2026-09-12T00:11:48.844419+00:00",
       "level": "ERROR",
-      "message": "Failed to stop recording: socket is already closed."
+      "message": "_call_claude_extract_fact failed after 4 attempts: Connection error."
     },
     {
-      "timestamp": "2026-09-12T00:19:22.240405+00:00",
+      "timestamp": "2026-09-12T00:11:48.844541+00:00",
       "level": "ERROR",
-      "message": "Failed to switch scene to JTF News: socket is already closed."
+      "message": "Claude API error: Connection error."
+    },
+    {
+      "timestamp": "2026-09-12T00:12:50.580954+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-09-12T00:15:01.584504+00:00",
+      "level": "ERROR",
+      "message": "Cycle watchdog fired (outer watchdog fired 585.2s into 'cycle' (budget was 600s)); aborting and restarting in 60s"
+    },
+    {
+      "timestamp": "2026-09-12T00:20:34.935002+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-12T00:25:36.189602+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -118,5 +119,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-11/2026-09-11-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-11/2026-09-11-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
