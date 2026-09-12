@@ -107,6 +107,16 @@ if [ $PULL_STATUS -ne 0 ]; then
 fi
 
 # =============================================================================
+# SAFETY: Drop any accidentally tracked git worktree entries before staging.
+# git add respects .gitignore for untracked files, but once a path is tracked
+# as a submodule (mode 160000) .gitignore is ignored. This guard removes any
+# such entries idempotently so they can never be committed.
+# (Incident 2026-09-12: .worktrees/phase2 became a phantom submodule that
+# broke GitHub Pages builds for 38 hours.)
+# =============================================================================
+git rm --cached -r .worktrees/ 2>/dev/null || true
+
+# =============================================================================
 # STAGE EVERYTHING EXCEPT RUNTIME FILES
 # =============================================================================
 git add .
