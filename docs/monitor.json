@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-13T08:56:11.606688+00:00",
+  "timestamp": "2026-09-13T09:21:32.307896+00:00",
   "uptime_start": "2026-09-12T17:59:43.753333+00:00",
-  "uptime_seconds": 53788,
+  "uptime_seconds": 55309,
   "availability_pct": 65.2,
   "cycle": {
-    "number": 30,
+    "number": 31,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -21,22 +21,22 @@
         }
       },
       "claude": {
-        "calls": 303,
-        "cost_usd": 0.12675449999999996,
+        "calls": 310,
+        "cost_usd": 0.13016499999999995,
         "details": {
-          "input_tokens": 308608,
-          "output_tokens": 39682
+          "input_tokens": 316605,
+          "output_tokens": 40811
         }
       }
     },
-    "total_usd": 0.1482,
+    "total_usd": 0.1516,
     "month_estimate_usd": 7.74,
     "daily_budget": 1.67,
-    "budget_pct": 8.9
+    "budget_pct": 9.1
   },
   "queue": {
-    "size": 34,
-    "oldest_item_age_hours": 24.4
+    "size": 33,
+    "oldest_item_age_hours": 23.9
   },
   "stories_today": 5,
   "sources": {
@@ -54,12 +54,32 @@
       "timestamp": "2026-09-13T08:51:11.607660+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 502"
+    },
+    {
+      "timestamp": "2026-09-13T09:01:26.985054+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 500"
+    },
+    {
+      "timestamp": "2026-09-13T09:06:27.655325+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 500"
+    },
+    {
+      "timestamp": "2026-09-13T09:11:30.516535+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 500"
+    },
+    {
+      "timestamp": "2026-09-13T09:16:32.305802+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 500"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 8,
     "degraded_services": []
   },
   "daily_digest": {
