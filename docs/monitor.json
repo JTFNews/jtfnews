@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-09-16T14:26:30.262268+00:00",
+  "timestamp": "2026-09-16T14:31:11.507303+00:00",
+  "web_refresh_at": "2026-09-16T14:31:11.507303+00:00",
   "uptime_start": "2026-09-12T17:59:43.753333+00:00",
-  "uptime_seconds": 332807,
+  "uptime_seconds": 333088,
   "availability_pct": 68.5,
   "cycle": {
-    "number": 185,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 186,
+    "duration_seconds": 61.3,
+    "headlines_scraped": 177,
+    "headlines_processed": 11,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 514,
-        "cost_usd": 0.20540100000000017,
+        "calls": 525,
+        "cost_usd": 0.21030475000000023,
         "details": {
-          "input_tokens": 499394,
-          "output_tokens": 64442
+          "input_tokens": 511959,
+          "output_tokens": 65852
         }
       }
     },
-    "total_usd": 0.237,
+    "total_usd": 0.2419,
     "month_estimate_usd": 7.74,
     "daily_budget": 1.67,
-    "budget_pct": 14.2
+    "budget_pct": 14.5
   },
   "queue": {
-    "size": 44,
-    "oldest_item_age_hours": 24.4
+    "size": 43,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 7,
   "sources": {
@@ -48,7 +49,7 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-16T13:30:28.709067+00:00",
+      "timestamp": "2026-09-16T14:30:31.892828+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.defense.gov/News/"
     }
@@ -56,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-15/2026-09-15-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-15/2026-09-15-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
