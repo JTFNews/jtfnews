@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-09-18T16:55:51.436783+00:00",
+  "timestamp": "2026-09-18T17:01:00.041240+00:00",
+  "web_refresh_at": "2026-09-18T17:01:00.041240+00:00",
   "uptime_start": "2026-09-12T17:59:43.753333+00:00",
-  "uptime_seconds": 514568,
+  "uptime_seconds": 514876,
   "availability_pct": 70.2,
   "cycle": {
-    "number": 286,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 287,
+    "duration_seconds": 53.2,
+    "headlines_scraped": 176,
+    "headlines_processed": 5,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,42 @@
         }
       },
       "claude": {
-        "calls": 549,
-        "cost_usd": 0.221874,
+        "calls": 556,
+        "cost_usd": 0.22453425,
         "details": {
-          "input_tokens": 546146,
-          "output_tokens": 68270
+          "input_tokens": 552337,
+          "output_tokens": 69160
         }
       }
     },
-    "total_usd": 0.2465,
+    "total_usd": 0.2492,
     "month_estimate_usd": 7.74,
     "daily_budget": 1.67,
-    "budget_pct": 14.8
+    "budget_pct": 15.0
   },
   "queue": {
-    "size": 48,
-    "oldest_item_age_hours": 24.4
+    "size": 46,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 6,
   "sources": {
     "total": 21,
-    "successful": 21,
-    "failed": []
+    "successful": 20,
+    "failed": [
+      "France 24"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-18T17:00:10.580580+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-17/2026-09-17-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-17/2026-09-17-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
