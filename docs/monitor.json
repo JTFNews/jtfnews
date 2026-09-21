@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-09-21T21:01:04.192510+00:00",
-  "web_refresh_at": "2026-09-21T21:01:04.192510+00:00",
+  "timestamp": "2026-09-21T21:12:06.462230+00:00",
   "uptime_start": "2026-09-12T17:59:43.753333+00:00",
-  "uptime_seconds": 788480,
+  "uptime_seconds": 789143,
   "availability_pct": 72.6,
   "cycle": {
     "number": 439,
-    "duration_seconds": 57.6,
-    "headlines_scraped": 186,
-    "headlines_processed": 10,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 47,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.2
   },
   "stories_today": 12,
   "sources": {
@@ -45,11 +44,17 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-21T21:07:06.459386+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 18,
     "degraded_services": []
   },
   "daily_digest": {
@@ -68,12 +73,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-19/2026-09-19-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-19/2026-09-19-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
