@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-23T23:46:57.714812+00:00",
-  "uptime_start": "2026-09-23T20:07:39.501158+00:00",
-  "uptime_seconds": 13158,
+  "timestamp": "2026-09-23T23:51:01.144225+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 20069,
   "availability_pct": 74.4,
   "cycle": {
-    "number": 8,
+    "number": 12,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -29,7 +29,7 @@
   },
   "queue": {
     "size": 68,
-    "oldest_item_age_hours": 23.4
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 10,
   "sources": {
@@ -39,20 +39,25 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-23T23:11:28.713956+00:00",
+      "timestamp": "2026-09-23T23:16:29.901103+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-23T23:36:56.142804+00:00",
+      "timestamp": "2026-09-23T23:21:31.368948+00:00",
       "level": "WARNING",
-      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-23T23:26:32.522252+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 14,
+    "next_cycle_minutes": 9,
     "degraded_services": []
   },
   "daily_digest": {
