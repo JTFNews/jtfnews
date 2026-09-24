@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-09-24T05:01:01.950273+00:00",
-  "web_refresh_at": "2026-09-24T05:01:01.950273+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 38670,
+  "timestamp": "2026-09-24T05:01:03.787682+00:00",
+  "web_refresh_at": "2026-09-24T05:01:03.787682+00:00",
+  "uptime_start": "2026-09-23T20:07:39.501158+00:00",
+  "uptime_seconds": 32004,
   "availability_pct": 74.8,
   "cycle": {
-    "number": 23,
-    "duration_seconds": 48.0,
+    "number": 19,
+    "duration_seconds": 47.8,
     "headlines_scraped": 186,
     "headlines_processed": 7,
     "stories_published": 0,
@@ -15,11 +15,11 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 193,
-        "cost_usd": 0.08157200000000003,
+        "calls": 194,
+        "cost_usd": 0.08204125000000004,
         "details": {
-          "input_tokens": 198498,
-          "output_tokens": 25558
+          "input_tokens": 199640,
+          "output_tokens": 25705
         }
       },
       "elevenlabs": {
@@ -30,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.0854,
+    "total_usd": 0.0859,
     "month_estimate_usd": 7.81,
     "daily_budget": 1.67,
-    "budget_pct": 5.1
+    "budget_pct": 5.2
   },
   "queue": {
-    "size": 62,
-    "oldest_item_age_hours": 24.0
+    "size": 61,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 6,
   "sources": {
@@ -45,7 +45,18 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-24T04:30:55.009313+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-24T04:35:56.046044+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
