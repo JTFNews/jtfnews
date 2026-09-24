@@ -1,25 +1,25 @@
 {
-  "timestamp": "2026-09-24T10:01:08.023317+00:00",
-  "web_refresh_at": "2026-09-24T10:01:08.023317+00:00",
-  "uptime_start": "2026-09-23T20:07:39.501158+00:00",
-  "uptime_seconds": 50009,
+  "timestamp": "2026-09-24T10:01:21.327731+00:00",
+  "web_refresh_at": "2026-09-24T10:01:21.327731+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 56689,
   "availability_pct": 75.7,
   "cycle": {
-    "number": 29,
-    "duration_seconds": 59.4,
+    "number": 33,
+    "duration_seconds": 72.8,
     "headlines_scraped": 184,
     "headlines_processed": 13,
-    "stories_published": 0,
-    "stories_queued": 1
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 50,
-        "cost_usd": 0.01959425,
+        "calls": 59,
+        "cost_usd": 0.022505500000000005,
         "details": {
-          "input_tokens": 48057,
-          "output_tokens": 6064
+          "input_tokens": 55547,
+          "output_tokens": 6895
         }
       },
       "elevenlabs": {
@@ -30,10 +30,10 @@
         }
       }
     },
-    "total_usd": 0.0211,
+    "total_usd": 0.024,
     "month_estimate_usd": 7.81,
     "daily_budget": 1.67,
-    "budget_pct": 1.3
+    "budget_pct": 1.4
   },
   "queue": {
     "size": 67,
@@ -45,7 +45,28 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-24T09:11:08.607525+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-24T09:16:09.861071+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-24T09:21:11.067404+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-24T09:26:12.375722+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
