@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-09-25T01:01:01.981892+00:00",
-  "web_refresh_at": "2026-09-25T01:01:01.981892+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 110670,
+  "timestamp": "2026-09-25T01:06:01.979933+00:00",
+  "uptime_start": "2026-09-23T20:07:39.501158+00:00",
+  "uptime_seconds": 104302,
   "availability_pct": 77.3,
   "cycle": {
-    "number": 63,
-    "duration_seconds": 54.9,
-    "headlines_scraped": 185,
-    "headlines_processed": 9,
+    "number": 59,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 2
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 65,
-    "oldest_item_age_hours": 23.0
+    "oldest_item_age_hours": 23.1
   },
   "stories_today": 4,
   "sources": {
@@ -47,52 +46,52 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-25T00:03:17.221913+00:00",
-      "level": "ERROR",
-      "message": "Failed to stop recording: socket is already closed."
-    },
-    {
-      "timestamp": "2026-09-25T00:03:17.222199+00:00",
-      "level": "ERROR",
-      "message": "Failed to switch scene to JTF News: socket is already closed."
-    },
-    {
-      "timestamp": "2026-09-25T00:03:22.022342+00:00",
+      "timestamp": "2026-09-25T00:23:56.562327+00:00",
       "level": "ERROR",
       "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
     },
     {
-      "timestamp": "2026-09-25T00:11:49.169304+00:00",
+      "timestamp": "2026-09-25T00:24:43.614107+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-25T00:16:50.214995+00:00",
+      "timestamp": "2026-09-25T00:29:44.671692+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-25T00:21:51.272192+00:00",
+      "timestamp": "2026-09-25T00:30:37.744723+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-25T00:26:52.137954+00:00",
+      "timestamp": "2026-09-25T00:35:38.707030+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-25T00:30:37.676399+00:00",
+      "timestamp": "2026-09-25T00:40:39.933854+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-25T00:35:38.568924+00:00",
+      "timestamp": "2026-09-25T00:45:40.691940+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-25T00:40:39.933919+00:00",
+      "timestamp": "2026-09-25T00:50:41.794573+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-25T00:55:42.800540+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-25T01:01:01.980566+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     }
@@ -100,7 +99,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -119,12 +118,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-23/2026-09-23-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-23/2026-09-23-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
