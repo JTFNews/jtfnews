@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-09-25T12:30:43.958264+00:00",
-  "web_refresh_at": "2026-09-25T12:30:43.958264+00:00",
-  "uptime_start": "2026-09-23T20:07:39.501158+00:00",
-  "uptime_seconds": 145384,
+  "timestamp": "2026-09-25T12:30:45.193020+00:00",
+  "web_refresh_at": "2026-09-25T12:30:45.193020+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 152053,
   "availability_pct": 78.6,
   "cycle": {
-    "number": 82,
-    "duration_seconds": 36.8,
+    "number": 86,
+    "duration_seconds": 37.6,
     "headlines_scraped": 187,
     "headlines_processed": 3,
     "stories_published": 0,
@@ -15,15 +15,15 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 60,
-        "cost_usd": 0.023345,
+        "calls": 61,
+        "cost_usd": 0.023869500000000002,
         "details": {
-          "input_tokens": 58435,
-          "output_tokens": 6989
+          "input_tokens": 59573,
+          "output_tokens": 7181
         }
       }
     },
-    "total_usd": 0.0233,
+    "total_usd": 0.0239,
     "month_estimate_usd": 7.81,
     "daily_budget": 1.67,
     "budget_pct": 1.4
@@ -38,7 +38,38 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-25T11:31:14.876550+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-25T11:36:16.181836+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-25T11:41:17.691019+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-25T11:46:19.011291+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-25T11:51:20.646940+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-25T11:56:22.031635+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
