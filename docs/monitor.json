@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-09-26T05:56:16.889609+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 214785,
+  "timestamp": "2026-09-26T06:00:50.813177+00:00",
+  "web_refresh_at": "2026-09-26T06:00:50.813177+00:00",
+  "uptime_start": "2026-09-25T18:01:28.453776+00:00",
+  "uptime_seconds": 43162,
   "availability_pct": 80.1,
   "cycle": {
-    "number": 120,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 25,
+    "duration_seconds": 44.2,
+    "headlines_scraped": 186,
+    "headlines_processed": 4,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 334,
-        "cost_usd": 0.14025574999999993,
+        "calls": 340,
+        "cost_usd": 0.1432072499999999,
         "details": {
-          "input_tokens": 337413,
-          "output_tokens": 44722
+          "input_tokens": 344264,
+          "output_tokens": 45713
         }
       }
     },
-    "total_usd": 0.1688,
+    "total_usd": 0.1717,
     "month_estimate_usd": 7.5,
     "daily_budget": 1.67,
-    "budget_pct": 10.1
+    "budget_pct": 10.3
   },
   "queue": {
     "size": 52,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 3,
   "sources": {
@@ -46,12 +47,22 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-26T05:46:15.307976+00:00",
+      "timestamp": "2026-09-26T05:31:11.746728+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-26T05:51:16.748609+00:00",
+      "timestamp": "2026-09-26T05:36:12.845787+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-26T05:41:13.942569+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-26T05:56:18.317075+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     }
@@ -59,7 +70,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -78,5 +89,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
