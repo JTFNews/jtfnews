@@ -1,15 +1,14 @@
 {
-  "timestamp": "2026-09-26T18:31:05.949939+00:00",
-  "web_refresh_at": "2026-09-26T18:31:05.949939+00:00",
-  "uptime_start": "2026-09-25T18:01:28.453776+00:00",
-  "uptime_seconds": 88177,
+  "timestamp": "2026-09-26T18:36:06.083477+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 260374,
   "availability_pct": 80.9,
   "cycle": {
-    "number": 51,
-    "duration_seconds": 56.2,
-    "headlines_scraped": 187,
-    "headlines_processed": 6,
-    "stories_published": 1,
+    "number": 146,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
+    "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
@@ -30,7 +29,7 @@
   },
   "queue": {
     "size": 26,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 11,
   "sources": {
@@ -38,11 +37,32 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-26T17:41:00.893022+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-26T17:46:03.176495+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-26T17:51:05.565276+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-26T17:56:07.240083+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -61,12 +81,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
