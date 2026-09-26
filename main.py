@@ -7624,6 +7624,15 @@ def push_to_ghpages(files: list, commit_message: str):
 
             response = requests.put(api_url, headers=headers, json=payload)
 
+            if response.status_code == 409:
+                # SHA conflict: another instance wrote between our GET and PUT.
+                # Re-fetch SHA and retry once.
+                retry_get = requests.get(api_url, headers=headers, params={"ref": branch})
+                fresh_sha = retry_get.json().get("sha") if retry_get.status_code == 200 else None
+                if fresh_sha:
+                    payload["sha"] = fresh_sha
+                    response = requests.put(api_url, headers=headers, json=payload)
+
             if response.status_code not in (200, 201):
                 log.warning(f"GitHub API error for {gh_path}: {response.status_code}")
                 success = False
@@ -8692,6 +8701,20 @@ def main():
     """Main entry point."""
     global _offline_alert_sent
     _offline_alert_sent = False  # Reset on startup so we catch new offline events
+
+    # Prevent duplicate instances: write PID file and exit if one already exists.
+    import atexit
+    pid_file = DATA_DIR / "jtfnews.pid"
+    if pid_file.exists():
+        try:
+            old_pid = int(pid_file.read_text().strip())
+            os.kill(old_pid, 0)  # Raises if process is dead
+            log.critical(f"JTF News already running as PID {old_pid}. Exiting duplicate.")
+            sys.exit(1)
+        except (ValueError, ProcessLookupError, PermissionError):
+            pass  # Stale PID file — safe to overwrite
+    pid_file.write_text(str(os.getpid()))
+    atexit.register(lambda: pid_file.unlink(missing_ok=True))
 
     log.info("JTF News starting...")
     log.info("Facts only. No opinions.")
