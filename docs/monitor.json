@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-09-26T10:30:49.489479+00:00",
-  "web_refresh_at": "2026-09-26T10:30:49.489479+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 231258,
+  "timestamp": "2026-09-26T10:35:51.422644+00:00",
+  "uptime_start": "2026-09-25T18:01:28.453776+00:00",
+  "uptime_seconds": 59663,
   "availability_pct": 80.4,
   "cycle": {
-    "number": 130,
-    "duration_seconds": 40.2,
-    "headlines_scraped": 186,
-    "headlines_processed": 3,
+    "number": 35,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 41,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 7,
   "sources": {
@@ -47,17 +46,37 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-26T09:31:18.241742+00:00",
+      "timestamp": "2026-09-26T09:41:22.200578+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-26T09:36:19.611482+00:00",
+      "timestamp": "2026-09-26T09:46:24.589872+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-26T09:56:28.689590+00:00",
+      "timestamp": "2026-09-26T09:51:27.080995+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-26T10:00:51.821049+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 409"
+    },
+    {
+      "timestamp": "2026-09-26T10:00:53.541787+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/stories.json: 409"
+    },
+    {
+      "timestamp": "2026-09-26T10:00:53.549308+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: [Errno 2] No such file or directory: '/Users/larryseyer/JTFNews/docs/alexa.json.tmp' -> '/Users/larryseyer/JTFNews/docs/alexa.json'"
+    },
+    {
+      "timestamp": "2026-09-26T10:30:51.412929+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
     }
@@ -65,7 +84,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
@@ -84,12 +103,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
