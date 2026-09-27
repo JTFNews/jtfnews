@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-09-27T22:01:02.887656+00:00",
-  "web_refresh_at": "2026-09-27T22:01:02.887656+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 359071,
+  "timestamp": "2026-09-27T22:01:02.734286+00:00",
+  "web_refresh_at": "2026-09-27T22:01:02.734286+00:00",
+  "uptime_start": "2026-09-26T23:41:36.432135+00:00",
+  "uptime_seconds": 80366,
   "availability_pct": 83.0,
   "cycle": {
-    "number": 201,
-    "duration_seconds": 53.3,
+    "number": 46,
+    "duration_seconds": 51.5,
     "headlines_scraped": 187,
     "headlines_processed": 5,
     "stories_published": 0,
@@ -15,15 +15,15 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 4,
-        "cost_usd": 0.0020325,
+        "calls": 3,
+        "cost_usd": 0.00150275,
         "details": {
-          "input_tokens": 4550,
-          "output_tokens": 716
+          "input_tokens": 3411,
+          "output_tokens": 520
         }
       }
     },
-    "total_usd": 0.002,
+    "total_usd": 0.0015,
     "month_estimate_usd": 7.37,
     "daily_budget": 1.67,
     "budget_pct": 0.1
@@ -38,18 +38,7 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-09-27T21:30:22.586880+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/news/"
-    },
-    {
-      "timestamp": "2026-09-27T21:31:02.796294+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
