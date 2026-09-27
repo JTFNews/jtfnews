@@ -1,35 +1,36 @@
 {
-  "timestamp": "2026-09-27T21:56:12.705306+00:00",
-  "uptime_start": "2026-09-26T23:41:36.432135+00:00",
-  "uptime_seconds": 80076,
+  "timestamp": "2026-09-27T22:01:02.887656+00:00",
+  "web_refresh_at": "2026-09-27T22:01:02.887656+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 359071,
   "availability_pct": 83.0,
   "cycle": {
-    "number": 45,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 201,
+    "duration_seconds": 53.3,
+    "headlines_scraped": 187,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 26,
-        "cost_usd": 0.0088975,
+        "calls": 4,
+        "cost_usd": 0.0020325,
         "details": {
-          "input_tokens": 22935,
-          "output_tokens": 2531
+          "input_tokens": 4550,
+          "output_tokens": 716
         }
       }
     },
-    "total_usd": 0.0089,
+    "total_usd": 0.002,
     "month_estimate_usd": 7.37,
     "daily_budget": 1.67,
-    "budget_pct": 0.5
+    "budget_pct": 0.1
   },
   "queue": {
-    "size": 30,
-    "oldest_item_age_hours": 24.4
+    "size": 31,
+    "oldest_item_age_hours": 22.0
   },
   "stories_today": 18,
   "sources": {
@@ -37,11 +38,22 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-27T21:30:22.586880+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/news/"
+    },
+    {
+      "timestamp": "2026-09-27T21:31:02.796294+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -60,5 +72,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
