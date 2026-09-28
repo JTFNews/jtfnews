@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-09-28T01:55:57.784847+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 373166,
-  "availability_pct": 83.1,
+  "timestamp": "2026-09-28T02:00:45.608688+00:00",
+  "web_refresh_at": "2026-09-28T02:00:45.608688+00:00",
+  "uptime_start": "2026-09-26T23:41:36.432135+00:00",
+  "uptime_seconds": 94749,
+  "availability_pct": 83.2,
   "cycle": {
-    "number": 208,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 54,
+    "duration_seconds": 35.2,
+    "headlines_scraped": 177,
+    "headlines_processed": 1,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 242,
-        "cost_usd": 0.09479849999999995,
+        "calls": 243,
+        "cost_usd": 0.09526149999999996,
         "details": {
-          "input_tokens": 233519,
-          "output_tokens": 29135
+          "input_tokens": 234656,
+          "output_tokens": 29278
         }
       }
     },
-    "total_usd": 0.1208,
+    "total_usd": 0.1213,
     "month_estimate_usd": 7.37,
     "daily_budget": 1.67,
     "budget_pct": 7.3
   },
   "queue": {
     "size": 39,
-    "oldest_item_age_hours": 21.9
+    "oldest_item_age_hours": 22.0
   },
   "stories_today": 4,
   "sources": {
@@ -48,15 +49,25 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-28T01:30:25.278309+00:00",
+      "timestamp": "2026-09-28T01:00:52.692961+00:00",
       "level": "WARNING",
-      "message": "robots.txt blocks: https://www.whitehouse.gov/briefing-room/"
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-28T01:30:25.287887+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
+    },
+    {
+      "timestamp": "2026-09-28T02:00:23.562795+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +86,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
