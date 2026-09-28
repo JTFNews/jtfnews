@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-09-28T09:01:07.836099+00:00",
-  "web_refresh_at": "2026-09-28T09:01:07.836099+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 398676,
+  "timestamp": "2026-09-28T09:01:08.180811+00:00",
+  "web_refresh_at": "2026-09-28T09:01:08.180811+00:00",
+  "uptime_start": "2026-09-26T23:41:36.432135+00:00",
+  "uptime_seconds": 119972,
   "availability_pct": 83.4,
   "cycle": {
-    "number": 223,
-    "duration_seconds": 58.6,
+    "number": 68,
+    "duration_seconds": 56.3,
     "headlines_scraped": 186,
     "headlines_processed": 8,
     "stories_published": 0,
@@ -15,18 +15,18 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 8,
-        "cost_usd": 0.0038055,
+        "calls": 9,
+        "cost_usd": 0.00425575,
         "details": {
-          "input_tokens": 9192,
-          "output_tokens": 1206
+          "input_tokens": 10338,
+          "output_tokens": 1337
         }
       }
     },
-    "total_usd": 0.0038,
+    "total_usd": 0.0043,
     "month_estimate_usd": 7.37,
     "daily_budget": 1.67,
-    "budget_pct": 0.2
+    "budget_pct": 0.3
   },
   "queue": {
     "size": 39,
@@ -38,28 +38,7 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-09-28T08:30:18.953188+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
-    },
-    {
-      "timestamp": "2026-09-28T08:31:16.978485+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-28T08:36:18.125646+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-28T08:41:19.396246+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
