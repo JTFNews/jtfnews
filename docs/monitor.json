@@ -1,64 +1,68 @@
 {
-  "timestamp": "2026-09-28T07:55:53.429507+00:00",
-  "uptime_start": "2026-09-26T23:41:36.432135+00:00",
-  "uptime_seconds": 116057,
+  "timestamp": "2026-09-28T08:01:16.137064+00:00",
+  "web_refresh_at": "2026-09-28T08:01:16.137064+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 395084,
   "availability_pct": 83.3,
   "cycle": {
-    "number": 65,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 221,
+    "duration_seconds": 68.3,
+    "headlines_scraped": 187,
+    "headlines_processed": 6,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 3,
-        "cost_usd": 0.00885,
+        "calls": 5,
+        "cost_usd": 0.014010000000000002,
         "details": {
-          "characters": 295
+          "characters": 467
         }
       },
       "claude": {
-        "calls": 12,
-        "cost_usd": 0.00537825,
+        "calls": 29,
+        "cost_usd": 0.010105999999999999,
         "details": {
-          "input_tokens": 12208,
-          "output_tokens": 1861
+          "input_tokens": 23639,
+          "output_tokens": 3357
         }
       }
     },
-    "total_usd": 0.0142,
+    "total_usd": 0.0241,
     "month_estimate_usd": 7.37,
     "daily_budget": 1.67,
-    "budget_pct": 0.9
+    "budget_pct": 1.4
   },
   "queue": {
     "size": 39,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 6,
+  "stories_today": 8,
   "sources": {
     "total": 21,
-    "successful": 20,
-    "failed": [
-      "White House"
-    ]
+    "successful": 21,
+    "failed": []
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-28T07:00:24.830743+00:00",
+      "timestamp": "2026-09-28T07:01:19.882407+00:00",
       "level": "WARNING",
-      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
+      "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-28T07:00:58.824796+00:00",
+      "timestamp": "2026-09-28T07:06:21.079873+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 409"
+      "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-09-28T07:30:20.932807+00:00",
+      "timestamp": "2026-09-28T07:11:22.141036+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-09-28T07:30:21.248270+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
     }
@@ -66,7 +70,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -85,5 +89,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-24/2026-09-24-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
