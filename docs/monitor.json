@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-28T07:21:23.952515+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 392692,
+  "timestamp": "2026-09-28T07:26:19.958221+00:00",
+  "uptime_start": "2026-09-26T23:41:36.432135+00:00",
+  "uptime_seconds": 114284,
   "availability_pct": 83.3,
   "cycle": {
-    "number": 219,
+    "number": 64,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -48,60 +48,20 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-09-28T07:01:08.866556+00:00",
+      "timestamp": "2026-09-28T07:00:24.830743+00:00",
       "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-09-27 has no <link>, skipping"
+      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
     },
     {
-      "timestamp": "2026-09-28T07:01:08.866725+00:00",
+      "timestamp": "2026-09-28T07:00:58.824796+00:00",
       "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-09-26 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-09-28T07:01:08.866877+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-09-25 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-09-28T07:01:08.867023+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-09-24 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-09-28T07:01:08.867186+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-09-22 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-09-28T07:01:08.867332+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-09-21 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-09-28T07:01:08.867706+00:00",
-      "level": "WARNING",
-      "message": "propagate_correction_to_youtube: no YouTube video for 2026-09-28, skipping"
-    },
-    {
-      "timestamp": "2026-09-28T07:01:19.882407+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-28T07:06:21.079873+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-09-28T07:11:22.141036+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
+      "message": "GitHub API error for docs/feed.xml: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 8,
+    "next_cycle_minutes": 3,
     "degraded_services": []
   },
   "daily_digest": {
