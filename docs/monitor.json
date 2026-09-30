@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-30T22:41:01.208960+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 11064,
+  "timestamp": "2026-09-30T22:46:01.365154+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 620969,
   "availability_pct": 83.6,
   "cycle": {
-    "number": 7,
+    "number": 3651,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 31,
-    "oldest_item_age_hours": 3.4
+    "oldest_item_age_hours": 3.5
   },
   "stories_today": 3,
   "sources": {
@@ -44,11 +44,17 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-09-30T22:01:30.354119+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/alexa.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 19,
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
