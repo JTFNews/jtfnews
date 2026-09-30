@@ -2914,8 +2914,7 @@ def load_queue() -> list:
 def save_queue(queue: list):
     """Save the story queue to file."""
     queue_file = DATA_DIR / "queue.json"
-    with open(queue_file, 'w') as f:
-        json.dump(queue, f, indent=2)
+    atomic_write_text(queue_file, json.dumps(queue, indent=2))
 
 
 def clean_expired_queue(queue: list) -> list:
