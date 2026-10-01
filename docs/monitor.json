@@ -1,23 +1,32 @@
 {
-  "timestamp": "2026-10-01T16:01:23.260246+00:00",
-  "web_refresh_at": "2026-10-01T16:01:23.260246+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 683091,
+  "timestamp": "2026-10-01T16:01:27.243305+00:00",
+  "web_refresh_at": "2026-10-01T16:01:27.243305+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 73490,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 3686,
-    "duration_seconds": 72.9,
+    "number": 42,
+    "duration_seconds": 79.0,
     "headlines_scraped": 187,
-    "headlines_processed": 7,
+    "headlines_processed": 8,
     "stories_published": 2,
     "stories_queued": 2
   },
   "api_costs": {
-    "today": {},
-    "total_usd": 0.0,
+    "today": {
+      "claude": {
+        "calls": 4,
+        "cost_usd": 0.0009127499999999999,
+        "details": {
+          "input_tokens": 2596,
+          "output_tokens": 211
+        }
+      }
+    },
+    "total_usd": 0.0009,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 0.0
+    "budget_pct": 0.1
   },
   "queue": {
     "size": 61,
@@ -29,33 +38,7 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-10-01T15:30:55.804753+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 409"
-    },
-    {
-      "timestamp": "2026-10-01T15:30:57.348729+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/stories.json: 409"
-    },
-    {
-      "timestamp": "2026-10-01T15:30:58.940057+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/alexa.json: 409"
-    },
-    {
-      "timestamp": "2026-10-01T16:00:57.918044+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 409"
-    },
-    {
-      "timestamp": "2026-10-01T16:01:01.086691+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/alexa.json: 409"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
