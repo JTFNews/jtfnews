@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-01T10:16:42.714270+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 662411,
+  "timestamp": "2026-10-01T10:21:20.862775+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 53084,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 3674,
+    "number": 30,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 52,
-    "oldest_item_age_hours": 15.0
+    "oldest_item_age_hours": 15.1
   },
   "stories_today": 5,
   "sources": {
@@ -46,11 +46,17 @@
       "France 24"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-01T10:00:11.371834+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 13,
+    "next_cycle_minutes": 8,
     "degraded_services": []
   },
   "daily_digest": {
