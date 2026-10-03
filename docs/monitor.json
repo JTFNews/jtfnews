@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-03T16:20:52.842475+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 247456,
+  "timestamp": "2026-10-03T16:25:52.813334+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 857361,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 138,
+    "number": 3782,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 32,
-    "oldest_item_age_hours": 24.3
+    "oldest_item_age_hours": 24.4
   },
   "stories_today": 8,
   "sources": {
@@ -44,11 +44,17 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-03T15:30:47.634524+00:00",
+      "level": "WARNING",
+      "message": "Could not write monitor data: [Errno 2] No such file or directory: '/Users/larryseyer/JTFNews/data/monitor.json.tmp' -> '/Users/larryseyer/JTFNews/data/monitor.json'"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 9,
+    "next_cycle_minutes": 4,
     "degraded_services": []
   },
   "daily_digest": {
