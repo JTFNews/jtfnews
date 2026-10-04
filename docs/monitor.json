@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-04T23:16:08.111459+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 358771,
+  "timestamp": "2026-10-04T23:21:08.319851+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 968676,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 200,
+    "number": 3845,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -37,11 +37,17 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-04T23:01:03.559567+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 13,
+    "next_cycle_minutes": 8,
     "degraded_services": []
   },
   "daily_digest": {
