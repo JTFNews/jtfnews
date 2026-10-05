@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-10-05T23:01:01.333749+00:00",
-  "web_refresh_at": "2026-10-05T23:01:01.333749+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 444264,
+  "timestamp": "2026-10-05T23:01:03.693624+00:00",
+  "web_refresh_at": "2026-10-05T23:01:03.693624+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1053872,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 248,
-    "duration_seconds": 51.1,
+    "number": 3893,
+    "duration_seconds": 55.8,
     "headlines_scraped": 187,
     "headlines_processed": 10,
     "stories_published": 0,
@@ -15,15 +15,15 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 23,
-        "cost_usd": 0.008216999999999999,
+        "calls": 24,
+        "cost_usd": 0.008738749999999998,
         "details": {
-          "input_tokens": 21463,
-          "output_tokens": 2281
+          "input_tokens": 22605,
+          "output_tokens": 2470
         }
       }
     },
-    "total_usd": 0.0082,
+    "total_usd": 0.0087,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
     "budget_pct": 0.5
@@ -38,7 +38,33 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-05T22:30:53.140681+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T22:35:53.973488+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T22:40:55.565102+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T22:45:57.238287+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T22:50:58.908861+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
