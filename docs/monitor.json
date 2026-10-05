@@ -1,32 +1,32 @@
 {
-  "timestamp": "2026-10-05T11:00:54.322072+00:00",
-  "web_refresh_at": "2026-10-05T11:00:54.322072+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1010662,
+  "timestamp": "2026-10-05T11:00:59.774026+00:00",
+  "web_refresh_at": "2026-10-05T11:00:59.774026+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 401063,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 3869,
-    "duration_seconds": 46.1,
+    "number": 224,
+    "duration_seconds": 52.0,
     "headlines_scraped": 186,
-    "headlines_processed": 5,
+    "headlines_processed": 6,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 9,
-        "cost_usd": 0.0036552500000000005,
+        "calls": 12,
+        "cost_usd": 0.004703,
         "details": {
-          "input_tokens": 8321,
-          "output_tokens": 1260
+          "input_tokens": 10787,
+          "output_tokens": 1605
         }
       }
     },
-    "total_usd": 0.0037,
+    "total_usd": 0.0047,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 0.2
+    "budget_pct": 0.3
   },
   "queue": {
     "size": 29,
@@ -38,7 +38,13 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-05T10:01:17.850174+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
