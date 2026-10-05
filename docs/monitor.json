@@ -1,47 +1,84 @@
 {
-  "timestamp": "2026-10-05T17:26:19.091043+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 424182,
+  "timestamp": "2026-10-05T17:31:14.456816+00:00",
+  "web_refresh_at": "2026-10-05T17:31:14.456816+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1034083,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 236,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 3882,
+    "duration_seconds": 65.7,
+    "headlines_scraped": 187,
+    "headlines_processed": 10,
+    "stories_published": 1,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 11,
-        "cost_usd": 0.001983,
+        "calls": 6,
+        "cost_usd": 0.0022094999999999997,
         "details": {
-          "input_tokens": 5917,
-          "output_tokens": 403
+          "input_tokens": 5208,
+          "output_tokens": 726
         }
       }
     },
-    "total_usd": 0.002,
+    "total_usd": 0.0022,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
     "budget_pct": 0.1
   },
   "queue": {
-    "size": 38,
-    "oldest_item_age_hours": 23.9
+    "size": 39,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 14,
+  "stories_today": 17,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-05T16:35:51.196793+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T16:40:52.816904+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T16:45:54.309098+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T16:50:55.792823+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T16:55:57.151687+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T17:00:24.419387+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.defense.gov/News/"
+    },
+    {
+      "timestamp": "2026-10-05T17:30:50.198980+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/alexa.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -60,5 +97,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-28/2026-09-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-28/2026-09-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
