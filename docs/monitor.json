@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-10-05T17:31:25.824360+00:00",
-  "web_refresh_at": "2026-10-05T17:31:25.824360+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 424489,
+  "timestamp": "2026-10-05T17:36:16.132970+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1034384,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 237,
-    "duration_seconds": 74.5,
-    "headlines_scraped": 187,
-    "headlines_processed": 11,
-    "stories_published": 2,
-    "stories_queued": 2
+    "number": 3882,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
+    "stories_published": 0,
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -30,7 +29,7 @@
   },
   "queue": {
     "size": 38,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 17,
   "sources": {
@@ -38,11 +37,42 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-05T16:40:52.816904+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T16:45:54.309098+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T16:50:55.792823+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T16:55:57.151687+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-05T17:00:24.419387+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.defense.gov/News/"
+    },
+    {
+      "timestamp": "2026-10-05T17:30:50.198980+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/alexa.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -61,12 +91,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-28/2026-09-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-09-28/2026-09-28-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
