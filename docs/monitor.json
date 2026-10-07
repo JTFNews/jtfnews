@@ -1,35 +1,36 @@
 {
-  "timestamp": "2026-10-07T19:56:33.577648+00:00",
+  "timestamp": "2026-10-07T20:01:04.644198+00:00",
+  "web_refresh_at": "2026-10-07T20:01:04.644198+00:00",
   "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1215602,
+  "uptime_seconds": 1215873,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 3983,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 3984,
+    "duration_seconds": 56.4,
+    "headlines_scraped": 186,
+    "headlines_processed": 11,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 14,
-        "cost_usd": 0.0070875,
+        "calls": 34,
+        "cost_usd": 0.01686425,
         "details": {
-          "input_tokens": 15995,
-          "output_tokens": 2471
+          "input_tokens": 38827,
+          "output_tokens": 5726
         }
       }
     },
-    "total_usd": 0.0071,
+    "total_usd": 0.0169,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 0.4
+    "budget_pct": 1.0
   },
   "queue": {
-    "size": 43,
-    "oldest_item_age_hours": 24.4
+    "size": 41,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 18,
   "sources": {
@@ -38,11 +39,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-10-07T19:00:59.314903+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
     {
       "timestamp": "2026-10-07T19:06:00.870587+00:00",
       "level": "WARNING",
@@ -72,7 +68,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -91,5 +87,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-06/2026-10-06-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-06/2026-10-06-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
