@@ -1,71 +1,93 @@
 {
-  "timestamp": "2026-10-06T23:56:10.941721+00:00",
+  "timestamp": "2026-10-07T00:12:36.576088+00:00",
+  "web_refresh_at": "2026-10-07T00:12:36.576088+00:00",
   "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 533974,
+  "uptime_seconds": 534960,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 297,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 298,
+    "duration_seconds": 279.5,
+    "headlines_scraped": 187,
+    "headlines_processed": 118,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 8
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 43,
-        "cost_usd": 0.016878249999999997,
+        "calls": 18,
+        "cost_usd": 0.007829500000000001,
         "details": {
-          "input_tokens": 39598,
-          "output_tokens": 5583
-        }
-      },
-      "elevenlabs": {
-        "calls": 2,
-        "cost_usd": 0.00723,
-        "details": {
-          "characters": 241
+          "input_tokens": 18813,
+          "output_tokens": 2501
         }
       }
     },
-    "total_usd": 0.0241,
+    "total_usd": 0.0078,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 1.5
+    "budget_pct": 0.5
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 24.4
+    "size": 57,
+    "oldest_item_age_hours": 23.2
   },
-  "stories_today": 22,
+  "stories_today": 4,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-07T00:04:32.276999+00:00",
+      "level": "ERROR",
+      "message": "ffmpeg processing failed: eb/assets/png/thumbnail-archive-1920x1080.png':\n  Duration: N/A, bitrate: N/A\n  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 1920x1080 [SAR 15748:15748 DAR 16:9], 30 fps, 30 tbr, 30 tbn\n[mov,mp4,m4a,3gp,3g2,mj2 @ 0x7f984360ffc0] moov atom not found\n[in#1 @ 0x7f984360fc00] Error opening input: Invalid data found when processing input\nError opening input file /Users/larryseyer/JTFNews/video/2026-10-06-daily-digest.mp4.\nError opening input files: Invalid data found when processing input\n"
+    },
+    {
+      "timestamp": "2026-10-07T00:04:32.277542+00:00",
+      "level": "WARNING",
+      "message": "Video processing failed, using original recording"
+    },
+    {
+      "timestamp": "2026-10-07T00:04:57.311226+00:00",
+      "level": "WARNING",
+      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp": "2026-10-07T00:07:55.191742+00:00",
+      "level": "ERROR",
+      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 17,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-10-05",
-    "next_digest_at": "2026-10-07T00:00:00+00:00",
+    "last_date": "2026-10-06",
+    "next_digest_at": "2026-10-08T00:00:00+00:00",
     "status": "failed",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-10-06T00:03:50.769622+00:00",
-    "story_count": 19,
-    "duration_seconds": 157,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-10-05-daily-digest.mp4",
-    "youtube_id": "lfrwa6K3ZnE",
-    "youtube_url": "https://youtube.com/watch?v=lfrwa6K3ZnE",
-    "archive_org_id": "jtf-news-2026-09-28",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-09-28/2026-09-28-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-09-28/2026-09-28-daily-digest.mp4",
+    "last_completed_at": "2026-10-07T00:04:33.632018+00:00",
+    "story_count": 23,
+    "duration_seconds": 196,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-10-06-daily-digest.mp4",
+    "youtube_id": "tSCjPwxgz_8",
+    "youtube_url": "https://youtube.com/watch?v=tSCjPwxgz_8",
+    "archive_org_id": "jtf-news-2026-10-06",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-06/2026-10-06-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-10-06/2026-10-06-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
