@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-10-08T12:31:08.000087+00:00",
-  "web_refresh_at": "2026-10-08T12:31:08.000087+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 665671,
+  "timestamp": "2026-10-08T12:36:08.138576+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1275576,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 371,
-    "duration_seconds": 60.0,
-    "headlines_scraped": 186,
-    "headlines_processed": 11,
-    "stories_published": 1,
-    "stories_queued": 4
+    "number": 4017,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
+    "stories_published": 0,
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 57,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 16,
   "sources": {
@@ -45,11 +44,17 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-08T12:30:49.559608+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/alexa.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -68,12 +73,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-07/2026-10-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-07/2026-10-07-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
