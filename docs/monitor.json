@@ -1,35 +1,36 @@
 {
-  "timestamp": "2026-10-08T14:56:35.873472+00:00",
+  "timestamp": "2026-10-08T15:01:17.440553+00:00",
+  "web_refresh_at": "2026-10-08T15:01:17.440553+00:00",
   "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 674399,
+  "uptime_seconds": 674680,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 375,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 376,
+    "duration_seconds": 66.9,
+    "headlines_scraped": 186,
+    "headlines_processed": 13,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 20,
-        "cost_usd": 0.008740250000000003,
+        "calls": 46,
+        "cost_usd": 0.020310000000000005,
         "details": {
-          "input_tokens": 20866,
-          "output_tokens": 2819
+          "input_tokens": 48560,
+          "output_tokens": 6536
         }
       }
     },
-    "total_usd": 0.0087,
+    "total_usd": 0.0203,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 0.5
+    "budget_pct": 1.3
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 24.4
+    "size": 53,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 18,
   "sources": {
@@ -37,17 +38,11 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-10-08T14:00:12.314376+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.france24.com/en/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -66,5 +61,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-07/2026-10-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-07/2026-10-07-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
