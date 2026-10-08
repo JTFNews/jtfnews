@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-10-08T15:34:40.581189+00:00",
-  "web_refresh_at": "2026-10-08T15:34:40.581189+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1286289,
+  "timestamp": "2026-10-08T15:34:42.421298+00:00",
+  "web_refresh_at": "2026-10-08T15:34:42.421298+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 676685,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4023,
-    "duration_seconds": 270.9,
+    "number": 377,
+    "duration_seconds": 273.8,
     "headlines_scraped": 186,
     "headlines_processed": 10,
     "stories_published": 0,
@@ -15,15 +15,15 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 72,
-        "cost_usd": 0.030533750000000012,
+        "calls": 73,
+        "cost_usd": 0.031073000000000014,
         "details": {
-          "input_tokens": 73415,
-          "output_tokens": 9744
+          "input_tokens": 74572,
+          "output_tokens": 9944
         }
       }
     },
-    "total_usd": 0.0305,
+    "total_usd": 0.0311,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
     "budget_pct": 1.9
@@ -40,14 +40,19 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-08T15:32:36.624993+00:00",
+      "timestamp": "2026-10-08T15:31:37.740633+00:00",
       "level": "WARNING",
       "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
     },
     {
-      "timestamp": "2026-10-08T15:33:37.616582+00:00",
+      "timestamp": "2026-10-08T15:32:34.408937+00:00",
       "level": "WARNING",
       "message": "_call_claude_extract_fact failed (attempt 2/4): Connection error.. Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-10-08T15:33:32.316558+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 3/4): Connection error.. Retrying in 4.0s..."
     }
   ],
   "status": {
