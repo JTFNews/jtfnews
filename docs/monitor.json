@@ -1,43 +1,42 @@
 {
-  "timestamp": "2026-10-08T17:56:34.365543+00:00",
+  "timestamp": "2026-10-08T18:01:13.763762+00:00",
+  "web_refresh_at": "2026-10-08T18:01:13.763762+00:00",
   "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1294802,
+  "uptime_seconds": 1295082,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4027,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4028,
+    "duration_seconds": 65.5,
+    "headlines_scraped": 186,
+    "headlines_processed": 11,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 4
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 26,
-        "cost_usd": 0.010091750000000002,
+        "calls": 64,
+        "cost_usd": 0.020782750000000006,
         "details": {
-          "input_tokens": 24902,
-          "output_tokens": 3093
+          "input_tokens": 51366,
+          "output_tokens": 6353
         }
       }
     },
-    "total_usd": 0.0101,
+    "total_usd": 0.0208,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 0.6
+    "budget_pct": 1.3
   },
   "queue": {
-    "size": 60,
-    "oldest_item_age_hours": 24.4
+    "size": 63,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 18,
   "sources": {
     "total": 21,
-    "successful": 20,
-    "failed": [
-      "Government of Canada"
-    ]
+    "successful": 21,
+    "failed": []
   },
   "recent_errors": [
     {
@@ -49,7 +48,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -68,5 +67,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-07/2026-10-07-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-07/2026-10-07-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
