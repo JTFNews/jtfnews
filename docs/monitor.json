@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-10-08T23:56:21.153066+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1316389,
+  "timestamp": "2026-10-09T00:15:56.194830+00:00",
+  "web_refresh_at": "2026-10-09T00:15:56.194830+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 707959,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4039,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 394,
+    "duration_seconds": 44.2,
+    "headlines_scraped": 186,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
-      "claude": {
-        "calls": 58,
-        "cost_usd": 0.022129000000000006,
+      "elevenlabs": {
+        "calls": 9,
+        "cost_usd": 0.03054,
         "details": {
-          "input_tokens": 53336,
-          "output_tokens": 7036
+          "characters": 1018
         }
       },
-      "elevenlabs": {
-        "calls": 1,
-        "cost_usd": 0.00255,
+      "claude": {
+        "calls": 236,
+        "cost_usd": 0.09391925,
         "details": {
-          "characters": 85
+          "input_tokens": 228847,
+          "output_tokens": 29366
         }
       }
     },
-    "total_usd": 0.0247,
+    "total_usd": 0.1245,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 1.5
+    "budget_pct": 7.7
   },
   "queue": {
-    "size": 66,
-    "oldest_item_age_hours": 24.4
+    "size": 71,
+    "oldest_item_age_hours": 23.3
   },
-  "stories_today": 21,
+  "stories_today": 5,
   "sources": {
     "total": 21,
     "successful": 21,
@@ -46,57 +47,54 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-08T23:00:55.638331+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
+      "timestamp": "2026-10-09T00:04:04.691081+00:00",
+      "level": "ERROR",
+      "message": "ffmpeg processing failed: eb/assets/png/thumbnail-archive-1920x1080.png':\n  Duration: N/A, bitrate: N/A\n  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 1920x1080 [SAR 15748:15748 DAR 16:9], 30 fps, 30 tbr, 30 tbn\n[mov,mp4,m4a,3gp,3g2,mj2 @ 0x7ff19f006980] moov atom not found\n[in#1 @ 0x7ff19f0065c0] Error opening input: Invalid data found when processing input\nError opening input file /Users/larryseyer/JTFNews/video/2026-10-08-daily-digest.mp4.\nError opening input files: Invalid data found when processing input\n"
     },
     {
-      "timestamp": "2026-10-08T23:05:56.919510+00:00",
+      "timestamp": "2026-10-09T00:04:04.691639+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
+      "message": "Video processing failed, using original recording"
     },
     {
-      "timestamp": "2026-10-08T23:10:58.466971+00:00",
+      "timestamp": "2026-10-09T00:04:42.826987+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
+      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
     },
     {
-      "timestamp": "2026-10-08T23:16:00.087792+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-08T23:21:01.761244+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-08T23:26:03.146429+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
+      "timestamp": "2026-10-09T00:15:10.436213+00:00",
+      "level": "ERROR",
+      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
     }
   ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-10-07",
-    "next_digest_at": "2026-10-09T00:00:00+00:00",
+    "last_date": "2026-10-08",
+    "next_digest_at": "2026-10-10T00:00:00+00:00",
     "status": "failed",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-10-08T00:03:49.263269+00:00",
-    "story_count": 20,
-    "duration_seconds": 157,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-10-07-daily-digest.mp4",
-    "youtube_id": "g0GO77JYBgc",
-    "youtube_url": "https://youtube.com/watch?v=g0GO77JYBgc",
-    "archive_org_id": "jtf-news-2026-10-07",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-07/2026-10-07-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-10-07/2026-10-07-daily-digest.mp4",
+    "last_completed_at": "2026-10-09T00:04:09.604145+00:00",
+    "story_count": 21,
+    "duration_seconds": 172,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-10-08-daily-digest.mp4",
+    "youtube_id": "yYI86X7Dqq0",
+    "youtube_url": "https://youtube.com/watch?v=yYI86X7Dqq0",
+    "archive_org_id": "jtf-news-2026-10-08",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-08/2026-10-08-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-10-08/2026-10-08-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
