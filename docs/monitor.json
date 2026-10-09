@@ -1,25 +1,25 @@
 {
-  "timestamp": "2026-10-09T14:31:01.710771+00:00",
-  "web_refresh_at": "2026-10-09T14:31:01.710771+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1368870,
+  "timestamp": "2026-10-09T14:31:07.259554+00:00",
+  "web_refresh_at": "2026-10-09T14:31:07.259554+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 759270,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4069,
-    "duration_seconds": 52.9,
+    "number": 424,
+    "duration_seconds": 58.0,
     "headlines_scraped": 185,
-    "headlines_processed": 10,
+    "headlines_processed": 11,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 15,
-        "cost_usd": 0.0060935,
+        "calls": 17,
+        "cost_usd": 0.007157500000000001,
         "details": {
-          "input_tokens": 14414,
-          "output_tokens": 1992
+          "input_tokens": 16715,
+          "output_tokens": 2383
         }
       },
       "elevenlabs": {
@@ -30,10 +30,10 @@
         }
       }
     },
-    "total_usd": 0.0095,
+    "total_usd": 0.0106,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 0.6
+    "budget_pct": 0.7
   },
   "queue": {
     "size": 59,
@@ -45,7 +45,13 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-09T14:01:17.156530+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
