@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-10-10T01:00:42.636423+00:00",
-  "web_refresh_at": "2026-10-10T01:00:42.636423+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 797046,
+  "timestamp": "2026-10-10T01:05:44.003393+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1406952,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 445,
-    "duration_seconds": 34.9,
-    "headlines_scraped": 186,
-    "headlines_processed": 3,
+    "number": 4090,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {},
@@ -21,7 +20,7 @@
   },
   "queue": {
     "size": 45,
-    "oldest_item_age_hours": 22.5
+    "oldest_item_age_hours": 22.6
   },
   "stories_today": 4,
   "sources": {
@@ -31,30 +30,45 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-10T00:04:01.539358+00:00",
-      "level": "ERROR",
-      "message": "ffmpeg processing failed: eb/assets/png/thumbnail-archive-1920x1080.png':\n  Duration: N/A, bitrate: N/A\n  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 1920x1080 [SAR 15748:15748 DAR 16:9], 30 fps, 30 tbr, 30 tbn\n[mov,mp4,m4a,3gp,3g2,mj2 @ 0x7f8f0e70c5c0] moov atom not found\n[in#1 @ 0x7f8f0e70c200] Error opening input: Invalid data found when processing input\nError opening input file /Users/larryseyer/JTFNews/video/2026-10-09-daily-digest.mp4.\nError opening input files: Invalid data found when processing input\n"
-    },
-    {
-      "timestamp": "2026-10-10T00:04:01.539861+00:00",
+      "timestamp": "2026-10-10T00:12:04.438621+00:00",
       "level": "WARNING",
-      "message": "Video processing failed, using original recording"
+      "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-10-10T00:04:22.486542+00:00",
+      "timestamp": "2026-10-10T00:17:05.782374+00:00",
       "level": "WARNING",
-      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
+      "message": "GitHub API error for docs/monitor.json: 409"
     },
     {
-      "timestamp": "2026-10-10T00:13:42.539318+00:00",
-      "level": "ERROR",
-      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
+      "timestamp": "2026-10-10T00:22:06.942740+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-10T00:27:08.319102+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-10T00:30:42.426061+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-10T00:35:43.484563+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-10T00:40:44.694618+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,12 +87,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-09/2026-10-09-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-09/2026-10-09-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
