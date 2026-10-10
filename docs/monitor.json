@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-10-10T16:55:59.633895+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 854363,
+  "timestamp": "2026-10-10T17:00:44.542859+00:00",
+  "web_refresh_at": "2026-10-10T17:00:44.542859+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1464253,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 476,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4123,
+    "duration_seconds": 36.3,
+    "headlines_scraped": 186,
+    "headlines_processed": 3,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 39,
-        "cost_usd": 0.013212250000000002,
+        "calls": 45,
+        "cost_usd": 0.015676000000000002,
         "details": {
-          "input_tokens": 32344,
-          "output_tokens": 4101
+          "input_tokens": 38199,
+          "output_tokens": 4901
         }
       },
       "elevenlabs": {
@@ -29,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.0177,
+    "total_usd": 0.0202,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 1.1
+    "budget_pct": 1.3
   },
   "queue": {
-    "size": 34,
-    "oldest_item_age_hours": 24.4
+    "size": 35,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 7,
   "sources": {
@@ -44,11 +45,27 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-10T16:01:00.262154+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 409"
+    },
+    {
+      "timestamp": "2026-10-10T16:01:01.335181+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/stories.json: 409"
+    },
+    {
+      "timestamp": "2026-10-10T16:01:01.345446+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: [Errno 2] No such file or directory: '/Users/larryseyer/JTFNews/docs/alexa.json.tmp' -> '/Users/larryseyer/JTFNews/docs/alexa.json'"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +84,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-09/2026-10-09-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-09/2026-10-09-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
