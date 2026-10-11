@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-11T16:46:22.793929+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1549791,
+  "timestamp": "2026-10-11T16:51:18.284961+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 940481,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4171,
+    "number": 524,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 24,
-    "oldest_item_age_hours": 24.3
+    "oldest_item_age_hours": 24.4
   },
   "stories_today": 16,
   "sources": {
@@ -46,11 +46,17 @@
       "UN News"
     ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-11T16:30:44.741816+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://news.un.org/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 13,
+    "next_cycle_minutes": 8,
     "degraded_services": []
   },
   "daily_digest": {
