@@ -1,25 +1,25 @@
 {
-  "timestamp": "2026-10-11T09:03:55.106911+00:00",
-  "web_refresh_at": "2026-10-11T09:03:55.106911+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1522043,
+  "timestamp": "2026-10-11T09:04:04.907818+00:00",
+  "web_refresh_at": "2026-10-11T09:04:04.907818+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 912448,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4156,
-    "duration_seconds": 68.0,
+    "number": 509,
+    "duration_seconds": 76.6,
     "headlines_scraped": 175,
     "headlines_processed": 10,
-    "stories_published": 0,
-    "stories_queued": 0
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 16,
-        "cost_usd": 0.00639025,
+        "calls": 22,
+        "cost_usd": 0.009042000000000001,
         "details": {
-          "input_tokens": 14766,
-          "output_tokens": 2159
+          "input_tokens": 21618,
+          "output_tokens": 2910
         }
       },
       "elevenlabs": {
@@ -30,10 +30,10 @@
         }
       }
     },
-    "total_usd": 0.0086,
+    "total_usd": 0.0113,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 0.5
+    "budget_pct": 0.7
   },
   "queue": {
     "size": 26,
@@ -49,22 +49,22 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-11T08:37:02.996349+00:00",
+      "timestamp": "2026-10-11T08:37:10.791088+00:00",
       "level": "WARNING",
       "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
     },
     {
-      "timestamp": "2026-10-11T08:42:59.778296+00:00",
+      "timestamp": "2026-10-11T08:43:05.296041+00:00",
       "level": "WARNING",
       "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
     },
     {
-      "timestamp": "2026-10-11T08:48:51.880034+00:00",
+      "timestamp": "2026-10-11T08:48:56.171368+00:00",
       "level": "WARNING",
       "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
     },
     {
-      "timestamp": "2026-10-11T09:03:24.798615+00:00",
+      "timestamp": "2026-10-11T09:03:24.651243+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://news.un.org/en/"
     }
@@ -72,7 +72,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 26,
+    "next_cycle_minutes": 25,
     "degraded_services": []
   },
   "daily_digest": {
