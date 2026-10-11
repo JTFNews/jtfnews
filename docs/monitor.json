@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-10-11T14:26:11.776430+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 931775,
+  "timestamp": "2026-10-11T14:31:01.954952+00:00",
+  "web_refresh_at": "2026-10-11T14:31:01.954952+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1541670,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 519,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4167,
+    "duration_seconds": 54.2,
+    "headlines_scraped": 176,
+    "headlines_processed": 5,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 48,
-        "cost_usd": 0.01807375,
+        "calls": 59,
+        "cost_usd": 0.022379000000000003,
         "details": {
-          "input_tokens": 43830,
-          "output_tokens": 5693
+          "input_tokens": 54356,
+          "output_tokens": 7032
         }
       },
       "elevenlabs": {
@@ -29,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.0297,
+    "total_usd": 0.034,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 1.8
+    "budget_pct": 2.1
   },
   "queue": {
     "size": 25,
-    "oldest_item_age_hours": 23.4
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 15,
   "sources": {
@@ -48,7 +49,12 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-11T13:30:45.791704+00:00",
+      "timestamp": "2026-10-11T14:01:04.184195+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-11T14:30:45.115648+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://news.un.org/en/"
     }
@@ -56,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-10/2026-10-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-10/2026-10-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
