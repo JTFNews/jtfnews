@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-10-11T17:31:02.519992+00:00",
-  "web_refresh_at": "2026-10-11T17:31:02.519992+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1552471,
+  "timestamp": "2026-10-11T17:31:03.436174+00:00",
+  "web_refresh_at": "2026-10-11T17:31:03.436174+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 942866,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4173,
-    "duration_seconds": 55.5,
+    "number": 526,
+    "duration_seconds": 56.2,
     "headlines_scraped": 176,
     "headlines_processed": 1,
     "stories_published": 1,
@@ -15,11 +15,11 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 52,
-        "cost_usd": 0.017708750000000002,
+        "calls": 53,
+        "cost_usd": 0.018161000000000004,
         "details": {
-          "input_tokens": 41845,
-          "output_tokens": 5798
+          "input_tokens": 42669,
+          "output_tokens": 5995
         }
       },
       "elevenlabs": {
@@ -30,7 +30,7 @@
         }
       }
     },
-    "total_usd": 0.0267,
+    "total_usd": 0.0272,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
     "budget_pct": 1.7
@@ -47,28 +47,7 @@
       "UN News"
     ]
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-10-11T17:00:47.967528+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://news.un.org/en/"
-    },
-    {
-      "timestamp": "2026-10-11T17:30:58.953387+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 409"
-    },
-    {
-      "timestamp": "2026-10-11T17:30:59.691639+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/stories.json: 409"
-    },
-    {
-      "timestamp": "2026-10-11T17:31:01.051605+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/alexa.json: 409"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
