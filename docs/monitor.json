@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-10-11T15:26:32.341743+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 935395,
+  "timestamp": "2026-10-11T15:31:08.552107+00:00",
+  "web_refresh_at": "2026-10-11T15:31:08.552107+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1545277,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 521,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4169,
+    "duration_seconds": 61.3,
+    "headlines_scraped": 176,
+    "headlines_processed": 7,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 79,
-        "cost_usd": 0.03212350000000001,
+        "calls": 92,
+        "cost_usd": 0.03750375000000001,
         "details": {
-          "input_tokens": 77194,
-          "output_tokens": 10260
+          "input_tokens": 90050,
+          "output_tokens": 11993
         }
       },
       "elevenlabs": {
@@ -29,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.0437,
+    "total_usd": 0.0491,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 2.7
+    "budget_pct": 3.0
   },
   "queue": {
     "size": 25,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 15,
   "sources": {
@@ -48,7 +49,7 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-11T15:00:53.028189+00:00",
+      "timestamp": "2026-10-11T15:30:45.716524+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://news.un.org/en/"
     }
@@ -56,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-10/2026-10-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-10/2026-10-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
