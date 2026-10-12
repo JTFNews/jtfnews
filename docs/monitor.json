@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-10-12T02:26:25.573265+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 974989,
+  "timestamp": "2026-10-12T02:30:59.702868+00:00",
+  "web_refresh_at": "2026-10-12T02:30:59.702868+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1584868,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 543,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4191,
+    "duration_seconds": 53.0,
+    "headlines_scraped": 176,
+    "headlines_processed": 3,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 330,
-        "cost_usd": 0.13567074999999998,
+        "calls": 337,
+        "cost_usd": 0.13883324999999996,
         "details": {
-          "input_tokens": 332233,
-          "output_tokens": 42090
+          "input_tokens": 339248,
+          "output_tokens": 43217
         }
       },
       "elevenlabs": {
@@ -29,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.166,
+    "total_usd": 0.1692,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 10.3
+    "budget_pct": 10.5
   },
   "queue": {
     "size": 36,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 6,
   "sources": {
@@ -48,15 +49,40 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-12T02:00:52.897968+00:00",
+      "timestamp": "2026-10-12T02:00:51.446128+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://news.un.org/en/"
+    },
+    {
+      "timestamp": "2026-10-12T02:01:20.724087+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-12T02:06:21.455101+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-12T02:11:22.840915+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-12T02:16:24.207929+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-12T02:21:25.647407+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +101,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-10/2026-10-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-10/2026-10-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
