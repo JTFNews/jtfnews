@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-10-13T01:00:56.623783+00:00",
-  "web_refresh_at": "2026-10-13T01:00:56.623783+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1665865,
+  "timestamp": "2026-10-13T01:05:55.087379+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 1056558,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4236,
-    "duration_seconds": 49.2,
-    "headlines_scraped": 184,
-    "headlines_processed": 5,
+    "number": 589,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 2
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -30,7 +29,7 @@
   },
   "queue": {
     "size": 43,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 3,
   "sources": {
@@ -40,60 +39,15 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-13T00:03:42.256284+00:00",
-      "level": "ERROR",
-      "message": "Failed to stop recording: socket is already closed."
-    },
-    {
-      "timestamp": "2026-10-13T00:03:42.260618+00:00",
-      "level": "ERROR",
-      "message": "Failed to switch scene to JTF News: socket is already closed."
-    },
-    {
-      "timestamp": "2026-10-13T00:03:48.979555+00:00",
+      "timestamp": "2026-10-13T00:06:02.504886+00:00",
       "level": "ERROR",
       "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
-    },
-    {
-      "timestamp": "2026-10-13T00:11:27.203374+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:16:28.570231+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:21:29.933454+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:26:31.303951+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:30:36.754657+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:35:38.118985+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:40:39.459042+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 24,
     "degraded_services": []
   },
   "daily_digest": {
@@ -112,12 +66,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
