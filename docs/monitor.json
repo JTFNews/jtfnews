@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-10-13T21:31:04.383305+00:00",
-  "web_refresh_at": "2026-10-13T21:31:04.383305+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1739672,
+  "timestamp": "2026-10-13T21:31:06.226073+00:00",
+  "web_refresh_at": "2026-10-13T21:31:06.226073+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 1130069,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4279,
-    "duration_seconds": 55.0,
+    "number": 630,
+    "duration_seconds": 59.6,
     "headlines_scraped": 186,
     "headlines_processed": 12,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 28,
-        "cost_usd": 0.011099750000000002,
+        "calls": 29,
+        "cost_usd": 0.011636500000000003,
         "details": {
-          "input_tokens": 26429,
-          "output_tokens": 3594
+          "input_tokens": 27576,
+          "output_tokens": 3794
         }
       }
     },
-    "total_usd": 0.0111,
+    "total_usd": 0.0116,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
     "budget_pct": 0.7
   },
   "queue": {
-    "size": 48,
+    "size": 49,
     "oldest_item_age_hours": 23.5
   },
   "stories_today": 20,
@@ -40,9 +40,54 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-13T21:01:13.083219+00:00",
+      "timestamp": "2026-10-13T20:41:54.633096+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-13T20:46:56.950927+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-13T21:01:17.131410+00:00",
+      "level": "WARNING",
+      "message": "Correction needed: The new verified fact states the patient is Pope L"
+    },
+    {
+      "timestamp": "2026-10-13T21:01:24.009277+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-12 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T21:01:24.009556+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-11 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T21:01:24.009763+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-10 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T21:01:24.009975+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-09 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T21:01:24.010194+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-08 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T21:01:24.010812+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-10-13, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T21:26:36.446296+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
     }
   ],
   "status": {
