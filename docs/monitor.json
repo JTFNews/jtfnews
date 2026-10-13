@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-10-13T15:31:13.928188+00:00",
-  "web_refresh_at": "2026-10-13T15:31:13.928188+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1718082,
+  "timestamp": "2026-10-13T15:31:15.367918+00:00",
+  "web_refresh_at": "2026-10-13T15:31:15.367918+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 1108478,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4266,
-    "duration_seconds": 62.4,
+    "number": 618,
+    "duration_seconds": 62.9,
     "headlines_scraped": 185,
     "headlines_processed": 15,
     "stories_published": 0,
-    "stories_queued": 2
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 14,
-        "cost_usd": 0.005169999999999999,
+        "calls": 15,
+        "cost_usd": 0.005590249999999999,
         "details": {
-          "input_tokens": 13010,
-          "output_tokens": 1534
+          "input_tokens": 14146,
+          "output_tokens": 1643
         }
       }
     },
-    "total_usd": 0.0052,
+    "total_usd": 0.0056,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
     "budget_pct": 0.3
   },
   "queue": {
-    "size": 43,
+    "size": 42,
     "oldest_item_age_hours": 24.0
   },
   "stories_today": 12,
@@ -38,23 +38,7 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-10-13T15:01:16.745372+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 409"
-    },
-    {
-      "timestamp": "2026-10-13T15:01:18.625404+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/stories.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T15:01:18.636788+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 2] No such file or directory: '/Users/larryseyer/JTFNews/docs/alexa.json.tmp' -> '/Users/larryseyer/JTFNews/docs/alexa.json'"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
