@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-13T20:51:33.240012+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1737301,
+  "timestamp": "2026-10-13T20:51:56.955654+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 1127720,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4277,
+    "number": 628,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -44,7 +44,58 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-13T20:31:32.579738+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-12 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T20:31:32.579977+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-11 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T20:31:32.580172+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-10 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T20:31:32.580352+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-09 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T20:31:32.580512+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-10-08 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T20:31:32.580986+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-10-13, skipping"
+    },
+    {
+      "timestamp": "2026-10-13T20:31:48.822861+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-13T20:36:51.419759+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-13T20:41:54.633096+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-13T20:46:56.950927+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
