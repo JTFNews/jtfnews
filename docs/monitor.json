@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-13T00:45:39.591998+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1664948,
+  "timestamp": "2026-10-13T00:45:43.158952+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 1055346,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4235,
+    "number": 588,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -39,54 +39,24 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-13T00:03:42.256284+00:00",
+      "timestamp": "2026-10-13T00:03:38.290640+00:00",
       "level": "ERROR",
-      "message": "Failed to stop recording: socket is already closed."
+      "message": "ffmpeg processing failed: eb/assets/png/thumbnail-archive-1920x1080.png':\n  Duration: N/A, bitrate: N/A\n  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 1920x1080 [SAR 15748:15748 DAR 16:9], 30 fps, 30 tbr, 30 tbn\n[mov,mp4,m4a,3gp,3g2,mj2 @ 0x7f952210e200] moov atom not found\n[in#1 @ 0x7f952210de40] Error opening input: Invalid data found when processing input\nError opening input file /Users/larryseyer/JTFNews/video/2026-10-12-daily-digest.mp4.\nError opening input files: Invalid data found when processing input\n"
     },
     {
-      "timestamp": "2026-10-13T00:03:42.260618+00:00",
-      "level": "ERROR",
-      "message": "Failed to switch scene to JTF News: socket is already closed."
+      "timestamp": "2026-10-13T00:03:38.291344+00:00",
+      "level": "WARNING",
+      "message": "Video processing failed, using original recording"
     },
     {
-      "timestamp": "2026-10-13T00:03:48.979555+00:00",
+      "timestamp": "2026-10-13T00:03:54.144666+00:00",
+      "level": "WARNING",
+      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp": "2026-10-13T00:06:02.504886+00:00",
       "level": "ERROR",
       "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
-    },
-    {
-      "timestamp": "2026-10-13T00:11:27.203374+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:16:28.570231+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:21:29.933454+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:26:31.303951+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:30:36.754657+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:35:38.118985+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-13T00:40:39.459042+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
