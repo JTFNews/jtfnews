@@ -1,25 +1,24 @@
 {
-  "timestamp": "2026-10-13T23:31:00.670122+00:00",
-  "web_refresh_at": "2026-10-13T23:31:00.670122+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 1137264,
+  "timestamp": "2026-10-13T23:36:02.506999+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1747171,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 634,
-    "duration_seconds": 45.7,
-    "headlines_scraped": 186,
-    "headlines_processed": 8,
+    "number": 4283,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 51,
-        "cost_usd": 0.020479499999999998,
+        "calls": 52,
+        "cost_usd": 0.020523499999999997,
         "details": {
-          "input_tokens": 48843,
-          "output_tokens": 6615
+          "input_tokens": 48994,
+          "output_tokens": 6620
         }
       },
       "elevenlabs": {
@@ -47,15 +46,20 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-13T23:11:18.781309+00:00",
+      "timestamp": "2026-10-13T22:41:11.882782+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 500"
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-13T22:46:13.491642+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -74,12 +78,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
