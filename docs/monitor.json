@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-10-14T13:30:57.707726+00:00",
-  "web_refresh_at": "2026-10-14T13:30:57.707726+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1797266,
+  "timestamp": "2026-10-14T13:30:58.628900+00:00",
+  "web_refresh_at": "2026-10-14T13:30:58.628900+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 1187662,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4313,
-    "duration_seconds": 48.3,
+    "number": 663,
+    "duration_seconds": 48.7,
     "headlines_scraped": 185,
     "headlines_processed": 8,
     "stories_published": 0,
@@ -15,18 +15,18 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 102,
-        "cost_usd": 0.0410105,
+        "calls": 103,
+        "cost_usd": 0.04145,
         "details": {
-          "input_tokens": 98267,
-          "output_tokens": 13155
+          "input_tokens": 99400,
+          "output_tokens": 13280
         }
       }
     },
-    "total_usd": 0.041,
+    "total_usd": 0.0415,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 2.5
+    "budget_pct": 2.6
   },
   "queue": {
     "size": 55,
@@ -38,7 +38,13 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-14T13:00:11.714190+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
