@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-10-14T03:56:46.846797+00:00",
+  "timestamp": "2026-10-14T04:00:56.606251+00:00",
+  "web_refresh_at": "2026-10-14T04:00:56.606251+00:00",
   "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1762815,
+  "uptime_seconds": 1763065,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4293,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4294,
+    "duration_seconds": 48.7,
+    "headlines_scraped": 186,
+    "headlines_processed": 5,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 301,
-        "cost_usd": 0.12428974999999995,
+        "calls": 311,
+        "cost_usd": 0.1286869999999999,
         "details": {
-          "input_tokens": 299819,
-          "output_tokens": 39468
+          "input_tokens": 310198,
+          "output_tokens": 40910
         }
       }
     },
-    "total_usd": 0.1603,
+    "total_usd": 0.1647,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 9.9
+    "budget_pct": 10.2
   },
   "queue": {
     "size": 44,
-    "oldest_item_age_hours": 23.4
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 5,
   "sources": {
@@ -45,11 +46,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-10-14T03:00:50.230264+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
     {
       "timestamp": "2026-10-14T03:05:51.713314+00:00",
       "level": "WARNING",
@@ -84,7 +80,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -103,5 +99,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
