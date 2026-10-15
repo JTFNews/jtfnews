@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-10-15T19:01:39.074465+00:00",
-  "web_refresh_at": "2026-10-15T19:01:39.074465+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 1293902,
+  "timestamp": "2026-10-15T19:01:41.523684+00:00",
+  "web_refresh_at": "2026-10-15T19:01:41.523684+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1903510,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 722,
-    "duration_seconds": 86.7,
+    "number": 4373,
+    "duration_seconds": 90.6,
     "headlines_scraped": 186,
-    "headlines_processed": 20,
+    "headlines_processed": 21,
     "stories_published": 0,
-    "stories_queued": 2
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 286,
-        "cost_usd": 0.11979725000000004,
+        "calls": 287,
+        "cost_usd": 0.12031800000000004,
         "details": {
-          "input_tokens": 287799,
-          "output_tokens": 38278
+          "input_tokens": 288942,
+          "output_tokens": 38466
         }
       }
     },
-    "total_usd": 0.1198,
+    "total_usd": 0.1203,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 7.4
+    "budget_pct": 7.5
   },
   "queue": {
-    "size": 57,
+    "size": 58,
     "oldest_item_age_hours": 24.0
   },
   "stories_today": 10,
@@ -38,7 +38,33 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-15T18:06:02.434161+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T18:11:03.984576+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T18:16:05.679002+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T18:21:07.251142+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T18:26:08.801631+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
