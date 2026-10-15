@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-10-15T14:31:22.853627+00:00",
-  "web_refresh_at": "2026-10-15T14:31:22.853627+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 1277686,
+  "timestamp": "2026-10-15T14:31:24.221656+00:00",
+  "web_refresh_at": "2026-10-15T14:31:24.221656+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1887292,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 713,
-    "duration_seconds": 73.9,
+    "number": 4364,
+    "duration_seconds": 74.3,
     "headlines_scraped": 186,
     "headlines_processed": 19,
     "stories_published": 0,
-    "stories_queued": 3
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 33,
-        "cost_usd": 0.014556750000000004,
+        "calls": 34,
+        "cost_usd": 0.015092750000000004,
         "details": {
-          "input_tokens": 35802,
-          "output_tokens": 4485
+          "input_tokens": 36946,
+          "output_tokens": 4685
         }
       }
     },
-    "total_usd": 0.0146,
+    "total_usd": 0.0151,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
     "budget_pct": 0.9
   },
   "queue": {
-    "size": 60,
+    "size": 59,
     "oldest_item_age_hours": 24.0
   },
   "stories_today": 10,
@@ -38,7 +38,28 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-15T13:36:03.972550+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:41:05.620014+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:46:07.193014+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T14:00:12.826896+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
