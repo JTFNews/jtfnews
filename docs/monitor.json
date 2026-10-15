@@ -1,35 +1,36 @@
 {
-  "timestamp": "2026-10-15T13:56:11.266333+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 1275574,
+  "timestamp": "2026-10-15T14:01:15.721864+00:00",
+  "web_refresh_at": "2026-10-15T14:01:15.721864+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1885484,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 711,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4363,
+    "duration_seconds": 66.9,
+    "headlines_scraped": 165,
+    "headlines_processed": 6,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 12,
-        "cost_usd": 0.005867000000000001,
+        "calls": 24,
+        "cost_usd": 0.011353499999999999,
         "details": {
-          "input_tokens": 13753,
-          "output_tokens": 1943
+          "input_tokens": 26504,
+          "output_tokens": 3782
         }
       }
     },
-    "total_usd": 0.0059,
+    "total_usd": 0.0114,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 0.4
+    "budget_pct": 0.7
   },
   "queue": {
-    "size": 58,
-    "oldest_item_age_hours": 24.4
+    "size": 57,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 10,
   "sources": {
@@ -37,11 +38,62 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-15T13:01:16.226925+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:06:17.902064+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:11:19.380885+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:16:21.020946+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:21:22.609209+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:31:02.347750+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:36:03.972550+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:41:05.620014+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T13:46:07.193014+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-15T14:00:12.826896+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -60,5 +112,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
