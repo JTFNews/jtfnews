@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-10-16T06:01:19.197052+00:00",
-  "web_refresh_at": "2026-10-16T06:01:19.197052+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 1333482,
+  "timestamp": "2026-10-16T06:01:23.304705+00:00",
+  "web_refresh_at": "2026-10-16T06:01:23.304705+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1943091,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 744,
-    "duration_seconds": 67.8,
+    "number": 4395,
+    "duration_seconds": 73.8,
     "headlines_scraped": 176,
-    "headlines_processed": 6,
+    "headlines_processed": 4,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 4,
-        "cost_usd": 0.00194325,
+        "calls": 5,
+        "cost_usd": 0.002478,
         "details": {
-          "input_tokens": 4558,
-          "output_tokens": 643
+          "input_tokens": 5697,
+          "output_tokens": 843
         }
       }
     },
-    "total_usd": 0.0019,
+    "total_usd": 0.0025,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 0.1
+    "budget_pct": 0.2
   },
   "queue": {
-    "size": 46,
+    "size": 45,
     "oldest_item_age_hours": 24.0
   },
   "stories_today": 5,
@@ -38,7 +38,28 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-16T05:31:18.686575+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-16T05:36:20.357676+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-16T05:41:22.540027+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-16T05:46:24.937935+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
