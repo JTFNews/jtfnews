@@ -1,24 +1,25 @@
 {
-  "timestamp": "2026-10-16T10:26:12.210062+00:00",
+  "timestamp": "2026-10-16T10:33:14.097212+00:00",
+  "web_refresh_at": "2026-10-16T10:33:14.097212+00:00",
   "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 1958980,
+  "uptime_seconds": 1959402,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4403,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4404,
+    "duration_seconds": 184.5,
+    "headlines_scraped": 136,
+    "headlines_processed": 3,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 91,
-        "cost_usd": 0.03955449999999998,
+        "calls": 94,
+        "cost_usd": 0.04085449999999998,
         "details": {
-          "input_tokens": 94688,
-          "output_tokens": 12706
+          "input_tokens": 98103,
+          "output_tokens": 13063
         }
       },
       "elevenlabs": {
@@ -29,14 +30,14 @@
         }
       }
     },
-    "total_usd": 0.044,
+    "total_usd": 0.0453,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 2.7
+    "budget_pct": 2.8
   },
   "queue": {
-    "size": 46,
-    "oldest_item_age_hours": 23.9
+    "size": 47,
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 8,
   "sources": {
@@ -44,11 +45,37 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-16T10:30:45.684668+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-10-16T10:31:16.925614+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: ABC News Australia fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-10-16T10:31:48.220498+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: PBS NewsHour fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-10-16T10:32:19.515091+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Irish Times fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-10-16T10:32:50.821419+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: White House fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 26,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +94,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
