@@ -1,45 +1,45 @@
 {
-  "timestamp": "2026-10-16T11:01:01.290177+00:00",
-  "web_refresh_at": "2026-10-16T11:01:01.290177+00:00",
-  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
-  "uptime_seconds": 1351464,
+  "timestamp": "2026-10-16T11:01:13.259057+00:00",
+  "web_refresh_at": "2026-10-16T11:01:13.259057+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 1961081,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 754,
-    "duration_seconds": 52.9,
+    "number": 4405,
+    "duration_seconds": 63.5,
     "headlines_scraped": 175,
-    "headlines_processed": 4,
-    "stories_published": 0,
+    "headlines_processed": 3,
+    "stories_published": 1,
     "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 104,
-        "cost_usd": 0.04455999999999998,
+        "calls": 107,
+        "cost_usd": 0.04550324999999998,
         "details": {
-          "input_tokens": 107685,
-          "output_tokens": 14111
+          "input_tokens": 109713,
+          "output_tokens": 14460
         }
       },
       "elevenlabs": {
-        "calls": 1,
-        "cost_usd": 0.00444,
+        "calls": 2,
+        "cost_usd": 0.0066300000000000005,
         "details": {
-          "characters": 148
+          "characters": 221
         }
       }
     },
-    "total_usd": 0.049,
+    "total_usd": 0.0521,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
-    "budget_pct": 3.0
+    "budget_pct": 3.2
   },
   "queue": {
-    "size": 47,
+    "size": 46,
     "oldest_item_age_hours": 23.5
   },
-  "stories_today": 8,
+  "stories_today": 9,
   "sources": {
     "total": 21,
     "successful": 21,
@@ -47,29 +47,29 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-16T10:30:46.088853+00:00",
+      "timestamp": "2026-10-16T10:30:45.684668+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-10-16T10:31:16.925614+00:00",
       "level": "WARNING",
       "message": "Watchdog: ABC News Australia fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-10-16T10:31:17.103620+00:00",
+      "timestamp": "2026-10-16T10:31:48.220498+00:00",
       "level": "WARNING",
       "message": "Watchdog: PBS NewsHour fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-10-16T10:31:48.115748+00:00",
+      "timestamp": "2026-10-16T10:32:19.515091+00:00",
       "level": "WARNING",
       "message": "Watchdog: Irish Times fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-10-16T10:32:19.121154+00:00",
+      "timestamp": "2026-10-16T10:32:50.821419+00:00",
       "level": "WARNING",
       "message": "Watchdog: White House fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-10-16T10:32:50.126368+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: Congress.gov fetch exceeded 30s; skipping"
     }
   ],
   "status": {
