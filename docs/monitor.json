@@ -1,34 +1,35 @@
 {
-  "timestamp": "2026-10-17T19:16:06.389028+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 2077174,
+  "timestamp": "2026-10-17T19:18:11.181585+00:00",
+  "web_refresh_at": "2026-10-17T19:18:11.181585+00:00",
+  "uptime_start": "2026-10-17T19:17:29.398649+00:00",
+  "uptime_seconds": 42,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4469,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1,
+    "duration_seconds": 32.6,
+    "headlines_scraped": 186,
+    "headlines_processed": 1,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 2,
-        "cost_usd": 0.0010692499999999999,
+        "calls": 6,
+        "cost_usd": 0.0017035,
         "details": {
-          "input_tokens": 2282,
-          "output_tokens": 399
+          "input_tokens": 3754,
+          "output_tokens": 612
         }
       }
     },
-    "total_usd": 0.0011,
-    "month_estimate_usd": 7.32,
+    "total_usd": 0.0017,
+    "month_estimate_usd": 7.1,
     "daily_budget": 1.61,
     "budget_pct": 0.1
   },
   "queue": {
-    "size": 31,
+    "size": 32,
     "oldest_item_age_hours": 23.8
   },
   "stories_today": 17,
@@ -39,20 +40,60 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-17T19:01:03.898832+00:00",
+      "timestamp": "2026-10-17T19:17:31.463140+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
+      "message": "Ownership research failed for guardian: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6LUNZi26pyTZaaB7T'}"
     },
     {
-      "timestamp": "2026-10-17T19:06:04.617294+00:00",
+      "timestamp": "2026-10-17T19:17:32.134633+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
+      "message": "Ownership research failed for france24: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6PLWDLqN3k9fWdLXb'}"
+    },
+    {
+      "timestamp": "2026-10-17T19:17:32.804688+00:00",
+      "level": "WARNING",
+      "message": "Ownership research failed for dw: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6SD9VD9ky6PgQUtiz'}"
+    },
+    {
+      "timestamp": "2026-10-17T19:17:33.480593+00:00",
+      "level": "WARNING",
+      "message": "Ownership research failed for cbc: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6V6HPWS4hwwdDp7pn'}"
+    },
+    {
+      "timestamp": "2026-10-17T19:17:34.154672+00:00",
+      "level": "WARNING",
+      "message": "Ownership research failed for abc_au: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6Xyuw6Xf5eDBfpnvn'}"
+    },
+    {
+      "timestamp": "2026-10-17T19:17:34.826529+00:00",
+      "level": "WARNING",
+      "message": "Ownership research failed for pbs: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6apZjCd6rLiGra76C'}"
+    },
+    {
+      "timestamp": "2026-10-17T19:17:35.501109+00:00",
+      "level": "WARNING",
+      "message": "Ownership research failed for irish: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6dkgF2JZ5nkZcphz3'}"
+    },
+    {
+      "timestamp": "2026-10-17T19:17:36.184571+00:00",
+      "level": "WARNING",
+      "message": "Ownership research failed for un_news: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6gdpfTBQ3dkYNVDUz'}"
+    },
+    {
+      "timestamp": "2026-10-17T19:17:36.848477+00:00",
+      "level": "WARNING",
+      "message": "Ownership research failed for who: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6jWTmncNnKsFv8yZi'}"
+    },
+    {
+      "timestamp": "2026-10-17T19:17:37.532363+00:00",
+      "level": "WARNING",
+      "message": "Ownership research failed for propublica: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-20250514'}, 'request_id': 'req_011Cg8M6nQaNaobFkTi4Tj5U'}"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 13,
+    "next_cycle_minutes": 11,
     "degraded_services": []
   },
   "daily_digest": {
@@ -71,5 +112,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-12/2026-10-12-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
