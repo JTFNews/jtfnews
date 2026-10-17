@@ -1,25 +1,25 @@
 {
-  "timestamp": "2026-10-17T16:30:55.831065+00:00",
-  "web_refresh_at": "2026-10-17T16:30:55.831065+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 2067264,
+  "timestamp": "2026-10-17T16:31:00.745285+00:00",
+  "web_refresh_at": "2026-10-17T16:31:00.745285+00:00",
+  "uptime_start": "2026-09-30T19:36:37.069918+00:00",
+  "uptime_seconds": 1457664,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 4464,
-    "duration_seconds": 48.2,
+    "number": 813,
+    "duration_seconds": 51.8,
     "headlines_scraped": 186,
-    "headlines_processed": 5,
+    "headlines_processed": 6,
     "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 59,
-        "cost_usd": 0.02048225,
+        "calls": 62,
+        "cost_usd": 0.021892500000000002,
         "details": {
-          "input_tokens": 50039,
-          "output_tokens": 6378
+          "input_tokens": 53455,
+          "output_tokens": 6823
         }
       },
       "elevenlabs": {
@@ -30,7 +30,7 @@
         }
       }
     },
-    "total_usd": 0.0283,
+    "total_usd": 0.0298,
     "month_estimate_usd": 7.32,
     "daily_budget": 1.61,
     "budget_pct": 1.8
@@ -45,27 +45,11 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-10-17T16:00:58.855111+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-17T16:06:00.243010+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-17T16:11:01.715913+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
