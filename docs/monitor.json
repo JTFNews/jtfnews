@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-10-19T06:01:24.929508+00:00",
-  "web_refresh_at": "2026-10-19T06:01:24.929508+00:00",
-  "uptime_start": "2026-10-18T21:05:13.762290+00:00",
-  "uptime_seconds": 32171,
+  "timestamp": "2026-10-19T06:01:30.459468+00:00",
+  "web_refresh_at": "2026-10-19T06:01:30.459468+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2202299,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 19,
-    "duration_seconds": 77.2,
-    "headlines_scraped": 176,
+    "number": 4539,
+    "duration_seconds": 81.3,
+    "headlines_scraped": 166,
     "headlines_processed": 8,
     "stories_published": 0,
     "stories_queued": 0
@@ -15,25 +15,18 @@
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 70,
-        "cost_usd": 0.027623500000000013,
+        "calls": 3,
+        "cost_usd": 0.00086675,
         "details": {
-          "input_tokens": 66524,
-          "output_tokens": 8794
-        }
-      },
-      "elevenlabs": {
-        "calls": 2,
-        "cost_usd": 0.0070799999999999995,
-        "details": {
-          "characters": 236
+          "input_tokens": 2452,
+          "output_tokens": 203
         }
       }
     },
-    "total_usd": 0.0347,
+    "total_usd": 0.0009,
     "month_estimate_usd": 6.76,
     "daily_budget": 1.61,
-    "budget_pct": 2.2
+    "budget_pct": 0.1
   },
   "queue": {
     "size": 28,
@@ -45,7 +38,38 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-19T05:06:10.218806+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T05:11:11.890536+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T05:16:13.256933+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T05:21:14.656914+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T05:26:15.984442+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T06:00:12.965749+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
