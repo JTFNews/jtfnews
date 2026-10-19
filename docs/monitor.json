@@ -1,35 +1,36 @@
 {
-  "timestamp": "2026-10-19T20:26:39.444589+00:00",
-  "uptime_start": "2026-10-18T21:05:13.762290+00:00",
-  "uptime_seconds": 84086,
+  "timestamp": "2026-10-19T20:31:24.066378+00:00",
+  "web_refresh_at": "2026-10-19T20:31:24.066378+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2254492,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 47,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4568,
+    "duration_seconds": 76.3,
+    "headlines_scraped": 175,
+    "headlines_processed": 11,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 112,
-        "cost_usd": 0.048144999999999986,
+        "calls": 142,
+        "cost_usd": 0.059057000000000005,
         "details": {
-          "input_tokens": 117520,
-          "output_tokens": 15012
+          "input_tokens": 144293,
+          "output_tokens": 18387
         }
       }
     },
-    "total_usd": 0.0481,
+    "total_usd": 0.0591,
     "month_estimate_usd": 6.76,
     "daily_budget": 1.61,
-    "budget_pct": 3.0
+    "budget_pct": 3.7
   },
   "queue": {
-    "size": 38,
-    "oldest_item_age_hours": 24.4
+    "size": 39,
+    "oldest_item_age_hours": 21.0
   },
   "stories_today": 15,
   "sources": {
@@ -41,7 +42,42 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-19T20:00:59.505322+00:00",
+      "timestamp": "2026-10-19T20:01:07.218979+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Government of Canada: 'NoneType' object has no attribute 'replace'"
+    },
+    {
+      "timestamp": "2026-10-19T20:01:33.750550+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T20:06:35.234522+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T20:11:36.874546+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T20:16:38.613113+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T20:21:39.976895+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T20:26:41.402315+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T20:30:53.879139+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Government of Canada: 'NoneType' object has no attribute 'replace'"
     }
@@ -49,7 +85,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -68,5 +104,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
