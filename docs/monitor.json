@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-19T01:46:21.220779+00:00",
-  "uptime_start": "2026-10-18T21:05:13.762290+00:00",
-  "uptime_seconds": 16867,
+  "timestamp": "2026-10-19T01:47:40.309780+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2187068,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 10,
+    "number": 4530,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -46,30 +46,30 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-19T00:50:50.052159+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-19T00:55:52.337356+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-19T01:00:56.163482+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-19T01:21:12.068719+00:00",
+      "timestamp": "2026-10-19T01:21:10.839305+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 502"
+    },
+    {
+      "timestamp": "2026-10-19T01:31:02.302648+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 409"
+    },
+    {
+      "timestamp": "2026-10-19T01:31:03.738954+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/stories.json: 409"
+    },
+    {
+      "timestamp": "2026-10-19T01:31:03.750250+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: [Errno 2] No such file or directory: '/Users/larryseyer/JTFNews/docs/alexa.json.tmp' -> '/Users/larryseyer/JTFNews/docs/alexa.json'"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 13,
+    "next_cycle_minutes": 12,
     "degraded_services": []
   },
   "daily_digest": {
