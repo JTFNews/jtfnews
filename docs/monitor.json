@@ -1,42 +1,27 @@
 {
-  "timestamp": "2026-10-19T11:56:48.609606+00:00",
-  "uptime_start": "2026-10-18T21:05:13.762290+00:00",
-  "uptime_seconds": 53495,
+  "timestamp": "2026-10-19T12:01:08.941441+00:00",
+  "web_refresh_at": "2026-10-19T12:01:08.941441+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2223877,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 30,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4551,
+    "duration_seconds": 59.5,
+    "headlines_scraped": 175,
+    "headlines_processed": 5,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
-    "today": {
-      "claude": {
-        "calls": 26,
-        "cost_usd": 0.009562250000000003,
-        "details": {
-          "input_tokens": 22914,
-          "output_tokens": 3067
-        }
-      },
-      "elevenlabs": {
-        "calls": 2,
-        "cost_usd": 0.00858,
-        "details": {
-          "characters": 286
-        }
-      }
-    },
-    "total_usd": 0.0181,
+    "today": {},
+    "total_usd": 0.0,
     "month_estimate_usd": 6.76,
     "daily_budget": 1.61,
-    "budget_pct": 1.1
+    "budget_pct": 0.0
   },
   "queue": {
-    "size": 30,
-    "oldest_item_age_hours": 24.4
+    "size": 29,
+    "oldest_item_age_hours": 23.0
   },
   "stories_today": 11,
   "sources": {
@@ -46,40 +31,30 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-19T11:00:38.362131+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: NPR fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-10-19T11:01:09.369104+00:00",
+      "timestamp": "2026-10-19T11:01:10.999885+00:00",
       "level": "WARNING",
       "message": "Watchdog: The Guardian fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-10-19T11:01:40.377854+00:00",
+      "timestamp": "2026-10-19T11:01:42.190165+00:00",
       "level": "WARNING",
       "message": "Watchdog: France 24 fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-10-19T11:02:11.386808+00:00",
+      "timestamp": "2026-10-19T11:02:13.461389+00:00",
       "level": "WARNING",
       "message": "Watchdog: Deutsche Welle fetch exceeded 30s; skipping"
     },
     {
-      "timestamp": "2026-10-19T11:02:42.405334+00:00",
+      "timestamp": "2026-10-19T11:02:44.689211+00:00",
       "level": "WARNING",
       "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-10-19T11:23:15.644941+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -98,5 +73,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
