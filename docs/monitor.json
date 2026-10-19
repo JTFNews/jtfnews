@@ -1,35 +1,36 @@
 {
-  "timestamp": "2026-10-19T21:26:36.052136+00:00",
+  "timestamp": "2026-10-19T21:30:57.758437+00:00",
+  "web_refresh_at": "2026-10-19T21:30:57.758437+00:00",
   "uptime_start": "2026-10-18T21:05:13.762290+00:00",
-  "uptime_seconds": 87682,
+  "uptime_seconds": 87944,
   "availability_pct": 99.9,
   "cycle": {
-    "number": 49,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 50,
+    "duration_seconds": 50.7,
+    "headlines_scraped": 185,
+    "headlines_processed": 8,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 19,
-        "cost_usd": 0.008480250000000002,
+        "calls": 38,
+        "cost_usd": 0.01633775,
         "details": {
-          "input_tokens": 19061,
-          "output_tokens": 2972
+          "input_tokens": 38806,
+          "output_tokens": 5309
         }
       }
     },
-    "total_usd": 0.0085,
+    "total_usd": 0.0163,
     "month_estimate_usd": 6.76,
     "daily_budget": 1.61,
-    "budget_pct": 0.5
+    "budget_pct": 1.0
   },
   "queue": {
-    "size": 42,
-    "oldest_item_age_hours": 21.9
+    "size": 44,
+    "oldest_item_age_hours": 22.0
   },
   "stories_today": 15,
   "sources": {
@@ -37,17 +38,11 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-10-19T20:30:51.547259+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Government of Canada: 'NoneType' object has no attribute 'replace'"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -66,5 +61,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
