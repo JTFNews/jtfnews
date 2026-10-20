@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-20T17:21:46.067033+00:00",
-  "uptime_start": "2026-10-20T00:30:23.475813+00:00",
-  "uptime_seconds": 60683,
+  "timestamp": "2026-10-20T17:26:45.937046+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2329814,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 34,
+    "number": 4608,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -39,15 +39,20 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-20T16:31:23.025200+00:00",
+      "timestamp": "2026-10-20T17:01:09.140454+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 409"
+      "message": "Failed to fetch from Government of Canada: 'NoneType' object has no attribute 'replace'"
+    },
+    {
+      "timestamp": "2026-10-20T17:06:40.635560+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 8,
+    "next_cycle_minutes": 3,
     "degraded_services": []
   },
   "daily_digest": {
