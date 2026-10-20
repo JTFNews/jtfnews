@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-10-20T09:01:15.667319+00:00",
-  "web_refresh_at": "2026-10-20T09:01:15.667319+00:00",
-  "uptime_start": "2026-10-20T00:30:23.475813+00:00",
-  "uptime_seconds": 30652,
+  "timestamp": "2026-10-20T09:06:11.500895+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2299780,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 18,
-    "duration_seconds": 67.1,
-    "headlines_scraped": 176,
-    "headlines_processed": 8,
+    "number": 4592,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -30,7 +29,7 @@
   },
   "queue": {
     "size": 46,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 7,
   "sources": {
@@ -38,11 +37,17 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-20T09:00:13.219138+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -61,12 +66,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
