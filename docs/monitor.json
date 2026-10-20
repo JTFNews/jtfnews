@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-10-20T14:01:24.772060+00:00",
-  "web_refresh_at": "2026-10-20T14:01:24.772060+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 2317493,
+  "timestamp": "2026-10-20T14:01:27.332423+00:00",
+  "web_refresh_at": "2026-10-20T14:01:27.332423+00:00",
+  "uptime_start": "2026-10-20T00:30:23.475813+00:00",
+  "uptime_seconds": 48664,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 4602,
-    "duration_seconds": 74.5,
+    "number": 28,
+    "duration_seconds": 74.0,
     "headlines_scraped": 186,
-    "headlines_processed": 12,
+    "headlines_processed": 13,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 10,
-        "cost_usd": 0.0037052499999999998,
+        "calls": 12,
+        "cost_usd": 0.004318249999999999,
         "details": {
-          "input_tokens": 9696,
-          "output_tokens": 1025
+          "input_tokens": 11218,
+          "output_tokens": 1211
         }
       }
     },
-    "total_usd": 0.0037,
+    "total_usd": 0.0043,
     "month_estimate_usd": 6.38,
     "daily_budget": 1.61,
-    "budget_pct": 0.2
+    "budget_pct": 0.3
   },
   "queue": {
-    "size": 48,
+    "size": 50,
     "oldest_item_age_hours": 24.0
   },
   "stories_today": 11,
@@ -38,23 +38,7 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-10-20T13:31:42.700775+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-20T13:36:45.387860+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-20T13:41:47.173528+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
