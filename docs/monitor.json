@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-20T16:51:52.469624+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 2327721,
+  "timestamp": "2026-10-20T16:51:55.994709+00:00",
+  "uptime_start": "2026-10-20T00:30:23.475813+00:00",
+  "uptime_seconds": 58893,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 4607,
+    "number": 33,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -37,7 +37,13 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-20T16:31:23.025200+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
