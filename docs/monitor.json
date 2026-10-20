@@ -1,37 +1,45 @@
 {
-  "timestamp": "2026-10-20T17:26:48.866576+00:00",
-  "uptime_start": "2026-10-20T00:30:23.475813+00:00",
-  "uptime_seconds": 60985,
+  "timestamp": "2026-10-20T17:31:17.289349+00:00",
+  "web_refresh_at": "2026-10-20T17:31:17.289349+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2330085,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 34,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 4609,
+    "duration_seconds": 59.3,
+    "headlines_scraped": 186,
+    "headlines_processed": 6,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 22,
-        "cost_usd": 0.00924575,
+        "calls": 39,
+        "cost_usd": 0.014744750000000003,
         "details": {
-          "input_tokens": 22453,
-          "output_tokens": 2906
+          "input_tokens": 36274,
+          "output_tokens": 4541
+        }
+      },
+      "elevenlabs": {
+        "calls": 2,
+        "cost_usd": 0.0048000000000000004,
+        "details": {
+          "characters": 160
         }
       }
     },
-    "total_usd": 0.0092,
+    "total_usd": 0.0195,
     "month_estimate_usd": 6.38,
     "daily_budget": 1.61,
-    "budget_pct": 0.6
+    "budget_pct": 1.2
   },
   "queue": {
-    "size": 44,
-    "oldest_item_age_hours": 24.4
+    "size": 42,
+    "oldest_item_age_hours": 21.5
   },
-  "stories_today": 13,
+  "stories_today": 15,
   "sources": {
     "total": 21,
     "successful": 21,
@@ -39,15 +47,20 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-20T16:31:23.025200+00:00",
+      "timestamp": "2026-10-20T17:01:09.140454+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 409"
+      "message": "Failed to fetch from Government of Canada: 'NoneType' object has no attribute 'replace'"
+    },
+    {
+      "timestamp": "2026-10-20T17:06:40.635560+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -66,5 +79,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
