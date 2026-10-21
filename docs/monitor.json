@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-20T23:56:15.503299+00:00",
-  "uptime_start": "2026-10-20T00:30:23.475813+00:00",
-  "uptime_seconds": 84352,
+  "timestamp": "2026-10-21T00:45:45.231881+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2356153,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 47,
+    "number": 4623,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -13,56 +13,107 @@
   },
   "api_costs": {
     "today": {
-      "claude": {
-        "calls": 255,
-        "cost_usd": 0.10427499999999994,
+      "elevenlabs": {
+        "calls": 6,
+        "cost_usd": 0.02244,
         "details": {
-          "input_tokens": 250980,
-          "output_tokens": 33224
+          "characters": 748
         }
       },
-      "elevenlabs": {
-        "calls": 4,
-        "cost_usd": 0.01551,
+      "claude": {
+        "calls": 228,
+        "cost_usd": 0.09536050000000004,
         "details": {
-          "characters": 517
+          "input_tokens": 231422,
+          "output_tokens": 30004
         }
       }
     },
-    "total_usd": 0.1198,
+    "total_usd": 0.1178,
     "month_estimate_usd": 6.38,
     "daily_budget": 1.61,
-    "budget_pct": 7.4
+    "budget_pct": 7.3
   },
   "queue": {
-    "size": 44,
-    "oldest_item_age_hours": 22.4
+    "size": 53,
+    "oldest_item_age_hours": 23.3
   },
-  "stories_today": 17,
+  "stories_today": 2,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-21T00:03:45.201269+00:00",
+      "level": "ERROR",
+      "message": "Failed to stop recording: socket is already closed."
+    },
+    {
+      "timestamp": "2026-10-21T00:03:45.201465+00:00",
+      "level": "ERROR",
+      "message": "Failed to switch scene to JTF News: socket is already closed."
+    },
+    {
+      "timestamp": "2026-10-21T00:03:51.177990+00:00",
+      "level": "ERROR",
+      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
+    },
+    {
+      "timestamp": "2026-10-21T00:11:45.955607+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-21T00:16:47.128714+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-21T00:21:48.443996+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-21T00:26:49.809094+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-21T00:30:42.719261+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-21T00:35:43.885307+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-21T00:40:45.094909+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-10-19",
-    "next_digest_at": "2026-10-21T00:00:00+00:00",
-    "status": "success",
+    "last_date": "2026-10-20",
+    "next_digest_at": "2026-10-22T00:00:00+00:00",
+    "status": "failed",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-10-20T00:05:56.097893+00:00",
-    "story_count": 15,
-    "duration_seconds": 143,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-10-19-daily-digest.mp4",
-    "youtube_id": "sli5wdkeXk4",
-    "youtube_url": "https://youtube.com/watch?v=sli5wdkeXk4",
+    "last_completed_at": "2026-10-21T00:03:45.200655+00:00",
+    "story_count": 17,
+    "duration_seconds": 153,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-10-20-daily-digest.mp4",
+    "youtube_id": "i3aQAxKBCYk",
+    "youtube_url": "https://youtube.com/watch?v=i3aQAxKBCYk",
     "archive_org_id": "jtf-news-2026-10-16",
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-16/2026-10-16-daily-digest.mp4",
