@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-10-22T05:36:37.821046+00:00",
+  "timestamp": "2026-10-22T05:53:32.390382+00:00",
   "uptime_start": "2026-10-22T04:55:51.264903+00:00",
-  "uptime_seconds": 2447,
+  "uptime_seconds": 3461,
   "availability_pct": 99.6,
   "cycle": {
     "number": 3,
@@ -29,7 +29,7 @@
   },
   "queue": {
     "size": 55,
-    "oldest_item_age_hours": 24.1
+    "oldest_item_age_hours": 24.4
   },
   "stories_today": 4,
   "sources": {
@@ -37,11 +37,22 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-22T05:42:35.728505+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-10-22T05:48:32.385163+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 23,
+    "next_cycle_minutes": 8,
     "degraded_services": []
   },
   "daily_digest": {
