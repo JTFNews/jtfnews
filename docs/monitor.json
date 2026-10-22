@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-22T14:16:50.679832+00:00",
-  "uptime_start": "2026-10-22T04:55:51.264903+00:00",
-  "uptime_seconds": 33659,
+  "timestamp": "2026-10-22T14:21:50.557765+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2491519,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 21,
+    "number": 4698,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -29,7 +29,7 @@
   },
   "queue": {
     "size": 53,
-    "oldest_item_age_hours": 24.3
+    "oldest_item_age_hours": 24.4
   },
   "stories_today": 12,
   "sources": {
@@ -37,11 +37,22 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-22T13:41:39.442246+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-22T13:46:42.825215+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 13,
+    "next_cycle_minutes": 8,
     "degraded_services": []
   },
   "daily_digest": {
