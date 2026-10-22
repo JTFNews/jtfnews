@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-22T07:36:06.689826+00:00",
-  "uptime_start": "2026-10-22T04:55:51.264903+00:00",
-  "uptime_seconds": 9615,
+  "timestamp": "2026-10-22T07:41:04.812607+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2467473,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 7,
+    "number": 4685,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 50,
-    "oldest_item_age_hours": 23.1
+    "oldest_item_age_hours": 23.2
   },
   "stories_today": 5,
   "sources": {
@@ -44,11 +44,42 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-22T07:00:56.651979+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-22T07:05:58.032591+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-22T07:10:59.691984+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-22T07:16:01.364083+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-22T07:21:02.733380+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-22T07:26:04.132789+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 23,
+    "next_cycle_minutes": 18,
     "degraded_services": []
   },
   "daily_digest": {
