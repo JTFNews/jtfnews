@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-10-22T01:00:58.088641+00:00",
-  "web_refresh_at": "2026-10-22T01:00:58.088641+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 2443466,
+  "timestamp": "2026-10-22T01:01:05.588704+00:00",
+  "web_refresh_at": "2026-10-22T01:01:05.588704+00:00",
+  "uptime_start": "2026-10-21T23:52:03.906325+00:00",
+  "uptime_seconds": 4142,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 4672,
-    "duration_seconds": 50.7,
-    "headlines_scraped": 187,
-    "headlines_processed": 7,
+    "number": 4,
+    "duration_seconds": 58.5,
+    "headlines_scraped": 176,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 3
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -36,7 +36,7 @@
     "budget_pct": 10.4
   },
   "queue": {
-    "size": 62,
+    "size": 59,
     "oldest_item_age_hours": 24.0
   },
   "stories_today": 3,
@@ -47,60 +47,35 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-22T00:02:45.801044+00:00",
+      "timestamp": "2026-10-22T00:02:42.821115+00:00",
       "level": "ERROR",
-      "message": "Failed to stop recording: socket is already closed."
+      "message": "ffmpeg processing failed: eb/assets/png/thumbnail-archive-1920x1080.png':\n  Duration: N/A, bitrate: N/A\n  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 1920x1080 [SAR 15748:15748 DAR 16:9], 30 fps, 30 tbr, 30 tbn\n[mov,mp4,m4a,3gp,3g2,mj2 @ 0x7f8e824088c0] moov atom not found\n[in#1 @ 0x7f8e82408500] Error opening input: Invalid data found when processing input\nError opening input file /Users/larryseyer/JTFNews/video/2026-10-21-daily-digest.mp4.\nError opening input files: Invalid data found when processing input\n"
     },
     {
-      "timestamp": "2026-10-22T00:02:45.801375+00:00",
-      "level": "ERROR",
-      "message": "Failed to switch scene to JTF News: socket is already closed."
+      "timestamp": "2026-10-22T00:02:42.821479+00:00",
+      "level": "WARNING",
+      "message": "Video processing failed, using original recording"
     },
     {
-      "timestamp": "2026-10-22T00:02:52.403659+00:00",
+      "timestamp": "2026-10-22T00:03:55.419707+00:00",
+      "level": "WARNING",
+      "message": "Could not push digest entry to GitHub: Command '['git', '-C', '/Users/larryseyer/JTFNews/docs', 'push']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp": "2026-10-22T00:07:04.589499+00:00",
       "level": "ERROR",
       "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
     },
     {
-      "timestamp": "2026-10-22T00:10:38.935325+00:00",
+      "timestamp": "2026-10-22T01:00:48.730449+00:00",
       "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-22T00:15:40.126472+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-22T00:20:41.339430+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-22T00:25:42.516171+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-22T00:30:53.329762+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-22T00:35:54.509832+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    },
-    {
-      "timestamp": "2026-10-22T00:40:55.603034+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
+      "message": "Watchdog: White House fetch exceeded 30s; skipping"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 29,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
