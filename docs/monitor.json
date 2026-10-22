@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-22T01:56:00.322151+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 2446768,
+  "timestamp": "2026-10-22T01:56:03.559077+00:00",
+  "uptime_start": "2026-10-21T23:52:03.906325+00:00",
+  "uptime_seconds": 7440,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 4673,
+    "number": 5,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -44,7 +44,13 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-22T01:00:48.730449+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: White House fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
