@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-22T12:12:57.883619+00:00",
-  "uptime_start": "2026-10-22T04:55:51.264903+00:00",
-  "uptime_seconds": 26227,
+  "timestamp": "2026-10-22T12:16:37.699619+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2484006,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 17,
+    "number": 4694,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 48,
-    "oldest_item_age_hours": 22.2
+    "oldest_item_age_hours": 22.3
   },
   "stories_today": 9,
   "sources": {
@@ -46,15 +46,20 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-22T12:01:21.944743+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 2] No such file or directory: '/Users/larryseyer/JTFNews/docs/alexa.json.tmp' -> '/Users/larryseyer/JTFNews/docs/alexa.json'"
+      "timestamp": "2026-10-22T12:01:19.439977+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/feed.xml: 409"
+    },
+    {
+      "timestamp": "2026-10-22T12:01:21.940711+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/stories.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 17,
+    "next_cycle_minutes": 13,
     "degraded_services": []
   },
   "daily_digest": {
