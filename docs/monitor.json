@@ -1,35 +1,36 @@
 {
-  "timestamp": "2026-10-22T14:26:56.291718+00:00",
-  "uptime_start": "2026-10-22T04:55:51.264903+00:00",
-  "uptime_seconds": 34265,
+  "timestamp": "2026-10-22T14:31:41.415487+00:00",
+  "web_refresh_at": "2026-10-22T14:31:41.415487+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2492110,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 21,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4699,
+    "duration_seconds": 91.1,
+    "headlines_scraped": 177,
+    "headlines_processed": 12,
     "stories_published": 0,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 7,
-        "cost_usd": 0.0025452500000000006,
+        "calls": 8,
+        "cost_usd": 0.0036012500000000003,
         "details": {
-          "input_tokens": 6041,
-          "output_tokens": 828
+          "input_tokens": 8115,
+          "output_tokens": 1258
         }
       }
     },
-    "total_usd": 0.0025,
+    "total_usd": 0.0036,
     "month_estimate_usd": 6.12,
     "daily_budget": 1.61,
     "budget_pct": 0.2
   },
   "queue": {
-    "size": 53,
-    "oldest_item_age_hours": 24.4
+    "size": 52,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 12,
   "sources": {
@@ -37,11 +38,22 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-22T13:41:39.442246+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-22T13:46:42.825215+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -60,5 +72,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-21/2026-10-21-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-21/2026-10-21-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
