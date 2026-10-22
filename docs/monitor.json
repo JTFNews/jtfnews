@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-10-22T01:26:13.801457+00:00",
-  "uptime_start": "2026-10-21T23:52:03.906325+00:00",
-  "uptime_seconds": 5650,
+  "timestamp": "2026-10-22T01:30:51.360263+00:00",
+  "web_refresh_at": "2026-10-22T01:30:51.360263+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2445259,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 4,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4673,
+    "duration_seconds": 42.8,
+    "headlines_scraped": 187,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 340,
-        "cost_usd": 0.1411832499999999,
+        "calls": 350,
+        "cost_usd": 0.14545499999999992,
         "details": {
-          "input_tokens": 343823,
-          "output_tokens": 44182
+          "input_tokens": 354210,
+          "output_tokens": 45522
         }
       }
     },
-    "total_usd": 0.1673,
+    "total_usd": 0.1716,
     "month_estimate_usd": 6.16,
     "daily_budget": 1.61,
-    "budget_pct": 10.4
+    "budget_pct": 10.6
   },
   "queue": {
     "size": 59,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 22.5
   },
   "stories_today": 3,
   "sources": {
@@ -46,15 +47,25 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-22T01:00:48.730449+00:00",
+      "timestamp": "2026-10-22T00:30:53.329762+00:00",
       "level": "WARNING",
-      "message": "Watchdog: White House fetch exceeded 30s; skipping"
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-22T00:35:54.509832+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-22T00:40:55.603034+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +84,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-21/2026-10-21-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-21/2026-10-21-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
