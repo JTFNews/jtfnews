@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-10-23T01:01:26.620402+00:00",
-  "web_refresh_at": "2026-10-23T01:01:26.620402+00:00",
+  "timestamp": "2026-10-23T01:06:28.277209+00:00",
   "uptime_start": "2026-10-22T04:55:51.264903+00:00",
-  "uptime_seconds": 72335,
+  "uptime_seconds": 72637,
   "availability_pct": 99.6,
   "cycle": {
     "number": 43,
-    "duration_seconds": 77.9,
-    "headlines_scraped": 184,
-    "headlines_processed": 9,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -30,7 +29,7 @@
   },
   "queue": {
     "size": 53,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 2,
   "sources": {
@@ -40,21 +39,6 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-23T00:03:32.354715+00:00",
-      "level": "WARNING",
-      "message": "Could not determine video duration"
-    },
-    {
-      "timestamp": "2026-10-23T00:03:32.589530+00:00",
-      "level": "ERROR",
-      "message": "ffmpeg processing failed: eb/assets/png/thumbnail-archive-1920x1080.png':\n  Duration: N/A, bitrate: N/A\n  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 1920x1080 [SAR 15748:15748 DAR 16:9], 30 fps, 30 tbr, 30 tbn\n[mov,mp4,m4a,3gp,3g2,mj2 @ 0x7ffacbd0f600] moov atom not found\n[in#1 @ 0x7ffacbd0f240] Error opening input: Invalid data found when processing input\nError opening input file /Users/larryseyer/JTFNews/video/2026-10-22-daily-digest.mp4.\nError opening input files: Invalid data found when processing input\n"
-    },
-    {
-      "timestamp": "2026-10-23T00:03:32.589892+00:00",
-      "level": "WARNING",
-      "message": "Video processing failed, using original recording"
-    },
-    {
       "timestamp": "2026-10-23T00:06:42.655670+00:00",
       "level": "ERROR",
       "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
@@ -63,7 +47,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -82,12 +66,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
