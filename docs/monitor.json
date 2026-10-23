@@ -1,32 +1,32 @@
 {
-  "timestamp": "2026-10-23T14:01:12.231096+00:00",
-  "web_refresh_at": "2026-10-23T14:01:12.231096+00:00",
-  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 2576680,
+  "timestamp": "2026-10-23T14:01:24.988820+00:00",
+  "web_refresh_at": "2026-10-23T14:01:24.988820+00:00",
+  "uptime_start": "2026-10-22T04:55:51.264903+00:00",
+  "uptime_seconds": 119134,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 4748,
-    "duration_seconds": 62.9,
+    "number": 69,
+    "duration_seconds": 77.2,
     "headlines_scraped": 177,
-    "headlines_processed": 9,
-    "stories_published": 0,
-    "stories_queued": 2
+    "headlines_processed": 10,
+    "stories_published": 1,
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 2,
-        "cost_usd": 0.0009215,
+        "calls": 12,
+        "cost_usd": 0.0038339999999999993,
         "details": {
-          "input_tokens": 2286,
-          "output_tokens": 280
+          "input_tokens": 10026,
+          "output_tokens": 1062
         }
       }
     },
-    "total_usd": 0.0009,
+    "total_usd": 0.0038,
     "month_estimate_usd": 6.12,
     "daily_budget": 1.61,
-    "budget_pct": 0.1
+    "budget_pct": 0.2
   },
   "queue": {
     "size": 71,
@@ -38,13 +38,7 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-10-23T13:31:06.230032+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 2] No such file or directory: '/Users/larryseyer/JTFNews/docs/feed.xml.tmp' -> '/Users/larryseyer/JTFNews/docs/feed.xml'"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
