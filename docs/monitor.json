@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-23T14:21:31.233829+00:00",
-  "uptime_start": "2026-10-22T04:55:51.264903+00:00",
-  "uptime_seconds": 120340,
+  "timestamp": "2026-10-23T14:26:21.365008+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2578189,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 69,
+    "number": 4748,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -37,11 +37,17 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-23T13:31:06.230032+00:00",
+      "level": "ERROR",
+      "message": "Cycle error: [Errno 2] No such file or directory: '/Users/larryseyer/JTFNews/docs/feed.xml.tmp' -> '/Users/larryseyer/JTFNews/docs/feed.xml'"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 8,
+    "next_cycle_minutes": 3,
     "degraded_services": []
   },
   "daily_digest": {
