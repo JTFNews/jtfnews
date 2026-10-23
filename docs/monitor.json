@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-23T00:45:52.976407+00:00",
-  "uptime_start": "2026-10-22T04:55:51.264903+00:00",
-  "uptime_seconds": 71402,
+  "timestamp": "2026-10-23T00:50:53.928709+00:00",
+  "uptime_start": "2026-09-23T18:16:31.891227+00:00",
+  "uptime_seconds": 2529262,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 42,
+    "number": 4719,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -39,30 +39,60 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-10-23T00:03:32.354715+00:00",
-      "level": "WARNING",
-      "message": "Could not determine video duration"
-    },
-    {
-      "timestamp": "2026-10-23T00:03:32.589530+00:00",
+      "timestamp": "2026-10-23T00:03:34.084962+00:00",
       "level": "ERROR",
-      "message": "ffmpeg processing failed: eb/assets/png/thumbnail-archive-1920x1080.png':\n  Duration: N/A, bitrate: N/A\n  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 1920x1080 [SAR 15748:15748 DAR 16:9], 30 fps, 30 tbr, 30 tbn\n[mov,mp4,m4a,3gp,3g2,mj2 @ 0x7ffacbd0f600] moov atom not found\n[in#1 @ 0x7ffacbd0f240] Error opening input: Invalid data found when processing input\nError opening input file /Users/larryseyer/JTFNews/video/2026-10-22-daily-digest.mp4.\nError opening input files: Invalid data found when processing input\n"
+      "message": "Failed to stop recording: socket is already closed."
     },
     {
-      "timestamp": "2026-10-23T00:03:32.589892+00:00",
-      "level": "WARNING",
-      "message": "Video processing failed, using original recording"
+      "timestamp": "2026-10-23T00:03:34.085236+00:00",
+      "level": "ERROR",
+      "message": "Failed to switch scene to JTF News: socket is already closed."
     },
     {
-      "timestamp": "2026-10-23T00:06:42.655670+00:00",
+      "timestamp": "2026-10-23T00:03:40.056744+00:00",
       "level": "ERROR",
       "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
+    },
+    {
+      "timestamp": "2026-10-23T00:10:54.344059+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-23T00:15:55.829544+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-23T00:20:56.964312+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-23T00:25:58.286580+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-23T00:30:49.907347+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-23T00:35:51.140307+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-23T00:40:52.348798+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 14,
+    "next_cycle_minutes": 9,
     "degraded_services": []
   },
   "daily_digest": {
