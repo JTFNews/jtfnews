@@ -1,65 +1,44 @@
 {
-  "timestamp": "2026-10-23T13:57:45.331007+00:00",
+  "timestamp": "2026-10-23T14:01:12.231096+00:00",
+  "web_refresh_at": "2026-10-23T14:01:12.231096+00:00",
   "uptime_start": "2026-09-23T18:16:31.891227+00:00",
-  "uptime_seconds": 2576473,
+  "uptime_seconds": 2576680,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 4747,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 4748,
+    "duration_seconds": 62.9,
+    "headlines_scraped": 177,
+    "headlines_processed": 9,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "claude": {
-        "calls": 30,
-        "cost_usd": 0.00890475,
-        "details": {
-          "input_tokens": 22114,
-          "output_tokens": 2701
-        }
-      },
-      "elevenlabs": {
         "calls": 2,
-        "cost_usd": 0.00378,
+        "cost_usd": 0.0009215,
         "details": {
-          "characters": 126
+          "input_tokens": 2286,
+          "output_tokens": 280
         }
       }
     },
-    "total_usd": 0.0127,
+    "total_usd": 0.0009,
     "month_estimate_usd": 6.12,
     "daily_budget": 1.61,
-    "budget_pct": 0.8
+    "budget_pct": 0.1
   },
   "queue": {
-    "size": 69,
+    "size": 71,
     "oldest_item_age_hours": 24.0
   },
-  "stories_today": 11,
+  "stories_today": 12,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-10-23T13:01:00.921113+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/feed.xml: 409"
-    },
-    {
-      "timestamp": "2026-10-23T13:01:02.760051+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/stories.json: 409"
-    },
-    {
-      "timestamp": "2026-10-23T13:01:02.763892+00:00",
-      "level": "ERROR",
-      "message": "Cycle error: [Errno 2] No such file or directory: '/Users/larryseyer/JTFNews/docs/alexa.json.tmp' -> '/Users/larryseyer/JTFNews/docs/alexa.json'"
-    },
     {
       "timestamp": "2026-10-23T13:31:06.230032+00:00",
       "level": "ERROR",
@@ -69,7 +48,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 2,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -88,5 +67,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
