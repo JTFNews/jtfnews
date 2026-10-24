@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-10-24T02:56:01.575244+00:00",
+  "timestamp": "2026-10-24T03:01:12.749008+00:00",
+  "web_refresh_at": "2026-10-24T03:01:12.749008+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 31614,
+  "uptime_seconds": 31925,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 18,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 19,
+    "duration_seconds": 62.4,
+    "headlines_scraped": 177,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 252,
-        "cost_usd": 0.10028325000000005,
+        "calls": 257,
+        "cost_usd": 0.10264325000000003,
         "details": {
-          "input_tokens": 247548,
-          "output_tokens": 30717
+          "input_tokens": 253263,
+          "output_tokens": 31462
         }
       }
     },
-    "total_usd": 0.1149,
+    "total_usd": 0.1173,
     "month_estimate_usd": 5.95,
     "daily_budget": 1.61,
-    "budget_pct": 7.1
+    "budget_pct": 7.3
   },
   "queue": {
-    "size": 72,
-    "oldest_item_age_hours": 23.4
+    "size": 73,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 2,
   "sources": {
@@ -45,11 +46,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-10-24T02:00:56.463437+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: Supreme Court fetch exceeded 30s; skipping"
-    },
     {
       "timestamp": "2026-10-24T02:01:27.669000+00:00",
       "level": "WARNING",
@@ -69,7 +65,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -88,5 +84,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
