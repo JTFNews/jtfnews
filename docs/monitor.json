@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-25T23:56:10.414299+00:00",
+  "timestamp": "2026-10-26T00:50:51.432674+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 193623,
+  "uptime_seconds": 196904,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 108,
+    "number": 110,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -14,55 +14,106 @@
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 14,
-        "cost_usd": 0.03867,
+        "calls": 6,
+        "cost_usd": 0.01878,
         "details": {
-          "characters": 1289
+          "characters": 626
         }
       },
       "claude": {
-        "calls": 558,
-        "cost_usd": 0.21478424999999987,
+        "calls": 235,
+        "cost_usd": 0.09192975000000006,
         "details": {
-          "input_tokens": 522167,
-          "output_tokens": 67394
+          "input_tokens": 223684,
+          "output_tokens": 28807
         }
       }
     },
-    "total_usd": 0.2535,
+    "total_usd": 0.1107,
     "month_estimate_usd": 5.95,
     "daily_budget": 1.61,
-    "budget_pct": 15.7
+    "budget_pct": 6.9
   },
   "queue": {
-    "size": 49,
-    "oldest_item_age_hours": 23.6
+    "size": 31,
+    "oldest_item_age_hours": 23.8
   },
-  "stories_today": 12,
+  "stories_today": 4,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-26T00:21:25.423107+00:00",
+      "level": "ERROR",
+      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
+    },
+    {
+      "timestamp": "2026-10-26T00:24:03.147995+00:00",
+      "level": "WARNING",
+      "message": "Contradiction detected: Lula won reelection against Jair Bolsonaro (not Flavio Bolsonaro) in the 2022 Brazilian presidential election. Flavio Bolsonaro is Jair Bolsonaro's son and was not the presidential candidate."
+    },
+    {
+      "timestamp": "2026-10-26T00:24:03.148254+00:00",
+      "level": "WARNING",
+      "message": "Contradiction blocked: President Luiz In\u00e1cio Lula da Silva won ..."
+    },
+    {
+      "timestamp": "2026-10-26T00:24:04.434885+00:00",
+      "level": "WARNING",
+      "message": "Contradiction detected: Lula won reelection against Jair Bolsonaro (the former president), not Flavio Bolsonaro (Jair's son). In the 2022 Brazilian presidential runoff, Lula defeated Jair Bolsonaro. Flavio Bolsonaro did not run for president in that election."
+    },
+    {
+      "timestamp": "2026-10-26T00:24:04.435017+00:00",
+      "level": "WARNING",
+      "message": "Contradiction blocked: President Luiz In\u00e1cio Lula da Silva won ..."
+    },
+    {
+      "timestamp": "2026-10-26T00:29:31.101165+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-26T00:30:44.678975+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-26T00:35:46.866081+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-26T00:40:49.122998+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-10-26T00:45:51.288736+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 9,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-10-24",
-    "next_digest_at": "2026-10-26T00:00:00+00:00",
+    "last_date": "2026-10-25",
+    "next_digest_at": "2026-10-27T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-10-25T00:04:44.433057+00:00",
+    "last_completed_at": "2026-10-26T00:04:56.765324+00:00",
     "story_count": 12,
-    "duration_seconds": 105,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-10-24-daily-digest.mp4",
-    "youtube_id": "JPoH5thr1lo",
-    "youtube_url": "https://youtube.com/watch?v=JPoH5thr1lo",
+    "duration_seconds": 109,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-10-25-daily-digest.mp4",
+    "youtube_id": "grqlX8wzHoE",
+    "youtube_url": "https://youtube.com/watch?v=grqlX8wzHoE",
     "archive_org_id": "jtf-news-2026-10-22",
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp4",
