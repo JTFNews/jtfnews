@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-10-27T18:56:26.144544+00:00",
+  "timestamp": "2026-10-27T19:03:45.459248+00:00",
+  "web_refresh_at": "2026-10-27T19:03:45.459248+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 348439,
+  "uptime_seconds": 348878,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 194,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 195,
+    "duration_seconds": 216.9,
+    "headlines_scraped": 136,
+    "headlines_processed": 18,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 552,
-        "cost_usd": 0.24359600000000017,
+        "calls": 572,
+        "cost_usd": 0.25201500000000016,
         "details": {
-          "input_tokens": 581059,
-          "output_tokens": 78665
+          "input_tokens": 601925,
+          "output_tokens": 81227
         }
       }
     },
-    "total_usd": 0.2618,
+    "total_usd": 0.2702,
     "month_estimate_usd": 5.95,
     "daily_budget": 1.61,
-    "budget_pct": 16.2
+    "budget_pct": 16.8
   },
   "queue": {
-    "size": 43,
-    "oldest_item_age_hours": 23.4
+    "size": 46,
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 4,
   "sources": {
@@ -44,11 +45,37 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-27T19:00:56.769101+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: US Department of Defense fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-10-27T19:01:28.037678+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: UK Parliament fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-10-27T19:01:59.328988+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: European Commission fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-10-27T19:02:30.606414+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: UN News fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-10-27T19:03:01.891683+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Government of Canada fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 26,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +94,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
