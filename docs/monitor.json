@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-10-27T20:01:36.929687+00:00",
-  "web_refresh_at": "2026-10-27T20:01:36.929687+00:00",
+  "timestamp": "2026-10-27T20:06:38.507671+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 352350,
+  "uptime_seconds": 352651,
   "availability_pct": 99.6,
   "cycle": {
     "number": 197,
-    "duration_seconds": 87.5,
-    "headlines_scraped": 177,
-    "headlines_processed": 14,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 2
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 50,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 4,
   "sources": {
@@ -45,27 +44,11 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-10-27T19:01:59.328988+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: European Commission fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-10-27T19:02:30.606414+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: UN News fetch exceeded 30s; skipping"
-    },
-    {
-      "timestamp": "2026-10-27T19:03:01.891683+00:00",
-      "level": "WARNING",
-      "message": "Watchdog: Government of Canada fetch exceeded 30s; skipping"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -84,12 +67,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-22/2026-10-22-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
