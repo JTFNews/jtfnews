@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-10-30T02:56:08.100075+00:00",
+  "timestamp": "2026-10-30T03:01:30.968446+00:00",
+  "web_refresh_at": "2026-10-30T03:01:30.968446+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 550021,
+  "uptime_seconds": 550344,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 306,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 307,
+    "duration_seconds": 82.2,
+    "headlines_scraped": 177,
+    "headlines_processed": 6,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 4,
-        "cost_usd": 0.01299,
+        "calls": 5,
+        "cost_usd": 0.01734,
         "details": {
-          "characters": 433
+          "characters": 578
         }
       },
       "claude": {
-        "calls": 228,
-        "cost_usd": 0.09708299999999999,
+        "calls": 237,
+        "cost_usd": 0.10019424999999998,
         "details": {
-          "input_tokens": 236257,
-          "output_tokens": 30415
+          "input_tokens": 243787,
+          "output_tokens": 31398
         }
       }
     },
-    "total_usd": 0.1101,
+    "total_usd": 0.1175,
     "month_estimate_usd": 5.95,
     "daily_budget": 1.61,
-    "budget_pct": 6.8
+    "budget_pct": 7.3
   },
   "queue": {
-    "size": 65,
-    "oldest_item_age_hours": 24.4
+    "size": 63,
+    "oldest_item_age_hours": 22.5
   },
-  "stories_today": 2,
+  "stories_today": 3,
   "sources": {
     "total": 21,
     "successful": 20,
@@ -51,12 +52,17 @@
       "timestamp": "2026-10-30T02:30:45.030176+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Government of Canada: 'NoneType' object has no attribute 'replace'"
+    },
+    {
+      "timestamp": "2026-10-30T03:01:02.441258+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Government of Canada: 'NoneType' object has no attribute 'replace'"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-28/2026-10-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-28/2026-10-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
