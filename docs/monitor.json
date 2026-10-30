@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-10-30T02:26:06.669971+00:00",
+  "timestamp": "2026-10-30T02:30:59.741111+00:00",
+  "web_refresh_at": "2026-10-30T02:30:59.741111+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 548219,
+  "uptime_seconds": 548512,
   "availability_pct": 99.6,
   "cycle": {
-    "number": 305,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 306,
+    "duration_seconds": 51.7,
+    "headlines_scraped": 177,
+    "headlines_processed": 4,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,42 @@
         }
       },
       "claude": {
-        "calls": 224,
-        "cost_usd": 0.09511974999999999,
+        "calls": 228,
+        "cost_usd": 0.09708299999999999,
         "details": {
-          "input_tokens": 231699,
-          "output_tokens": 29756
+          "input_tokens": 236257,
+          "output_tokens": 30415
         }
       }
     },
-    "total_usd": 0.1081,
+    "total_usd": 0.1101,
     "month_estimate_usd": 5.95,
     "daily_budget": 1.61,
-    "budget_pct": 6.7
+    "budget_pct": 6.8
   },
   "queue": {
     "size": 65,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 2,
   "sources": {
     "total": 21,
-    "successful": 21,
-    "failed": []
+    "successful": 20,
+    "failed": [
+      "Government of Canada"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-10-30T02:30:45.030176+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Government of Canada: 'NoneType' object has no attribute 'replace'"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 29,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-28/2026-10-28-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-28/2026-10-28-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
