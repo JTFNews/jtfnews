@@ -1,54 +1,63 @@
 {
-  "timestamp": "2026-11-02T18:56:27.523895+00:00",
+  "timestamp": "2026-11-02T19:01:20.900103+00:00",
+  "web_refresh_at": "2026-11-02T19:01:20.900103+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 866840,
+  "uptime_seconds": 867134,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 482,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
+    "number": 483,
+    "duration_seconds": 71.5,
+    "headlines_scraped": 176,
+    "headlines_processed": 13,
+    "stories_published": 1,
     "stories_queued": 0
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 8,
-        "cost_usd": 0.02163,
+        "calls": 9,
+        "cost_usd": 0.024059999999999998,
         "details": {
-          "characters": 721
+          "characters": 802
         }
       },
       "claude": {
-        "calls": 520,
-        "cost_usd": 0.21540074999999984,
+        "calls": 537,
+        "cost_usd": 0.22201849999999984,
         "details": {
-          "input_tokens": 521063,
-          "output_tokens": 68108
+          "input_tokens": 536924,
+          "output_tokens": 70230
         }
       }
     },
-    "total_usd": 0.237,
+    "total_usd": 0.2461,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 14.2
+    "budget_pct": 14.8
   },
   "queue": {
-    "size": 51,
-    "oldest_item_age_hours": 23.4
+    "size": 50,
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 6,
+  "stories_today": 7,
   "sources": {
     "total": 21,
-    "successful": 21,
-    "failed": []
+    "successful": 20,
+    "failed": [
+      "European Commission"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-02T19:00:34.022277+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from European Commission: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-31/2026-10-31-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-31/2026-10-31-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
