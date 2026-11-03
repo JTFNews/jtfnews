@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-11-02T23:56:12.686815+00:00",
+  "timestamp": "2026-11-03T01:11:18.420466+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 884825,
+  "uptime_seconds": 889331,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 492,
+    "number": 495,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -14,55 +14,106 @@
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 12,
-        "cost_usd": 0.033299999999999996,
+        "calls": 5,
+        "cost_usd": 0.016319999999999998,
         "details": {
-          "characters": 1110
+          "characters": 544
         }
       },
       "claude": {
-        "calls": 656,
-        "cost_usd": 0.26609624999999976,
+        "calls": 238,
+        "cost_usd": 0.09833850000000004,
         "details": {
-          "input_tokens": 644190,
-          "output_tokens": 84039
+          "input_tokens": 238574,
+          "output_tokens": 30956
         }
       }
     },
-    "total_usd": 0.2994,
+    "total_usd": 0.1147,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 18.0
+    "budget_pct": 6.9
   },
   "queue": {
-    "size": 53,
-    "oldest_item_age_hours": 23.6
+    "size": 49,
+    "oldest_item_age_hours": 24.2
   },
-  "stories_today": 9,
+  "stories_today": 3,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-03T00:20:23.104945+00:00",
+      "level": "ERROR",
+      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
+    },
+    {
+      "timestamp": "2026-11-03T00:28:34.818557+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-11-03T00:30:57.054629+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-11-03T00:35:59.953988+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-11-03T00:41:02.602641+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-11-03T00:46:05.454127+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-11-03T00:51:08.044468+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-11-03T00:56:10.945854+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-11-03T01:01:15.854343+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    },
+    {
+      "timestamp": "2026-11-03T01:06:18.284498+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 18,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-11-01",
-    "next_digest_at": "2026-11-03T00:00:00+00:00",
+    "last_date": "2026-11-02",
+    "next_digest_at": "2026-11-04T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-11-02T00:03:37.247782+00:00",
-    "story_count": 7,
-    "duration_seconds": 79,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-11-01-daily-digest.mp4",
-    "youtube_id": "Jf0bpaZIiiM",
-    "youtube_url": "https://youtube.com/watch?v=Jf0bpaZIiiM",
+    "last_completed_at": "2026-11-03T00:03:57.850934+00:00",
+    "story_count": 9,
+    "duration_seconds": 86,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-11-02-daily-digest.mp4",
+    "youtube_id": "UQFHkWF0TrY",
+    "youtube_url": "https://youtube.com/watch?v=UQFHkWF0TrY",
     "archive_org_id": "jtf-news-2026-10-31",
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-31/2026-10-31-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-31/2026-10-31-daily-digest.mp4",
