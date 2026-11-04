@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-11-04T10:56:52.020187+00:00",
+  "timestamp": "2026-11-04T11:06:21.584180+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 1010865,
+  "uptime_seconds": 1011434,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 562,
+    "number": 563,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -21,28 +21,30 @@
         }
       },
       "claude": {
-        "calls": 500,
-        "cost_usd": 0.19464649999999986,
+        "calls": 505,
+        "cost_usd": 0.19714849999999987,
         "details": {
-          "input_tokens": 465471,
-          "output_tokens": 62623
+          "input_tokens": 471194,
+          "output_tokens": 63480
         }
       }
     },
-    "total_usd": 0.2297,
+    "total_usd": 0.2322,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 13.8
+    "budget_pct": 13.9
   },
   "queue": {
     "size": 55,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 12,
   "sources": {
     "total": 21,
-    "successful": 21,
-    "failed": []
+    "successful": 20,
+    "failed": [
+      "France 24"
+    ]
   },
   "recent_errors": [
     {
@@ -54,12 +56,22 @@
       "timestamp": "2026-11-04T10:21:47.687638+00:00",
       "level": "WARNING",
       "message": "GitHub API error for docs/monitor.json: 502"
+    },
+    {
+      "timestamp": "2026-11-04T11:00:14.026612+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    },
+    {
+      "timestamp": "2026-11-04T11:01:21.440591+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 502"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
