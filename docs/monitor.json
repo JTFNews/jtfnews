@@ -1,71 +1,130 @@
 {
-  "timestamp": "2026-11-04T23:56:21.141013+00:00",
+  "timestamp": "2026-11-05T00:37:07.696024+00:00",
+  "web_refresh_at": "2026-11-05T00:37:07.696024+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 1057634,
+  "uptime_seconds": 1060080,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 588,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 590,
+    "duration_seconds": 293.3,
+    "headlines_scraped": 186,
+    "headlines_processed": 121,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 10
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 17,
-        "cost_usd": 0.04071,
+        "calls": 4,
+        "cost_usd": 0.01287,
         "details": {
-          "characters": 1357
+          "characters": 429
         }
       },
       "claude": {
-        "calls": 823,
-        "cost_usd": 0.3311724999999997,
+        "calls": 217,
+        "cost_usd": 0.08996899999999998,
         "details": {
-          "input_tokens": 794160,
-          "output_tokens": 106106
+          "input_tokens": 217486,
+          "output_tokens": 28478
         }
       }
     },
-    "total_usd": 0.3719,
+    "total_usd": 0.1028,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 22.3
+    "budget_pct": 6.2
   },
   "queue": {
-    "size": 54,
+    "size": 51,
     "oldest_item_age_hours": 23.6
   },
-  "stories_today": 15,
+  "stories_today": 2,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-05T00:21:23.678933+00:00",
+      "level": "ERROR",
+      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
+    },
+    {
+      "timestamp": "2026-11-05T00:25:22.597828+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/stories.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-11-05T00:25:41.186982+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/alexa.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-11-05T00:26:39.336424+00:00",
+      "level": "ERROR",
+      "message": "Correction detection failed: Connection error."
+    },
+    {
+      "timestamp": "2026-11-05T00:27:41.884647+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-11-05T00:28:44.464813+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 2/4): Connection error.. Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-11-05T00:29:45.162747+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 3/4): Connection error.. Retrying in 4.0s..."
+    },
+    {
+      "timestamp": "2026-11-05T00:30:47.497442+00:00",
+      "level": "ERROR",
+      "message": "_call_claude_extract_fact failed after 4 attempts: Connection error."
+    },
+    {
+      "timestamp": "2026-11-05T00:30:47.497590+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Connection error."
+    },
+    {
+      "timestamp": "2026-11-05T00:31:14.268231+00:00",
+      "level": "ERROR",
+      "message": "Cycle watchdog fired (outer watchdog fired 589.1s into 'cycle' (budget was 600s)); aborting and restarting in 60s"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 22,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-11-03",
-    "next_digest_at": "2026-11-05T00:00:00+00:00",
+    "last_date": "2026-11-04",
+    "next_digest_at": "2026-11-06T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-11-04T00:04:38.358392+00:00",
-    "story_count": 12,
-    "duration_seconds": 106,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-11-03-daily-digest.mp4",
-    "youtube_id": "WKdXa73ixvA",
-    "youtube_url": "https://youtube.com/watch?v=WKdXa73ixvA",
+    "last_completed_at": "2026-11-05T00:05:08.308385+00:00",
+    "story_count": 15,
+    "duration_seconds": 119,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-11-04-daily-digest.mp4",
+    "youtube_id": "2P_o2JJcEMA",
+    "youtube_url": "https://youtube.com/watch?v=2P_o2JJcEMA",
     "archive_org_id": "jtf-news-2026-10-31",
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-10-31/2026-10-31-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-10-31/2026-10-31-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
