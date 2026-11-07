@@ -1,51 +1,49 @@
 {
-  "timestamp": "2026-11-07T20:56:04.708856+00:00",
+  "timestamp": "2026-11-07T21:01:23.279105+00:00",
+  "web_refresh_at": "2026-11-07T21:01:23.279105+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 1306017,
+  "uptime_seconds": 1306336,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 726,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 727,
+    "duration_seconds": 76.8,
+    "headlines_scraped": 177,
+    "headlines_processed": 9,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 11,
-        "cost_usd": 0.029249999999999998,
+        "calls": 12,
+        "cost_usd": 0.0315,
         "details": {
-          "characters": 975
+          "characters": 1050
         }
       },
       "claude": {
-        "calls": 530,
-        "cost_usd": 0.21234649999999997,
+        "calls": 546,
+        "cost_usd": 0.2172405,
         "details": {
-          "input_tokens": 516086,
-          "output_tokens": 66660
+          "input_tokens": 527792,
+          "output_tokens": 68234
         }
       }
     },
-    "total_usd": 0.2416,
+    "total_usd": 0.2487,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 14.5
+    "budget_pct": 14.9
   },
   "queue": {
-    "size": 32,
-    "oldest_item_age_hours": 24.4
+    "size": 27,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 9,
+  "stories_today": 10,
   "sources": {
     "total": 21,
-    "successful": 19,
-    "failed": [
-      "Supreme Court",
-      "CDC Newsroom"
-    ]
+    "successful": 21,
+    "failed": []
   },
   "recent_errors": [
     {
@@ -102,7 +100,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -121,5 +119,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-05/2026-11-05-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-05/2026-11-05-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
