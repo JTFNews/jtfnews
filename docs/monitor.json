@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-11-11T04:26:22.136915+00:00",
+  "timestamp": "2026-11-11T04:36:17.492966+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 1592235,
+  "uptime_seconds": 1592830,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 885,
+    "number": 886,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -21,22 +21,22 @@
         }
       },
       "claude": {
-        "calls": 299,
-        "cost_usd": 0.11905175000000001,
+        "calls": 311,
+        "cost_usd": 0.12447100000000003,
         "details": {
-          "input_tokens": 289762,
-          "output_tokens": 37289
+          "input_tokens": 302514,
+          "output_tokens": 39074
         }
       }
     },
-    "total_usd": 0.1434,
+    "total_usd": 0.1489,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 8.6
+    "budget_pct": 8.9
   },
   "queue": {
-    "size": 50,
-    "oldest_item_age_hours": 23.4
+    "size": 52,
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 5,
   "sources": {
@@ -44,11 +44,17 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-11T04:31:17.350400+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
