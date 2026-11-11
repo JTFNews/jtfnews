@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-11-11T12:26:28.812275+00:00",
+  "timestamp": "2026-11-11T12:31:11.439715+00:00",
+  "web_refresh_at": "2026-11-11T12:31:11.439715+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 1621041,
+  "uptime_seconds": 1621324,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 901,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 902,
+    "duration_seconds": 62.6,
+    "headlines_scraped": 165,
+    "headlines_processed": 4,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,34 +22,42 @@
         }
       },
       "claude": {
-        "calls": 490,
-        "cost_usd": 0.19373999999999983,
+        "calls": 495,
+        "cost_usd": 0.19584499999999985,
         "details": {
-          "input_tokens": 469730,
-          "output_tokens": 61046
+          "input_tokens": 474420,
+          "output_tokens": 61792
         }
       }
     },
-    "total_usd": 0.2213,
+    "total_usd": 0.2234,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 13.3
+    "budget_pct": 13.4
   },
   "queue": {
-    "size": 56,
-    "oldest_item_age_hours": 24.4
+    "size": 55,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 7,
   "sources": {
     "total": 21,
-    "successful": 21,
-    "failed": []
+    "successful": 20,
+    "failed": [
+      "France 24"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-11T12:30:13.082226+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-10/2026-11-10-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-10/2026-11-10-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
