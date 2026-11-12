@@ -30,7 +30,7 @@
     {
       "id": "2026-11-12-002",
       "hash": "968cf019de6f",
-      "fact": "A building collapsed in New York, killing one person and injuring 12.",
+      "fact": "Two people died and several were injured in a building collapse in New York.",
       "source": "BBC News 5.5|9.0 \u00b7 CBC News 3.0|9.0",
       "source_urls": {
         "BBC News": "https://www.bbc.com/news/world",
@@ -38,7 +38,17 @@
       },
       "audio": "../audio/archive/2026-11-12/52721cb25be0.mp3",
       "published_at": "2026-11-12T00:30:56.748606+00:00",
-      "status": "published"
+      "status": "corrected",
+      "original_fact": "A building collapsed in New York, killing one person and injuring 12.",
+      "correction": {
+        "corrected_at": "2026-11-12T10:31:29.725299+00:00",
+        "type": "correction",
+        "reason": "The death toll is incorrect. New verified fact confirms two people died, not one. The injury count also differs (several vs. 12).",
+        "correcting_sources": [
+          "France 24",
+          "CBC News"
+        ]
+      }
     },
     {
       "id": "2026-11-12-003",
@@ -90,6 +100,19 @@
       },
       "audio": "../audio/archive/2026-11-12/e7cd64f9a2c2.mp3",
       "published_at": "2026-11-12T10:31:20.842985+00:00",
+      "status": "published"
+    },
+    {
+      "id": "2026-11-12-007",
+      "hash": "d3472117c4d1",
+      "fact": "Hoax bomb alerts were sent to schools in Italy and the United Kingdom.",
+      "source": "France 24 4.5|9.0 \u00b7 Irish Times 0.4|9.0",
+      "source_urls": {
+        "France 24": "https://www.france24.com/en/",
+        "Irish Times": "https://www.irishtimes.com/world/"
+      },
+      "audio": "../audio/archive/2026-11-12/4547391a1f89.mp3",
+      "published_at": "2026-11-12T10:31:41.845111+00:00",
       "status": "published"
     }
   ]
