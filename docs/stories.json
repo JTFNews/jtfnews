@@ -30,13 +30,13 @@
     {
       "id": "2026-11-12-002",
       "hash": "968cf019de6f",
-      "fact": "Two people died and several were injured in a building collapse in New York.",
-      "source": "BBC News 5.5|9.0 \u00b7 CBC News 3.0|9.0",
+      "fact": "Two people died and several were injured in a building collapse in New York. the death toll has been revised to eight, including two children.",
+      "source": "BBC News 5.5|9.0 \u00b7 CBC News 3.0|9.0 \u00b7 France 24 4.5|9.0",
       "source_urls": {
         "BBC News": "https://www.bbc.com/news/world",
         "CBC News": "https://www.cbc.ca/news/world"
       },
-      "audio": "../audio/archive/2026-11-12/52721cb25be0.mp3",
+      "audio": "../audio/archive/2026-11-12/9e9eae1ebe3f.mp3",
       "published_at": "2026-11-12T00:30:56.748606+00:00",
       "status": "corrected",
       "original_fact": "A building collapsed in New York, killing one person and injuring 12.",
@@ -66,13 +66,13 @@
     {
       "id": "2026-11-12-004",
       "hash": "90ab1d29cde8",
-      "fact": "U.S. envoys arrive in Russia to meet with President Putin regarding Ukraine peace talks.",
-      "source": "Deutsche Welle 5.5|9.5 \u00b7 France 24 4.5|9.0",
+      "fact": "U.S. envoys arrive in Russia to meet with President Putin regarding Ukraine peace talks. and are subsequently traveling to meet with President Volodymyr Zelensky of Ukraine.",
+      "source": "Deutsche Welle 5.5|9.5 \u00b7 France 24 4.5|9.0 \u00b7 BBC News 5.5|9.0",
       "source_urls": {
         "Deutsche Welle": "https://www.dw.com/en/top-stories/s-9097",
         "France 24": "https://www.france24.com/en/"
       },
-      "audio": "../audio/archive/2026-11-12/4adb42d78a43.mp3",
+      "audio": "../audio/archive/2026-11-12/9a287543af15.mp3",
       "published_at": "2026-11-12T07:01:11.763474+00:00",
       "status": "published"
     },
@@ -131,7 +131,7 @@
     {
       "id": "2026-11-12-009",
       "hash": "95937e9f730b",
-      "fact": "At least five people were shot in a Washington, D.C. neighborhood near the White House.",
+      "fact": "A shooting in Washington, D.C. resulted in 1 person killed and 4 injured; the gunman is deceased.",
       "source": "France 24 4.5|9.0 \u00b7 ABC News Australia 1.8|9.0",
       "source_urls": {
         "France 24": "https://www.france24.com/en/",
@@ -139,7 +139,17 @@
       },
       "audio": "../audio/archive/2026-11-12/e3d8db534b42.mp3",
       "published_at": "2026-11-12T16:31:11.645525+00:00",
-      "status": "published"
+      "status": "corrected",
+      "original_fact": "At least five people were shot in a Washington, D.C. neighborhood near the White House.",
+      "correction": {
+        "corrected_at": "2026-11-12T17:01:18.884633+00:00",
+        "type": "correction",
+        "reason": "The new verified fact states 1 person killed and 4 injured (5 total casualties), but story [2026-11-12-009] reports 'at least five people were shot.' The new fact specifies the outcome: 1 killed, 4 injured, with the gunman deceased. The original story's phrasing 'at least five people were shot' is imprecise and potentially misleading compared to the verified casualty breakdown.",
+        "correcting_sources": [
+          "ABC News Australia",
+          "NPR"
+        ]
+      }
     },
     {
       "id": "2026-11-12-010",
@@ -152,6 +162,19 @@
       },
       "audio": "../audio/archive/2026-11-12/bfb89206efd9.mp3",
       "published_at": "2026-11-12T17:01:11.558200+00:00",
+      "status": "published"
+    },
+    {
+      "id": "2026-11-12-011",
+      "hash": "079af5d34a72",
+      "fact": "Outages reported across Microsoft applications.",
+      "source": "CBC News 3.0|9.0 \u00b7 ABC News Australia 1.8|9.0",
+      "source_urls": {
+        "CBC News": "https://www.cbc.ca/news/world",
+        "ABC News Australia": "https://www.abc.net.au/news/"
+      },
+      "audio": "../audio/archive/2026-11-12/6f0006ce2512.mp3",
+      "published_at": "2026-11-12T23:01:14.403263+00:00",
       "status": "published"
     }
   ]
