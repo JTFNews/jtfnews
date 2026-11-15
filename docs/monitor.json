@@ -1,71 +1,95 @@
 {
-  "timestamp": "2026-11-14T23:56:22.275306+00:00",
+  "timestamp": "2026-11-15T00:15:54.715030+00:00",
+  "web_refresh_at": "2026-11-15T00:15:54.715030+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 1921635,
+  "uptime_seconds": 1922807,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1068,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1069,
+    "duration_seconds": 445.1,
+    "headlines_scraped": 186,
+    "headlines_processed": 186,
+    "stories_published": 4,
+    "stories_queued": 21
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 12,
-        "cost_usd": 0.036930000000000004,
+        "calls": 6,
+        "cost_usd": 0.018090000000000002,
         "details": {
-          "characters": 1231
+          "characters": 603
         }
       },
       "claude": {
-        "calls": 582,
-        "cost_usd": 0.2342385000000002,
+        "calls": 217,
+        "cost_usd": 0.08901399999999995,
         "details": {
-          "input_tokens": 570509,
-          "output_tokens": 73289
+          "input_tokens": 217586,
+          "output_tokens": 27694
         }
       }
     },
-    "total_usd": 0.2712,
+    "total_usd": 0.1071,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 16.3
+    "budget_pct": 6.4
   },
   "queue": {
-    "size": 39,
-    "oldest_item_age_hours": 24.4
+    "size": 38,
+    "oldest_item_age_hours": 22.3
   },
-  "stories_today": 9,
+  "stories_today": 4,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-15T00:08:16.269644+00:00",
+      "level": "WARNING",
+      "message": "upload_to_archive_org failed (attempt 1/4): (ReadTimeoutError(\"HTTPSConnectionPool(host='s3.us.archive.org', port=443): Read timed out. (read timeout=120)\"), 'https://s3.us.archive.org/jtf-news-2026-11-14/__ia_thumb.jpg'). Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-11-15T00:08:27.707241+00:00",
+      "level": "ERROR",
+      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
+    },
+    {
+      "timestamp": "2026-11-15T00:09:32.406036+00:00",
+      "level": "WARNING",
+      "message": "GitHub feedback fetch error: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/data/feedback (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.github.com', port=443) at 0x7fa776036a60>, 'Connection to api.github.com timed out. (connect timeout=30)'))"
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 14,
     "degraded_services": []
   },
   "daily_digest": {
-    "last_date": "2026-11-13",
-    "next_digest_at": "2026-11-15T00:00:00+00:00",
+    "last_date": "2026-11-14",
+    "next_digest_at": "2026-11-16T00:00:00+00:00",
     "status": "success",
     "upload_status": "success",
     "error_message": "",
-    "last_completed_at": "2026-11-14T00:04:50.208600+00:00",
-    "story_count": 11,
-    "duration_seconds": 112,
-    "video_path": "/Users/larryseyer/JTFNews/video/2026-11-13-daily-digest.mp4",
-    "youtube_id": "iWEtKDtyaQY",
-    "youtube_url": "https://youtube.com/watch?v=iWEtKDtyaQY",
-    "archive_org_id": "jtf-news-2026-11-13",
-    "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-13/2026-11-13-daily-digest.mp3",
-    "archive_video_url": "https://archive.org/download/jtf-news-2026-11-13/2026-11-13-daily-digest.mp4",
+    "last_completed_at": "2026-11-15T00:04:14.795341+00:00",
+    "story_count": 9,
+    "duration_seconds": 88,
+    "video_path": "/Users/larryseyer/JTFNews/video/2026-11-14-daily-digest.mp4",
+    "youtube_id": "bABdlteKs10",
+    "youtube_url": "https://youtube.com/watch?v=bABdlteKs10",
+    "archive_org_id": "jtf-news-2026-11-14",
+    "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-14/2026-11-14-daily-digest.mp3",
+    "archive_video_url": "https://archive.org/download/jtf-news-2026-11-14/2026-11-14-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
