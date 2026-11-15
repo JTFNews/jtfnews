@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-11-15T01:06:14.656541+00:00",
+  "timestamp": "2026-11-15T01:11:17.947307+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 1925827,
+  "uptime_seconds": 1926131,
   "availability_pct": 100.0,
   "cycle": {
     "number": 1071,
@@ -36,7 +36,7 @@
   },
   "queue": {
     "size": 40,
-    "oldest_item_age_hours": 23.1
+    "oldest_item_age_hours": 23.2
   },
   "stories_today": 4,
   "sources": {
@@ -44,27 +44,11 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-11-15T00:08:16.269644+00:00",
-      "level": "WARNING",
-      "message": "upload_to_archive_org failed (attempt 1/4): (ReadTimeoutError(\"HTTPSConnectionPool(host='s3.us.archive.org', port=443): Read timed out. (read timeout=120)\"), 'https://s3.us.archive.org/jtf-news-2026-11-14/__ia_thumb.jpg'). Retrying in 2.0s..."
-    },
-    {
-      "timestamp": "2026-11-15T00:08:27.707241+00:00",
-      "level": "ERROR",
-      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
-    },
-    {
-      "timestamp": "2026-11-15T00:09:32.406036+00:00",
-      "level": "WARNING",
-      "message": "GitHub feedback fetch error: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/data/feedback (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.github.com', port=443) at 0x7fa776036a60>, 'Connection to api.github.com timed out. (connect timeout=30)'))"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 23,
+    "next_cycle_minutes": 18,
     "degraded_services": []
   },
   "daily_digest": {
