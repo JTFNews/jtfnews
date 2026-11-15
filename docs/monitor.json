@@ -1,54 +1,81 @@
 {
-  "timestamp": "2026-11-15T04:26:12.544223+00:00",
+  "timestamp": "2026-11-15T04:33:57.815458+00:00",
+  "web_refresh_at": "2026-11-15T04:33:57.815458+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 1937825,
+  "uptime_seconds": 1938290,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1077,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1078,
+    "duration_seconds": 226.7,
+    "headlines_scraped": 136,
+    "headlines_processed": 10,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 7,
-        "cost_usd": 0.020220000000000002,
+        "calls": 8,
+        "cost_usd": 0.023340000000000003,
         "details": {
-          "characters": 674
+          "characters": 778
         }
       },
       "claude": {
-        "calls": 240,
-        "cost_usd": 0.09760424999999998,
+        "calls": 253,
+        "cost_usd": 0.10285974999999999,
         "details": {
-          "input_tokens": 238307,
-          "output_tokens": 30422
+          "input_tokens": 250584,
+          "output_tokens": 32171
         }
       }
     },
-    "total_usd": 0.1178,
+    "total_usd": 0.1262,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 7.1
+    "budget_pct": 7.6
   },
   "queue": {
     "size": 37,
-    "oldest_item_age_hours": 22.9
+    "oldest_item_age_hours": 23.1
   },
-  "stories_today": 5,
+  "stories_today": 6,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-15T04:30:45.098401+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: France 24 fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-11-15T04:31:16.318564+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: Deutsche Welle fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-11-15T04:31:47.608426+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: CBC News fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-11-15T04:32:18.894212+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: ABC News Australia fetch exceeded 30s; skipping"
+    },
+    {
+      "timestamp": "2026-11-15T04:32:50.096697+00:00",
+      "level": "WARNING",
+      "message": "Watchdog: PBS NewsHour fetch exceeded 30s; skipping"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 26,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +94,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-14/2026-11-14-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-14/2026-11-14-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
