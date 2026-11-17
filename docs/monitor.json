@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-11-17T05:56:14.175994+00:00",
+  "timestamp": "2026-11-17T06:02:07.454304+00:00",
+  "web_refresh_at": "2026-11-17T06:02:07.454304+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2116027,
+  "uptime_seconds": 2116380,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1177,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1178,
+    "duration_seconds": 118.6,
+    "headlines_scraped": 166,
+    "headlines_processed": 12,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 3
   },
   "api_costs": {
     "today": {
@@ -21,32 +22,34 @@
         }
       },
       "claude": {
-        "calls": 323,
-        "cost_usd": 0.12382899999999995,
+        "calls": 340,
+        "cost_usd": 0.12974175,
         "details": {
-          "input_tokens": 299971,
-          "output_tokens": 39069
+          "input_tokens": 314672,
+          "output_tokens": 40859
         }
       }
     },
-    "total_usd": 0.1471,
+    "total_usd": 0.153,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 8.8
+    "budget_pct": 9.2
   },
   "queue": {
-    "size": 65,
-    "oldest_item_age_hours": 24.4
+    "size": 66,
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 5,
   "sources": {
     "total": 21,
-    "successful": 21,
-    "failed": []
+    "successful": 20,
+    "failed": [
+      "UK Parliament"
+    ]
   },
   "recent_errors": [
     {
-      "timestamp": "2026-11-17T05:00:27.942761+00:00",
+      "timestamp": "2026-11-17T06:00:29.262981+00:00",
       "level": "WARNING",
       "message": "robots.txt blocks: https://www.parliament.uk/business/news/"
     }
@@ -54,7 +57,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 27,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +76,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
