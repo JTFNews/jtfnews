@@ -1,95 +1,51 @@
 {
-  "timestamp": "2026-11-17T11:26:39.479111+00:00",
+  "timestamp": "2026-11-17T11:31:44.529886+00:00",
+  "web_refresh_at": "2026-11-17T11:31:44.529886+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2135852,
+  "uptime_seconds": 2136157,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1188,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1189,
+    "duration_seconds": 96.2,
+    "headlines_scraped": 186,
+    "headlines_processed": 19,
+    "stories_published": 1,
+    "stories_queued": 4
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 11,
-        "cost_usd": 0.04164,
+        "calls": 12,
+        "cost_usd": 0.04467,
         "details": {
-          "characters": 1388
+          "characters": 1489
         }
       },
       "claude": {
-        "calls": 480,
-        "cost_usd": 0.18228675000000014,
+        "calls": 508,
+        "cost_usd": 0.1919630000000002,
         "details": {
-          "input_tokens": 441757,
-          "output_tokens": 57478
+          "input_tokens": 465692,
+          "output_tokens": 60432
         }
       }
     },
-    "total_usd": 0.2239,
+    "total_usd": 0.2366,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 13.4
+    "budget_pct": 14.2
   },
   "queue": {
-    "size": 70,
-    "oldest_item_age_hours": 24.4
+    "size": 71,
+    "oldest_item_age_hours": 23.5
   },
-  "stories_today": 7,
+  "stories_today": 8,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-11-17T10:31:26.914007+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-16 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-17T10:31:26.914188+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-15 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-17T10:31:26.914347+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-14 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-17T10:31:26.914515+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-13 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-17T10:31:26.914641+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-12 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-17T10:31:26.914761+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-11 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-17T10:31:26.914876+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-10 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-17T10:31:26.914996+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-09 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-17T10:31:26.915339+00:00",
-      "level": "WARNING",
-      "message": "propagate_correction_to_youtube: no YouTube video for 2026-11-17, skipping"
-    },
     {
       "timestamp": "2026-11-17T10:32:00.702847+00:00",
       "level": "WARNING",
@@ -99,7 +55,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -118,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
