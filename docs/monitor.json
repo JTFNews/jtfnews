@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-11-17T13:26:22.994802+00:00",
+  "timestamp": "2026-11-17T13:31:14.320689+00:00",
+  "web_refresh_at": "2026-11-17T13:31:14.320689+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2143036,
+  "uptime_seconds": 2143327,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1192,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1193,
+    "duration_seconds": 64.9,
+    "headlines_scraped": 176,
+    "headlines_processed": 5,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,30 +22,28 @@
         }
       },
       "claude": {
-        "calls": 543,
-        "cost_usd": 0.20404800000000012,
+        "calls": 553,
+        "cost_usd": 0.2068657500000001,
         "details": {
-          "input_tokens": 495027,
-          "output_tokens": 64233
+          "input_tokens": 501898,
+          "output_tokens": 65113
         }
       }
     },
-    "total_usd": 0.2487,
+    "total_usd": 0.2515,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 14.9
+    "budget_pct": 15.1
   },
   "queue": {
-    "size": 77,
-    "oldest_item_age_hours": 23.4
+    "size": 78,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 8,
   "sources": {
     "total": 21,
-    "successful": 20,
-    "failed": [
-      "France 24"
-    ]
+    "successful": 21,
+    "failed": []
   },
   "recent_errors": [
     {
@@ -56,7 +55,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
