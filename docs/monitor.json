@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-11-17T10:26:43.031313+00:00",
+  "timestamp": "2026-11-17T10:37:00.846405+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2132256,
+  "uptime_seconds": 2132873,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1186,
+    "number": 1187,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -14,49 +14,92 @@
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 9,
-        "cost_usd": 0.03012,
+        "calls": 11,
+        "cost_usd": 0.04164,
         "details": {
-          "characters": 1004
+          "characters": 1388
         }
       },
       "claude": {
-        "calls": 439,
-        "cost_usd": 0.16670750000000006,
+        "calls": 466,
+        "cost_usd": 0.17671850000000008,
         "details": {
-          "input_tokens": 404265,
-          "output_tokens": 52513
+          "input_tokens": 428629,
+          "output_tokens": 55649
         }
       }
     },
-    "total_usd": 0.1968,
+    "total_usd": 0.2184,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 11.8
+    "budget_pct": 13.1
   },
   "queue": {
     "size": 71,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.1
   },
-  "stories_today": 6,
+  "stories_today": 7,
   "sources": {
     "total": 21,
-    "successful": 20,
-    "failed": [
-      "France 24"
-    ]
+    "successful": 21,
+    "failed": []
   },
   "recent_errors": [
     {
-      "timestamp": "2026-11-17T10:00:13.518776+00:00",
+      "timestamp": "2026-11-17T10:31:26.914007+00:00",
       "level": "WARNING",
-      "message": "robots.txt blocks: https://www.france24.com/en/"
+      "message": "load_digest_video_ids_from_feed: 2026-11-16 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-11-17T10:31:26.914188+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-11-15 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-11-17T10:31:26.914347+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-11-14 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-11-17T10:31:26.914515+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-11-13 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-11-17T10:31:26.914641+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-11-12 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-11-17T10:31:26.914761+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-11-11 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-11-17T10:31:26.914876+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-11-10 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-11-17T10:31:26.914996+00:00",
+      "level": "WARNING",
+      "message": "load_digest_video_ids_from_feed: 2026-11-09 has no <link>, skipping"
+    },
+    {
+      "timestamp": "2026-11-17T10:31:26.915339+00:00",
+      "level": "WARNING",
+      "message": "propagate_correction_to_youtube: no YouTube video for 2026-11-17, skipping"
+    },
+    {
+      "timestamp": "2026-11-17T10:32:00.702847+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 409"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 22,
     "degraded_services": []
   },
   "daily_digest": {
