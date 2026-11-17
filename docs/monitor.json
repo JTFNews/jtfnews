@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-11-17T01:01:08.567129+00:00",
-  "web_refresh_at": "2026-11-17T01:01:08.567129+00:00",
+  "timestamp": "2026-11-17T01:06:10.219109+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2098321,
+  "uptime_seconds": 2098623,
   "availability_pct": 100.0,
   "cycle": {
     "number": 1168,
-    "duration_seconds": 59.4,
-    "headlines_scraped": 175,
-    "headlines_processed": 7,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 65,
-    "oldest_item_age_hours": 22.5
+    "oldest_item_age_hours": 22.6
   },
   "stories_today": 4,
   "sources": {
@@ -48,16 +47,6 @@
     ]
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-11-17T00:05:07.161854+00:00",
-      "level": "WARNING",
-      "message": "upload_to_archive_org failed (attempt 1/4):  error uploading __ia_thumb.jpg to jtf-news-2026-11-16, Please reduce your request rate. - total_tasks_queued exceeds global_limit. Retrying in 2.0s..."
-    },
-    {
-      "timestamp": "2026-11-17T00:05:33.312206+00:00",
-      "level": "ERROR",
-      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
-    },
     {
       "timestamp": "2026-11-17T00:12:02.197460+00:00",
       "level": "ERROR",
@@ -72,7 +61,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -91,12 +80,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
