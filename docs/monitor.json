@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-11-18T01:01:10.466491+00:00",
-  "web_refresh_at": "2026-11-18T01:01:10.466491+00:00",
+  "timestamp": "2026-11-18T01:06:12.414029+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2184723,
+  "uptime_seconds": 2185025,
   "availability_pct": 100.0,
   "cycle": {
     "number": 1216,
-    "duration_seconds": 59.9,
-    "headlines_scraped": 177,
-    "headlines_processed": 5,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 69,
-    "oldest_item_age_hours": 23.5
+    "oldest_item_age_hours": 23.6
   },
   "stories_today": 4,
   "sources": {
@@ -46,11 +45,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-11-18T00:06:04.050936+00:00",
-      "level": "ERROR",
-      "message": "Error deleting audio archive 2026-09-11: [Errno 13] Permission denied: '/Users/larryseyer/JTFNews/audio/archive/2026-09-11/f3559d7907bf.mp3'"
-    },
     {
       "timestamp": "2026-11-18T00:13:54.352253+00:00",
       "level": "WARNING",
@@ -100,7 +94,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -119,12 +113,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
