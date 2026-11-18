@@ -1,16 +1,15 @@
 {
-  "timestamp": "2026-11-18T10:01:15.291752+00:00",
-  "web_refresh_at": "2026-11-18T10:01:15.291752+00:00",
+  "timestamp": "2026-11-18T10:06:16.970121+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2217128,
+  "uptime_seconds": 2217430,
   "availability_pct": 100.0,
   "cycle": {
     "number": 1234,
-    "duration_seconds": 65.9,
-    "headlines_scraped": 176,
-    "headlines_processed": 4,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
-    "stories_queued": 1
+    "stories_queued": 0
   },
   "api_costs": {
     "today": {
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 63,
-    "oldest_item_age_hours": 24.0
+    "oldest_item_age_hours": 24.1
   },
   "stories_today": 8,
   "sources": {
@@ -45,62 +44,11 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-11-18T09:01:28.709332+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-17 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-18T09:01:28.709475+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-16 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-18T09:01:28.709651+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-15 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-18T09:01:28.709788+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-14 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-18T09:01:28.709961+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-13 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-18T09:01:28.710092+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-12 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-18T09:01:28.710272+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-11 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-18T09:01:28.710405+00:00",
-      "level": "WARNING",
-      "message": "load_digest_video_ids_from_feed: 2026-11-10 has no <link>, skipping"
-    },
-    {
-      "timestamp": "2026-11-18T09:01:28.710754+00:00",
-      "level": "WARNING",
-      "message": "propagate_correction_to_youtube: no YouTube video for 2026-11-18, skipping"
-    },
-    {
-      "timestamp": "2026-11-18T09:01:51.744956+00:00",
-      "level": "WARNING",
-      "message": "GitHub API error for docs/monitor.json: 409"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -119,12 +67,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
