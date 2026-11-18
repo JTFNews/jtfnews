@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-11-18T01:26:19.674484+00:00",
+  "timestamp": "2026-11-18T01:31:05.134088+00:00",
+  "web_refresh_at": "2026-11-18T01:31:05.134088+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2186232,
+  "uptime_seconds": 2186518,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1216,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1217,
+    "duration_seconds": 56.3,
+    "headlines_scraped": 177,
+    "headlines_processed": 2,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 249,
-        "cost_usd": 0.09655174999999995,
+        "calls": 251,
+        "cost_usd": 0.09759524999999995,
         "details": {
-          "input_tokens": 237482,
-          "output_tokens": 29745
+          "input_tokens": 239761,
+          "output_tokens": 30124
         }
       }
     },
-    "total_usd": 0.1164,
+    "total_usd": 0.1175,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
     "budget_pct": 7.0
   },
   "queue": {
     "size": 69,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 4,
   "sources": {
@@ -45,11 +46,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-11-18T00:28:59.638949+00:00",
-      "level": "WARNING",
-      "message": "Error pushing docs/monitor.json to GitHub: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/JTFNews/jtfnews/contents/docs/monitor.json?ref=main (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)')))"
-    },
     {
       "timestamp": "2026-11-18T00:31:15.382955+00:00",
       "level": "WARNING",
@@ -79,7 +75,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -98,5 +94,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-16/2026-11-16-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
