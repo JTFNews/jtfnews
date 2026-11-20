@@ -1,44 +1,45 @@
 {
-  "timestamp": "2026-11-20T12:26:18.125500+00:00",
+  "timestamp": "2026-11-20T12:31:23.252101+00:00",
+  "web_refresh_at": "2026-11-20T12:31:23.252101+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2398631,
+  "uptime_seconds": 2398936,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1334,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1335,
+    "duration_seconds": 74.1,
+    "headlines_scraped": 176,
+    "headlines_processed": 7,
+    "stories_published": 1,
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 6,
-        "cost_usd": 0.019799999999999998,
+        "calls": 7,
+        "cost_usd": 0.02241,
         "details": {
-          "characters": 660
+          "characters": 747
         }
       },
       "claude": {
-        "calls": 452,
-        "cost_usd": 0.17908674999999966,
+        "calls": 464,
+        "cost_usd": 0.18310949999999968,
         "details": {
-          "input_tokens": 438797,
-          "output_tokens": 55510
+          "input_tokens": 447873,
+          "output_tokens": 56913
         }
       }
     },
-    "total_usd": 0.1989,
+    "total_usd": 0.2055,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 11.9
+    "budget_pct": 12.3
   },
   "queue": {
     "size": 65,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 4,
+  "stories_today": 5,
   "sources": {
     "total": 21,
     "successful": 21,
@@ -48,7 +49,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-19/2026-11-19-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-19/2026-11-19-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
