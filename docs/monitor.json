@@ -1,42 +1,43 @@
 {
-  "timestamp": "2026-11-20T18:56:49.386344+00:00",
+  "timestamp": "2026-11-20T19:01:45.217126+00:00",
+  "web_refresh_at": "2026-11-20T19:01:45.217126+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2422062,
+  "uptime_seconds": 2422358,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1347,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1348,
+    "duration_seconds": 95.6,
+    "headlines_scraped": 177,
+    "headlines_processed": 15,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 11,
-        "cost_usd": 0.0342,
+        "calls": 12,
+        "cost_usd": 0.039330000000000004,
         "details": {
-          "characters": 1140
+          "characters": 1311
         }
       },
       "claude": {
-        "calls": 661,
-        "cost_usd": 0.2544542499999996,
+        "calls": 682,
+        "cost_usd": 0.2618119999999996,
         "details": {
-          "input_tokens": 624362,
-          "output_tokens": 78691
+          "input_tokens": 642778,
+          "output_tokens": 80894
         }
       }
     },
-    "total_usd": 0.2887,
+    "total_usd": 0.3011,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 17.3
+    "budget_pct": 18.1
   },
   "queue": {
-    "size": 72,
-    "oldest_item_age_hours": 24.4
+    "size": 71,
+    "oldest_item_age_hours": 23.5
   },
   "stories_today": 9,
   "sources": {
@@ -44,17 +45,11 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-11-20T18:00:13.189542+00:00",
-      "level": "WARNING",
-      "message": "robots.txt blocks: https://www.france24.com/en/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-19/2026-11-19-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-19/2026-11-19-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
