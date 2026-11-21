@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-11-21T20:26:48.533993+00:00",
+  "timestamp": "2026-11-21T20:31:19.163198+00:00",
+  "web_refresh_at": "2026-11-21T20:31:19.163198+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2513861,
+  "uptime_seconds": 2514132,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1398,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1399,
+    "duration_seconds": 68.0,
+    "headlines_scraped": 177,
+    "headlines_processed": 7,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,30 +22,28 @@
         }
       },
       "claude": {
-        "calls": 523,
-        "cost_usd": 0.20243825000000024,
+        "calls": 533,
+        "cost_usd": 0.20584800000000028,
         "details": {
-          "input_tokens": 493018,
-          "output_tokens": 63347
+          "input_tokens": 501592,
+          "output_tokens": 64360
         }
       }
     },
-    "total_usd": 0.2286,
+    "total_usd": 0.232,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 13.7
+    "budget_pct": 13.9
   },
   "queue": {
     "size": 61,
-    "oldest_item_age_hours": 24.4
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 7,
   "sources": {
     "total": 21,
-    "successful": 20,
-    "failed": [
-      "Government of Canada"
-    ]
+    "successful": 21,
+    "failed": []
   },
   "recent_errors": [
     {
@@ -56,7 +55,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-20/2026-11-20-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-20/2026-11-20-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
