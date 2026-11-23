@@ -1,15 +1,16 @@
 {
-  "timestamp": "2026-11-23T02:56:16.288899+00:00",
+  "timestamp": "2026-11-23T03:07:06.645818+00:00",
+  "web_refresh_at": "2026-11-23T03:07:06.645818+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2623629,
+  "uptime_seconds": 2624279,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1458,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1459,
+    "duration_seconds": 418.4,
+    "headlines_scraped": 177,
+    "headlines_processed": 6,
     "stories_published": 0,
-    "stories_queued": 0
+    "stories_queued": 1
   },
   "api_costs": {
     "today": {
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 254,
-        "cost_usd": 0.10275850000000004,
+        "calls": 259,
+        "cost_usd": 0.10500425000000005,
         "details": {
-          "input_tokens": 248489,
-          "output_tokens": 32509
+          "input_tokens": 254197,
+          "output_tokens": 33164
         }
       }
     },
-    "total_usd": 0.1225,
+    "total_usd": 0.1248,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 7.4
+    "budget_pct": 7.5
   },
   "queue": {
-    "size": 31,
-    "oldest_item_age_hours": 20.4
+    "size": 32,
+    "oldest_item_age_hours": 20.6
   },
   "stories_today": 4,
   "sources": {
@@ -44,11 +45,37 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-23T03:03:44.197881+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
+    },
+    {
+      "timestamp": "2026-11-23T03:04:52.053073+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 2/4): Connection error.. Retrying in 2.0s..."
+    },
+    {
+      "timestamp": "2026-11-23T03:05:52.373014+00:00",
+      "level": "WARNING",
+      "message": "_call_claude_extract_fact failed (attempt 3/4): Connection error.. Retrying in 4.0s..."
+    },
+    {
+      "timestamp": "2026-11-23T03:07:02.611540+00:00",
+      "level": "ERROR",
+      "message": "_call_claude_extract_fact failed after 4 attempts: Connection error."
+    },
+    {
+      "timestamp": "2026-11-23T03:07:02.611711+00:00",
+      "level": "ERROR",
+      "message": "Claude API error: Connection error."
+    }
+  ],
   "status": {
     "state": "running",
-    "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "stream_health": "offline",
+    "next_cycle_minutes": 22,
     "degraded_services": []
   },
   "daily_digest": {
@@ -67,5 +94,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-22/2026-11-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-22/2026-11-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
