@@ -1,60 +1,55 @@
 {
-  "timestamp": "2026-11-23T19:56:04.758025+00:00",
+  "timestamp": "2026-11-23T20:01:08.407612+00:00",
+  "web_refresh_at": "2026-11-23T20:01:08.407612+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2684817,
+  "uptime_seconds": 2685121,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1492,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1493,
+    "duration_seconds": 60.3,
+    "headlines_scraped": 186,
+    "headlines_processed": 10,
+    "stories_published": 1,
+    "stories_queued": 4
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 11,
-        "cost_usd": 0.03231,
+        "calls": 12,
+        "cost_usd": 0.03498,
         "details": {
-          "characters": 1077
+          "characters": 1166
         }
       },
       "claude": {
-        "calls": 609,
-        "cost_usd": 0.2464527499999998,
+        "calls": 627,
+        "cost_usd": 0.2517809999999998,
         "details": {
-          "input_tokens": 597681,
-          "output_tokens": 77626
+          "input_tokens": 610774,
+          "output_tokens": 79270
         }
       }
     },
-    "total_usd": 0.2788,
+    "total_usd": 0.2868,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 16.7
+    "budget_pct": 17.2
   },
   "queue": {
-    "size": 55,
-    "oldest_item_age_hours": 24.4
+    "size": 57,
+    "oldest_item_age_hours": 23.0
   },
-  "stories_today": 9,
+  "stories_today": 10,
   "sources": {
     "total": 21,
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [
-    {
-      "timestamp": "2026-11-23T19:00:23.607240+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from White House: 403 Client Error: Forbidden for url: https://www.whitehouse.gov/briefing-room/"
-    }
-  ],
+  "recent_errors": [],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 4,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -73,5 +68,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-22/2026-11-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-22/2026-11-22-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
