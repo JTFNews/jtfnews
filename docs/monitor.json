@@ -1,14 +1,13 @@
 {
-  "timestamp": "2026-11-23T04:01:18.062079+00:00",
-  "web_refresh_at": "2026-11-23T04:01:18.062079+00:00",
+  "timestamp": "2026-11-23T04:06:19.435379+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2627531,
+  "uptime_seconds": 2627832,
   "availability_pct": 100.0,
   "cycle": {
     "number": 1461,
-    "duration_seconds": 68.7,
-    "headlines_scraped": 177,
-    "headlines_processed": 6,
+    "duration_seconds": 0,
+    "headlines_scraped": 0,
+    "headlines_processed": 0,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -37,7 +36,7 @@
   },
   "queue": {
     "size": 33,
-    "oldest_item_age_hours": 21.5
+    "oldest_item_age_hours": 21.6
   },
   "stories_today": 4,
   "sources": {
@@ -46,21 +45,6 @@
     "failed": []
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-11-23T03:03:44.197881+00:00",
-      "level": "WARNING",
-      "message": "_call_claude_extract_fact failed (attempt 1/4): Connection error.. Retrying in 1.0s..."
-    },
-    {
-      "timestamp": "2026-11-23T03:04:52.053073+00:00",
-      "level": "WARNING",
-      "message": "_call_claude_extract_fact failed (attempt 2/4): Connection error.. Retrying in 2.0s..."
-    },
-    {
-      "timestamp": "2026-11-23T03:05:52.373014+00:00",
-      "level": "WARNING",
-      "message": "_call_claude_extract_fact failed (attempt 3/4): Connection error.. Retrying in 4.0s..."
-    },
     {
       "timestamp": "2026-11-23T03:07:02.611540+00:00",
       "level": "ERROR",
@@ -75,7 +59,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 28,
+    "next_cycle_minutes": 23,
     "degraded_services": []
   },
   "daily_digest": {
@@ -94,12 +78,5 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-22/2026-11-22-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-22/2026-11-22-daily-digest.mp4",
     "podcast_updated": true
-  },
-  "feedback": {
-    "today_submissions": 0,
-    "today_corrections": 0,
-    "total_submissions": 0,
-    "total_corrections": 0,
-    "total_spam_blocked": 0
   }
 }
