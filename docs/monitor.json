@@ -1,50 +1,49 @@
 {
-  "timestamp": "2026-11-24T17:56:54.640830+00:00",
+  "timestamp": "2026-11-24T18:01:39.475669+00:00",
+  "web_refresh_at": "2026-11-24T18:01:39.475669+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2764067,
+  "uptime_seconds": 2764352,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1536,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
-    "stories_published": 0,
-    "stories_queued": 0
+    "number": 1537,
+    "duration_seconds": 89.9,
+    "headlines_scraped": 177,
+    "headlines_processed": 13,
+    "stories_published": 2,
+    "stories_queued": 2
   },
   "api_costs": {
     "today": {
       "elevenlabs": {
-        "calls": 10,
-        "cost_usd": 0.030059999999999996,
+        "calls": 12,
+        "cost_usd": 0.035879999999999995,
         "details": {
-          "characters": 1002
+          "characters": 1196
         }
       },
       "claude": {
-        "calls": 580,
-        "cost_usd": 0.23976425000000004,
+        "calls": 601,
+        "cost_usd": 0.24678025000000003,
         "details": {
-          "input_tokens": 578417,
-          "output_tokens": 76128
+          "input_tokens": 595746,
+          "output_tokens": 78275
         }
       }
     },
-    "total_usd": 0.2698,
+    "total_usd": 0.2827,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 16.2
+    "budget_pct": 17.0
   },
   "queue": {
-    "size": 60,
-    "oldest_item_age_hours": 24.4
+    "size": 59,
+    "oldest_item_age_hours": 24.0
   },
-  "stories_today": 8,
+  "stories_today": 10,
   "sources": {
     "total": 21,
-    "successful": 20,
-    "failed": [
-      "Government of Canada"
-    ]
+    "successful": 21,
+    "failed": []
   },
   "recent_errors": [
     {
@@ -56,7 +55,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -75,5 +74,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-23/2026-11-23-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-23/2026-11-23-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
