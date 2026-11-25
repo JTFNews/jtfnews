@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-11-25T15:41:46.890627+00:00",
+  "timestamp": "2026-11-25T16:16:46.912621+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2842360,
+  "uptime_seconds": 2844460,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1580,
+    "number": 1581,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -21,34 +21,72 @@
         }
       },
       "claude": {
-        "calls": 608,
-        "cost_usd": 0.23570349999999993,
+        "calls": 619,
+        "cost_usd": 0.24014349999999995,
         "details": {
-          "input_tokens": 571314,
-          "output_tokens": 74300
+          "input_tokens": 581754,
+          "output_tokens": 75764
         }
       }
     },
-    "total_usd": 0.2877,
+    "total_usd": 0.2921,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 17.3
+    "budget_pct": 17.5
   },
   "queue": {
-    "size": 72,
-    "oldest_item_age_hours": 24.2
+    "size": 71,
+    "oldest_item_age_hours": 24.3
   },
   "stories_today": 12,
   "sources": {
     "total": 21,
-    "successful": 21,
-    "failed": []
+    "successful": 20,
+    "failed": [
+      "France 24"
+    ]
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-25T15:46:50.594538+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 500"
+    },
+    {
+      "timestamp": "2026-11-25T15:51:54.150764+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 500"
+    },
+    {
+      "timestamp": "2026-11-25T15:56:56.093343+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 500"
+    },
+    {
+      "timestamp": "2026-11-25T16:00:15.301529+00:00",
+      "level": "WARNING",
+      "message": "robots.txt blocks: https://www.france24.com/en/"
+    },
+    {
+      "timestamp": "2026-11-25T16:01:24.693471+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 500"
+    },
+    {
+      "timestamp": "2026-11-25T16:06:25.720961+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 500"
+    },
+    {
+      "timestamp": "2026-11-25T16:11:46.768430+00:00",
+      "level": "WARNING",
+      "message": "GitHub API error for docs/monitor.json: 502"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 18,
+    "next_cycle_minutes": 13,
     "degraded_services": []
   },
   "daily_digest": {
