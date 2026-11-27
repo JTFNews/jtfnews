@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-11-27T23:26:31.264081+00:00",
+  "timestamp": "2026-11-27T23:31:18.909077+00:00",
+  "web_refresh_at": "2026-11-27T23:31:18.909077+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 3043044,
+  "uptime_seconds": 3043332,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1691,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1692,
+    "duration_seconds": 67.1,
+    "headlines_scraped": 175,
+    "headlines_processed": 8,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,22 +22,22 @@
         }
       },
       "claude": {
-        "calls": 734,
-        "cost_usd": 0.2860742499999998,
+        "calls": 742,
+        "cost_usd": 0.28990374999999985,
         "details": {
-          "input_tokens": 692252,
-          "output_tokens": 90409
+          "input_tokens": 701385,
+          "output_tokens": 91646
         }
       }
     },
-    "total_usd": 0.3262,
+    "total_usd": 0.33,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 19.6
+    "budget_pct": 19.8
   },
   "queue": {
     "size": 62,
-    "oldest_item_age_hours": 23.3
+    "oldest_item_age_hours": 23.4
   },
   "stories_today": 10,
   "sources": {
@@ -48,12 +49,12 @@
   },
   "recent_errors": [
     {
-      "timestamp": "2026-11-27T22:30:26.432709+00:00",
+      "timestamp": "2026-11-27T23:00:25.253789+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     },
     {
-      "timestamp": "2026-11-27T23:00:25.253789+00:00",
+      "timestamp": "2026-11-27T23:30:28.495404+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
     }
@@ -61,7 +62,7 @@
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -80,5 +81,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-26/2026-11-26-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-26/2026-11-26-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
