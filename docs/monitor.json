@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-11-27T01:26:23.950976+00:00",
+  "timestamp": "2026-11-27T01:49:40.050887+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 2963837,
+  "uptime_seconds": 2965233,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1647,
+    "number": 1648,
     "duration_seconds": 0,
     "headlines_scraped": 0,
     "headlines_processed": 0,
@@ -21,22 +21,22 @@
         }
       },
       "claude": {
-        "calls": 237,
-        "cost_usd": 0.09411824999999996,
+        "calls": 253,
+        "cost_usd": 0.10114449999999996,
         "details": {
-          "input_tokens": 228473,
-          "output_tokens": 29600
+          "input_tokens": 245748,
+          "output_tokens": 31766
         }
       }
     },
-    "total_usd": 0.1143,
+    "total_usd": 0.1213,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 6.9
+    "budget_pct": 7.3
   },
   "queue": {
-    "size": 59,
-    "oldest_item_age_hours": 24.4
+    "size": 58,
+    "oldest_item_age_hours": 24.3
   },
   "stories_today": 4,
   "sources": {
@@ -44,11 +44,27 @@
     "successful": 21,
     "failed": []
   },
-  "recent_errors": [],
+  "recent_errors": [
+    {
+      "timestamp": "2026-11-27T01:32:50.588849+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-11-27T01:38:45.252417+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    },
+    {
+      "timestamp": "2026-11-27T01:44:39.909185+00:00",
+      "level": "WARNING",
+      "message": "Error pushing docs/monitor.json to GitHub: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))"
+    }
+  ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 12,
     "degraded_services": []
   },
   "daily_digest": {
