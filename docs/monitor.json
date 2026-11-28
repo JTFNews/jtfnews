@@ -1,13 +1,14 @@
 {
-  "timestamp": "2026-11-28T09:26:47.151497+00:00",
+  "timestamp": "2026-11-28T09:31:31.307130+00:00",
+  "web_refresh_at": "2026-11-28T09:31:31.307130+00:00",
   "uptime_start": "2026-10-23T18:09:07.381810+00:00",
-  "uptime_seconds": 3079060,
+  "uptime_seconds": 3079344,
   "availability_pct": 100.0,
   "cycle": {
-    "number": 1711,
-    "duration_seconds": 0,
-    "headlines_scraped": 0,
-    "headlines_processed": 0,
+    "number": 1712,
+    "duration_seconds": 83.1,
+    "headlines_scraped": 172,
+    "headlines_processed": 10,
     "stories_published": 0,
     "stories_queued": 0
   },
@@ -21,43 +22,33 @@
         }
       },
       "claude": {
-        "calls": 323,
-        "cost_usd": 0.131956,
+        "calls": 333,
+        "cost_usd": 0.13675425000000002,
         "details": {
-          "input_tokens": 322474,
-          "output_tokens": 41070
+          "input_tokens": 333897,
+          "output_tokens": 42624
         }
       }
     },
-    "total_usd": 0.15,
+    "total_usd": 0.1548,
     "month_estimate_usd": 5.76,
     "daily_budget": 1.67,
-    "budget_pct": 9.0
+    "budget_pct": 9.3
   },
   "queue": {
     "size": 58,
-    "oldest_item_age_hours": 23.9
+    "oldest_item_age_hours": 24.0
   },
   "stories_today": 4,
   "sources": {
     "total": 21,
     "successful": 19,
     "failed": [
-      "Congress.gov",
-      "CDC Newsroom"
+      "CDC Newsroom",
+      "Congress.gov"
     ]
   },
   "recent_errors": [
-    {
-      "timestamp": "2026-11-28T08:30:23.196050+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
-    },
-    {
-      "timestamp": "2026-11-28T08:31:07.802490+00:00",
-      "level": "WARNING",
-      "message": "Failed to fetch from CDC Newsroom: HTTPSConnectionPool(host='www.cdc.gov', port=443): Read timed out. (read timeout=15)"
-    },
     {
       "timestamp": "2026-11-28T09:00:23.797370+00:00",
       "level": "WARNING",
@@ -67,12 +58,22 @@
       "timestamp": "2026-11-28T09:01:13.689791+00:00",
       "level": "WARNING",
       "message": "Failed to fetch from CDC Newsroom: HTTPSConnectionPool(host='www.cdc.gov', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "timestamp": "2026-11-28T09:30:22.173316+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from Congress.gov: 403 Client Error: Forbidden for url: https://www.congress.gov/"
+    },
+    {
+      "timestamp": "2026-11-28T09:31:06.907696+00:00",
+      "level": "WARNING",
+      "message": "Failed to fetch from CDC Newsroom: HTTPSConnectionPool(host='www.cdc.gov', port=443): Read timed out. (read timeout=15)"
     }
   ],
   "status": {
     "state": "running",
     "stream_health": "online",
-    "next_cycle_minutes": 3,
+    "next_cycle_minutes": 28,
     "degraded_services": []
   },
   "daily_digest": {
@@ -91,5 +92,12 @@
     "archive_audio_url": "https://archive.org/download/jtf-news-2026-11-27/2026-11-27-daily-digest.mp3",
     "archive_video_url": "https://archive.org/download/jtf-news-2026-11-27/2026-11-27-daily-digest.mp4",
     "podcast_updated": true
+  },
+  "feedback": {
+    "today_submissions": 0,
+    "today_corrections": 0,
+    "total_submissions": 0,
+    "total_corrections": 0,
+    "total_spam_blocked": 0
   }
 }
